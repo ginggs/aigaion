@@ -1,0 +1,16 @@
+table.menu {
+}
+
+tr.menu_item {
+  background-color: #E0E0E0;
+  margin-bottom   : 10px;
+}
+
+tr.menu_item :hover {
+  background-color: lightblue;
+}
+
+tr.menu_spacer {
+  height          : 10px;
+
+}
