@@ -1,0 +1,167 @@
+/*  Colorscheme   : Granny Smith
+    White         : #FFFFFF;
+    Semi-white    : #F6F5D4;
+    Light-green   : #D0E854;
+    Shade-green   : #ABC41F;
+    Brown         : #493E0B;
+    Red           : #CC0300;
+*/
+
+/* Font definitions */
+html, body, input, textarea, select {
+	font-family	    : Verdana, Arial, Helvetica, Sans-serif;
+	font-size		    : 10px;	
+}
+
+a {
+  color           : #493E0B;
+  text-decoration : none;
+}
+a:hover {
+  color           : #493E0B;
+  text-decoration : underline;
+}
+/* Main layout box colors */
+body {
+	color           : #493E0B;
+	background-color: #493E0B;
+}
+
+#main_holder {
+  background-color: #FFFFFF;
+	
+  border-style    : solid;
+  border-width    : 1px;
+  border-color    : #ABC41F;
+}
+
+#header_holder {
+	background-color: #D0E854;
+
+  border-style    : solid;
+  border-width    : 0px 0px 1px 0px;
+  border-color    : #ABC41F;
+}
+
+#menu_holder, #content_holder, #footer_holder {
+  background-color: #D0E854;
+
+  border-style    : solid;
+  border-width    : 1px;
+  border-color    : #ABC41F;
+}
+
+/* Menu colors and effects */
+ul.mainmenu {
+  list-style-type : none;
+  padding         : 0;
+  margin          : 0;
+}
+li.mainmenu {
+  background      : #ABC41F;
+  margin          : 0 0 0.5em 0;
+  padding         : 0.2em;
+}
+li.mainmenu:hover {
+  background      : #D0E854;
+}
+li.mainmenu-header {
+  margin-top      : 1em;
+  margin-bottom   : 0.2em;
+}
+li.mainmenu-spacer {
+  margin          : 1.5em;
+}
+
+input, textarea, select {
+  border-style    : solid;
+  border-width    : 1px;
+  border-color    : #ABC41F;
+  margin          : 0;
+  padding         : 0.2em;
+  font-size       : 1em;
+}
+input:focus, textarea:focus, select:focus {
+  background-color: #F6F5D4;
+}
+input:hover, textarea:hover, select:hover {
+  background-color: #F6F5D4;
+}
+
+span.page_title {
+  color           : #493E0B;
+  font-size       : 3em;
+  font-weight     : 400;
+  font-style      : italic;
+}
+
+
+div.header {
+  padding         : 0.1em 4em .1em 0.5em;
+  margin          : 0 0 1em 0;
+  background      : #ABC41F;
+  
+  font-weight     : bold;
+  font-size       : 1.1em;
+
+}
+
+div.optionbox {
+  margin-top      : 0.1em;
+  padding-right   : 0.2em;
+  float           : right;
+  width           : 4em;
+  clear           : right;
+  text-align      : right;
+}
+
+div.publication_summary {
+  padding         : 0.1em 0.1em 1em 0.5em;
+  background      : #ABC41F;
+}
+
+div.publication_summary.odd {
+  background      : #D0E854;
+}
+
+
+span.author {
+  font-style      : italic;
+}
+span.authorlist {
+  font-style      : italic;
+}
+span.title {
+  font-weight     : bold;
+}
+
+ul.nosymbol {
+  list-style-type : none;
+}
+
+div.autocomplete {
+  position        : absolute;
+  width           : 250px;
+  background-color: #FFFFFF;
+  border          : 1px solid;
+  border-color    : #ABC41F;
+  margin          : 0px;
+  padding         : 0px;
+}
+div.autocomplete ul {
+	list-style      : none!important;
+	list-style-image: none!important;
+	margin          : 0px;
+	padding         : 0px;
+}
+div.autocomplete ul li.selected {
+	background-color: #F6F5D4;
+}
+div.autocomplete ul li {
+	font-size       : 1em;
+	list-style-type : none;
+	display         : block;
+	margin          : 0;
+	padding         : 2px;
+	cursor          : pointer;
+}
