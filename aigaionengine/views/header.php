@@ -6,6 +6,7 @@
     <title><?php echo $title; ?></title>
     <link href="<?php echo getCssUrl("positioning.css"); ?>" rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
+    <link href="<?php echo getCssUrl("topics.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
 <?php
     if (!isset($javascripts))
       $javascripts = array();
