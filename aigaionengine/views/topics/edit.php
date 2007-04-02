@@ -46,7 +46,7 @@ echo "
      
 echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1),
-                            'showroot'  => False,
+                            'showroot'  => True,
                             'depth'     => -1,
                             'selected'  => $topic->parent_id
                             ),  

@@ -21,6 +21,12 @@ a:hover {
   color           : #493E0B;
   text-decoration : underline;
 }
+
+/* Icons */
+.icon {
+    width   : 1em;
+}
+
 /* Main layout box colors */
 body {
 	color           : #493E0B;
@@ -172,3 +178,5 @@ div.autocomplete ul li {
 	padding         : 2px;
 	cursor          : pointer;
 }
+
+

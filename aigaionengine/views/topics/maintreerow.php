@@ -10,11 +10,16 @@
     if (sizeof($topic->getChildren())>0) {
         echo "<img id      = 'min_topic_".$topic->topic_id."' 
                    onclick = 'collapse(\"".$topic->topic_id."\",\"\");' 
+                   class   = icon
                    src     = '".getIconUrl('tree_min.gif')."'/>\n";
         echo "<img id      = 'plus_topic_".$topic->topic_id."' 
                    onclick = 'expand(\"".$topic->topic_id."\",\"\");' 
+                   class   = icon
                    src     = '".getIconUrl('tree_plus.gif')."'/>\n";
         echo "<script>".$hide1.$hide2."</script>"; 
+    } else {
+        echo "<img  class   = icon
+                    src     = '".getIconUrl('smallblank.gif')."'/>\n";
     }
     echo anchor('topics/view/'.$topic->topic_id,$topic->name)."\n";
 
