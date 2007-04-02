@@ -30,25 +30,21 @@ class Topics extends Controller {
         
         
         $root = $this->topic_db->getByID($root_id);
-        $this->load->vars(array('subviews'  => array('topics/collapselink'=>array(), 
-                                                     'topics/browsesingletopiclink'=>array()//,
-                                                     //'topics/editlink'=>array()
-                                                     )
-                                )
-                          );
-        $output .= $this->load->view('topics/tree',
-                                      array('topics'   => array($root),
-                                            'showroot'  => False,
-                                            'depth'     => -1,
-                                            'noWrap'    => False
+        $this->load->vars(array('subviews'  => array('topics//maintreerow'=>array())));
+        $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+                    .$this->load->view('topics/tree',
+                                      array('topics'   => $root->getChildren(),
+                                            'showroot'  => True,
+                                            'depth'     => -1
                                             ),  
-                                      true);
+                                      true)."</ul>\n</div>\n";
         
         $output .= $this->load->view('footer','', true);
 
         //set output
         $this->output->set_output($output);
 	}
+
 
 
 }
