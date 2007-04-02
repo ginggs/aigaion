@@ -44,11 +44,11 @@ class Topic {
 
     /** Return a Topic. Note: every call to this function will return a NEW Topic object. */
     function getParent() {
-        if ($this->parent == -1) {
-            $this->parent = $this->CI->topic_db->getParent($this->topic_id);
+        if ($this->parent_id == -1) {
+            $this->parent_id = $this->CI->topic_db->getParent($this->topic_id);
         }
-        if ($this->parent == null) return null;
-        $p = $this->CI->topic_db->getByID($this->parent, $this->publication_id);
+        if ($this->parent_id == null) return null;
+        $p = $this->CI->topic_db->getByID($this->parent_id, $this->publication_id);
         return $p;
     }
   

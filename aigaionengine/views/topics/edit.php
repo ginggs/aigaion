@@ -40,7 +40,6 @@ echo "
         </tr>
      ";
 echo "
-    <table>
         <tr><td><label for='parent'>Parent</label></td>
             <td>
      ";
@@ -49,7 +48,7 @@ echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1),
                             'showroot'  => False,
                             'depth'     => -1,
-                            'selected'  => $topic->parent
+                            'selected'  => $topic->parent_id
                             ),  
                        true)."\n";
 echo "

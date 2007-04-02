@@ -44,7 +44,8 @@ class Topic_db {
                 $topic->publicationIsSubscribed = True;
             }
         }
-        
+        //always get parent
+        $topic->parent_id = $this->getParent($topic->topic_id);
         return $topic;
     }
 

@@ -118,7 +118,7 @@ class Topics extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $output  .= $this->load->view('topics/single', array('topic' => $topic),  true);
+        $output  .= $this->load->view('topics/full', array('topic' => $topic),  true);
         
         $output .= $this->load->view('footer','', true);
 
