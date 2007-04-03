@@ -38,7 +38,8 @@
 */
 
 $autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
-                               'topic','topic_db');
+                               'topic','topic_db','user','user_db',
+                               'group','group_db');
 
 
 /*
@@ -50,7 +51,7 @@ $autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('config','theme','url','login','message', 'form');
+$autoload['helper'] = array('config','theme','url','login','message', 'form', 'rights');
 
 
 /*

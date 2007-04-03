@@ -29,8 +29,9 @@
     		while (false !== ($nextfile = readdir($handle))) {
     			if (   ($nextfile != "." && $nextfile != "..") 
     			    && (strtolower($nextfile)!="cvs") 
+    			    && (strtolower($nextfile)!=".svn") 
     			    && (is_dir($themepath."/".$nextfile))
-    			    && file_exists($themepath."/".$nextfile."/css/style.css")
+    			    && file_exists($themepath."/".$nextfile."/css/styling.css")
     			    ) {
     				$themelist[] = $nextfile;
     			}

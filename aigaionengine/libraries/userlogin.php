@@ -129,10 +129,10 @@ class UserLogin {
     /** Initialize the preferences. Note: this method should also be called if the preferences
     have changed. */
     function initPreferences() {
-        //right now, I just enumerate all relevant preferences from the person-table
+        //right now, I just enumerate all relevant preferences from the user-table
         $nonprefs=array("password");
         $this->preferences = array();
-        $Q = mysql_query("SELECT * FROM person WHERE ID={$this->iUserId}");
+        $Q = mysql_query("SELECT * FROM users WHERE user_id={$this->iUserId}");
         if ($Q) {
             if ($R = mysql_fetch_array($Q)) {
                 //where needed, interpret setting as other than string
@@ -245,7 +245,7 @@ class UserLogin {
     function loginAnonymous() {
         if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
         $loginID = getConfigurationSetting("ANONYMOUS_USER");
-        $res = mysql_query("SELECT * FROM person WHERE ID='".$loginID."'");
+        $res = mysql_query("SELECT * FROM users WHERE user_id='".$loginID."'");
         if ($res) {
             if ($row = mysql_fetch_array($res)) {
                 $loginName = $row["login"];
@@ -265,7 +265,7 @@ class UserLogin {
      *      1 - unknown user or wrong password */
     function _login($userName, $pwdHash, $remember) {
         //check username / password in user-table
-        $Q = mysql_query("SELECT * FROM person WHERE login='".$userName."'");
+        $Q = mysql_query("SELECT * FROM users WHERE login='".$userName."'");
         if (!$Q || !($R = mysql_fetch_array($Q)) ) {
             return 1; //no such user error
         }
@@ -292,7 +292,7 @@ class UserLogin {
             //login OK
             $this->bIsLoggedIn = True;
             $this->sLoginName = $R["login"];
-            $this->iUserId = $R["ID"];                
+            $this->iUserId = $R["user_id"];                
             
             //make sure that the anonymous user is ALWAYS logged in as anonymous user
             if (   (getConfigurationSetting("ENABLE_ANON_ACCESS")=="TRUE")

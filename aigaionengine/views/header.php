@@ -49,3 +49,19 @@
 
       <!-- Aigaion main content -->
       <div id="content_holder">
+      
+      
+      <!-- I think that here we want to have the (error) messages: -->
+      <?php
+            $err = getErrorMessage();
+            $msg = getMessage();
+            if ($err != "") {
+                echo "<div class='errormessage'>".$err."</div>";
+                clearErrorMessage();
+            }
+            if ($msg != "") {
+                echo "<div class='message'>".$msg."</div>";
+                clearMessage();
+            }      
+        ?>
+        <!---->

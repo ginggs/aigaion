@@ -1,0 +1,23 @@
+CHANGES TO DATABASE
+
+still need to be processed in a checkschema
+voer deze dingen in volgorde uit...
+
+table 'topic' => hernoem tot table 'topics'
+col 'topics.ID' => hernoem tot 'topics.topic_id'
+
+table 'person' => hernoem tot table 'users'
+col 'users.ID' => hernoem tot 'users.user_id'
+add col 'users.type' (enum('group','anon','normal')
+
+invoeren van een nieuwe tabel:
+add table `rightsprofiles` ('profile_name' varchar(20),'right_name' varchar(20)) 
+
+add table `usergrouplink` (user_id INT(10),group_id INT(10))
+
+==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
+
+
+drop irrelevant legacy columns
+drop col 'users.u_rights'
+drop col 'users.csname'
