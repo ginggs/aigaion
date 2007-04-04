@@ -115,26 +115,56 @@ echo "
         </tr>";
         
             #userrights change
-//            if ($_SESSION["USER"]->hasRights("user_assign_rights")) {
-                echo "
-                    <tr><td colspan='2'>
-                    <hr><b>User rights:</b><hr>
-                    </td></tr>
-                    
-                    <tr><td colspan='2'>
-                    <b>Note: an interface for assigning 'all rights from profile X in one go' will be added here.</b><hr>
-                    </td></tr>";
+echo "
+        <tr><td colspan='2'>
+        <hr><b>User rights:</b><hr>
+        </td></tr>
         
-                //list all userrights as checkboxes
-                foreach (getAvailableRights() as $right=>$description) {
-                    $checked = FALSE;
-                    if (in_array($right,$user->assignedrights)) $checked=TRUE;
-                    echo "<tr><td>".form_checkbox($right, $right, $checked).$right."</td><td>".$description."</td></tr>";
-                }
-//            }
+        <tr>
+        <td>Check all rights from the following rights profile</td>
+        <td>
+        ";
+        
+$options = array();
+foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
+    $options[$profile->rightsprofile_id] = $profile->name;
+}
+echo form_dropdown('checkrightsprofile', $options);
+echo "[button to submit asynch request which will receive a script that updates the rights elements]";
 
 echo "
+        </td>
+        </tr>
+        
+        <tr>
+        <td>Uncheck all rights from the following rights profile</td>
+        <td>
+        ";
+        
+$options = array();
+foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
+    $options[$profile->rightsprofile_id] = $profile->name;
+}
+echo form_dropdown('uncheckrightsprofile', $options);
+echo "[button to submit asynch request which will receive a script that updates the rights elements]";
 
+echo "
+        </td>
+        </tr>
+        
+        <tr><td colspan=2>
+        <hr>
+        </td></tr>
+        ";
+        
+        //list all userrights as checkboxes
+        foreach (getAvailableRights() as $right=>$description) {
+            $checked = FALSE;
+            if (in_array($right,$user->assignedrights)) $checked=TRUE;
+            echo "<tr><td>".form_checkbox($right, $right, $checked).$right."</td><td>".$description."</td></tr>";
+        }
+
+echo "
         <tr><td colspan='2'><hr>
         <b>Note: an interface for assigning users to groups will be added here.</b>
         </td></tr>        

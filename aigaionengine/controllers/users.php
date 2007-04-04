@@ -66,13 +66,13 @@ class Users extends Controller {
             <p class='header1'>Rights profiles</p>
             <ul>
             ";
-//        $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
-//        
-//        foreach ($rightsprofiles as $rightsprofile) {
-//            $output .= "<li>".$this->load->view('rightsprofiles/summary',
-//                                          array('rightsprofile'   => $rightsprofile),  
-//                                          true)."</li>";
-//        }
+        $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
+        
+        foreach ($rightsprofiles as $rightsprofile) {
+            $output .= "<li>".$this->load->view('rightsprofiles/summary',
+                                          array('rightsprofile'   => $rightsprofile),  
+                                          true)."</li>";
+        }
         $output .= "</ul>\n".anchor('rightsprofiles/add','[add a new rightsprofile]')."\n";
 
         $output .= $this->load->view('footer','', true);
