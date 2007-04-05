@@ -12,8 +12,16 @@ if $rightsprofile is not null, but $action == 'add', the edit form will be resty
 pre filled 'add new rightsprofile' form
 */
 $this->load->helper('form');
+
+//note: the validation library must be loaded in the controller!
+
+
 echo "<div class='editform'>";
 echo form_open('rightsprofiles/commit');
+//formname is used to check whether the POST data is coming from the right form.
+//not as security mechanism, but just to avoid painful bugs where data was submitted 
+//to the wrong commit and the database is corrupted
+echo form_hidden('formname','rightsprofile');
 $isAddForm = False;
 if (!isset($rightsprofile)||($rightsprofile==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
@@ -22,7 +30,7 @@ if (!isset($rightsprofile)||($rightsprofile==null)||(isset($action)&&$action=='a
         $rightsprofile = new Rightsprofile;
 } else {
     echo form_hidden('action','edit');
-    echo form_hidden('name',$rightsprofile->rightsprofile_id);
+    echo form_hidden('rightsprofile_id',$rightsprofile->rightsprofile_id);
 }
 
 if ($isAddForm) {
@@ -30,6 +38,9 @@ if ($isAddForm) {
 } else {
     echo "<p class='header2'>Edit rightsprofile \"".$rightsprofile->name."\"</p>";
 }
+
+//validation feedback
+echo $this->validation->error_string;
 
 echo "
     <table width='100%'>

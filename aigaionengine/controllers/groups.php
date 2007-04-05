@@ -71,7 +71,9 @@ class Groups extends Controller {
     */
     function add()
 	{
-	    
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Group';
@@ -106,6 +108,9 @@ class Groups extends Controller {
     */
     function edit()
 	{
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {
@@ -185,9 +190,86 @@ class Groups extends Controller {
             $this->output->set_output($output);
         }
     }
+    
+    /**
+    groups/commit
+    
+	Fails with error message when one of:
+	    edit-commit requested for non-existing group
+	    insufficient user rights
+	    
+	Parameters passed via POST:
+	    action = (add|edit)
+	    group_id
+	    name
+	    abbreviation
+	    (assigned rightsprofiles)
+	         
+    Redirects to somewhere (?) if the commit was successfull
+    Redirects to the edit or add form if the validation of the form values failed
+    */
     function commit() {
-        appendMessage("COMMIT GROUP FORM: not implemented yet");
-        redirect('');
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
+        //get data from POST
+        $group = $this->group_db->getFromPost();
+        
+        //check if fail needed: was all data present in POST?
+        if ($group == null) {
+            appendErrorMEssage("Commit group: no data to commit<br/>");
+            redirect ('');
+        }
+        
+        //validate form values; 
+        //validation rules: 
+        //  -no group with the same name and a different ID can exist
+        //  -name is required (non-empty)
+    	$this->validation->set_rules(array( 'name' => 'required'
+                                           )
+                                     );
+    	$this->validation->set_fields(array( 'name' => 'Group Name'
+                                           )
+                                     );
+    		
+    	if ($this->validation->run() == FALSE) {
+            //return to add/edit form if validation failed
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Group';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('groups/edit',
+                                          array('group'         => $group,
+                                                'action'        => $this->input->post('action')),
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+            
+        } else {    
+            //if validation was successfull: add or change.
+            
+            //redirect somewhere if commit was successfull
+            appendMessage("
+                COMMIT GROUP FORM: not implemented yet.<br>
+                The to-be-committed group contains the following values: 
+                <ul>
+                <li>Action: ".$this->input->post('action')."
+                <li>Group id: ".$group->group_id."
+                <li>Group name: ".$group->name."
+                <li>Group abbreviation: ".$group->abbreviation."
+                </ul>
+                ");
+            
+            redirect('');
+        }
+        
     }
+    
 }
 ?>

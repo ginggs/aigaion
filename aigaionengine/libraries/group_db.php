@@ -28,6 +28,24 @@ class Group_db {
         //return result
         return $group;
     }
+
+
+    /** Construct a group from the POST data present in the groups/edit view. 
+    Return null if the POST data was not present. */
+    function getFromPost()
+    {
+        $group = new Group;
+        //correct form?
+        if ($this->CI->input->post('formname')!='group') {
+            return null;
+        }
+        //get basic data
+        $group->group_id           = $this->CI->input->post('group_id');
+        $group->name               = $this->CI->input->post('name');
+        $group->abbreviation       = $this->CI->input->post('abbreviation');
+        //collect other data such as assigned rights profiles
+        return $group;
+    }
     
     /** Return all Groups from the database. */
     function getAllGroups() {

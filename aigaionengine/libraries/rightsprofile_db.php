@@ -32,7 +32,29 @@ class Rightsprofile_db {
         }  
         return $rightsprofile;
     }
-   
+
+    /** Construct a rightsprofile from the POST data present in the rightsprofiles/edit view. 
+    Return null if the POST data was not present. */
+    function getFromPost()
+    {
+        $rightsprofile = new Rightsprofile;
+        //correct form?
+        if ($this->CI->input->post('formname')!='rightsprofile') {
+            return null;
+        }
+        //get basic data
+        $rightsprofile->rightsprofile_id = $this->CI->input->post('rightsprofile_id',-1);
+        $rightsprofile->name             = $this->CI->input->post('name','');
+        //collect checked rights
+        foreach (getAvailableRights() as $right=>$description) 
+        {
+            if ($this->CI->input->post($right)) {
+                $rightsprofile->rights[] = $right;
+            }
+        }
+        return $rightsprofile;
+    }
+
     /** Return the names of all Rightsprofiles from the database. */
     function getAllRightsprofileNames() {
         $result = array();

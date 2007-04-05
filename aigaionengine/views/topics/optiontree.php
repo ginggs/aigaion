@@ -58,7 +58,7 @@
         }
          //reindex
     }    
-    echo form_dropdown('parent',$options,$selected);
+    echo form_dropdown('parent_id',$options,$selected);
     
 ?>
 <!-- End of topic  browse displays -->

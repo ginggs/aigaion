@@ -37,7 +37,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
+$autoload['libraries'] = array('database','latesession','userlogin', 'ajax', 
                                'topic','topic_db','user','user_db',
                                'group','group_db','rightsprofile','rightsprofile_db');
 

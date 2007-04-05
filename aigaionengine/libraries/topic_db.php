@@ -49,6 +49,25 @@ class Topic_db {
         return $topic;
     }
 
+
+    /** Construct a topic from the POST data present in the topics/edit view. 
+    Return null if the POST data was not present. */
+    function getFromPost()
+    {
+        $topic = new Topic;
+        //correct form?
+        if ($this->CI->input->post('formname')!='topic') {
+            return null;
+        }
+        //get basic data
+        $topic->topic_id           = $this->CI->input->post('topic_id');
+        $topic->name               = $this->CI->input->post('name');
+        $topic->description        = $this->CI->input->post('description');
+        $topic->url                = $this->CI->input->post('url');
+        $topic->parent_id          = $this->CI->input->post('parent_id');
+        return $topic;
+    }
+    
     /** Return an array of Topic's retrieved from the database that are the children of the given topic. */
     function getChildren($topic_id, $pub_id = '') {
         $children = array();

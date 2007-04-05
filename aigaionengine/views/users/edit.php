@@ -8,19 +8,27 @@ Parameters:
     $user=>the User object to be edited
     
 If $user is null, the edit for will be restyled as an 'add new user' form
-
+if $user is not null, but $action == 'add', the edit form will be restyled as a
+pre filled 'add new user' form
 */
 $this->load->helper('form');
 echo "<div class='editform'>";
 echo form_open('users/commit');
+//formname is used to check whether the POST data is coming from the right form.
+//not as security mechanism, but just to avoid painful bugs where data was submitted 
+//to the wrong commit and the database is corrupted
+echo form_hidden('formname','user');
 $isAddForm = False;
-if (!isset($user)||($user==null)) {
+if (!isset($user)||($user==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
-    $user = new User;
+    if (!isset($action)||$action!='add')
+        $user = new User;
 } else {
     echo form_hidden('action','edit');
+    //hidden fields which should be remembered for commit, but which are not modifyable:
     echo form_hidden('user_id',$user->user_id);
+    echo form_hidden('lastreviewedtopic',$user->lastreviewedtopic);
 }
 
 if ($isAddForm) {
@@ -28,6 +36,9 @@ if ($isAddForm) {
 } else {
     echo "<p class='header2'>Edit User Preferences</p>";
 }
+
+//validation feedback
+echo $this->validation->error_string;
 
 echo "
     <table width='100%'>
@@ -45,7 +56,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Name</td>
+        <td>First name</td>
         <td>"
         .form_input(array('name'=>'firstname',
                           'size'=>'10',
@@ -111,6 +122,12 @@ echo "
         .form_input(array('name'=>'password_check',
                           'size'=>'10',
                           'value'=>''))."
+        </td>
+        </tr>
+        <tr>
+        <td>Anonymous account (check if this account is an anonymous (guest) account)</td>
+        <td>"
+        .form_checkbox('isAnonymous','isAnonymous',$user->isAnonymous)."
         </td>
         </tr>";
         

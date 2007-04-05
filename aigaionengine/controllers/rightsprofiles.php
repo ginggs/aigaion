@@ -70,7 +70,9 @@ class Rightsprofiles extends Controller {
     */
     function add()
 	{
-	    
+	    $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Rightsprofile';
@@ -105,6 +107,9 @@ class Rightsprofiles extends Controller {
     */
     function edit()
 	{
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {
@@ -202,18 +207,65 @@ class Rightsprofiles extends Controller {
     Redirects to the edit or add form if the validation of the form values failed
     */
     function commit() {
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
         //get data from POST
+        $rightsprofile = $this->rightsprofile_db->getFromPost();
         
-        //check if fail needed
+        //check if fail needed: was all data present in POST?
+        if ($rightsprofile == null) {
+            appendErrorMEssage("Commit rightsprofile: no data to commit<br/>");
+            redirect ('');
+        }
         
-        //validate form values; 
+        //validate form values.
+        //validation rules: 
+        //  -no rights profile with the same name and a different ID can exist
+        //  -name is required (non-empty)
+    	$this->validation->set_rules(array( 'name' => 'required'
+                                           )
+                                     );
+    	$this->validation->set_fields(array( 'name' => 'Profile Name'
+                                           )
+                                     );
+    		
+    	if ($this->validation->run() == FALSE) {
+            //return to add/edit form if validation failed
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Rightsprofile';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('rightsprofiles/edit',
+                                          array('rightsprofile' => $rightsprofile,
+                                                'action'        => $this->input->post('action')),
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+            
+        } else {    
+            //if validation was successfull: add or change.
+            
+            //redirect somewhere if commit was successfull
+            appendMessage("
+                COMMIT RIGHTSPROFILE FORM: not implemented yet.<br>
+                The to-be-committed rightsprofile contains the following values: 
+                <ul>
+                <li>Action: ".$this->input->post('action')."
+                <li>Profile id: ".$rightsprofile->rightsprofile_id."
+                <li>Profile name: ".$rightsprofile->name."
+                </ul>
+                ");
+            
+            redirect('');
+        }
         
-        //return to add/edit form if validation failed
-        
-        //redirect somewhere if commit was successfull
-        
-        appendMessage("COMMIT RIGHTSPROFILE FORM: not implemented yet");
-        redirect('');
     }
 }
 ?>

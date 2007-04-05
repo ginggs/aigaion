@@ -8,17 +8,23 @@ Parameters:
     $topic=>the Topic object to be edited
     
 If $topic is null, the edit for will be restyled as an 'add new topic' form
-
+if $topic is not null, but $action == 'add', the edit form will be restyled as a
+pre filled 'add new topic' form
 */
 
 $this->load->helper('form');
 echo "<div class='editform'>";
 echo form_open('topics/commit');
+//formname is used to check whether the POST data is coming from the right form.
+//not as security mechanism, but just to avoid painful bugs where data was submitted 
+//to the wrong commit and the database is corrupted
+echo form_hidden('formname','topic');
 $isAddForm = False;
-if (!isset($topic)||($topic==null)) {
+if (!isset($topic)||($topic==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
-    $topic = new Topic;
+    if (!isset($action)||$action!='add')
+        $topic = new Topic;
 } else {
     echo form_hidden('action','edit');
     echo form_hidden('topic_id',$topic->topic_id);
@@ -29,6 +35,9 @@ if ($isAddForm) {
 } else {
     echo "<p class='header2'>Change topic \"".$topic->name."\"</p>";
 }
+//validation feedback
+echo $this->validation->error_string;
+
 echo "
     <table>
         <tr><td><label for='name'>Name</label></td>
@@ -40,7 +49,7 @@ echo "
         </tr>
      ";
 echo "
-        <tr><td><label for='parent'>Parent</label></td>
+        <tr><td><label for='parent_id'>Parent</label></td>
             <td>
      ";
      

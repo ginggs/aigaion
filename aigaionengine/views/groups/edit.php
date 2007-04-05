@@ -8,16 +8,22 @@ Parameters:
     $group=>the group object to be edited
     
 If $group is null, the edit for will be restyled as an 'add new group' form
-
+if $group is not null, but $action == 'add', the edit form will be restyled as a
+pre filled 'add new group' form
 */
 $this->load->helper('form');
 echo "<div class='editform'>";
 echo form_open('groups/commit');
+//formname is used to check whether the POST data is coming from the right form.
+//not as security mechanism, but just to avoid painful bugs where data was submitted 
+//to the wrong commit and the database is corrupted
+echo form_hidden('formname','group');
 $isAddForm = False;
-if (!isset($group)||($group==null)) {
+if (!isset($group)||($group==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
-    $group = new Group;
+    if (!isset($action)||$action!='add')
+        $group = new Group;
 } else {
     echo form_hidden('action','edit');
     echo form_hidden('group_id',$group->group_id);
@@ -28,6 +34,9 @@ if ($isAddForm) {
 } else {
     echo "<p class='header2'>Edit group settings</p>";
 }
+
+//validation feedback
+echo $this->validation->error_string;
 
 echo "
     <table width='100%'>

@@ -56,7 +56,49 @@ class User_db {
         //return result
         return $user;
     }
-    
+
+
+    /** Construct a topic from the POST data present in the topics/edit view. 
+    Return null if the POST data was not present. */
+    function getFromPost()
+    {
+        //correct form?
+        if ($this->CI->input->post('formname')!='user') {
+            return null;
+        }
+        //get basic data
+        $user = new User;
+        $user->user_id            = $this->CI->input->post('user_id');
+        $user->initials           = $this->CI->input->post('initials');
+        $user->firstname          = $this->CI->input->post('firstname');
+        $user->betweenname        = $this->CI->input->post('betweenname');
+        $user->surname            = $this->CI->input->post('surname');
+        $user->email              = $this->CI->input->post('email');
+        $user->lastreviewedtopic  = $this->CI->input->post('lastreviewedtopic');
+        $user->abbreviation       = $this->CI->input->post('abbreviation');
+        $user->login              = $this->CI->input->post('login');
+        $user->password           = $this->CI->input->post('password');
+        $user->isAnonymous        = $this->CI->input->post('isAnonymous');
+
+        $user->preferences['theme']              = $this->CI->input->post('theme');
+        $user->preferences['summarystyle']       = $this->CI->input->post('summarystyle');
+        $user->preferences['authordisplaystyle'] = $this->CI->input->post('authordisplaystyle');
+        $user->preferences['liststyle']          = $this->CI->input->post('liststyle');
+        $user->preferences['newwindowforatt']    = $this->CI->input->post('newwindowforatt');
+
+        $user->assignedrights = array();
+        foreach (getAvailableRights() as $right=>$description) {
+            if ($this->CI->input->post($right)) {
+                $user->assignedrights[] = $right;
+            }
+        }
+
+        //the ids of all groups that the user is a part of
+        //$group_ids          = array();   NOT IMPLEMENTED YET
+                                    
+        return $user;
+    }
+        
     /** Return all Users (anon and normal) from the database. */
     function getAllUsers() {
         $result = array();

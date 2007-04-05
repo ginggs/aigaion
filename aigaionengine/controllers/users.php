@@ -138,7 +138,9 @@ class Users extends Controller {
     */
     function add()
 	{
-	    
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
@@ -173,6 +175,9 @@ class Users extends Controller {
     */
     function edit()
 	{
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
 	    $user_id = $this->uri->segment(3,-1);
 	    $user = $this->user_db->getByID($user_id);
 	    if ($user==null) {
@@ -252,9 +257,79 @@ class Users extends Controller {
             $this->output->set_output($output);
         }
     }
+    
+    /**
+    users/commit
+    
+	Fails with error message when one of:
+	    edit-commit requested for non-existing user
+	    insufficient user rights
+	    
+	Parameters passed via POST:
+	    action = (add|edit)
+        and a lot others...
+	         
+    Redirects to somewhere (?) if the commit was successfull
+    Redirects to the edit or add form if the validation of the form values failed
+    */
     function commit() {
-        appendMessage("COMMIT USER FORM: not implemented yet");
-        redirect('');
+        $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+
+        //get data from POST
+        $user = $this->user_db->getFromPost();
+        
+        //check if fail needed: was all data present in POST?
+        if ($user == null) {
+            appendErrorMEssage("Commit user: no data to commit<br/>");
+            redirect ('');
+        }
+        
+        //validate form values; 
+        //validation rules: 
+        //  -no user with the same login and a different ID can exist
+        //  -login is required (non-empty)
+        //  -password should match password_check
+    	$this->validation->set_rules(array( 'login'    => 'required',
+    	                                    'password' => 'matches[password_check]'
+                                           )
+                                     );
+    	$this->validation->set_fields(array( 'login'    => 'Login Name',
+    	                                     'password' => 'First Password',
+    	                                     'password_check' => 'Second Password'
+                                           )
+                                     );
+    		
+    	if ($this->validation->run() == FALSE) {
+            //return to add/edit form if validation failed
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'User';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('users/edit',
+                                          array('user'         => $user,
+                                                'action'        => $this->input->post('action')),
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+            
+        } else {    
+            //if validation was successfull: add or change.
+            
+            //redirect somewhere if commit was successfull
+            appendMessage("
+                COMMIT USER FORM: not implemented yet.<br>
+                ");
+            
+            redirect('');
+        }
+        
     }
 }
 ?>
