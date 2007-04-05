@@ -175,7 +175,7 @@ class Groups extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'User';
+            $headerdata['title'] = 'Group';
             $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
             
             $output = $this->load->view('header', $headerdata, true);

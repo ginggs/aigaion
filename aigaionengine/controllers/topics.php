@@ -45,7 +45,61 @@ class Topics extends Controller {
         $this->output->set_output($output);
 	}
 
+	/** 
+	topics/delete
+	
+	Entry point for deleting a topic.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	deleting. 
+	
+	Fails with error message when one of:
+	    delete requested for non-existing topic
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: topic_id, the id of the to-be-deleted-topic
+	    4th: if the 4th segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the delete action, if no 'commit' was specified
+        Redirects somewhere (?) after deleting, if 'commit' was specified
+	*/
+	function delete()
+	{
+	    $topic_id = $this->uri->segment(3);
+	    $topic = $this->topic_db->getByID($topic_id);
+	    $commit = $this->uri->segment(4,'');
 
+	    if ($topic==null) {
+	        appendErrorMessage('Delete topic: non existing topic specified.<br>');
+	        redirect('');
+	    }
+
+        if ($commit=='commit') {
+            //do delete, redirect somewhere
+            appendErrorMessage('Delete topic: not implemented yet');
+            redirect('');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Topic';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('topics/delete',
+                                          array('topic'=>$topic),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }
+    
 	/** Entrypoint for adding a topic. Shows the necessary form. */
 	function add()
 	{

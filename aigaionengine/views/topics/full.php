@@ -22,7 +22,7 @@ Show subtopics?
 <br>
 
 <?php
-    echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."<br/>";
+    echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>";
     echo $description;
 ?> 
 
