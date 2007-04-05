@@ -196,22 +196,22 @@ class Topics extends Controller {
             
         } else {    
             //if validation was successfull: add or change.
-            
+            $success = False;
+            if ($this->input->post('action') == 'edit') {
+                //do edit
+                $success = $topic->commit();
+            } else {
+                //do add
+                $success = $topic->add();
+            }
+            if (!$success) {
+                //this is quite unexpected, I think this should not happen if we have no bugs.
+                appendErrorMessage("Commit topic: an error occurred. Please contact your Aigaion administrator.<br>");
+                redirect ('');
+            }
             //redirect somewhere if commit was successfull
-            appendMessage("
-                COMMIT TOPIC FORM: not implemented yet.<br>
-                The to-be-committed topic contains the following values: 
-                <ul>
-                <li>Action: ".$this->input->post('action')."
-                <li>Topic id: ".$topic->topic_id."
-                <li>Topic name: ".$topic->name."
-                <li>Topic description: ".$topic->description."
-                <li>Topic url: ".$topic->url."
-                <li>Topic parent_id: ".$topic->parent_id."
-                </ul>
-                ");
-            
             redirect('');
+
         }
         
     }

@@ -78,13 +78,13 @@ class User_db {
         $user->abbreviation       = $this->CI->input->post('abbreviation');
         $user->login              = $this->CI->input->post('login');
         $user->password           = $this->CI->input->post('password');
-        $user->isAnonymous        = $this->CI->input->post('isAnonymous');
+        $user->isAnonymous        = $this->CI->input->post('isAnonymous')=='isAnonymous';
 
         $user->preferences['theme']              = $this->CI->input->post('theme');
         $user->preferences['summarystyle']       = $this->CI->input->post('summarystyle');
         $user->preferences['authordisplaystyle'] = $this->CI->input->post('authordisplaystyle');
         $user->preferences['liststyle']          = $this->CI->input->post('liststyle');
-        $user->preferences['newwindowforatt']    = $this->CI->input->post('newwindowforatt');
+        $user->preferences['newwindowforatt']    = $this->CI->input->post('newwindowforatt')=='newwindowforatt';
 
         $user->assignedrights = array();
         foreach (getAvailableRights() as $right=>$description) {
@@ -107,6 +107,98 @@ class User_db {
             $result[] = $this->getFromRow($R);
         }
         return $result;
+    }
+
+
+    /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
+    function add($user) {
+        //add new user
+        $type = 'normal';
+        if ($user->isAnonymous) {
+            $type = 'anon';
+        }
+        $newwindowforatt ='FALSE';
+        if ($user->preferences['newwindowforatt']) {
+            $newwindowforatt ='TRUE';
+        }
+        $this->CI->db->query(
+            $this->CI->db->insert_string("users",
+                                         array('initials'           => $user->initials,
+                                               'firstname'          => $user->firstname,
+                                               'betweenname'        => $user->betweenname,
+                                               'surname'            => $user->surname,
+                                               'email'              => $user->email,
+                                               'lastreviewedtopic'  => $user->lastreviewedtopic,
+                                               'abbreviation'       => $user->abbreviation,
+                                               'login'              => $user->login,
+                                               'password'           => md5($user->password),
+                                               'type'               => $type,
+                                               'theme'              => $user->preferences['theme'],
+                                               'summarystyle'       => $user->preferences['summarystyle'],
+                                               'authordisplaystyle' => $user->preferences['authordisplaystyle'],
+                                               'liststyle'          => $user->preferences['liststyle'],
+                                               'newwindowforatt'    => $newwindowforatt
+                                               ))
+                              );
+                                               
+        //add rights
+        $new_id = $this->CI->db->insert_id();
+        foreach ($user->assignedrights as $right) {
+            $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+        }
+        
+        //add group links
+        //NOT YET
+        return $new_id;
+    }
+
+    /** Commit the changes in the data of the given user. Returns TRUE or FALSE depending on 
+    whether the operation was successfull. */
+    function commit($user) {
+        $type = 'normal';
+        if ($user->isAnonymous) {
+            $type = 'anon';
+        }
+        $newwindowforatt ='FALSE';
+        if ($user->preferences['newwindowforatt']) {
+            $newwindowforatt ='TRUE';
+        }
+        $updatefields =  array('initials'           => $user->initials,
+                               'firstname'          => $user->firstname,
+                               'betweenname'        => $user->betweenname,
+                               'surname'            => $user->surname,
+                               'email'              => $user->email,
+                               'lastreviewedtopic'  => $user->lastreviewedtopic,
+                               'abbreviation'       => $user->abbreviation,
+                               'login'              => $user->login,
+                               'type'               => $type,
+                               'theme'              => $user->preferences['theme'],
+                               'summarystyle'       => $user->preferences['summarystyle'],
+                               'authordisplaystyle' => $user->preferences['authordisplaystyle'],
+                               'liststyle'          => $user->preferences['liststyle'],
+                               'newwindowforatt'    => $newwindowforatt
+                               );
+        if (isset($user->password) && ($user->password!="")) {
+            $updatefields['password']=md5($user->password);
+        }
+
+        $this->CI->db->query(
+            $this->CI->db->update_string("users",
+                                         $updatefields,
+                                         "user_id=".$user->user_id)
+                              );
+                                               
+        //remove all rights, then add the right ones again
+        foreach (getAvailableRights() as $right) {
+            $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
+        }
+        //add rights
+        foreach ($user->assignedrights as $right) {
+            $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+        }
+        
+        //add group links
+        return True;
     }
     
 }

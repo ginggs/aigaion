@@ -290,10 +290,14 @@ class Users extends Controller {
         //  -no user with the same login and a different ID can exist
         //  -login is required (non-empty)
         //  -password should match password_check
-    	$this->validation->set_rules(array( 'login'    => 'required',
-    	                                    'password' => 'matches[password_check]'
-                                           )
-                                     );
+        $rules = array( 'login'    => 'required',
+                        'password' => 'matches[password_check]',
+                        'password_check' => 'matches[password]'
+                       );
+        if ($this->input->post('action')=='add') {
+            $rules['password'] = 'required';
+        }
+    	$this->validation->set_rules($rules);
     	$this->validation->set_fields(array( 'login'    => 'Login Name',
     	                                     'password' => 'First Password',
     	                                     'password_check' => 'Second Password'
@@ -321,12 +325,20 @@ class Users extends Controller {
             
         } else {    
             //if validation was successfull: add or change.
-            
+            $success = False;
+            if ($this->input->post('action') == 'edit') {
+                //do edit
+                $success = $user->commit();
+            } else {
+                //do add
+                $success = $user->add();
+            }
+            if (!$success) {
+                //this is quite unexpected, I think this should not happen if we have no bugs.
+                appendErrorMessage("Commit user: an error occurred at '".$this->input->post('action')."'. Please contact your Aigaion administrator.<br>");
+                redirect ('');
+            }
             //redirect somewhere if commit was successfull
-            appendMessage("
-                COMMIT USER FORM: not implemented yet.<br>
-                ");
-            
             redirect('');
         }
         

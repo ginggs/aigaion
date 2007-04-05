@@ -253,19 +253,20 @@ class Groups extends Controller {
             
         } else {    
             //if validation was successfull: add or change.
-            
+            $success = False;
+            if ($this->input->post('action') == 'edit') {
+                //do edit
+                $success = $group->commit();
+            } else {
+                //do add
+                $success = $group->add();
+            }
+            if (!$success) {
+                //this is quite unexpected, I think this should not happen if we have no bugs.
+                appendErrorMessage("Commit group: an error occurred. Please contact your Aigaion administrator.<br>");
+                redirect ('');
+            }
             //redirect somewhere if commit was successfull
-            appendMessage("
-                COMMIT GROUP FORM: not implemented yet.<br>
-                The to-be-committed group contains the following values: 
-                <ul>
-                <li>Action: ".$this->input->post('action')."
-                <li>Group id: ".$group->group_id."
-                <li>Group name: ".$group->name."
-                <li>Group abbreviation: ".$group->abbreviation."
-                </ul>
-                ");
-            
             redirect('');
         }
         

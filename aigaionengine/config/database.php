@@ -33,11 +33,11 @@
 
 /*
 | -------------------------------------------------------------------
-| NOTE FOR MUSIC SITE:
+| NOTE FOR AIGAION:
 | -------------------------------------------------------------------
 |
 | The settings that are initialized here have been specified in the main index.php.
-| This is to allow more than one instance of this sheet music system to run off the
+| This is to allow more than one instance of this system to run off the
 | same code base.
 */
 

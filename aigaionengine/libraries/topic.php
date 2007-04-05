@@ -76,5 +76,18 @@ class Topic {
         $this->CI->category_db->unsubscribePublication($this->publication_id, $this->topic_id);
         $this->publicationIsSubscribed = False;
     }    
+    
+    /** Add a new Topic with the given data. Returns TRUE or FALSE depending on whether the operation was
+    successfull. After a successfull 'add', $this->topic_id contains the new topic_id. */
+    function add() {
+        $this->topic_id = $this->CI->topic_db->add($this);
+        return ($this->topic_id > 0);
+    }
+
+    /** Commit the changes in the data of this topic. Returns TRUE or FALSE depending on whether the operation was
+    operation was successfull. */
+    function commit() {
+        return $this->CI->topic_db->commit($this);
+    }
 }
 ?>

@@ -22,5 +22,18 @@ class Group {
 
     }
 
+
+    /** Add a new Group with the given data. Returns TRUE or FALSE depending on whether the operation was
+    successfull. After a successfull 'add', $this->group_id contains the new group_id. */
+    function add() {
+        $this->group_id = $this->CI->group_db->add($this);
+        return ($this->group_id > 0);
+    }
+
+    /** Commit the changes in the data of this group. Returns TRUE or FALSE depending on whether the operation was
+    operation was successfull. */
+    function commit() {
+        return $this->CI->group_db->commit($this);
+    }
 }
 ?>

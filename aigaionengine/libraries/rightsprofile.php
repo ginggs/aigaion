@@ -18,6 +18,18 @@ class Rightsprofile {
         $this->CI =&get_instance(); 
 
     }
+    
+    /** Add a new Rightsprofile with the given data. Returns TRUE or FALSE depending on whether the operation was
+    successfull. After a successfull 'add', $this->rightsprofile_id contains the new rightsprofile_id. */
+    function add() {
+        $this->rightsprofile_id = $this->CI->rightsprofile_db->add($this);
+        return ($this->rightsprofile_id > 0);
+    }
 
+    /** Commit the changes in the data of this rightsprofile. Returns TRUE or FALSE depending on whether the operation was
+    operation was successfull. */
+    function commit() {
+        return $this->CI->rightsprofile_db->commit($this);
+    }
 }
 ?>

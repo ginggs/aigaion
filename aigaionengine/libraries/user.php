@@ -48,6 +48,18 @@ class User {
         $this->CI =&get_instance(); 
 
     }
+    
+    /** Add a new user with the given data. Returns TRUE or FALSE depending on whether the operation was
+    successfull. After a successfull 'add', $this->user_id contains the new user_id. */
+    function add() {
+        $this->user_id = $this->CI->user_db->add($this);
+        return ($this->user_id > 0);
+    }
 
+    /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was
+    successfull. */
+    function commit() {
+        return $this->CI->user_db->commit($this);
+    }
 }
 ?>

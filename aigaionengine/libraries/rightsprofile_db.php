@@ -75,5 +75,44 @@ class Rightsprofile_db {
         return $result;
     }
     
+
+    /** Add a new rightsprofile with the given data. Returns the new rightsprofile_id, or -1 on failure. */
+    function add($rightsprofile) {
+        //add new rightsprofile
+        $this->CI->db->query(
+            $this->CI->db->insert_string("rightsprofiles", array('name'=>$rightsprofile->name))
+                             );
+                                               
+        //add rights
+        $new_id = $this->CI->db->insert_id();
+        foreach ($rightsprofile->rights as $right) {
+            $this->CI->db->query($this->CI->db->insert_string("rightsprofilerightlink",array('rightsprofile_id'=>$new_id,'right_name'=>$right)));
+        }
+        return $new_id;
+    }
+
+    /** Commit the changes in the data of the given rightsprofile. Returns TRUE or FALSE depending on 
+    whether the operation was successfull. */
+    function commit($rightsprofile) {
+ 
+        $updatefields =  array('name'=>$rightsprofile->name);
+
+        $this->CI->db->query(
+            $this->CI->db->update_string("rightsprofiles",
+                                         $updatefields,
+                                         "rightsprofile_id=".$rightsprofile->rightsprofile_id)
+                              );
+                                               
+        //remove all rights, then add the right ones again
+        foreach (getAvailableRights() as $right) {
+            $this->CI->db->query("DELETE FROM rightsprofilerightlink WHERE rightsprofile_id=".$rightsprofile->rightsprofile_id);
+        }
+        //add rights
+        foreach ($rightsprofile->rights as $right) {
+            $this->CI->db->query($this->CI->db->insert_string("rightsprofilerightlink",array('rightsprofile_id'=>$rightsprofile->rightsprofile_id,'right_name'=>$right)));
+        }
+        
+        return True;
+    }
 }
 ?>

@@ -198,7 +198,7 @@ echo "
         <td>Theme</td>
         <td>
         ".form_dropdown('theme',
-                        getThemes(),
+                        array_combine(getThemes(),getThemes()),
                         $user->preferences["theme"])."
         </td>
         </tr>

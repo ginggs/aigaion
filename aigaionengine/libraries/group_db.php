@@ -56,6 +56,34 @@ class Group_db {
         }
         return $result;
     }
-    
+
+
+    /** Add a new group with the given data. Returns the new group_id, or -1 on failure. */
+    function add($group) {
+        //add new group
+        $this->CI->db->query(
+            $this->CI->db->insert_string("users", array('surname'=>$group->name,'abbreviation'=>$group->abbreviation,'type'=>'group'))
+                             );
+                                               
+        $new_id = $this->CI->db->insert_id();
+        //add rights profiles...
+        //not yet
+        return $new_id;
+    }
+
+    /** Commit the changes in the data of the given group. Returns TRUE or FALSE depending on 
+    whether the operation was successfull. */
+    function commit($group) {
+ 
+        $updatefields =  array('name'=>$group->name,'abbreviation'=>$group->abbreviation);
+
+        $this->CI->db->query(
+            $this->CI->db->update_string("users",
+                                         $updatefields,
+                                         "user_id=".$group->group_id)
+                              );
+        
+        return True;
+    }
 }
 ?>

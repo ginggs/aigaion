@@ -101,6 +101,40 @@ class Topic_db {
     function unsubscribePublication($pub_id,$topic_id) {
         $this->CI->db->delete('publicationtopiclink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
     }
-    
+
+
+    /** Add a new topic with the given data. Returns the new topic_id, or -1 on failure. */
+    function add($topic) {
+        //add new topic
+        $this->CI->db->query(
+            $this->CI->db->insert_string("topics", array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url))
+                             );
+                                               
+        //add parent
+        $new_id = $this->CI->db->insert_id();
+        if ($topic->parent_id < 0)$topic->parent_id=1;
+        $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
+        return $new_id;
+    }
+
+    /** Commit the changes in the data of the given topic. Returns TRUE or FALSE depending on 
+    whether the operation was successfull. */
+    function commit($topic) {
+ 
+        $updatefields =  array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url);
+
+        $this->CI->db->query(
+            $this->CI->db->update_string("topics",
+                                         $updatefields,
+                                         "topic_id=".$topic->topic_id)
+                              );
+                                               
+        //remove and set parent link
+        $this->CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
+        if ($topic->parent_id < 0)$topic->parent_id=1;
+        $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
+        
+        return True;
+    }
 }
 ?>
