@@ -49,7 +49,7 @@
     	#don't accidentally accept CVS directory...
     	if (strtolower($themeName) == "cvs") return false;
     	$path = APPPATH."/themes/".$themeName."/";
-    	return (file_exists($path) && file_exists($path."css/style.css") && is_dir($path));
+    	return (file_exists($path) && file_exists($path."css/styling.css") && is_dir($path));
     }
 
     /** If a user is logged in, return name of theme, otherwise return name of default theme. */
