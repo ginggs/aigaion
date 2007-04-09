@@ -29,8 +29,10 @@ class Topics extends Controller {
 
         
         
-        $root = $this->topic_db->getByID($root_id);
-        $this->load->vars(array('subviews'  => array('topics//maintreerow'=>array())));
+        $root = $this->topic_db->getByID($root_id, array('onlyIfUserSubscribed'=>True,
+                                                         'userId'=>getUserLogin()->userId()
+                                                        ));
+        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),

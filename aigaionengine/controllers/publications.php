@@ -44,6 +44,7 @@ class Publications extends Controller {
     
     //set header data
     $header ['title']       = 'Aigaion 2.0 - '.$publication->data->title;
+    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     $content['publication'] = $publication;
     
     //get output

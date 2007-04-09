@@ -58,5 +58,24 @@
 <?php 
     endif;
 ?>
+    <tr>
+      <td colspan='2' valign='top'>Topics<br/>
+<?php     
+        $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
+                                                  'userId'=>getUserLogin()->userId(),
+                                                  'onlyIfPublicationSubscribed'=>True,
+                                                  'publicationId'=>$publication->data->pub_id
+                                                        ));
+        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
+        echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+                    .$this->load->view('topics/tree',
+                                      array('topics'   => $root->getChildren(),
+                                            'showroot'  => True,
+                                            'depth'     => -1
+                                            ),  
+                                      true)."</ul>\n</div>\n";
+?>
+      </td>
+    </tr>
   </table>
 </div>
