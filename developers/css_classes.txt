@@ -1,0 +1,10 @@
+A list of some classes that I miss in the current CSS files.
+I did not add them yet, as I want to restructure those files somewhat as well...
+
+.editform
+.confirmform  (for deleting etc)
+.message
+.errormessage
+.header1
+.header2
+.header3

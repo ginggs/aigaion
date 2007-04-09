@@ -11,7 +11,7 @@ col 'users.ID' => hernoem tot 'users.user_id'
 add col 'users.type' (enum('group','anon','normal')
 
 invoeren van een nieuwe tabel:
-add table `rightsprofiles` ('rightsprofile_id' INT(10),'name' varchar(20)) 
+add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
 add table `rightsprofilerightlink` (rightsprofile_id INT(10), right_name VARCHAR(20))
 
 add table `usergrouplink` (user_id INT(10),group_id INT(10))
