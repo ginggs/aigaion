@@ -31,7 +31,7 @@
         $next = $todo[0];
         //remove from todo list
         unset($todo[0]);
-        if ($next=="end") {
+        if (!is_a($next,'Topic') && ($next=="end")) {
             //if next is an end marker:
             $level--;
             $todo = array_values($todo); //reindex
