@@ -62,10 +62,23 @@ echo "
         </td>
         </tr>
 
-        <tr><td colspan='2'><hr>
-        <b>Note: an interface for assigning rights profiles to groups (as default rights for new users) will be added here.</b>
-        </td></tr>        
+        <tr><td colspan='2'>
+        <hr><b>Rights profiles:</b><hr>
+        </td></tr>
         
+        <tr><td colspan='2'>
+        The following rights profiles will by default be assigned to a user when it is added to this group.
+        </td></tr>
+        ";
+        
+        //list all profiles as checkboxes
+        foreach ($this->rightsprofile_db->getAllRightsprofiles() as $rightsprofile) {
+            $checked = FALSE;
+            if (in_array($rightsprofile->rightsprofile_id,$group->rightsprofile_ids)) $checked=TRUE;
+            echo "<tr><td>".$rightsprofile->name."</td><td>".form_checkbox('rightsprofile_'.$rightsprofile->rightsprofile_id, 'rightsprofile_'.$rightsprofile->rightsprofile_id, $checked)."</td></tr>";
+        }
+
+echo    "
         <tr><td colspan='2'><hr>
         <b>Note: an interface for modifying the group topic subscription will be added here.</b>
         </td></tr>        

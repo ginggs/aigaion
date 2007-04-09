@@ -129,10 +129,26 @@ echo "
         <td>"
         .form_checkbox('isAnonymous','isAnonymous',$user->isAnonymous)."
         </td>
-        </tr>";
+        </tr>
         
-            #userrights change
-echo "
+
+        <tr><td colspan='2'>
+        <hr><b>Groups:</b><hr>
+        The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
+        all rights associated with that group will be appended to the user rights of this user.
+        </td></tr>
+        ";
+        
+        //list all groups as checkboxes
+        foreach ($this->group_db->getAllGroups() as $group) {
+            $checked = FALSE;
+            if (in_array($group->group_id,$user->group_ids)) $checked=TRUE;
+            echo "<tr><td>".$group->name."</td><td>".form_checkbox('group_'.$group->group_id, 'group_'.$group->group_id, $checked)."</td></tr>";
+        }
+
+        
+echo    "
+
         <tr><td colspan='2'>
         <hr><b>User rights:</b><hr>
         </td></tr>
@@ -182,9 +198,6 @@ echo "
         }
 
 echo "
-        <tr><td colspan='2'><hr>
-        <b>Note: an interface for assigning users to groups will be added here.</b>
-        </td></tr>        
         
         <tr><td colspan='2'><hr>
         <b>Note: an interface for modifying the individual topic subscription will be added here.</b>

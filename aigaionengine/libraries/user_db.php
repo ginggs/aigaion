@@ -94,8 +94,12 @@ class User_db {
         }
 
         //the ids of all groups that the user is a part of
-        //$group_ids          = array();   NOT IMPLEMENTED YET
-                                    
+        foreach ($this->CI->group_db->getAllGroups() as $group) {
+            if ($this->CI->input->post('group_'.$group->group_id)) {
+                $user->group_ids[] = $group->group_id;
+            }
+        }
+
         return $user;
     }
         
@@ -147,8 +151,21 @@ class User_db {
             $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
         }
         
-        //add group links
-        //NOT YET
+        //add group links, and rightsprofiles for these groups, to the user
+        foreach ($user->group_ids as $group_id) {
+            $this->CI->db->query($this->CI->db->insert_string("usergrouplink",array('user_id'=>$new_id,'group_id'=>$group_id)));
+            $group = $this->CI->group_db->getByID($group_id);
+            foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+                $rightsprofile = $this->CI->rightsprofile_db->getByID($rightsprofile_id);
+                foreach ($rightsprofile->rights as $right) {
+                    $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$new_id." AND right_name='".$right."'");
+                    $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+                }
+                
+            }
+        }
+        
+        
         return $new_id;
     }
 
@@ -189,15 +206,37 @@ class User_db {
                               );
                                                
         //remove all rights, then add the right ones again
-        foreach (getAvailableRights() as $right) {
+        //foreach (getAvailableRights() as $right) {
             $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
-        }
+        //}
         //add rights
         foreach ($user->assignedrights as $right) {
             $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
         }
         
-        //add group links
+        //add group links, and rightsprofiles for these groups, to the user
+        //BUT ONLY FOR GROUPS THAT WERE NOT YET LINKED TO THIS USER
+        $oldgroups = array();
+        $oldgrQ = $this->CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$user->user_id);
+        foreach($oldgrQ->result() as $row) {
+            $oldgroups[] = $row->group_id;
+        }
+        foreach ($user->group_ids as $group_id) {
+            //skip if already member of this group..
+            if (in_array($group_id,$oldgroups))continue;
+            //else add group and pertaining rights
+            $this->CI->db->query($this->CI->db->insert_string("usergrouplink",array('user_id'=>$user->user_id,'group_id'=>$group_id)));
+            $group = $this->CI->group_db->getByID($group_id);
+            foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+                $rightsprofile = $this->CI->rightsprofile_db->getByID($rightsprofile_id);
+                foreach ($rightsprofile->rights as $right) {
+                    $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id." AND right_name='".$right."'");
+                    $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+                }
+                
+            }
+        }
+        
         return True;
     }
     

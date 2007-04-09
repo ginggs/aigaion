@@ -6,13 +6,14 @@ However, conceptually they are very different, which is why we made separate cla
 class Group {
   
     #ID
-    var $group_id            = '';
+    var $group_id           = '';
     #content variables; to be changed directly when necessary
     //name
-    var $name            = '';
+    var $name               = '';
     //other info
     var $abbreviation       = '';
     #system variables, not to be changed *directly* by user
+    var $rightsprofile_ids  = array();
     //link to the CI base object
     var $CI                 = null; 
 

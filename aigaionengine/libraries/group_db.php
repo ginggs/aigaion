@@ -25,6 +25,12 @@ class Group_db {
         $group->name               = $R->surname;
         $group->abbreviation       = $R->abbreviation;
 
+        //get rights profiles
+        $Q = $this->CI->db->query("SELECT * FROM grouprightsprofilelink WHERE group_id=".$group->group_id);
+        foreach ($Q->result() as $row) {
+            $group->rightsprofile_ids[] = $row->rightsprofile_id;
+        }
+        
         //return result
         return $group;
     }
@@ -44,6 +50,11 @@ class Group_db {
         $group->name               = $this->CI->input->post('name');
         $group->abbreviation       = $this->CI->input->post('abbreviation');
         //collect other data such as assigned rights profiles
+        foreach ($this->CI->rightsprofile_db->getAllRightsprofiles() as $rightsprofile) {
+            if ($this->CI->input->post('rightsprofile_'.$rightsprofile->rightsprofile_id)) {
+                $group->rightsprofile_ids[] = $rightsprofile->rightsprofile_id;
+            }
+        }
         return $group;
     }
     
@@ -56,7 +67,7 @@ class Group_db {
         }
         return $result;
     }
-
+ 
 
     /** Add a new group with the given data. Returns the new group_id, or -1 on failure. */
     function add($group) {
@@ -66,8 +77,11 @@ class Group_db {
                              );
                                                
         $new_id = $this->CI->db->insert_id();
-        //add rights profiles...
-        //not yet
+        //add rights profiles
+        foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+            $this->CI->db->query($this->CI->db->insert_string("grouprightsprofilelink",array('group_id'=>$new_id,'rightsprofile_id'=>$rightsprofile_id)));
+        }
+        
         return $new_id;
     }
 
@@ -75,13 +89,19 @@ class Group_db {
     whether the operation was successfull. */
     function commit($group) {
  
-        $updatefields =  array('name'=>$group->name,'abbreviation'=>$group->abbreviation);
+        $updatefields =  array('surname'=>$group->name,'abbreviation'=>$group->abbreviation);
 
         $this->CI->db->query(
             $this->CI->db->update_string("users",
                                          $updatefields,
                                          "user_id=".$group->group_id)
                               );
+        //remove all rights profiles, then add the right ones again
+        $this->CI->db->query("DELETE FROM grouprightsprofilelink WHERE group_id=".$group->group_id);
+        //add rights profiles
+        foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+            $this->CI->db->query($this->CI->db->insert_string("grouprightsprofilelink",array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id)));
+        }
         
         return True;
     }
