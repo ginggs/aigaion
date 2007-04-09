@@ -11,10 +11,26 @@ col 'users.ID' => hernoem tot 'users.user_id'
 add col 'users.type' (enum('group','anon','normal')
 
 invoeren van een nieuwe tabel:
-add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
-add table `rightsprofilerightlink` (rightsprofile_id INT(10), right_name VARCHAR(20))
 
-add table `usergrouplink` (user_id INT(10),group_id INT(10))
+//add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
+CREATE TABLE `rightsprofiles` (
+`rightsprofile_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`name` VARCHAR( 20 ) NOT NULL
+) 
+
+//add table `rightsprofilerightlink` (rightsprofile_id INT(10), right_name VARCHAR(20))
+CREATE TABLE `rightsprofilerightlink` (
+`rightsprofile_id` INT( 10 ) NOT NULL ,
+`right_name` VARCHAR( 20 ) NOT NULL ,
+PRIMARY KEY (`rightsprofile_id` )
+) 
+
+//add table `usergrouplink` (user_id INT(10),group_id INT(10))
+CREATE TABLE `usergrouplink` (
+`user_id` INT( 10 ) NOT NULL ,
+`group_id` INT( 10 ) NOT NULL ,
+PRIMARY KEY ( `user_id` )
+)
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
