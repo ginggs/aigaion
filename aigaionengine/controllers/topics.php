@@ -22,7 +22,7 @@ class Topics extends Controller {
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic';
+        $headerdata['title'] = 'Browse topic tree';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -87,7 +87,7 @@ class Topics extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Topic';
+            $headerdata['title'] = 'Delete topic';
             $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -111,7 +111,7 @@ class Topics extends Controller {
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic';
+        $headerdata['title'] = 'Add topic';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -143,7 +143,7 @@ class Topics extends Controller {
         	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic';
+        $headerdata['title'] = 'Edit topic';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -176,7 +176,7 @@ class Topics extends Controller {
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic';
+        $headerdata['title'] = 'View topic';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);

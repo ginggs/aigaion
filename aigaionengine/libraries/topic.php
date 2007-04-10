@@ -62,27 +62,61 @@ class Topic {
   
     /** if this topic is a subscription tree, use this method to set the publication to being subscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. */  
-    function subscribePublication() {
-        if (!$this->isClassificationTree) return;
-        $this->CI->topic_db->subscribePublication($this->publication_id, $this->topic_id);
-        $this->publicationIsSubscribed = True;
-        $parent = $this->getParent();
-        if ($parent != null) {
-            $parent->subscribePublication();
-        }
-    }    
+//    function subscribePublication() {
+//        $this->CI->topic_db->subscribePublication($this->publication_id, $this->topic_id);
+//        $this->publicationIsSubscribed = True;
+//        $parent = $this->getParent();
+//        if ($parent != null) {
+//            $parent->subscribePublication();
+//        }
+//    }    
 
     /** if this topic is a subscription tree, use this method to set the publciation to being unsubscribed from this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. */  
-    function unsubscribePublication() {
-        if (!$this->isClassificationTree) return;
-        //don't accept unsubscription from topics with subscribed children? or unsubscribe from children as well?
-        //  --> still to be checked...
-        //foreach ($this->getChildren() as $child) {
-        //    $child->unsubscribePublication();
-        //}
-        $this->CI->category_db->unsubscribePublication($this->publication_id, $this->topic_id);
-        $this->publicationIsSubscribed = False;
+//    function unsubscribePublication() {
+//        //don't accept unsubscription from topics with subscribed children? or unsubscribe from children as well?
+//        //  --> still to be checked...
+//        //foreach ($this->getChildren() as $child) {
+//        //    $child->unsubscribePublication();
+//        //}
+//        $this->CI->category_db->unsubscribePublication($this->publication_id, $this->topic_id);
+//        $this->publicationIsSubscribed = False;
+//    }    
+    
+    /** if this topic is a user subscription tree, use this method to set the user to being subscribed to this
+    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
+    This method subscribes the ancestors and children as well.
+    Pre: $this->configuration['userId'] must be set. */  
+    function subscribeUser() {
+        $this->subscribeUserDownRecursive();
+        $this->subscribeUserUpRecursive();
+    }    
+    function subscribeUserDownRecursive() {
+        $this->CI->topic_db->subscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->flags['userIsSubscribed'] = True;
+        foreach ($this->getChildren() as $child) {
+            $child->subscribeUserDownRecursive();
+        }
+    }    
+    function subscribeUserUpRecursive() {
+        $this->CI->topic_db->subscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->flags['userIsSubscribed'] = True;
+        $parent = $this->getParent();
+        if ($parent != null) {
+            $parent->subscribeUserUpRecursive();
+        }
+    }    
+
+    /** if this topic is a user subscription tree, use this method to set the user to being unsubscribed to this
+    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
+    This method unsubscribes the children as well.
+    Pre: $this->configuration['userId'] must be set. */  
+    function unsubscribeUser() {
+        $this->CI->topic_db->unsubscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->flags['userIsSubscribed'] = False;
+        foreach ($this->getChildren() as $child) {
+            $child->unsubscribeUser();
+        }
     }    
     
     /** Add a new Topic with the given data. Returns TRUE or FALSE depending on whether the operation was

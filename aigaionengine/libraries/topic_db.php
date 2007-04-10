@@ -91,7 +91,10 @@ class Topic_db {
                 if (array_key_exists('flagCollapsed',$configuration)) {
                     $topic->flags['userIsCollapsed'] = $userSubscribedQ->row()->collapsed=='1';
                 }
-            } 
+            } else {
+                $topic->flags['userIsSubscribed'] = False;
+            }
+                
         }
         /*  onlyIfPublicationSubscribed     -- if set to True, only those topics 
                                                will be included in the tree to which the publication specified by 
@@ -174,6 +177,18 @@ class Topic_db {
     /** Unsubscribe given publication from given topic in database. no recursion. */
     function unsubscribePublication($pub_id,$topic_id) {
         $this->CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
+    }
+
+    
+    /** Subscribe given user to given topic in database. no recursion. */
+    function subscribeUser($user_id,$topic_id) {
+        $this->CI->db->delete('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
+        $this->CI->db->insert('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
+    }
+    
+    /** Unsubscribe given user from given topic in database. no recursion. */
+    function unsubscribeUser($user_id,$topic_id) {
+        $this->CI->db->delete('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
     }
 
 

@@ -343,5 +343,139 @@ class Users extends Controller {
         }
         
     }
+    
+    /** 
+    users/topicreview
+    
+    Entry point for editing the topic subscriptions for a user
+    
+	Fails with error message when one of:
+	    non-existing user_id requested
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: optional user_id of the user to be edited (default: logged user)
+	         
+    Returns:
+        A full HTML page with a 'topic subscription tree'
+    */
+    function topicreview() {
+	    $user_id = $this->uri->segment(3,getUserLogin()->userId());
+	    $user = $this->user_db->getByID($user_id);
+	    
+	    if ($user==null) {
+	        appendErrorMessage('Topic review: invalid user_id specified.<br>\n');
+	        redirect('');
+	    }
+        //get output
+        $headerdata = array();
+        $headerdata['title'] = 'Topic subscription';
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        
+        
+        $root = $this->topic_db->getByID(1, array('userId'=>$user_id,
+                                                  
+                                                        ));
+        $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
+        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+                    .$this->load->view('topics/tree',
+                                      array('topics'   => $root->getChildren(),
+                                            'showroot'  => True,
+                                            'depth'     => -1
+                                            ),  
+                                      true)."</ul>\n</div>\n";
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);	    
+    }
+
+    
+    /**
+    users/subscribe
+    
+    Susbcribes a user to a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'usersubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    susbcribe requested for non-existing topic or user
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: optional user_id (default: logged user)
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function subscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $user_id = $this->uri->segment(4,getUserLogin()->userId());
+        
+        $user = $this->user_db->getByID($user_id);
+        if ($user == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid user ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$user_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->subscribeUser();
+
+        echo "<div/>";
+    }    
+    
+    
+    /**
+    users/unsubscribe
+    
+    Unsusbcribes a user to a topic. Is normally called async, without processing the
+    returned partial, by clicking an unsubscribe link in a topic tree rendered by 
+    subview 'usersubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    unsusbcribe requested for non-existing topic or user
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: optional user_id (default: logged user)
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function unsubscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $user_id = $this->uri->segment(4,getUserLogin()->userId());
+        
+        $user = $this->user_db->getByID($user_id);
+        if ($user == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid user ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$user_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+        }
+        //do unsubscribe
+        $topic->unsubscribeUser();
+
+        echo "<div/>";
+    }    
+    
 }
 ?>

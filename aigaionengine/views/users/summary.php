@@ -10,6 +10,7 @@ Parameters:
 */
     echo anchor('users/edit/'.$user->user_id,'[edit]')."&nbsp;"
     .anchor('users/delete/'.$user->user_id,'[delete]')."&nbsp;"
+    .anchor('users/topicreview/'.$user->user_id,'[topic subscription]')."&nbsp;"
     .$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")";
 
 ?>
