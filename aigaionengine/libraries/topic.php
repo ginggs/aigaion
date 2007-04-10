@@ -97,5 +97,17 @@ class Topic {
     function commit() {
         return $this->CI->topic_db->commit($this);
     }
+    
+    /** Collapse this topic for the current logged user */
+    function collapse() {
+        $this->CI->topic_db->collapse($this, getUserLogin()->userId());
+    }
+
+    /** Expand this topic for the current logged user */
+    function expand() {
+        $this->CI->topic_db->expand($this, getUserLogin()->userId());
+    }
+    
+    
 }
 ?>

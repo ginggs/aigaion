@@ -33,7 +33,7 @@ class Topics extends Controller {
                                                          'flagCollapsed'=>True,
                                                          'userId'=>getUserLogin()->userId()
                                                         ));
-        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
+        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
@@ -271,6 +271,45 @@ class Topics extends Controller {
 
         }
         
+    }
+    
+    /**
+    topics/collapse
+    
+    Collapses or expands a topic for the logged user. Is normally called async, without processing the
+    returned partial, by clicking one of the collapse or expand buttons in a topic tree rendered by 
+    subview 'maintreerow' with argument 'useCollapseCallback'=>True
+    
+	Fails with error message when one of:
+	    collapse requested for non-existing topic
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: collapse status (0|1), default 1 (collapsed)
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function collapse() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $collapse = $this->uri->segment(4,1);
+        
+        $topic = $this->topic_db->getByID($topic_id);
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Collapse topic: no valid topic ID provided</div>";
+        }
+        //do collapse
+        if ($collapse==1) {
+            $topic->collapse();
+        } else {
+            $topic->expand();
+        }
+
+        echo "<div/>";
     }
 }
 ?>

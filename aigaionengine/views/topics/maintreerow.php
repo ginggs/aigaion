@@ -1,4 +1,21 @@
 <?php        
+/*
+views/topics/maintreerow
+
+Displays a row if information about one topic in the 'normal' main tree. 
+Some configuration can be passed through the view parameters.
+
+Parameters:
+    $topic: the topic for which the row is to be displayed
+    $useCollapseCallback: if True, collapse and expand actions will be passed to the topics/collapse callback
+*/
+    if (!isset($useCollapseCallback))$useCollapseCallback = False;
+    $collapseCallback = '';
+    $expandCallback = '';
+    if ($useCollapseCallback) {
+        $collapseCallback = site_url('topics/collapse/'.$topic->topic_id.'/1');
+        $expandCallback   = site_url('topics/collapse/'.$topic->topic_id.'/0');
+    }
     #make hide scripts to show and hide proper parts depending on some collapse state
     $hide1="";
     $hide2="Element.hide('plus_topic_".$topic->topic_id."');";
@@ -9,11 +26,11 @@
     #
     if (sizeof($topic->getChildren())>0) {
         echo "<img id      = 'min_topic_".$topic->topic_id."' 
-                   onclick = 'collapse(\"".$topic->topic_id."\",\"\");' 
+                   onclick = 'collapse(\"".$topic->topic_id."\",\"".$collapseCallback."\");' 
                    class   = icon
                    src     = '".getIconUrl('tree_min.gif')."'/>\n";
         echo "<img id      = 'plus_topic_".$topic->topic_id."' 
-                   onclick = 'expand(\"".$topic->topic_id."\",\"\");' 
+                   onclick = 'expand(\"".$topic->topic_id."\",\"".$expandCallback."\");' 
                    class   = icon
                    src     = '".getIconUrl('tree_plus.gif')."'/>\n";
         echo "<script>".$hide1.$hide2."</script>"; 

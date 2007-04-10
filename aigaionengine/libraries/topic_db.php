@@ -210,5 +210,16 @@ class Topic_db {
         
         return True;
     }
+    
+    /** Collapse given topic for the given user */
+    function collapse($topic, $user_id) {
+        $this->CI->db->query("UPDATE usertopiclink SET collapsed='1' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+    }
+
+    /** Expand given topic for the given user */
+    function expand($topic, $user_id) {
+        $this->CI->db->query("UPDATE usertopiclink SET collapsed='0' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+    }
+    
 }
 ?>

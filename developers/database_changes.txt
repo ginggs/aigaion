@@ -40,6 +40,10 @@ CREATE TABLE `grouprightsprofilelink` (
 PRIMARY KEY ( `user_id` )
 )
 
+rename 'topicpublication' to 'topicpublicationlink'
+rename 'persontopic' to 'usertopiclink'
+rename 'persontopic.person_id' to 'persontopic.user_id'
+
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
 
