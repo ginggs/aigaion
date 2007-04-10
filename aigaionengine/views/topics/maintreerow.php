@@ -19,7 +19,7 @@
         echo "<script>".$hide1.$hide2."</script>"; 
     } else {
         echo "<img  class   = icon
-                    src     = '".getIconUrl('smallblank.gif')."'/>\n";
+                    src     = '".getIconUrl('tree_blank.gif')."'/>\n";
     }
     echo anchor('topics/view/'.$topic->topic_id,$topic->name)."\n";
 
