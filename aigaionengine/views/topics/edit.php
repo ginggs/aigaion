@@ -54,7 +54,8 @@ echo "
      ";
      
 echo $this->load->view('topics/optiontree',
-                       array('topics'   => $this->topic_db->getByID(1),
+                       array('topics'   => $this->topic_db->getByID(1,array('onlyIfUserSubscribed'=>True,
+                                                                            'userId'=>getUserLogin()->userId())),
                             'showroot'  => True,
                             'depth'     => -1,
                             'selected'  => $topic->parent_id

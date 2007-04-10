@@ -30,6 +30,7 @@ class Topics extends Controller {
         
         
         $root = $this->topic_db->getByID($root_id, array('onlyIfUserSubscribed'=>True,
+                                                         'flagCollapsed'=>True,
                                                          'userId'=>getUserLogin()->userId()
                                                         ));
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));

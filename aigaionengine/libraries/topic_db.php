@@ -16,6 +16,8 @@ Possible configuration parameters:
                                        subscribed
     userId                          -- if set, the 'userIsSubscribed' will be set for all topics that this user 
                                        is subscribed to
+    flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
+                                       'userId' will be flagged by 'userIsCollapsed'
     
     onlyIfPublicationSubscribed     -- if set to True, only those topics 
                                        will be included in the tree to which the publication specified by 
@@ -25,6 +27,8 @@ Possible configuration parameters:
                                        
 Possible flags:
     userIsSubscribed
+    
+    userIsCollapsed
     
     publicationIsSubscribed
     
@@ -68,8 +72,11 @@ class Topic_db {
                                                subscribed 
             userId                          -- if set, the 'userIsSubscribed' flag will be set for all topics that this user 
                                                is subscribed to
+            flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
+                                               'userId' will be flagged by 'userIsCollapsed'
             Flags:                                   
                 userIsSubscribed
+                userIsCollapsed
         */
         if (array_key_exists('userId',$configuration)) {
             $userSubscribedQ = $this->CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
@@ -81,6 +88,9 @@ class Topic_db {
             }
             if ($userSubscribedQ->num_rows() > 0) {
                 $topic->flags['userIsSubscribed'] = True;
+                if (array_key_exists('flagCollapsed',$configuration)) {
+                    $topic->flags['userIsCollapsed'] = $userSubscribedQ->row()->collapsed=='1';
+                }
             } 
         }
         /*  onlyIfPublicationSubscribed     -- if set to True, only those topics 

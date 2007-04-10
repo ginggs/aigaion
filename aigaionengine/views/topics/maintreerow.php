@@ -2,10 +2,10 @@
     #make hide scripts to show and hide proper parts depending on some collapse state
     $hide1="";
     $hide2="Element.hide('plus_topic_".$topic->topic_id."');";
-//    if ($topic->topic_id == 27) { //collapse or expand can be dependent on a collapse setting for this person.
-//        $hide1="Element.hide('min_topic_".$topic->topic_id."');";
-//        $hide2="";
-//    }
+    if (array_key_exists('flagCollapsed',$topic->configuration) && ($topic->flags['userIsCollapsed']==True)) {
+        $hide1="Element.hide('min_topic_".$topic->topic_id."');";
+        $hide2="";
+    }
     #
     if (sizeof($topic->getChildren())>0) {
         echo "<img id      = 'min_topic_".$topic->topic_id."' 
