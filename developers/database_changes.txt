@@ -37,12 +37,16 @@ PRIMARY KEY ( `user_id` )
 CREATE TABLE `grouprightsprofilelink` (
 `group_id` INT( 10 ) NOT NULL ,
 `rightsprofile_id` INT( 10 ) NOT NULL ,
-PRIMARY KEY ( `user_id` )
+PRIMARY KEY ( `group_id` )
 )
 
 rename 'topicpublication' to 'topicpublicationlink'
 rename 'persontopic' to 'usertopiclink'
 rename 'persontopic.person_id' to 'persontopic.user_id'
+
+rename 'publication.pub_type' to 'publication.report_type'
+rename 'author.ID' to 'author.author_id'
+
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

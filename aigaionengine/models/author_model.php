@@ -177,7 +177,7 @@ class Author_model extends Model {
   function loadByID($author_id)
   {
     //retrieve one author row	  
-    $Q = $this->db->query("SELECT * FROM author WHERE ID = ".$this->db->escape($author_id));
+    $Q = $this->db->query("SELECT * FROM author WHERE author_id = ".$this->db->escape($author_id));
     if ($Q->num_rows() == 1) 
     {
       //load the author
@@ -244,11 +244,7 @@ class Author_model extends Model {
     //we can use this simple foreach loop
     foreach ($R as $key => $value)
     {
-//ALERT: TEMPORARY::ID->author_id
-      if ($key == 'ID')
-        $this->data->author_id = $value;
-      else
-        $this->data->$key = $value;
+      $this->data->$key = $value;
     }
     return true;
   }

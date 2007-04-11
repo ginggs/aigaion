@@ -117,7 +117,7 @@ class Author_list_model extends Author_model {
   {
     //retrieve authors and editors
     $Q = $this->db->query("SELECT * FROM author, publicationauthor 
-                           WHERE author.ID = publicationauthor.author
+                           WHERE author.author_id = publicationauthor.author
                            AND publicationauthor.pub_id = ".$this->db->escape($pub_id)."
                            AND is_editor = ".$this->db->escape($is_editor)."
                            ORDER BY publicationauthor.rank");
