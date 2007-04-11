@@ -174,14 +174,25 @@ class Topics extends Controller {
 	        redirect('topics/browse');
 	    }
 	    
+	      $this->load->model('publication_list_model');
+	      $this->load->helper('publication');
+    
+        $publicationlist  = new Publication_list_model;
+        $publicationlist->loadForTopic($topic_id);
+    
         //get output
-        $headerdata = array();
-        $headerdata['title'] = 'View topic';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata                 = array();
+        $headerdata['title']        = 'View topic';
+        $headerdata['javascripts']  = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $content['topic']           = $topic;
+        $content['publicationlist'] = $publicationlist;
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $output  .= $this->load->view('topics/full', array('topic' => $topic),  true);
+        $output  .= $this->load->view('topics/full', $content,  true);
+        
+        
         
         $output .= $this->load->view('footer','', true);
 

@@ -36,6 +36,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
   bool loadForAuthor($author_id)
     Retrieve all publications for the author with $author_id
+    
+  bool loadForTopic($topic_id)
+    Retrieve all publications for a specific topic
 
   bool _loadFromResult($Q)
     Loads the publications from a query result from the publication table.
@@ -97,6 +100,29 @@ class Publication_list_model extends Publication_model {
 		$Q = $this->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthor
                            WHERE publicationauthor.author = ".$this->db->escape($author_id)."
                            AND publication.pub_id = publicationauthor.pub_id
+                           ORDER BY actualyear, cleantitle");
+                           
+/*
+    $this->db->select('*');
+    $this->db->from('publication');
+    $this->db->join('publicationauthor', 'publication.pub_id = publicationauthor.pub_id', 'left');
+    $this->db->where('publicationauthor.author', $author_id);
+    $this->db->orderby('actualyear, cleantitle');
+    
+    $Q = $this->db->get();
+*/
+    if ($Q->num_rows() > 0)
+    {
+      $this->_loadFromResult($Q);
+    }
+    return count($this->list);    
+  }
+  
+  function loadForTopic($topic_id)
+  {
+		$Q = $this->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
+                           WHERE topicpublicationlink.topic_id = ".$this->db->escape($topic_id)."
+                           AND publication.pub_id = topicpublicationlink.pub_id
                            ORDER BY actualyear, cleantitle");
                            
 /*

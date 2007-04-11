@@ -12,18 +12,22 @@
         $description = "-no description-";
     }
 ?>
-<span class='header1'>Topic:
+<div class='header'>Topic:
 <?php 
     echo $name;
 ?>
-</span>
-<br>
-Show subtopics?
-<br>
+</div>
+<?php  
+  if ($description)
+      echo $description."<br/>";
+?>
+<br/>
+Show subtopics?<br />
 
 <?php
-    echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>";
-    echo $description;
-?> 
-
+    echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>";
+    
+  if (isset($publicationlist))
+    $this->load->view('publications/list', $publicationlist);
+?>
 </div>
