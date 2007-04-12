@@ -123,7 +123,7 @@ div.optionbox {
   margin-top      : 0.1em;
   padding-right   : 0.2em;
   float           : right;
-  width           : 4em;
+  /*width           : 4em;*/
   clear           : right;
   text-align      : right;
 }

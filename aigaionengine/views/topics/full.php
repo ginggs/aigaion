@@ -12,6 +12,9 @@
         $description = "-no description-";
     }
 ?>
+<div class='optionbox'>
+    <?php echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>"; ?>
+</div>
 <div class='header'>Topic:
 <?php 
     echo $name;
@@ -25,7 +28,6 @@
 Show subtopics?<br />
 
 <?php
-    echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>";
     
   if (isset($publicationlist))
     $this->load->view('publications/list', $publicationlist);
