@@ -19,6 +19,9 @@ li.topictree-leaf {
     font-style   : italic;
     font-weight   : normal;*/
 }
+.subscriptionlink {
+}
+
 .subscribedtopic {
     font-weight : bold;
 }

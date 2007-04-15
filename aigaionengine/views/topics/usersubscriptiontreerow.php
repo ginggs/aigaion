@@ -22,16 +22,16 @@ of the topic.
     $hide1="";
     $hide2="Element.hide('plus_topic_".$topic->topic_id."');";
     #
-    if (sizeof($topic->getChildren())>0) {
-        echo "<img id      = 'min_topic_".$topic->topic_id."' 
+    if (count($topic->getChildren())>0) {
+        echo "\n<img id      = 'min_topic_".$topic->topic_id."' 
                    onclick = 'collapse(\"".$topic->topic_id."\",\"\");' 
                    class   = icon
-                   src     = '".getIconUrl('tree_min.gif')."'/>\n";
-        echo "<img id      = 'plus_topic_".$topic->topic_id."' 
+                   src     = '".getIconUrl('tree_min.gif')."'/>
+              <img id      = 'plus_topic_".$topic->topic_id."' 
                    onclick = 'expand(\"".$topic->topic_id."\",\"\");' 
                    class   = icon
-                   src     = '".getIconUrl('tree_plus.gif')."'/>\n";
-        echo "<script>".$hide1.$hide2."</script>"; 
+                   src     = '".getIconUrl('tree_plus.gif')."'/>
+              <script>".$hide1.$hide2."</script>\n"; 
     } else {
         echo "<img  class   = icon
                     src     = '".getIconUrl('tree_blank.gif')."'/>\n";
@@ -45,7 +45,26 @@ if ($topic->flags['userIsSubscribed']) {
 } else {
     $class = 'unsubscribedtopic';
 }
-echo "<span id='subscription_".$topic->topic_id."' class='".$class."'>"
+echo "\n<span id='subscription_".$topic->topic_id."' class='".$class."'>"
      .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['userId'].",".$topic->topic_id.",'".site_url('users/')."')" )
      ."</span>";
+/*====  JAVASCRIPT CODE TO MAKE THE TOGGLE OF BOLD/NONBOLD BEHAVE CORRECTLY. SEE ALSO TREE.JS ===*/
+
+//for some reason this doesn't work... :( or at least, the markunsub and marksub functinos don't work...
+
+//echo "\n<script>SUBJECTS[".$topic->topic_id."] = [\"".htmlentities($topic->name,ENT_QUOTES)."\",";
+//$first = True;
+//foreach ($topic->getChildren() as $c) {
+//    if (!$first) {
+//        echo ",";
+//    } else  {
+//        echo "[";
+//    }
+//    echo $c->topic_id;
+//    $first = False;
+//}
+//if (!$first) {
+//    echo "],";
+//} 
+//echo $topic->topic_id."];</script>";
 ?>
