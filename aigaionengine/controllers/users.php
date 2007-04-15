@@ -382,7 +382,6 @@ class Users extends Controller {
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
         $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
-        $output .= "<script>var reviewtreeparents = { };</script>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),

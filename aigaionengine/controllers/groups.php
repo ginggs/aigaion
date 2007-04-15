@@ -271,6 +271,141 @@ class Groups extends Controller {
         }
         
     }
+
     
+    /** 
+    groupss/topicreview
+    
+    Entry point for editing the topic subscriptions for a group
+    
+	Fails with error message when one of:
+	    non-existing group_id requested
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: group_id of the group to be edited 
+	         
+    Returns:
+        A full HTML page with a 'topic subscription tree'
+    */
+    function topicreview() {
+	    $group_id = $this->uri->segment(3,-1);
+	    $group = $this->group_db->getByID($group_id);
+	    
+	    if ($group==null) {
+	        appendErrorMessage('Topic review: invalid group_id specified.<br>\n');
+	        redirect('');
+	    }
+        //get output
+        $headerdata = array();
+        $headerdata['title'] = 'Topic subscription for groups';
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        
+        
+        $root = $this->topic_db->getByID(1, array('userId'=>$group_id,
+                                                  
+                                                        ));
+        $this->load->vars(array('subviews'  => array('topics/groupsubscriptiontreerow'=>array('allCollapsed'=>True))));
+        $output .= "<p class='header1'>Topic subscription for ".$group->name."</p>";
+        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+                    .$this->load->view('topics/tree',
+                                      array('topics'   => $root->getChildren(),
+                                            'showroot'  => True,
+                                            'depth'     => -1
+                                            ),  
+                                      true)."</ul>\n</div>\n";
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);	    
+    }
+
+    
+    /**
+    groups/subscribe
+    
+    Susbcribes a group to a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'groupsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    susbcribe requested for non-existing topic or group
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: group_id
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function subscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $group_id = $this->uri->segment(4,-1);
+        
+        $group = $this->group_db->getByID($group_id);
+        if ($group == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid group ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$group_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->subscribeUser();
+
+        echo "<div/>";
+    }    
+    
+    
+    /**
+    groups/unsubscribe
+    
+    Unsusbcribes a group to a topic. Is normally called async, without processing the
+    returned partial, by clicking an unsubscribe link in a topic tree rendered by 
+    subview 'groupsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    unsusbcribe requested for non-existing topic or group
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: group_id
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function unsubscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $group_id = $this->uri->segment(4,-1);
+        
+        $group = $this->user_db->getByID($group_id);
+        if ($group == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid group ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$group_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+        }
+        //do unsubscribe
+        $topic->unsubscribeUser();
+
+        echo "<div/>";
+    }    
+      
 }
 ?>

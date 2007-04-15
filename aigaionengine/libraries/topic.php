@@ -28,13 +28,7 @@ class Topic {
     //this flags collection may contain additional information related to the configuration, such as whether this
     //particular topic was assigned to a certain publication. Note: these flags should not be changed directly.
     var $flags              = array();
-    
-    //the following parameters will move or be renamed depending on the new configuration options for topic trees:
-    //dont forget to searchreplace them....
-    var $isClassificationTree = False;
-    var $publication_id            = '';
-    var $publicationIsSubscribed   = False; //if this topic is a classification tree, this variable tells whether the publication is assigned to this topic
-    
+        
     function Topic()
     {
         $this->CI =&get_instance(); 
@@ -60,28 +54,6 @@ class Topic {
         return $p;
     }
   
-    /** if this topic is a subscription tree, use this method to set the publication to being subscribed to this
-    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. */  
-//    function subscribePublication() {
-//        $this->CI->topic_db->subscribePublication($this->publication_id, $this->topic_id);
-//        $this->publicationIsSubscribed = True;
-//        $parent = $this->getParent();
-//        if ($parent != null) {
-//            $parent->subscribePublication();
-//        }
-//    }    
-
-    /** if this topic is a subscription tree, use this method to set the publciation to being unsubscribed from this
-    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. */  
-//    function unsubscribePublication() {
-//        //don't accept unsubscription from topics with subscribed children? or unsubscribe from children as well?
-//        //  --> still to be checked...
-//        //foreach ($this->getChildren() as $child) {
-//        //    $child->unsubscribePublication();
-//        //}
-//        $this->CI->category_db->unsubscribePublication($this->publication_id, $this->topic_id);
-//        $this->publicationIsSubscribed = False;
-//    }    
     
     /** if this topic is a user subscription tree, use this method to set the user to being subscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 

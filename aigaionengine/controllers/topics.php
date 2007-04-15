@@ -31,7 +31,8 @@ class Topics extends Controller {
         
         $root = $this->topic_db->getByID($root_id, array('onlyIfUserSubscribed'=>True,
                                                          'flagCollapsed'=>True,
-                                                         'userId'=>getUserLogin()->userId()
+                                                         'userId'=>getUserLogin()->userId(),
+                                                         'includeGroupSubscriptions'=>True
                                                         ));
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"

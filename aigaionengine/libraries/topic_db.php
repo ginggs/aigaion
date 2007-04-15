@@ -16,6 +16,8 @@ Possible configuration parameters:
                                        subscribed
     userId                          -- if set, the 'userIsSubscribed' will be set for all topics that this user 
                                        is subscribed to
+    includeGroupSubscriptions       -- if set together with userId, all topic subscriptions inherited from group
+                                       memberships are taken into account as well
     flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
                                        'userId' will be flagged by 'userIsCollapsed'
     
@@ -72,6 +74,8 @@ class Topic_db {
                                                subscribed 
             userId                          -- if set, the 'userIsSubscribed' flag will be set for all topics that this user 
                                                is subscribed to
+            includeGroupSubscriptions       -- if set together with userId, all topic subscriptions inherited from group
+                                               memberships are taken into account as well
             flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
                                                'userId' will be flagged by 'userIsCollapsed'
             Flags:                                   
@@ -79,17 +83,31 @@ class Topic_db {
                 userIsCollapsed
         */
         if (array_key_exists('userId',$configuration)) {
+            $user = $this->CI->user_db->getByID($configuration['userId']);
             $userSubscribedQ = $this->CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
                                                                               'user_id'=>$configuration['userId']));
+            $groupIrrelevant = True;
+            $groupSubscribed = False;
+            if (array_key_exists('includeGroupSubscriptions',$configuration)) {
+                $groupIrrelevant = False;
+                $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$user->group_ids).');');
+                $groupSubscribed = $groupSubscribedQ->num_rows()>0;
+            }
             if (array_key_exists('onlyIfUserSubscribed',$configuration)) {
-                if ($userSubscribedQ->num_rows() == 0) { //not subscribed: return null!
-                    return null;
+                if ($userSubscribedQ->num_rows() == 0) { //not subscribed: check group subscriptions
+                    if ($groupIrrelevant || !$groupSubscribed) {
+                        return null;
+                    }
                 }
             }
-            if ($userSubscribedQ->num_rows() > 0) {
+            if (($userSubscribedQ->num_rows() > 0) || $groupSubscribed) {
                 $topic->flags['userIsSubscribed'] = True;
                 if (array_key_exists('flagCollapsed',$configuration)) {
-                    $topic->flags['userIsCollapsed'] = $userSubscribedQ->row()->collapsed=='1';
+                    if ($userSubscribedQ->num_rows() > 0) {
+                        $topic->flags['userIsCollapsed'] = $userSubscribedQ->row()->collapsed=='1';
+                    } else {
+                        $topic->flags['userIsCollapsed'] = True;
+                    }
                 }
             } else {
                 $topic->flags['userIsSubscribed'] = False;
@@ -226,12 +244,12 @@ class Topic_db {
         return True;
     }
     
-    /** Collapse given topic for the given user */
+    /** Collapse given topic for the given user, if that user is susbcribed to it */
     function collapse($topic, $user_id) {
         $this->CI->db->query("UPDATE usertopiclink SET collapsed='1' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
     }
 
-    /** Expand given topic for the given user */
+    /** Expand given topic for the given user, if that user is susbcribed to it */
     function expand($topic, $user_id) {
         $this->CI->db->query("UPDATE usertopiclink SET collapsed='0' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
     }

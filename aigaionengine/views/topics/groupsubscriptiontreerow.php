@@ -1,8 +1,8 @@
 <?php        
 /*
-views/topics/usersubscriptiontreerow
+views/topics/groupsubscriptiontreerow
 
-Displays a row if information about one topic in the 'user subscription' tree. 
+Displays a row if information about one topic in the 'group subscription' tree. 
 Among other things, subscription status is visualised, and a (un)subscription link is provided for each
 topic. Clicking the (un)subscription link results in an async (un)subscription call as well as
 in the execution of a javascript that toggles the display style of affected topics (ancestors and children included)
@@ -46,7 +46,7 @@ if ($topic->flags['userIsSubscribed']) {
     $class = 'unsubscribedtopic';
 }
 echo "\n<span id='subscription_".$topic->topic_id."' class='".$class."'>"
-     .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['userId'].",".$topic->topic_id.",'".site_url('users/')."')" )
+     .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['userId'].",".$topic->topic_id.",'".site_url('groups/')."')" )
      ."</span>";
 
 ?>

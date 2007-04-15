@@ -63,6 +63,7 @@
 <?php     
         $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
                                                   'userId'=>getUserLogin()->userId(),
+                                                  'includeGroupSubscriptions'=>True,
                                                   'onlyIfPublicationSubscribed'=>True,
                                                   'publicationId'=>$publication->data->pub_id
                                                         ));
