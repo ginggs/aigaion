@@ -49,6 +49,9 @@ class UserLogin {
     var $rights = array();
     /** The configured menu for this user. */
     var $theMenu = "";
+    
+    var $theUser = null;
+    
     /* ================ Basic accessors ================ */
     
     function isLoggedIn() {
@@ -166,31 +169,50 @@ class UserLogin {
     
     /** This is the method that you call to perform the login
      *  If already logged in as non-anonymous, do nothing
-     *  Else if login vars have been posted: login from POST vars
-     *  Else if cookies are available: login from cookies
+     *  Else if external login in use: try to login from external module
+     *  Else if external login not in use and login vars have been posted: login from POST vars
+     *  Else if external login not in use and cookies are available: login from cookies
      *  Else if anonymous login allowed: login anonymously */
     function login() {
         //If already logged in as non-anonymous, do nothing
         if ($this->bIsLoggedIn && !$this->bIsAnonymous) return;
-        //Else if login vars have been posted: login from POST vars
-        $result = $this->loginFromPost();
-        if ($this->bIsLoggedIn) {
-            return;
-        }
-        if ($result == 1) {
-            //report error and return
-            $this->sNotice = "Unknown user or wrong password";
-            return;
-        }
-        //Else if cookies are available: login from cookies
-        $result = $this->loginFromCookie();
-        if ($this->bIsLoggedIn) {
-            return;
-        }
-        if ($result == 1) {
-            //report error and return
-            $this->sNotice = "Unknown user or wrong password in cookie";
-            return;
+        //Else maybe we can login from external module?
+        if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
+            $result = $this->loginFromExternalSystem();
+            if ($this->bIsLoggedIn) {
+                return;
+            }
+            if ($result == 1) {
+                //report error and return
+                $this->sNotice = "Unknown user or wrong password from external login module";
+                return;
+            }
+            if ($result == 2) {
+                //report error and return
+                $this->sNotice = "No login info available...";
+                return;
+            }
+        } else {
+            //Else if login vars have been posted: login from POST vars
+            $result = $this->loginFromPost();
+            if ($this->bIsLoggedIn) {
+                return;
+            }
+            if ($result == 1) {
+                //report error and return
+                $this->sNotice = "Unknown user or wrong password";
+                return;
+            }
+            //Else if cookies are available: login from cookies
+            $result = $this->loginFromCookie();
+            if ($this->bIsLoggedIn) {
+                return;
+            }
+            if ($result == 1) {
+                //report error and return
+                $this->sNotice = "Unknown user or wrong password in cookie";
+                return;
+            }
         }
         //Else if anonymous login allowed: login anonymously 
         $result = $this->loginAnonymous();
@@ -200,6 +222,84 @@ class UserLogin {
         //ah well, after this, the options are exhausted, you're not logged in!
         //no reason to report anything, either.
         return;
+    }
+
+    /** Attempts to login as user specified by some external module (e.g. provided by a CMS)
+     *  returns one of following:
+     *      0 - success
+     *      1 - unknown user or wrong password
+     *      2 - no relevant login info available */
+    function loginFromExternalSystem() {
+        if (getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') {
+            return 2;
+        }
+        $loginName = '';
+        $loginGroups = array();
+        $CI = &get_instance();
+        //depending on the external login settings, choose module and obtain the loginName of the logged user in the external module
+        switch (getConfigurationSetting("EXTERNAL_LOGIN_MODULE")) {
+            case "httpauth":
+                //attempt to get loginname from external system
+                $loginName = $CI->login_httpauth->getLoginName();
+                $loginGroups = $CI->login_httpauth->getLoginGroups();
+                break;
+        }
+        if ($loginName == '') {
+            //no login info could be found
+            return 2;
+        }
+        //login name was found. Now try to login that person
+        $res = mysql_query("SELECT * FROM users WHERE login='".$loginName."'");
+        if ($res && ($row = mysql_fetch_array($res))) { //user found
+            $loginPwd = $row["password"];
+            if ($this->_login($loginName,$loginPwd,False)==0) { //never remember external login; that's a task for the external module
+                //$this->sNotice = 'logged from httpauth';
+                return 0; // success
+            }
+        } 
+        if (getConfigurationSetting("CREATE_MISSING_USERS") == 'TRUE') {
+            //no such user found. Make user on the fly?
+            $newuser = new User();
+            $newuser->surname = $loginName;
+            $newuser->login   = $loginName;
+            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+            srand((double)microtime()*1000000);
+            $i = 0;
+            $pass = '' ;
+            while ($i <= 7) {
+                $num = rand() % 33;
+                $tmp = substr($chars, $num, 1);
+                $pass = $pass . $tmp;
+                $i++;
+            }            
+            $newuser->password = md5($pass);
+            foreach ($loginGroups as $groupname) {
+                $groupQ = $CI->db->query("SELECT * FROM users WHERE type='group' AND abbreviation='".$groupname."'");
+                if ($groupQ->num_rows()>0) {
+                    $newuser->group_ids[] = $groupQ->row()->user_id;
+                } else {
+                    //group must also be created...
+                    $group = new Group();
+                    $group->name = $groupname;
+                    if ($group->add()) {
+                        $newuser->group_ids[] = $group->group_id;
+                    }
+                }
+            }
+            //add user....
+            if ($newuser->add()) {
+                if ($this->_login($newuser->login,$newuser->password,False)==0) { //never remember external login; that's a task for the external module
+                    //$this->sNotice = 'logged from httpauth';
+                    appendMessage('Created missing user: '.$loginName.' as member of groups: '.implode(',',$loginGroups));
+                    return 0; // success
+                } else {
+                    echo "Serious error: a new user was created and could not be logged in. ".$newuser->login." ".$newuser->password;die();
+                }
+            }
+        } else {
+            return 1;
+        }
+        return 2;
     }
         
     /** Attempts to login as user in POST variables
@@ -236,12 +336,12 @@ class UserLogin {
             return 2;
         }
     }
-    
+        
     /** Attempts to login as the anonymous user
      *  returns one of following:
      *      0 - success
-     *      1 - no anonymous user allowed 
-     *      2 - no or incorrect anonymous account defined */
+     *      1 - unknown user or wrong password (no or incorrect anonymous account defined)
+     *      2 - no login info available */
     function loginAnonymous() {
         if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
         $loginID = getConfigurationSetting("ANONYMOUS_USER");
@@ -256,7 +356,7 @@ class UserLogin {
                 }
             }
         }
-        return 2; //no or incorrect anonymous account defined
+        return 1; //no or incorrect anonymous account defined
     }
     
     /** Attempts to login as the given user. Called by the other login methods.

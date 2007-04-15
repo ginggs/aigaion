@@ -80,7 +80,7 @@ class Login extends Controller {
         //logout
 		$userlogin->logout();
 	    //redirect
-   		redirect('/login');
+   		redirect('');
 	}
 	
 	/** This controller function displays a failure message in a div. no surrounding 

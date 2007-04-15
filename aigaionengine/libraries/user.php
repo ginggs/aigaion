@@ -53,7 +53,11 @@ class User {
     successfull. After a successfull 'add', $this->user_id contains the new user_id. */
     function add() {
         $this->user_id = $this->CI->user_db->add($this);
-        return ($this->user_id > 0);
+        if ($this->user_id > 0) {
+            $this->CI->topic_db->subscribeUser( $this->user_id,1);
+            return True;
+        }
+        return False;
     }
 
     /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was

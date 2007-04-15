@@ -54,7 +54,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Abbreviation (about three characters)</td>
+        <td>Abbreviation</td>
         <td>"
         .form_input(array('name'=>'abbreviation',
                           'size'=>'5',
