@@ -35,6 +35,9 @@ class User {
     var $assignedrights     = array(); //an array of ($assignedright)
     //the ids of all groups that the user is a part of
     var $group_ids          = array();
+    //the cached subscription tree (including group subscriptions!)
+    //only has a value for the logged user!
+    var $fullSubscriptionTree = null;
     //link to the CI base object
     var $CI                 = null; 
 
@@ -54,7 +57,6 @@ class User {
     function add() {
         $this->user_id = $this->CI->user_db->add($this);
         if ($this->user_id > 0) {
-            $this->CI->topic_db->subscribeUser( $this->user_id,1);
             return True;
         }
         return False;

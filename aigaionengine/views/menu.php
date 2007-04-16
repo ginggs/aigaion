@@ -8,7 +8,8 @@
     <li class="mainmenu"><?php echo anchor('users/edit/'.getUserLogin()->userId(), 'My Profile'); ?></li>
     <li class="mainmenu"><?php echo anchor('users/topicreview/', 'Topic Review'); ?></li>
     <li class="mainmenu"><?php echo anchor('users/manage', 'Manage Accounts'); ?></li>
-    <li class="mainmenu"><?php echo anchor('configuration', 'Site Configuration'); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
   </ul>

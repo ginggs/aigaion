@@ -71,6 +71,9 @@ class UserLogin {
         $this->sNotice = "";
         return $result;
     }
+    function user() {
+        return theUser;
+    }
     function getMenu() {
         return $this->theMenu;
     }
@@ -394,9 +397,13 @@ class UserLogin {
             $this->sLoginName = $R["login"];
             $this->iUserId = $R["user_id"];                
             
+            //create the User object for this logged user
+            $CI = &get_instance();
+            $this->theUser = $CI->user_db->getByID($this->iUserId);
+
             //make sure that the anonymous user is ALWAYS logged in as anonymous user
             if (   (getConfigurationSetting("ENABLE_ANON_ACCESS")=="TRUE")
-                && ($this->iUserId==getConfigurationSetting("ANONYMOUS_USER"))
+                && ($this->theUser->isAnonymous)
                 ) {
                 $this->bIsAnonymous=True;
             }

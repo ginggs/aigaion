@@ -165,7 +165,7 @@ class User_db {
             }
         }
         
-        
+        $this->CI->topic_db->subscribeUser( $new_id,1);
         return $new_id;
     }
 
