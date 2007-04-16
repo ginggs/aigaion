@@ -242,10 +242,19 @@ class UserLogin {
         //depending on the external login settings, choose module and obtain the loginName of the logged user in the external module
         switch (getConfigurationSetting("EXTERNAL_LOGIN_MODULE")) {
             case "httpauth":
+                $CI->load->library('login_httpauth');
                 //attempt to get loginname from external system
                 $loginName = $CI->login_httpauth->getLoginName();
                 $loginGroups = $CI->login_httpauth->getLoginGroups();
                 break;
+            //case "drupal":
+                //$CI->load->library('login_drupal');
+                //attempt to get loginname from external system.
+                //this module probably needs some extra info, such as the URL of the DRUPAL site?
+                //
+                //$loginName = $CI->login_drupal->getLoginName();
+                //$loginGroups = $CI->login_drupal->getLoginGroups();
+                //break;
         }
         if ($loginName == '') {
             //no login info could be found
