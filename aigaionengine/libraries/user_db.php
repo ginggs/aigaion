@@ -204,8 +204,9 @@ class User_db {
                                'liststyle'          => $user->preferences['liststyle'],
                                'newwindowforatt'    => $newwindowforatt
                                );
+        //update password only if not empty
         if (isset($user->password) && ($user->password!="")) {
-            $updatefields['password']=md5($user->password);
+            $updatefields['password']=$user->password;
         }
 
         $this->CI->db->query(
