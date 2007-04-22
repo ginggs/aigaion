@@ -90,8 +90,13 @@ class Topic_db {
             $groupSubscribed = False;
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {
                 $groupIrrelevant = False;
-                $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$user->group_ids).');');
-                $groupSubscribed = $groupSubscribedQ->num_rows()>0;
+                if (count($user->group_ids)>0) {
+                    $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$user->group_ids).');');
+                    $groupSubscribed = $groupSubscribedQ->num_rows()>0;
+                } else {
+                    $groupSubscribed = FALSE;
+                }
+                    
             }
             if (array_key_exists('onlyIfUserSubscribed',$configuration)) {
                 if ($userSubscribedQ->num_rows() == 0) { //not subscribed: check group subscriptions

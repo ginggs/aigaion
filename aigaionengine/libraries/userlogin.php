@@ -349,15 +349,17 @@ class UserLogin {
         }
     }
         
-    /** Attempts to login as the anonymous user
+    /** Attempts to login as the given anonymous user
      *  returns one of following:
      *      0 - success
      *      1 - unknown user or wrong password (no or incorrect anonymous account defined)
      *      2 - no login info available */
-    function loginAnonymous() {
+    function loginAnonymous($user_id = -1) {
         if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
-        $loginID = getConfigurationSetting("ANONYMOUS_USER");
-        $res = mysql_query("SELECT * FROM users WHERE user_id='".$loginID."' and type='anon'");
+        if ($user_id==-1) {
+            $user_id = getConfigurationSetting("ANONYMOUS_USER");
+        }
+        $res = mysql_query("SELECT * FROM users WHERE user_id='".$user_id."' and type='anon'");
         if ($res) {
             if ($row = mysql_fetch_array($res)) {
                 $loginName = $row["login"];
@@ -404,7 +406,8 @@ class UserLogin {
             //login OK
             $this->bIsLoggedIn = True;
             $this->sLoginName = $R["login"];
-            $this->iUserId = $R["user_id"];                
+            $this->iUserId = $R["user_id"];       
+            $this->bIsAnonymous = False;
             
             //create the User object for this logged user
             $CI = &get_instance();

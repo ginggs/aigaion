@@ -165,3 +165,9 @@ div.autocomplete ul li {
 	padding         : 2px;
 	cursor          : pointer;
 }
+
+
+.loginbox {
+    padding : 3px;
+    border  : 1px solid black;
+}

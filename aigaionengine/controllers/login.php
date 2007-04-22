@@ -83,6 +83,45 @@ class Login extends Controller {
    		redirect('');
 	}
 	
+	/** 
+	login/anonymous
+	
+	This controller attempts to login one of the guest accounts. Any other currently
+	logged user is logged out.
+	
+	Fails when one of the following:
+	    the given guest account does not exist or is not anonymous
+	    no anonymous access is allowed
+	    
+	Parameters passed by segment:
+	    3rd: user_id of the guest account. default taken from config setting 'ANONYMOUS_USER'
+	    
+	Redirects to the front page
+	*/
+	function anonymous() {
+	    if (getConfigurationSetting('ENABLE_ANON_ACCESS')!='TRUE') {
+	        appendErrorMessage('Anonymous accounts are not enabled<br>');
+	        redirect('');
+	    }
+	    
+	    $user_id = $this->uri->segment(3,getConfigurationSetting('ENABLE_ANON_ACCESS'));
+	    $user = $this->user_db->getByID($user_id);
+	    if (($user==null)||(!$user->isAnonymous)) {
+	        appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br>');
+	        redirect('');
+	    }
+	    
+	    //get login object
+	  	$userlogin = getUserLogin();
+        //logout
+		$userlogin->logout();
+		//login given anonymous user
+	    $result = $userlogin->loginAnonymous($user->user_id);
+	    if (($result==1)||($result==2)) {
+            appendErrorMessage('Error logging in anonymous account<br>');
+	    }
+	    redirect('');
+	}
 	/** This controller function displays a failure message in a div. no surrounding 
 	    HTML is included. This can be used for controllers that in themselves do not
 	    show a full html page but rather a sub-view, and where failure to login should
