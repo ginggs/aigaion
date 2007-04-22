@@ -241,7 +241,7 @@ class UserLogin {
         $CI = &get_instance();
         //depending on the external login settings, choose module and obtain the loginName of the logged user in the external module
         switch (getConfigurationSetting("EXTERNAL_LOGIN_MODULE")) {
-            case "httpauth":
+            case "Httpauth":
                 $CI->load->library('login_httpauth');
                 //attempt to get loginname from external system
                 $loginName = $CI->login_httpauth->getLoginName();
@@ -357,7 +357,7 @@ class UserLogin {
     function loginAnonymous() {
         if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
         $loginID = getConfigurationSetting("ANONYMOUS_USER");
-        $res = mysql_query("SELECT * FROM users WHERE user_id='".$loginID."'");
+        $res = mysql_query("SELECT * FROM users WHERE user_id='".$loginID."' and type='anon'");
         if ($res) {
             if ($row = mysql_fetch_array($res)) {
                 $loginName = $row["login"];

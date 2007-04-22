@@ -37,22 +37,17 @@ if ($isAddForm) {
 }
 //validation feedback
 echo $this->validation->error_string;
-
-echo "
+?>
     <table>
         <tr><td><label for='name'>Name</label></td>
             <td>
-     ";
-echo form_input(array('name'=>'name','size'=>'30','value'=>$topic->name));
-echo "
+<?php echo form_input(array('name'=>'name','size'=>'30','value'=>$topic->name)); ?>
             </td>
         </tr>
-     ";
-echo "
+
         <tr><td><label for='parent_id'>Parent</label></td>
             <td>
-     ";
-     
+<?php     
 echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1,array('onlyIfUserSubscribed'=>True,
                                                                             'includeGroupSubscriptions'=>True,
@@ -62,39 +57,39 @@ echo $this->load->view('topics/optiontree',
                             'selected'  => $topic->parent_id
                             ),  
                        true)."\n";
-echo "
+?>
             </td>
         </tr>
         <tr><td><label for='description'>Description</label></td>
             <td>
-     ";
-echo form_textarea(array('name'=>'description','cols'=>'70','rows'=>'7','value'=>$topic->description));
-echo "
+<?php
+    echo form_textarea(array('name'=>'description','cols'=>'70','rows'=>'7','value'=>$topic->description));
+?>
             </td>
         </tr>                
         <tr><td><label for='url'>URL</label></td>
             <td>
-     ";
+<?php
 echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
-echo "
+?>
             </td>
         </tr>                
-        <tr><td>";
+        <tr><td>
+<?php
 if ($isAddForm) {
     echo form_submit('submit','Add');
 } else {
     echo form_submit('submit','Change');
 }
-echo "
+?>
         </td>
         </tr>
     </table>
-     ";
+<?php
 echo form_close();
 echo form_open('');
 echo form_submit('cancel','Cancel');
 echo form_close();
-echo "</div>";
-
 ?>
+</div>
 

@@ -112,6 +112,15 @@ class User_db {
         }
         return $result;
     }
+    /** Return all anonymous Users from the database. */
+    function getAllAnonUsers() {
+        $result = array();
+        $Q = $this->CI->db->query("SELECT * from users WHERE type='anon'");
+        foreach ($Q->result() as $R) {
+            $result[] = $this->getFromRow($R);
+        }
+        return $result;
+    }
 
 
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
@@ -204,6 +213,16 @@ class User_db {
                                          $updatefields,
                                          "user_id=".$user->user_id)
                               );
+        //if the user is NOT anonymous, but it is the 'DEFAULT ANONYMOUS ACCOUNT from the site config settings, 
+        //turn off the anonymous access and give a message warning
+        if (!$user->isAnonymous) {
+            if ($user->user_id==getConfigurationSetting("ANONYMOUS_USER")) {
+                $siteconfig = $this->CI->siteconfig_db->getSiteConfig();
+                $siteconfig->configSettings['ANONYMOUS_USER'] = '';
+                $siteconfig->commit();
+                appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br>");
+            }
+        }
                                                
         //remove all rights, then add the right ones again
         //foreach (getAvailableRights() as $right) {

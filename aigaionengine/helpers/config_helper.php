@@ -20,44 +20,21 @@
 |       that this helper is autoloaded, and with autoload you're not sure in what order files
 |       are autoloaded, so the database connection may not be ready yet.
 |
-|       Currently, the settings are simply stored in an array. However, they will be stored
-|       in some Config model or something like that in the future. Furthermore it may be possible
-|       that we will redesign this so the Config model is stored in the session and needs to be 
-|       initialised from the database only once during a session...
 |       
 */
 
-$configSettings = array();
-
     /** Return the value of a certain Site Configuration Setting. */
     function getConfigurationSetting($settingName) {
-        global $configSettings;
-        if (sizeof($configSettings)==0) {
-            initConfigurationSettings();
+        $CI = &get_instance();
+        $siteconfig = $CI->latesession->get('SITECONFIG');
+        if (!isset($siteconfig)||($siteconfig==null)) {
+            $siteconfig = $CI->siteconfig_db->getSiteConfig();
+            $CI->latesession->set('SITECONFIG',$siteconfig);
         }
-        if (!array_key_exists($settingName,$configSettings)) {
+        if (!array_key_exists($settingName,$siteconfig->configSettings)) {
             return "";
         }
-        return $configSettings[$settingName];
-    }
-
-    /** Initializes the config settings from the database. Call this as well when 
-    the settings have changed... */
-    function initConfigurationSettings() {
-        global $configSettings;
-        $configSettings = array();
-        $Q = mysql_query("SELECT * FROM config");
-        if ($Q) {
-            while ($R = mysql_fetch_array($Q)) {
-                //where needed, interpret setting as other than string
-                if ($R["setting"] == "ALLOWED_ATTACHMENT_EXTENSIONS") {
-                    $value = split(",",$R["value"]);
-                } else {
-                    $value = $R["value"];
-                }
-                $configSettings[$R["setting"]]=$value;
-            }
-        }
+        return $siteconfig->configSettings[$settingName];
     }
 
 ?>

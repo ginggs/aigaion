@@ -108,7 +108,7 @@ class Topics extends Controller {
 	function add()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get output
         $headerdata = array();
@@ -129,7 +129,7 @@ class Topics extends Controller {
 	function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
 	    $topic_id = $this->uri->segment(3,1);
 	    if ($topic_id==1) {
@@ -222,7 +222,7 @@ class Topics extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get data from POST
         $topic = $this->topic_db->getFromPost();

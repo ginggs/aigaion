@@ -72,7 +72,7 @@ class Groups extends Controller {
     function add()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get output
         $headerdata = array();
@@ -109,7 +109,7 @@ class Groups extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
@@ -210,7 +210,7 @@ class Groups extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get data from POST
         $group = $this->group_db->getFromPost();

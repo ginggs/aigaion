@@ -139,7 +139,7 @@ class Users extends Controller {
     function add()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get output
         $headerdata = array();
@@ -176,7 +176,7 @@ class Users extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
 	    $user_id = $this->uri->segment(3,-1);
 	    $user = $this->user_db->getByID($user_id);
@@ -274,7 +274,7 @@ class Users extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get data from POST
         $user = $this->user_db->getFromPost();

@@ -4,12 +4,13 @@ of somebody currently login according to the external login module (httpauth in 
 class Login_httpauth {
     function getLoginName() {
         //return the proper name
-        return '';
+        return $_SERVER['PHP_AUTH_USER'];
     }
     
     function getLoginGroups() {
         //return all groups that this user belongs to... (the same names that are stored in aigaion in the abbreviation)
-        return array(''); 
+        //not implemented, as I cannot seem to find where the htgroup info is stored in the $_SERVER variable :(
+        return array(); 
     }
 }
 ?>

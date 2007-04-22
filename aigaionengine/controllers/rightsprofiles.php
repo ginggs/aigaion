@@ -71,7 +71,7 @@ class Rightsprofiles extends Controller {
     function add()
 	{
 	    $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get output
         $headerdata = array();
@@ -108,7 +108,7 @@ class Rightsprofiles extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
@@ -208,7 +208,7 @@ class Rightsprofiles extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get data from POST
         $rightsprofile = $this->rightsprofile_db->getFromPost();

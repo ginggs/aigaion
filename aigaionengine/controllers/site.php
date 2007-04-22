@@ -26,8 +26,23 @@ class Site extends Controller {
 	{
 	    $commit = $this->uri->segment(3,'');
 	    
+	    $this->load->library('validation');
+        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+	    if ($commit=='commit') {
+	        $siteconfig = $this->siteconfig_db->getFromPost();
+	        //do validation
+            //----no validation rules are implemented yet. When validation rules are defined, see e.g. users/commit for
+            //examples of validation code
+        	//if ($this->validation->run() == TRUE) {
+	            //if validation successfull, set settings
+	            $siteconfig->commit();
+	            $siteconfig = $this->siteconfig_db->getSiteConfig();
+	        //}
+	    } else {
+	        $siteconfig = $this->siteconfig_db->getSiteConfig();
+	    }
 	    
-        //get output
+        //get output: always return to configuration page
         $headerdata = array();
         $headerdata['title'] = 'Aigaion 2.0: Site configuration';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
@@ -35,9 +50,8 @@ class Site extends Controller {
         $output = $this->load->view('header', $headerdata, true);
 
         
-        
         $output .= $this->load->view('site/edit',
-                                      array(),  
+                                      array('siteconfig'=>$siteconfig),  
                                       true);
         
         $output .= $this->load->view('footer','', true);
