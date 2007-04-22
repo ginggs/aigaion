@@ -19,7 +19,6 @@
     <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
     <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-spacer"></li>
 <?php
 	if (getUserLogin()->isAnonymous()) {
 	    
@@ -53,7 +52,8 @@
         echo form_close();
 	} else {
 ?>
-    	<li class="mainmenu">Logged in: <?php echo getUserLogin()->loginName(); ?></li>
+    	<li class="mainmenu-header">LOGGED IN:</li>
+    	<li class="mainmenu"><?php echo getUserLogin()->loginName(); ?></li>
         <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
 <?php
     }

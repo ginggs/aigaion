@@ -131,6 +131,7 @@ class Topic_db {
             $pubSubscribedQ = $this->CI->db->getwhere('topicpublicationlink', 
                                                        array('topic_id' => $topic->topic_id,  
                                                              'pub_id'=>$configuration['publicationId']));
+            $topic->flags['publicationIsSubscribed'] = False;
             if (array_key_exists('onlyIfPublicationSubscribed',$configuration)) {
                 if ($pubSubscribedQ->num_rows() == 0) { //not subscribed: return null!
                     return null;

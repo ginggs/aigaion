@@ -1,5 +1,6 @@
 <?php
   $publicationfields = getPublicationFieldArray($publication->data->type);
+  if (!isset($categorize)) $categorize= False;
 ?>
 <div class='publication'>
   <div class='optionbox'><?php echo "[".anchor('publications/edit/'.$publication->data->pub_id, 'edit', array('title' => 'Edit this publication'))."]</div>";?>
@@ -59,15 +60,39 @@
     endif;
 ?>
     <tr>
-      <td colspan='2' valign='top'>Topics<br/>
+      <td colspan='2' valign='top'>
+        <div class='optionbox'>
+<?php 
+        if ($categorize == True) {
+            echo anchor('publications/show/'.$publication->data->pub_id,'[finish categorization]');
+        } else {
+            echo anchor('publications/show/'.$publication->data->pub_id.'/categorize','[categorize publication]');
+        } 
+?>
+        </div>
+        <div>Topics</div>
+        
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2' valign='top'>
 <?php     
-        $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
-                                                  'userId'=>getUserLogin()->userId(),
-                                                  'includeGroupSubscriptions'=>True,
-                                                  'onlyIfPublicationSubscribed'=>True,
-                                                  'publicationId'=>$publication->data->pub_id
-                                                        ));
-        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
+        if ($categorize == True) {
+            $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
+                                                      'userId'=>getUserLogin()->userId(),
+                                                      'includeGroupSubscriptions'=>True,
+                                                      'publicationId'=>$publication->data->pub_id
+                                                            ));
+            $this->load->vars(array('subviews'  => array('topics/publicationsubscriptiontreerow'=>array())));
+        } else {
+            $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
+                                                      'userId'=>getUserLogin()->userId(),
+                                                      'includeGroupSubscriptions'=>True,
+                                                      'onlyIfPublicationSubscribed'=>True,
+                                                      'publicationId'=>$publication->data->pub_id
+                                                            ));
+            $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
+        }
         echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),

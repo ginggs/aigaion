@@ -90,6 +90,42 @@ class Topic {
             $child->unsubscribeUser();
         }
     }    
+
+    /** if this topic is a publication subscription tree, use this method to set the publication to being subscribed to this
+    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
+    This method subscribes the ancestors and children as well.
+    Pre: $this->configuration['publicationId'] must be set. */  
+    function subscribePublication() {
+        $this->subscribePublicationDownRecursive();
+        $this->subscribePublicationUpRecursive();
+    }    
+    function subscribePublicationDownRecursive() {
+        $this->CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $this->flags['publicationIsSubscribed'] = True;
+        foreach ($this->getChildren() as $child) {
+            $child->subscribePublicationDownRecursive();
+        }
+    }    
+    function subscribePublicationUpRecursive() {
+        $this->CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $this->flags['publicationIsSubscribed'] = True;
+        $parent = $this->getParent();
+        if ($parent != null) {
+            $parent->subscribePublicationUpRecursive();
+        }
+    }    
+
+    /** if this topic is a Publication subscription tree, use this method to set the Publication to being unsubscribed to this
+    topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
+    This method unsubscribes the children as well.
+    Pre: $this->configuration['publicationId'] must be set. */  
+    function unsubscribePublication() {
+        $this->CI->topic_db->unsubscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $this->flags['publicationIsSubscribed'] = False;
+        foreach ($this->getChildren() as $child) {
+            $child->unsubscribePublication();
+        }
+    }        
     
     /** Add a new Topic with the given data. Returns TRUE or FALSE depending on whether the operation was
     successfull. After a successfull 'add', $this->topic_id contains the new topic_id. */

@@ -77,7 +77,7 @@ echo $this->validation->error_string;
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        Check this box to force the system to create users that are logged in in the external login module,
 	        but do not have an Aigaion user account yet. Note that this setting only has an effect when a login
-	        module different than 'Aigaion' has been selected.
+	        module different from 'Aigaion' has been selected.
 	        </td>
 	    </tr>
 	    <tr>

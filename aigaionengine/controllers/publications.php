@@ -32,7 +32,7 @@ class Publications extends Controller {
       //retrieve publication ID
       $pub_id   = $this->uri->segment(3);
     }
-    
+    $categorize = $this->uri->segment(4,'');
     if (!$pub_id)
       redirect('');
       
@@ -46,6 +46,7 @@ class Publications extends Controller {
     $header ['title']       = 'Aigaion 2.0 - '.$publication->data->title;
     $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     $content['publication'] = $publication;
+    $content['categorize']  = $categorize=='categorize';
     
     //get output
     $output  = $this->load->view('header',              $header,  true);
@@ -126,6 +127,94 @@ class Publications extends Controller {
     }
   }
   
+    
+    /**
+    publications/subscribe
+    
+    Susbcribes a publication to a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'publicationsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    susbcribe requested for non-existing topic or publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: publication_id 
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function subscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $pub_id = $this->uri->segment(4,-1);
+        
+        $this->load->model('publication_model');
+        $publication = new Publication_model;
+        $publication->loadByID($pub_id);
+        if ($pub_id == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('publicationId'=>$pub_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->subscribePublication();
+
+        echo "<div/>";
+    }    
+    
+        
+    /**
+    publications/unsubscribe
+    
+    Unsusbcribes a publication from a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'publicationsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    unsusbcribe requested for non-existing topic or publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: publication_id 
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function unsubscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $pub_id = $this->uri->segment(4,-1);
+        
+        $this->load->model('publication_model');
+        $publication = new Publication_model;
+        $publication->loadByID($pub_id);
+        if ($pub_id == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
+        }
+
+        $topic = $this->topic_db->getByID($topic_id,array('publicationId'=>$pub_id));
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->unsubscribePublication();
+
+        echo "<div/>";
+    }    
+    
+    
+    
   function showlist()
   {
     $this->load->model('publication_list_model');

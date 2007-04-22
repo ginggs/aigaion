@@ -58,3 +58,21 @@ function MarkUnSub(id)
     }
 }
 
+/* subscriptionCallback is an url that must be suffixed with '/(un)subscribe/topic_id/pub_id' */
+function togglePublicationSubscription(pub_id,topic_id,subscriptionCallback) {
+    var el = $('subscription_'+topic_id);
+    //toggle class and call async (un)subscription controller
+    if(Element.hasClassName(el,'subscribedtopic')) {
+        //was subscribed 
+        new Ajax.Updater('',subscriptionCallback+'/unsubscribe/'+topic_id+'/'+pub_id,{evalScripts:true});
+        Element.removeClassName(el,'subscribedtopic');
+        Element.addClassName(el,'unsubscribedtopic');
+        MarkUnSub(topic_id);
+    } else {
+        //was unsubscribed 
+        new Ajax.Updater('',subscriptionCallback+'/subscribe/'+topic_id+'/'+pub_id,{evalScripts:true});
+        Element.removeClassName(el,'unsubscribedtopic');
+        Element.addClassName(el,'subscribedtopic');
+        MarkSub(topic_id);
+    }
+}
