@@ -5,7 +5,7 @@
     'topics'       => $topics, //array of topics to be shown
     'showroot'      => False,    //if False, don't show the root(s) of the passed (sub)trees
     'depth'         => -1,       //max depth for which to render the trees
-
+    'collapseAll' =>False
     The following var is passed around a lot, and not modified along the way, so it can be loaded using
     $this->load->vars(array( 
     
@@ -21,6 +21,7 @@
 <?php
     if (!isset($depth))$depth = -1;
     if (!isset($showroot))$showroot = False;
+    if (!isset($collapseAll))$collapseAll = False;
     if (!isset($subviews))$this->load->vars(array('subviews' => array()));
     
     $todo = array();
@@ -71,7 +72,7 @@
                 //here we would store the collapse command in the todolist as well: hide this element if we had decided that this node is collapsed 
                 //(calling Element.hide() directly from a piece of javascript)
                 $collapse='';
-                if (array_key_exists('flagCollapsed',$next->configuration)&&$next->flags['userIsCollapsed']) {
+                if ($collapseAll||array_key_exists('flagCollapsed',$next->configuration)&&$next->flags['userIsCollapsed']) {
                     $collapse = "<script>Element.hide('topic_children_".$next->topic_id."')</script>";
                 }
                 $todo = array_merge($children,array('end',$collapse),array(),$todo); //merge and reindex
