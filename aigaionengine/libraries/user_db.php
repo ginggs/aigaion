@@ -77,7 +77,11 @@ class User_db {
         $user->lastreviewedtopic  = $this->CI->input->post('lastreviewedtopic');
         $user->abbreviation       = $this->CI->input->post('abbreviation');
         $user->login              = $this->CI->input->post('login');
-        $user->password           = md5($this->CI->input->post('password'));
+        if ($this->CI->input->post('password')=='') {
+            $user->password       = '';
+        } else {
+            $user->password       = md5($this->CI->input->post('password'));
+        }
         $user->isAnonymous        = $this->CI->input->post('isAnonymous')=='isAnonymous';
 
         $user->preferences['theme']              = $this->CI->input->post('theme');

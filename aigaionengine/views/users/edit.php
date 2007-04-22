@@ -105,23 +105,26 @@ echo "
         <td>"
         .form_input(array('name'=>'login',
                           'size'=>'10',
-                          'value'=>$user->login))."
+                          'value'=>$user->login,
+                          'AUTOCOMPLETE'=>'off'))."
         </td>
         </tr>
         <tr>
         <td>Password (leave blank for no change)</td>
         <td>"
-        .form_input(array('name'=>'password',
+        .form_password(array('name'=>'password',
                           'size'=>'10',
-                          'value'=>''))."
+                          'value'=>'',
+                          'AUTOCOMPLETE'=>'off'))."
         </td>
         </tr>
         <tr>
         <td>Re-type new password</td>
         <td>"
-        .form_input(array('name'=>'password_check',
+        .form_password(array('name'=>'password_check',
                           'size'=>'10',
-                          'value'=>''))."
+                          'value'=>'',
+                          'AUTOCOMPLETE'=>'off'))."
         </td>
         </tr>
         <tr>

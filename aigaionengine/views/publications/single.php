@@ -78,6 +78,7 @@
       <td colspan='2' valign='top'>
 <?php     
         if ($categorize == True) {
+            echo "<div class='message'>Click on a topic name to change it's subscription status.</div>";
             $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
                                                       'userId'=>getUserLogin()->userId(),
                                                       'includeGroupSubscriptions'=>True,
