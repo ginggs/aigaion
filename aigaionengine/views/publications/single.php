@@ -59,6 +59,32 @@
 <?php 
     endif;
 ?>
+
+    <tr>
+      <td colspan='2' valign='top'>
+        <div class='optionbox'>
+<?php 
+        echo anchor('attachments/add/'.$publication->data->pub_id,'[add attachment]');
+?>
+        </div>
+        <div class='header'>Attachments</div>
+      </td>
+    </tr>
+    <tr>
+        <td colspan='2' valign='top'>
+<?php
+    $attachments = $publication->data->getAttachments();
+    echo "<ul>";
+    foreach ($attachments as $attachment) {
+        echo "<li>".$this->load->view('attachments/summary',
+                          array('attachment'   => $attachment),
+                          true)."</li>";
+    }
+    echo "</ul>";
+?>
+        </td>
+    </tr>
+
     <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
@@ -70,8 +96,7 @@
         } 
 ?>
         </div>
-        <div>Topics</div>
-        
+        <div class='header'>Topics</div>
       </td>
     </tr>
     <tr>

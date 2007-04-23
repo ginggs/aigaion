@@ -59,7 +59,10 @@ echo $this->validation->error_string;
 	        Select the login module to be used. 
 	        <br>- 'Aigaion' is the default built-in login system.
 	        <br>- '.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
-	        the name of the logged user.</p></td>
+	        the name of the logged user.
+	        <br><b>Note:</b> If you select a login module different from 'Aigaion', be sure to have that 
+	        module correctly configured - otherwise you may have problems logging in and then you can also 
+	        not turn the external login module off without directly accessing the Aigaion database :)</p></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>

@@ -244,8 +244,9 @@ class UserLogin {
             case "Httpauth":
                 $CI->load->library('login_httpauth');
                 //attempt to get loginname from external system
-                $loginName = $CI->login_httpauth->getLoginName();
-                $loginGroups = $CI->login_httpauth->getLoginGroups();
+                $loginInfo = $CI->login_httpauth->getLoginInfo();
+                $loginName = $loginInfo['login'];
+                $loginGroups = $loginInfo['groups'];
                 break;
             //case "drupal":
                 //$CI->load->library('login_drupal');

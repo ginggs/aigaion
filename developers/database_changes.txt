@@ -47,6 +47,19 @@ rename 'persontopic.person_id' to 'persontopic.user_id'
 rename 'publication.pub_type' to 'publication.report_type'
 rename 'author.ID' to 'author.author_id'
 
+====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
+
+modify the tables
+
+ALTER TABLE `publicationfile` DROP PRIMARY KEY;
+ALTER TABLE `publicationfile` ADD COLUMN `att_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 AFTER `isremote`;
+ALTER TABLE `publicationfile` MODIFY COLUMN `att_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+ ADD PRIMARY KEY(`att_id`);
+ALTER TABLE `publicationfile` RENAME TO `attachments`;
+ALTER TABLE `attachments` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0;
+
+because every attachment can belong to at most one publication, we don't bother making a separate 
+publicationattachmentlink table for now
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

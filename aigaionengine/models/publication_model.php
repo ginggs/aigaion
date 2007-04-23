@@ -80,11 +80,19 @@ class Publication {
   var $authors      = array(); //array of plain author class
   var $editors      = array(); //array of plain author class
   
-  var $attachments  = array();
+  var $attachments  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getAttachments()
   
   //class constructor
   function Publication()
   {
+  }
+  
+  function getAttachments() {
+    if ($this->attachments == null) {
+        $CI = &get_instance();
+        $this->attachments = $CI->attachment_db->getAttachmentsForPublication($this->pub_id);
+    }
+    return $this->attachments;
   }
 }
 

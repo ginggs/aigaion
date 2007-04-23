@@ -24,8 +24,8 @@
 <?php 
     if ($topic->url != '') {
         $urlname = prep_url($topic->url);
-        if (strlen($urlname)>15) {
-            $urlname = substr($urlname,0,14)."...";
+        if (strlen($urlname)>21) {
+            $urlname = substr($urlname,0,20)."...";
         }
         echo "URL: <a href='".prep_url($topic->url)."' target='_blank'>[".$urlname."]</a><br><br>";
     }

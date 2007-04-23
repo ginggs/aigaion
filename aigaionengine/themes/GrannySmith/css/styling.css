@@ -21,6 +21,14 @@ a:hover {
   color           : #493E0B;
   text-decoration : underline;
 }
+
+/* Icons */
+.icon {
+    width   : 1em;
+    border  : 0px;
+}
+
+
 /* Main layout box colors */
 body {
 	color           : #493E0B;

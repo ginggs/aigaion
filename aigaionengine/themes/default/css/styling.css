@@ -25,6 +25,7 @@ a:hover {
 /* Icons */
 .icon {
     width   : 1em;
+    border  : 0px;
 }
 
 /* Main layout box colors */

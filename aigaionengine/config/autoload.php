@@ -40,7 +40,7 @@
 $autoload['libraries'] = array('database','latesession','userlogin', 'ajax', 
                                'topic','topic_db','user','user_db',
                                'group','group_db','rightsprofile','rightsprofile_db',
-                               'siteconfig','siteconfig_db');
+                               'siteconfig','siteconfig_db','attachment','attachment_db');
 
 
 /*
