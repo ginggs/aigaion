@@ -6,7 +6,7 @@
 class SiteConfig {
   
     var $CI                 = null; //link to the CI base object
-
+    //don't access directly!
     var $configSettings = array();
         
     function SiteConfig()
@@ -19,7 +19,12 @@ class SiteConfig {
         $this->CI->siteconfig_db->commit($this);
     }
     
-    
+    function getConfigSetting($name) {
+        if (!isset($this->configSettings[$name])) {
+            $this->configSettings[$name] = '';
+        }
+        return $this->configSettings[$name];
+    }
     
 }
 ?>

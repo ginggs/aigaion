@@ -3,14 +3,19 @@ CHANGES TO DATABASE
 still need to be processed in a checkschema
 voer deze dingen in volgorde uit...
 
-table 'topic' => hernoem tot table 'topics'
-col 'topics.ID' => hernoem tot 'topics.topic_id'
+//table 'topic' => hernoem tot table 'topics'
+ALTER TABLE `ai2db`.`topic` RENAME TO `ai2db`.`topics`;
+//col 'topics.ID' => hernoem tot 'topics.topic_id'
+ALTER TABLE `ai2db`.`topics` CHANGE COLUMN `ID` `topic_id` INT(10) NOT NULL AUTO_INCREMENT;
 
-table 'person' => hernoem tot table 'users'
-col 'users.ID' => hernoem tot 'users.user_id'
-add col 'users.type' (enum('group','anon','normal')
+//table 'person' => hernoem tot table 'users'
+ALTER TABLE `ai2db`.`person` RENAME TO `ai2db`.`users`;
+//col 'users.ID' => hernoem tot 'users.user_id'
+ALTER TABLE `ai2db`.`users` CHANGE COLUMN `ID` `user_id` INT(10) NOT NULL AUTO_INCREMENT;
+//add col 'users.type' (enum('group','anon','normal')
+ALTER TABLE `ai2db`.`users` ADD COLUMN `type` ENUM('group','anon','normal') NOT NULL DEFAULT 'normal' AFTER `lastreviewedtopic`;
 
-invoeren van een nieuwe tabel:
+
 
 //add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
 CREATE TABLE `rightsprofiles` (
@@ -23,33 +28,41 @@ CREATE TABLE `rightsprofiles` (
 CREATE TABLE `rightsprofilerightlink` (
 `rightsprofile_id` INT( 10 ) NOT NULL ,
 `right_name` VARCHAR( 20 ) NOT NULL ,
-PRIMARY KEY (`rightsprofile_id` )
+PRIMARY KEY (`rightsprofile_id`, `right_name` )
 ) 
+
 
 //add table `usergrouplink` (user_id INT(10),group_id INT(10))
 CREATE TABLE `usergrouplink` (
 `user_id` INT( 10 ) NOT NULL ,
 `group_id` INT( 10 ) NOT NULL ,
-PRIMARY KEY ( `user_id` )
+PRIMARY KEY ( `user_id` ,`group_id`)
 )
 
 
 CREATE TABLE `grouprightsprofilelink` (
 `group_id` INT( 10 ) NOT NULL ,
 `rightsprofile_id` INT( 10 ) NOT NULL ,
-PRIMARY KEY ( `group_id` )
+PRIMARY KEY ( `group_id` , `rightsprofile_id`)
 )
 
-rename 'topicpublication' to 'topicpublicationlink'
-rename 'persontopic' to 'usertopiclink'
-rename 'persontopic.person_id' to 'persontopic.user_id'
+//rename 'topicpublication' to 'topicpublicationlink'
+ALTER TABLE `ai2db`.`topicpublication` RENAME TO `ai2db`.`topicpublicationlink`;
 
-rename 'publication.pub_type' to 'publication.report_type'
-rename 'author.ID' to 'author.author_id'
+//rename 'persontopic' to 'usertopiclink'
+ALTER TABLE `ai2db`.`persontopic` RENAME TO `ai2db`.`usertopiclink`;
+//rename 'usertopiclink.person_id' to 'usertopiclink.user_id'
+ALTER TABLE `ai2db`.`usertopiclink` CHANGE COLUMN `person_id` `user_id` INT(10) NOT NULL DEFAULT 0;
 
-====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
+//rename 'publication.pub_type' to 'publication.report_type'
+ALTER TABLE `ai2db`.`publication` CHANGE COLUMN `pub_type` `report_type` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
 
-modify the tables
+//rename 'author.ID' to 'author.author_id'
+ALTER TABLE `ai2db`.`author` CHANGE COLUMN `ID` `author_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
+
+//====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
+
+//modify the tables
 
 ALTER TABLE `publicationfile` DROP PRIMARY KEY;
 ALTER TABLE `publicationfile` ADD COLUMN `att_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 AFTER `isremote`;
@@ -58,8 +71,8 @@ ALTER TABLE `publicationfile` MODIFY COLUMN `att_id` INTEGER UNSIGNED NOT NULL A
 ALTER TABLE `publicationfile` RENAME TO `attachments`;
 ALTER TABLE `attachments` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0;
 
-because every attachment can belong to at most one publication, we don't bother making a separate 
-publicationattachmentlink table for now
+//because every attachment can belong to at most one publication, we don't bother making a separate 
+//publicationattachmentlink table for now
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

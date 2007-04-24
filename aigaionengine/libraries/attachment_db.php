@@ -153,7 +153,7 @@ class Attachment_db {
         	$this->CI->file_upload->the_file = $_FILES['upload']['name'];
         	$this->CI->file_upload->the_temp_file = $_FILES['upload']['tmp_name'];
         	$this->CI->file_upload->extensions = getConfigurationSetting("ALLOWED_ATTACHMENT_EXTENSIONS");  // specify the allowed extensions here
-        	$this->CI->file_upload->upload_dir = AIGAION_ATTACHMENT_DIR;  // is the folder for the uploaded files (you have to create this folder)
+        	$this->CI->file_upload->upload_dir = AIGAION_ATTACHMENT_DIR."/";  // is the folder for the uploaded files (you have to create this folder)
         	$this->CI->file_upload->max_length_filename = 255; // change this value to fit your field length in your database (standard 100)
         	$this->CI->file_upload->rename_file = true;
         	$this->CI->file_upload->replace = "n"; 
@@ -214,7 +214,7 @@ class Attachment_db {
         		}
         		
         		# check if file is really there
-        		if (!is_file(AIGAION_ATTACHMENT_DIR.$storename.$ext))
+        		if (!is_file(AIGAION_ATTACHMENT_DIR."/".$storename.$ext))
         		{
         	        appendErrorMessage("Error uploading.<br>
                     Is this error entirely unexpected? You might want to check whether 

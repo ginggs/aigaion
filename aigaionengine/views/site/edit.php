@@ -26,12 +26,12 @@ echo $this->validation->error_string;
 
 	    <tr>
 	        <td><label for='CFG_ADMIN'>Name of Aigaion administrator:</label></td>
-	        <td align='left'><input type='text' cols='60' name='CFG_ADMIN' value='<?php echo $siteconfig->configSettings["CFG_ADMIN"]; ?>'></td>
+	        <td align='left'><input type='text' cols='60' name='CFG_ADMIN' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMIN"); ?>'></td>
 	    </tr>
 
 	    <tr>
 	        <td><label for='CFG_ADMINMAIL'>Email of Aigaion administrator:</label></td>
-	        <td align='left'><input type='text' cols='60' name='CFG_ADMINMAIL' value='<?php echo $siteconfig->configSettings["CFG_ADMINMAIL"]; ?>'></td>
+	        <td align='left'><input type='text' cols='60' name='CFG_ADMINMAIL' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMINMAIL"); ?>'></td>
 	    </tr>
 
 <!-- EXTERNAL LOGIN MODULES -->
@@ -45,7 +45,7 @@ echo $this->validation->error_string;
 <?php              
             $options = array('Aigaion'=>'Aigaion login module',
                              'Httpauth'=>'.htpasswd file');
-            $selected = $siteconfig->configSettings["EXTERNAL_LOGIN_MODULE"];
+            $selected = $siteconfig->getConfigSetting("EXTERNAL_LOGIN_MODULE");
             if ($selected == '') {
                 $selected = 'Aigaion';
             }
@@ -72,7 +72,7 @@ echo $this->validation->error_string;
 	        <td><label>Create missing users:</label></td>
 	        <td align='left'>
 <?php	            
-    echo form_checkbox('CREATE_MISSING_USERS','CREATE_MISSING_USERS',$siteconfig->configSettings["CREATE_MISSING_USERS"]== "TRUE");
+    echo form_checkbox('CREATE_MISSING_USERS','CREATE_MISSING_USERS',$siteconfig->getConfigSetting("CREATE_MISSING_USERS")== "TRUE");
 ?>
             </td>
         </tr>
@@ -95,7 +95,7 @@ echo $this->validation->error_string;
 	        <td><label>Enable anonymous access:</label></td>
 	        <td align='left'>
 <?php	            
-    echo form_checkbox('ENABLE_ANON_ACCESS','ENABLE_ANON_ACCESS',$siteconfig->configSettings["ENABLE_ANON_ACCESS"]== "TRUE");
+    echo form_checkbox('ENABLE_ANON_ACCESS','ENABLE_ANON_ACCESS',$siteconfig->getConfigSetting("ENABLE_ANON_ACCESS")== "TRUE");
 ?>
             </td>
         </tr>
@@ -115,7 +115,7 @@ echo $this->validation->error_string;
             foreach ($this->user_db->getAllAnonUsers() as $anonUser) {
                 $options[$anonUser->user_id] = $anonUser->login;
             }
-            echo form_dropdown('ANONYMOUS_USER', $options,$siteconfig->configSettings["ANONYMOUS_USER"]);
+            echo form_dropdown('ANONYMOUS_USER', $options,$siteconfig->getConfigSetting("ANONYMOUS_USER"));
 ?>
             </td>                
         </tr>
@@ -137,7 +137,7 @@ echo $this->validation->error_string;
 	        <td><label>Allowed extensions for attachments:</label></td>
 	        <td align='left'><input type='text' cols='100' name='ALLOWED_ATTACHMENT_EXTENSIONS'	
 <?php
-             echo "value='".implode(",",$siteconfig->configSettings["ALLOWED_ATTACHMENT_EXTENSIONS"])."'>";
+             echo "value='".implode(",",$siteconfig->getConfigSetting("ALLOWED_ATTACHMENT_EXTENSIONS"))."'>";
 ?>
 	        </td>
         </tr>
@@ -153,7 +153,7 @@ echo $this->validation->error_string;
 	        <td><label>Allow all remote attachments:</label></td>
 	        <td align='left'>
 <?php
-            echo form_checkbox('ALLOW_ALL_EXTERNAL_ATTACHMENTS','ALLOW_ALL_EXTERNAL_ATTACHMENTS',$siteconfig->configSettings["ALLOW_ALL_EXTERNAL_ATTACHMENTS"]== "TRUE");
+            echo form_checkbox('ALLOW_ALL_EXTERNAL_ATTACHMENTS','ALLOW_ALL_EXTERNAL_ATTACHMENTS',$siteconfig->getConfigSetting("ALLOW_ALL_EXTERNAL_ATTACHMENTS")== "TRUE");
 ?>
 	        </td>
 	    </tr>
@@ -169,7 +169,7 @@ echo $this->validation->error_string;
 	        <td><label>The server is read only:</label></td>
 	        <td align='left'>
 <?php 
-            echo form_checkbox('SERVER_NOT_WRITABLE','SERVER_NOT_WRITABLE',$siteconfig->configSettings["SERVER_NOT_WRITABLE"]== "TRUE");
+            echo form_checkbox('SERVER_NOT_WRITABLE','SERVER_NOT_WRITABLE',$siteconfig->getConfigSetting("SERVER_NOT_WRITABLE")== "TRUE");
 ?>
 	        </td>
 	    </tr>
@@ -188,7 +188,7 @@ echo $this->validation->error_string;
 	        <td><label for='WINDOW_TITLE'>Title of the site:</label></td>
 	        <td align='left'><input type='text' cols='60' name='WINDOW_TITLE' 
 <?php
-	        echo "value='".$siteconfig->configSettings["WINDOW_TITLE"]."'>";
+	        echo "value='".$siteconfig->getConfigSetting("WINDOW_TITLE")."'>";
 ?>
 	        </td>
 
@@ -196,7 +196,7 @@ echo $this->validation->error_string;
 	        <td><label>Display publications on single-topic page:</label></td>
 	        <td align='left'>
 <?php
-            echo form_checkbox('ALWAYS_INCLUDE_PAPERS_FOR_TOPIC','ALWAYS_INCLUDE_PAPERS_FOR_TOPIC',$siteconfig->configSettings["ALWAYS_INCLUDE_PAPERS_FOR_TOPIC"]== "TRUE");
+            echo form_checkbox('ALWAYS_INCLUDE_PAPERS_FOR_TOPIC','ALWAYS_INCLUDE_PAPERS_FOR_TOPIC',$siteconfig->getConfigSetting("ALWAYS_INCLUDE_PAPERS_FOR_TOPIC")== "TRUE");
 ?>
             </td>
         </tr>
@@ -214,7 +214,7 @@ echo $this->validation->error_string;
 	        <td><label>Merge crossreffed publications in single publication view:</label></td>
 	        <td align='left'>
 <?php
-            echo form_checkbox('PUBLICATION_XREF_MERGE','PUBLICATION_XREF_MERGE',$siteconfig->configSettings["PUBLICATION_XREF_MERGE"]== "TRUE");
+            echo form_checkbox('PUBLICATION_XREF_MERGE','PUBLICATION_XREF_MERGE',$siteconfig->getConfigSetting("PUBLICATION_XREF_MERGE")== "TRUE");
 ?>
             </td>
         </tr>
@@ -234,7 +234,7 @@ echo $this->validation->error_string;
 	        <td><label>Convert latinchars</label></td>
 	        <td align='left'>
 <?php
-            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->configSettings["CONVERT_LATINCHARS_IN"]== "TRUE");
+            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->getConfigSetting("CONVERT_LATINCHARS_IN")== "TRUE");
 ?>
             </td>
         </tr>
@@ -249,7 +249,7 @@ echo $this->validation->error_string;
 	
 	    <tr>
 	        <td valign='top'><label for='BIBTEX_STRINGS_IN'>BibTeX strings:</label></td>
-	        <td><textarea name='BIBTEX_STRINGS_IN' wrap='virtual' cols='50' rows='10'><?php echo $siteconfig->configSettings["BIBTEX_STRINGS_IN"]; ?></textarea></td>
+	        <td><textarea name='BIBTEX_STRINGS_IN' wrap='virtual' cols='50' rows='10'><?php echo $siteconfig->getConfigSetting("BIBTEX_STRINGS_IN"); ?></textarea></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
