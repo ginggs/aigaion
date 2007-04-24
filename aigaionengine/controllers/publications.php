@@ -155,7 +155,7 @@ class Publications extends Controller {
         $this->load->model('publication_model');
         $publication = new Publication_model;
         $publication->loadByID($pub_id);
-        if ($pub_id == null) {
+        if ($publication == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
         }
 
@@ -198,7 +198,7 @@ class Publications extends Controller {
         $this->load->model('publication_model');
         $publication = new Publication_model;
         $publication->loadByID($pub_id);
-        if ($pub_id == null) {
+        if ($publication == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
         }
 

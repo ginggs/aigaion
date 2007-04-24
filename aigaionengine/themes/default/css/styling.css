@@ -80,6 +80,41 @@ li.mainmenu-spacer {
   margin          : 1.5em;
 }
 
+/* Messages and errors */
+
+.message {
+    font-size : 90%;
+    margin: 1em;
+    padding : 1em;
+    background-color: #F6F5D4;
+      border-style    : solid;
+      border-width    : 1px;
+}
+.errormessage {
+    font-size:90%;
+    margin: 1em;
+    padding : 1em;
+    background-color: #ee6666;
+      border-style    : solid;
+      border-width    : 1px;
+}
+
+/* FORM STUFF */
+
+.editform {
+    margin: 1em;
+    padding : 1em;
+      border-style    : solid;
+      border-width    : 1px;
+}
+.confirmform {
+    margin: 1em;
+    padding : 1em;
+    background-color: #ee6666;
+      border-style    : solid;
+      border-width    : 1px;
+}
+
 input, textarea, select {
   border-style    : solid;
   border-width    : 1px;

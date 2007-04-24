@@ -16,14 +16,18 @@ Parameters:
     if ($attachment->isremote) {
         echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".$iconUrl."'/></a>\n";
     } else {
-        echo anchor('attachments/view/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Delete '.$attachment->name))."\n";
+        echo anchor('attachments/view/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachment->name))."\n";
     }
     $name = $attachment->name;
     if (strlen($name)>31) {
         $name = substr($name,0,30)."...";
     }
-    echo "&nbsp;".$name."&nbsp;";
-    echo anchor('attachments/delete/'.$attachment->att_id,"<img title='Delete ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("delete.gif")."'/>")."\n";
+    echo $name;
+    echo "&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
+    echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
+    if ($attachment->note!='') {
+        echo "<br>(".$attachment->note.")";
+    }
     echo "\n";
 ?>
 <!-- End of single attachment displays -->

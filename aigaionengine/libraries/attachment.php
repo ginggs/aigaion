@@ -22,6 +22,19 @@ class Attachment {
     {
         $this->CI =&get_instance(); 
     }
+    
+    /** tries to add this publication to the database. may give error message if unsuccessful, e.g. due
+    to illegal extension, upload error, etc. */
+    function add() {
+        $result_id = $this->CI->attachment_db->add($this);
+        return ($result_id > 0);
+    }
+    /** tries to commit this attachment to the database. Note: not all fields are supposed to be edited.
+    Generally, only the note and the name are considered to be editable! Returns TRUE or FALSE depending 
+    on whether the operation was operation was successfull. */
+    function commit() {
+        return $this->CI->attachment_db->commit($this);
+    }
    
 }
 ?>

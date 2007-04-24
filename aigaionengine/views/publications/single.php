@@ -74,7 +74,7 @@
         <td colspan='2' valign='top'>
 <?php
     $attachments = $publication->data->getAttachments();
-    echo "<ul>";
+    echo "<ul class='attachmentlist'>";
     foreach ($attachments as $attachment) {
         echo "<li>".$this->load->view('attachments/summary',
                           array('attachment'   => $attachment),

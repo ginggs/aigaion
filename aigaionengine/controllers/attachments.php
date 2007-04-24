@@ -99,7 +99,141 @@ class Attachments extends Controller {
             $this->output->set_output($output);	
         }
     }
+
+
+	/** 
+	attachments/add
+	
+	Entry point for adding an attachment.
+	Shows the form needed for uploading.
+	The actual upload is processed in the 'attachments/commit' controller.
+	
+	Fails with error message when one of:
+	    add attachment requested for non-existing publication
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: pub_id, the id of the publication to which the attachment will be added
+	         
+    Returns:
+        A full HTML page showing an 'upload attachment' form for the given publication
+	*/
+	function add() {
+	    $pub_id = $this->uri->segment(3);
+        
+        $this->load->model('publication_model');
+        $publication = new Publication_model;
+        $publication->loadByID($pub_id);
+        
+        if ($publication == null) {
+            echo "<div class='errormessage'>Add atachment: no valid publication ID provided</div>";
+        }
     
+        //get output: a full web page with a 'confirm delete' form
+        $headerdata = array();
+        $headerdata['title'] = 'Attachment: delete';
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        $output .= $this->load->view('attachments/add',
+                                     array('publication'=>$publication),  
+                                     true);
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);	        
+    }
+    
+    /** 
+    attachments/edit
+    
+    Entry point for editing an attachment.
+    
+	Fails with error message when one of:
+	    non-existing att_id requested
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: att_id, the id of the attachment to be edited
+	         
+    Returns:
+        A full HTML page with an 'edit attachment' form
+    */
+    function edit()
+	{
+	    $att_id = $this->uri->segment(3,-1);
+	    $attachment = $this->attachment_db->getByID($att_id);
+	    if ($attachment==null) {
+	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        redirect('');
+	    }
+	    
+	    
+        //get output
+        $headerdata = array();
+        $headerdata['title'] = 'Attachment';
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        $output .= $this->load->view('attachments/edit',
+                                      array('attachment'=>$attachment),  
+                                      true);
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);
+	}
+    
+    /** 
+    attachments/commit
+    
+    Entry point for committing an attachment (add or edit).
+    
+	Fails with error message when one of:
+	    non-existing att_id requested
+	    insufficient user rights
+	    problem uploading file
+	    
+	Parameters passed via POST segments:
+	    all info from the add or edit form
+	    $action = (add|edit)
+	         
+    Returns:
+        Somewhere
+    */
+    function commit()
+	{
+        //get data from POST
+        $attachment = $this->attachment_db->getFromPost();
+
+	    if ($attachment==null) {
+	        appendErrorMessage("Commit attachment: no data to commit<br/>");
+	        redirect('');
+	    }
+    
+        //if validation was successfull: add or change.
+        $success = False;
+        if ($this->input->post('action') == 'edit') {
+            //do edit
+            $success = $attachment->commit();
+        } else {
+            //do add
+            $success = $attachment->add();
+        }
+        if (!$success) {
+            //might happen, e.g. if upload fails due to post size limits, upload size limits, etc.
+            //or illegal attachment extensions etc.
+            appendErrorMessage("Commit attachment: an error occurred. Please contact your Aigaion administrator.<br>");
+            redirect ('');
+        }
+        //redirect somewhere if commit was successfull
+        redirect('');
+
+	}
+
 }
 
 
