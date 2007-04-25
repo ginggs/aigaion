@@ -4,16 +4,16 @@ still need to be processed in a checkschema
 voer deze dingen in volgorde uit...
 
 //table 'topic' => hernoem tot table 'topics'
-ALTER TABLE `ai2db`.`topic` RENAME TO `ai2db`.`topics`;
+ALTER TABLE `topic` RENAME TO `topics`;
 //col 'topics.ID' => hernoem tot 'topics.topic_id'
-ALTER TABLE `ai2db`.`topics` CHANGE COLUMN `ID` `topic_id` INT(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `topics` CHANGE COLUMN `ID` `topic_id` INT(10) NOT NULL AUTO_INCREMENT;
 
 //table 'person' => hernoem tot table 'users'
-ALTER TABLE `ai2db`.`person` RENAME TO `ai2db`.`users`;
+ALTER TABLE `person` RENAME TO `users`;
 //col 'users.ID' => hernoem tot 'users.user_id'
-ALTER TABLE `ai2db`.`users` CHANGE COLUMN `ID` `user_id` INT(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users` CHANGE COLUMN `ID` `user_id` INT(10) NOT NULL AUTO_INCREMENT;
 //add col 'users.type' (enum('group','anon','normal')
-ALTER TABLE `ai2db`.`users` ADD COLUMN `type` ENUM('group','anon','normal') NOT NULL DEFAULT 'normal' AFTER `lastreviewedtopic`;
+ALTER TABLE `users` ADD COLUMN `type` ENUM('group','anon','normal') NOT NULL DEFAULT 'normal' AFTER `lastreviewedtopic`;
 
 
 
@@ -47,18 +47,18 @@ PRIMARY KEY ( `group_id` , `rightsprofile_id`)
 )
 
 //rename 'topicpublication' to 'topicpublicationlink'
-ALTER TABLE `ai2db`.`topicpublication` RENAME TO `ai2db`.`topicpublicationlink`;
+ALTER TABLE `topicpublication` RENAME TO `topicpublicationlink`;
 
 //rename 'persontopic' to 'usertopiclink'
-ALTER TABLE `ai2db`.`persontopic` RENAME TO `ai2db`.`usertopiclink`;
+ALTER TABLE `persontopic` RENAME TO `usertopiclink`;
 //rename 'usertopiclink.person_id' to 'usertopiclink.user_id'
-ALTER TABLE `ai2db`.`usertopiclink` CHANGE COLUMN `person_id` `user_id` INT(10) NOT NULL DEFAULT 0;
+ALTER TABLE `usertopiclink` CHANGE COLUMN `person_id` `user_id` INT(10) NOT NULL DEFAULT 0;
 
 //rename 'publication.pub_type' to 'publication.report_type'
-ALTER TABLE `ai2db`.`publication` CHANGE COLUMN `pub_type` `report_type` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
+ALTER TABLE `publication` CHANGE COLUMN `pub_type` `report_type` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
 
 //rename 'author.ID' to 'author.author_id'
-ALTER TABLE `ai2db`.`author` CHANGE COLUMN `ID` `author_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `author` CHANGE COLUMN `ID` `author_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
 
 //====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
 
@@ -73,6 +73,9 @@ ALTER TABLE `attachments` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL D
 
 //because every attachment can belong to at most one publication, we don't bother making a separate 
 //publicationattachmentlink table for now
+
+SET VERSION TO V2.0 if all of the above is done!!!!
+otherwise checkschema will complain :)
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

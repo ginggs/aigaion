@@ -4,7 +4,12 @@
     $userlogin=getUserLogin();
     $notice = $userlogin->notice();
     if ($notice!="") {
-      echo "    <table><tr><td><div class='errormessage'>".$notice."</div></td></tr></table>\n";
+      echo "    <table width='40em'><tr><td><div class='errormessage'>".$notice."</div></td></tr></table>\n";
+    }
+    $err = getErrorMessage();
+    if ($err != "") {
+        echo "<div class='errormessage' width='40em'>".$err."</div>";
+        clearErrorMessage();
     }
 
     //the login form is NOT shown if 'external login module' is activated

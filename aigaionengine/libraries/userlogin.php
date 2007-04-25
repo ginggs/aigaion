@@ -54,8 +54,23 @@ class UserLogin {
     
     /* ================ Basic accessors ================ */
     
+    /** This method is called for every controller access, thanks to the login_filter.
+    This is also where we check for the schema updates.... so if the Aigaion engine is replaced
+    with a new version, every user will get logged out upon the next page access. */
     function isLoggedIn() {
-        return $this->bIsLoggedIn;
+        if ($this->bIsLoggedIn) {
+            //check schema
+            if (checkSchema()) {
+                return True; //OK? return true;
+            } else {
+                $this->logout();
+                $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
+                                  process of being updated.<br> If you are a user with 
+                                  database_manage rights, please login to complete the update. 
+                                  <br>";
+            }
+        }            
+        return False;
     }
     function isAnonymous() {
         return $this->bIsAnonymous;
@@ -450,16 +465,14 @@ class UserLogin {
             $this->initRights();
 
             #SO. Here, if login was successful, we will check the database structure once.
-//            include_once(APPPATH."/schema/checkschema.php");
-//            if (!checkDatabase())
-//            {
-//                echo "<div class=errormessage>ERROR: DATABASE STRUCTURE CANNOT BE UPDATED TO NEW VERSION. PLEASE CONTACT ADMIN</div>";
-//                $this->bIsLoggedIn = False;
-//                $this->sLoginName = "";
-//                $this->iUserId = "";
-//                die();
-//            }
-            
+            if (!checkSchema()) { //checkSchema will also attempt to login...
+                $this->logout();
+                $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
+                                  process of being updated.<br> If you are a user with 
+                                  database_manage rights, please login to complete the update. 
+                                  <br>";
+                return 2;
+            }
             $this->initPreferences();
             return 0;
         } 
@@ -473,6 +486,9 @@ class UserLogin {
         $this->bIsAnonymous = False;
         $this->sLoginName = "";
         $this->iUserId = "";
+        $this->rights = array();
+        $this->preferences = array();
+        
         //Delete cookie values
         setcookie("loginname",FALSE);
         setcookie("password",FALSE);

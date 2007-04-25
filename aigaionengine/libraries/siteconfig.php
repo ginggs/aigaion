@@ -8,7 +8,7 @@ class SiteConfig {
     var $CI                 = null; //link to the CI base object
     //don't access directly!
     var $configSettings = array();
-        
+    
     function SiteConfig()
     {
         $this->CI =&get_instance(); 
