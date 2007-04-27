@@ -12,14 +12,14 @@ what configuration you give...
 
 Possible configuration parameters:
     onlyIfUserSubscribed            -- if set to True, only those topics 
-                                       will be included in the tree to which the user specified by 'userId' is 
+                                       will be included in the tree to which the user specified by 'user' is 
                                        subscribed
-    userId                          -- if set, the 'userIsSubscribed' will be set for all topics that this user 
+    user                            -- if set, the 'userIsSubscribed' will be set for all topics that this user 
                                        is subscribed to
-    includeGroupSubscriptions       -- if set together with userId, all topic subscriptions inherited from group
+    includeGroupSubscriptions       -- if set together with user, all topic subscriptions inherited from group
                                        memberships are taken into account as well
     flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
-                                       'userId' will be flagged by 'userIsCollapsed'
+                                       'user' will be flagged by 'userIsCollapsed'
     
     onlyIfPublicationSubscribed     -- if set to True, only those topics 
                                        will be included in the tree to which the publication specified by 
@@ -46,8 +46,9 @@ class Topic_db {
         $this->CI = &get_instance();
     }
    
-    /** Returns the Topic with the given ID */
-    function getByID($topic_id, $configuration = array())
+    /** Returns the Topic with the given ID. Note: because $configuration is passed by reference, 
+    you must have a proper variable. You cannot call this method as 'getByID($some_id, array(some=>config))' !!!*/
+    function getByID($topic_id, &$configuration = array())
     {
         $Q = $this->CI->db->getwhere('topics', array('topic_id' => $topic_id));
         //configuration stuff will be handled by the getFromRow method...
@@ -60,7 +61,7 @@ class Topic_db {
     }
 
     /** Returns the Topic stored in the given table row */
-    function getFromRow($R, $configuration = array())
+    function getFromRow($R, &$configuration = array())
     {
         $topic = new Topic;
         foreach ($R as $key => $value)
@@ -70,28 +71,27 @@ class Topic_db {
         $topic->configuration = $configuration;
         //process configuration settings
         /*  onlyIfUserSubscribed            -- if set to True, only those topics 
-                                               will be included in the tree to which the user specified by 'userId' is 
+                                               will be included in the tree to which the user specified by 'user' is 
                                                subscribed 
-            userId                          -- if set, the 'userIsSubscribed' flag will be set for all topics that this user 
+            user                            -- if set, the 'userIsSubscribed' flag will be set for all topics that this user 
                                                is subscribed to
-            includeGroupSubscriptions       -- if set together with userId, all topic subscriptions inherited from group
+            includeGroupSubscriptions       -- if set together with user, all topic subscriptions inherited from group
                                                memberships are taken into account as well
             flagCollapsed                   -- if set to True, the collapse status of the topic for the user specified by 
-                                               'userId' will be flagged by 'userIsCollapsed'
+                                               'user' will be flagged by 'userIsCollapsed'
             Flags:                                   
                 userIsSubscribed
                 userIsCollapsed
         */
-        if (array_key_exists('userId',$configuration)) {
-            $user = $this->CI->user_db->getByID($configuration['userId']);
+        if (array_key_exists('user',$configuration)) {
             $userSubscribedQ = $this->CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
-                                                                              'user_id'=>$configuration['userId']));
+                                                                              'user_id'=>$configuration['user']->user_id));
             $groupIrrelevant = True;
             $groupSubscribed = False;
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {
                 $groupIrrelevant = False;
-                if (count($user->group_ids)>0) {
-                    $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$user->group_ids).');');
+                if (count($configuration['user']->group_ids)>0) {
+                    $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$configuration['user']->group_ids).');');
                     $groupSubscribed = $groupSubscribedQ->num_rows()>0;
                 } else {
                     $groupSubscribed = FALSE;
@@ -168,7 +168,7 @@ class Topic_db {
     }
     
     /** Return an array of Topic's retrieved from the database that are the children of the given topic. */
-    function getChildren($topic_id, $configuration=array()) {
+    function getChildren($topic_id, &$configuration=array()) {
         $children = array();
         //get children from database; add to array
         $query = $this->CI->db->getwhere('topictopiclink',array('target_topic_id'=>$topic_id));
@@ -205,14 +205,14 @@ class Topic_db {
 
     
     /** Subscribe given user to given topic in database. no recursion. */
-    function subscribeUser($user_id,$topic_id) {
-        $this->CI->db->delete('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
-        $this->CI->db->insert('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
+    function subscribeUser($user,$topic_id) {
+        $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
+        $this->CI->db->insert('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
     
     /** Unsubscribe given user from given topic in database. no recursion. */
-    function unsubscribeUser($user_id,$topic_id) {
-        $this->CI->db->delete('usertopiclink', array('user_id' => $user_id, 'topic_id' => $topic_id)); 
+    function unsubscribeUser($user,$topic_id) {
+        $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
 
 

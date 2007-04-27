@@ -197,7 +197,7 @@ class Attachments extends Controller {
 	    insufficient user rights
 	    problem uploading file
 	    
-	Parameters passed via POST segments:
+	Parameters passed via POST:
 	    all info from the add or edit form
 	    $action = (add|edit)
 	         
@@ -233,6 +233,7 @@ class Attachments extends Controller {
         redirect('');
 
 	}
+
 
 }
 

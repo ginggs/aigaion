@@ -10,7 +10,7 @@ in the execution of a javascript that toggles the display style of affected topi
 Some configuration can be passed through the view parameters.
 
 Parameters:
-    $topic: the topic for which the row is to be displayed. This topic should have configuration['userId'] set, and
+    $topic: the topic for which the row is to be displayed. This topic should have configuration['user'] set, and
         flags['userIsSubscribed'] should be used if relevant.
     
 Information about which user this subscription tree is shown is found in the configuration and flags attributes
@@ -46,7 +46,7 @@ if ($topic->flags['userIsSubscribed']) {
     $class = 'unsubscribedtopic';
 }
 echo "\n<span id='subscription_".$topic->topic_id."' class='".$class."'>"
-     .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['userId'].",".$topic->topic_id.",'".site_url('users/')."')" )
+     .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['user']->user_id.",".$topic->topic_id.",'".site_url('users/')."')" )
      ."</span>";
 
 ?>

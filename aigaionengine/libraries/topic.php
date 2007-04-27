@@ -24,6 +24,8 @@ class Topic {
     var $CI                 = null; //link to the CI base object
 
     //this configuration array may contain any number of settings that determine the behavior of this topic (tree)
+    //NOTE: upon construction, this array is set. After that it will not be changed anymore. This is relevant, because
+    //children may share a pointer to this object.
     var $configuration      = array();
     //this flags collection may contain additional information related to the configuration, such as whether this
     //particular topic was assigned to a certain publication. Note: these flags should not be changed directly.
@@ -58,20 +60,20 @@ class Topic {
     /** if this topic is a user subscription tree, use this method to set the user to being subscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
     This method subscribes the ancestors and children as well.
-    Pre: $this->configuration['userId'] must be set. */  
+    Pre: $this->configuration['user'] must be set. */  
     function subscribeUser() {
         $this->subscribeUserDownRecursive();
         $this->subscribeUserUpRecursive();
     }    
     function subscribeUserDownRecursive() {
-        $this->CI->topic_db->subscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = True;
         foreach ($this->getChildren() as $child) {
             $child->subscribeUserDownRecursive();
         }
     }    
     function subscribeUserUpRecursive() {
-        $this->CI->topic_db->subscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = True;
         $parent = $this->getParent();
         if ($parent != null) {
@@ -82,9 +84,9 @@ class Topic {
     /** if this topic is a user subscription tree, use this method to set the user to being unsubscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
     This method unsubscribes the children as well.
-    Pre: $this->configuration['userId'] must be set. */  
+    Pre: $this->configuration['user'] must be set. */  
     function unsubscribeUser() {
-        $this->CI->topic_db->unsubscribeUser($this->configuration['userId'], $this->topic_id);
+        $this->CI->topic_db->unsubscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = False;
         foreach ($this->getChildren() as $child) {
             $child->unsubscribeUser();

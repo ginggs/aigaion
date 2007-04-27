@@ -104,19 +104,23 @@
 <?php     
         if ($categorize == True) {
             echo "<div class='message'>Click on a topic name to change it's subscription status.</div>";
-            $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
-                                                      'userId'=>getUserLogin()->userId(),
-                                                      'includeGroupSubscriptions'=>True,
-                                                      'publicationId'=>$publication->data->pub_id
-                                                            ));
+            $user = $this->user_db->getByID(getUserLogin()->userId());
+            $config = array('onlyIfUserSubscribed'=>True,
+                              'user'=>$user,
+                              'includeGroupSubscriptions'=>True,
+                              'publicationId'=>$publication->data->pub_id
+                                    );
+            $root = $this->topic_db->getByID(1, $config);
             $this->load->vars(array('subviews'  => array('topics/publicationsubscriptiontreerow'=>array())));
         } else {
-            $root = $this->topic_db->getByID(1, array('onlyIfUserSubscribed'=>True,
-                                                      'userId'=>getUserLogin()->userId(),
-                                                      'includeGroupSubscriptions'=>True,
-                                                      'onlyIfPublicationSubscribed'=>True,
-                                                      'publicationId'=>$publication->data->pub_id
-                                                            ));
+            $user = $this->user_db->getByID(getUserLogin()->userId());
+            $config = array('onlyIfUserSubscribed'=>True,
+                              'user'=>$user,
+                              'includeGroupSubscriptions'=>True,
+                              'onlyIfPublicationSubscribed'=>True,
+                              'publicationId'=>$publication->data->pub_id
+                                    );
+            $root = $this->topic_db->getByID(1, $config);
             $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));
         }
         echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"

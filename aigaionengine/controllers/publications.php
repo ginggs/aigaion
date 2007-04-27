@@ -159,7 +159,8 @@ class Publications extends Controller {
             echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
         }
 
-        $topic = $this->topic_db->getByID($topic_id,array('publicationId'=>$pub_id));
+        $config = array('publicationId'=>$pub_id);
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
@@ -201,8 +202,8 @@ class Publications extends Controller {
         if ($publication == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
         }
-
-        $topic = $this->topic_db->getByID($topic_id,array('publicationId'=>$pub_id));
+        $config = array('publicationId'=>$pub_id);
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";

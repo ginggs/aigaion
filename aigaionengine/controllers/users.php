@@ -374,11 +374,9 @@ class Users extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        
-        
-        $root = $this->topic_db->getByID(1, array('userId'=>$user_id,
-                                                  
-                                                        ));
+        $user = $this->user_db->getByID($user_id);
+        $config = array('user'=>$user);
+        $root = $this->topic_db->getByID(1,$config);
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
         $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
@@ -425,8 +423,10 @@ class Users extends Controller {
         if ($user == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid user ID provided</div>";
         }
+        $user = $this->user_db->getByID($user_id);
+        $config = array('user'=>$user);
 
-        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$user_id));
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
@@ -467,7 +467,9 @@ class Users extends Controller {
             echo "<div class='errormessage'>Unsubscribe topic: no valid user ID provided</div>";
         }
 
-        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$user_id));
+        $user = $this->user_db->getByID($user_id);
+        $config = array('user'=>$user);
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";

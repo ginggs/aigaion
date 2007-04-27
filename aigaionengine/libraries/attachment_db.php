@@ -108,8 +108,14 @@ class Attachment_db {
                 $mime="text/plain";
             }
         
+            //the first attachment is always a main attachment
+            $Q = $this->CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+            if ($Q->num_rows() == 0) {
+                $attachment->ismain = True;
+            }
+        
         	#if ismain, old main attachment should be un-main-ed
-    		if ($attachment->ismain == "TRUE") {
+    		if ($attachment->ismain) {
     			$res = mysql_query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
     			if (mysql_error()) {
     				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
@@ -187,13 +193,19 @@ class Attachment_db {
         		//echo "mime:".$mime.".";
         		# upload was succesful:
         		# if ismain, old main attachment should be un-main-ed
-        		if ($attachment->ismain == "TRUE") {
+        		if ($attachment->ismain) {
         			$res = mysql_query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
         			if (mysql_error()) {
         				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
         				return -1;
         			}
         		}
+                //the first attachment is always a main attachment
+                $Q = $this->CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+                if ($Q->num_rows() == 0) {
+                    $attachment->ismain = True;
+                }
+            
         		# add appropriate info about new attachment to database
         		$ismain = 'FALSE';
         		if ($attachment->ismain) {
@@ -250,7 +262,6 @@ class Attachment_db {
           	    $attachment->name .= $ext1;
           	}
         }
-
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note);
         
         $this->CI->db->query(

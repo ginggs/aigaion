@@ -12,7 +12,7 @@ class User_db {
     
     function getByID($user_id)
     {
-        $Q = $this->CI->db->query("SELECT * from users where user_id=".$user_id." AND NOT type='group'");
+        $Q = $this->CI->db->query("SELECT * from users where user_id=".$user_id." AND type<>'group'");
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -110,7 +110,7 @@ class User_db {
     /** Return all Users (anon and normal) from the database. */
     function getAllUsers() {
         $result = array();
-        $Q = $this->CI->db->query("SELECT * from users WHERE NOT type='group'");
+        $Q = $this->CI->db->query("SELECT * from users WHERE type<>'group'");
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }

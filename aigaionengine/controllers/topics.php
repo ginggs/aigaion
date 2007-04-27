@@ -27,13 +27,13 @@ class Topics extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        
-        
-        $root = $this->topic_db->getByID($root_id, array('onlyIfUserSubscribed'=>True,
-                                                         'flagCollapsed'=>True,
-                                                         'userId'=>getUserLogin()->userId(),
-                                                         'includeGroupSubscriptions'=>True
-                                                        ));
+        $user = $this->user_db->getByID(getUserLogin()->userId());
+        $config = array('onlyIfUserSubscribed'=>True,
+                         'flagCollapsed'=>True,
+                         'user'=>$user,
+                         'includeGroupSubscriptions'=>True
+                        );
+        $root = $this->topic_db->getByID($root_id, $config);
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',

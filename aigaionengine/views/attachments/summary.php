@@ -23,7 +23,7 @@ Parameters:
         $name = substr($name,0,30)."...";
     }
     echo $name;
-    echo "&nbsp;"."&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
+    echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
     echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
     if ($attachment->note!='') {
         echo "<br>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";

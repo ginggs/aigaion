@@ -48,10 +48,12 @@ echo $this->validation->error_string;
         <tr><td><label for='parent_id'>Parent</label></td>
             <td>
 <?php     
+    $user = $this->user_db->getByID(getUserLogin()->userId());
+    $config = array('onlyIfUserSubscribed'=>True,
+                    'includeGroupSubscriptions'=>True,
+                    'user'=>$user);
 echo $this->load->view('topics/optiontree',
-                       array('topics'   => $this->topic_db->getByID(1,array('onlyIfUserSubscribed'=>True,
-                                                                            'includeGroupSubscriptions'=>True,
-                                                                            'userId'=>getUserLogin()->userId())),
+                       array('topics'   => $this->topic_db->getByID(1,$config),
                             'showroot'  => True,
                             'depth'     => -1,
                             'selected'  => $topic->parent_id
