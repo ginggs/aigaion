@@ -1,81 +1,54 @@
 <?php
 /**
-views/topics/edit
+views/notes/edit
 
-Shows a form for editing topics.
+Shows a form for editing notes.
 
 Parameters:
-    $topic=>the Topic object to be edited
+    $note=>the Note object to be edited
     
-If $topic is null, the edit for will be restyled as an 'add new topic' form
-if $topic is not null, but $action == 'add', the edit form will be restyled as a
-pre filled 'add new topic' form
+If $note is null, the edit for will be restyled as an 'add new note' form
+if $note is not null, but $action == 'add', the edit form will be restyled as a
+pre filled 'add new note' form
 */
 
 $this->load->helper('form');
 echo "<div class='editform'>";
-echo form_open('topics/commit');
+echo form_open('notes/commit');
 //formname is used to check whether the POST data is coming from the right form.
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
-echo form_hidden('formname','topic');
+echo form_hidden('formname','note');
 $isAddForm = False;
-if (!isset($topic)||($topic==null)||(isset($action)&&$action=='add')) {
+if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
-    if (!isset($action)||$action!='add')
-        $topic = new Topic;
+    if (!isset($note)||($note==null)) {
+        $note = new Note;
+        echo form_hidden('pub_id',$pub_id);
+    }
 } else {
     echo form_hidden('action','edit');
-    echo form_hidden('topic_id',$topic->topic_id);
+    echo form_hidden('note_id',$note->note_id);
+    echo form_hidden('user_id',$note->user_id);
+    echo form_hidden('pub_id',$note->pub_id);
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Add a topic</p>";
+    echo "<p class='header2'>Add a note</p>";
 } else {
-    echo "<p class='header2'>Change topic \"".$topic->name."\"</p>";
+    echo "<p class='header2'>Change note</p>";
 }
 //validation feedback
 echo $this->validation->error_string;
 ?>
     <table>
-        <tr><td><label for='name'>Name</label></td>
+        <tr><td><label for='text'>Text</label></td>
             <td>
-<?php echo form_input(array('name'=>'name','size'=>'30','value'=>$topic->name)); ?>
+<?php echo form_textarea(array('name'=>'text','cols'=>'70','rows'=>'7','value'=>$note->text)); ?>
             </td>
         </tr>
 
-        <tr><td><label for='parent_id'>Parent</label></td>
-            <td>
-<?php     
-    $user = $this->user_db->getByID(getUserLogin()->userId());
-    $config = array('onlyIfUserSubscribed'=>True,
-                    'includeGroupSubscriptions'=>True,
-                    'user'=>$user);
-echo $this->load->view('topics/optiontree',
-                       array('topics'   => $this->topic_db->getByID(1,$config),
-                            'showroot'  => True,
-                            'depth'     => -1,
-                            'selected'  => $topic->parent_id
-                            ),  
-                       true)."\n";
-?>
-            </td>
-        </tr>
-        <tr><td><label for='description'>Description</label></td>
-            <td>
-<?php
-    echo form_textarea(array('name'=>'description','cols'=>'70','rows'=>'7','value'=>$topic->description));
-?>
-            </td>
-        </tr>                
-        <tr><td><label for='url'>URL</label></td>
-            <td>
-<?php
-echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
-?>
-            </td>
-        </tr>                
         <tr><td>
 <?php
 if ($isAddForm) {

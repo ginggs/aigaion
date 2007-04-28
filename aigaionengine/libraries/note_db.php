@@ -57,10 +57,12 @@ class Note_db {
             return null;
         }
         //get basic data
-        $note->note_id             = $this->CI->input->post('note_id');
+        $note->note_id            = $this->CI->input->post('note_id');
         $note->text               = $this->CI->input->post('text');
         $note->pub_id             = $this->CI->input->post('pub_id');
         $note->user_id            = $this->CI->input->post('user_id');
+        //$note->read_access_level  = $this->CI->input->post('read_access_level');
+        //$note->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $note;
     }
         
