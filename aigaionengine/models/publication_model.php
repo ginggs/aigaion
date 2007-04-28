@@ -34,7 +34,7 @@ class Publication {
   //one var for each publication table field
   //system vars
   var $pub_id       = 0;
-  var $entered_by	  = '';
+  var $user_id	  = '';
   var $specialchars = '';
   var $cleantitle   = '';
   var $cleanjournal = '';
@@ -81,6 +81,7 @@ class Publication {
   var $editors      = array(); //array of plain author class
   
   var $attachments  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getAttachments()
+  var $notes  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getNotes()
   
   //class constructor
   function Publication()
@@ -93,6 +94,13 @@ class Publication {
         $this->attachments = $CI->attachment_db->getAttachmentsForPublication($this->pub_id);
     }
     return $this->attachments;
+  }
+  function getNotes() {
+    if ($this->notes == null) {
+        $CI = &get_instance();
+        $this->notes = $CI->note_db->getNotesForPublication($this->pub_id);
+    }
+    return $this->notes;
   }
 }
 
@@ -318,7 +326,7 @@ class Publication_model extends Model {
     
     //we retrieve the following fields
     $fields = array('pub_id', 
-                    'entered_by',
+                    'user_id',
                     'specialchars',
                     'cleantitle',
                     'cleanjournal',

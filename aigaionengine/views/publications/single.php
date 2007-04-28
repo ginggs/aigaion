@@ -89,6 +89,31 @@
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 
+        echo anchor('notes/add/'.$publication->data->pub_id,'[add note]');
+?>
+        </div>
+        <div class='header'>Notes</div>
+      </td>
+    </tr>
+    <tr>
+        <td colspan='2' valign='top'>
+<?php
+    $notes = $publication->data->getNotes();
+    echo "<ul class='notelist'>";
+    foreach ($notes as $note) {
+        echo "<li>".$this->load->view('notes/summary',
+                          array('note'   => $note),
+                          true)."</li>";
+    }
+    echo "</ul>";
+?>
+        </td>
+    </tr>
+
+    <tr>
+      <td colspan='2' valign='top'>
+        <div class='optionbox'>
+<?php 
         if ($categorize == True) {
             echo anchor('publications/show/'.$publication->data->pub_id,'[finish categorization]');
         } else {

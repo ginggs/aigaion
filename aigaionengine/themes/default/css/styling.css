@@ -99,7 +99,9 @@ li.mainmenu-spacer {
       border-width    : 1px;
 }
 
-/* FORM STUFF */
+/* ==== FORM STUFF ==== */
+
+/* general form element styling */
 
 .editform {
     margin: 1em;
@@ -129,6 +131,8 @@ input:focus, textarea:focus, select:focus {
 input:hover, textarea:hover, select:hover {
   background-color: #F6F5D4;
 }
+
+/* special styles for publication edit forms */
 input.required, textarea.required, select.required {
   border-color    : #CC0300;
 }
@@ -136,6 +140,8 @@ input.required, textarea.required, select.required {
 input.conditional, textarea.conditional, select.conditional{
   border-color    : #CC0300;
 }
+
+/* =====  ==== */
 
 span.page_title {
   color           : #493E0B;

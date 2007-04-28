@@ -30,14 +30,16 @@ class Site extends Controller {
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 	    if ($commit=='commit') {
 	        $siteconfig = $this->siteconfig_db->getFromPost();
-	        //do validation
-            //----no validation rules are implemented yet. When validation rules are defined, see e.g. users/commit for
-            //examples of validation code
-        	//if ($this->validation->run() == TRUE) {
-	            //if validation successfull, set settings
-	            $siteconfig->commit();
-	            $siteconfig = $this->siteconfig_db->getSiteConfig();
-	        //}
+	        if ($siteconfig!= null) {
+    	        //do validation
+                //----no validation rules are implemented yet. When validation rules are defined, see e.g. users/commit for
+                //examples of validation code
+            	//if ($this->validation->run() == TRUE) {
+    	            //if validation successfull, set settings
+    	            $siteconfig->commit();
+    	            $siteconfig = $this->siteconfig_db->getSiteConfig();
+    	        //}
+    	    }
 	    } else {
 	        $siteconfig = $this->siteconfig_db->getSiteConfig();
 	    }

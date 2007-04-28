@@ -19,7 +19,10 @@ class Topic {
     var $name               = '';
     var $description        = '';
     var $url                = '';
+    var $read_access_level  = 'intern';
+    var $edit_access_level  = 'intern';
     #system variables, not to be changed by user
+    var $user_id            = -1; //owner who created it
     var $children           = null; //array of Topic's. These are not necessarily all possible children, depending on the configuration provided at construction time.
     var $CI                 = null; //link to the CI base object
 

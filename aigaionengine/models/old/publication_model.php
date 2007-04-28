@@ -8,7 +8,7 @@ class Publication_model extends Model {
                           'cleantitle'    => '', 
                           'cleanjournal'  => '', 
                           //'actualyear'    => '',
-                          'entered_by'    => '');
+                          'user_id'    => '');
   
   
   //authors and editors

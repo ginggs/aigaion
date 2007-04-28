@@ -22,9 +22,21 @@ class Attachment_db {
         }
     }
    
-    /** Return the Attachment object stored in the given database row. */
+    /** Return the Attachment object stored in the given database row, or null if insufficient rights. */
     function getFromRow($R)
     {
+        $userlogin = getUserLogin();
+        //check rights; if fail: return null
+        if (!$userlogin->hasRights('attachment_read')) {
+            return null;
+        }
+        if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
+            return null;
+        }
+        if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('attachment_read_all'))) {
+            return null;
+        }
+        //rights were OK; read data
         $attachment = new Attachment;
         foreach ($R as $key => $value)
         {
@@ -63,7 +75,10 @@ class Attachment_db {
         $result = array();
         $Q = $this->CI->db->getwhere('attachments', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
-            $result[] = $this->getByID($row->att_id);
+            $next  =$this->getByID($row->att_id);
+            if ($next != null) {
+                $result[] = $next;
+            }
         }
         return $result;
     }

@@ -77,9 +77,38 @@ ALTER TABLE `attachments` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL D
 SET VERSION TO V2.0 if all of the above is done!!!!
 otherwise checkschema will complain :)
 
+//changes for introducing new rights management: access_level per object
+
+ALTER TABLE `publication` CHANGE COLUMN `entered_by` `user_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE `personpublicationnote` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE `topics` ADD COLUMN `user_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 AFTER `url`;
+    -- niet vergeten bij topics: een owner instellen! waarschijnlijk wordt dat de database_manage user die de update uitvoert?
+
+ALTER TABLE `attachments` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `att_id`;
+ALTER TABLE `publication` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `cleantitle`;
+ALTER TABLE `topics` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `user_id`;
+ALTER TABLE `personpublicationnote` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `text`;
+ALTER TABLE `attachments` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `att_id`;
+ALTER TABLE `publication` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `cleantitle`;
+ALTER TABLE `topics` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `user_id`;
+ALTER TABLE `personpublicationnote` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `text`;
+
+UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1
+
+INSERT INTO `availablerights` (`name`,`description`) VALUES 
+ ('attachment_read_all','read all attachments, overriding access levels'),
+ ('topic_read_all','read all topics, overriding access levels'),
+ ('note_read_all','read all notes, overriding access levels'),
+ 
+ALTER TABLE `personpublicationnote` RENAME TO `notes`;
+
+//the notes.rights must be transferred to notes.read_access_level and notes.edit_access_level
+UPDATE notes SET (read_access_level='private',edit_access_level='private') WHERE rights='private'
+
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
 
 drop irrelevant legacy columns
 drop col 'users.u_rights'
 drop col 'users.csname'
+drop col 'notes.rights'

@@ -60,9 +60,21 @@ class Topic_db {
         }
     }
 
-    /** Returns the Topic stored in the given table row */
+    /** Returns the Topic stored in the given table row, or null if insufficient rights */
     function getFromRow($R, &$configuration = array())
     {
+        $userlogin = getUserLogin();
+        //check rights; if fail: return null
+        //if (!$userlogin->hasRights('topic_read')) { ... yes, well, this topic does not exist yet.
+            //return null;
+        //}
+        if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
+            return null;
+        }
+        if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('topic_read_all'))) {
+            return null;
+        }
+        //rights were OK; read data
         $topic = new Topic;
         foreach ($R as $key => $value)
         {
@@ -220,7 +232,7 @@ class Topic_db {
     function add($topic) {
         //add new topic
         $this->CI->db->query(
-            $this->CI->db->insert_string("topics", array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url))
+            $this->CI->db->insert_string("topics", array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url,'user_id'=>getUserLogin()->userId()))
                              );
                                                
         //add parent

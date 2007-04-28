@@ -36,7 +36,19 @@ echo ".\n";
 echo "</td><td width='8%' align='right'>";
 echo "<nobr>".form_checkbox(array('name'=> 'publication', 'id' => 'pub_'.$publication->pub_id, 'checked' => false))."</nobr></div>\n";
 
-echo "</td></tr></table></div>\n"; //end of publication_summary div
+echo "</td></tr>";
+echo "<tr><td colspan=2>";
+    $notes = $publication->getNotes();
+    echo "<ul class='notelist'>";
+    foreach ($notes as $note) {
+        echo "<li>".$this->load->view('notes/summary',
+                          array('note'   => $note),
+                          true)."</li>";
+    }
+    echo "</ul>";
+echo "</td></tr>";
+
+echo "</table></div>\n"; //end of publication_summary div
 
 ?>
 

@@ -45,7 +45,7 @@ if (!defined('APPURL') || (APPURL=='')) {
 |	http://www.your-site.com/
 |
 | -------------------------------------------------------------------
-| NOTE FOR MUSIC SITE:
+| NOTE FOR AIGAION:
 | -------------------------------------------------------------------
 | 
 | This setting is determined by the mandatory define of MUSIC_ROOT_URL

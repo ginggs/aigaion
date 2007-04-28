@@ -5,10 +5,12 @@ Database access for Attachments is done through the Attachment_db library */
 class Attachment {
 
     #ID
-    var $att_id            = '';
+    var $att_id             = '';
     #content variables; to be changed by user when necessary
     var $name               = '';
     var $note               = '';
+    var $read_access_level  = 'intern';
+    var $edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $mime               = '';
     var $location           = '';

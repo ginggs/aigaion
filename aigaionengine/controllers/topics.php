@@ -34,6 +34,9 @@ class Topics extends Controller {
                          'includeGroupSubscriptions'=>True
                         );
         $root = $this->topic_db->getByID($root_id, $config);
+        if ($root == null) {
+            echo "Browse topics: no valid topic ID provided<br>";
+        }
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',

@@ -98,6 +98,7 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
+  
   //delete() - Remove one publication from the database
   function delete()
   {

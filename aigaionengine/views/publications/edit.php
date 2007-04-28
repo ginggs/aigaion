@@ -6,7 +6,7 @@
 <?php
   echo form_open('publications/commit')."\n";
   echo form_hidden('pub_id', $publication->data->pub_id)."\n";
-  echo form_hidden('entered_by', $publication->data->entered_by)."\n";
+  echo form_hidden('user_id', $publication->data->user_id)."\n";
 ?>
   <table class='publication_edit_form'>
     <tr>
