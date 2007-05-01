@@ -44,7 +44,8 @@ echo $this->validation->error_string;
             <td>
 <?php              
             $options = array('Aigaion'=>'Aigaion login module',
-                             'Httpauth'=>'.htpasswd file');
+                             'Httpauth'=>'.htpasswd file',
+                             'LDAP'=>'LDAP based authentication');
             $selected = $siteconfig->getConfigSetting("EXTERNAL_LOGIN_MODULE");
             if ($selected == '') {
                 $selected = 'Aigaion';
@@ -83,6 +84,48 @@ echo $this->validation->error_string;
 	        module different from 'Aigaion' has been selected.
 	        </td>
 	    </tr>
+	    
+        <tr>
+            <td colspan='2'><p class='header2'>LDAP configuration:</p>If you use LDAP authentication, 
+                you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl)
+                (That's just an example! We don't really have an LDAP server at Aigaion.nl!).
+            </td>
+        </tr>
+	    
+        <tr>
+            <td colspan='2'>
+                <b>Note:</b> If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server 
+            activated. Explaining how to install that is well outside the scope of Aigaion documentation.
+            See the LDAP documentation at <a href='http://www.php.net/' target='_blank'>www.php.net</a> for more information.
+            Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll
+            to be available somewhere....
+            </td>
+        </tr>
+	    <tr>    
+	        <td><label>LDAP server:</label></td>
+	        <td align='left'><input type='text' cols='100' name='LDAP_SERVER'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_SERVER")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The LDAP server (like: ldap.aigaion.nl).</td>
+	    </tr>
+	    <tr>    
+	        <td><label>LDAP base DN:</label></td>
+	        <td align='left'><input type='text' cols='100' name='LDAP_BASE_DN'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_BASE_DN")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The base DN for loggin in to the LDAP server (like: dc=dev,dc=aigaion,dc=nl).</td>
+	    </tr>
+	    
 	    <tr>
 	        <td align='left' colspan='2'></td>
 	    </tr>

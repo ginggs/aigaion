@@ -52,6 +52,8 @@ class Siteconfig_db {
         } else {
             $result->configSettings['USE_EXTERNAL_LOGIN']           = 'TRUE';
         }
+        $result->configSettings['LDAP_SERVER']                     = $this->CI->input->post('LDAP_SERVER');
+        $result->configSettings['LDAP_BASE_DN']                     = $this->CI->input->post('LDAP_BASE_DN');
         if ($this->CI->input->post('ENABLE_ANON_ACCESS')=='ENABLE_ANON_ACCESS') {
             $result->configSettings['ENABLE_ANON_ACCESS']           = 'TRUE';
         } else {
