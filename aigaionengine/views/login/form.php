@@ -13,7 +13,7 @@
     }
 
     //the login form is NOT shown if 'external login module' is activated
-    if (getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') {
+    if ((getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') || (getConfigurationSetting("EXTERNAL_LOGIN_MODULE")!='Httpauth')) {
         $formAttributes = array('id' => 'loginForm');
         echo form_open_multipart('login/dologin/'.implode('/',$segments),$formAttributes);
     ?>

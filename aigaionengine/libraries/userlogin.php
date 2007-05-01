@@ -263,6 +263,14 @@ class UserLogin {
                 $loginName = $loginInfo['login'];
                 $loginGroups = $loginInfo['groups'];
                 break;
+            case "LDAP":
+                $CI->load->library('login_ldap');
+                $CI->load->library('authldap');
+                //attempt to get loginname from external system
+                $loginInfo = $CI->login_ldap->getLoginInfo();
+                $loginName = $loginInfo['login'];
+                $loginGroups = $loginInfo['groups'];
+                break;
             //case "drupal":
                 //$CI->load->library('login_drupal');
                 //attempt to get loginname from external system.

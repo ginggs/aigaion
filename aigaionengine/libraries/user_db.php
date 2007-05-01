@@ -163,6 +163,7 @@ class User_db {
         foreach ($user->assignedrights as $right) {
             $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
         }
+
         
         //add group links, and rightsprofiles for these groups, to the user
         foreach ($user->group_ids as $group_id) {
@@ -178,7 +179,7 @@ class User_db {
             }
         }
         
-        $this->CI->topic_db->subscribeUser( $new_id,1);
+        $this->CI->topic_db->subscribeUser( $user,1);
         return $new_id;
     }
 
