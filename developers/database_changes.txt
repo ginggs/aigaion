@@ -98,12 +98,15 @@ UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1
 INSERT INTO `availablerights` (`name`,`description`) VALUES 
  ('attachment_read_all','read all attachments, overriding access levels'),
  ('topic_read_all','read all topics, overriding access levels'),
- ('note_read_all','read all notes, overriding access levels'),
+ ('note_read_all','read all notes, overriding access levels');
  
 ALTER TABLE `personpublicationnote` RENAME TO `notes`;
 
 //the notes.rights must be transferred to notes.read_access_level and notes.edit_access_level
-UPDATE notes SET (read_access_level='private',edit_access_level='private') WHERE rights='private'
+UPDATE notes SET (read_access_level='private',edit_access_level='private') WHERE rights='private';
+
+//rename 'publication.type' to 'publication.pub_type'
+ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT NULL 
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

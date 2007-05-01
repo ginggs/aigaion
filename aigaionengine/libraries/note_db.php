@@ -42,9 +42,9 @@ class Note_db {
         $note = new Note;
         foreach ($R as $key => $value)
         {
-            $attachment->$key = $value;
+            $note->$key = $value;
         }
-        return $attachment;
+        return $note;
     }
 
     /** Construct a note from the POST data present in the note/edit or add view. 

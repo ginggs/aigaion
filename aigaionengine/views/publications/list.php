@@ -1,8 +1,8 @@
 <div class='publication_list'>
-  <div class='header'><?php echo $publicationlist->header ?></div>
+  <div class='header'><?php echo $header ?></div>
 <?php
   $even = true;
-  foreach ($publicationlist->list as $publication)
+  foreach ($publications as $publication)
   {
     $even = !$even;
     $publicationData['publication'] = $publication;

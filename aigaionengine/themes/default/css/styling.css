@@ -137,8 +137,12 @@ input.required, textarea.required, select.required {
   border-color    : #CC0300;
 }
 
-input.conditional, textarea.conditional, select.conditional{
+input.conditional, textarea.conditional, select.conditional {
   border-color    : #CC0300;
+}
+
+tr.hidden {
+ visibility       : hidden;
 }
 
 /* =====  ==== */

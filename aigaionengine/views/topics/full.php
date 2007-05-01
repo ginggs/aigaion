@@ -36,7 +36,7 @@
 
 <?php
     
-  if (isset($publicationlist))
-    $this->load->view('publications/list', $publicationlist);
+  if (isset($publications))
+    $this->load->view('publications/list', $publications);
 ?>
 </div>

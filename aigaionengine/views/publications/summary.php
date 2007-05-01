@@ -1,5 +1,5 @@
 <?php 
-$summaryfields = getPublicationSummaryFieldArray($publication->type); 
+$summaryfields = getPublicationSummaryFieldArray($publication->pub_type); 
 echo "<div class='publication_summary ".$even."' id='publicationsummary".$publication->pub_id."'>\n";
 echo "<table width='100%'><tr><td>";
 echo "  <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";

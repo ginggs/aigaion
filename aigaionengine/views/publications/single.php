@@ -1,38 +1,38 @@
 <?php
-  $publicationfields = getPublicationFieldArray($publication->data->type);
+  $publicationfields = getPublicationFieldArray($publication->pub_type);
   if (!isset($categorize)) $categorize= False;
 ?>
 <div class='publication'>
-  <div class='optionbox'><?php echo "[".anchor('publications/edit/'.$publication->data->pub_id, 'edit', array('title' => 'Edit this publication'))."]</div>";?>
-  <div class='header'><?php echo $publication->data->title; ?></div>
+  <div class='optionbox'><?php echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]</div>";?>
+  <div class='header'><?php echo $publication->title; ?></div>
   <table class='publication_details'>
     <tr>
       <td>Type of publication:</td>
-      <td><?php echo $publication->data->type; ?></td>
+      <td><?php echo $publication->pub_type; ?></td>
     </tr>
     <tr>
       <td>Citation:</td>
-      <td><?php echo $publication->data->bibtex_id; ?></td>
+      <td><?php echo $publication->bibtex_id; ?></td>
     </tr>
 <?php 
     foreach ($publicationfields as $key => $class):
-      if ($publication->data->$key):
+      if ($publication->$key):
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo $publication->data->$key; ?></td>
+      <td valign='top'><?php echo $publication->$key; ?></td>
     </tr>
 <?php
       endif;
     endforeach;
 
-    if (count($publication->data->authors) > 0):
+    if (count($publication->authors) > 0):
 ?>
     <tr>
       <td valign='top'>Authors</td>
       <td valign='top'>
         <span class='authorlist'>
-<?php     foreach ($publication->data->authors as $author)
+<?php     foreach ($publication->authors as $author)
           {
             echo anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
@@ -42,13 +42,13 @@
     </tr>
 <?php 
     endif;
-    if (count($publication->data->editors) > 0):
+    if (count($publication->editors) > 0):
 ?>
     <tr>
       <td valign='top'>Editors</td>
       <td valign='top'>
         <span class='authorlist'>
-<?php     foreach ($publication->data->editors as $author)
+<?php     foreach ($publication->editors as $author)
           {
             echo anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
@@ -64,7 +64,7 @@
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 
-        echo anchor('attachments/add/'.$publication->data->pub_id,'[add attachment]');
+        echo anchor('attachments/add/'.$publication->pub_id,'[add attachment]');
 ?>
         </div>
         <div class='header'>Attachments</div>
@@ -73,7 +73,7 @@
     <tr>
         <td colspan='2' valign='top'>
 <?php
-    $attachments = $publication->data->getAttachments();
+    $attachments = $publication->getAttachments();
     echo "<ul class='attachmentlist'>";
     foreach ($attachments as $attachment) {
         echo "<li>".$this->load->view('attachments/summary',
@@ -89,7 +89,7 @@
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 
-        echo anchor('notes/add/'.$publication->data->pub_id,'[add note]');
+        echo anchor('notes/add/'.$publication->pub_id,'[add note]');
 ?>
         </div>
         <div class='header'>Notes</div>
@@ -98,7 +98,7 @@
     <tr>
         <td colspan='2' valign='top'>
 <?php
-    $notes = $publication->data->getNotes();
+    $notes = $publication->getNotes();
     echo "<ul class='notelist'>";
     foreach ($notes as $note) {
         echo "<li>".$this->load->view('notes/summary',
@@ -115,9 +115,9 @@
         <div class='optionbox'>
 <?php 
         if ($categorize == True) {
-            echo anchor('publications/show/'.$publication->data->pub_id,'[finish categorization]');
+            echo anchor('publications/show/'.$publication->pub_id,'[finish categorization]');
         } else {
-            echo anchor('publications/show/'.$publication->data->pub_id.'/categorize','[categorize publication]');
+            echo anchor('publications/show/'.$publication->pub_id.'/categorize','[categorize publication]');
         } 
 ?>
         </div>
@@ -133,7 +133,7 @@
             $config = array('onlyIfUserSubscribed'=>True,
                               'user'=>$user,
                               'includeGroupSubscriptions'=>True,
-                              'publicationId'=>$publication->data->pub_id
+                              'publicationId'=>$publication->pub_id
                                     );
             $root = $this->topic_db->getByID(1, $config);
             $this->load->vars(array('subviews'  => array('topics/publicationsubscriptiontreerow'=>array())));
@@ -143,7 +143,7 @@
                               'user'=>$user,
                               'includeGroupSubscriptions'=>True,
                               'onlyIfPublicationSubscribed'=>True,
-                              'publicationId'=>$publication->data->pub_id
+                              'publicationId'=>$publication->pub_id
                                     );
             $root = $this->topic_db->getByID(1, $config);
             $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array())));

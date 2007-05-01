@@ -1,32 +1,41 @@
 <?php
-  $publicationfields = getPublicationFieldArray($publication->data->type);
+  $publicationfields  = getPublicationFieldArray($publication->pub_type);
+  $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');
 ?>
 <div class='publication'>
   <div class='header'>Edit publication</div>
 <?php
-  echo form_open('publications/commit')."\n";
-  echo form_hidden('pub_id', $publication->data->pub_id)."\n";
-  echo form_hidden('user_id', $publication->data->user_id)."\n";
+  //give validation feedback
+  echo $this->validation->error_string;
+  
+  //and open the edit form
+  echo form_open('publications/commit', $formAttributes)."\n";
+  echo form_hidden('pub_id',      $publication->pub_id)."\n";
+  echo form_hidden('user_id',     $publication->user_id)."\n";
+  echo form_hidden('submit_type', 'submit')."\n";
 ?>
   <table class='publication_edit_form'>
     <tr>
       <td>Type of publication:</td>
-      <td><?php echo form_dropdown('type', getPublicationTypes(), $publication->data->type); ?></td>
+      <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, 'onchange="this.form.submit_type.value=\'type_change\'; this.form.submit();"'); ?>
     </tr>
     <tr>
       <td>Title:</td>
-      <td><?php echo form_input(array('name' => 'title', 'id' => 'title', 'size' => '90'), $publication->data->title); ?></td>
+      <td><?php echo form_input(array('name' => 'title', 'id' => 'title', 'size' => '90'), $publication->title); ?></td>
     </tr>
     <tr>
       <td>Citation:</td>
-      <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '45'), $publication->data->bibtex_id); ?></td>
+      <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '45'), $publication->bibtex_id); ?></td>
     </tr>
 <?php 
+    //show all publication fields that are not hidden
+    //at the end of this table, we show all hidden fields as hidden form elements
     foreach ($publicationfields as $key => $class):
+      if ($class != 'hidden'):
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'autocomplete' => 'off', 'class' => $class), $publication->data->$key)."\n";
+      <td valign='top'><?php echo form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'autocomplete' => 'off', 'class' => $class), $publication->$key)."\n";
       
       if ($key == 'keywords'): ?>
         <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
@@ -35,7 +44,8 @@
       </td>
     </tr>
 <?php
-      endif;
+      endif; //keywords
+      endif; //class hidden
     endforeach;
 ?>
     <tr>
@@ -43,9 +53,9 @@
       <td>
 <?php
         $authors = array();
-        if (count($publication->data->authors) > 0)
+        if (count($publication->authors) > 0)
         {
-          foreach ($publication->data->authors as $author)
+          foreach ($publication->authors as $author)
           {
             $authors[] = $author->getName();
           }
@@ -64,9 +74,9 @@
       <td>
 <?php
         $editors = array();
-        if (count($publication->data->editors) > 0)
+        if (count($publication->editors) > 0)
         {
-          foreach ($publication->data->editors as $author)
+          foreach ($publication->editors as $author)
           {
             $editors[] = $author->cleanname;
           }
@@ -81,6 +91,13 @@
     </tr>
   </table>
 <?php
+  foreach ($publicationfields as $key => $class):
+    if ($class == 'hidden'):
+      echo form_hidden($key, $publication->$key)."\n";
+    endif;
+  endforeach;
+      
+
   echo form_submit('publication_summit', 'Submit')."\n";
   echo form_close()."\n";
 ?>

@@ -42,7 +42,6 @@ class Publication {
   
   //user vars
   var $pub_type     = '';
-  var $type         = '';
   var $bibtex_id		= '';
   var $title        = '';
   var $year         = '';
@@ -63,7 +62,7 @@ class Publication {
   var $organization = '';
   var $school       = '';
   var $address      = '';
-  var $report_type	= ''; //note: rename field from type
+  var $report_type	= '';
   var $howpublished = '';
   var $note         = '';
   var $abstract     = '';
@@ -81,7 +80,7 @@ class Publication {
   var $editors      = array(); //array of plain author class
   
   var $attachments  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getAttachments()
-  var $notes  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getNotes()
+  var $notes        = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getNotes()
   
   //class constructor
   function Publication()
@@ -176,6 +175,7 @@ class Publication_model extends Model {
   {
     //retrieve one publication row
     $Q = $this->db->query("SELECT * FROM publication WHERE pub_id = ".$this->db->escape($pub_id));
+
     if ($Q->num_rows() == 1)
     {
       //load the publication
@@ -331,7 +331,7 @@ class Publication_model extends Model {
                     'cleantitle',
                     'cleanjournal',
                     'actualyear',
-                    'type',         //TODO: RENAME TO 'pub_type',
+                    'pub_type',
                     'bibtex_id',
                     'title',
                     'year',

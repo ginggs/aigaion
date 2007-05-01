@@ -178,11 +178,7 @@ class Topics extends Controller {
 	        redirect('topics/browse');
 	    }
 	    
-	      $this->load->model('publication_list_model');
 	      $this->load->helper('publication');
-    
-        $publicationlist  = new Publication_list_model;
-        $publicationlist->loadForTopic($topic_id);
     
         //get output
         $headerdata                 = array();
@@ -190,7 +186,8 @@ class Topics extends Controller {
         $headerdata['javascripts']  = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $content['topic']           = $topic;
-        $content['publicationlist'] = $publicationlist;
+        $content['header']          = 'testheader';
+        $content['publications']    = $this->publication_db->getForTopic($topic_id);
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -232,7 +229,7 @@ class Topics extends Controller {
         
         //check if fail needed: was all data present in POST?
         if ($topic == null) {
-            appendErrorMEssage("Commit topic: no data to commit<br/>");
+            appendErrorMessage("Commit topic: no data to commit<br/>");
             redirect ('');
         }
         
