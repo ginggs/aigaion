@@ -233,8 +233,60 @@ class Attachments extends Controller {
         redirect('');
 
 	}
-
-
+    
+    /** 
+    attachments/setmain
+    
+    Entry point for setting attachment as main.
+    
+	Fails with error message when one of:
+	    non-existing att_id requested
+	    insufficient user rights
+	    
+	Parameters passed via url segments:
+	    3rd: $att_id 
+	         
+    Returns:
+        redirects to publications/show
+    */
+    function setmain() {
+	    $att_id = $this->uri->segment(3,-1);
+	    $attachment = $this->attachment_db->getByID($att_id);
+	    if ($attachment==null) {
+	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        redirect('');
+	    }
+	    $attachment->ismain=true;
+	    $attachment->commit();
+	    redirect('publications/show/'.$attachment->pub_id);
+    }
+    
+    /** 
+    attachments/unsetmain
+    
+    Entry point for unsetting attachment as main.
+    
+	Fails with error message when one of:
+	    non-existing att_id requested
+	    insufficient user rights
+	    
+	Parameters passed via url segments:
+	    3rd: $att_id 
+	         
+    Returns:
+        redirects to publications/show
+    */
+    function unsetmain() {
+	    $att_id = $this->uri->segment(3,-1);
+	    $attachment = $this->attachment_db->getByID($att_id);
+	    if ($attachment==null) {
+	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        redirect('');
+	    }
+	    $attachment->ismain=false;
+	    $attachment->commit();
+	    redirect('publications/show/'.$attachment->pub_id);
+    }
 }
 
 

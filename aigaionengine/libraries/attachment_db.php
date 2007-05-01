@@ -277,7 +277,21 @@ class Attachment_db {
           	    $attachment->name .= $ext1;
           	}
         }
-        $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note);
+		if ($attachment->ismain) {
+			$res = mysql_query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
+			if (mysql_error()) {
+				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
+				return -1;
+			}
+		}
+    
+		# add appropriate info about new attachment to database
+		$ismain = 'FALSE';
+		if ($attachment->ismain) {
+		    $ismain = 'TRUE';
+		}
+        
+        $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
         
         $this->CI->db->query(
             $this->CI->db->update_string("attachments",

@@ -25,6 +25,11 @@ Parameters:
     echo $name;
     echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
     echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
+    if ($attachment->ismain) {
+        echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[unset main]",array('title'=>'Unset as main attachment'));
+    } else {
+        echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[set main]",array('title'=>'Set as main attachment'));
+    }
     if ($attachment->note!='') {
         echo "<br>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
     }
