@@ -22,6 +22,7 @@ class Group_db {
     {
         $group = new Group;
         $group->group_id           = $R->user_id;
+        $group->user_id           = $R->user_id;
         $group->name               = $R->surname;
         $group->abbreviation       = $R->abbreviation;
 

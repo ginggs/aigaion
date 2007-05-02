@@ -28,7 +28,16 @@ class Users extends Controller {
         A full HTML page with all a list of all users and groups
     */
     function manage() {
-        //get output
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+            ) 
+        {
+	        appendErrorMessage('Manage accounts: insufficient rights.<br>');
+	        redirect('');
+        }
+	    
+	    //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
@@ -103,7 +112,9 @@ class Users extends Controller {
 	        appendErrorMessage("View user: non-existing user_id passed");
 	        redirect('');
 	    }
-	    
+
+        //no additional rights check. Only, in the view the edit links may be suppressed depending on the user rights
+	    	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
@@ -138,7 +149,16 @@ class Users extends Controller {
     */
     function add()
 	{
-        $this->load->library('validation');
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+            ) 
+        {
+	        appendErrorMessage('Add user: insufficient rights.<br>');
+	        redirect('');
+        }
+	    
+	    $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
         //get output
@@ -184,7 +204,18 @@ class Users extends Controller {
 	        appendErrorMessage("Edit user: non-existing user_id passed");
 	        redirect('');
 	    }
-	    
+
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+             && 
+                (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
+            ) 
+        {
+	        appendErrorMessage('Edit account: insufficient rights.<br>');
+	        redirect('');
+        }
+	    	    
 	    
         //get output
         $headerdata = array();
@@ -235,6 +266,14 @@ class Users extends Controller {
 	        redirect('');
 	    }
 
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all')) )
+        {
+	        appendErrorMessage('Delete account: insufficient rights.<br>');
+	        redirect('');
+        }
+
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete user: not implemented yet');
@@ -278,12 +317,24 @@ class Users extends Controller {
 
         //get data from POST
         $user = $this->user_db->getFromPost();
-        
+
         //check if fail needed: was all data present in POST?
         if ($user == null) {
             appendErrorMEssage("Commit user: no data to commit<br/>");
             redirect ('');
         }
+
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+             && 
+                (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
+            ) 
+        {
+	        appendErrorMessage('Edit account: insufficient rights.<br>');
+	        redirect('');
+        }
+        
         
         //validate form values; 
         //validation rules: 
@@ -367,6 +418,23 @@ class Users extends Controller {
 	        appendErrorMessage('Topic review: invalid user_id specified.<br>\n');
 	        redirect('');
 	    }
+	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription'))
+             ||
+                (  !$userlogin->hasRights('user_edit_all')
+                    && 
+                   ($userlogin->userId() != $user->user_id)
+                 )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+        
+	    
+	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Topic subscription';
@@ -423,7 +491,22 @@ class Users extends Controller {
         if ($user == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid user ID provided</div>";
         }
-        $user = $this->user_db->getByID($user_id);
+
+	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription') )
+             ||
+                (  !$userlogin->hasRights('user_edit_all')
+                    && 
+                   ($userlogin->userId() != $user->user_id)
+                 )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+
         $config = array('user'=>$user);
 
         $topic = $this->topic_db->getByID($topic_id,$config);
@@ -467,7 +550,22 @@ class Users extends Controller {
             echo "<div class='errormessage'>Unsubscribe topic: no valid user ID provided</div>";
         }
 
-        $user = $this->user_db->getByID($user_id);
+
+	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription') )
+             ||
+                (  !$userlogin->hasRights('user_edit_all')
+                    && 
+                   ($userlogin->userId() != $user->user_id)
+                 )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+        
         $config = array('user'=>$user);
         $topic = $this->topic_db->getByID($topic_id,$config);
         

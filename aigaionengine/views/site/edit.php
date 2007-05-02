@@ -26,12 +26,12 @@ echo $this->validation->error_string;
 
 	    <tr>
 	        <td><label for='CFG_ADMIN'>Name of Aigaion administrator:</label></td>
-	        <td align='left'><input type='text' cols='60' name='CFG_ADMIN' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMIN"); ?>'></td>
+	        <td align='left'><input type='text' cols='60' size=50 name='CFG_ADMIN' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMIN"); ?>'></td>
 	    </tr>
 
 	    <tr>
 	        <td><label for='CFG_ADMINMAIL'>Email of Aigaion administrator:</label></td>
-	        <td align='left'><input type='text' cols='60' name='CFG_ADMINMAIL' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMINMAIL"); ?>'></td>
+	        <td align='left'><input type='text' cols='60' size=50 name='CFG_ADMINMAIL' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMINMAIL"); ?>'></td>
 	    </tr>
 
 <!-- EXTERNAL LOGIN MODULES -->
@@ -60,9 +60,10 @@ echo $this->validation->error_string;
 	        Select the login module to be used. 
 	        <br>- 'Aigaion' is the default built-in login system.
 	        <br>- '.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
-	        the name of the logged user.
-	        <br><b>Note:</b> If you select a login module different from 'Aigaion', be sure to have that 
-	        module correctly configured - otherwise you may have problems logging in and then you can also 
+	        the name of the logged user, instead of a login form.
+	        <br>- 'LDAP' uses a connection to a LDAP server to verify the credentials filled in in the login form.
+	        <br><br><b>Note:</b> If you select a login module different from 'Aigaion', be sure to have that 
+	        module correctly configured below in this form - otherwise you may have problems logging in and then you can also 
 	        not turn the external login module off without directly accessing the Aigaion database :)</p></td>
 	    </tr>
 	    <tr>
@@ -103,7 +104,7 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>    
 	        <td><label>LDAP server:</label></td>
-	        <td align='left'><input type='text' cols='100' name='LDAP_SERVER'	
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_SERVER'	
 <?php
              echo "value='".$siteconfig->getConfigSetting("LDAP_SERVER")."'>";
 ?>
@@ -115,7 +116,7 @@ echo $this->validation->error_string;
 	    </tr>
 	    <tr>    
 	        <td><label>LDAP base DN:</label></td>
-	        <td align='left'><input type='text' cols='100' name='LDAP_BASE_DN'	
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_BASE_DN'	
 <?php
              echo "value='".$siteconfig->getConfigSetting("LDAP_BASE_DN")."'>";
 ?>
@@ -178,7 +179,7 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>    
 	        <td><label>Allowed extensions for attachments:</label></td>
-	        <td align='left'><input type='text' cols='100' name='ALLOWED_ATTACHMENT_EXTENSIONS'	
+	        <td align='left'><input type='text' cols='100' size=50  name='ALLOWED_ATTACHMENT_EXTENSIONS'	
 <?php
              echo "value='".implode(",",$siteconfig->getConfigSetting("ALLOWED_ATTACHMENT_EXTENSIONS"))."'>";
 ?>
@@ -229,7 +230,7 @@ echo $this->validation->error_string;
 
         <tr>
 	        <td><label for='WINDOW_TITLE'>Title of the site:</label></td>
-	        <td align='left'><input type='text' cols='60' name='WINDOW_TITLE' 
+	        <td align='left'><input type='text' cols='60' size=50 name='WINDOW_TITLE' 
 <?php
 	        echo "value='".$siteconfig->getConfigSetting("WINDOW_TITLE")."'>";
 ?>

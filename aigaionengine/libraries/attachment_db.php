@@ -87,6 +87,24 @@ class Attachment_db {
     /** Add a new attachment with the given data. Returns the new att_id, or -1 on failure. 
     Quite a large method. */
     function add($attachment) {
+        //check access rights (!)
+        $userlogin = getUserLogin();
+        $publication = $this->CI->publication_db->getByID($attachment->pub_id);
+        if (    ($publication == null) 
+             ||
+                (!$userlogin->hasRights('attachment_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+             ||
+                (    ($publication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $publication->user_id) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+        }
+
         if ($attachment->isremote) {
         	#determine real name (the one exposed to user)
         	#from alternative name or from original name
@@ -268,6 +286,24 @@ class Attachment_db {
     have the proper extension. If not, this method fixes the extension. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
     function commit($attachment) {
+        //check access rights (by looking at the original attachment in the database, as the POST
+        //data might have been rigged!)
+        $userlogin = getUserLogin();
+        $attachment_testrights = $this->CI->attachment_db->getByID($attachment->att_id);
+        if (    ($attachment_testrights == null) 
+             ||
+                (!$userlogin->hasRights('attachment_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($attachment_testrights->edit_access_level!='public'))
+             ||
+                (    ($attachment_testrights->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $attachment_testrights->user_id) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+        }
  
         //attachment name should be correct wrt location! 
         if (!$attachment->isremote) {

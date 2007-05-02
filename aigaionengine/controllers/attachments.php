@@ -74,9 +74,26 @@ class Attachments extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($attachment==null) {
-	        appendErrorMessage('Delete attachment: attachment does not exist.<br>\n');
+	        appendErrorMessage('Delete attachment: attachment does not exist.<br>');
 	        redirect('');
 	    }
+
+	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('attachment_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
+             ||
+                (    ($attachment->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $attachment->user_id) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Delete attachment: insufficient rights.<br>');
+	        redirect('');
+        }
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
@@ -128,7 +145,26 @@ class Attachments extends Controller {
         if ($publication == null) {
             echo "<div class='errormessage'>Add atachment: no valid publication ID provided</div>";
         }
-    
+
+
+	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+	    //in this case it's mostly the rights on the publication that determine access
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('attachment_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+             ||
+                (    ($publication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $publication->user_id) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        redirect('');
+        }
+
         //get output: a full web page with a 'confirm delete' form
         $headerdata = array();
         $headerdata['title'] = 'Attachment: delete';
@@ -169,6 +205,22 @@ class Attachments extends Controller {
 	        redirect('');
 	    }
 	    
+	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('attachment_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
+             ||
+                (    ($attachment->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $attachment->user_id) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Edit attachment: insufficient rights.<br>');
+	        redirect('');
+        }
 	    
         //get output
         $headerdata = array();
@@ -213,6 +265,10 @@ class Attachments extends Controller {
 	        appendErrorMessage("Commit attachment: no data to commit<br/>");
 	        redirect('');
 	    }
+
+//             the checks on the attachment itself are of course not tested here,
+//             but in the commit action, as the client can have sent 'wrong' form data        
+
     
         //if validation was successfull: add or change.
         $success = False;
@@ -241,7 +297,8 @@ class Attachments extends Controller {
     
 	Fails with error message when one of:
 	    non-existing att_id requested
-	    insufficient user rights
+	    
+	Fails silently when insufficient user rights
 	    
 	Parameters passed via url segments:
 	    3rd: $att_id 
@@ -268,7 +325,8 @@ class Attachments extends Controller {
     
 	Fails with error message when one of:
 	    non-existing att_id requested
-	    insufficient user rights
+
+	Fails silently when insufficient user rights
 	    
 	Parameters passed via url segments:
 	    3rd: $att_id 

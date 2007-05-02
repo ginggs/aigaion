@@ -37,6 +37,8 @@ class Groups extends Controller {
 	        appendErrorMessage("View group: non-existing group_id passed");
 	        redirect('');
 	    }
+
+        //no additional rights check. Only, in the view the edit links may be suppressed depending on the user rights
 	    
         //get output
         $headerdata = array();
@@ -71,6 +73,15 @@ class Groups extends Controller {
     */
     function add()
 	{
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+            ) 
+        {
+	        appendErrorMessage('Add group: insufficient rights.<br>');
+	        redirect('');
+        }
+
         $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
@@ -118,6 +129,15 @@ class Groups extends Controller {
 	        redirect('');
 	    }
 	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+             
+            ) 
+        {
+	        appendErrorMessage('Edit group: insufficient rights.<br>');
+	        redirect('');
+        }
 	    
         //get output
         $headerdata = array();
@@ -167,6 +187,14 @@ class Groups extends Controller {
 	        appendErrorMessage('Delete group: non existing group specified.<br>\n');
 	        redirect('');
 	    }
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all')) )
+        {
+	        appendErrorMessage('Delete group: insufficient rights.<br>');
+	        redirect('');
+        }
+
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
@@ -219,6 +247,15 @@ class Groups extends Controller {
         if ($group == null) {
             appendErrorMEssage("Commit group: no data to commit<br/>");
             redirect ('');
+        }
+
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+            ) 
+        {
+	        appendErrorMessage('Edit group: insufficient rights.<br>');
+	        redirect('');
         }
         
         //validate form values; 
@@ -274,7 +311,7 @@ class Groups extends Controller {
 
     
     /** 
-    groupss/topicreview
+    groups/topicreview
     
     Entry point for editing the topic subscriptions for a group
     
@@ -296,6 +333,18 @@ class Groups extends Controller {
 	        appendErrorMessage('Topic review: invalid group_id specified.<br>\n');
 	        redirect('');
 	    }
+	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription'))
+             ||
+                (  !$userlogin->hasRights('user_edit_all') )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Topic subscription for groups';
@@ -304,10 +353,8 @@ class Groups extends Controller {
         $output = $this->load->view('header', $headerdata, true);
 
         
-        
-        $root = $this->topic_db->getByID(1, array('userId'=>$group_id,
-                                                  
-                                                        ));
+        $config = array('user'=>$group);
+        $root = $this->topic_db->getByID(1, $config);
         $this->load->vars(array('subviews'  => array('topics/groupsubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$group->name."</p>";
         $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
@@ -355,7 +402,21 @@ class Groups extends Controller {
             echo "<div class='errormessage'>Subscribe topic: no valid group ID provided</div>";
         }
 
-        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$group_id));
+	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription') )
+             ||
+                (  !$userlogin->hasRights('user_edit_all') )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+
+        $config = array('user'=>$group);
+
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
@@ -396,7 +457,20 @@ class Groups extends Controller {
             echo "<div class='errormessage'>Unsubscribe topic: no valid group ID provided</div>";
         }
 
-        $topic = $this->topic_db->getByID($topic_id,array('userId'=>$group_id));
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_subscription') )
+             ||
+                (  !$userlogin->hasRights('user_edit_all') )
+            ) 
+        {
+	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        redirect('');
+        }
+
+        $config = array('user'=>$group);
+
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";

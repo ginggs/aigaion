@@ -108,6 +108,11 @@ UPDATE notes SET (read_access_level='private',edit_access_level='private') WHERE
 //rename 'publication.type' to 'publication.pub_type'
 ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT NULL 
 
+INSERT INTO `availablerights` (`name`,`description`) VALUES 
+ ('attachment_edit_all','edit all attachments, overriding access levels'),
+ ('topic_edit_all','edit all topics, overriding access levels'),
+ ('note_edit_all','edit all notes, overriding access levels');
+
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
 

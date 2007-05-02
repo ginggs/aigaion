@@ -5,19 +5,39 @@
     <li class="mainmenu"><?php echo anchor('topics', 'Topics'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications', 'Publicationlist'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
+<?php
+$ACCOUNT_MENU = "";
+if (getUserLogin()->hasRights('user_edit_self')) {
+    $ACCOUNT_MENU .= "<li class='mainmenu'>".anchor('users/edit/'.getUserLogin()->userId(), 'My Profile')."</li>";
+}
+if (getUserLogin()->hasRights('topic_subscription')) {
+    $ACCOUNT_MENU .= "<li class='mainmenu'>".anchor('users/topicreview/', 'Topic Review')."</li>";
+}
+if (getUserLogin()->hasRights('user_edit_all')) {
+    $ACCOUNT_MENU .= "<li class='mainmenu'>".anchor('users/manage', 'Manage All Accounts')."</li>";
+}
+if ($ACCOUNT_MENU != "") {
+?>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">ACCOUNT</li>
-    <li class="mainmenu"><?php echo anchor('users/edit/'.getUserLogin()->userId(), 'My Profile'); ?></li>
-    <li class="mainmenu"><?php echo anchor('users/topicreview/', 'Topic Review'); ?></li>
-    <li class="mainmenu"><?php echo anchor('users/manage', 'Manage All Accounts'); ?></li>
+<?
+    echo $ACCOUNT_MENU;
+}
+?>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">HELP</li>
     <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
     <li class="mainmenu"><?php echo anchor('help/view/about', 'About this site'); ?></li>
+<?php
+if (getUserLogin()->hasRights('database_manage')) {
+?>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">SITE</li>
     <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
     <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
+<?php
+}
+?>
     <li class="mainmenu-spacer"></li>
 <?php
 	if (getUserLogin()->isAnonymous()) {

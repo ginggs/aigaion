@@ -7,6 +7,7 @@ class Group {
   
     #ID
     var $group_id           = '';
+    var $user_id           = ''; //user_id == group_id, but some functions treat groups and users equally, and expect the user_id to be there
     #content variables; to be changed directly when necessary
     //name
     var $name               = '';

@@ -21,6 +21,8 @@ class User_db {
    
     function getFromRow($R)
     {
+        //no access rights check - for various reasons (e.g. finding abbreviations) we need
+        //to be able to read all accounts.
         $user = new User;
         $user->user_id            = $R->user_id;
         $user->initials           = $R->initials;
@@ -129,6 +131,10 @@ class User_db {
 
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
     function add($user) {
+        //add only allowed with right rights:
+        if (!getUserLogin()->hasRights('user_edit_all')) {
+            return -1;
+        }
         //add new user
         $type = 'normal';
         if ($user->isAnonymous) {
@@ -186,6 +192,20 @@ class User_db {
     /** Commit the changes in the data of the given user. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
     function commit($user) {
+        //check rights
+        $userlogin = getUserLogin();
+        if (     !$userlogin->hasRights('user_edit_all')
+             &&  
+                (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
+            ) {
+                return False;
+        }
+        //check whether this is the correct user...
+        $user_test = $this->CI->attachment_db->getByID($user->user_id);
+        if ($user_test == null) {
+            return False;
+        }
+        //determine value for type field
         $type = 'normal';
         if ($user->isAnonymous) {
             $type = 'anon';
@@ -231,9 +251,7 @@ class User_db {
         }
                                                
         //remove all rights, then add the right ones again
-        //foreach (getAvailableRights() as $right) {
-            $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
-        //}
+        $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
         //add rights
         foreach ($user->assignedrights as $right) {
             $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
