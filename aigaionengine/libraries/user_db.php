@@ -184,6 +184,7 @@ class User_db {
                 
             }
         }
+        $user->user_id = $new_id;
         
         $this->CI->topic_db->subscribeUser( $user,1);
         return $new_id;
@@ -201,7 +202,7 @@ class User_db {
                 return False;
         }
         //check whether this is the correct user...
-        $user_test = $this->CI->attachment_db->getByID($user->user_id);
+        $user_test = $this->CI->user_db->getByID($user->user_id);
         if ($user_test == null) {
             return False;
         }

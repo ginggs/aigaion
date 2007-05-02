@@ -20,6 +20,8 @@ class Group_db {
    
     function getFromRow($R)
     {
+        //no access rights check - for various reasons (e.g. finding abbreviations) we need
+        //to be able to read all accounts.
         $group = new Group;
         $group->group_id           = $R->user_id;
         $group->user_id           = $R->user_id;
@@ -72,6 +74,10 @@ class Group_db {
 
     /** Add a new group with the given data. Returns the new group_id, or -1 on failure. */
     function add($group) {
+        //add only allowed with right rights:
+        if (!getUserLogin()->hasRights('user_edit_all')) {
+            return -1;
+        }
         //add new group
         $this->CI->db->query(
             $this->CI->db->insert_string("users", array('surname'=>$group->name,'abbreviation'=>$group->abbreviation,'type'=>'group'))
@@ -82,6 +88,9 @@ class Group_db {
         foreach ($group->rightsprofile_ids as $rightsprofile_id) {
             $this->CI->db->query($this->CI->db->insert_string("grouprightsprofilelink",array('group_id'=>$new_id,'rightsprofile_id'=>$rightsprofile_id)));
         }
+        $group->user_id = $new_id;
+        $group->group_id = $new_id;
+        $this->CI->topic_db->subscribeUser( $group,1);
         
         return $new_id;
     }
@@ -89,6 +98,17 @@ class Group_db {
     /** Commit the changes in the data of the given group. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
     function commit($group) {
+        //check rights
+        $userlogin = getUserLogin();
+        if (     !$userlogin->hasRights('user_edit_all')
+            ) {
+                return False;
+        }
+        //check whether this is the correct group...
+        $group_test = $this->CI->group_db->getByID($group->group_id);
+        if ($group_test == null) {
+            return False;
+        }
  
         $updatefields =  array('surname'=>$group->name,'abbreviation'=>$group->abbreviation);
 
