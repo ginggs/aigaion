@@ -35,7 +35,9 @@ class Rightsprofiles extends Controller {
 	        appendErrorMessage("View rightsprofile: non-existing id passed");
 	        redirect('');
 	    }
-	    
+
+        //no additional rights check. Only, in the view the edit links may be suppressed depending on the user rights
+	    	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Rightsprofile';
@@ -70,6 +72,15 @@ class Rightsprofiles extends Controller {
     */
     function add()
 	{
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights'))
+            ) 
+        {
+	        appendErrorMessage('Add rights profile: insufficient rights.<br>');
+	        redirect('');
+        }
+
 	    $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
@@ -117,6 +128,16 @@ class Rightsprofiles extends Controller {
 	        redirect('');
 	    }
 	    
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+             ||
+                !$userlogin->hasRights('user_assign_rights')
+            ) 
+        {
+	        appendErrorMessage('Edit rights profile: insufficient rights.<br>');
+	        redirect('');
+        }
 	    
         //get output
         $headerdata = array();
@@ -166,6 +187,13 @@ class Rightsprofiles extends Controller {
 	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br>\n');
 	        redirect('');
 	    }
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all')) || !$userlogin->hasRights('user_assign_rights'))
+        {
+	        appendErrorMessage('Delete rights profile: insufficient rights.<br>');
+	        redirect('');
+        }
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
@@ -217,6 +245,17 @@ class Rightsprofiles extends Controller {
         if ($rightsprofile == null) {
             appendErrorMEssage("Commit rightsprofile: no data to commit<br/>");
             redirect ('');
+        }
+
+	    //check user rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('user_edit_all'))
+            ||
+                !$userlogin->hasRights('user_assign_rights')
+            ) 
+        {
+	        appendErrorMessage('Edit rights profile: insufficient rights.<br>');
+	        redirect('');
         }
         
         //validate form values.

@@ -11,6 +11,7 @@ class Rightsprofile_db {
     
     function getByID($rightsprofile_id)
     {
+        //no access rights check
         $Q = $this->CI->db->getwhere('rightsprofiles',array('rightsprofile_id'=>$rightsprofile_id));
         if ($Q->num_rows() > 0)
         {
@@ -20,6 +21,7 @@ class Rightsprofile_db {
         
     function getFromRow($R)
     {
+        //no access rights check 
         $rightsprofile = new Rightsprofile;
         foreach ($R as $key => $value)
         {
@@ -78,6 +80,10 @@ class Rightsprofile_db {
 
     /** Add a new rightsprofile with the given data. Returns the new rightsprofile_id, or -1 on failure. */
     function add($rightsprofile) {
+        //add only allowed with right rights:
+        if (!getUserLogin()->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights')) {
+            return -1;
+        }
         //add new rightsprofile
         $this->CI->db->query(
             $this->CI->db->insert_string("rightsprofiles", array('name'=>$rightsprofile->name))
@@ -94,7 +100,15 @@ class Rightsprofile_db {
     /** Commit the changes in the data of the given rightsprofile. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
     function commit($rightsprofile) {
- 
+         //check rights
+        $userlogin = getUserLogin();
+        if (     !$userlogin->hasRights('user_edit_all')
+             ||
+                 !$userlogin->hasRights('user_assign_rights')
+            ) {
+                return False;
+        }
+
         $updatefields =  array('name'=>$rightsprofile->name);
 
         $this->CI->db->query(

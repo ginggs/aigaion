@@ -24,6 +24,15 @@ class Site extends Controller {
     Returns a full html page with a site configuration form. */
 	function configure()
 	{
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('database_manage'))
+            ) 
+        {
+	        appendErrorMessage('Configure database: insufficient rights.<br>');
+	        redirect('');
+        }
+        
 	    $commit = $this->uri->segment(3,'');
 	    
 	    $this->load->library('validation');
@@ -81,6 +90,15 @@ class Site extends Controller {
 	*/
 	function maintenance()
 	{
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('database_manage'))
+            ) 
+        {
+	        appendErrorMessage('Configure database: insufficient rights.<br>');
+	        redirect('');
+        }
+
 	    $maintenance = $this->uri->segment(3,'');
 
 	    if ($maintenance != '') {

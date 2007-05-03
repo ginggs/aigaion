@@ -94,6 +94,12 @@ class Siteconfig_db {
 
     /** commit the config settings embodied in the given data */
     function commit($siteconfig) {
+        //check rights
+        $userlogin = getUserLogin();
+        if (     !$userlogin->hasRights('database_manage')
+            ) {
+                return;
+        }
         foreach ($siteconfig->configSettings as $setting=>$value) {
             if ($setting == 'ALLOWED_ATTACHMENT_EXTENSIONS') {
             	#check allowed extensions: all extensions should be prefixed with a . and should be trimmed of spaces
