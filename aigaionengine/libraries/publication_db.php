@@ -226,6 +226,63 @@ class Publication_db {
     return $publication;
   }
 
+  function validate($publication)
+  {
+    $validate_required    = array();
+    $validate_conditional = array();
+    $fields               = getPublicationFieldArray($publication->pub_type);
+    foreach ($fields as $field => $value)
+    {
+      if ($value == 'required')
+      {
+        $validate_required[$field] = 'required';
+      }
+      else if ($value == 'conditional')
+      {
+        $validate_conditional[$field] = 'conditional';
+      }
+    }
+    
+    $validation_message   = '';
+    foreach ($validate_required as $key => $value)
+    {
+      if (trim($publication->$key) == '')
+      {
+        $validation_message .= "The ".$key." field is required.<br/>\n";
+      }
+    }
+    
+    if (count($validate_conditional) > 0)
+    {
+      $conditional_validation = false;
+      $conditional_field_text = '';
+      
+      foreach ($validate_conditional as $key => $value)
+      {
+        if (trim($publication->$key) != '')
+        {
+          $conditional_validation = true;
+        }
+        $conditional_field_text .= $key.", ";
+      }
+      if (!$conditional_validation)
+      {
+        $validation_message .= "One of the fields ".$conditional_field_text." is required.<br/>\n";
+      }
+    }
+    
+    if ($validation_message != '')
+    {
+      appendErrorMessage("Changes not committed:<br/>\n".$validation_message);
+      return false;
+    }
+    else
+      return true;
+  }
+
+
+///////publication list functions
+
   function getForTopic($topic_id)
   {
     //we need merge functionality here, so initialze a merge cache

@@ -134,24 +134,8 @@ class Publications extends Controller {
   function commit()
   {
     $this->load->helper('specialchar');
-    $this->load->library('validation');
-    $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
-
-    $publication = $this->publication_db->getFromPost();
     
-    //validate form values; 
-    //validation rules: get required fields from publication field array
-    $validate_required  = array();
-    $fields             = getPublicationFieldArray($publication->pub_type);
-    foreach ($fields as $field => $value)
-    {
-      if ($value == 'required')
-      {
-        $validate_required[$field] = 'required';
-      }
-    }
-    $this->validation->set_rules($validate_required);
-    //$this->validation->set_fields(array( 'name' => 'Topic Name'));
+    $publication = $this->publication_db->getFromPost();
     
     //check the submit type, if 'type_change', we redirect to the edit form
     $submit_type = $this->input->post('submit_type');
@@ -160,7 +144,7 @@ class Publications extends Controller {
     {
       $this->edit($publication);
     }
-    else if ($this->validation->run())
+    else if ($this->publication_db->validate($publication))
     {
       //do actual commit
       
