@@ -248,5 +248,28 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
+  
+  function getForAuthor($author_id)
+  {
+    //we need merge functionality here, so initialze a merge cache
+    $this->crossref_cache = array();
+    $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
+    WHERE publicationauthorlink.author_id = ".$this->CI->db->escape($author_id)."
+    AND publication.pub_id = publicationauthorlink.pub_id
+    ORDER BY actualyear, cleantitle");
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+
+    unset($this->crossref_cache);
+    return $result;
+  }
 }
 ?>

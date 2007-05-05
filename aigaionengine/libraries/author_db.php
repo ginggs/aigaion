@@ -13,11 +13,11 @@ class Author_db {
   function getByID($author_id)
   {
     //retrieve one author row	  
-    $Q = $this->db->query("SELECT * FROM author WHERE author_id = ".$this->db->escape($author_id));
+    $Q = $this->CI->db->query("SELECT * FROM author WHERE author_id = ".$this->CI->db->escape($author_id));
     if ($Q->num_rows() == 1) 
     {
       //load the author
-      return $this->_getFromRow($Q->row());
+      return $this->getFromRow($Q->row());
     }
     else 
       return false;
@@ -66,7 +66,7 @@ class Author_db {
   
   function getFromArray($authorArray)
   {
-    return $this->_getFromRow($authorArray);
+    return $this->getFromRow($authorArray);
   }
   
   function getFromRow($R)
@@ -217,7 +217,7 @@ TODO:
     $result = array();
     
     //get all authors from the database, order by cleanname
-    $Q = $this->db->query('SELECT * FROM author ORDER BY cleanname');
+    $Q = $this->CI->db->query('SELECT * FROM author ORDER BY cleanname');
     
     //retrieve results or fail
     foreach ($Q->result() as $row)
@@ -235,17 +235,23 @@ TODO:
   {
     //select all authors from the database where the cleanname begins with the characters
     //as given in $cleanname
-    $Q = $this->db->query('SELECT * FROM author 
+    $Q = $this->CI->db->query('SELECT * FROM author 
                            WHERE cleanname LIKE "'.addslashes($cleanname).'%" 
                            ORDER BY cleanname');
     
     //retrieve results or fail
-    if ($Q->num_rows() > 0)
+    $result = array();
+    foreach ($Q->result() as $row)
     {
-      return $this->_loadFromResult($Q);
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
     }
-    else
-      return false;
+    
+    return $result;
+
   }
   
   function getForPublication($pub_id, $is_editor = 'N')
@@ -253,11 +259,11 @@ TODO:
     $result = array();
     
     //retrieve authors and editors
-    $Q = $this->CI->db->query("SELECT * FROM author, publicationauthor 
-                           WHERE author.author_id = publicationauthor.author
-                           AND publicationauthor.pub_id = ".$this->CI->db->escape($pub_id)."
-                           AND is_editor = ".$this->CI->db->escape($is_editor)."
-                           ORDER BY publicationauthor.rank");
+    $Q = $this->CI->db->query("SELECT * FROM author, publicationauthorlink 
+                           WHERE author.author_id = publicationauthorlink.author_id
+                           AND publicationauthorlink.pub_id = ".$this->CI->db->escape($pub_id)."
+                           AND publicationauthorlink.is_editor = ".$this->CI->db->escape($is_editor)."
+                           ORDER BY publicationauthorlink.rank");
     
     //retrieve results or fail                       
     foreach ($Q->result() as $row)

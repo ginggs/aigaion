@@ -1,6 +1,6 @@
 
 <div class='author_list'>
-  <div class='header'><?php echo $authorlist->header ?></div>
+  <div class='header'><?php echo $header ?></div>
 <?php 
 echo "    ".form_open('authors/searchlist')."\n";
 echo "    ".form_input(array('name' => 'author_search', 'id' => 'author_search', 'size' => '50', 'autocomplete' => 'off'));

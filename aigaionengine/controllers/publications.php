@@ -64,6 +64,29 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
+  function showlist()
+  {
+ 	      $this->load->helper('publication');
+    
+        //get output
+        $headerdata                 = array();
+        $headerdata['title']        = 'Publication list';
+        
+        $content['header']          = 'All publications';
+        $content['publications']    = $this->publication_db->getForTopic('1');
+        
+        $output = $this->load->view('header', $headerdata, true);
+        $output .= $this->load->view('publications/list', $content, true);
+        
+        
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);
+
+  }
+  
   //edit() - Call publication edit form. When no ID is given: new publicationform
   function edit($publication = "")
   {
@@ -105,6 +128,7 @@ class Publications extends Controller {
   {
     echo "Single publication delete";
   }
+  
   
   //commit() - Commit the posted publication to the database
   function commit()
@@ -150,27 +174,118 @@ class Publications extends Controller {
     }
   }
 
-  function showlist()
-  {
- 	      $this->load->helper('publication');
+/**
+    publications/subscribe
     
-        //get output
-        $headerdata                 = array();
-        $headerdata['title']        = 'Publication list';
+    Susbcribes a publication to a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'publicationsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    susbcribe requested for non-existing topic or publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: publication_id 
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function subscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $pub_id = $this->uri->segment(4,-1);
         
-        $content['header']          = 'testheader';
-        $content['publications']    = $this->publication_db->getForTopic('1');
-        
-        $output = $this->load->view('header', $headerdata, true);
-        $output .= $this->load->view('publications/list', $content, true);
-        
-        
-        
-        $output .= $this->load->view('footer','', true);
+        $this->load->model('publication_model');
+        $publication = new Publication_model;
+        $publication->loadByID($pub_id);
+        if ($publication == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
+        }
 
-        //set output
-        $this->output->set_output($output);
+        $config = array('publicationId'=>$pub_id);
+        $topic = $this->topic_db->getByID($topic_id,$config);
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->subscribePublication();
 
+        echo "<div/>";
+    }    
+    
+        
+    /**
+    publications/unsubscribe
+    
+    Unsusbcribes a publication from a topic. Is normally called async, without processing the
+    returned partial, by clicking a subscribe link in a topic tree rendered by 
+    subview 'publicationsubscriptiontreerow' 
+    
+	Fails with error message when one of:
+	    unsusbcribe requested for non-existing topic or publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: topic_id
+	    4rd segment: publication_id 
+	         
+    Returns a partial html fragment:
+        an empty div if successful
+        an div containing an error message, otherwise
+    
+    */
+    function unsubscribe() {    
+        $topic_id = $this->uri->segment(3,-1);
+        $pub_id = $this->uri->segment(4,-1);
+        
+        $this->load->model('publication_model');
+        $publication = new Publication_model;
+        $publication->loadByID($pub_id);
+        if ($publication == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
+        }
+        $config = array('publicationId'=>$pub_id);
+        $topic = $this->topic_db->getByID($topic_id,$config);
+        
+        if ($topic == null) {
+            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+        }
+        //do subscribe
+        $topic->unsubscribePublication();
+
+        echo "<div/>";
+    }    
+    
+  function li_keywords()
+  {
+   
+   
+    $keywords = $this->input->post('authors');
+    if (!$keywords)
+      $keywords = $this->input->post('editors');
+    
+    if (!$keywords)
+      $keywords = $this->input->post('keywords');
+    
+    if ($keywords != "")
+    {
+      $this->db->select('cleanname');
+      $this->db->from('author');
+      $this->db->like('cleanname', $keywords);
+      $this->db->orderby('cleanname');
+      $this->db->limit('50');
+      $Q = $this->db->get();
+      
+      if ($Q->num_rows() > 0)
+      {
+        echo $this->load->view('li_keywords', array('keywords' => $Q->result()), true);
+      }
+    }
+   
   }
 }
 ?>

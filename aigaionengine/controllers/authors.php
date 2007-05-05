@@ -13,37 +13,44 @@ class Authors extends Controller {
 	}
 
   //show() - Call single author overview
-  function show()
+  function show($author_id)
   {
-    $this->load->helper('publication');
-    $this->load->model('author_model');
-    $this->load->model('publication_list_model');
+    if (!is_numeric($author_id))
+    {
+      //retrieve author ID
+      $author_id   = $this->uri->segment(3);
+    }
     
-    $author           = new Author_model;
-    $publicationlist  = new Publication_list_model;
-    
-    //retrieve author ID
-    $author_id        = $this->uri->segment(3);
-    
-    if (!$author_id)
-      $author_id      = 1;
-      
     //load author
-    $author->loadByID($author_id);
+    $author = $this->author_db->getByID($author_id);
+    if ($author == null)
+    {
+      appendErrorMessage("View Author: non-existing author id passed");
+      redirect('');
+    }
     
-    //get author's publications
-    $publicationlist->loadForAuthor($author_id);
-    $publicationlist->header = "Publications of ".$author->data->getName();
+    $this->load->helper('publication');
+    
+    
+    //set header data
+    $header ['title']       = 'Aigaion 2.0 - '.$author->getName();
+    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     
     //set data
-    $header ['title']           = 'Aigaion 2.0 - '.$author->data->getName();
-    $content['author']          = $author;
-    $content['publicationlist'] = $publicationlist;
+    $authorContent['author']            = $author;
+    $publicationContent['header']       = 'Publications of '.$author->getName();
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id);
+
     
     //get output
-    $output  = $this->load->view('header',              $header,  true);
-    $output .= $this->load->view('authors/single',      $content, true);
-    $output .= $this->load->view('footer',              '',       true);
+    $output  = $this->load->view('header',              $header,        true);
+    $output .= $this->load->view('authors/single',      $authorContent, true);
+    
+    if ($publicationContent['publications'] != null) {
+      $output .= $this->load->view('publications/list', $publicationContent, true);
+    }
+    
+    $output .= $this->load->view('footer',              '',             true);
     
     //set output
     $this->output->set_output($output);  
@@ -82,14 +89,15 @@ class Authors extends Controller {
   function _authorlist()
   {
     $this->load->helper('form');
-    $this->load->model('author_list_model');
-    $authorList = new Author_list_model;
-    $authorList->loadAll();
-    $authorList->header = "All authors in the database";
+    
+    $authorList = $this->author_db->getAllAuthors();
+    
+    
     
     //set header data
-    $header ['title']         = 'Aigaion 2.0 - '.$authorList->header;
+    $header ['title']         = 'Aigaion 2.0 - Authors';
     $header ['javascripts']   = array('prototype.js');
+    $content['header']        = "All authors in the database";
     $content['authorlist']    = $authorList;
     
     //get output
@@ -111,10 +119,8 @@ class Authors extends Controller {
     }
     else
     {
-      $author_search = $this->uri->segment(3);
-      $this->load->model('author_list_model');
-      $authorList = new Author_list_model;
-      $authorList->loadWhere($author_search);
+      $author_search  = $this->uri->segment(3);
+      $authorList     = $this->author_db->getAuthorsLike($author_search);
       echo $this->load->view('authors/list_items', array('authorlist' => $authorList), true);
     }
   }
