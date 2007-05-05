@@ -112,6 +112,15 @@ INSERT INTO `availablerights` (`name`,`description`) VALUES
  ('attachment_edit_all','edit all attachments, overriding access levels'),
  ('topic_edit_all','edit all topics, overriding access levels'),
  ('note_edit_all','edit all notes, overriding access levels');
+ 
+------ May 5, 2007 ------
+//rename publicationauthor.author to publicationauthor.author_id
+ALTER TABLE `publicationauthor` CHANGE `author` `author_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0';
+
+//rename publicationauthor table to publicationauthorlink
+ALTER TABLE `publicationauthor` RENAME TO `publicationauthorlink`;
+
+-------------------------
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
