@@ -269,7 +269,31 @@ class Publications extends Controller {
         echo $this->load->view('li_keywords', array('keywords' => $Q->result()), true);
       }
     }
-   
+  }
+  
+  function jaro()
+  {
+    $header ['title']       = "Aigaion 2.0 - ";
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $this->load->helper('specialchar');
+    
+    $str_a = $this->uri->segment(3);
+    $str_b = $this->uri->segment(4);
+    
+    for ($i = 0; $i < 1000; $i++)
+    {
+      levenshtein($str_a, $str_b);
+      //jaroSimilarity($str_a, $str_b);
+    }
+    
+    $output .= $this->load->view('footer',              '',       true);
+    
+    $this->output->set_output($output);
+    
   }
 }
 ?>

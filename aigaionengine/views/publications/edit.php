@@ -53,7 +53,7 @@
       <td>
 <?php
         $authors = array();
-        if (count($publication->authors) > 0)
+        if (is_array($publication->authors))
         {
           foreach ($publication->authors as $author)
           {
@@ -74,7 +74,7 @@
       <td>
 <?php
         $editors = array();
-        if (count($publication->editors) > 0)
+        if (is_array($publication->editors))
         {
           foreach ($publication->editors as $author)
           {

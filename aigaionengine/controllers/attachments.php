@@ -138,10 +138,7 @@ class Attachments extends Controller {
 	function add() {
 	    $pub_id = $this->uri->segment(3);
         
-        $this->load->model('publication_model');
-        $publication = new Publication_model;
-        $publication->loadByID($pub_id);
-        
+        $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
             echo "<div class='errormessage'>Add atachment: no valid publication ID provided</div>";
         }
@@ -165,9 +162,9 @@ class Attachments extends Controller {
 	        redirect('');
         }
 
-        //get output: a full web page with a 'confirm delete' form
+        //get output: a full web page with a 'attachment add' form
         $headerdata = array();
-        $headerdata['title'] = 'Attachment: delete';
+        $headerdata['title'] = 'Attachment: add';
         
         $output = $this->load->view('header', $headerdata, true);
 

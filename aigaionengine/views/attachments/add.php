@@ -10,14 +10,14 @@ Parameters:
 $this->load->helper('form');
 echo "<div class='editform'>";
 echo form_open_multipart('attachments/commit','',array('action'=>'add',
-                                                       'pub_id'=>$publication->data->pub_id,
+                                                       'pub_id'=>$publication->pub_id,
                                                        'isremote'=>False,
                                                        'ismain'=>False));
 //formname is used to check whether the POST data is coming from the right form.
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
-echo "<p class='header2'>Upload new attachment from this computer for \"".$publication->data->title."\"</p>";
+echo "<p class='header2'>Upload new attachment from this computer for \"".$publication->title."\"</p>";
 echo "
     <table>
         <tr><td><label for='upload'>Select a file...</label></td>
@@ -56,14 +56,14 @@ echo "</div>";
 
 echo "<div class='editform'>";
 echo form_open_multipart('attachments/commit','',array('action'=>'add',
-                                                       'pub_id'=>$publication->data->pub_id,
+                                                       'pub_id'=>$publication->pub_id,
                                                        'isremote'=>True,
                                                        'ismain'=>False));
 //formname is used to check whether the POST data is coming from the right form.
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
-echo "<p class='header2'>Add new attachment (or web site) as a link, without uploading, for \"".$publication->data->title."\"</p>";
+echo "<p class='header2'>Add new attachment (or web site) as a link, without uploading, for \"".$publication->title."\"</p>";
 echo "
     <table>
         <tr><td><label for='location'>Location of file or web address</label></td>

@@ -410,4 +410,197 @@ function getLatinCharsReplaceArray()
 			"\\~{O}"
 	);
 }
+
+//jaro winkler distance for name matching
+//see: http://en.wikipedia.org/wiki/Jaro-Winkler
+function jaroSimilarity($str_a, $str_b)
+{
+  //we work on all lowercase strings
+  $str_a      = strtolower($str_a);
+  $str_b      = strtolower($str_b);
+  
+  //initialize working variables
+  $m          = 0;                      //number of matching characters
+  $t          = 0;                      //number of transpositions for matches
+  $a          = strlen($str_a);         //size of string a
+  $b          = strlen($str_b);         //size of string b
+  $match_wnd  = ceil(max($a, $b) / 2) - 1;  //size of the matching window
+  if ($match_wnd < 0)
+    $match_wnd = 0;
+
+/*
+  //for each character in $str_a
+  for ($i = 0; $i < $a; $i++)
+  {
+    $char = $str_a{$i};                 //character to match
+    
+    //set match window limits
+    $neg_lim = $i - $match_wnd;
+    if ($neg_lim < 0)
+      $neg_lim = 0;
+      
+    $pos_lim = $i + $match_wnd;
+    if ($pos_lim > $b)
+      $pos_lim = $b;
+      
+    //search within the match window, first in postive direction
+    $pos_found      = false;
+    $pos_transport  = 0;
+    
+    $startpos = $i;
+    if ($startpos >= $b)
+    {
+      $startpos = $b-1;
+    }
+    for ($j = $startpos; $j < $pos_lim; $j++)
+    {
+      if (!$pos_found)
+      {
+        if ($char == $str_b{$j})          //found a match?
+        {
+          $pos_transport += $j - $i;
+          $pos_found      = true;
+        }
+      }
+    }
+    
+    //then in negative direction
+    $neg_found      = false;
+    $neg_transport  = 0;
+    
+    for ($j = $startpos; $j >= $neg_lim; $j--)
+    {
+      if (!$neg_found)
+      {
+        if ($char == $str_b{$j})          //found a match?
+        {
+          $neg_transport += $i - $j;
+          $neg_found      = true;
+        }
+      }
+    }
+    
+    if ($pos_found && $neg_found)
+    {
+      $m++;
+      if ($pos_transport <= $neg_transport)
+      {
+        $t += $pos_transport;
+      }
+      else
+      {
+        $t += $neg_transport;
+      }
+    }
+    else if ($pos_found && !$neg_found)
+    {
+      $m++;
+      $t += $pos_transport;
+    }
+    else if (!$pos_found && $neg_found)
+    {
+      $m++;
+      $t += $neg_transport;
+    }
+  }
+*/  
+  $jaro = jaroWindowFind($str_a, $str_b, $a, $b, $match_wnd);
+  $m_a  = $jaro['m'];
+  $t   += $jaro['t'];
+  
+  $jaro = jaroWindowFind($str_b, $str_a, $b, $a, $match_wnd);
+  $m_b  = $jaro['m'];
+  $t   += $jaro['t'];
+  
+  $m = $m_a + $m_b;
+  if ($m > 0)
+  {
+    $similarity = ($m_a / $a) + ($m_b / $b) + (($m - $t) / $m);
+    return $similarity / 3;
+  }
+  else
+    return 0;
+}
+
+function jaroWindowFind($str_a, $str_b, $a, $b, $match_wnd)
+{
+  $t = 0;
+  $m = 0;
+   //for each character in $str_a
+  for ($i = 0; $i < $a; $i++)
+  {
+    $char = $str_a{$i};                 //character to match
+    
+    //set match window limits
+    $neg_lim = $i - $match_wnd;
+    if ($neg_lim < 0)
+      $neg_lim = 0;
+      
+    $pos_lim = $i + $match_wnd + 1;
+    if ($pos_lim > $b)
+      $pos_lim = $b;
+      
+    //search within the match window, first in postive direction
+    $pos_found      = false;
+    $pos_transport  = 0;
+    
+    $startpos = $i;
+    if ($startpos >= $b)
+    {
+      $startpos = $b-1;
+    }
+    for ($j = $startpos; $j < $pos_lim; $j++)
+    {
+      if (!$pos_found)
+      {
+        if ($char == $str_b{$j})          //found a match?
+        {
+          $pos_transport += abs($i - $j);
+          $pos_found      = true;
+        }
+      }
+    }
+    
+    //then in negative direction
+    $neg_found      = false;
+    $neg_transport  = 0;
+    
+    for ($j = $startpos; $j >= $neg_lim; $j--)
+    {
+      if (!$neg_found)
+      {
+        if ($char == $str_b{$j})          //found a match?
+        {
+          $neg_transport += abs($i - $j);
+          $neg_found      = true;
+        }
+      }
+    }
+    
+    if ($pos_found && $neg_found)
+    {
+      $m++;
+      if ($pos_transport <= $neg_transport)
+      {
+        $t += $pos_transport;
+      }
+      else
+      {
+        $t += $neg_transport;
+      }
+    }
+    else if ($pos_found && !$neg_found)
+    {
+      $m++;
+      $t += $pos_transport;
+    }
+    else if (!$pos_found && $neg_found)
+    {
+      $m++;
+      $t += $neg_transport;
+    }
+  }
+  
+  return array('m' => $m, 't' => $t);
+}
 ?>

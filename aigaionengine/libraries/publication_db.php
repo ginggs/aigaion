@@ -193,7 +193,9 @@ class Publication_db {
       {
         $author       = $this->CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
         if ($author  != null)
-        $authors[]  = $author;
+        {
+          $authors[]  = $author;
+        }
         else
         {
           $author     = $this->CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
