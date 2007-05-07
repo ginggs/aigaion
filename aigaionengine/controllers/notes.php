@@ -74,9 +74,7 @@ class Notes extends Controller {
 	{
 	    $pub_id = $this->uri->segment(3);
         
-        $this->load->model('publication_model');
-        $publication = new Publication_model;
-        $publication->loadByID($pub_id);
+        $publication = $this->publication_db->getByID($pub_id);
         
         if ($publication == null) {
             echo "<div class='errormessage'>Add note: no valid publication ID provided</div>";

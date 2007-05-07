@@ -182,9 +182,7 @@ class Publications extends Controller {
         $topic_id = $this->uri->segment(3,-1);
         $pub_id = $this->uri->segment(4,-1);
         
-        $this->load->model('publication_model');
-        $publication = new Publication_model;
-        $publication->loadByID($pub_id);
+        $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
         }
@@ -226,9 +224,7 @@ class Publications extends Controller {
         $topic_id = $this->uri->segment(3,-1);
         $pub_id = $this->uri->segment(4,-1);
         
-        $this->load->model('publication_model');
-        $publication = new Publication_model;
-        $publication->loadByID($pub_id);
+        $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
         }
