@@ -26,6 +26,18 @@
       endif;
     endforeach;
 
+    $keywords = $publication->getKeywords();
+    if (is_array($keywords))
+    {
+      $keywords = implode($keywords, ', ');
+?>      
+    <tr>
+      <td valign='top'>Keywords:</td>
+      <td valign='top'><?php echo $keywords ?></td>
+    </tr>
+<?php
+    }
+
     if (count($publication->authors) > 0):
 ?>
     <tr>

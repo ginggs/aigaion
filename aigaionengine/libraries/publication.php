@@ -58,12 +58,10 @@ class Publication {
   var $read_access_level  = 'intern';
   var $edit_access_level  = 'intern';
    
-
-  var $keywords     = null;
-  
   var $authors      = array(); //array of plain author class
   var $editors      = array(); //array of plain author class
   
+  var $keywords     = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getKeywords()
   var $attachments  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getAttachments()
   var $notes        = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getNotes()
   
@@ -88,12 +86,20 @@ class Publication {
     return $this->CI->publication_db->commit($this);
   }
   
+  function getKeywords()
+  {
+    //if ($this->keywords == null)
+    //{
+      $this->keywords = $this->CI->keyword_db->getKeywordsForPublication($this->pub_id);
+    //}
+    return $this->keywords;
+  }
+  
   function getAttachments() 
   {
     if ($this->attachments == null) 
     {
-        $CI = &get_instance();
-        $this->attachments = $CI->attachment_db->getAttachmentsForPublication($this->pub_id);
+        $this->attachments = $this->CI->attachment_db->getAttachmentsForPublication($this->pub_id);
     }
     return $this->attachments;
   }
@@ -102,8 +108,7 @@ class Publication {
   {
     if ($this->notes == null) 
     {
-        $CI = &get_instance();
-        $this->notes = $CI->note_db->getNotesForPublication($this->pub_id);
+        $this->notes = $this->CI->note_db->getNotesForPublication($this->pub_id);
     }
     return $this->notes;
   }

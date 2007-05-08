@@ -120,7 +120,74 @@ ALTER TABLE `publicationauthor` CHANGE `author` `author_id` INT( 10 ) UNSIGNED N
 //rename publicationauthor table to publicationauthorlink
 ALTER TABLE `publicationauthor` RENAME TO `publicationauthorlink`;
 
--------------------------
+------ May 8, 2007 ------
+
+//add table `keywords` ('keyword_id' INT(10) autoinc,'keyword' text) 
+CREATE TABLE `keywords` (
+`keyword_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`keyword` text NOT NULL
+);
+
+
+//add table `publicationkeywordlink` (pub_id INT(10), keyword_id INT(10))
+CREATE TABLE `publicationkeywordlink` (
+`pub_id` INT( 10 ) NOT NULL ,
+`keyword_id` INT( 10 ) NOT NULL ,
+PRIMARY KEY (`pub_id`, `keyword_id` )
+);
+
+//copy keyword values to new keyword table, this has to be done in php, place in some controller function and run once
+  function kw_convert()
+  {
+    $Q = $this->db->query("SELECT pub_id, keywords FROM publication");
+    
+    $keyword_array = array();
+    foreach ($Q->result() as $row)
+    {
+      $keywords = preg_replace(
+						'/ *([^,]+)/',
+						"###\\1",
+						$row->keywords);
+						
+      $keywords = explode('###', $keywords);
+      foreach ($keywords as $keyword)
+      {
+        if (trim($keyword) != '')
+        {
+          if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
+            $keyword = substr($keyword, 0, strlen($keyword) - 1);
+          
+          $keyword_array[] = array('pub_id' => $row->pub_id, 'keyword' => ucfirst($keyword));
+        }
+      }
+    }
+    
+    foreach ($keyword_array as $entry)
+    {
+      $Q = $this->db->query("SELECT keyword_id FROM keywords WHERE keyword='".$entry['keyword']."'");
+      if ($Q->num_rows() > 0)
+      {
+        foreach ($Q->result() as $row)
+        {
+          $keyword_id = $row->keyword_id;
+        }
+      }
+      else
+      {
+        $Q = $this->db->query("INSERT INTO keywords (keyword) VALUES (".$this->db->escape($entry['keyword']).")");
+        $keyword_id = $this->db->insert_id();
+      }
+      
+      $Q = $this->db->query("INSERT INTO publicationkeywordlink (pub_id, keyword_id) VALUES (".$entry['pub_id'].", ".$keyword_id.");");
+      
+      if ($this->db->affected_rows() == 1)
+      {
+        echo "Insert pub_id ".$entry['pub_id'].": keyword_id ".$keyword_id."<br/>";
+      }
+    }
+  }
+
+
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

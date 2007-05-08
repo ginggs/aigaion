@@ -35,18 +35,27 @@
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'autocomplete' => 'off', 'class' => $class), $publication->$key)."\n";
-      
-      if ($key == 'keywords'): ?>
-        <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
-        </div>
-        <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/publications/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=>',', 'frequency' => '0.01'))."\n";?>
-      </td>
+      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key);?></span></td>
     </tr>
 <?php
-      endif; //keywords
-      endif; //class hidden
+      endif; //class != hidden
     endforeach;
+
+    $keywords = $publication->getKeywords();
+    if (is_array($keywords))
+      $keywords = implode($keywords, ', ');
+    else
+      $keywords = "";
+      
+      $key    = 'keyword';
+      $class  = 'optional';
+?>      
+    <tr>
+      <td valign='top'>Keywords:</td>
+      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span></td>
+    </tr>
+<?php
+
 ?>
     <tr>
       <td valign='top'>Authors:</td>
