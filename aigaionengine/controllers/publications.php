@@ -71,6 +71,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
+        $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $content['header']          = 'All publications';
         $content['publications']    = $this->publication_db->getForTopic('1');

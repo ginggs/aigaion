@@ -245,7 +245,27 @@ class Topic_db {
     /** Commit the changes in the data of the given topic. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
     function commit($topic) {
- 
+        if ($topic->topic_id==1) {
+            appendErrorMessage("You cannot edit the top level topic<br>");
+            return;
+        }
+        if ($topic->parent_id < 0)$topic->parent_id=1;
+        //check parent for non-circularity (!). Actually, this should be done in a validation callback on the edit forms!
+    	$nexttopic_id = $topic->parent_id;
+    	while ($nexttopic_id != 1) {
+    		if ($nexttopic_id == $topic->topic_id) {
+    			appendErrorMessage("You cannot set a topic to be its own ancestor.<br>");
+    			return False;
+    		}
+    		$res = mysql_query("SELECT target_topic_id FROM topictopiclink WHERE source_topic_id=$nexttopic_id");
+    		if ($res && $row=mysql_fetch_array($res)) {
+    			$nexttopic_id = $row["target_topic_id"];
+    		} else {
+    			appendErrorMessage("Error in the tree structure: the intended new parent is not connected to the top level topic.<br>");
+    			return False;
+    		}
+    	}
+
         $updatefields =  array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url);
 
         $this->CI->db->query(
@@ -256,7 +276,6 @@ class Topic_db {
                                                
         //remove and set parent link
         $this->CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
-        if ($topic->parent_id < 0)$topic->parent_id=1;
         $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
         
         return True;

@@ -128,6 +128,12 @@ class Publication_db {
     $publication->authors = $this->CI->author_db->getForPublication($R->pub_id, 'N');
     $publication->editors = $this->CI->author_db->getForPublication($R->pub_id, 'Y');
 
+    //check if this publication was bookmarked by the logged user
+    $Q = $this->CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".getUserLogin()->userId()." AND pub_id=".$R->pub_id);
+    if ($Q->num_rows()>0) {
+        $publication->isBookmarked = True;
+    }
+    
     return $publication;
   }
 
@@ -330,5 +336,28 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
+  
+  /** Return a list of publications for the bookmark list of the logged user */
+  function getForBookmarkList()
+  {
+    $user_id = getUserLogin()->userId();
+    $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
+    WHERE userbookmarklists.user_id=".$user_id."
+    AND   userbookmarklists.pub_id=publication.pub_id
+    ORDER BY actualyear, cleantitle");
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+    return $result;
+  }
+  
+
 }
 ?>

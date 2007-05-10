@@ -6,6 +6,12 @@
     <li class="mainmenu"><?php echo anchor('publications', 'Publicationlist'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
 <?php
+if (getUserLogin()->hasRights('bookmarklist')) {
+?>
+    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My bookmark list'); ?></li>
+<?php
+}
+
 $ACCOUNT_MENU = "";
 if (getUserLogin()->hasRights('user_edit_self')) {
     $ACCOUNT_MENU .= "<li class='mainmenu'>".anchor('users/edit/'.getUserLogin()->userId(), 'My Profile')."</li>";

@@ -187,11 +187,23 @@ PRIMARY KEY (`pub_id`, `keyword_id` )
     }
   }
 
+//=== 10-5-2007
+
+//persistent bookmark lists
+
+CREATE TABLE `userbookmarklists` (
+`user_id` INT( 10 ) NOT NULL ,
+`pub_id` INT( 10 ) NOT NULL ,
+PRIMARY KEY (`user_id`, `pub_id` )
+);
+
+INSERT INTO `availablerights` (`name`,`description`) VALUES 
+ ('bookmarklist','use a persistent bookmarklist');
 
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 
-
+enlarge the 'series' field
 drop irrelevant legacy columns
 drop col 'users.u_rights'
 drop col 'users.csname'

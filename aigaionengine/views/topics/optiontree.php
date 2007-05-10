@@ -12,6 +12,7 @@
     if (!isset($depth))$depth = -1;
     if (!isset($showroot))$showroot = False;
     if (!isset($selected))$selected = 1;
+    if (!isset($dropdownname))$dropdownname = 'parent_id';
     
     $todo = array();
     if (isset($topics)) {
@@ -58,7 +59,7 @@
         }
          //reindex
     }    
-    echo form_dropdown('parent_id',$options,$selected);
+    echo form_dropdown($dropdownname,$options,$selected);
     
 ?>
 <!-- End of topic  browse displays -->

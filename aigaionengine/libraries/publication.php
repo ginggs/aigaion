@@ -21,6 +21,7 @@ class Publication {
   var $cleanjournal = '';
   var $actualyear   = '';
   var $CI           = null;
+  var $isBookmarked = False;
   
   //user vars
   var $pub_type     = '';
