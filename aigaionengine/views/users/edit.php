@@ -10,6 +10,10 @@ Parameters:
 If $user is null, the edit for will be restyled as an 'add new user' form
 if $user is not null, but $action == 'add', the edit form will be restyled as a
 pre filled 'add new user' form
+
+we assume that this view is not loaded if you don't have the appropriate read and edit rights
+
+the rights-checkboxes and group assignment however are still visible only contingent on the appropriate rights
 */
 $this->load->helper('form');
 echo "<div class='editform'>";
@@ -126,15 +130,21 @@ echo "
                           'value'=>'',
                           'AUTOCOMPLETE'=>'off'))."
         </td>
-        </tr>
+        </tr>";
+
+if (getUserLogin()->hasRights('user_edit_all')) {
+    echo "        
         <tr>
         <td>Anonymous account (check if this account is an anonymous (guest) account)</td>
         <td>"
         .form_checkbox('isAnonymous','isAnonymous',$user->isAnonymous)."
         </td>
-        </tr>
-        
+        </tr>";
+}
 
+
+if (getUserLogin()->hasRights('user_edit_all')) {
+    echo "   
         <tr><td colspan='2'>
         <hr><b>Groups:</b><hr>
         The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
@@ -148,57 +158,60 @@ echo "
             if (in_array($group->group_id,$user->group_ids)) $checked=TRUE;
             echo "<tr><td>".$group->name."</td><td>".form_checkbox('group_'.$group->group_id, 'group_'.$group->group_id, $checked)."</td></tr>";
         }
-
-        
-echo    "
-
-        <tr><td colspan='2'>
-        <hr><b>User rights:</b><hr>
-        </td></tr>
-        
-        <tr>
-        <td>Check all rights from the following rights profile</td>
-        <td>
-        ";
-        
-$options = array();
-foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
-    $options[$profile->rightsprofile_id] = $profile->name;
 }
-echo form_dropdown('checkrightsprofile', $options);
-echo "[button to submit asynch request which will receive a script that updates the rights elements]";
 
-echo "
-        </td>
-        </tr>
         
-        <tr>
-        <td>Uncheck all rights from the following rights profile</td>
-        <td>
-        ";
-        
-$options = array();
-foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
-    $options[$profile->rightsprofile_id] = $profile->name;
+if (getUserLogin()->hasRights('user_assign_rights')) {
+        echo "   
+    
+            <tr><td colspan='2'>
+            <hr><b>User rights:</b><hr>
+            </td></tr>
+            
+            <tr>
+            <td>Check all rights from the following rights profile</td>
+            <td>
+            ";
+            
+    $options = array();
+    foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
+        $options[$profile->rightsprofile_id] = $profile->name;
+    }
+    echo form_dropdown('checkrightsprofile', $options);
+    echo "[button to submit asynch request which will receive a script that updates the rights elements]";
+    
+    echo "
+            </td>
+            </tr>
+            
+            <tr>
+            <td>Uncheck all rights from the following rights profile</td>
+            <td>
+            ";
+            
+    $options = array();
+    foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
+        $options[$profile->rightsprofile_id] = $profile->name;
+    }
+    echo form_dropdown('uncheckrightsprofile', $options);
+    echo "[button to submit asynch request which will receive a script that updates the rights elements]";
+    
+    echo "
+            </td>
+            </tr>
+            
+            <tr><td colspan=2>
+            <hr>
+            </td></tr>
+            ";
+            
+            //list all userrights as checkboxes
+            foreach (getAvailableRights() as $right=>$description) {
+                $checked = FALSE;
+                if (in_array($right,$user->assignedrights)) $checked=TRUE;
+                echo "<tr><td>".form_checkbox($right, $right, $checked).$right."</td><td>".$description."</td></tr>";
+            }
 }
-echo form_dropdown('uncheckrightsprofile', $options);
-echo "[button to submit asynch request which will receive a script that updates the rights elements]";
-
-echo "
-        </td>
-        </tr>
-        
-        <tr><td colspan=2>
-        <hr>
-        </td></tr>
-        ";
-        
-        //list all userrights as checkboxes
-        foreach (getAvailableRights() as $right=>$description) {
-            $checked = FALSE;
-            if (in_array($right,$user->assignedrights)) $checked=TRUE;
-            echo "<tr><td>".form_checkbox($right, $right, $checked).$right."</td><td>".$description."</td></tr>";
-        }
 
 echo "
         

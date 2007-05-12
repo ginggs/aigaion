@@ -49,7 +49,7 @@ class Notes extends Controller {
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin = getUserLogin();
-        if (    (!$userlogin->hasRights('note_edit'))
+        if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
              ||
@@ -100,7 +100,7 @@ class Notes extends Controller {
 	    //edit_access_level and the user edit rights
 	    //in this case it's mostly the rights on the publication that determine access
         $userlogin = getUserLogin();
-        if (    (!$userlogin->hasRights('note_edit'))
+        if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
              ||
@@ -149,7 +149,7 @@ class Notes extends Controller {
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin = getUserLogin();
-        if (    (!$userlogin->hasRights('note_edit'))
+        if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
              ||

@@ -6,6 +6,8 @@ Shows the confirm form for deleting a group.
 
 Parameters:
     $group=>the Group object that is to be deleted
+
+we assume that this view is not loaded if you don't have the appropriate read and edit rights
 */
 $this->load->helper('form');
 echo "<div class='confirmform'>";

@@ -10,7 +10,12 @@ Parameters:
 If $group is null, the edit for will be restyled as an 'add new group' form
 if $group is not null, but $action == 'add', the edit form will be restyled as a
 pre filled 'add new group' form
+
+we assume that this view is not loaded if you don't have the appropriate read and edit rights
+
+the rights-checkboxes however are still visible only contingent on the appropriate rights
 */
+
 $this->load->helper('form');
 echo "<div class='editform'>";
 echo form_open('groups/commit');
@@ -64,8 +69,10 @@ echo "
 
         <tr><td colspan='2'>
         <hr><b>Rights profiles:</b><hr>
-        </td></tr>
-        
+        </td></tr>";
+ 
+if (getUserLogin()->hasRights('user_assign_rights')) {    
+    echo "        
         <tr><td colspan='2'>
         The following rights profiles will by default be assigned to a user when it is added to this group.
         </td></tr>
@@ -77,12 +84,9 @@ echo "
             if (in_array($rightsprofile->rightsprofile_id,$group->rightsprofile_ids)) $checked=TRUE;
             echo "<tr><td>".$rightsprofile->name."</td><td>".form_checkbox('rightsprofile_'.$rightsprofile->rightsprofile_id, 'rightsprofile_'.$rightsprofile->rightsprofile_id, $checked)."</td></tr>";
         }
-
+}
 echo    "
-        <tr><td colspan='2'><hr>
-        <b>Note: an interface for modifying the group topic subscription will be added here.</b>
-        </td></tr>        
-
+        
         <tr>
         <td colspan=2><hr></td>
         </tr>

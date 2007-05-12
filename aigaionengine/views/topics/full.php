@@ -1,6 +1,8 @@
 <div id='singletopic-content-holder'>
 <!-- Topic: HEADER AND DESCRIPTION -->
 <?php
+    $userlogin = getUserLogin();
+
     if ($topic->name=="") {
         $name = "Topic #".$topic->topic_id;
     } else {
@@ -14,7 +16,20 @@
 
 ?>
 <div class='optionbox'>
-    <?php echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>"; ?>
+    <?php 
+    if (    ($userlogin->hasRights('topic_edit'))
+         && 
+            (!$userlogin->isAnonymous() || ($topic->edit_access_level=='public'))
+         &&
+            (    ($topic->edit_access_level != 'private') 
+              || ($userlogin->userId() == $topic->user_id) 
+              || ($userlogin->hasRights('topic_edit_all'))
+             )                
+        ) 
+    {
+        echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>"; 
+    }
+    ?>
 </div>
 <div class='header'>Topic:
 <?php 

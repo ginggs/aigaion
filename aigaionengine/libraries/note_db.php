@@ -87,7 +87,7 @@ class Note_db {
         $publication = $this->CI->publication_db->getByID($note->pub_id);
         if (    ($publication == null) 
              ||
-                (!$userlogin->hasRights('note_edit'))
+                (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
              ||
@@ -122,7 +122,7 @@ class Note_db {
         $note_testrights = $this->CI->note_db->getByID($note->note_id);
         if (    ($note_testrights == null) 
              ||
-                (!$userlogin->hasRights('note_edit'))
+                (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($note_testrights->edit_access_level!='public'))
              ||

@@ -10,6 +10,9 @@ Parameters:
 If $rightsprofile is null, the edit form will be restyled as an 'add new rightsprofile' form
 if $rightsprofile is not null, but $action == 'add', the edit form will be restyled as a
 pre filled 'add new rightsprofile' form
+
+we assume that this view is not loaded if you don't have the appropriate read and edit rights
+
 */
 $this->load->helper('form');
 

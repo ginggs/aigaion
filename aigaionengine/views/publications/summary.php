@@ -46,18 +46,20 @@ echo "
 
                 <nobr>
                 <span id='bookmark_pub_".$publication->pub_id."'>";
-if ($publication->isBookmarked) {
-    echo $this->ajax->link_to_remote("[UnBookmark]", 
-                     array('url' => site_url('/bookmarklist/removepublication/'.$publication->pub_id), 
-                           'update' => 'bookmark_pub_'.$publication->pub_id
-                           )
-                     );
-} else {
-    echo $this->ajax->link_to_remote("[Bookmark]", 
-                     array('url' => site_url('/bookmarklist/addpublication/'.$publication->pub_id), 
-                           'update' => 'bookmark_pub_'.$publication->pub_id
-                           )
-                     );
+if (getUserLogin()->hasRights('bookmarklist')) {
+    if ($publication->isBookmarked) {
+        echo $this->ajax->link_to_remote("[UnBookmark]", 
+                         array('url' => site_url('/bookmarklist/removepublication/'.$publication->pub_id), 
+                               'update' => 'bookmark_pub_'.$publication->pub_id
+                               )
+                         );
+    } else {
+        echo $this->ajax->link_to_remote("[Bookmark]", 
+                         array('url' => site_url('/bookmarklist/addpublication/'.$publication->pub_id), 
+                               'update' => 'bookmark_pub_'.$publication->pub_id
+                               )
+                         );
+    }
 }
 echo "
                 </span>

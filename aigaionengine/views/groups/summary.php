@@ -7,11 +7,18 @@ Shows a summary of a group: edit link, name, delete link, etc
 
 Parameters:
     $group=>the group object that is to be summarized
+
+access rights: we presume that this view is not loaded when the user doesn't have the user_edit_all rights.
+
 */
+
     echo anchor('groups/edit/'.$group->group_id,'[edit]')."&nbsp;"
-    .anchor('groups/delete/'.$group->group_id,'[delete]')."&nbsp;"
-    .anchor('groups/topicreview/'.$group->group_id,'[topic subscription]')."&nbsp;"
-    .$group->name;
+    .anchor('groups/delete/'.$group->group_id,'[delete]')."&nbsp;";
+    
+    if (getUserLogin()->hasRights('topic_subscription')) {
+        echo anchor('groups/topicreview/'.$group->group_id,'[topic subscription]')."&nbsp;";
+    }
+    echo $group->name;
 
 ?>
 </div>

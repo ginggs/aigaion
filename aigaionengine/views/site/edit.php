@@ -6,6 +6,8 @@ Shows a form for editing the site configuration.
 
 Parameters:
     $siteconfig     the site config object
+
+we assume that this view is not loaded if you don't have the appropriate database_manage rights
 */
 $this->load->helper('form');
 echo "<div class='editform'>";

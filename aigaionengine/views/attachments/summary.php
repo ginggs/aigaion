@@ -3,10 +3,13 @@
 /**
 views/attachments/summary
 
-Shows a summary of an attachment: download link, name, delete link, main or noet, note, etc
+Shows a summary of an attachment: download link, name, delete link, main or not, note, etc
 
 Parameters:
     $attachment=>the Attachment object that is to be shown
+
+access rights: we presume that this view is not loaded when the user doesn't have the read rights.
+as for the edit rights: they determine which edit links are shown.
 */
     if ($attachment->isremote) {
         echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
@@ -23,13 +26,29 @@ Parameters:
         $name = substr($name,0,30)."...";
     }
     echo $name;
-    echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
-    echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
-    if ($attachment->ismain) {
-        echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[unset main]",array('title'=>'Unset as main attachment'));
-    } else {
-        echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[set main]",array('title'=>'Set as main attachment'));
+    
+    //the block of edit actions: dependent on user rights
+    $userlogin = getUserLogin();
+    if (    ($userlogin->hasRights('attachment_edit'))
+         && 
+            (!$userlogin->isAnonymous() || ($attachment->edit_access_level=='public'))
+         &&
+            (    ($attachment->edit_access_level != 'private') 
+              || ($userlogin->userId() == $attachment->user_id) 
+              || ($userlogin->hasRights('attachment_edit_all'))
+             )                
+        ) 
+    {
+        echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
+        echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
+        if ($attachment->ismain) {
+            echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[unset main]",array('title'=>'Unset as main attachment'));
+        } else {
+            echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[set main]",array('title'=>'Set as main attachment'));
+        }
     }
+    
+    //always show note
     if ($attachment->note!='') {
         echo "<br>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
     }

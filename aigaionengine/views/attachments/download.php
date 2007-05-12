@@ -9,6 +9,8 @@ of the page.
 
 Parameters:
     $attachment=>the Attachment object that is to be downloaded.
+
+we assume that this view is not loaded if you don't have the appropriate read rights
 */
 
 if ($attachment->isremote) {

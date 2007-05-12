@@ -6,6 +6,8 @@ Shows the edit form for attachments.
 
 Parameters:
     $attachment=>the attachment object to be edited.
+    
+we assume that this view is not loaded if you don't have the appropriate read and edit rights
 */
 $this->load->helper('form');
 echo "<div class='editform'>";
