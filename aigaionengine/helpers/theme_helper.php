@@ -54,9 +54,11 @@
 
     /** If a user is logged in, return name of theme, otherwise return name of default theme. */
     function getThemeName() {
-        //no login implemented yet -- as soon as the login stuff works, this method
-        //will look for the current user's theme preference
-        return "default";
+        if (getUserLogin()->isLoggedIn()) {
+            return getUserLogin()->getPreference('theme');
+        } else {
+            return "default";
+        }
     }
     
     /* Return true iff icon exists in current theme */

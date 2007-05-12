@@ -490,7 +490,8 @@ class Users extends Controller {
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {
             echo "<div class='errormessage'>Subscribe topic: no valid user ID provided</div>";
-        }
+            return;
+        } 
 
 	    
 	    //check user rights
@@ -503,8 +504,8 @@ class Users extends Controller {
                  )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
-	        redirect('');
+	        echo 'Topic subscription: insufficient rights.<br>';
+	        return;
         }
 
         $config = array('user'=>$user);
@@ -548,6 +549,7 @@ class Users extends Controller {
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {
             echo "<div class='errormessage'>Unsubscribe topic: no valid user ID provided</div>";
+            return;
         }
 
 
@@ -562,8 +564,8 @@ class Users extends Controller {
                  )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
-	        redirect('');
+	        echo 'Topic subscription: insufficient rights.<br>';
+	        return;
         }
         
         $config = array('user'=>$user);

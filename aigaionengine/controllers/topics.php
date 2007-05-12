@@ -37,7 +37,8 @@ class Topics extends Controller {
                         );
         $root = $this->topic_db->getByID($root_id, $config);
         if ($root == null) {
-            echo "Browse topics: no valid topic ID provided<br>";
+            appendErrorMessage( "Browse topics: no valid topic ID provided<br>");
+            redirect('');;
         }
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
@@ -365,15 +366,16 @@ class Topics extends Controller {
         
         if ($topic == null) {
             echo "<div class='errormessage'>Collapse topic: no valid topic ID provided</div>";
-        }
-        //do collapse
-        if ($collapse==1) {
-            $topic->collapse();
         } else {
-            $topic->expand();
+            //do collapse
+            if ($collapse==1) {
+                $topic->collapse();
+            } else {
+                $topic->expand();
+            }
+    
+            echo "<div/>";
         }
-
-        echo "<div/>";
     }
 }
 ?>

@@ -94,7 +94,8 @@ class Notes extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         
         if ($publication == null) {
-            echo "<div class='errormessage'>Add note: no valid publication ID provided</div>";
+            appendErrorMessage( "<div class='errormessage'>Add note: no valid publication ID provided</div>");
+            redirect('');
         }
 
 	    //edit_access_level and the user edit rights

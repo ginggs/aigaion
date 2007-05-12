@@ -38,7 +38,7 @@
           echo form_close();
           ?>
         </div>  
-        <span class='page_title'>&nbsp;Aigaion 2.0</span>
+        <span id='page_title'>&nbsp;Aigaion 2.0</span>
         
       </div>
       <!-- End of header -->

@@ -130,7 +130,7 @@ input:hover, textarea:hover, select:hover {
   background-color: #FBF9E6;
 }
 
-span.page_title {
+#page_title {
   color           : #23221D;
   font-size       : 3em;
   font-weight     : 400;

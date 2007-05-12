@@ -1,16 +1,16 @@
 body {
-	text-align      : center;
+  text-align      : center;
 }
 
 #main_holder {
   margin          : 10px auto 10px auto;
   text-align      : left;
-	
-	width           : 80em;
+  
+  width           : 80em;
   min-width       : 400px;
-	max-width       : 1000px;
+  max-width       : 1000px;
 
-	min-height      : 600px;
+  min-height      : 600px;
 }
 
 #header_holder {

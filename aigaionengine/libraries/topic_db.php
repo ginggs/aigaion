@@ -277,6 +277,8 @@ class Topic_db {
         $new_id = $this->CI->db->insert_id();
         if ($topic->parent_id < 0)$topic->parent_id=1;
         $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
+        //subscribe current user to new topic
+        $this->subscribeUser($this->CI->user_db->getByID($userlogin->userId()),$new_id);
         return $new_id;
     }
 

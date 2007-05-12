@@ -281,6 +281,10 @@ class User_db {
             }
         }
         
+        //if was this user: update preferences
+        if ($user->user_id == $userlogin->userId()) {
+            $userlogin->initPreferences();
+        }
         return True;
     }
     

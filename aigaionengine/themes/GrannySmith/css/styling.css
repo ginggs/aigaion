@@ -10,7 +10,8 @@
 /* Font definitions */
 html, body, input, textarea, select {
 	font-family	    : Verdana, Arial, Helvetica, Sans-serif;
-	font-size		    : 10px;	
+	font-size		: 10px;	
+	
 }
 
 a {
@@ -130,7 +131,7 @@ input:hover, textarea:hover, select:hover {
   background-color: #F6F5D4;
 }
 
-span.page_title {
+#page_title {
   color           : #493E0B;
   font-size       : 3em;
   font-weight     : 400;

@@ -140,7 +140,8 @@ class Attachments extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            echo "<div class='errormessage'>Add atachment: no valid publication ID provided</div>";
+            appendErrorMessage("<div class='errormessage'>Add atachment: no valid publication ID provided</div>");
+            redirect('');
         }
 
 
