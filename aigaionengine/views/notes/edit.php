@@ -26,7 +26,10 @@ if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
     if (!isset($note)||($note==null)) {
         $note = new Note;
         echo form_hidden('pub_id',$pub_id);
+    } else {
+        echo form_hidden('pub_id',$note->pub_id);
     }
+    echo form_hidden('user_id',getUserLogin()->userId());
 } else {
     echo form_hidden('action','edit');
     echo form_hidden('note_id',$note->note_id);
@@ -48,7 +51,27 @@ echo $this->validation->error_string;
 <?php echo form_textarea(array('name'=>'text','cols'=>'70','rows'=>'7','value'=>$note->text)); ?>
             </td>
         </tr>
-
+<?php
+if ($note->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('note_edit_all')) {
+?>            
+        <tr><td><label for='read_access_level'>Read access level</label></td>
+            <td>
+<?php
+$options = array('private'=>'private','intern'=>'intern','public'=>'public');
+echo form_dropdown('read_access_level',$options,$note->read_access_level);
+?>
+            </td>
+        </tr>                
+        <tr><td><label for='edit_access_level'>Edit access level</label></td>
+            <td>
+<?php
+echo form_dropdown('edit_access_level',$options,$note->edit_access_level);
+?>
+            </td>
+        </tr>                
+<?php
+}
+?>
         <tr><td>
 <?php
 if ($isAddForm) {

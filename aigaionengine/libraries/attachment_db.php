@@ -67,6 +67,8 @@ class Attachment_db {
         $attachment->mime               = $this->CI->input->post('mime');
         $attachment->pub_id             = $this->CI->input->post('pub_id');
         $attachment->user_id            = $this->CI->input->post('user_id');
+        $attachment->read_access_level  = $this->CI->input->post('read_access_level');
+        $attachment->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $attachment;
     }
         
@@ -330,6 +332,11 @@ class Attachment_db {
 		}
         
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
+        if (   ($attachment_testrights->user_id==getUserLogin()->userId())
+            || getUserLogin()->hasRights('attachment_edit_all')) {                        
+                $updatefields['read_access_level']=$attachment->read_access_level;
+                $updatefields['edit_access_level']=$attachment->edit_access_level;
+        }
         
         $this->CI->db->query(
             $this->CI->db->update_string("attachments",

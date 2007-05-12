@@ -15,7 +15,7 @@ class Topic {
     #ID
     var $topic_id        = '';
     #content variables; to be changed by user when necessary
-    var $parent_id          = -1;
+    var $parent_id          = 1;
     var $name               = '';
     var $description        = '';
     var $url                = '';

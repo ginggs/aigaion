@@ -27,7 +27,6 @@ if (    ($userlogin->hasRights('note_edit_self'))
 {
     echo "<br>".anchor('notes/delete/'.$note->note_id,'[delete]');
     echo "&nbsp;".anchor('notes/edit/'.$note->note_id,'[edit]');
-    echo "&nbsp;[some link for setting access levels]";
 }
 echo "</div>\n";
 ?>

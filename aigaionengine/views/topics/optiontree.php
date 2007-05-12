@@ -14,7 +14,7 @@
     if (!isset($showroot))$showroot = False;
     if (!isset($selected))$selected = 1;
     if (!isset($dropdownname))$dropdownname = 'parent_id';
-    if (!isset($header))$header = 'Select new parent...';
+    if (!isset($header))$header = '';
     
     $todo = array();
     if (isset($topics)) {

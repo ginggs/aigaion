@@ -23,6 +23,7 @@ echo form_open_multipart('attachments/commit','',array('action'=>'edit',
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
+echo form_hidden('user_id',$attachment->user_id);
 echo "<p class='header2'>Edit attachment info for \"".$attachment->name."\"</p>";
 echo "
     <table>
@@ -39,7 +40,27 @@ echo "
 echo form_input(array('name'=>'note','size'=>'30','value'=>$attachment->note));
 echo "
             </td>
-        </tr>
+        </tr>";
+if ($attachment->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('attachment_edit_all')) {
+?>            
+        <tr><td><label for='read_access_level'>Read access level</label></td>
+            <td>
+<?php
+$options = array('private'=>'private','intern'=>'intern','public'=>'public');
+echo form_dropdown('read_access_level',$options,$attachment->read_access_level);
+?>
+            </td>
+        </tr>                
+        <tr><td><label for='edit_access_level'>Edit access level</label></td>
+            <td>
+<?php
+echo form_dropdown('edit_access_level',$options,$attachment->edit_access_level);
+?>
+            </td>
+        </tr>                
+<?php
+}
+echo "
         <tr><td>";
 echo form_submit('submit','Change');
 echo "

@@ -61,8 +61,8 @@ class Note_db {
         $note->text               = $this->CI->input->post('text');
         $note->pub_id             = $this->CI->input->post('pub_id');
         $note->user_id            = $this->CI->input->post('user_id');
-        //$note->read_access_level  = $this->CI->input->post('read_access_level');
-        //$note->edit_access_level  = $this->CI->input->post('edit_access_level');
+        $note->read_access_level  = $this->CI->input->post('read_access_level');
+        $note->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $note;
     }
         
@@ -137,9 +137,12 @@ class Note_db {
         }
         
         //start update
-        $updatefields =  array('text'=>$note->text,
-                               'read_access_level'=>$note->read_access_level,
-                               'edit_access_level'=>$note->edit_access_level);
+        $updatefields =  array('text'=>$note->text);
+        if (   ($note_testrights->user_id==getUserLogin()->userId())
+            || getUserLogin()->hasRights('note_edit_all')) {                        
+                $updatefields['read_access_level']=$note->read_access_level;
+                $updatefields['edit_access_level']=$note->edit_access_level;
+        }
 
         $this->CI->db->query(
             $this->CI->db->update_string("notes",

@@ -3,8 +3,8 @@
     font-size:    100%;
     margin: 1em ;
     padding : 1em ;
-    background-color: #ABC41F;
-    border:1px solid #CC0300;
+    background-color: #DDDDDD;
+    border:1px solid #0F0F10;
 }
 ul.help {
   list-style-type : none;
@@ -18,7 +18,7 @@ li.help {
   padding-right:0.2em;
 }
 li.help:hover {
-   background:#E0E0E0;
+   background:#EEEEFF;
 }
 li.help-header {
   display       : block; 

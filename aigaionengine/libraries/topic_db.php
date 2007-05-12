@@ -177,6 +177,9 @@ class Topic_db {
         $topic->description        = $this->CI->input->post('description');
         $topic->url                = $this->CI->input->post('url');
         $topic->parent_id          = $this->CI->input->post('parent_id');
+        $topic->user_id            = $this->CI->input->post('user_id');
+        $topic->read_access_level  = $this->CI->input->post('read_access_level');
+        $topic->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $topic;
     }
     
@@ -268,9 +271,15 @@ class Topic_db {
 	        appendErrorMessage('Add topic: insufficient rights.<br>');
 	        return;
         }        
+        $fields = array('name'=>$topic->name,
+                        'description'=>$topic->description,
+                        'url'=>$topic->url,
+                        'user_id'=>getUserLogin()->userId());
+        $fields['read_access_level']=$topic->read_access_level;
+        $fields['edit_access_level']=$topic->edit_access_level;
         //add new topic
         $this->CI->db->query(
-            $this->CI->db->insert_string("topics", array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url,'user_id'=>getUserLogin()->userId()))
+            $this->CI->db->insert_string("topics", $fields)
                              );
                                                
         //add parent
@@ -284,7 +293,7 @@ class Topic_db {
 
     /** Commit the changes in the data of the given topic. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
-    function commit($topic) {
+    function update($topic) {
         if ($topic->topic_id==1) {
             appendErrorMessage("You cannot edit the top level topic<br>");
             return;
@@ -327,7 +336,14 @@ class Topic_db {
     		}
     	}
 
-        $updatefields =  array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url);
+        $updatefields =  array('name'=>$topic->name,
+                               'description'=>$topic->description,
+                               'url'=>$topic->url);
+        if (   ($topic_testrights->user_id==getUserLogin()->userId())
+            || getUserLogin()->hasRights('topic_edit_all')) {                        
+                $updatefields['read_access_level']=$topic->read_access_level;
+                $updatefields['edit_access_level']=$topic->edit_access_level;
+        }
 
         $this->CI->db->query(
             $this->CI->db->update_string("topics",
