@@ -200,6 +200,14 @@ PRIMARY KEY (`user_id`, `pub_id` )
 INSERT INTO `availablerights` (`name`,`description`) VALUES 
  ('bookmarklist','use a persistent bookmarklist');
 
+//=== 12-may-2007
+//group level access restrictions
+
+ALTER TABLE `topics` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE `publication` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE `notes` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE `attachments` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
+
 
 ==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
 

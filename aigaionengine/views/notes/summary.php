@@ -23,6 +23,11 @@ if (    ($userlogin->hasRights('note_edit_self'))
           || ($userlogin->userId() == $note->user_id) 
           || ($userlogin->hasRights('note_edit_all'))
          )                
+     &&
+        (    ($note->edit_access_level != 'group') 
+          || (in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+          || ($userlogin->hasRights('note_edit_all'))
+         )                
     ) 
 {
     echo "<br>".anchor('notes/delete/'.$note->note_id,'[delete]');

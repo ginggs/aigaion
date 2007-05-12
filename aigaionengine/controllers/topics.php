@@ -98,6 +98,11 @@ class Topics extends Controller {
                   && ($userlogin->userId() != $topic->user_id) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )                
+             ||
+                (    ($topic->edit_access_level == 'group') 
+                  && (!in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Delete topic: insufficient rights.<br>');
@@ -186,6 +191,11 @@ class Topics extends Controller {
                   && ($userlogin->userId() != $topic->user_id) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )                
+             ||
+                (    ($topic->edit_access_level == 'group') 
+                  && (!in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )         
             ) 
         {
 	        appendErrorMessage('Edit topic: insufficient rights.<br>');

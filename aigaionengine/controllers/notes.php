@@ -56,6 +56,11 @@ class Notes extends Controller {
                 (    ($note->edit_access_level == 'private') 
                   && ($userlogin->userId() != $note->user_id) 
                   && (!$userlogin->hasRights('note_edit_all'))
+                 )
+             ||
+                (    ($note->edit_access_level == 'group') 
+                  && (!in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('note_edit_all'))
                  )                
             ) 
         {
@@ -109,6 +114,11 @@ class Notes extends Controller {
                   && ($userlogin->userId() != $publication->user_id) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
+             ||
+                (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Add note: insufficient rights.<br>');
@@ -158,6 +168,11 @@ class Notes extends Controller {
                   && ($userlogin->userId() != $note->user_id) 
                   && (!$userlogin->hasRights('note_edit_all'))
                  )                
+             ||
+                (    ($note->edit_access_level == 'group') 
+                  && (!in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('note_edit_all'))
+                 )         
             ) 
         {
 	        appendErrorMessage('Edit note: insufficient rights.<br>');

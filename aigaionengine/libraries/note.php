@@ -12,6 +12,7 @@ class Note {
     var $edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $user_id            = -1;
+    var $group_id            = -1; //group to which access is restricted
     var $pub_id             = -1;
     var $CI                 = null; //link to the CI base object
     

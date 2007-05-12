@@ -36,6 +36,11 @@ as for the edit rights: they determine which edit links are shown.
             (    ($attachment->edit_access_level != 'private') 
               || ($userlogin->userId() == $attachment->user_id) 
               || ($userlogin->hasRights('attachment_edit_all'))
+             )          
+         &&
+            (    ($attachment->edit_access_level != 'group') 
+              || (in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              || ($userlogin->hasRights('attachment_edit_all'))
              )                
         ) 
     {

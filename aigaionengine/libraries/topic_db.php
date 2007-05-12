@@ -73,6 +73,11 @@ class Topic_db {
             && (!$userlogin->hasRights('topic_read_all'))) {
             return null;
         }
+        if (   ($R->read_access_level=='group') 
+            && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+            && (!$userlogin->hasRights('topic_read_all'))) {
+            return null;
+        }
         //rights were OK; read data
         $topic = new Topic;
         foreach ($R as $key => $value)
@@ -177,6 +182,7 @@ class Topic_db {
         $topic->url                = $this->CI->input->post('url');
         $topic->parent_id          = $this->CI->input->post('parent_id');
         $topic->user_id            = $this->CI->input->post('user_id');
+        $topic->group_id           = $this->CI->input->post('group_id');
         $topic->read_access_level  = $this->CI->input->post('read_access_level');
         $topic->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $topic;
@@ -279,6 +285,7 @@ class Topic_db {
                         'user_id'=>getUserLogin()->userId());
         $fields['read_access_level']=$topic->read_access_level;
         $fields['edit_access_level']=$topic->edit_access_level;
+        $fields['group_id']=$topic->group_id;
         //add new topic
         $this->CI->db->query(
             $this->CI->db->insert_string("topics", $fields)
@@ -315,6 +322,11 @@ class Topic_db {
                   && ($userlogin->userId() != $topic_testrights->user_id) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )                
+             ||
+                (    ($topic_testrights->edit_access_level == 'group') 
+                  && (!in_array($topic_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Edit topic: insufficient rights.<br>');
@@ -345,6 +357,7 @@ class Topic_db {
             || getUserLogin()->hasRights('topic_edit_all')) {                        
                 $updatefields['read_access_level']=$topic->read_access_level;
                 $updatefields['edit_access_level']=$topic->edit_access_level;
+                $updatefields['group_id']=$topic->group_id;
         }
 
         $this->CI->db->query(

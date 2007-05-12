@@ -89,6 +89,11 @@ class Attachments extends Controller {
                   && ($userlogin->userId() != $attachment->user_id) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                
+             ||
+                (    ($attachment->edit_access_level == 'group') 
+                  && (!in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Delete attachment: insufficient rights.<br>');
@@ -157,6 +162,11 @@ class Attachments extends Controller {
                   && ($userlogin->userId() != $publication->user_id) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
+             ||
+                (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
@@ -214,7 +224,11 @@ class Attachments extends Controller {
                   && ($userlogin->userId() != $attachment->user_id) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                
-            ) 
+             ||
+                (    ($attachment->edit_access_level == 'group') 
+                  && (!in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                ) 
         {
 	        appendErrorMessage('Edit attachment: insufficient rights.<br>');
 	        redirect('');

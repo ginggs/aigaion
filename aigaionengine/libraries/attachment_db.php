@@ -36,6 +36,9 @@ class Attachment_db {
         if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('attachment_read_all'))) {
             return null;
         }
+        if (($R->read_access_level=='group') && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) )  && (!$userlogin->hasRights('attachment_read_all'))) {
+            return null;
+        }
         //rights were OK; read data
         $attachment = new Attachment;
         foreach ($R as $key => $value)
@@ -67,6 +70,7 @@ class Attachment_db {
         $attachment->mime               = $this->CI->input->post('mime');
         $attachment->pub_id             = $this->CI->input->post('pub_id');
         $attachment->user_id            = $this->CI->input->post('user_id');
+        $attachment->group_id           = $this->CI->input->post('group_id');
         $attachment->read_access_level  = $this->CI->input->post('read_access_level');
         $attachment->edit_access_level  = $this->CI->input->post('edit_access_level');
         return $attachment;
@@ -102,6 +106,11 @@ class Attachment_db {
                   && ($userlogin->userId() != $publication->user_id) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
+             ||
+                (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )     
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
@@ -303,6 +312,11 @@ class Attachment_db {
                   && ($userlogin->userId() != $attachment_testrights->user_id) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                
+             ||
+                (    ($attachment_testrights->edit_access_level == 'group') 
+                  && (!in_array($attachment_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('attachment_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
@@ -336,6 +350,7 @@ class Attachment_db {
             || getUserLogin()->hasRights('attachment_edit_all')) {                        
                 $updatefields['read_access_level']=$attachment->read_access_level;
                 $updatefields['edit_access_level']=$attachment->edit_access_level;
+                $updatefields['group_id']=$attachment->group_id;
         }
         
         $this->CI->db->query(

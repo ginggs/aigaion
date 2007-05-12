@@ -25,6 +25,11 @@
               || ($userlogin->userId() == $topic->user_id) 
               || ($userlogin->hasRights('topic_edit_all'))
              )                
+         &&
+            (    ($topic->edit_access_level != 'group') 
+              || (in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              || ($userlogin->hasRights('topic_edit_all'))
+             )                
         ) 
     {
         echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>"; 

@@ -38,6 +38,11 @@ class Note_db {
             && (!$userlogin->hasRights('note_read_all'))) {
             return null;
         }
+        if (   ($R->read_access_level=='group') 
+            && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+            && (!$userlogin->hasRights('note_read_all'))) {
+            return null;
+        }
         //rights were OK; read data
         $note = new Note;
         foreach ($R as $key => $value)
@@ -63,6 +68,7 @@ class Note_db {
         $note->user_id            = $this->CI->input->post('user_id');
         $note->read_access_level  = $this->CI->input->post('read_access_level');
         $note->edit_access_level  = $this->CI->input->post('edit_access_level');
+        $note->group_id           = $this->CI->input->post('group_id');
         return $note;
     }
         
@@ -95,6 +101,11 @@ class Note_db {
                   && ($userlogin->userId() != $publication->user_id) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
+             ||
+                (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
             ) 
         {
 	        appendErrorMessage('Add note: insufficient rights.<br>');
@@ -106,6 +117,7 @@ class Note_db {
                                                         'pub_id'=>$note->pub_id,
                                                         'read_access_level'=>$note->read_access_level,
                                                         'edit_access_level'=>$note->edit_access_level,
+                                                        'group_id'=>$note->group_id,
                                                         'user_id'=>getUserLogin()->userId()))
                              );
                                                
@@ -130,7 +142,11 @@ class Note_db {
                   && ($userlogin->userId() != $note_testrights->user_id) 
                   && (!$userlogin->hasRights('note_edit_all'))
                  )                
-            ) 
+             ||
+                (    ($note_testrights->edit_access_level == 'private') 
+                  && (!in_array($note_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('note_edit_all'))
+                 )                   ) 
         {
 	        appendErrorMessage('Edit note: insufficient rights.<br>');
 	        return;
@@ -142,6 +158,7 @@ class Note_db {
             || getUserLogin()->hasRights('note_edit_all')) {                        
                 $updatefields['read_access_level']=$note->read_access_level;
                 $updatefields['edit_access_level']=$note->edit_access_level;
+                $updatefields['group_id']=$note->group_id;
         }
 
         $this->CI->db->query(

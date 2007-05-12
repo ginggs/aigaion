@@ -39,10 +39,15 @@ class Publication_db {
     if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
       return null;
     }
-    if (   ($R->read_access_level=='private')
-    && ($userlogin->userId() != $R->user_id)) {
+    if (    ($R->read_access_level=='private')
+         && ($userlogin->userId() != $R->user_id)) {
       return null;
     }
+    if (   ($R->read_access_level=='group')
+        && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+        ) {
+      return null;
+    }    
     //rights were OK; read data
 
     $publication = new Publication;
