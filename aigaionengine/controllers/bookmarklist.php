@@ -156,7 +156,9 @@ class Bookmarklist extends Controller {
         
     */
     function addtotopic() {
-	    $topic_id = $this->uri->segment(3,1);
+	    //check rights is done in the $this->bookmarklist_db->removePublication function, no need to do it twice
+
+	    $topic_id = $this->uri->segment(3,-1);
         $user = $this->user_db->getByID(getUserLogin()->userId());
         $config = array('onlyIfUserSubscribed'=>True,
                          'user'=>$user,

@@ -20,6 +20,8 @@ class Topics extends Controller {
 	{
 	    $root_id = $this->uri->segment(3,1);
 	    
+	    //no rights check here: anyone can (try) to browse topics (though not all topics may be visible)
+	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Browse topic tree';
@@ -84,6 +86,23 @@ class Topics extends Controller {
 	        redirect('');
 	    }
 
+	    //besides the rights needed to READ this topic, checked by topic_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
+             ||
+                (    ($topic->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $topic->user_id) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Delete topic: insufficient rights.<br>');
+	        redirect('');
+        }
+
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete topic: not implemented yet');
@@ -113,6 +132,15 @@ class Topics extends Controller {
         $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_edit'))
+            ) 
+        {
+	        appendErrorMessage('Add topic: insufficient rights.<br>');
+	        redirect('');
+        }
+        
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Add topic';
@@ -145,6 +173,24 @@ class Topics extends Controller {
 	        redirect('');
 	    }
         	    
+
+	    //besides the rights needed to READ this topic, checked by topic_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('topic_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
+             ||
+                (    ($topic->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $topic->user_id) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Edit topic: insufficient rights.<br>');
+	        redirect('');
+        }
+
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Edit topic';
@@ -177,6 +223,9 @@ class Topics extends Controller {
 	        appendErrorMessage('Topic does not exist.<br>');
 	        redirect('topics/browse');
 	    }
+	    
+	    //no additional rights check beyond those in the topic_db->getbyID, as anyone can view topics as long
+	    // as he has the right access levels
 	    
 	      $this->load->helper('publication');
     
@@ -232,6 +281,9 @@ class Topics extends Controller {
             appendErrorMessage("Commit topic: no data to commit<br/>");
             redirect ('');
         }
+
+//             the access level checks are of course not tested here,
+//             but in the commit action, as the client can have sent 'wrong' form data        
         
         //validate form values; 
         //validation rules: 

@@ -46,6 +46,23 @@ class Notes extends Controller {
 	        redirect('');
 	    }
 
+	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('note_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
+             ||
+                (    ($note->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $note->user_id) 
+                  && (!$userlogin->hasRights('note_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Delete note: insufficient rights.<br>');
+	        redirect('');
+        }
+        
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete note: not implemented yet');
@@ -80,6 +97,23 @@ class Notes extends Controller {
             echo "<div class='errormessage'>Add note: no valid publication ID provided</div>";
         }
 
+	    //edit_access_level and the user edit rights
+	    //in this case it's mostly the rights on the publication that determine access
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('note_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+             ||
+                (    ($publication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $publication->user_id) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Add note: insufficient rights.<br>');
+	        redirect('');
+        }
+        
         $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
@@ -111,7 +145,24 @@ class Notes extends Controller {
 	        appendErrorMessage('Note does not exist.<br>');
 	        redirect('');
 	    }
-        	    
+
+	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('note_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
+             ||
+                (    ($note->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $note->user_id) 
+                  && (!$userlogin->hasRights('note_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Edit note: insufficient rights.<br>');
+	        redirect('');
+        }
+                	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Edit note';
@@ -153,6 +204,10 @@ class Notes extends Controller {
             appendErrorMEssage("Commit note: no data to commit<br/>");
             redirect ('');
         }
+        
+//             the checks on the rights of the note itself are of course not tested here,
+//             but in the commit action, as the client can have sent 'wrong' form data        
+        
         
         //validate form values; 
         //validation rules: 

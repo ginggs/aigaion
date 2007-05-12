@@ -6,6 +6,7 @@
     'showroot'      => False,    //if False, don't show the root(s) of the passed (sub)trees
     'depth'         => -1,       //max depth for which to render the tree
     'selected'      => 1;        //which topic is selected?
+    'header'        => 'Select new parent...'
                              */
 ?>
 <?php
@@ -13,6 +14,7 @@
     if (!isset($showroot))$showroot = False;
     if (!isset($selected))$selected = 1;
     if (!isset($dropdownname))$dropdownname = 'parent_id';
+    if (!isset($header))$header = 'Select new parent...';
     
     $todo = array();
     if (isset($topics)) {
@@ -25,7 +27,11 @@
     
     $first = True;
     $level = 0;
-    $options = array();
+    if ($header != "") {
+        $options = array('header'=>$header);
+    } else {
+        $options = array();
+    }        
     /* This is an experiment in left traversal of the tree that does not need nested views. (loading nested views seems to be extremely inefficient) */
     while (sizeof($todo)>0){
         //get next topic to be displayed

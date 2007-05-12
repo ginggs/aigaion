@@ -202,10 +202,6 @@ echo "
 
 echo "
         
-        <tr><td colspan='2'><hr>
-        <b>Note: an interface for modifying the individual topic subscription will be added here.</b>
-        </td></tr>        
-        
         <tr><td colspan='2'>
         <hr><b>Display preferences:</b><hr/>
         </td></tr>

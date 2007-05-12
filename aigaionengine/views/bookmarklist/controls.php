@@ -20,7 +20,8 @@ echo $this->load->view('topics/optiontree',
                             'showroot'  => False,
                             'depth'     => -1,
                             'selected'  => -1,
-                            'dropdownname' => 'topic_id'
+                            'dropdownname' => 'topic_id',
+                            'header'    => 'Add bookmarked to topic...'
                             ),  
                        true)."\n";
     echo form_submit(array('name'=>'addtotopic','title'=>'Add all bookmarked publications to the selected topic'),'Add all to topic');
@@ -30,5 +31,7 @@ echo $this->load->view('topics/optiontree',
 [export to BiBTeX]
 <br>
 [export to WhaTEveR]
+<br>
+[make new topic from bookmarked publications]
 <br>
 <br>

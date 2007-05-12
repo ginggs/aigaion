@@ -103,6 +103,7 @@ class Attachment_db {
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        return;
         }
 
         if ($attachment->isremote) {
@@ -303,6 +304,7 @@ class Attachment_db {
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        return;
         }
  
         //attachment name should be correct wrt location! 

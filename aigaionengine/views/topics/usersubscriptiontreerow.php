@@ -48,5 +48,8 @@ if ($topic->flags['userIsSubscribed']) {
 echo "\n<span id='subscription_".$topic->topic_id."' class='".$class."'>"
      .$this->ajax->link_to_function($topic->name, "toggleSubscription(".$topic->configuration['user']->user_id.",".$topic->topic_id.",'".site_url('users/')."')" )
      ."</span>";
-
+     
+if ($topic->flags['userIsGroupSubscribed']) {
+    echo " (group subscribed)";
+}
 ?>

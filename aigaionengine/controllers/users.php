@@ -443,7 +443,7 @@ class Users extends Controller {
         $output = $this->load->view('header', $headerdata, true);
 
         $user = $this->user_db->getByID($user_id);
-        $config = array('user'=>$user);
+        $config = array('user'=>$user,'includeGroupSubscriptions'=>True);
         $root = $this->topic_db->getByID(1,$config);
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";

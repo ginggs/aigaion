@@ -29,7 +29,7 @@ Possible configuration parameters:
                                        
 Possible flags:
     userIsSubscribed
-    
+    userIsGroupSubscribed
     userIsCollapsed
     
     publicationIsSubscribed
@@ -94,6 +94,7 @@ class Topic_db {
             Flags:                                   
                 userIsSubscribed
                 userIsCollapsed
+                userIsGroupSubscribed
         */
         if (array_key_exists('user',$configuration)) {
             $userSubscribedQ = $this->CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
@@ -108,7 +109,7 @@ class Topic_db {
                 } else {
                     $groupSubscribed = FALSE;
                 }
-                    
+                $topic->flags['userIsGroupSubscribed'] = $groupSubscribed;
             }
             if (array_key_exists('onlyIfUserSubscribed',$configuration)) {
                 if ($userSubscribedQ->num_rows() == 0) { //not subscribed: check group subscriptions
@@ -206,30 +207,67 @@ class Topic_db {
     
     /** Subscribe given publication to given topic in database. no recursion. */
     function subscribePublication($pub_id,$topic_id) {
+        $userlogin = getUserLogin();
+        if (    
+                (!$userlogin->hasRights('publication_edit'))
+            ) {
+	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
+	        return;
+        }
         $this->CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
         $this->CI->db->insert('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
     }
     
     /** Unsubscribe given publication from given topic in database. no recursion. */
     function unsubscribePublication($pub_id,$topic_id) {
+        $userlogin = getUserLogin();
+        if (    
+                (!$userlogin->hasRights('publication_edit'))
+            ) {
+	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
+	        return;
+        }
         $this->CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
     }
 
     
     /** Subscribe given user to given topic in database. no recursion. */
     function subscribeUser($user,$topic_id) {
+        $userlogin = getUserLogin();
+        if (    
+                (!$userlogin->hasRights('topic_subscription'))
+            ) {
+	        appendErrorMessage('Change subscription: insufficient rights.<br>');
+	        return;
+        }
         $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
         $this->CI->db->insert('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
     
     /** Unsubscribe given user from given topic in database. no recursion. */
     function unsubscribeUser($user,$topic_id) {
+        $userlogin = getUserLogin();
+        if (    
+                (!$userlogin->hasRights('topic_subscription'))
+            ) {
+	        appendErrorMessage('Change subscription: insufficient rights.<br>');
+	        return;
+        }
         $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
 
 
     /** Add a new topic with the given data. Returns the new topic_id, or -1 on failure. */
     function add($topic) {
+        //check access rights (!)
+        $userlogin = getUserLogin();
+        if (    
+                (!$userlogin->hasRights('topic_edit'))
+            ) 
+        {
+	        appendErrorMessage('Add topic: insufficient rights.<br>');
+	        return;
+        }        
         //add new topic
         $this->CI->db->query(
             $this->CI->db->insert_string("topics", array('name'=>$topic->name,'description'=>$topic->description,'url'=>$topic->url,'user_id'=>getUserLogin()->userId()))
@@ -249,6 +287,27 @@ class Topic_db {
             appendErrorMessage("You cannot edit the top level topic<br>");
             return;
         }
+
+        //check access rights (by looking at the original topic in the database, as the POST
+        //data might have been rigged!)
+        $userlogin = getUserLogin();
+        $topic_testrights = $this->CI->topic_db->getByID($topic->topic_id);
+        if (    ($topic_testrights == null) 
+             ||
+                (!$userlogin->hasRights('topic_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($topic_testrights->edit_access_level!='public'))
+             ||
+                (    ($topic_testrights->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $topic_testrights->user_id) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Edit topic: insufficient rights.<br>');
+	        return;
+        }
+        
         if ($topic->parent_id < 0)$topic->parent_id=1;
         //check parent for non-circularity (!). Actually, this should be done in a validation callback on the edit forms!
     	$nexttopic_id = $topic->parent_id;

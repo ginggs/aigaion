@@ -82,6 +82,24 @@ class Note_db {
 
     /** Add a new note with the given data. Returns the new note_id, or -1 on failure. */
     function add($note) {
+        //check access rights (!)
+        $userlogin = getUserLogin();
+        $publication = $this->CI->publication_db->getByID($note->pub_id);
+        if (    ($publication == null) 
+             ||
+                (!$userlogin->hasRights('note_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+             ||
+                (    ($publication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $publication->user_id) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Add note: insufficient rights.<br>');
+	        return;
+        }        
         //add new note
         $this->CI->db->query(
             $this->CI->db->insert_string("notes", array('text'=>$note->text,
@@ -98,7 +116,27 @@ class Note_db {
     /** Commit the changes in the data of the given note. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
     function commit($note) {
- 
+        //check access rights (by looking at the original note in the database, as the POST
+        //data might have been rigged!)
+        $userlogin = getUserLogin();
+        $note_testrights = $this->CI->note_db->getByID($note->note_id);
+        if (    ($note_testrights == null) 
+             ||
+                (!$userlogin->hasRights('note_edit'))
+             || 
+                ($userlogin->isAnonymous() && ($note_testrights->edit_access_level!='public'))
+             ||
+                (    ($note_testrights->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $note_testrights->user_id) 
+                  && (!$userlogin->hasRights('note_edit_all'))
+                 )                
+            ) 
+        {
+	        appendErrorMessage('Edit note: insufficient rights.<br>');
+	        return;
+        }
+        
+        //start update
         $updatefields =  array('text'=>$note->text,
                                'read_access_level'=>$note->read_access_level,
                                'edit_access_level'=>$note->edit_access_level);
