@@ -149,8 +149,8 @@ class Bookmarklist extends Controller {
 	    insufficient rights
 	    nonexisting topic
 	    
-	Parameters passed via URL segments:
-	    3rd: topic_id
+	Parameters passed via POST:
+	    topic_id
 	         
     Redirects to the bookmarklist/view controller
         
@@ -158,7 +158,7 @@ class Bookmarklist extends Controller {
     function addtotopic() {
 	    //check rights is done in the $this->bookmarklist_db->removePublication function, no need to do it twice
 
-	    $topic_id = $this->uri->segment(3,-1);
+	    $topic_id = $this->input->post('topic_id');
         $user = $this->user_db->getByID(getUserLogin()->userId());
         $config = array('onlyIfUserSubscribed'=>True,
                          'user'=>$user,
@@ -166,7 +166,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided<br>");
+            appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided.<br>");
             redirect('bookmarklist/view');
         } 
         $this->bookmarklist_db->addToTopic($topic);

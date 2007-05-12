@@ -65,13 +65,12 @@ class Topic_db {
     {
         $userlogin = getUserLogin();
         //check rights; if fail: return null
-        //if (!$userlogin->hasRights('topic_read')) { ... yes, well, this topic does not exist yet.
-            //return null;
-        //}
         if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
             return null;
         }
-        if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('topic_read_all'))) {
+        if (   ($R->read_access_level=='private') 
+            && ($userlogin->userId() != $R->user_id) 
+            && (!$userlogin->hasRights('topic_read_all'))) {
             return null;
         }
         //rights were OK; read data
@@ -187,9 +186,12 @@ class Topic_db {
     function getChildren($topic_id, &$configuration=array()) {
         $children = array();
         //get children from database; add to array
-        $query = $this->CI->db->getwhere('topictopiclink',array('target_topic_id'=>$topic_id));
+        $query = $this->CI->db->query("SELECT topics.* FROM topics, topictopiclink
+                                        WHERE topictopiclink.target_topic_id=".$topic_id."
+                                          AND topictopiclink.source_topic_id=topics.topic_id
+                                     ORDER BY name");
         foreach ($query->result() as $row) {
-            $c = $this->getByID($row->source_topic_id,$configuration);
+            $c = $this->getFromRow($row,$configuration);
             if ($c != null) {
                 $children[] = $c;
             }
