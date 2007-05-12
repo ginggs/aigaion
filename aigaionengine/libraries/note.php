@@ -28,8 +28,8 @@ class Note {
     }
     /** tries to commit this note to the database. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
-    function commit() {
-        return $this->CI->note_db->commit($this);
+    function update() {
+        return $this->CI->note_db->update($this);
     }
    
 }

@@ -34,8 +34,8 @@ class Group {
 
     /** Commit the changes in the data of this group. Returns TRUE or FALSE depending on whether the operation was
     operation was successfull. */
-    function commit() {
-        return $this->CI->group_db->commit($this);
+    function update() {
+        return $this->CI->group_db->update($this);
     }
 }
 ?>

@@ -141,8 +141,8 @@ class Topic {
 
     /** Commit the changes in the data of this topic. Returns TRUE or FALSE depending on whether the operation was
     operation was successfull. */
-    function commit() {
-        return $this->CI->topic_db->commit($this);
+    function update() {
+        return $this->CI->topic_db->update($this);
     }
     
     /** Collapse this topic for the current logged user */

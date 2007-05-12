@@ -115,7 +115,7 @@ class Note_db {
 
     /** Commit the changes in the data of the given note. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
-    function commit($note) {
+    function update($note) {
         //check access rights (by looking at the original note in the database, as the POST
         //data might have been rigged!)
         $userlogin = getUserLogin();

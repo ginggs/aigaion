@@ -293,7 +293,7 @@ class Groups extends Controller {
             $success = False;
             if ($this->input->post('action') == 'edit') {
                 //do edit
-                $success = $group->commit();
+                $success = $group->update();
             } else {
                 //do add
                 $success = $group->add();

@@ -271,7 +271,7 @@ class Attachments extends Controller {
         $success = False;
         if ($this->input->post('action') == 'edit') {
             //do edit
-            $success = $attachment->commit();
+            $success = $attachment->update();
         } else {
             //do add
             $success = $attachment->add();
@@ -311,7 +311,7 @@ class Attachments extends Controller {
 	        redirect('');
 	    }
 	    $attachment->ismain=true;
-	    $attachment->commit();
+	    $attachment->update();
 	    redirect('publications/show/'.$attachment->pub_id);
     }
     
@@ -339,7 +339,7 @@ class Attachments extends Controller {
 	        redirect('');
 	    }
 	    $attachment->ismain=false;
-	    $attachment->commit();
+	    $attachment->update();
 	    redirect('publications/show/'.$attachment->pub_id);
     }
 }

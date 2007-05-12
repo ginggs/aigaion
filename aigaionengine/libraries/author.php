@@ -119,8 +119,8 @@ function format($formatStyle, $data='')
 
   /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was
   successfull. */
-  function commit() {
-    return $this->CI->author_db->commit($this);
+  function update() {
+    return $this->CI->author_db->update($this);
   }
 }
 ?>

@@ -64,8 +64,8 @@ class User {
 
     /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was
     successfull. */
-    function commit() {
-        return $this->CI->user_db->commit($this);
+    function update() {
+        return $this->CI->user_db->update($this);
     }
 }
 ?>

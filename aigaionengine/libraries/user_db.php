@@ -192,7 +192,7 @@ class User_db {
 
     /** Commit the changes in the data of the given user. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
-    function commit($user) {
+    function update($user) {
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('user_edit_all')
@@ -246,7 +246,7 @@ class User_db {
             if ($user->user_id==getConfigurationSetting("ANONYMOUS_USER")) {
                 $siteconfig = $this->CI->siteconfig_db->getSiteConfig();
                 $siteconfig->configSettings['ANONYMOUS_USER'] = '';
-                $siteconfig->commit();
+                $siteconfig->update();
                 appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br>");
             }
         }

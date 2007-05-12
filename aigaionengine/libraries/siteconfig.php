@@ -15,8 +15,8 @@ class SiteConfig {
     }
     
     /** commit the config settings embodied in the given data */
-    function commit() {
-        $this->CI->siteconfig_db->commit($this);
+    function update() {
+        $this->CI->siteconfig_db->update($this);
     }
     
     function getConfigSetting($name) {

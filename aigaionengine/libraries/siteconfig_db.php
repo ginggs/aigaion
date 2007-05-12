@@ -93,7 +93,7 @@ class Siteconfig_db {
     }
 
     /** commit the config settings embodied in the given data */
-    function commit($siteconfig) {
+    function update($siteconfig) {
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('database_manage')

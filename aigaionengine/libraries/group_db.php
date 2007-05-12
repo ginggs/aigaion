@@ -97,7 +97,7 @@ class Group_db {
 
     /** Commit the changes in the data of the given group. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
-    function commit($group) {
+    function update($group) {
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('user_edit_all')

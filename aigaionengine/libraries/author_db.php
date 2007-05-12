@@ -145,7 +145,7 @@ class Author_db {
     return $this->db->insert_id();
   }
   
-  function commit($author)
+  function update($author)
   {
     //fields that are to be updated
     $fields = array('specialchars',

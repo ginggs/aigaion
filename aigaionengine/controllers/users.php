@@ -379,7 +379,7 @@ class Users extends Controller {
             $success = False;
             if ($this->input->post('action') == 'edit') {
                 //do edit
-                $success = $user->commit();
+                $success = $user->update();
             } else {
                 //do add
                 $success = $user->add();

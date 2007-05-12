@@ -82,9 +82,9 @@ class Publication {
   
   /** tries to commit this publication to the database. Returns TRUE or FALSE depending 
       on whether the operation was operation was successfull. */
-  function commit() 
+  function update() 
   {
-    return $this->CI->publication_db->commit($this);
+    return $this->CI->publication_db->update($this);
   }
   
   function getKeywords()

@@ -28,8 +28,8 @@ class Rightsprofile {
 
     /** Commit the changes in the data of this rightsprofile. Returns TRUE or FALSE depending on whether the operation was
     operation was successfull. */
-    function commit() {
-        return $this->CI->rightsprofile_db->commit($this);
+    function update() {
+        return $this->CI->rightsprofile_db->update($this);
     }
 }
 ?>

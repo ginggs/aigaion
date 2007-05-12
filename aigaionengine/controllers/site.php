@@ -45,7 +45,7 @@ class Site extends Controller {
                 //examples of validation code
             	//if ($this->validation->run() == TRUE) {
     	            //if validation successfull, set settings
-    	            $siteconfig->commit();
+    	            $siteconfig->update();
     	            $siteconfig = $this->siteconfig_db->getSiteConfig();
     	        //}
     	    }

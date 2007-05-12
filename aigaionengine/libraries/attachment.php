@@ -34,8 +34,8 @@ class Attachment {
     /** tries to commit this attachment to the database. Note: not all fields are supposed to be edited.
     Generally, only the note and the name are considered to be editable! Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
-    function commit() {
-        return $this->CI->attachment_db->commit($this);
+    function update() {
+        return $this->CI->attachment_db->update($this);
     }
    
 }

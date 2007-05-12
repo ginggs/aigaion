@@ -286,7 +286,7 @@ class Attachment_db {
     Generally, only the note and the name are considered to be editable! Furthermore the new name should 
     have the proper extension. If not, this method fixes the extension. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
-    function commit($attachment) {
+    function update($attachment) {
         //check access rights (by looking at the original attachment in the database, as the POST
         //data might have been rigged!)
         $userlogin = getUserLogin();
