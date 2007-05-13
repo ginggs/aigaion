@@ -10,8 +10,33 @@ Parameters:
     
 appropriate read rights are assumed. Edit block depends on other rights.
 */
+//get text, replace links
+$text = auto_link($note->text);
 
-echo "<div class='readernote'><b>[User ".$note->user_id."]</b>: " . $note->text;
+//replace bibtex cite_ids that appear in the text with a link to the publication
+$link = "";
+$bibtexidlinks = getBibtexIdLinks();
+foreach ($note->xref_ids as $xref) {
+	$link = $bibtexidlinks[$xref];
+	//check whether the xref is present in the session var (should be). If not, try to correct the issue.
+	if ($link == "") {
+		$Q = mysql_query("SELECT bibtex_id FROM publication WHERE pub_id = ".$xref);
+		if (mysql_num_rows($Q) > 0) {
+			$R = mysql_fetch_array($Q);
+			if (trim($R['bibtex_id']) != "") {
+				$bibtexidlinks[$R[$xref] ] = array($R['bibtex_id'], "/\b(?<!\.)(".preg_quote($R['bibtex_id'], "/").")\b/");
+			}
+		}
+	}
+
+	if ($link != "") {
+		$text = preg_replace(
+			$link[1],
+			anchor('/publications/show/'.$xref,$link[0]),
+			$text);
+	}
+}
+echo "<div class='readernote'><b>[User ".$note->user_id."]</b>: " . $text;
 
 //the block of edit actions: dependent on user rights
 $userlogin = getUserLogin();

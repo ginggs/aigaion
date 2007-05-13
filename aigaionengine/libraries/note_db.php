@@ -49,6 +49,12 @@ class Note_db {
         {
             $note->$key = $value;
         }
+        //read the crossref_ids as they were cached in the database
+        $Q = mysql_query("SELECT xref_id FROM notecrossrefid WHERE note_id = ".$note->note_id);
+    	if (mysql_num_rows($Q) > 0) {
+    		while ($R = mysql_fetch_array($Q))
+    			$note->xref_ids[] = $R['xref_id'];
+    	}        
         return $note;
     }
 

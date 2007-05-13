@@ -41,6 +41,7 @@
         $test = trim(strtolower($value));
         if (   (strpos($test,'http://dx.doi.org/')===0)
             || (strpos($test,'http://doi.acm.org/')===0)
+            || (strpos($test,'http://doi.wiley.org/')===0)
             || (strtolower($name)=='doi') 
             ) {
             $matches = array();
