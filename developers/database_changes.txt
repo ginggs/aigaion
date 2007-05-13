@@ -157,7 +157,7 @@ PRIMARY KEY (`pub_id`, `keyword_id` )
           if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
             $keyword = substr($keyword, 0, strlen($keyword) - 1);
           
-          $keyword_array[] = array('pub_id' => $row->pub_id, 'keyword' => ucfirst($keyword));
+          $keyword_array[] = array('pub_id' => $row->pub_id, 'keyword' => $keyword);
         }
       }
     }
@@ -187,8 +187,11 @@ PRIMARY KEY (`pub_id`, `keyword_id` )
     }
   }
 
-//=== 10-5-2007
+//remove 'keywords' field
+ALTER TABLE `publication` DROP `keywords`;
+=======
 
+//=== 10-5-2007
 //persistent bookmark lists
 
 CREATE TABLE `userbookmarklists` (
