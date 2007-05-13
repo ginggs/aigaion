@@ -6,6 +6,13 @@
     <li class="mainmenu"><?php echo anchor('publications', 'Publicationlist'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
 <?php
+
+if (getUserLogin()->hasRights('bookmarklist')) {
+?>
+    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My bookmark list'); ?></li>
+<?php
+}
+
 if (getUserLogin()->hasRights('publication_edit'))
 {
 ?>
@@ -16,12 +23,6 @@ if (getUserLogin()->hasRights('publication_edit'))
     <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
 <?php
 } //New publication / author menu
-
-if (getUserLogin()->hasRights('bookmarklist')) {
-?>
-    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My bookmark list'); ?></li>
-<?php
-}
 
 $ACCOUNT_MENU = "";
 if (getUserLogin()->hasRights('user_edit_self')) {
