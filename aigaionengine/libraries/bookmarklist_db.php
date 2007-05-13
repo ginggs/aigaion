@@ -36,6 +36,18 @@ class Bookmarklist_db {
 
     }
 
+    function clear() {
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist')) {
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
+            return;
+        }
+        mysql_query("DELETE FROM userbookmarklists WHERE user_id=".getUserLogin()->userId());
+    	if (mysql_error()) {
+    		appendErrorMessage("Error changing bookmarklist<br>");
+    	}
+    }
+    
     function addToTopic($topic) {
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {

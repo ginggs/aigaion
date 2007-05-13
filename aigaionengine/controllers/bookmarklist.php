@@ -174,18 +174,17 @@ class Bookmarklist extends Controller {
     }
 
     /** 
-    bookmarklist/addtotopic
+    bookmarklist/maketopic
     
-    Entry point for adding all publications in the bookmark list to a certain topic.
+    Entry point for turning all publications in the bookmark list into a new topic.
     
 	Fails with error message when one of:
 	    insufficient rights
-	    nonexisting topic
 	    
 	Parameters passed via POST:
-	    topic_id
+	    none
 	         
-    Redirects to the bookmarklist/view controller
+    Redirects to the bookmarklist/edit controller for the new topic
         
     */
     function maketopic() {
@@ -202,6 +201,30 @@ class Bookmarklist extends Controller {
         }
         $this->bookmarklist_db->addToTopic($topic);
         redirect('topics/edit/'.$topic->topic_id);
+    }
+
+
+    /** 
+    bookmarklist/clear
+    
+    Clear bookmarklist
+    
+	Fails with error message when one of:
+	    insufficient rights
+	    
+	Parameters passed via POST:
+	    none
+	         
+    Redirects to the bookmarklist/view controller
+        
+    */
+    function clear() {
+	    if (!getUserLogin()->hasRights('bookmarklist')) {
+	        appendErrorMessage('Insufficient rights to clear bookmarklist<br>');
+	        redirect('');
+	    }
+        $this->bookmarklist_db->clear();
+        redirect('bookmarklist');
     }
 }
 ?>

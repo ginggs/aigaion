@@ -49,12 +49,9 @@ if ($userlogin->hasRights('publication_edit')) {
 [export to WhaTEveR]
 <br>
 <?php
-//make topic only if you are allowed to edit topics. 
-if ($userlogin->hasRights('topic_edit')) {
-?>
-    [make new topic from bookmarked publications]
-<?php
-}
+    echo form_open('bookmarklist/clear');
+    echo form_submit(array('name'=>'clear','title'=>'Clear the bookmarklist'),'Clear bookmarklist');
+    echo form_close();
 ?>
 <br>
 <br>
