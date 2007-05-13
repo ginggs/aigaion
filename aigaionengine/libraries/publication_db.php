@@ -24,6 +24,23 @@ class Publication_db {
     else
     return null;
   }
+  
+  /** Return the Publication object with the given bibtex_id, or null if insufficient rights */
+  function getByBibtexID($bibtex_id)
+  {
+    //retrieve one publication row
+    $Q = $this->CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$this->CI->db->escape($bibtex_id));
+
+    if ($Q->num_rows() > 0)
+    {
+      //load the publication
+      return $this->getFromRow($Q->row());
+    }
+    else
+    return null;
+  }
+  
+  
 
   function getFromArray($pub_array)
   {
@@ -193,24 +210,46 @@ class Publication_db {
     {
       $publication->$key = $this->CI->input->post($key);
     }
-
+    
+    //parse the keywords
+    if ($publication->keywords)
+    {
+      $keywords = preg_replace('/ *([^,]+)/',
+  						                 "###\\1",
+  						                 $publication->keywords);
+  						
+      $keywords = explode('###', $keywords);
+      
+      foreach ($keywords as $keyword)
+      {
+        if (trim($keyword) != '')
+        {
+          if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
+            $keyword = substr($keyword, 0, strlen($keyword) - 1);
+          
+          $keyword_array[] = $keyword;
+        }
+      }
+      $publication->keywords = $keyword_array;
+    }
+    
     //parse the authors
     $parser = new $this->CI->parsecreators;
     if ($publication->authors)
     {
-      $authors_array  = $parser->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
-      $authors        = array();
+      $authors_array    = $parser->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
+      $authors          = array();
       foreach ($authors_array as $author)
       {
-        $author       = $this->CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
-        if ($author  != null)
+        $author_db      = $this->CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+        if ($author_db  != null)
         {
-          $authors[]  = $author;
+          $authors[]    = $author_db;
         }
         else
         {
-          $author     = $this->CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
-          $authors[]  = $author;
+          $author_db    = $this->CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+          $authors[]  = $author_db;
         }
       }
 
@@ -237,6 +276,166 @@ class Publication_db {
       $publication->editors = $authors;
     }
     return $publication;
+  }
+  
+  function add($publication)
+  {
+    //insert all publication data in the publication table
+    $fields = array(
+                    'pub_type',
+                    'bibtex_id',
+                    'title',
+                    'year',
+                    'month',
+                    'firstpage',
+                    'lastpage',
+                    'journal',
+                    'booktitle',
+                    'edition',
+                    'series',
+                    'volume',
+                    'number',
+                    'chapter',
+                    'publisher',
+                    'location',
+                    'institution',
+                    'organization',
+                    'school',
+                    'address',
+                    'report_type',
+                    'howpublished',
+                    'note',
+                    'abstract',
+                    'issn',
+                    'isbn',
+                    'url',
+                    'doi',
+                    'crossref',
+                    'namekey',
+                    'userfields',
+                    'cleantitle',
+                    'cleanjournal',
+                    'actualyear',
+                    'specialchars'
+    );
+  
+    $specialfields = array(
+                    'title',
+                    'journal',
+                    'booktitle',
+                    'series',
+                    'publisher',
+                    'location',
+                    'institution',
+                    'organization',
+                    'school',
+                    'note',
+                    'abstract'
+    );
+  
+  
+  
+    //check for specialchars
+    foreach ($specialfields as $field)
+    {
+      if (findSpecialCharsInString($publication->$field))
+        $publication->specialchars = 'TRUE';
+    }
+    
+    //create cleantitle and cleanjournal
+    $cleantitle                 = stripBibCharsFromString($publication->title);
+    $publication->cleantitle    = stripQuotesFromString($cleantitle);
+    $cleanjournal               = stripBibCharsFromString($publication->journal);
+    $publication->cleanjournal  = stripQuotesFromString($cleanjournal);
+    
+    //get actual year
+    if (trim($publication->year) == '')
+    {
+      if (trim($publication->crossref) != '')
+      {
+        $xref_pub = $this->publication_db->getByBibtexID($publication->crossref);
+        $publication->actualyear = $xref_pub->year;
+      }
+    }
+    else
+    {
+      $publication->actualyear = $publication->year;
+    }
+    
+    //get the data to store in the database
+    $data = array();
+    foreach($fields as $field)
+      $data[$field] = $publication->$field;
+    
+    $data['user_id'] = getUserLogin()->userId();
+  
+    /* fields set to default value by database: 
+      'read_access_level'
+      'edit_access_level'
+    */
+    
+        //insert into database using active record helper
+    $this->CI->db->insert('publication', $data);
+    
+    //update this publication's pub_id
+    $publication->pub_id = $this->CI->db->insert_id();
+    
+    
+    //check whether Keywords are already available, if not, add them to the database
+    //keywords are in an array, the keys are the keyword_id.
+    //If no key the keyword still has to be added.
+    if (is_array($publication->keywords)) //we bypass the ->getKeywords() function here, it would try to retrieve from DB.
+    {
+      $publication->keywords  = $this->CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
+    
+      foreach ($publication->keywords as $keyword_id => $keyword)
+      {
+        $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword_id);
+        $this->CI->db->insert('publicationkeywordlink', $data);
+      }
+    }
+    
+    //add authors
+    if (is_array($publication->authors))
+      $publication->authors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->authors);
+      
+    $rank = 1;
+    foreach ($publication->authors as $author)
+    {
+      $data = array('pub_id'    => $publication->pub_id,
+                    'author_id' => $author->author_id,
+                    'rank'      => $rank,
+                    'is_editor' => 'N');
+      $this->CI->db->insert('publicationauthorlink', $data);
+      $rank++;
+    }
+    
+    //add editors
+    if (is_array($publication->editors))
+      $publication->editors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->editors);
+    
+    $rank = 1;
+    foreach ($publication->editors as $author)
+    {
+      $data = array('pub_id'    => $publication->pub_id,
+                    'author_id' => $author->author_id,
+                    'rank'      => $rank,
+                    'is_editor' => 'Y');
+      $this->CI->db->insert('publicationauthorlink', $data);
+      $rank++;
+    }
+    
+    //subscribe to topic 1
+    $data = array('pub_id'      => $publication->pub_id,
+                  'topic_id'    => 1);
+    $this->CI->db->insert('topicpublicationlink', $data);
+    
+    return $publication;
+  }
+  
+  function update($publication)
+  {
+    
   }
 
   function validate($publication)

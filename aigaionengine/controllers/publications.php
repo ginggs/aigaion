@@ -88,6 +88,12 @@ class Publications extends Controller {
 
   }
   
+  //Calls an empty publication edit form
+  function add()
+  {
+    $this->edit();
+  }
+  
   //edit() - Call publication edit form. When no ID is given: new publicationform
   function edit($publication = "")
   {
@@ -101,14 +107,16 @@ class Publications extends Controller {
       
       //set header data
       $edit_type = "edit";
-
-      if ($pub_id)
-        $edit_type = "new";
+    }
+    else if (empty($publication))
+    {
+      $publication = new $this->publication;
+      $edit_type = "new";
     }
     else
     {
       $edit_type = "change";
-    } 
+    }
 
     $header ['title']       = "Aigaion 2.0 - ".$edit_type." publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
@@ -137,7 +145,6 @@ class Publications extends Controller {
     $this->load->helper('specialchar');
     
     $publication = $this->publication_db->getFromPost();
-    
     //check the submit type, if 'type_change', we redirect to the edit form
     $submit_type = $this->input->post('submit_type');
     
@@ -147,16 +154,54 @@ class Publications extends Controller {
     }
     else if ($this->publication_db->validate($publication))
     {
-      //do actual commit
-      
-      //show publication
-      redirect('publications/show/'.$publication->pub_id);
+      $bReview = false;
+      if ($submit_type != 'review')
+      {
+        //review keywords
+        $review['keywords']  = $this->keyword_db->review($publication->keywords);
+        
+        //review authors and editors
+        $review['authors']   = $this->author_db->review($publication->authors);
+        $review['editors']   = $this->author_db->review($publication->editors);
+        
+        if (($review['keywords']  != null) || 
+            ($review['authors']   != null) || 
+            ($review['editors']   != null))
+        {
+          $bReview = true;
+          $this->review($publication, $review);
+        }
+      }
+      if (!$bReview)
+      {
+        //do actual commit
+        //$publication = $this->publication_db->add($publication);
+              
+        //show publication
+        redirect('publications/show/'.$publication->pub_id);
+      }
     }
     else //there were validation errors
     {
       //edit the publication once again
       $this->edit($publication);
     }
+  }
+  
+  function review($publication, $review_data)
+  {
+    $header ['title']       = "Aigaion 2.0 - review publication";
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['publication'] = $publication;
+    $content['review']      = $review_data;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('publications/review', $content, true);
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
   }
 
 /**

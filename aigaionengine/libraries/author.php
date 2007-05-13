@@ -117,7 +117,7 @@ function format($formatStyle, $data='')
     return False;
   }
 
-  /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was
+  /** Update the changes in the data of this author. Returns TRUE or FALSE depending on whether the operation was
   successfull. */
   function update() {
     return $this->CI->author_db->update($this);

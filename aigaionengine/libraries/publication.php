@@ -70,7 +70,10 @@ class Publication {
   //class constructor
   function Publication()
   {
-    $this->CI =&get_instance(); 
+    $this->CI =&get_instance();
+    
+    //set default publication type
+    $this->pub_type = 'Article';
   }
   
   /** tries to add this publication to the database. may give error message if unsuccessful, e.g. due
@@ -90,10 +93,10 @@ class Publication {
   
   function getKeywords()
   {
-    //if ($this->keywords == null)
-    //{
+    if ($this->keywords == null)
+    {
       $this->keywords = $this->CI->keyword_db->getKeywordsForPublication($this->pub_id);
-    //}
+    }
     return $this->keywords;
   }
   
