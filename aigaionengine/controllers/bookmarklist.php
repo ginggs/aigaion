@@ -172,5 +172,36 @@ class Bookmarklist extends Controller {
         $this->bookmarklist_db->addToTopic($topic);
         redirect('bookmarklist/view');
     }
+
+    /** 
+    bookmarklist/addtotopic
+    
+    Entry point for adding all publications in the bookmark list to a certain topic.
+    
+	Fails with error message when one of:
+	    insufficient rights
+	    nonexisting topic
+	    
+	Parameters passed via POST:
+	    topic_id
+	         
+    Redirects to the bookmarklist/view controller
+        
+    */
+    function maketopic() {
+	    if (!getUserLogin()->hasRights('topic_edit')) {
+	        appendErrorMessage('Insufficient rights to create topic<br>');
+	        redirect('');
+	    }
+	    
+	    $topic = new Topic;
+	    $topic->name = '-new from bookmarklist-';
+        if (!$topic->add()) {
+	        appendErrorMessage('Error creating topic<br>');
+	        redirect('');
+        }
+        $this->bookmarklist_db->addToTopic($topic);
+        redirect('topics/edit/'.$topic->topic_id);
+    }
 }
 ?>

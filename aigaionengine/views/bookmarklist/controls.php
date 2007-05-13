@@ -34,6 +34,13 @@ if ($userlogin->hasRights('publication_edit')) {
                        true)."\n";
     echo form_submit(array('name'=>'addtotopic','title'=>'Add all bookmarked publications to the selected topic'),'Add all to topic');
     echo form_close();
+    echo "<br/>";
+    if ($userlogin->hasRights('topic_edit')) {
+        echo form_open('bookmarklist/maketopic');
+        echo form_submit(array('name'=>'maketopic','title'=>'Make a new topic from the bookmarked publications'),'Make into new topic');
+        echo form_close();
+    }
+
 }
 ?>
 <br>

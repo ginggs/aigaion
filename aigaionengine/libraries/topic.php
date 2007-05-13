@@ -23,7 +23,7 @@ class Topic {
     var $edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $user_id            = -1; //owner who created it
-    var $group_id            = -1; //group to which access is restricted
+    var $group_id            = 1; //group to which access is restricted
     var $children           = null; //array of Topic's. These are not necessarily all possible children, depending on the configuration provided at construction time.
     var $CI                 = null; //link to the CI base object
 
