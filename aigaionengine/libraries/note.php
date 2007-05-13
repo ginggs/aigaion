@@ -24,14 +24,22 @@ class Note {
     
     /** tries to add this note to the database. may give error message if unsuccessful, e.g. due
     insufficient rights. */
-    function add() {
+    function add() 
+    {
         $result_id = $this->CI->note_db->add($this);
         return ($result_id > 0);
     }
     /** tries to commit this note to the database. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
-    function update() {
+    function update() 
+    {
         return $this->CI->note_db->update($this);
+    }
+    
+    /** change the text of the note to reflect a change of the bibtex_id of the given publication */
+    function changeCrossref($pub_id, $new_bibtex_id) 
+    {
+        $this->CI->note_db->changeCrossref($this, $pub_id, $new_bibtex_id);
     }
    
 }

@@ -90,7 +90,19 @@ class Note_db {
         }
         return $result;
     }
-
+    
+    /** Return an array of Note objects that crossref the given publication in their text. */
+    function getXRefNotesForPublication($pub_id) {
+        $result = array();
+        $Q = $this->CI->db->getwhere('notecrossrefid', array('xref_id' => $pub_id));
+        foreach ($Q->result() as $row) {
+            $next  =$this->getByID($row->note_id);
+            if ($next != null) {
+                $result[] = $next;
+            }
+        }
+        return $result;
+    }
 
     /** Add a new note with the given data. Returns the new note_id, or -1 on failure. */
     function add($note) {
@@ -175,7 +187,24 @@ class Note_db {
                                                        
         return True;
     }
-    
+
+    /** change the text of the note to reflect a change of the bibtex_id of the given publication */
+    function changeCrossref($note, $pub_id, $new_bibtex_id) 
+    {
+		$bibtexidlinks = getBibtexIdLinks();
+		$text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $note->text);
+        //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
+        $updatefields =  array('text'=>$text);
+        $this->CI->db->query(
+            $this->CI->db->update_string("notes",
+                                         $updatefields,
+                                         "note_id=".$note->note_id)
+                              );
+		if (mysql_error()) {
+		    appendErrorMessage("Failed to update the bibtex-id in note ".$this->note_id.": <br>");
+    	}
+    }
+  
 
 }
 ?>

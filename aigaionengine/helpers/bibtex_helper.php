@@ -11,7 +11,8 @@
 |	Usage:
 |       //load this helper:
 |       $this->load->helper('bibtex'); 
-
+|       //get an array containing info on the bibtex_ids in the database: pub_id, bibtex_id and a regexp for replacement
+|       $bibtexidlinks = $this->getBibtexIdLinks();
 |
 */
 
