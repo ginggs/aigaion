@@ -61,6 +61,7 @@ if (getUserLogin()->hasRights('database_manage')) {
 	if (getUserLogin()->isAnonymous()) {
 	    $anonusers = $this->user_db->getAllAnonUsers();
 	    if (count($anonusers)>0) {
+	        //more than one anonymous user: show a dropdown where you can choose between the different guest users
 ?>	    
     	    <li class="mainmenu-spacer"></li>
             <li class="mainmenu-header">GUEST USER</li>
@@ -83,8 +84,6 @@ if (getUserLogin()->hasRights('database_manage')) {
 <?php
 	    $this->load->helper('form');
         
-        //here one could add a dropdown menu for switching to other anonymous users
-
 	    echo form_open('login/dologin/'.$this->uri->uri_string());
 ?>
             <li><table class='loginbox'>
