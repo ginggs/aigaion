@@ -59,7 +59,28 @@ if (getUserLogin()->hasRights('database_manage')) {
     <li class="mainmenu-spacer"></li>
 <?php
 	if (getUserLogin()->isAnonymous()) {
-	    
+	    $anonusers = $this->user_db->getAllAnonUsers();
+	    if (count($anonusers)>0) {
+?>	    
+    	    <li class="mainmenu-spacer"></li>
+            <li class="mainmenu-header">GUEST USER</li>
+<?php
+            $options = array();
+            foreach ($anonusers as $anon) {
+                $options[$anon->user_id] = $anon->login;
+            }
+            echo  "<li class='mainmenu'>"
+                 .form_dropdown('anonlogin', 
+                                $options, 
+                                getUserLogin()->userId(),
+                                "OnChange='var url=\"".site_url('/login/anonymous/')."\";window.document.location=(url+\"/\"+$(\"anonlogin\").value);' id='anonlogin'")
+                 ."</li>";
+        }
+          
+?>	    
+	    <li class="mainmenu-spacer"></li>
+        <li class="mainmenu-header">LOGIN</li>
+<?php
 	    $this->load->helper('form');
         
         //here one could add a dropdown menu for switching to other anonymous users

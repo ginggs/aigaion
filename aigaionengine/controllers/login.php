@@ -104,7 +104,7 @@ class Login extends Controller {
 	        redirect('');
 	    }
 	    
-	    $user_id = $this->uri->segment(3,getConfigurationSetting('ENABLE_ANON_ACCESS'));
+	    $user_id = $this->uri->segment(3,getConfigurationSetting('ANONYMOUS_USER'));
 	    $user = $this->user_db->getByID($user_id);
 	    if (($user==null)||(!$user->isAnonymous)) {
 	        appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br>');
