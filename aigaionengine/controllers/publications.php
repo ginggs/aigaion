@@ -101,6 +101,7 @@ class Publications extends Controller {
     {
       $pub_id = $publication;
       $publication = $this->publication_db->getByID($pub_id);
+      $publication->getKeywords();
       
       //set header data
       $edit_type = "edit";
