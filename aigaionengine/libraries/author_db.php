@@ -83,7 +83,7 @@ class Author_db {
   {
     //create the array with variables to retrieve
     $fields = array('author_id',
-                    'specialchars',
+                    //'specialchars', no! specialchars var is not set in edit form.
                     'cleanname',
                     'firstname',
                     'von',
