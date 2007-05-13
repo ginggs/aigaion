@@ -38,6 +38,22 @@ class Keyword_db {
       return null;
   }
   
+  function getKeywordsLike($keyword)
+  {
+    //select all keywords from the database that start with the characters as in $keyword
+    $Q = $this->CI->db->query('SELECT * FROM keywords 
+                           WHERE keyword LIKE "'.addslashes($keyword).'%" 
+                           ORDER BY keyword');
+    
+    //retrieve results or fail
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $result[$row->keyword_id] = $row->keyword;
+    }
+    return $result;
+  }
+  
   function getKeywordsForPublication($pub_id)
   {
     $Q = $this->CI->db->query("SELECT keywords.* FROM keywords, publicationkeywordlink

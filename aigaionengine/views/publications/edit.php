@@ -3,15 +3,16 @@
   $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');
 ?>
 <div class='publication'>
-  <div class='header'>Edit publication</div>
+  <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
 <?php
   //open the edit form
   echo form_open('publications/commit', $formAttributes)."\n";
+  echo form_hidden('edit_type',   $edit_type)."\n";
   echo form_hidden('pub_id',      $publication->pub_id)."\n";
   echo form_hidden('user_id',     $publication->user_id)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
 ?>
-  <table class='publication_edit_form'>
+  <table class='publication_edit_form' width='100%'>
     <tr>
       <td>Type of publication:</td>
       <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, 'onchange="this.form.submit_type.value=\'type_change\'; this.form.submit();"'); ?>
@@ -49,7 +50,11 @@
 ?>      
     <tr>
       <td valign='top'>Keywords:</td>
-      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span></td>
+      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
+      <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
+      </div>
+      <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=> ',', 'frequency' => '0.01'))."\n";?>
+      </td>
     </tr>
 <?php
 
@@ -65,14 +70,13 @@
           {
             $authors[] = $author->getName();
           }
-        }?>
-        <?php 
+        }
 
         echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '42', 'value' => implode($authors, "\n")));
         ?>
         <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
         </div>
-        <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/publications/li_keywords/', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+        <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/authors/li_authors/', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
     <tr>
@@ -92,7 +96,7 @@
         ?>
         <div name='editor_autocomplete' id='editor_autocomplete' class='autocomplete'>
         </div>
-        <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/publications/li_keywords/', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+        <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/authors/li_authors/', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
   </table>

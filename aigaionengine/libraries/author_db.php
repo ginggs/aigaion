@@ -81,10 +81,6 @@ class Author_db {
   
   function getFromPost()
   {
-    //cleanup old author data and create new Author object
-    if (!$this->_clearData())
-      return false;
-    
     //create the array with variables to retrieve
     $fields = array('author_id',
                     'specialchars',
@@ -102,7 +98,7 @@ class Author_db {
     //retrieve all fields
     foreach ($fields as $key)
     {
-      $author->$key = $this->input->post($key);
+      $author->$key = $this->CI->input->post($key);
     }
     return $author;
   }
@@ -168,7 +164,7 @@ class Author_db {
     }
     
     //create cleanname
-    $cleanname = stripSpecialCharsFromString($author->getName('lvf'));
+    $cleanname = stripBibCharsFromString($author->getName('lvf'));
     $cleanname = stripQuotesFromString($cleanname);
     $author->cleanname = $cleanname;
     
@@ -181,13 +177,42 @@ class Author_db {
     $this->CI->db->where('author_id', $author->author_id);
     $this->CI->db->update('author', $data);
 
-    //if the update was succesful, only 1 row is affected
-    if ($this->CI->db->affected_rows() == 1)
-      return true;
-    else
-      return false;
+    return $author;
   }
   
+  function validate($author)
+  {
+    $validate_conditional = array();
+    
+    //we require at least the first or the surname
+    $validate_conditional[] = 'firstname';
+    $validate_conditional[] = 'surname';
+
+    $validation_message   = '';
+    $conditional_field_text = '';
+    $conditional_validation = false;
+    foreach ($validate_conditional as $key)
+    {
+      if (trim($author->$key) != '')
+      {
+        $conditional_validation = true;
+      }
+      $conditional_field_text .= $key.", ";
+    }
+    if (!$conditional_validation)
+    {
+      $validation_message .= "One of the fields ".$conditional_field_text." is required.<br/>\n";
+    }
+  
+    if ($validation_message != '')
+    {
+      appendErrorMessage("Changes not committed:<br/>\n".$validation_message);
+      return false;
+    }
+    else
+      return true;
+  }
+
   function deleteAuthor($author)
   {
     //only delete a valid object
@@ -304,24 +329,35 @@ TODO:
     $result_message   = "";
     
     //get database author array
-    $db_authors = $this->getAllAuthors();
+    $Q = $this->CI->db->query("SELECT author_id, cleanname FROM author ORDER BY cleanname");
     
-    //check availability of the keywords in the database
-    foreach ($keywords as $keyword)
+    $db_cleanauthors = array();
+    //retrieve results or fail                       
+    foreach ($Q->result() as $R)
     {
-      $keyword_low  = strtolower($keyword);
-      $keyword_id   = array_search($keyword_low, $db_keywords);
-      
-      //is the keyword already in the db?
-      if (!is_numeric($keyword_id))
+      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname);
+    }
+    
+    
+    //check availability of the authors in the database
+    foreach ($authors as $author)
+    {
+      if ($this->getByExactName($author->firstname, $author->von, $author->surname) == null)
       {
-        //not found in the database, so check for similar keywords
+        //no exact match, or more than one authors exist in the database
+        
+        //check on cleanname
+        //create cleanname
+        $cleanname = stripBibCharsFromString($author->getName('lvf'));
+        $cleanname = strtolower(stripQuotesFromString($cleanname));
+        $author->cleanname = $cleanname;
+        
         $db_distances = array();
-        foreach ($db_keywords as $keyword_id => $db_keyword)
+        foreach ($db_cleanauthors as $author_id => $db_author)
         {
-          $distance = levenshtein($db_keyword, $keyword_low);
+          $distance = levenshtein($db_author, $cleanname);
           if ($distance < 3)
-            $db_distances[$keyword_id] = $distance;
+            $db_distances[$author_id] = $distance;
         }
         
         //sort while keeping key relationship
@@ -330,24 +366,19 @@ TODO:
         //are there similar keywords?
         if (count($db_distances) > 0)
         {
-          $result_message .= "Found similar keywords for <b>&quot;".$keyword."&quot;</b>:<br/>\n";
+          $result_message .= "Found similar authors for <b>&quot;".$author->getName('lvf')."&quot;</b>:<br/>\n";
           $result_message .= "<ul>\n";
           foreach($db_distances as $key => $value)
           {
-            $result_message .= "<li>".$db_keywords[$key]."</li>\n";
+            $result_message .= "<li>".$this->getByID($key)->getName('lvf')."</li>\n";
           }
           $result_message .= "</ul>\n";
-        }
-        //when no similar keywords are found, we add the unknown keyword to the database
-        else
-        {
-          $this->add($keyword);
         }
       }
     }
     if ($result_message != "")
     {
-      $result_message .= "Please review the entered keywords.<br/>\n";
+      $result_message .= "Please review the entered authors.<br/>\n";
       return $result_message;
     }
     else

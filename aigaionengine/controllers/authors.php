@@ -56,35 +56,117 @@ class Authors extends Controller {
     $this->output->set_output($output);  
   }
   
-  //edit() - Call author edit form. When no ID is given: new authorform
-  function edit()
+  //Calls an empty author edit form
+  function add()
   {
-    echo "Single author form";
-    
-    //get ID from segment
-    
-    //if no ID: empty form
-    
-    //if ID: get Author and present in form
+    $this->edit();
   }
+  
+  //edit() - Call author edit form. When no ID is given: new authorform
+  function edit($author = "")
+  {
+    if (is_numeric($author))
+    {
+      $author_id  = $author;
+      $author     = $this->author_db->getByID($author_id);
+      
+      //set header data
+      $edit_type = "edit";
+    }
+    else if (empty($author))
+    {
+      $author = new $this->author;
+      $edit_type = "new";
+    }
+    else
+    {
+      //there was a author post, retrieve the edit type from the post.
+      $edit_type = $this->input->post('edit_type');
+    }
+
+    $header ['title']       = "Aigaion 2.0 - ".$edit_type." author";
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['edit_type']   = $edit_type;
+    $content['author']      = $author;
+    
+    //get output
+    $output  = $this->load->view('header',        $header,  true);
+    $output .= $this->load->view('authors/edit',  $content, true);
+    $output .= $this->load->view('footer',        '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+  
   
   //delete() - Remove one author from the database
   function delete()
   {
     echo "Single author delete";
-    
-    //get ID from segment
-    //delete author
   }
   
   //commit() - Commit the posted author to the database
   function commit()
   {
-    echo "Single author commit";
+    $this->load->helper('specialchar');
     
-    //retrieve author from POST
-    //commit author
+    $author = $this->author_db->getFromPost();
+    //check the submit type, if 'type_change', we redirect to the edit form
+    $submit_type = $this->input->post('submit_type');
+    
+    if ($this->author_db->validate($author))
+    {
+      $bReview = false;
+      if ($submit_type != 'review')
+      {
+
+        //review authors and editors
+        $review['author']   = $this->author_db->review(array($author));
+        
+        if ($review['author'] != null)
+        {
+          $bReview = true;
+          $this->review($author, $review);
+        }
+      }
+      if (!$bReview)
+      {
+        //do actual commit, depending on the edit_type, choose add or update
+        
+        $edit_type = $this->input->post('edit_type');
+        if ($edit_type == 'new')
+          $author = $this->author_db->add($author);
+        else
+          $author = $this->author_db->update($author);
+              
+        //show publication
+        redirect('authors/show/'.$author->author_id);
+      }
+    }
+    else //there were validation errors
+    {
+      //edit the publication once again
+      $this->edit($author);
+    }
   }
+
+  function review($author, $review_data)
+  {
+    $header ['title']       = "Aigaion 2.0 - review publication";
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['edit_type']   = $this->input->post('edit_type');
+    $content['author']      = $author;
+    $content['review']      = $review_data;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('authors/edit',        $content, true);
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+
   
   function _authorlist()
   {
@@ -122,6 +204,19 @@ class Authors extends Controller {
       $author_search  = $this->uri->segment(3);
       $authorList     = $this->author_db->getAuthorsLike($author_search);
       echo $this->load->view('authors/list_items', array('authorlist' => $authorList), true);
+    }
+  }
+  
+  function li_authors()
+  {
+    $author = $this->input->post('authors');
+    if (!$author)
+      $author = $this->input->post('editors');
+    
+    if ($author != "")
+    {
+      $authors = $this->author_db->getAuthorsLike($author);
+      echo $this->load->view('authors/li_authors', array('authors' => $authors), true);
     }
   }
 }

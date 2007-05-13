@@ -5,7 +5,7 @@
 <div class='publication'>
   <div class='optionbox'><?php echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]</div>";?>
   <div class='header'><?php echo $publication->title; ?></div>
-  <table class='publication_details'>
+  <table class='publication_details' width='100%'>
     <tr>
       <td>Type of publication:</td>
       <td><?php echo $publication->pub_type; ?></td>

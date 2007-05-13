@@ -97,9 +97,6 @@ class Publications extends Controller {
   //edit() - Call publication edit form. When no ID is given: new publicationform
   function edit($publication = "")
   {
-    $this->load->library('validation');
-    $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
-
     if (is_numeric($publication))
     {
       $pub_id = $publication;
@@ -115,11 +112,13 @@ class Publications extends Controller {
     }
     else
     {
-      $edit_type = "change";
+      //there was a publication post, retrieve the edit type from the post.
+      $edit_type = $this->input->post('edit_type');
     }
 
     $header ['title']       = "Aigaion 2.0 - ".$edit_type." publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['edit_type']   = $edit_type;
     $content['publication'] = $publication;
     
     //get output
@@ -159,7 +158,7 @@ class Publications extends Controller {
       {
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
-        
+
         //review authors and editors
         $review['authors']   = $this->author_db->review($publication->authors);
         $review['editors']   = $this->author_db->review($publication->editors);
@@ -174,8 +173,13 @@ class Publications extends Controller {
       }
       if (!$bReview)
       {
-        //do actual commit
-        //$publication = $this->publication_db->add($publication);
+        //do actual commit, depending on the edit_type, choose add or update
+        
+        $edit_type = $this->input->post('edit_type');
+        if ($edit_type == 'new')
+          $publication = $this->publication_db->add($publication);
+        else
+          $publication = $this->publication_db->update($publication);
               
         //show publication
         redirect('publications/show/'.$publication->pub_id);
@@ -286,33 +290,6 @@ class Publications extends Controller {
         echo "<div/>";
     }    
     
-  function li_keywords()
-  {
-   
-   
-    $keywords = $this->input->post('authors');
-    if (!$keywords)
-      $keywords = $this->input->post('editors');
-    
-    if (!$keywords)
-      $keywords = $this->input->post('keywords');
-    
-    if ($keywords != "")
-    {
-      $this->db->select('cleanname');
-      $this->db->from('author');
-      $this->db->like('cleanname', $keywords);
-      $this->db->orderby('cleanname');
-      $this->db->limit('50');
-      $Q = $this->db->get();
-      
-      if ($Q->num_rows() > 0)
-      {
-        echo $this->load->view('li_keywords', array('keywords' => $Q->result()), true);
-      }
-    }
-  }
-  
   function jaro()
   {
     $header ['title']       = "Aigaion 2.0 - ";
