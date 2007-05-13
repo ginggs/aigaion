@@ -112,7 +112,12 @@ class Siteconfig_db {
             		if (strpos($ext,".") === FALSE) {
             			$ext = ".".$ext;
             		}
-            		$templist[] = $ext;
+            		if (strtolower($ext!='.php')) {
+            		    $templist[] = $ext;
+            		} else {
+            		    appendErrorMessage("The extension '.php' is never allowed for Aigaion attachments, and has been 
+            		                        removed from the list of allowed attachments.");
+            		}
             	}
             	if (sizeof($templist)==0) {
             		$templist[] = ".pdf";

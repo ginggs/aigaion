@@ -365,11 +365,26 @@ class Topic_db {
                                          $updatefields,
                                          "topic_id=".$topic->topic_id)
                               );
-                                               
-        //remove and set parent link
-        $this->CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
-        $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
         
+        if ($topic_testrights->parent_id != $topic->parent_id) {
+            //remove and set parent link
+            $this->CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
+            $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
+    
+        	#change membership of publications to reflect new tree structure (are there different strategies for this?)
+        	//get all publications that are member of $topic_id
+        	$Q = $this->CI->db->query(
+        			"SELECT pub_id
+        			FROM topicpublicationlink
+        			WHERE topicpublicationlink.topic_id = ".$topic->topic_id);
+        	if ($Q->num_rows()>0) {
+        	    $pub_ids = array();
+        		foreach ($Q->result() as $publication) {
+        		    $pub_ids[] = $publication->pub_id;
+        		}
+        		$topic->subscribePublicationSetUpRecursive($pub_ids);
+        	}        
+        }
         return True;
     }
     

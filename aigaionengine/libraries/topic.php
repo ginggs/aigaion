@@ -121,6 +121,30 @@ class Topic {
         }
     }    
 
+    /** This method does NOT require the topic to be a publication subscription tree.
+    Set all given publications to being subscribed to this topic.
+    Has no influence on the datastructure contained in this topic.
+    This method subscribes the ancestors and children as well. */  
+    function subscribePublicationSet($pub_ids) {
+        $this->subscribePublicationSetDownRecursive($pub_ids);
+        $this->subscribePublicationSetUpRecursive($pub_ids);
+    }    
+    function subscribePublicationSetDownRecursive($pub_ids) {
+        foreach ($pub_ids as $pub_id)
+            $this->CI->topic_db->subscribePublication($pub_id, $this->topic_id);
+        foreach ($this->getChildren() as $child) {
+            $child->subscribePublicationSetDownRecursive($pub_ids);
+        }
+    }    
+    function subscribePublicationSetUpRecursive($pub_ids) {
+        foreach ($pub_ids as $pub_id)
+            $this->CI->topic_db->subscribePublication($pub_id, $this->topic_id);
+        $parent = $this->getParent();
+        if ($parent != null) {
+            $parent->subscribePublicationSetUpRecursive($pub_ids);
+        }
+    }    
+
     /** if this topic is a Publication subscription tree, use this method to set the Publication to being unsubscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 
     This method unsubscribes the children as well.

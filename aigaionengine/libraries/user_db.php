@@ -164,12 +164,13 @@ class User_db {
                                                ))
                               );
                                                
-        //add rights
-        $new_id = $this->CI->db->insert_id();
-        foreach ($user->assignedrights as $right) {
-            $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+        if (getUserLogin()->hasRights('user_assign_rights')) {
+            //add rights
+            $new_id = $this->CI->db->insert_id();
+            foreach ($user->assignedrights as $right) {
+                $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+            }
         }
-
         
         //add group links, and rightsprofiles for these groups, to the user
         foreach ($user->group_ids as $group_id) {
@@ -250,12 +251,14 @@ class User_db {
                 appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br>");
             }
         }
-                                               
-        //remove all rights, then add the right ones again
-        $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
-        //add rights
-        foreach ($user->assignedrights as $right) {
-            $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+
+        if (getUserLogin()->hasRights('user_assign_rights')) {
+            //remove all rights, then add the right ones again
+            $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
+            //add rights
+            foreach ($user->assignedrights as $right) {
+                $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+            }
         }
         
         //add group links, and rightsprofiles for these groups, to the user
@@ -281,9 +284,15 @@ class User_db {
             }
         }
         
-        //if was this user: update preferences
+        //if was this user: update preferences, check if user_assign_rights was removed from self...
         if ($user->user_id == $userlogin->userId()) {
             $userlogin->initPreferences();
+            if (getUserLogin()->hasRights("user_assign_rights")) {
+    	        if (!in_array("user_assign_rights",$user->assignedrights)) {
+    	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br>");
+    	        }
+    	        appendMessage("Profile updated, changes to rights of users are applied after the user has logged in again.<br>");
+    	    }
         }
         return True;
     }
