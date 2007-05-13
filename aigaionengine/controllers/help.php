@@ -17,7 +17,7 @@ class Help extends Controller {
 	function view() {
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Aigaion 2.0: Site configuration';
+        $headerdata['title'] = 'Aigaion 2.0: Help';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);

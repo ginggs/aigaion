@@ -5,6 +5,8 @@
         <li class='help'>[<? echo anchor('help/view/topictree','Topic tree'); ?>]</li>
         <li class='help'>[<? echo anchor('help/view/notes','Annotating publications'); ?>]</li>
         <li class='help'>[<? echo anchor('help/view/publicationlists','Publication lists'); ?>]</li>
+        <li class='help'>[<? echo anchor('help/view/attachments','Attachments'); ?>]<br></li>
+        
         <li class='help'>[<? echo anchor('help/view/accounts','Accounts'); ?>]</li>
         <li class='help'>[<? echo anchor('help/view/accessrights','Access rights'); ?>]</li>
         <li class='help'>[<? echo anchor('help/view/goodpractices','Good practices'); ?>]</li>

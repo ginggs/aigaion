@@ -221,14 +221,14 @@ tr.hidden {
 
 div.publication_summary {
   padding         : 0.1em 0.1em 1em 0.5em;
-  border-bottom   : 1px solid #DDDDDD;
-  border-left     : 1px solid #DDDDDD;
+  border-bottom   : 1px solid #0F0F10;
+  border-left     : 1px solid #0F0F10;
 }
 
 div.publication_summary.odd {
   /* background      : #E2E2Ec; */
   border-left     : none;
-  border-right    : 1px solid #DDDDDD;
+  border-right    : 1px solid #0F0F10;
 }
 
 

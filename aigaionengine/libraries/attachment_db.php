@@ -273,7 +273,7 @@ class Attachment_db {
         		# check if file is really there
         		if (!is_file(AIGAION_ATTACHMENT_DIR."/".$storename.$ext))
         		{
-        	        appendErrorMessage("Error uploading.<br>
+        	        appendErrorMessage("Error uploading. The file was not written to disk.<br>
                     Is this error entirely unexpected? You might want to check whether 
                     the php settings 'upload_max_filesize', 'post_max_size' and 
                     'max_execution_time' are all large enough for uploading
@@ -283,12 +283,13 @@ class Attachment_db {
         		return mysql_insert_id();
         	} else {
         		appendErrorMessage("ERROR UPLOADING: ".$this->CI->file_upload->show_error_string()
-        		  ."<br>Is thee error due to allowed file types? Ask <a href='mailto:".getConfigurationSetting("CFG_ADMINMAIL")."'>"
+        		  ."<br>Is the error due to allowed file types? Ask <a href='mailto:"
+        		  .getConfigurationSetting("CFG_ADMINMAIL")."'>"
         		  .getConfigurationSetting("CFG_ADMIN")."</a> for more types.<br>");
         		return -1;
         	}
         }
-        appendErrorMessage("GENERIC ERROR UPLOADING. THIS SHOULD NOT HAVE BEEN LOGICALLY POSSIBLE<br/>"); 
+        appendErrorMessage("GENERIC ERROR UPLOADING. THIS SHOULD NOT HAVE BEEN LOGICALLY POSSIBLE. PLEASE CONTACT YOUR DATABASE ADMINISTRATOR.<br/>"); 
         //but nevertheless,  murphy's law dicates that we add an error feedback message here :)
         return -1;
     }
