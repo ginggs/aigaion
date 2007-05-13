@@ -6,7 +6,7 @@ class Author {
 
   //system vars
   var $author_id    = 0;
-  var $specialchars = '';
+  var $specialchars = 'FALSE';
   var $cleanname    = '';
 
   //user vars

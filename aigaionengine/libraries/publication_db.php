@@ -164,7 +164,7 @@ class Publication_db {
     //we retrieve the following fields
     $fields = array('pub_id',
     'user_id',
-    'specialchars',
+    //'specialchars', DR: you shouldn't get this one from post, as it is not present in the post data. It is calculated anew every add or update.
     'cleantitle',
     'cleanjournal',
     'actualyear',
@@ -341,10 +341,10 @@ class Publication_db {
     //check for specialchars
     foreach ($specialfields as $field)
     {
-      if (findSpecialCharsInString($publication->$field))
+      if (findSpecialCharsInString($publication->$field)) 
         $publication->specialchars = 'TRUE';
     }
-    
+
     //create cleantitle and cleanjournal
     $cleantitle                 = stripBibCharsFromString($publication->title);
     $publication->cleantitle    = stripQuotesFromString($cleantitle);
@@ -367,7 +367,7 @@ class Publication_db {
     
     //get the data to store in the database
     $data = array();
-    foreach($fields as $field)
+    foreach($fields as $field) 
       $data[$field] = $publication->$field;
     
     $data['user_id'] = getUserLogin()->userId();
@@ -522,9 +522,9 @@ class Publication_db {
     
     //get the data to store in the database
     $data = array();
-    foreach($fields as $field)
+    foreach($fields as $field) 
       $data[$field] = $publication->$field;
-    
+
     $data['user_id'] = getUserLogin()->userId();
   
     /* fields set to default value by database: 

@@ -17,7 +17,7 @@ class Publication {
   var $pub_id       = 0;
   var $user_id	  = '';
   var $group_id            = -1; //group to which access is restricted
-  var $specialchars = '';
+  var $specialchars = 'FALSE';
   var $cleantitle   = '';
   var $cleanjournal = '';
   var $actualyear   = '';
