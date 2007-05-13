@@ -9,7 +9,7 @@
 
 if (getUserLogin()->hasRights('bookmarklist')) {
 ?>
-    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My bookmark list'); ?></li>
+    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My Bookmark List'); ?></li>
 <?php
 }
 
@@ -23,6 +23,12 @@ if (getUserLogin()->hasRights('publication_edit'))
     <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
 <?php
 } //New publication / author menu
+if (getUserLogin()->hasRights('topic_edit'))
+{
+?>
+    <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
+<?php
+} 
 
 $ACCOUNT_MENU = "";
 if (getUserLogin()->hasRights('user_edit_self')) {

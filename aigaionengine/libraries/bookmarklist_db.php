@@ -38,11 +38,16 @@ class Bookmarklist_db {
 
     function addToTopic($topic) {
         $userlogin = getUserLogin();
-        if (!$userlogin->hasRights('bookmarklist')) {
+        if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
             return;
         }
-        appendErrorMessage("Add bookmarked publications to topic ".$topic->name.": not implemented yet");;
+        $pub_ids = array();
+        foreach ($this->CI->publication_db->getForBookmarkList() as $publication) {
+            $pub_ids[] = $publication->pub_id;
+        }
+        $topic->subscribePublicationSetUpRecursive($pub_ids);
+        appendMessage("Bookmarked publications added to topic<br>");
     }
 
 }

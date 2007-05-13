@@ -80,7 +80,7 @@ echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
             </td>
         </tr>    
 <?php
-if ($topic->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('topic_edit_all')) {
+if ($topic->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('topic_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>

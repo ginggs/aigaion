@@ -52,7 +52,7 @@ echo $this->validation->error_string;
             </td>
         </tr>
 <?php
-if ($note->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('note_edit_all')) {
+if ($note->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('note_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>
