@@ -51,6 +51,11 @@ html, body, p, td, input, textarea, select {
 	font-color      : #000022;
 }
 
+/* default font color for entire body */
+body {
+	color: #000022;
+}
+
 /* default link coloring */
 a, a:link, a:visited  {
   color             : #1B6896;
@@ -221,14 +226,15 @@ tr.hidden {
 
 div.publication_summary {
   padding         : 0.1em 0.1em 1em 0.5em;
-  border-bottom   : 1px solid #0F0F10;
-  border-left     : 1px solid #0F0F10;
+  /*border-bottom   : 1px solid #0F0F10;*/
+  /*border-left     : 1px solid #0F0F10;*/
 }
 
 div.publication_summary.odd {
-  /* background      : #E2E2Ec; */
+  /*background      : #E0E0E0; */
+  background      : #DDDDDD; 
   border-left     : none;
-  border-right    : 1px solid #0F0F10;
+  /*border-right    : 1px solid #0F0F10;*/
 }
 
 

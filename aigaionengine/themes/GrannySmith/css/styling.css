@@ -1,3 +1,4 @@
+
 /*  Colorscheme   : Granny Smith
     White         : #FFFFFF;
     Semi-white    : #F6F5D4;
@@ -6,21 +7,82 @@
     Brown         : #493E0B;
     Red           : #CC0300;
 */
+/*  Colorscheme   : Granny Smith.
 
-/* Font definitions */
-html, body, input, textarea, select {
-	font-family	    : Verdana, Arial, Helvetica, Sans-serif;
-	font-size		: 10px;	
-	
+    #493E0B : the dark background around the main frame, 
+    #493E0B : normal black font
+    #FFFFFF : the normal color of the background of the main box
+    #D0E854 : background of main site elements
+    #ABC41F : border around messageboxes and other borders
+    #ABC41F : background of message boxes and headers
+    #CC0300 : dark red background of error messages
+
+    #493E0B : brown color used for all links
+
+    #493E0B : menu text (#493E0B on mouseover)
+    #ABC41F : background of menu entries (#D0E854 on mouseover)
+
+    #493E0B : heavy borders
+    #ABC41F : edit form background
+    #493E0B : edit form elements border
+    #FFFFFF : edit form elements background (#F6F5D4 on focus)
+    
+    #D0E854 : background even publication summaries
+    #ABC41F : background odd publication summaries
+*/
+
+/* ==== PAGE FLOW BEHAVIOUR  ==== */
+/* collapse for all table and div borders / margins / paddings 
+   this is default, because otherwise different browsers will show different styles.
+   if you want margins and paddings you have to specify them */
+
+div {
+    border      : 0px;
+    margin      : 0px;
+    padding     : 0px;
+    position    : relative;
+}
+td, table, tr, tbody {
+    border          : 0px;
+    border-spacing  : 0px;
+    border-spacing  : 0px;
+    border-collapse : collapse;
+    margin          : 0px;
+    padding         : 0px;
+    vertical-align  : top;
+}   
+
+/* ==== BASIC FONT DEFINITIONS ==== */
+
+/* fonts */
+html, body, p, td, input, textarea, select {
+    font-family     : Verdana, Arial, Helvetica, Sans-serif;
+    font-size       : 10px;    
+	  font-color      : #493E0B;
 }
 
-a {
-  color           : #493E0B;
-  text-decoration : none;
+/* default font color for entire body */
+body {
+	color: #493E0B;
 }
-a:hover {
-  color           : #493E0B;
-  text-decoration : underline;
+
+/* default link coloring */
+a, a:link, a:visited  {
+  color             : #493E0B;
+  text-decoration   : none;
+}
+a:hover, a:active {
+  color             : #493E0B;
+  text-decoration   : underline;
+}
+/* coloring for lightlinks, not necessarily <a> elements  */
+.lightlink, .lightlink:link, .lightlink:visited {
+    color           : #493E0B;
+    text-decoration : none;
+}
+.lightlink:hover, .lightlink:active {
+    color           : #493E0B;
+    text-decoration : none;
 }
 
 /* Icons */
@@ -29,24 +91,49 @@ a:hover {
     border  : 0px;
 }
 
+/* Headers */
+div.header {
+  padding         : 0.1em 4em .1em 0.5em;
+  margin          : 0 0 1em 0;
+  background      : #ABC41F;
+  
+  font-weight     : bold;
+  font-size       : 1.1em;
+}
+
+/* optionbox: the edit links in a header, e.g. at a topic page*/
+div.optionbox {
+  margin-top      : 0.1em;
+  padding-right   : 0.2em;
+  float           : right;
+  clear           : right;
+  z-index         : 999;
+  text-align      : right;
+}
+
+/* ==== COLORS AND BASIC DEFINITIONS FOR MAIN LAYOUT ELEMENTS ====*/
 
 /* Main layout box colors */
 body {
-	color           : #493E0B;
-	background-color: #493E0B;
+  background-color: #493E0B;
+}
+
+#page_title {
+  color           : #493E0B;
+  font-size       : 3em;
+  font-weight     : 400;
+  font-style      : italic;
 }
 
 #main_holder {
   background-color: #FFFFFF;
-	
   border-style    : solid;
   border-width    : 1px;
-  border-color    : #ABC41F;
+  border-color    : #493E0B;
 }
 
 #header_holder {
-	background-color: #D0E854;
-
+  background-color: #D0E854;
   border-style    : solid;
   border-width    : 0px 0px 1px 0px;
   border-color    : #ABC41F;
@@ -54,13 +141,12 @@ body {
 
 #menu_holder, #content_holder, #footer_holder {
   background-color: #D0E854;
-
   border-style    : solid;
   border-width    : 1px;
   border-color    : #ABC41F;
 }
 
-/* Menu colors and effects */
+/* ==== MENU COLORS AND EFFECTS ==== */
 ul.mainmenu {
   list-style-type : none;
   padding         : 0;
@@ -81,90 +167,84 @@ li.mainmenu-header {
 li.mainmenu-spacer {
   margin          : 1.5em;
 }
-/* Messages and errors */
+
+/* ==== MESSAGES AND ERRORS ==== */
 
 .message {
-    font-size : 90%;
-    margin: 1em;
-    padding : 1em;
-    background-color: #F6F5D4;
-      border-style    : solid;
-      border-width    : 1px;
+    font-size       : 90%;
+    margin          : 1em;
+    padding         : 1em;
+    background-color: #ABC41F;
+    border-style    : solid 1px #ABC41F;
 }
 .errormessage {
-    font-size:90%;
-    margin: 1em;
-    padding : 1em;
-    background-color: #ee6666;
-      border-style    : solid;
-      border-width    : 1px;
+    font-size       : 90%;
+    margin          : 1em;
+    padding         : 1em;
+    background-color: #CC0300;
+    border-style    : solid 1px #ABC41F;
 }
 
-/* FORM STUFF */
+/* ==== FORMS ==== */
+
+/* general form element styling */
+
 .editform {
-    margin: 1em;
-    padding : 1em;
-      border-style    : solid;
-      border-width    : 1px;
+    margin          : 1em;
+    padding         : 1em;
+    background-color: #ABC41F;
+    border          : solid 1px #493E0B;
 }
 .confirmform {
-    margin: 1em;
-    padding : 1em;
-    background-color: #ee6666;
-      border-style    : solid;
-      border-width    : 1px;
+    margin          : 1em;
+    padding         : 1em;
+    background-color: #CC0300;
+    border          : solid 1px #493E0B;
 }
-
 
 input, textarea, select {
   border-style    : solid;
   border-width    : 1px;
   border-color    : #ABC41F;
-  margin          : 0;
+  margin-bottom   : 0.4em;
   padding         : 0.2em;
   font-size       : 1em;
 }
 input:focus, textarea:focus, select:focus {
   background-color: #F6F5D4;
+  border-color    : #ABC41F;
 }
 input:hover, textarea:hover, select:hover {
   background-color: #F6F5D4;
+  border-color    : #ABC41F;
 }
 
-#page_title {
-  color           : #493E0B;
-  font-size       : 3em;
-  font-weight     : 400;
-  font-style      : italic;
+/* special styles for publication edit forms */
+input.required, textarea.required, select.required {
+  border-color    : #CC0300;
 }
 
-
-div.header {
-  padding         : 0.1em 4em .1em 0.5em;
-  margin          : 0 0 1em 0;
-  background      : #ABC41F;
-  
-  font-weight     : bold;
-  font-size       : 1.1em;
-
+input.conditional, textarea.conditional, select.conditional {
+  border-color    : #493E0B;
 }
 
-div.optionbox {
-  margin-top      : 0.1em;
-  padding-right   : 0.2em;
-  float           : right;
-  /*width           : 4em;*/
-  clear           : right;
-  text-align      : right;
+tr.hidden {
+ visibility       : hidden;
 }
+
+/* ==== PUBLICATION VIEWS  ==== */
 
 div.publication_summary {
   padding         : 0.1em 0.1em 1em 0.5em;
-  background      : #ABC41F;
+  /*border-bottom   : 1px solid #493E0B;*/
+  /*border-left     : 1px solid #493E0B;*/
 }
 
 div.publication_summary.odd {
-  background      : #D0E854;
+  /*background      : #ABC41F; */
+  background      : #ABC41F; 
+  border-left     : none;
+  /*border-right    : 1px solid #493E0B;*/
 }
 
 
@@ -192,25 +272,26 @@ div.autocomplete {
   padding         : 0px;
 }
 div.autocomplete ul {
-	list-style      : none!important;
-	list-style-image: none!important;
-	margin          : 0px;
-	padding         : 0px;
+    list-style      : none!important;
+    list-style-image: none!important;
+    margin          : 0px;
+    padding         : 0px;
 }
 div.autocomplete ul li.selected {
-	background-color: #F6F5D4;
+    background-color: #F6F5D4;
 }
 div.autocomplete ul li {
-	font-size       : 1em;
-	list-style-type : none;
-	display         : block;
-	margin          : 0;
-	padding         : 2px;
-	cursor          : pointer;
+    font-size       : 1em;
+    list-style-type : none;
+    display         : block;
+    margin          : 0;
+    padding         : 2px;
+    cursor          : pointer;
 }
 
 
 .loginbox {
     padding : 3px;
-    border  : 1px solid black;
+    border  : 1px solid #493E0B;
 }
+
