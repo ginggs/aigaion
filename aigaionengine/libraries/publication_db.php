@@ -559,36 +559,40 @@ class Publication_db {
     
     //add authors
     if (is_array($publication->authors))
+    {
       $publication->authors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->authors);
       
-    $rank = 1;
-    foreach ($publication->authors as $author)
-    {
-      $data = array('pub_id'    => $publication->pub_id,
-                    'author_id' => $author->author_id,
-                    'rank'      => $rank,
-                    'is_editor' => 'N');
-      $this->CI->db->insert('publicationauthorlink', $data);
-      $rank++;
+      $rank = 1;
+      foreach ($publication->authors as $author)
+      {
+        $data = array('pub_id'    => $publication->pub_id,
+                      'author_id' => $author->author_id,
+                      'rank'      => $rank,
+                      'is_editor' => 'N');
+        $this->CI->db->insert('publicationauthorlink', $data);
+        $rank++;
+      }
     }
     
     //add editors
     if (is_array($publication->editors))
+    {
       $publication->editors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->editors);
     
-    $rank = 1;
-    foreach ($publication->editors as $author)
-    {
-      $data = array('pub_id'    => $publication->pub_id,
-                    'author_id' => $author->author_id,
-                    'rank'      => $rank,
-                    'is_editor' => 'Y');
-      $this->CI->db->insert('publicationauthorlink', $data);
-      $rank++;
+      $rank = 1;
+      foreach ($publication->editors as $author)
+      {
+        $data = array('pub_id'    => $publication->pub_id,
+                      'author_id' => $author->author_id,
+                      'rank'      => $rank,
+                      'is_editor' => 'Y');
+        $this->CI->db->insert('publicationauthorlink', $data);
+        $rank++;
+      }
     }
   
-    foreach ($this->note_db->getNotesForPublication($pub_id) as $note) {
-      $note->changeCrossref($pub_id, $new_bibtex_id);
+    foreach ($this->CI->note_db->getNotesForPublication($publication->pub_id) as $note) {
+      $note->changeCrossref($publication->pub_id, $publication->bibtex_id);
     } 
     
     return $publication;
