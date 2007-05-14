@@ -117,6 +117,23 @@ class Publications extends Controller {
       $edit_type = $this->input->post('edit_type');
     }
 
+    $userlogin = getUserLogin();
+    if ((!$userlogin->hasRights('publication_edit'))
+         || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+         || (    ($publication->edit_access_level == 'private') 
+              && ($userlogin->userId() != $publication->user_id) 
+              && (!$userlogin->hasRights('publication_edit_all')))                
+/*         || (    ($publication->edit_access_level == 'group') 
+              && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!$userlogin->hasRights('topic_edit_all'))
+             )                
+*/
+        ) 
+    {
+      appendErrorMessage('Edit publication: insufficient rights.<br/>');
+      redirect('');
+    }
+    
     $header ['title']       = "Aigaion 2.0 - ".$edit_type." publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $edit_type;
@@ -135,6 +152,22 @@ class Publications extends Controller {
   //delete() - Remove one publication from the database
   function delete()
   {
+        $userlogin = getUserLogin();
+    if ((!$userlogin->hasRights('publication_edit'))
+         || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+         || (    ($publication->edit_access_level == 'private') 
+              && ($userlogin->userId() != $publication->user_id) 
+              && (!$userlogin->hasRights('publication_edit_all')))                
+/*         || (    ($publication->edit_access_level == 'group') 
+              && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!$userlogin->hasRights('topic_edit_all'))
+             )                
+*/
+        ) 
+    {
+      appendErrorMessage('Delete publication: insufficient rights.<br/>');
+      redirect('');
+    }
     echo "Single publication delete";
   }
   
@@ -175,6 +208,22 @@ class Publications extends Controller {
       if (!$bReview)
       {
         //do actual commit, depending on the edit_type, choose add or update
+        $userlogin = getUserLogin();
+        if ((!$userlogin->hasRights('publication_edit'))
+             || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+             || (    ($publication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $publication->user_id) 
+                  && (!$userlogin->hasRights('publication_edit_all')))                
+/*           || (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
+*/
+            ) 
+        {
+          appendErrorMessage('Edit publication: insufficient rights.<br/>');
+          redirect('');
+        }
         
         $edit_type = $this->input->post('edit_type');
         if ($edit_type == 'new')
@@ -195,6 +244,23 @@ class Publications extends Controller {
   
   function review($publication, $review_data)
   {
+    $userlogin = getUserLogin();
+    if ((!$userlogin->hasRights('publication_edit'))
+         || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
+         || (    ($publication->edit_access_level == 'private') 
+              && ($userlogin->userId() != $publication->user_id) 
+              && (!$userlogin->hasRights('publication_edit_all')))                
+/*           || (    ($publication->edit_access_level == 'group') 
+                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('topic_edit_all'))
+                 )                
+*/
+      ) 
+    {
+      appendErrorMessage('Edit publication: insufficient rights.<br/>');
+      redirect('');
+    }
+
     $header ['title']       = "Aigaion 2.0 - review publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publication'] = $publication;

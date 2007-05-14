@@ -6,6 +6,7 @@
     Shade-green   : #ABC41F;
     Brown         : #493E0B;
     Red           : #CC0300;
+    Black         : #000000;
 */
 /*  Colorscheme   : Granny Smith.
 
@@ -16,6 +17,7 @@
     #ABC41F : border around messageboxes and other borders
     #ABC41F : background of message boxes and headers
     #CC0300 : dark red background of error messages
+    #000000 : textcolor on dark red background
 
     #493E0B : brown color used for all links
 
@@ -42,16 +44,17 @@ div {
     padding     : 0px;
     position    : relative;
 }
+/*
 td, table, tr, tbody {
     border          : 0px;
     border-spacing  : 0px;
     border-spacing  : 0px;
     border-collapse : collapse;
-    margin          : 0px;
+    margin          : 2px;
     padding         : 0px;
     vertical-align  : top;
 }   
-
+*/
 /* ==== BASIC FONT DEFINITIONS ==== */
 
 /* fonts */
@@ -183,6 +186,7 @@ li.mainmenu-spacer {
     padding         : 1em;
     background-color: #CC0300;
     border-style    : solid 1px #ABC41F;
+    color           : #000000;
 }
 
 /* ==== FORMS ==== */
@@ -206,7 +210,6 @@ input, textarea, select {
   border-style    : solid;
   border-width    : 1px;
   border-color    : #ABC41F;
-  margin-bottom   : 0.4em;
   padding         : 0.2em;
   font-size       : 1em;
 }

@@ -586,6 +586,10 @@ class Publication_db {
       $this->CI->db->insert('publicationauthorlink', $data);
       $rank++;
     }
+  
+    foreach ($this->note_db->getNotesForPublication($pub_id) as $note) {
+      $note->changeCrossref($pub_id, $new_bibtex_id);
+    } 
     
     return $publication;
   }

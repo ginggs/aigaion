@@ -83,6 +83,13 @@ class Authors extends Controller {
       //there was a author post, retrieve the edit type from the post.
       $edit_type = $this->input->post('edit_type');
     }
+    
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      redirect('');
+    }
 
     $header ['title']       = "Aigaion 2.0 - ".$edit_type." author";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
@@ -102,12 +109,26 @@ class Authors extends Controller {
   //delete() - Remove one author from the database
   function delete()
   {
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      redirect('');
+    }
+
     echo "Single author delete";
   }
   
   //commit() - Commit the posted author to the database
   function commit()
   {
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      redirect('');
+    }
+
     $this->load->helper('specialchar');
     
     $author = $this->author_db->getFromPost();
@@ -152,6 +173,13 @@ class Authors extends Controller {
 
   function review($author, $review_data)
   {
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      redirect('');
+    }
+
     $header ['title']       = "Aigaion 2.0 - review publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $this->input->post('edit_type');
