@@ -123,11 +123,10 @@ class Publications extends Controller {
          || (    ($publication->edit_access_level == 'private') 
               && ($userlogin->userId() != $publication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
-/*         || (    ($publication->edit_access_level == 'group') 
+         || (    ($publication->edit_access_level == 'group') 
               && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
-              && (!$userlogin->hasRights('topic_edit_all'))
+              && (!$userlogin->hasRights('publication_edit_all'))
              )                
-*/
         ) 
     {
       appendErrorMessage('Edit publication: insufficient rights.<br/>');
@@ -158,11 +157,10 @@ class Publications extends Controller {
          || (    ($publication->edit_access_level == 'private') 
               && ($userlogin->userId() != $publication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
-/*         || (    ($publication->edit_access_level == 'group') 
+         || (    ($publication->edit_access_level == 'group') 
               && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
-              && (!$userlogin->hasRights('topic_edit_all'))
+              && (!$userlogin->hasRights('publication_edit_all'))
              )                
-*/
         ) 
     {
       appendErrorMessage('Delete publication: insufficient rights.<br/>');
@@ -178,6 +176,7 @@ class Publications extends Controller {
     $this->load->helper('specialchar');
     
     $publication = $this->publication_db->getFromPost();
+    $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged
     //check the submit type, if 'type_change', we redirect to the edit form
     $submit_type = $this->input->post('submit_type');
     
@@ -210,15 +209,15 @@ class Publications extends Controller {
         //do actual commit, depending on the edit_type, choose add or update
         $userlogin = getUserLogin();
         if ((!$userlogin->hasRights('publication_edit'))
-             || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-             || (    ($publication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $publication->user_id) 
+             || ($oldpublication == null)
+             || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
+             || (    ($oldpublication->edit_access_level == 'private') 
+                  && ($userlogin->userId() != $oldpublication->user_id) 
                   && (!$userlogin->hasRights('publication_edit_all')))                
-/*           || (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
+           || (    ($oldpublication->edit_access_level == 'group') 
+                  && (!in_array($oldpublication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!$userlogin->hasRights('publication_edit_all'))
                  )                
-*/
             ) 
         {
           appendErrorMessage('Edit publication: insufficient rights.<br/>');
@@ -244,18 +243,19 @@ class Publications extends Controller {
   
   function review($publication, $review_data)
   {
+    $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged
     $userlogin = getUserLogin();
     if ((!$userlogin->hasRights('publication_edit'))
-         || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-         || (    ($publication->edit_access_level == 'private') 
-              && ($userlogin->userId() != $publication->user_id) 
+         || ($oldpublication == null)
+         || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
+         || (    ($oldpublication->edit_access_level == 'private') 
+              && ($userlogin->userId() != $oldpublication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
-/*           || (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
-*/
-      ) 
+       || (    ($oldpublication->edit_access_level == 'group') 
+              && (!in_array($oldpublication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!$userlogin->hasRights('publication_edit_all'))
+             )                
+        ) 
     {
       appendErrorMessage('Edit publication: insufficient rights.<br/>');
       redirect('');
