@@ -201,7 +201,10 @@ class Publication_db {
     'userfields',
     'keywords',
     'authors',
-    'editors'
+    'editors',
+    'read_access_level',
+    'edit_access_level',
+    'group_id'    
     );
 
     $publication = new Publication;
@@ -211,7 +214,13 @@ class Publication_db {
     {
       $publication->$key = $this->CI->input->post($key);
     }
-    
+    if ($publication->group_id=='') {
+        //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
+        //otherwise the publication will disappear in the nonexisting group '0'
+        $publication->group_id='0';
+        if ($publication->read_access_level=='group') $publication->read_access_level='private';
+        if ($publication->edit_access_level=='group') $publication->edit_access_level='private';
+    }
     //parse the keywords
     if ($publication->keywords)
     {
@@ -280,10 +289,36 @@ class Publication_db {
     }
     return $publication;
   }
+
+    /** Return an array of Publication objects that crossref the given publication. 
+    Will return only accessible publications (i.e. wrt access_levels). This method can therefore
+    not be used to e.g. update crossrefs for a changed bibtex id. */
+    function getXRefPublicationsForPublication($bibtex_id) {
+        $result = array();
+        if (trim($bibtex_id)=='')return $result;
+        $Q = $this->CI->db->getwhere('publication', array('crossref' => $bibtex_id));
+        foreach ($Q->result() as $row) {
+            $next  =$this->getByID($row->pub_id);
+            if ($next != null) {
+                $result[] = $next;
+            }
+        }
+        return $result;
+    }
+
   
   function add($publication)
   {
-    //insert all publication data in the publication table
+        //check access rights (!)
+    $userlogin = getUserLogin();
+    if (    (!$userlogin->hasRights('publication_edit'))
+        ) 
+    {
+        appendErrorMessage('Add publication: insufficient rights.<br>');
+        return;
+    }        
+    
+        //insert all publication data in the publication table
     $fields = array(
                     'pub_type',
                     'bibtex_id',
@@ -372,12 +407,12 @@ class Publication_db {
     
     $data['user_id'] = getUserLogin()->userId();
   
-    /* fields set to default value by database: 
-      'read_access_level'
-      'edit_access_level'
-    */
-    
-        //insert into database using active record helper
+    //during add, you can always set these access levels - the logged user is its owner after all
+    $data['read_access_level'] = $publication->read_access_level;
+    $data['edit_access_level'] = $publication->edit_access_level;
+    $data['group_id'] = $publication->group_id;
+
+    //insert into database using active record helper
     $this->CI->db->insert('publication', $data);
     
     //update this publication's pub_id
@@ -432,12 +467,40 @@ class Publication_db {
     $data = array('pub_id'      => $publication->pub_id,
                   'topic_id'    => 1);
     $this->CI->db->insert('topicpublicationlink', $data);
-    
+
+	$bibtexidlinks = getBibtexIdLinks();
+    //also fix bibtex_id mappings
+	$bibtexidlinks[$publication->pub_id]=array($publication->bibtex_id, "/\b(?<!\.)(".preg_quote($publication->bibtex_id, "/").")\b/");
+
     return $publication;
   }
   
   function update($publication)
   {
+    //check access rights (by looking at the original publication in the database, as the POST
+    //data might have been rigged!)
+    $userlogin = getUserLogin();
+    $oldpublication = $this->getByID($publication->pub_id);
+    if (    ($oldpublication == null) 
+         ||
+            (!$userlogin->hasRights('note_edit_self'))
+         || 
+            ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
+         ||
+            (    ($oldpublication->edit_access_level == 'private') 
+              && ($userlogin->userId() != $oldpublication->user_id) 
+              && (!$userlogin->hasRights('publication_edit_all'))
+             )                
+         ||
+            (    ($oldpublication->edit_access_level == 'private') 
+              && (!in_array($oldpublication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!$userlogin->hasRights('publication_edit_all'))
+             )                   ) 
+    {
+        appendErrorMessage('Edit publication: insufficient rights.<br>');
+        return;
+    }
+
     //insert all publication data in the publication table
     $fields = array(
                     'pub_type',
@@ -527,11 +590,13 @@ class Publication_db {
 
     $data['user_id'] = getUserLogin()->userId();
   
-    /* fields set to default value by database: 
-      'read_access_level'
-      'edit_access_level'
-    */
-    
+    if (   ($oldpublication->user_id==getUserLogin()->userId())
+        || getUserLogin()->hasRights('publication_edit_all')) {                        
+        $data['read_access_level']=$publication->read_access_level;
+        $data['edit_access_level']=$publication->edit_access_level;
+        $data['group_id']=$publication->group_id;
+    }
+  
     //insert into database using active record helper
     $this->CI->db->where('pub_id', $publication->pub_id);
     $this->CI->db->update('publication', $data);
@@ -590,10 +655,18 @@ class Publication_db {
         $rank++;
       }
     }
-  
-    foreach ($this->CI->note_db->getNotesForPublication($publication->pub_id) as $note) {
-      $note->changeCrossref($publication->pub_id, $publication->bibtex_id);
-    } 
+
+    //changed bibtex_id?
+    if ($oldpublication->bibtex_id != $publication->bibtex_id) {
+        //fix all crossreffing notes
+        $this->CI->note_db->changeAllCrossrefs($publication->pub_id, $publication->bibtex_id);
+        //fix all crossreffing pubs
+        $this->changeAllCrossrefs($publication->pub_id, $oldpublication->bibtex_id, $publication->bibtex_id);
+		$bibtexidlinks = getBibtexIdLinks();
+        //also fix bibtex_id mappings
+		$bibtexidlinks[$publication->pub_id]=array($publication->bibtex_id, "/\b(?<!\.)(".preg_quote($publication->bibtex_id, "/").")\b/");
+    }
+    
     
     return $publication;
   }
@@ -722,6 +795,28 @@ class Publication_db {
     return $result;
   }
   
+    /** change the crossref of all affected publications to reflect a change of the bibtex_id of the given publication.
+    Note: this method does NOT make use of getByID($pub_id), because one should also change the referring 
+    crossref field of all publications that are inaccessible through getByID($pub_id) due to access level 
+    limitations. */
+    function changeAllCrossrefs($pub_id, $old_bibtex_id, $new_bibtex_id) 
+    {
+        if (trim($old_bibtex_id) == '')return;
+        $Q = $this->CI->db->getwhere('publication',array('crossref'=>$old_bibtex_id));
+        //update is done here, instead of using the update function, as some of the affected publications
+        // may not be accessible for this user
+        foreach ($Q->result() as $R) {
+            $updatefields =  array('crossref'=>$new_bibtex_id);
+            $this->CI->db->query(
+                $this->CI->db->update_string("publication",
+                                             $updatefields,
+                                             "pub_id=".$R->pub_id)
+                                  );
+    		if (mysql_error()) {
+    		    appendErrorMessage("Failed to update the bibtex-id in publication ".$R->pub_id."<br>");
+        	}
+        }
+    }
 
 }
 ?>

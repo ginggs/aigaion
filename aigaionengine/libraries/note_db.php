@@ -75,6 +75,14 @@ class Note_db {
         $note->read_access_level  = $this->CI->input->post('read_access_level');
         $note->edit_access_level  = $this->CI->input->post('edit_access_level');
         $note->group_id           = $this->CI->input->post('group_id');
+        if ($note->group_id=='') {
+            //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
+            //otherwise the note will disappear in the nonexisting group '0'
+            $note->group_id='0';
+            if ($note->read_access_level=='group') $note->read_access_level='private';
+            if ($note->edit_access_level=='group') $note->edit_access_level='private';
+        }
+
         return $note;
     }
         
@@ -91,7 +99,9 @@ class Note_db {
         return $result;
     }
     
-    /** Return an array of Note objects that crossref the given publication in their text. */
+    /** Return an array of Note objects that crossref the given publication in their text. 
+    Will return only accessible notes (i.e. wrt access_levels). This method can therefore
+    not be used to e.g. update note texts for crossref changes due to a changed bibtex id. */
     function getXRefNotesForPublication($pub_id) {
         $result = array();
         $Q = $this->CI->db->getwhere('notecrossrefid', array('xref_id' => $pub_id));
@@ -188,21 +198,29 @@ class Note_db {
         return True;
     }
 
-    /** change the text of the note to reflect a change of the bibtex_id of the given publication */
-    function changeCrossref($note, $pub_id, $new_bibtex_id) 
+    /** change the text of all affected notes to reflect a change of the bibtex_id of the given publication.
+    Note: this method does NOT make use of getByID($note_id), because one should also change the referring 
+    text of all notes that are inaccessible through getByID($note_id) due to access level limitations. */
+    function changeAllCrossrefs($pub_id, $new_bibtex_id) 
     {
 		$bibtexidlinks = getBibtexIdLinks();
-		$text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $note->text);
-        //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
-        $updatefields =  array('text'=>$text);
-        $this->CI->db->query(
-            $this->CI->db->update_string("notes",
-                                         $updatefields,
-                                         "note_id=".$note->note_id)
-                              );
-		if (mysql_error()) {
-		    appendErrorMessage("Failed to update the bibtex-id in note ".$this->note_id.": <br>");
-    	}
+        $Q = $this->CI->db->getwhere('notecrossrefid',array('xref_id'=>$pub_id));
+        foreach ($Q->result() as $R) {
+            $noteQ = $this->CI->db->getwhere('notes',array('note_id'=>$R->note_id));
+            if ($noteQ->num_rows()>0) {
+        		$text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $noteQ->row()->text);
+                //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
+                $updatefields =  array('text'=>$text);
+                $this->CI->db->query(
+                    $this->CI->db->update_string("notes",
+                                                 $updatefields,
+                                                 "note_id=".$R->note_id)
+                                      );
+        		if (mysql_error()) {
+        		    appendErrorMessage("Failed to update the bibtex-id in note ".$R->note_id.": <br>");
+            	}
+            }
+        }
     }
   
 

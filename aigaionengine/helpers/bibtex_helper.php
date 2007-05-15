@@ -7,6 +7,8 @@
 |
 |   Currently, this helper only caches the bibtex id mappings, used for e.g.
 |   crossreferencing in notes.
+|   NOTE: the bibtex id mappings also contain non-accessible (due to rights) 
+|   publications!
 |
 |	Usage:
 |       //load this helper:

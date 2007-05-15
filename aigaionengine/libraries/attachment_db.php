@@ -73,6 +73,16 @@ class Attachment_db {
         $attachment->group_id           = $this->CI->input->post('group_id');
         $attachment->read_access_level  = $this->CI->input->post('read_access_level');
         $attachment->edit_access_level  = $this->CI->input->post('edit_access_level');
+        if ($attachment->group_id=='') {
+            //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
+            //otherwise the attachment will disappear in the nonexisting group '0'
+            $attachment->group_id='0';
+            if ($attachment->read_access_level=='group')
+                $attachment->read_access_level='private';
+            if ($attachment->edit_access_level=='group') 
+                $attachment->edit_access_level='private';
+            
+        }
         return $attachment;
     }
         

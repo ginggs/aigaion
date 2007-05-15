@@ -185,6 +185,13 @@ class Topic_db {
         $topic->group_id           = $this->CI->input->post('group_id');
         $topic->read_access_level  = $this->CI->input->post('read_access_level');
         $topic->edit_access_level  = $this->CI->input->post('edit_access_level');
+        if ($topic->group_id=='') {
+            //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
+            //otherwise the topic will disappear in the nonexisting group '0'
+            $topic->group_id='0';
+            if ($topic->read_access_level=='group') $topic->read_access_level='private';
+            if ($topic->edit_access_level=='group') $topic->edit_access_level='private';
+        }
         return $topic;
     }
     

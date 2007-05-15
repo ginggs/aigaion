@@ -12,7 +12,7 @@ class Note {
     var $edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $user_id            = -1;
-    var $group_id           = -1; //group to which access is restricted
+    var $group_id           = 0; //group to which access is restricted
     var $pub_id             = -1;
     var $xref_ids       = array();
     var $CI                 = null; //link to the CI base object
@@ -36,11 +36,6 @@ class Note {
         return $this->CI->note_db->update($this);
     }
     
-    /** change the text of the note to reflect a change of the bibtex_id of the given publication */
-    function changeCrossref($pub_id, $new_bibtex_id) 
-    {
-        $this->CI->note_db->changeCrossref($this, $pub_id, $new_bibtex_id);
-    }
-   
+
 }
 ?>

@@ -70,8 +70,27 @@
     </tr>
 <?php 
     endif;
-?>
 
+    $crossrefpubs = $this->publication_db->getXRefPublicationsForPublication($publication->bibtex_id);
+    if (count($crossrefpubs)>0):
+?>
+    <tr>
+      <td valign='top'>Crossref by</td>
+      <td valign='top'>
+<?php
+        foreach ($crossrefpubs as $crossrefpub) {
+            $linkname = $crossrefpub->bibtex_id;
+            if ($linkname == '') {
+                $linkname = $crossrefpub->title;
+            }
+            echo anchor('/publications/show/'.$crossrefpub->pub_id, $linkname)."<br>";
+        }
+?>
+      </td>
+    </tr>
+<?php
+    endif;
+?>
     <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>

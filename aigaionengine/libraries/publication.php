@@ -15,8 +15,8 @@ class Publication {
   //one var for each publication table field
   //system vars
   var $pub_id       = 0;
-  var $user_id	  = '';
-  var $group_id            = -1; //group to which access is restricted
+  var $user_id	    = '';
+  var $group_id     = 0; //group to which access is restricted
   var $specialchars = 'FALSE';
   var $cleantitle   = '';
   var $cleanjournal = '';
