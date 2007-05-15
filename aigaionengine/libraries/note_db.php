@@ -207,6 +207,8 @@ class Note_db {
                               );
         
 
+        //remove old xref ids
+        $this->CI->db->delete('notecrossrefid', array('note_id' => $note->note_id)); 
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {

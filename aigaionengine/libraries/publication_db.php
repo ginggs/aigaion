@@ -469,8 +469,7 @@ class Publication_db {
     $this->CI->db->insert('topicpublicationlink', $data);
 
     //also fix bibtex_id mappings
-	$bibtexidlinks = &getBibtexIdLinks();
-	$bibtexidlinks[$publication->pub_id]=array($publication->bibtex_id, "/\b(?<!\.)(".preg_quote($publication->bibtex_id, "/").")\b/");
+	refreshBibtexIdLinks();
 
     return $publication;
   }
@@ -662,9 +661,7 @@ class Publication_db {
         $this->CI->note_db->changeAllCrossrefs($publication->pub_id, $publication->bibtex_id);
         //fix all crossreffing pubs
         $this->changeAllCrossrefs($publication->pub_id, $oldpublication->bibtex_id, $publication->bibtex_id);
-		$bibtexidlinks = &getBibtexIdLinks();
-        //also fix bibtex_id mappings
-		$bibtexidlinks[$publication->pub_id]=array($publication->bibtex_id, "/\b(?<!\.)(".preg_quote($publication->bibtex_id, "/").")\b/");
+		refreshBibtexIdLinks();
     }
     
     
