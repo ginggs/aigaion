@@ -148,8 +148,19 @@ class Note_db {
                                                         'group_id'=>$note->group_id,
                                                         'user_id'=>getUserLogin()->userId()))
                              );
-                                               
         $new_id = $this->CI->db->insert_id();
+        $note->note_id = $new_id;
+        
+        //set crossref ids
+        $xref_ids = getCrossrefIDsForText($note->text);
+        foreach ($xref_ids as $xref_id) {
+            $this->CI->db->query(
+                $this->CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
+                                                                     'note_id'=>$note->note_id)
+                                            )
+                                 );
+        }
+                             
         return $new_id;
     }
 
@@ -194,6 +205,17 @@ class Note_db {
                                          $updatefields,
                                          "note_id=".$note->note_id)
                               );
+        
+
+        //set crossref ids
+        $xref_ids = getCrossrefIDsForText($note->text);
+        foreach ($xref_ids as $xref_id) {
+            $this->CI->db->query(
+                $this->CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
+                                                                     'note_id'=>$note->note_id)
+                                            )
+                                 );
+        }
                                                        
         return True;
     }

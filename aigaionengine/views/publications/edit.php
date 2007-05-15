@@ -5,6 +5,7 @@
 <div class='publication'>
   <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
 <?php
+  $isAddForm = $edit_type=='new';
   //open the edit form
   echo form_open('publications/commit', $formAttributes)."\n";
   echo form_hidden('edit_type',   $edit_type)."\n";

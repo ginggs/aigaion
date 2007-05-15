@@ -14,7 +14,9 @@
 |       //load this helper:
 |       $this->load->helper('bibtex'); 
 |       //get an array containing info on the bibtex_ids in the database: pub_id, bibtex_id and a regexp for replacement
-|       $bibtexidlinks = $this->getBibtexIdLinks();
+|       $bibtexidlinks = getBibtexIdLinks();
+|       //get an array of all pub_ids for publications with an bibtex_id referenced in the given text
+|       $bibtex_ids = getCrossrefIDsForText($text);
 |
 */
 
@@ -26,6 +28,19 @@
         }
         return $bibtexidlinks;
     }  
+
+    function getCrossrefIDsForText($text)
+    {
+        $pub_ids = array();
+        $bibtexidlinks = getBibtexIdLinks();
+		foreach ($bibtexidlinks as $pub_id => $bibtex_id) {
+			if ($bibtex_id != "") {
+				if (preg_match($bibtex_id[1], $text))
+					$pub_ids[] = $pub_id;
+			}
+		}
+		return $pub_ids;
+    }
     
     function refreshBibtexIdLinks() {
         $CI = &get_instance();
