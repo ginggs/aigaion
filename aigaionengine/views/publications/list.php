@@ -4,14 +4,16 @@
   $even = true;
   foreach ($publications as $publication)
   {
-    $even = !$even;
-    $publicationData['publication'] = $publication;
-    if ($even)
-      $publicationData['even']      = 'even';
-    else
-      $publicationData['even']      = 'odd';
-      
-    $this->load->view('publications/summary', $publicationData);
+    if ($publication!=null) {
+        $even = !$even;
+        $publicationData['publication'] = $publication;
+        if ($even)
+          $publicationData['even']      = 'even';
+        else
+          $publicationData['even']      = 'odd';
+          
+        $this->load->view('publications/summary', $publicationData);
+    }
   }
 ?>
 </div>
