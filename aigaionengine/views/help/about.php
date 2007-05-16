@@ -1,7 +1,6 @@
 <div id="help-holder">
-<p class="header">
-    About
-</p>
+  <p class="header">About</p>
+  <p>
 <?php
         $Q = $this->db->query("SELECT * FROM aigaiongeneral");
         if ($Q->num_rows()>0) {
@@ -17,4 +16,5 @@
         echo "URL of this installation: ".AIGAION_ROOT_URL."<br/>";
         echo "PHP version: ".phpversion()."<br/>";
 ?>
+  </p>
 </div>

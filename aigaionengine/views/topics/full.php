@@ -32,7 +32,7 @@
              )                
         ) 
     {
-        echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/>\n<br/>"; 
+        echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/><br/>\n"; 
     }
     ?>
 </div>
@@ -47,10 +47,10 @@
         if (strlen($urlname)>21) {
             $urlname = substr($urlname,0,20)."...";
         }
-        echo "URL: <a href='".prep_url($topic->url)."' target='_blank'>[".$urlname."]</a><br><br>";
+        echo "URL: <a href='".prep_url($topic->url)."' target='_blank'>[".$urlname."]</a><br/><br/>\n";
     }
     if ($description)
-        echo $description."<br/>";
+        echo "<p>".$description."</p>\n";
 ?>
 
 

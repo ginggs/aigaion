@@ -356,7 +356,7 @@ TODO:
         foreach ($db_cleanauthors as $author_id => $db_author)
         {
           $distance = levenshtein($db_author, $cleanname);
-          if ($distance < 3)
+          if (($distance < 3) && ($author_id != $author->author_id))
             $db_distances[$author_id] = $distance;
         }
         

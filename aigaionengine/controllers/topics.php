@@ -246,7 +246,7 @@ class Topics extends Controller {
         $headerdata['javascripts']  = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $content['topic']           = $topic;
-        $content['header']          = 'testheader';
+        $content['header']          = "Publications for topic: ".$topic->name;
         $content['publications']    = $this->publication_db->getForTopic($topic_id);
         
         $output = $this->load->view('header', $headerdata, true);
