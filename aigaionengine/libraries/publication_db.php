@@ -245,10 +245,9 @@ class Publication_db {
     }
     
     //parse the authors
-    $parser = new $this->CI->parsecreators;
     if ($publication->authors)
     {
-      $authors_array    = $parser->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
+      $authors_array    = $this->CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
       $authors          = array();
       foreach ($authors_array as $author)
       {
@@ -270,7 +269,7 @@ class Publication_db {
     //parse the editors
     if ($publication->editors)
     {
-      $authors_array    = $parser->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->editors));
+      $authors_array    = $this->CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->editors));
       $authors          = array();
       foreach ($authors_array as $author)
       {
