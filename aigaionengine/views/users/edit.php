@@ -215,6 +215,12 @@ if ($userlogin->hasRights('user_assign_rights')) {
             }
 }
 
+$theme_array = array();
+$availableThemes = getThemes();
+foreach ($availableThemes as $theme)
+{
+  $theme_array[$theme] = $theme;
+}
 echo "
         
         <tr><td colspan='2'>
@@ -225,7 +231,7 @@ echo "
         <td>Theme</td>
         <td>
         ".form_dropdown('theme',
-                        array_combine(getThemes(),getThemes()),
+                        $theme_array,
                         $user->preferences["theme"])."
         </td>
         </tr>
