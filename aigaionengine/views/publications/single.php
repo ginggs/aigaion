@@ -6,7 +6,8 @@
 //$accessLevelEdit is set to true iff the edit access level of the publication does not make it
 //inaccessible to the logged user. Note: this does NOT yet garantuee atachemtn_edit or note_ediot or publication_edit rights
 $accessLevelEdit = False;
-$userlogin = getUserLogin();
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
 if (    
         (!$userlogin->isAnonymous() || ($publication->edit_access_level=='public'))
      &&
@@ -16,7 +17,7 @@ if (
          )                
      &&
         (    ($publication->edit_access_level != 'group') 
-          || (in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+          || (in_array($publication->group_id,$user->group_ids) ) 
           || ($userlogin->hasRights('publication_edit_all'))
          )                
     ) 
@@ -206,7 +207,7 @@ if (
         {
         
             echo "<div class='message'>Click on a topic name to change it's subscription status.</div>";
-            $user = $this->user_db->getByID(getUserLogin()->userId());
+            $user = $this->user_db->getByID($userlogin->userId());
             $config = array('onlyIfUserSubscribed'=>True,
                               'user'=>$user,
                               'includeGroupSubscriptions'=>True,
@@ -215,7 +216,7 @@ if (
             $root = $this->topic_db->getByID(1, $config);
             $this->load->vars(array('subviews'  => array('topics/publicationsubscriptiontreerow'=>array())));
         } else {
-            $user = $this->user_db->getByID(getUserLogin()->userId());
+            $user = $this->user_db->getByID($userlogin->userId());
             $config = array('onlyIfUserSubscribed'=>True,
                               'user'=>$user,
                               'includeGroupSubscriptions'=>True,

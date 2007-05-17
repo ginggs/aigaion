@@ -70,8 +70,9 @@ echo "
         <tr><td colspan='2'>
         <hr><b>Rights profiles:</b><hr>
         </td></tr>";
- 
-if (getUserLogin()->hasRights('user_assign_rights')) {    
+
+$userlogin = getUserLogin(); 
+if ($userlogin->hasRights('user_assign_rights')) {    
     echo "        
         <tr><td colspan='2'>
         The following rights profiles will by default be assigned to a user when it is added to this group.

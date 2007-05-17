@@ -312,7 +312,8 @@ class UserLogin {
             foreach ($loginGroups as $groupname) {
                 $groupQ = $CI->db->query("SELECT * FROM users WHERE type='group' AND abbreviation='".$groupname."'");
                 if ($groupQ->num_rows()>0) {
-                    $newuser->group_ids[] = $groupQ->row()->user_id;
+                  $R = $groupQ->row();
+                    $newuser->group_ids[] = $R->user_id;
                 } else {
                     //group must also be created...
                     $group = new Group();

@@ -54,8 +54,9 @@
 
     /** If a user is logged in, return name of theme, otherwise return name of default theme. */
     function getThemeName() {
-        if (getUserLogin()->isLoggedIn()) {
-            return getUserLogin()->getPreference('theme');
+      $userlogin = getUserLogin();
+        if ($userlogin->isLoggedIn()) {
+            return $userlogin->getPreference('theme');
         } else {
             return "default";
         }

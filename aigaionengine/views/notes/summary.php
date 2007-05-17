@@ -39,7 +39,8 @@ foreach ($note->xref_ids as $xref) {
 echo "<div class='readernote'><b>[User ".$note->user_id."]</b>: " . $text;
 
 //the block of edit actions: dependent on user rights
-$userlogin = getUserLogin();
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
 if (    ($userlogin->hasRights('note_edit_self'))
      && 
         (!$userlogin->isAnonymous() || ($note->edit_access_level=='public'))
@@ -50,7 +51,7 @@ if (    ($userlogin->hasRights('note_edit_self'))
          )                
      &&
         (    ($note->edit_access_level != 'group') 
-          || (in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+          || (in_array($note->group_id,$user->group_ids) ) 
           || ($userlogin->hasRights('note_edit_all'))
          )                
     ) 

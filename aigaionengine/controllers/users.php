@@ -10,7 +10,8 @@ class Users extends Controller {
 	/** Pass control to the users/change/(logged user) controller */
 	function index()
 	{
-		redirect('users/change/'.getUserLogin()->userId());
+	  $userlogin = getUserLogin();
+		redirect('users/change/'.$userlogin->userId());
 	}
 
     /** 
@@ -411,7 +412,8 @@ class Users extends Controller {
         A full HTML page with a 'topic subscription tree'
     */
     function topicreview() {
-	    $user_id = $this->uri->segment(3,getUserLogin()->userId());
+	    $userlogin  = getUserLogin();
+      $user_id = $this->uri->segment(3,$userlogin->userId());
 	    $user = $this->user_db->getByID($user_id);
 	    
 	    if ($user==null) {
@@ -484,8 +486,9 @@ class Users extends Controller {
     
     */
     function subscribe() {    
+      $userlogin = getUserLogin();
         $topic_id = $this->uri->segment(3,-1);
-        $user_id = $this->uri->segment(4,getUserLogin()->userId());
+        $user_id = $this->uri->segment(4,$userlogin->userId());
         
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {
@@ -542,9 +545,10 @@ class Users extends Controller {
         an div containing an error message, otherwise
     
     */
-    function unsubscribe() {    
+    function unsubscribe() {
+      $userlogin = getUserLogin();
         $topic_id = $this->uri->segment(3,-1);
-        $user_id = $this->uri->segment(4,getUserLogin()->userId());
+        $user_id = $this->uri->segment(4,$userlogin->userId());
         
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {

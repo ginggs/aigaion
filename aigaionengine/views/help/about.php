@@ -4,8 +4,9 @@
 <?php
         $Q = $this->db->query("SELECT * FROM aigaiongeneral");
         if ($Q->num_rows()>0) {
-            $version = $Q->row()->version;
-            $release = $Q->row()->releaseversion;
+          $R = $Q->row();
+            $version = $R->version;
+            $release = $R->releaseversion;
         } else {
             $version = '0.0';
             $release = "0.0";

@@ -75,7 +75,8 @@ class Group_db {
     /** Add a new group with the given data. Returns the new group_id, or -1 on failure. */
     function add($group) {
         //add only allowed with right rights:
-        if (!getUserLogin()->hasRights('user_edit_all')) {
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('user_edit_all')) {
             return -1;
         }
         //add new group

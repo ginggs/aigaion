@@ -11,6 +11,7 @@ we assume that this view is not loaded if you don't have the appropriate read an
 
 */
 $this->load->helper('form');
+$userlogin = getUserLogin();
 
 //the upload form is only for non-read-only servers
 if (getConfigurationSetting('SERVER_NOT_WRITABLE')!= 'TRUE') {
@@ -25,7 +26,7 @@ if (getConfigurationSetting('SERVER_NOT_WRITABLE')!= 'TRUE') {
     echo form_hidden('formname','attachment');
     echo form_hidden('read_access_level','intern');
     echo form_hidden('edit_access_level','intern');
-    echo form_hidden('user_id',getUserLogin()->userId());
+    echo form_hidden('user_id',$userlogin->userId());
     echo "<p class='header2'>Upload new attachment from this computer for \"".$publication->title."\"</p>";
     echo "
         <table>
@@ -73,7 +74,7 @@ echo form_open_multipart('attachments/commit','',array('action'=>'add',
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
-echo form_hidden('user_id',getUserLogin()->userId());
+echo form_hidden('user_id',$userlogin->userId());
 echo form_hidden('read_access_level','intern');
 echo form_hidden('edit_access_level','intern');
 echo "<p class='header2'>Add new attachment (or web site) as a link, without uploading, for \"".$publication->title."\"</p>";

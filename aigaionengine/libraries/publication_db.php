@@ -51,7 +51,8 @@ class Publication_db {
   /** Return the Publication object stored in the given database row, or null if insufficient rights. */
   function getFromRow($R)
   {
-    $userlogin = getUserLogin();
+    $userlogin  = getUserLogin();
+    $user       = $this->CI->user_db->getByID($userlogin->userID());
     //check rights; if fail: return null
     if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
       return null;
@@ -61,7 +62,7 @@ class Publication_db {
       return null;
     }
     if (   ($R->read_access_level=='group')
-        && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+        && (!in_array($R->group_id,$user->group_ids) ) 
         ) {
       return null;
     }    
@@ -151,7 +152,7 @@ class Publication_db {
     $publication->editors = $this->CI->author_db->getForPublication($R->pub_id, 'Y');
 
     //check if this publication was bookmarked by the logged user
-    $Q = $this->CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".getUserLogin()->userId()." AND pub_id=".$R->pub_id);
+    $Q = $this->CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".$userlogin->userId()." AND pub_id=".$R->pub_id);
     if ($Q->num_rows()>0) {
         $publication->isBookmarked = True;
     }
@@ -405,7 +406,7 @@ class Publication_db {
     foreach($fields as $field) 
       $data[$field] = $publication->$field;
     
-    $data['user_id'] = getUserLogin()->userId();
+    $data['user_id'] = $userlogin->userId();
   
     //during add, you can always set these access levels - the logged user is its owner after all
     $data['read_access_level'] = $publication->read_access_level;
@@ -478,7 +479,8 @@ class Publication_db {
   {
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
-    $userlogin = getUserLogin();
+    $userlogin  = getUserLogin();
+    $user       = $this->CI->user_db->getByID($userlogin->userID());
     $oldpublication = $this->getByID($publication->pub_id);
     if (    ($oldpublication == null) 
          ||
@@ -492,7 +494,7 @@ class Publication_db {
              )                
          ||
             (    ($oldpublication->edit_access_level == 'private') 
-              && (!in_array($oldpublication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!in_array($oldpublication->group_id,$user->group_ids) ) 
               && (!$userlogin->hasRights('publication_edit_all'))
              )                   ) 
     {
@@ -587,10 +589,10 @@ class Publication_db {
     foreach($fields as $field) 
       $data[$field] = $publication->$field;
 
-    $data['user_id'] = getUserLogin()->userId();
+    $data['user_id'] = $userlogin->userId();
   
-    if (   ($oldpublication->user_id==getUserLogin()->userId())
-        || getUserLogin()->hasRights('publication_edit_all')) {                        
+    if (   ($oldpublication->user_id==$userlogin->userId())
+        || $userlogin->hasRights('publication_edit_all')) {                        
         $data['read_access_level']=$publication->read_access_level;
         $data['edit_access_level']=$publication->edit_access_level;
         $data['group_id']=$publication->group_id;
@@ -774,9 +776,10 @@ class Publication_db {
   /** Return a list of publications for the bookmark list of the logged user */
   function getForBookmarkList()
   {
-    $user_id = getUserLogin()->userId();
+    $userlogin = getUserLogin();
+    
     $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
-    WHERE userbookmarklists.user_id=".$user_id."
+    WHERE userbookmarklists.user_id=".$userlogin->userId()."
     AND   userbookmarklists.pub_id=publication.pub_id
     ORDER BY actualyear, cleantitle");
 

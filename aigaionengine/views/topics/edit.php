@@ -20,12 +20,15 @@ echo form_open('topics/commit');
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','topic');
 $isAddForm = False;
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
+
 if (!isset($topic)||($topic==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
     if (!isset($action)||$action!='add')
         $topic = new Topic;
-    echo form_hidden('user_id',getUserLogin()->userId());
+    echo form_hidden('user_id',$userlogin->userId());
 } else {
     echo form_hidden('action','edit');
     echo form_hidden('topic_id',$topic->topic_id);
@@ -51,10 +54,10 @@ echo $this->validation->error_string;
         <tr><td><label for='parent_id'>Parent</label></td>
             <td>
 <?php     
-    $user = $this->user_db->getByID(getUserLogin()->userId());
+    $user_id = $user->userId());
     $config = array('onlyIfUserSubscribed'=>True,
                     'includeGroupSubscriptions'=>True,
-                    'user'=>$user);
+                    'user'=>$user_id);
 echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1,$config),
                             'showroot'  => True,
@@ -80,7 +83,7 @@ echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
             </td>
         </tr>    
 <?php
-if ($topic->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('topic_edit_all') || $isAddForm) {
+if ($topic->user_id==$userlogin->userId() || getUserLogin()->hasRights('topic_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>
@@ -101,8 +104,9 @@ echo form_dropdown('edit_access_level',$options,$topic->edit_access_level);
             <td>
 <?php
 $options = array();
-foreach ($this->user_db->getByID(getUserLogin()->userId())->group_ids as $group_id) {
-    $options[$group_id] = $this->group_db->getByID($group_id)->name;
+foreach ($$user->group_ids as $group_id) {
+  $group = $this->group_db->getByID($group_id);
+    $options[$group_id] = $group->name;
 }
 echo form_dropdown('group_id',$options,$topic->group_id);
 ?>

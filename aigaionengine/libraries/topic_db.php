@@ -46,9 +46,15 @@ class Topic_db {
         $this->CI = &get_instance();
     }
    
-    /** Returns the Topic with the given ID. Note: because $configuration is passed by reference, 
-    you must have a proper variable. You cannot call this method as 'getByID($some_id, array(some=>config))' !!!*/
-    function getByID($topic_id, &$configuration = array())
+    /** Returns the Topic with the given ID. 
+    Note: because $configuration is passed by reference, 
+    you must have a proper variable. You cannot call this method as 'getByID($some_id, array(some=>config))' !!!
+    
+    WB may 27, 2007 -> $configuration was passed by reference, but variables 
+    passed by reference cannot have a default value in php4.
+    Removed the reference pass
+    */
+    function getByID($topic_id, $configuration = array())
     {
         $Q = $this->CI->db->getwhere('topics', array('topic_id' => $topic_id));
         //configuration stuff will be handled by the getFromRow method...
@@ -60,10 +66,15 @@ class Topic_db {
         }
     }
 
-    /** Returns the Topic stored in the given table row, or null if insufficient rights */
-    function getFromRow($R, &$configuration = array())
+    /** Returns the Topic stored in the given table row, or null if insufficient rights 
+    WB may 27, 2007 -> $configuration was passed by reference, but variables 
+    passed by reference cannot have a default value in php4.
+    Removed the reference pass
+    */
+    function getFromRow($R, $configuration = array())
     {
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
             return null;
@@ -74,7 +85,7 @@ class Topic_db {
             return null;
         }
         if (   ($R->read_access_level=='group') 
-            && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+            && (!in_array($R->group_id,$user->group_ids) ) 
             && (!$userlogin->hasRights('topic_read_all'))) {
             return null;
         }
@@ -126,7 +137,8 @@ class Topic_db {
                 $topic->flags['userIsSubscribed'] = True;
                 if (array_key_exists('flagCollapsed',$configuration)) {
                     if ($userSubscribedQ->num_rows() > 0) {
-                        $topic->flags['userIsCollapsed'] = $userSubscribedQ->row()->collapsed=='1';
+                      $R = $userSubscribedQ->row();
+                        $topic->flags['userIsCollapsed'] = $R->collapsed=='1';
                     } else {
                         $topic->flags['userIsCollapsed'] = True;
                     }
@@ -195,8 +207,12 @@ class Topic_db {
         return $topic;
     }
     
-    /** Return an array of Topic's retrieved from the database that are the children of the given topic. */
-    function getChildren($topic_id, &$configuration=array()) {
+    /** Return an array of Topic's retrieved from the database that are the children of the given topic. 
+    WB may 27, 2007 -> $configuration was passed by reference, but variables 
+    passed by reference cannot have a default value in php4.
+    Removed the reference pass
+    */
+    function getChildren($topic_id, $configuration=array()) {
         $children = array();
         //get children from database; add to array
         $query = $this->CI->db->query("SELECT topics.* FROM topics, topictopiclink
@@ -289,7 +305,7 @@ class Topic_db {
         $fields = array('name'=>$topic->name,
                         'description'=>$topic->description,
                         'url'=>$topic->url,
-                        'user_id'=>getUserLogin()->userId());
+                        'user_id'=>$userlogin->userId());
         $fields['read_access_level']=$topic->read_access_level;
         $fields['edit_access_level']=$topic->edit_access_level;
         $fields['group_id']=$topic->group_id;
@@ -317,7 +333,8 @@ class Topic_db {
 
         //check access rights (by looking at the original topic in the database, as the POST
         //data might have been rigged!)
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         $topic_testrights = $this->CI->topic_db->getByID($topic->topic_id);
         if (    ($topic_testrights == null) 
              ||
@@ -331,7 +348,7 @@ class Topic_db {
                  )                
              ||
                 (    ($topic_testrights->edit_access_level == 'group') 
-                  && (!in_array($topic_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($topic_testrights->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )                
             ) 
@@ -360,8 +377,8 @@ class Topic_db {
         $updatefields =  array('name'=>$topic->name,
                                'description'=>$topic->description,
                                'url'=>$topic->url);
-        if (   ($topic_testrights->user_id==getUserLogin()->userId())
-            || getUserLogin()->hasRights('topic_edit_all')) {                        
+        if (   ($topic_testrights->user_id==$userlogin->userId())
+            || $userlogin->hasRights('topic_edit_all')) {                        
                 $updatefields['read_access_level']=$topic->read_access_level;
                 $updatefields['edit_access_level']=$topic->edit_access_level;
                 $updatefields['group_id']=$topic->group_id;

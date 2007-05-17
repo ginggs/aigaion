@@ -28,7 +28,8 @@
         $CI = &get_instance();
         $Q = $CI->db->query("SELECT * FROM aigaiongeneral");
         if ($Q->num_rows()>0) {
-            $version = $Q->row()->version;
+            $R = $Q->row();
+            $version = $R->version;
             if ($version != 'V2.1') {
                 updateSchemaV2_0(); //FIRST CHECK OLDER VERSION
                 //ATTEMPT TO RUN DATABASE UPDATING CODE FOR THIS VERSION... if fail, rollback?
@@ -57,7 +58,8 @@
         $CI = &get_instance();
         $Q = $CI->db->query("SELECT * FROM aigaiongeneral");
         if ($Q->num_rows()>0) {
-            $version = $Q->row()->version;
+            $R = $Q->row();
+            $version = $R->version;
             if ($version != 'V2.0') {
                 appendErrorMessage("The database has not been migrated from Aigaion 1.x towards Aigaion 2.0. <br>
                                     Automatic update is not possible, even from an account with sufficient rights.<br><br> 

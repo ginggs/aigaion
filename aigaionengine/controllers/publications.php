@@ -117,14 +117,15 @@ class Publications extends Controller {
       $edit_type = $this->input->post('edit_type');
     }
 
-    $userlogin = getUserLogin();
+    $userlogin  = getUserLogin();
+    $user       = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
          || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
          || (    ($publication->edit_access_level == 'private') 
               && ($userlogin->userId() != $publication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
          || (    ($publication->edit_access_level == 'group') 
-              && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!in_array($publication->group_id,$user->group_ids) ) 
               && (!$userlogin->hasRights('publication_edit_all'))
              )                
         ) 
@@ -151,14 +152,15 @@ class Publications extends Controller {
   //delete() - Remove one publication from the database
   function delete()
   {
-        $userlogin = getUserLogin();
+    $userlogin  = getUserLogin();
+    $user       = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
          || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
          || (    ($publication->edit_access_level == 'private') 
               && ($userlogin->userId() != $publication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
          || (    ($publication->edit_access_level == 'group') 
-              && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!in_array($publication->group_id,$user->group_ids) ) 
               && (!$userlogin->hasRights('publication_edit_all'))
              )                
         ) 
@@ -207,18 +209,19 @@ class Publications extends Controller {
       if (!$bReview)
       {
         //do actual commit, depending on the edit_type, choose add or update
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if ((!$userlogin->hasRights('publication_edit'))
-             || ($oldpublication == null)
-             || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
-             || (    ($oldpublication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $oldpublication->user_id) 
-                  && (!$userlogin->hasRights('publication_edit_all')))                
-           || (    ($oldpublication->edit_access_level == 'group') 
-                  && (!in_array($oldpublication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
-            ) 
+          || ($oldpublication == null)
+          || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
+          || (    ($oldpublication->edit_access_level == 'private') 
+               && ($userlogin->userId() != $oldpublication->user_id) 
+               && (!$userlogin->hasRights('publication_edit_all')))                
+          || (    ($oldpublication->edit_access_level == 'group') 
+               && (!in_array($oldpublication->group_id,$user->group_ids) ) 
+               && (!$userlogin->hasRights('publication_edit_all'))
+             )                
+          ) 
         {
           appendErrorMessage('Edit publication: insufficient rights.<br/>');
           redirect('');
@@ -244,7 +247,8 @@ class Publications extends Controller {
   function review($publication, $review_data)
   {
     $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged
-    $userlogin = getUserLogin();
+    $userlogin      = getUserLogin();
+    $user           = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
          || ($oldpublication == null)
          || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
@@ -252,7 +256,7 @@ class Publications extends Controller {
               && ($userlogin->userId() != $oldpublication->user_id) 
               && (!$userlogin->hasRights('publication_edit_all')))                
        || (    ($oldpublication->edit_access_level == 'group') 
-              && (!in_array($oldpublication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              && (!in_array($oldpublication->group_id,$user->group_ids) ) 
               && (!$userlogin->hasRights('publication_edit_all'))
              )                
         ) 

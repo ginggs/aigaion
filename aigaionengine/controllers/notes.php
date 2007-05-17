@@ -48,7 +48,9 @@ class Notes extends Controller {
 
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
+
         if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
@@ -59,7 +61,7 @@ class Notes extends Controller {
                  )
              ||
                 (    ($note->edit_access_level == 'group') 
-                  && (!in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($note->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('note_edit_all'))
                  )                
             ) 
@@ -105,7 +107,8 @@ class Notes extends Controller {
 
 	    //edit_access_level and the user edit rights
 	    //in this case it's mostly the rights on the publication that determine access
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
@@ -116,7 +119,7 @@ class Notes extends Controller {
                  )                
              ||
                 (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($publication->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
             ) 
@@ -159,7 +162,8 @@ class Notes extends Controller {
 
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('note_edit_self'))
              || 
                 ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
@@ -170,7 +174,7 @@ class Notes extends Controller {
                  )                
              ||
                 (    ($note->edit_access_level == 'group') 
-                  && (!in_array($note->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($note->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('note_edit_all'))
                  )         
             ) 

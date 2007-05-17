@@ -1,7 +1,9 @@
 <div id='singletopic-content-holder'>
 <!-- Topic: HEADER AND DESCRIPTION -->
 <?php
-    $userlogin = getUserLogin();
+    $userlogin  = getUserLogin();
+    $user       = $this->user_db->getByID($userlogin->userID());
+
 
     if ($topic->name=="") {
         $name = "Topic #".$topic->topic_id;
@@ -27,7 +29,7 @@
              )                
          &&
             (    ($topic->edit_access_level != 'group') 
-              || (in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              || (in_array($topic->group_id,$user->group_ids) ) 
               || ($userlogin->hasRights('topic_edit_all'))
              )                
         ) 

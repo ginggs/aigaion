@@ -25,7 +25,8 @@ class Attachment_db {
     /** Return the Attachment object stored in the given database row, or null if insufficient rights. */
     function getFromRow($R)
     {
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if (!$userlogin->hasRights('attachment_read')) {
             return null;
@@ -36,7 +37,7 @@ class Attachment_db {
         if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('attachment_read_all'))) {
             return null;
         }
-        if (($R->read_access_level=='group') && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) )  && (!$userlogin->hasRights('attachment_read_all'))) {
+        if (($R->read_access_level=='group') && (!in_array($R->group_id,$user->group_ids) )  && (!$userlogin->hasRights('attachment_read_all'))) {
             return null;
         }
         //rights were OK; read data
@@ -104,8 +105,9 @@ class Attachment_db {
     Quite a large method. */
     function add($attachment) {
         //check access rights (!)
-        $userlogin = getUserLogin();
-        $publication = $this->CI->publication_db->getByID($attachment->pub_id);
+        $userlogin    = getUserLogin();
+        $user         = $this->CI->user_db->getByID($userlogin->userID());
+        $publication  = $this->CI->publication_db->getByID($attachment->pub_id);
         if (    ($publication == null) 
              ||
                 (!$userlogin->hasRights('attachment_edit'))
@@ -118,7 +120,7 @@ class Attachment_db {
                  )                
              ||
                 (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($publication->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )     
             ) 
@@ -190,7 +192,7 @@ class Attachment_db {
     		                      .addslashes($attachment->location)."','"
     		                      .addslashes($attachment->mime)."','"
     		                      .$ismain."', 'TRUE', "
-    		                      .getUserLogin()->userId().")");
+    		                      .$userlogin->userId().")");
     		if (mysql_error()) {
     			appendErrorMessage("Error adding attachment: ".mysql_error()."<br>");
     			return -1;
@@ -274,7 +276,7 @@ class Attachment_db {
         		                      .addslashes($storename.$ext)."','"
         		                      .addslashes($attachment->mime)."','"
         		                      .$ismain."', 'FALSE', "
-        		                      .getUserLogin()->userId().")");
+        		                      .$userlogin->userId().")");
         		if (mysql_error()) {
         			appendErrorMessage("Error adding attachment: ".mysql_error()."<br>");
         			return -1;
@@ -311,7 +313,8 @@ class Attachment_db {
     function update($attachment) {
         //check access rights (by looking at the original attachment in the database, as the POST
         //data might have been rigged!)
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         $attachment_testrights = $this->CI->attachment_db->getByID($attachment->att_id);
         if (    ($attachment_testrights == null) 
              ||
@@ -325,7 +328,7 @@ class Attachment_db {
                  )                
              ||
                 (    ($attachment_testrights->edit_access_level == 'group') 
-                  && (!in_array($attachment_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($attachment_testrights->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                
             ) 
@@ -357,8 +360,8 @@ class Attachment_db {
 		}
         
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
-        if (   ($attachment_testrights->user_id==getUserLogin()->userId())
-            || getUserLogin()->hasRights('attachment_edit_all')) {                        
+        if (   ($attachment_testrights->user_id==$userlogin->userId())
+            || $userlogin->hasRights('attachment_edit_all')) {                        
                 $updatefields['read_access_level']=$attachment->read_access_level;
                 $updatefields['edit_access_level']=$attachment->edit_access_level;
                 $updatefields['group_id']=$attachment->group_id;

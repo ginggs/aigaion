@@ -25,7 +25,8 @@ class Note_db {
     /** Return the Note object stored in the given database row, or null if insufficient rights. */
     function getFromRow($R)
     {
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if (!$userlogin->hasRights('note_read')) {
             return null;
@@ -39,7 +40,7 @@ class Note_db {
             return null;
         }
         if (   ($R->read_access_level=='group') 
-            && (!in_array($R->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+            && (!in_array($R->group_id,$user->group_ids) ) 
             && (!$userlogin->hasRights('note_read_all'))) {
             return null;
         }
@@ -117,8 +118,9 @@ class Note_db {
     /** Add a new note with the given data. Returns the new note_id, or -1 on failure. */
     function add($note) {
         //check access rights (!)
-        $userlogin = getUserLogin();
-        $publication = $this->CI->publication_db->getByID($note->pub_id);
+        $userlogin    = getUserLogin();
+        $user         = $this->CI->user_db->getByID($userlogin->userID());
+        $publication  = $this->CI->publication_db->getByID($note->pub_id);
         if (    ($publication == null) 
              ||
                 (!$userlogin->hasRights('note_edit_self'))
@@ -131,7 +133,7 @@ class Note_db {
                  )                
              ||
                 (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($publication->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
             ) 
@@ -140,14 +142,12 @@ class Note_db {
 	        return;
         }        
         //add new note
-        $this->CI->db->query(
-            $this->CI->db->insert_string("notes", array('text'=>$note->text,
-                                                        'pub_id'=>$note->pub_id,
-                                                        'read_access_level'=>$note->read_access_level,
-                                                        'edit_access_level'=>$note->edit_access_level,
-                                                        'group_id'=>$note->group_id,
-                                                        'user_id'=>getUserLogin()->userId()))
-                             );
+        $this->CI->db->insert("notes", array('text'              => $note->text,
+                                             'pub_id'            => $note->pub_id,
+                                             'read_access_level' => $note->read_access_level,
+                                             'edit_access_level' => $note->edit_access_level,
+                                             'group_id'          => $note->group_id,
+                                             'user_id'           => $userlogin->userId()));
         $new_id = $this->CI->db->insert_id();
         $note->note_id = $new_id;
         
@@ -169,7 +169,8 @@ class Note_db {
     function update($note) {
         //check access rights (by looking at the original note in the database, as the POST
         //data might have been rigged!)
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->CI->user_db->getByID($userlogin->userID());
         $note_testrights = $this->CI->note_db->getByID($note->note_id);
         if (    ($note_testrights == null) 
              ||
@@ -183,7 +184,7 @@ class Note_db {
                  )                
              ||
                 (    ($note_testrights->edit_access_level == 'private') 
-                  && (!in_array($note_testrights->group_id,$this->CI->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($note_testrights->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('note_edit_all'))
                  )                   ) 
         {
@@ -193,8 +194,8 @@ class Note_db {
         
         //start update
         $updatefields =  array('text'=>$note->text);
-        if (   ($note_testrights->user_id==getUserLogin()->userId())
-            || getUserLogin()->hasRights('note_edit_all')) {                        
+        if (   ($note_testrights->user_id==$userlogin->userId())
+            || $userlogin->hasRights('note_edit_all')) {                        
                 $updatefields['read_access_level']=$note->read_access_level;
                 $updatefields['edit_access_level']=$note->edit_access_level;
                 $updatefields['group_id']=$note->group_id;
@@ -232,7 +233,8 @@ class Note_db {
         foreach ($Q->result() as $R) {
             $noteQ = $this->CI->db->getwhere('notes',array('note_id'=>$R->note_id));
             if ($noteQ->num_rows()>0) {
-        		$text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $noteQ->row()->text);
+              $R = $noteQ->row();
+        		  $text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $R->text);
                 //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
                 $updatefields =  array('text'=>$text);
                 $this->CI->db->query(

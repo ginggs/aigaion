@@ -10,6 +10,8 @@ Parameters:
 we assume that this view is not loaded if you don't have the appropriate read and edit rights
 */
 $this->load->helper('form');
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
 echo "<div class='editform'>";
 echo form_open_multipart('attachments/commit','',array('action'=>'edit',
                                                        'att_id'=>$attachment->att_id,
@@ -41,7 +43,7 @@ echo form_input(array('name'=>'note','size'=>'30','value'=>$attachment->note));
 echo "
             </td>
         </tr>";
-if ($attachment->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('attachment_edit_all')) {
+if ($attachment->user_id==$userlogin->userId() || $userlogin->hasRights('attachment_edit_all')) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>
@@ -62,8 +64,9 @@ echo form_dropdown('edit_access_level',$options,$attachment->edit_access_level);
             <td>
 <?php
 $options = array();
-foreach ($this->user_db->getByID(getUserLogin()->userId())->group_ids as $group_id) {
-    $options[$group_id] = $this->group_db->getByID($group_id)->name;
+foreach ($user->group_ids as $group_id) {
+  $group = $this->group_db->getByID($group_id);
+    $options[$group_id] = $group->name;
 }
 echo form_dropdown('group_id',$options,$attachment->group_id);
 ?>

@@ -172,12 +172,14 @@ class Topic {
     
     /** Collapse this topic for the current logged user */
     function collapse() {
-        $this->CI->topic_db->collapse($this, getUserLogin()->userId());
+      $userlogin = getUserLogin();
+        $this->CI->topic_db->collapse($this, $userlogin->userId());
     }
 
     /** Expand this topic for the current logged user */
     function expand() {
-        $this->CI->topic_db->expand($this, getUserLogin()->userId());
+      $userlogin = getUserLogin();
+        $this->CI->topic_db->expand($this, $userlogin->userId());
     }
     
     

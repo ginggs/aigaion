@@ -1,5 +1,7 @@
 <?php 
 $summaryfields = getPublicationSummaryFieldArray($publication->pub_type); 
+$userlogin  = getUserLogin();
+
 echo "
     <div class='publication_summary ".$even."' 
          id='publicationsummary".$publication->pub_id."'>
@@ -46,7 +48,7 @@ echo "
 
                 <nobr>
                 <span id='bookmark_pub_".$publication->pub_id."'>";
-if (getUserLogin()->hasRights('bookmarklist')) {
+if ($userlogin->hasRights('bookmarklist')) {
     if ($publication->isBookmarked) {
         echo $this->ajax->link_to_remote("[UnBookmark]", 
                          array('url' => site_url('/bookmarklist/removepublication/'.$publication->pub_id), 

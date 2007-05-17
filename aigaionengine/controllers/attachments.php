@@ -80,7 +80,8 @@ class Attachments extends Controller {
 
 	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
                 ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
@@ -91,7 +92,7 @@ class Attachments extends Controller {
                  )                
              ||
                 (    ($attachment->edit_access_level == 'group') 
-                  && (!in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($attachment->group_id, $user->group_ids) ) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                
             ) 
@@ -153,7 +154,8 @@ class Attachments extends Controller {
 	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
 	    //in this case it's mostly the rights on the publication that determine access
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
                 ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
@@ -164,7 +166,7 @@ class Attachments extends Controller {
                  )                
              ||
                 (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($publication->group_id, $user->group_ids) ) 
                   && (!$userlogin->hasRights('publication_edit_all'))
                  )                
             ) 
@@ -215,7 +217,8 @@ class Attachments extends Controller {
 	    
 	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
                 ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
@@ -226,7 +229,7 @@ class Attachments extends Controller {
                  )                
              ||
                 (    ($attachment->edit_access_level == 'group') 
-                  && (!in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($attachment->group_id, $user->group_ids) ) 
                   && (!$userlogin->hasRights('attachment_edit_all'))
                  )                ) 
         {

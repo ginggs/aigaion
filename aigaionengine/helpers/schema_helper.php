@@ -33,7 +33,8 @@
         $CI = &get_instance();
         $Q = $CI->db->query("SELECT * FROM aigaiongeneral");
         if ($Q->num_rows()>0) {
-            $version = $Q->row()->version;
+            $R = $Q->row();
+            $version = $R->version;
             if ($version == 'V2.0') { 
                 return True;
             } else {

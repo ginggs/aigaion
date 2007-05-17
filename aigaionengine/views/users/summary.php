@@ -12,11 +12,12 @@ access rights: we presume that this view is not loaded when the user doesn't hav
 as for the edit rights: they determine which edit links are shown.
     
 */
-    if (getUserLogin()->hasRights('user_edit_all') || (getUserLogin()->hasRights('user_edit_all')&&$user->user_id==getUserLogin()->userId()))
+$userlogin  = getUserLogin();
+    if ($userlogin->hasRights('user_edit_all') || ($userlogin->hasRights('user_edit_all')&&$user->user_id==getUserLogin()->userId()))
     {
         echo anchor('users/edit/'.$user->user_id,'[edit]')."&nbsp;";
         echo anchor('users/delete/'.$user->user_id,'[delete]')."&nbsp;";
-        if (getUserLogin()->hasRights('topic_subscription')) {
+        if ($userlogin->hasRights('topic_subscription')) {
             echo anchor('users/topicreview/'.$user->user_id,'[topic subscription]')."&nbsp;";
         }
     }

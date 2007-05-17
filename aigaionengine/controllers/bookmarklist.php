@@ -31,7 +31,8 @@ class Bookmarklist extends Controller {
 	    //get URL segments: none
 	    
 	    //check rights
-        if (!getUserLogin()->hasRights('bookmarklist')) {
+      $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist')) {
             appendErrorMessage("View bookmarklist: insufficient rights<br>");
             redirect('');
         }
@@ -45,7 +46,7 @@ class Bookmarklist extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $content['header']          = 'Bookmarklist of '.getUserLogin()->loginName();
+        $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
         $content['publications']    = $this->publication_db->getForBookmarkList();
         
         
@@ -159,7 +160,8 @@ class Bookmarklist extends Controller {
 	    //check rights is done in the $this->bookmarklist_db->removePublication function, no need to do it twice
 
 	    $topic_id = $this->input->post('topic_id');
-        $user = $this->user_db->getByID(getUserLogin()->userId());
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
         $config = array('onlyIfUserSubscribed'=>True,
                          'user'=>$user,
                          'includeGroupSubscriptions'=>True
@@ -188,7 +190,8 @@ class Bookmarklist extends Controller {
         
     */
     function maketopic() {
-	    if (!getUserLogin()->hasRights('topic_edit')) {
+      $userlogin = getUserLogin();
+	    if (!$userlogin->hasRights('topic_edit')) {
 	        appendErrorMessage('Insufficient rights to create topic<br>');
 	        redirect('');
 	    }
@@ -219,7 +222,8 @@ class Bookmarklist extends Controller {
         
     */
     function clear() {
-	    if (!getUserLogin()->hasRights('bookmarklist')) {
+      $userlogin = getUserLogin();
+	    if (!$userlogin->hasRights('bookmarklist')) {
 	        appendErrorMessage('Insufficient rights to clear bookmarklist<br>');
 	        redirect('');
 	    }

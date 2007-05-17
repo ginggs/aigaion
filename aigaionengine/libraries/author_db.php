@@ -370,7 +370,8 @@ TODO:
           $result_message .= "<ul>\n";
           foreach($db_distances as $key => $value)
           {
-            $result_message .= "<li>".$this->getByID($key)->getName('lvf')."</li>\n";
+            $author = $this->getByID($key);
+            $result_message .= "<li>".$author->getName('lvf')."</li>\n";
           }
           $result_message .= "</ul>\n";
         }

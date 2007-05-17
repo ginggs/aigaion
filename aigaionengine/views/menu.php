@@ -1,4 +1,7 @@
 <!-- Aigaion menu -->
+<?php
+  $userlogin = getUserLogin();
+?>
 <div id="menu_holder">
   <ul class="mainmenu">
     <li class="mainmenu-header">BROWSE</li>
@@ -7,13 +10,13 @@
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
 <?php
 
-if (getUserLogin()->hasRights('bookmarklist')) {
+if ($userlogin->hasRights('bookmarklist')) {
 ?>
     <li class="mainmenu"><?php echo anchor('bookmarklist', 'My Bookmark List'); ?></li>
 <?php
 }
 
-if (getUserLogin()->hasRights('publication_edit'))
+if ($userlogin->hasRights('publication_edit'))
 {
 ?>
     <li class="mainmenu-spacer"></li>
@@ -22,7 +25,7 @@ if (getUserLogin()->hasRights('publication_edit'))
     <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
 <?php
 } //New publication / author menu
-if (getUserLogin()->hasRights('topic_edit'))
+if ($userlogin->hasRights('topic_edit'))
 {
 ?>
     <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
@@ -30,13 +33,13 @@ if (getUserLogin()->hasRights('topic_edit'))
 } 
 
 $ACCOUNT_MENU = "";
-if (getUserLogin()->hasRights('user_edit_self')) {
-    $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/edit/'.getUserLogin()->userId(), 'My Profile')."</li>\n";
+if ($userlogin->hasRights('user_edit_self')) {
+    $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
 }
-if (getUserLogin()->hasRights('topic_subscription')) {
+if ($userlogin->hasRights('topic_subscription')) {
     $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Review')."</li>\n";
 }
-if (getUserLogin()->hasRights('user_edit_all')) {
+if ($userlogin->hasRights('user_edit_all')) {
     $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/manage', 'Manage All Accounts')."</li>\n";
 }
 if ($ACCOUNT_MENU != "") {
@@ -52,7 +55,7 @@ if ($ACCOUNT_MENU != "") {
     <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
     <li class="mainmenu"><?php echo anchor('help/view/about', 'About this site'); ?></li>
 <?php
-if (getUserLogin()->hasRights('database_manage')) {
+if ($userlogin->hasRights('database_manage')) {
 ?>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">SITE</li>
@@ -63,7 +66,7 @@ if (getUserLogin()->hasRights('database_manage')) {
 ?>
     <li class="mainmenu-spacer"></li>
 <?php
-	if (getUserLogin()->isAnonymous()) {
+	if ($userlogin->isAnonymous()) {
     $anonusers = $this->user_db->getAllAnonUsers();
     if (count($anonusers)>0) {
       //more than one anonymous user: show a dropdown where you can choose between the different guest users
@@ -78,7 +81,7 @@ if (getUserLogin()->hasRights('database_manage')) {
       echo  "    <li class='mainmenu'>"
              .form_dropdown('anonlogin', 
                             $options, 
-                            getUserLogin()->userId(),
+                            $userlogin->userId(),
                             "OnChange='var url=\"".site_url('/login/anonymous/')."\";window.document.location=(url+\"/\"+$(\"anonlogin\").value);' id='anonlogin'")
              ."</li>";
     }
@@ -115,7 +118,7 @@ if (getUserLogin()->hasRights('database_manage')) {
 	} else {
 ?>
     <li class="mainmenu-header">LOGGED IN:</li>
-    <li class="mainmenu"><?php echo getUserLogin()->loginName(); ?></li>
+    <li class="mainmenu"><?php echo $userlogin->loginName(); ?></li>
     <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
 <?php
     }

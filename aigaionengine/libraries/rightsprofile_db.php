@@ -80,8 +80,9 @@ class Rightsprofile_db {
 
     /** Add a new rightsprofile with the given data. Returns the new rightsprofile_id, or -1 on failure. */
     function add($rightsprofile) {
+        $userlogin = getUserLogin();
         //add only allowed with right rights:
-        if (!getUserLogin()->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights')) {
+        if (!$userlogin->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights')) {
             return -1;
         }
         //add new rightsprofile

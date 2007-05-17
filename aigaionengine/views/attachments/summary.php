@@ -11,6 +11,9 @@ Parameters:
 access rights: we presume that this view is not loaded when the user doesn't have the read rights.
 as for the edit rights: they determine which edit links are shown.
 */
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
+        
     if ($attachment->isremote) {
         echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
@@ -39,7 +42,7 @@ as for the edit rights: they determine which edit links are shown.
              )          
          &&
             (    ($attachment->edit_access_level != 'group') 
-              || (in_array($attachment->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+              || (in_array($attachment->group_id,$user->group_ids) ) 
               || ($userlogin->hasRights('attachment_edit_all'))
              )                
         ) 

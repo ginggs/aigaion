@@ -28,8 +28,9 @@ class Topics extends Controller {
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
-
-        $user = $this->user_db->getByID(getUserLogin()->userId());
+        
+        $userlogin = getUserLogin();
+        $user = $this->user_db->getByID($userlogin->userId());
         $config = array('onlyIfUserSubscribed'=>True,
                          'flagCollapsed'=>True,
                          'user'=>$user,
@@ -89,8 +90,9 @@ class Topics extends Controller {
 
 	    //besides the rights needed to READ this topic, checked by topic_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
-        if (    (!$userlogin->hasRights('topic_edit'))
+            $userlogin  = getUserLogin();
+            $user       = $this->user_db->getByID($userlogin->userID());
+            if (    (!$userlogin->hasRights('topic_edit'))
              || 
                 ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
              ||
@@ -100,7 +102,7 @@ class Topics extends Controller {
                  )                
              ||
                 (    ($topic->edit_access_level == 'group') 
-                  && (!in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($topic->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )                
             ) 
@@ -182,7 +184,9 @@ class Topics extends Controller {
 
 	    //besides the rights needed to READ this topic, checked by topic_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
-        $userlogin = getUserLogin();
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
+    
         if (    (!$userlogin->hasRights('topic_edit'))
              || 
                 ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
@@ -193,7 +197,7 @@ class Topics extends Controller {
                  )                
              ||
                 (    ($topic->edit_access_level == 'group') 
-                  && (!in_array($topic->group_id,$this->user_db->getByID($userlogin->userId())->group_ids) ) 
+                  && (!in_array($topic->group_id,$user->group_ids) ) 
                   && (!$userlogin->hasRights('topic_edit_all'))
                  )         
             ) 

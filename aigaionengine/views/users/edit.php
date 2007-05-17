@@ -23,6 +23,8 @@ echo form_open('users/commit');
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','user');
 $isAddForm = False;
+$userlogin  = getUserLogin();
+
 if (!isset($user)||($user==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
@@ -132,7 +134,7 @@ echo "
         </td>
         </tr>";
 
-if (getUserLogin()->hasRights('user_edit_all')) {
+if ($userlogin->hasRights('user_edit_all')) {
     echo "        
         <tr>
         <td>Anonymous account (check if this account is an anonymous (guest) account)</td>
@@ -143,7 +145,7 @@ if (getUserLogin()->hasRights('user_edit_all')) {
 }
 
 
-if (getUserLogin()->hasRights('user_edit_all')) {
+if ($userlogin->hasRights('user_edit_all')) {
     echo "   
         <tr><td colspan='2'>
         <hr><b>Groups:</b><hr>
@@ -161,7 +163,7 @@ if (getUserLogin()->hasRights('user_edit_all')) {
 }
 
         
-if (getUserLogin()->hasRights('user_assign_rights')) {
+if ($userlogin->hasRights('user_assign_rights')) {
         echo "   
     
             <tr><td colspan='2'>

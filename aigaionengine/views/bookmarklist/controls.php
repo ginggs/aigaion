@@ -19,7 +19,7 @@ $userlogin = getUserLogin();
 //In that case the user will be notified after the (failed) attempts
 if ($userlogin->hasRights('publication_edit')) {
     echo form_open('bookmarklist/addtotopic');
-    $user = $this->user_db->getByID(getUserLogin()->userId());
+    $user = $this->user_db->getByID($userlogin->userId());
     $config = array('onlyIfUserSubscribed'=>True,
                     'includeGroupSubscriptions'=>True,
                     'user'=>$user);

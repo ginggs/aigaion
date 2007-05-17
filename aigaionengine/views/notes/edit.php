@@ -20,6 +20,9 @@ echo form_open('notes/commit');
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','note');
 $isAddForm = False;
+$userlogin  = getUserLogin();
+$user       = $this->user_db->getByID($userlogin->userID());
+
 if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
     $isAddForm = True;
     echo form_hidden('action','add');
@@ -29,7 +32,7 @@ if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
     } else {
         echo form_hidden('pub_id',$note->pub_id);
     }
-    echo form_hidden('user_id',getUserLogin()->userId());
+    echo form_hidden('user_id',$userlogin->userId());
 } else {
     echo form_hidden('action','edit');
     echo form_hidden('note_id',$note->note_id);
@@ -52,7 +55,7 @@ echo $this->validation->error_string;
             </td>
         </tr>
 <?php
-if ($note->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('note_edit_all') || $isAddForm) {
+if ($note->user_id==$userlogin->userId() || $userlogin->hasRights('note_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>
@@ -73,8 +76,9 @@ echo form_dropdown('edit_access_level',$options,$note->edit_access_level);
             <td>
 <?php
 $options = array();
-foreach ($this->user_db->getByID(getUserLogin()->userId())->group_ids as $group_id) {
-    $options[$group_id] = $this->group_db->getByID($group_id)->name;
+foreach ($user->group_ids as $group_id) {
+  $group = $this->group_db->getByID($group_id);
+  $options[$group_id] = $group->name;
 }
 echo form_dropdown('group_id',$options,$note->group_id);
 ?>

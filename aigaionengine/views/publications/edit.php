@@ -1,6 +1,9 @@
 <?php
   $publicationfields  = getPublicationFieldArray($publication->pub_type);
   $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');
+  $userlogin          = getUserLogin();
+  $user               = $this->user_db->getByID($userlogin->userID());
+
 ?>
 <div class='publication'>
   <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
@@ -61,7 +64,7 @@
 
 ?>
 <?php
-if ($publication->user_id==getUserLogin()->userId() || getUserLogin()->hasRights('publication_edit_all') || $isAddForm) {
+if ($publication->user_id==$userlogin->userId() || $userlogin->hasRights('publication_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>
@@ -82,8 +85,9 @@ echo form_dropdown('edit_access_level',$options,$publication->edit_access_level)
             <td>
 <?php
 $options = array();
-foreach ($this->user_db->getByID(getUserLogin()->userId())->group_ids as $group_id) {
-    $options[$group_id] = $this->group_db->getByID($group_id)->name;
+foreach ($user->group_ids as $group_id) {
+  $group = $this->group_db->getByID($group_id);
+    $options[$group_id] = $group->name;
 }
 echo form_dropdown('group_id',$options,$publication->group_id);
 ?>

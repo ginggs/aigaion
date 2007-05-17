@@ -132,7 +132,8 @@ class User_db {
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
     function add($user) {
         //add only allowed with right rights:
-        if (!getUserLogin()->hasRights('user_edit_all')) {
+        $userlogin  = getUserLogin();
+        if (!$userlogin->hasRights('user_edit_all')) {
             return -1;
         }
         //add new user
@@ -164,7 +165,7 @@ class User_db {
                                                ))
                               );
                                                
-        if (getUserLogin()->hasRights('user_assign_rights')) {
+        if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
             $new_id = $this->CI->db->insert_id();
             foreach ($user->assignedrights as $right) {
@@ -252,7 +253,7 @@ class User_db {
             }
         }
 
-        if (getUserLogin()->hasRights('user_assign_rights')) {
+        if ($userlogin->hasRights('user_assign_rights')) {
             //remove all rights, then add the right ones again
             $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
             //add rights
@@ -262,7 +263,7 @@ class User_db {
         }
 
         //groups assignment 
-        if (getUserLogin()->hasRights('user_edit_all')) {
+        if ($userlogin->hasRights('user_edit_all')) {
             //add group links, and rightsprofiles for these groups, to the user
             //BUT ONLY FOR GROUPS THAT WERE NOT YET LINKED TO THIS USER
             $oldgroups = array();
@@ -292,7 +293,7 @@ class User_db {
         //if was this user: update preferences, check if user_assign_rights was removed from self...
         if ($user->user_id == $userlogin->userId()) {
             $userlogin->initPreferences();
-            if (getUserLogin()->hasRights("user_assign_rights")) {
+            if ($userlogin->hasRights("user_assign_rights")) {
     	        if (!in_array("user_assign_rights",$user->assignedrights)) {
     	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br>");
     	        }
