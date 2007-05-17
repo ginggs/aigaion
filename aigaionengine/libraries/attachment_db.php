@@ -90,6 +90,7 @@ class Attachment_db {
     /** Return an array of Attachment object for the given publication. */
     function getAttachmentsForPublication($pub_id) {
         $result = array();
+        $this->CI->db->orderby('ismain');
         $Q = $this->CI->db->getwhere('attachments', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->att_id);

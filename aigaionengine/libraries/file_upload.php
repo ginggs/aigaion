@@ -232,8 +232,11 @@ class File_upload {
 			$error[UPLOAD_ERR_FORM_SIZE] = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form.";
 			$error[UPLOAD_ERR_PARTIAL] = "The uploaded file was only partially uploaded";
 			$error[UPLOAD_ERR_NO_FILE] = "No file was uploaded";
+			/*
+			WB may 17 2007 - following constants are only for php5, we thus won't use them.
 			$error[UPLOAD_ERR_NO_TMP_DIR] = "Missing a temporary folder.";
 			$error[UPLOAD_ERR_CANT_WRITE] = "Failed to write file to disk.";
+			*/
 			// end  http errors
 			$error[10] = "Please select a file for upload.";
 			$error[11] = "Only files with the following extensions are allowed: <b>".$this->ext_string."</b>";
