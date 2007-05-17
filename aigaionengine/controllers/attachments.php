@@ -14,7 +14,7 @@ class Attachments extends Controller {
 	}
 
     /** 
-    attachments/view
+    attachments/single
     
     Entry point for viewing (i.e. downloading) one attachment.
     
@@ -28,7 +28,7 @@ class Attachments extends Controller {
     Returns:
         The attachment file in proper format
     */
-	function view() {
+	function single() {
 	    $att_id = $this->uri->segment(3);
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    

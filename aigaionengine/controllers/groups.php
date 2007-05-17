@@ -16,7 +16,7 @@ class Groups extends Controller {
 
     
     /** 
-    groups/view
+    groups/single
     
     Entry point for viewing one group.
     
@@ -30,7 +30,7 @@ class Groups extends Controller {
     Returns:
         A full HTML page with all information about the group
     */
-    function view()	{
+    function single()	{
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {

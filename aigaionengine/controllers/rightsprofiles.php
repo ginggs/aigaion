@@ -14,7 +14,7 @@ class Rightsprofiles extends Controller {
 	}
 
     /** 
-    rightsprofiles/view
+    rightsprofiles/single
     
     Entry point for viewing one rightsprofile.
     
@@ -28,7 +28,7 @@ class Rightsprofiles extends Controller {
     Returns:
         A full HTML page with all information about the rightsprofile
     */
-    function view()	{
+    function single()	{
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {

@@ -38,6 +38,6 @@ Parameters:
         echo "<img  class   = icon
                     src     = '".getIconUrl('tree_blank.gif')."'/>\n";
     }
-    echo anchor('topics/view/'.$topic->topic_id,$topic->name)."\n";
+    echo anchor('topics/single/'.$topic->topic_id,$topic->name)."\n";
 
 ?>

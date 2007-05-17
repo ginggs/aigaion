@@ -92,7 +92,7 @@ class Users extends Controller {
     }
     
     /** 
-    users/view
+    users/single
     
     Entry point for viewing one user account.
     
@@ -106,7 +106,7 @@ class Users extends Controller {
     Returns:
         A full HTML page with all information about the user
     */
-    function view()	{
+    function single()	{
 	    $user_id = $this->uri->segment(3,-1);
 	    $user = $this->user_db->getByID($user_id);
 	    if ($user==null) {

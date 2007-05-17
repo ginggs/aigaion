@@ -38,7 +38,7 @@ of the topic.
     }
     
 ///*=== (UN)SUBSCRIPTION LINK ===*/
-//    echo anchor('topics/view/'.$topic->topic_id,$topic->name)."\n";
+//    echo anchor('topics/single/'.$topic->topic_id,$topic->name)."\n";
 
 if ($topic->flags['publicationIsSubscribed']) {
     $class = 'subscribedtopic';

@@ -22,7 +22,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        echo anchor('attachments/view/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachment->name))."\n";
+        echo anchor('attachments/single/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachment->name))."\n";
     }
     $name = $attachment->name;
     if (strlen($name)>31) {

@@ -10,11 +10,11 @@ class Help extends Controller {
 	/**  */
 	function index()
 	{
-	    redirect ('help/view');
+	    redirect ('help/single');
 	}
 	
 
-	function view() {
+	function viewhelp() {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Aigaion 2.0: Help';

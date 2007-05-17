@@ -53,7 +53,7 @@ if ($ACCOUNT_MENU != "") {
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">HELP</li>
     <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
-    <li class="mainmenu"><?php echo anchor('help/view/about', 'About this site'); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', 'About this site'); ?></li>
 <?php
 if ($userlogin->hasRights('database_manage')) {
 ?>

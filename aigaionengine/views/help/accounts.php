@@ -10,7 +10,7 @@
   <p>Each group can be associated with one or more <i>rights profiles</i>, collections of user rights. This association has no influence at all on the user rights considered to be assigned to the users currently belonging to the group. However, whenever you newly assign a user to a group, that user will immediately also receive all user rights from the rights profiles associated to the group. This helps in quickly establishing default rights for users in certain groups.</p>
   
   <p class='header'>Access levels</p>
-  <p>See <?php echo anchor('help/view/accessrights','here'); ?> for more information about access levels.</p>
+  <p>See <?php echo anchor('help/viewhelp/accessrights','here'); ?> for more information about access levels.</p>
   
   <p class='header'>External login modules</p>
   <p>Still to be documented. See also explanation on the site configuration page. Allows login to be controlled through an external system such as LDAP, .htpasswd files or some CMS login state.</p>

@@ -13,20 +13,20 @@
 |   'action', which can have one of two values ('redirect','fail')
 |*/
 class Login_filter extends Filter {
-    function before() {
-        $CI = &get_instance();
-        //get login object
-      	$userlogin = getUserLogin();
-       	//if not logged in: redirect to login/dologin
+  function before() {
+    $CI = &get_instance();
 
-    	if (!$userlogin->isLoggedIn()) {
-  			$segments = $CI->uri->segment_array();
-  			if ($this->config['action']=='fail') {
-  			    redirect('/login/fail/');
-  			}
-            redirect('/login/dologin/'.implode('/',$segments));
-        }
+    //get login object
+    $userlogin = getUserLogin();
+
+    //if not logged in: redirect to login/dologin
+    if (!$userlogin->isLoggedIn()) {
+      $segments = $CI->uri->segment_array();
+      if ($this->config['action']=='fail') {
+        redirect('/login/fail/');
+      }
+      redirect('/login/dologin/'.implode('/',$segments));
     }
-    
+  }
 }
 ?>

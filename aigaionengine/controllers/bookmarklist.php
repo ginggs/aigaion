@@ -7,14 +7,14 @@ class Bookmarklist extends Controller {
 		parent::Controller();	
 	}
 	
-	/** Pass control to the bookmarklist/view/ */
+	/** Pass control to the bookmarklist/viewlist/ */
 	function index()
 	{
-		redirect('bookmarklist/view');
+		redirect('bookmarklist/viewlist');
 	}
 
     /** 
-    bookmarklist/view
+    bookmarklist/single
     
     Entry point for viewing the bookmark list of the logged user.
     
@@ -27,7 +27,7 @@ class Bookmarklist extends Controller {
     Returns:
         A full HTML page with the list of bookmarked publications
     */
-    function view() {
+    function viewlist() {
 	    //get URL segments: none
 	    
 	    //check rights

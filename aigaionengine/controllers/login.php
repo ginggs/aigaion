@@ -48,8 +48,9 @@ class Login extends Controller {
         request for the login form. */
 	function dologin()
 	{
-	    //get login object
-    	$userlogin = getUserLogin();
+    //get login object
+  	$userlogin = getUserLogin();
+
 		//try to login
 		$userlogin->login();
 		if ($userlogin->isLoggedIn()) {

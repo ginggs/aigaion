@@ -10,7 +10,7 @@ class Topics extends Controller {
 	/** Pass control to the topics/browse/ controller */
 	function index()
 	{
-		redirect('topics/browse');
+	  redirect('topics/browse');
 	}
 
     /** Simple browse page for Topics. 
@@ -226,7 +226,7 @@ class Topics extends Controller {
         This controller returns a full web page.
         Third parameter selects topic_id (default:1)
         If topic 1 is chosen, user is redirected to browse/ controller */
-	function view()
+	function single()
 	{
 	    $topic_id = $this->uri->segment(3,1);
 	    if ($topic_id==1) {
