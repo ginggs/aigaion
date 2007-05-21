@@ -51,7 +51,12 @@ class UserLogin {
     var $theMenu = "";
     
     var $theUser = null;
-    
+
+    /** this var is set to True if the user just logged out. This fact needs to be remembered 
+    because otherwise we run the risk of immedately loggin the user in again through the cookies 
+    (cookies are not deleted properly in PHP4 when using a CI redirect after deleting the cookies :( ) */
+    var $bJustLoggedOut = False;
+        
     /* ================ Basic accessors ================ */
     
     /** This method is called for every controller access, thanks to the login_filter.
@@ -364,6 +369,10 @@ class UserLogin {
      *      1 - unknown user or wrong password
      *      2 - no relevant cookies available */
     function loginFromCookie() {
+        if ($this->bJustLoggedOut) {
+            $this->bJustLoggedOut = False;  
+            return 2;
+        }
         if (isset($_COOKIE["loginname"])) {
             //user logs in via cookie
             $loginName = $_COOKIE["loginname"];
@@ -433,6 +442,7 @@ class UserLogin {
             $this->sLoginName = $R["login"];
             $this->iUserId = $R["user_id"];       
             $this->bIsAnonymous = False;
+            $this->bJustLoggedOut = False;  
             
             //create the User object for this logged user
             $CI = &get_instance();
@@ -497,6 +507,7 @@ class UserLogin {
         $this->iUserId = "";
         $this->rights = array();
         $this->preferences = array();
+        $this->bJustLoggedOut = True;
         
         //Delete cookie values
         setcookie("loginname",FALSE);
