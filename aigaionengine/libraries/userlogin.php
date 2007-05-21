@@ -69,6 +69,7 @@ class UserLogin {
                 return True; //OK? return true;
             } else {
                 $this->logout();
+                $this->latesession->set('USERLOGIN', $userlogin);
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
                                   process of being updated.<br> If you are a user with 
                                   database_manage rights, please login to complete the update. 

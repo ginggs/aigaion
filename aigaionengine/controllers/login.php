@@ -77,9 +77,10 @@ class Login extends Controller {
     function dologout()
     {
         //get login object
-          $userlogin = getUserLogin();
+        $userlogin = getUserLogin();
         //logout
         $userlogin->logout();
+        $this->latesession->set('USERLOGIN', $userlogin);
         //redirect
         redirect('');
 
@@ -114,11 +115,12 @@ class Login extends Controller {
         }
         
         //get login object
-          $userlogin = getUserLogin();
+        $userlogin = getUserLogin();
         //logout
         $userlogin->logout();
         //login given anonymous user
         $result = $userlogin->loginAnonymous($user->user_id);
+        $this->latesession->set('USERLOGIN', $userlogin);
         if (($result==1)||($result==2)) {
             appendErrorMessage('Error logging in anonymous account<br>');
         }
