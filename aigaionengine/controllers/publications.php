@@ -119,7 +119,7 @@ class Publications extends Controller {
 
     $userlogin  = getUserLogin();
     $user       = $this->user_db->getByID($userlogin->userID());
-    if ((!$userlogin->hasRights('publication_edit'))
+    if (    (!$userlogin->hasRights('publication_edit'))
          || ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
          || (    ($publication->edit_access_level == 'private') 
               && ($userlogin->userId() != $publication->user_id) 
@@ -188,6 +188,7 @@ class Publications extends Controller {
     }
     else if ($this->publication_db->validate($publication))
     {
+      $edit_type = $this->input->post('edit_type');
       $bReview = false;
       if ($submit_type != 'review')
       {
@@ -211,8 +212,8 @@ class Publications extends Controller {
         //do actual commit, depending on the edit_type, choose add or update
         $userlogin  = getUserLogin();
         $user       = $this->user_db->getByID($userlogin->userID());
-        if ((!$userlogin->hasRights('publication_edit'))
-          || ($oldpublication == null)
+        if ( (!$userlogin->hasRights('publication_edit'))
+          || (($oldpublication == null) && ($edit_type != 'new'))
           || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
           || (    ($oldpublication->edit_access_level == 'private') 
                && ($userlogin->userId() != $oldpublication->user_id) 
@@ -227,7 +228,6 @@ class Publications extends Controller {
           redirect('');
         }
         
-        $edit_type = $this->input->post('edit_type');
         if ($edit_type == 'new')
           $publication = $this->publication_db->add($publication);
         else

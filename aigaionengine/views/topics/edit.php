@@ -54,10 +54,9 @@ echo $this->validation->error_string;
         <tr><td><label for='parent_id'>Parent</label></td>
             <td>
 <?php     
-    $user_id = $user->userId());
     $config = array('onlyIfUserSubscribed'=>True,
                     'includeGroupSubscriptions'=>True,
-                    'user'=>$user_id);
+                    'user'=>$user);
 echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1,$config),
                             'showroot'  => True,
@@ -104,7 +103,7 @@ echo form_dropdown('edit_access_level',$options,$topic->edit_access_level);
             <td>
 <?php
 $options = array();
-foreach ($$user->group_ids as $group_id) {
+foreach ($user->group_ids as $group_id) {
   $group = $this->group_db->getByID($group_id);
     $options[$group_id] = $group->name;
 }

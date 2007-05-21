@@ -137,7 +137,7 @@ class Topic_db {
                 $topic->flags['userIsSubscribed'] = True;
                 if (array_key_exists('flagCollapsed',$configuration)) {
                     if ($userSubscribedQ->num_rows() > 0) {
-                      $R = $userSubscribedQ->row();
+                        $R = $userSubscribedQ->row();
                         $topic->flags['userIsCollapsed'] = $R->collapsed=='1';
                     } else {
                         $topic->flags['userIsCollapsed'] = True;

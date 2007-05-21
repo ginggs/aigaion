@@ -33,7 +33,7 @@ foreach ($note->xref_ids as $xref_id) {
 	if ($link != "") {
 		$text = preg_replace(
 			$link[1],
-			anchor('/publications/show/'.$xref,$link[0]),
+			anchor('/publications/show/'.$xref_id,$link[0]),
 			$text);
 	}
 }

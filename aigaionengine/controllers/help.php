@@ -10,7 +10,7 @@ class Help extends Controller {
 	/**  */
 	function index()
 	{
-	    redirect ('help/single');
+	    redirect ('help/viewhelp');
 	}
 	
 
