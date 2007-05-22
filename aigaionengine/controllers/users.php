@@ -7,11 +7,11 @@ class Users extends Controller {
 		parent::Controller();	
 	}
 	
-	/** Pass control to the users/change/(logged user) controller */
+	/** Pass control to the users/edit/(logged user) controller */
 	function index()
 	{
 	  $userlogin = getUserLogin();
-		redirect('users/change/'.$userlogin->userId());
+		redirect('users/edit/'.$userlogin->userId());
 	}
 
     /** 

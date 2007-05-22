@@ -14,7 +14,7 @@ class Bookmarklist extends Controller {
 	}
 
     /** 
-    bookmarklist/single
+    bookmarklist/viewlist
     
     Entry point for viewing the bookmark list of the logged user.
     
@@ -169,10 +169,10 @@ class Bookmarklist extends Controller {
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
             appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided.<br>");
-            redirect('bookmarklist/view');
+            redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->addToTopic($topic);
-        redirect('bookmarklist/view');
+        redirect('bookmarklist/viewlist');
     }
 
     /** 
