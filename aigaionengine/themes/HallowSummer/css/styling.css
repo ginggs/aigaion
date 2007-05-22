@@ -51,7 +51,7 @@ body {
   border-color    : #9D9582;
 }
 
-#menu_holder, #content_holder, #footer_holder {
+#menu_holder, #content_holder, #footer_holder, #login_holder {
   background-color: #D4D3AA;
 
   border-style    : solid;

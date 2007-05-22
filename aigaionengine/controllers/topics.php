@@ -154,10 +154,8 @@ class Topics extends Controller {
         $headerdata['title'] = 'Add topic';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
-        $output = $this->load->view('header', $headerdata, true);
-
-        $output  .= $this->load->view('topics/edit' , array(),  true);
-        
+        $output  = $this->load->view('header', $headerdata, true);
+        $output .= $this->load->view('topics/edit' , array(),  true);
         $output .= $this->load->view('footer','', true);
 
         //set output
@@ -174,7 +172,7 @@ class Topics extends Controller {
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
-        $topic = $this->topic_db->getByID($topic_id);
+      $topic = $this->topic_db->getByID($topic_id);
 
 	    if ($topic==null) {
 	        appendErrorMessage('Topic does not exist.<br>');

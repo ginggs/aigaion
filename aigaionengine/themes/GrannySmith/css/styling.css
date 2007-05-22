@@ -142,7 +142,7 @@ body {
   border-color    : #ABC41F;
 }
 
-#menu_holder, #content_holder, #footer_holder {
+#menu_holder, #content_holder, #footer_holder, #login_holder {
   background-color: #D0E854;
   border-style    : solid;
   border-width    : 1px;

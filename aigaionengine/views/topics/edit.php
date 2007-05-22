@@ -54,6 +54,7 @@ echo $this->validation->error_string;
         <tr><td><label for='parent_id'>Parent</label></td>
             <td>
 <?php     
+
     $config = array('onlyIfUserSubscribed'=>True,
                     'includeGroupSubscriptions'=>True,
                     'user'=>$user);
@@ -82,7 +83,7 @@ echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
             </td>
         </tr>    
 <?php
-if ($topic->user_id==$userlogin->userId() || getUserLogin()->hasRights('topic_edit_all') || $isAddForm) {
+if ($topic->user_id==$userlogin->userId() || $userlogin->hasRights('topic_edit_all') || $isAddForm) {
 ?>            
         <tr><td><label for='read_access_level'>Read access level</label></td>
             <td>

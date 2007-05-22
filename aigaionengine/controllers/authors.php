@@ -75,8 +75,9 @@ class Authors extends Controller {
     }
     else if (empty($author))
     {
-      $author = new $this->author;
-      $edit_type = "new";
+      //php4 compatiblity: new $this->author won't work
+      $author     = $this->author;
+      $edit_type  = "new";
     }
     else
     {

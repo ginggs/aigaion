@@ -108,7 +108,8 @@ class Publications extends Controller {
     }
     else if (empty($publication))
     {
-      $publication = new $this->publication;
+      //php4 compatiblity: new $this->publication won't work
+      $publication = $this->publication;
       $edit_type = "new";
     }
     else

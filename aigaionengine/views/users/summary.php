@@ -13,7 +13,7 @@ as for the edit rights: they determine which edit links are shown.
     
 */
 $userlogin  = getUserLogin();
-    if ($userlogin->hasRights('user_edit_all') || ($userlogin->hasRights('user_edit_all')&&$user->user_id==getUserLogin()->userId()))
+    if ($userlogin->hasRights('user_edit_all') || ($userlogin->hasRights('user_edit_all')&&$user->user_id==$userlogin->userId()))
     {
         echo anchor('users/edit/'.$user->user_id,'[edit]')."&nbsp;";
         echo anchor('users/delete/'.$user->user_id,'[delete]')."&nbsp;";

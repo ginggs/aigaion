@@ -1,5 +1,5 @@
 <body onload="javascript:document.loginForm.loginName.focus();">
-  <center>
+  <div id="login_holder">
 <?php
     $userlogin=getUserLogin();
     $notice = $userlogin->notice();
@@ -17,7 +17,7 @@
         $formAttributes = array('id' => 'loginForm');
         echo form_open_multipart('login/dologin/'.implode('/',$segments),$formAttributes);
     ?>
-        <table id='content_holder' cellspacing="3" cellpadding="3" width="40em">
+        <table cellspacing="3" cellpadding="3" width="40em">
           <tr>
             <td colspan='2'><div class='header'>Welcome to the Aigaion bibliography system, please login</div></td>
           </tr>
@@ -56,20 +56,20 @@
               );
               echo form_checkbox($data);
               echo '&nbsp;Remember me.';
-              echo '<p align=right>';
+              echo '<p align="right">';
               echo form_submit('submitlogin', 'Login');
               echo '</p>';
             ?></td>
           </tr>
           <tr>
-            <td colspan=2>
+            <td colspan='2'>
               If you want a password, please mail to
-              <?php echo getConfigurationSetting("CFG_ADMIN"); ?><br>
+              <?php echo getConfigurationSetting("CFG_ADMIN"); ?><br/>
               <?php echo getConfigurationSetting("CFG_ADMINMAIL"); ?>
             </td>
           </tr>
           <tr>
-            <td colspan=2>
+            <td colspan='2'>
               For more information about the Aigaion bibliography system visit
               <a href="http://aigaion.nl/" target="_blank"> Aigaion.nl</a>.
             </td>
@@ -79,7 +79,7 @@
         echo form_close();
     }
     ?>
-  </center>
+  </div>
 </body>
   <?php
   /*
