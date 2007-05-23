@@ -133,7 +133,8 @@ class Siteconfig_db {
         		appendErrorMessage(mysql_error()."<br>");
         	}
 	        #reset cached config settings
-            $this->CI->latesession->set('SITECONFIG',null);
+	        $CI = &get_instance()
+            $CI->latesession->set('SITECONFIG',null);
         }
     }
 }

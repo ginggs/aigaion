@@ -4,21 +4,19 @@
 A simple PHP Session class that 
 1) names the session (based on the AIGAION_SITEID setting in the inndex.php configuration)
 2) is started as late as possible. */
-//echo 'latesession loaded';
 class LateSession {
     var $bSessionStarted = False;
 
     // constructor
     function LateSession() {
-
     }
     
     /** Save a session variable. */
     function set($var, $val) {
         if (!$this->bSessionStarted) {
             $this->_initSession();
-            //appendMessage('Session started in set '.$var.' '.$this->bSessionStarted."<br>");
-        } 
+            //appendMessage('start session in set '.$var.' for '.$this);
+        }
         $_SESSION[$var] = $val;
     }
     
@@ -26,8 +24,8 @@ class LateSession {
     function get($var) {
         if (!$this->bSessionStarted) {
             $this->_initSession();
-            //appendMessage('Session started in get '.$var.' '.$this->bSessionStarted.": ".$this."<br>");
-        } 
+            //appendMessage('start session in get '.$var.' for '.$this);
+        }
         if (!isset($_SESSION[$var]))return null; 
         return $_SESSION[$var];
     }
@@ -44,7 +42,7 @@ class LateSession {
         //this is done to keep the sessions of two instances of this
         //system separated.
         if (session_name()!=AIGAION_SITEID)session_name(AIGAION_SITEID);
-        @session_start();
+        session_start();
         $this->bSessionStarted = True;
     }
 }

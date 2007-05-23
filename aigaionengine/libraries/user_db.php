@@ -293,7 +293,8 @@ class User_db {
         //if was this user: update preferences, check if user_assign_rights was removed from self...
         if ($user->user_id == $userlogin->userId()) {
             $userlogin->initPreferences();
-            appendMessage('session started 2: '.$this->CI->latesession->bSessionStarted);
+            $CI = &get_instance();
+            $CI->latesession->set('USERLOGIN', $userlogin);
             if ($userlogin->hasRights("user_assign_rights")) {
     	        if (!in_array("user_assign_rights",$user->assignedrights)) {
     	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br>");
