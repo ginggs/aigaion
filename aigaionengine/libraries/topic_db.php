@@ -216,8 +216,10 @@ class Topic_db {
     WB may 27, 2007 -> $configuration was passed by reference, but variables 
     passed by reference cannot have a default value in php4.
     Removed the reference pass
+
+    DR: THAT SHOULD NOT HAVE BEEN DONE! BETTER CHANGE THE CALLS. PASS BY REFERENCE SAWES 40 % PERFORMANCE ON TOPIC TREES
     */
-    function getChildren($topic_id, $configuration=array()) {
+    function getChildren($topic_id, &$configuration) {
         $CI = &get_instance();
         $children = array();
         //get children from database; add to array
