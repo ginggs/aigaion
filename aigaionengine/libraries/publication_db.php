@@ -3,18 +3,17 @@
 array of Publications. */
 class Publication_db {
 
-  var $CI = null;
 
   function Publication_db()
   {
-    $this->CI = &get_instance();
   }
 
   /** Return the Publication object with the given id, or null if insufficient rights */
   function getByID($pub_id)
   {
+        $CI = &get_instance();
     //retrieve one publication row
-    $Q = $this->CI->db->query("SELECT * FROM publication WHERE pub_id = ".$this->CI->db->escape($pub_id));
+    $Q = $CI->db->query("SELECT * FROM publication WHERE pub_id = ".$CI->db->escape($pub_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -28,8 +27,9 @@ class Publication_db {
   /** Return the Publication object with the given bibtex_id, or null if insufficient rights */
   function getByBibtexID($bibtex_id)
   {
+        $CI = &get_instance();
     //retrieve one publication row
-    $Q = $this->CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$this->CI->db->escape($bibtex_id));
+    $Q = $CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$CI->db->escape($bibtex_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -51,8 +51,9 @@ class Publication_db {
   /** Return the Publication object stored in the given database row, or null if insufficient rights. */
   function getFromRow($R)
   {
+        $CI = &get_instance();
     $userlogin  = getUserLogin();
-    $user       = $this->CI->user_db->getByID($userlogin->userID());
+    $user       = $CI->user_db->getByID($userlogin->userID());
     //check rights; if fail: return null
     if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
       return null;
@@ -97,7 +98,7 @@ class Publication_db {
       //check if we found the publication in the cache, if not, retrieve from db.
       if (!isset($merge_row))
       {
-        $Q = $this->CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$this->CI->db->escape($R->crossref));
+        $Q = $CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$CI->db->escape($R->crossref));
 
         //if we retrieved one single row, we retrieve it and set the $do_merge flag
         if ($Q->num_rows() == 1)
@@ -148,11 +149,11 @@ class Publication_db {
 
 
     //retrieve authors and editors
-    $publication->authors = $this->CI->author_db->getForPublication($R->pub_id, 'N');
-    $publication->editors = $this->CI->author_db->getForPublication($R->pub_id, 'Y');
+    $publication->authors = $CI->author_db->getForPublication($R->pub_id, 'N');
+    $publication->editors = $CI->author_db->getForPublication($R->pub_id, 'Y');
 
     //check if this publication was bookmarked by the logged user
-    $Q = $this->CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".$userlogin->userId()." AND pub_id=".$R->pub_id);
+    $Q = $CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".$userlogin->userId()." AND pub_id=".$R->pub_id);
     if ($Q->num_rows()>0) {
         $publication->isBookmarked = True;
     }
@@ -162,6 +163,7 @@ class Publication_db {
 
   function getFromPost()
   {
+        $CI = &get_instance();
     //we retrieve the following fields
     $fields = array('pub_id',
     'user_id',
@@ -213,7 +215,7 @@ class Publication_db {
 
     foreach ($fields as $key)
     {
-      $publication->$key = $this->CI->input->post($key);
+      $publication->$key = $CI->input->post($key);
     }
     if ($publication->group_id=='') {
         //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
@@ -247,18 +249,18 @@ class Publication_db {
     //parse the authors
     if ($publication->authors)
     {
-      $authors_array    = $this->CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
+      $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
       $authors          = array();
       foreach ($authors_array as $author)
       {
-        $author_db      = $this->CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
         if ($author_db  != null)
         {
           $authors[]    = $author_db;
         }
         else
         {
-          $author_db    = $this->CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+          $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
           $authors[]    = $author_db;
         }
       }
@@ -269,18 +271,18 @@ class Publication_db {
     //parse the editors
     if ($publication->editors)
     {
-      $authors_array    = $this->CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->editors));
+      $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->editors));
       $authors          = array();
       foreach ($authors_array as $author)
       {
-        $author_db      = $this->CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
         if ($author_db != null)
         {
           $authors[]      = $author_db;
         }
         else
         {
-          $author_db     = $this->CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+          $author_db     = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
           $authors[]  = $author_db;
         }
       }
@@ -294,9 +296,10 @@ class Publication_db {
     Will return only accessible publications (i.e. wrt access_levels). This method can therefore
     not be used to e.g. update crossrefs for a changed bibtex id. */
     function getXRefPublicationsForPublication($bibtex_id) {
+        $CI = &get_instance();
         $result = array();
         if (trim($bibtex_id)=='')return $result;
-        $Q = $this->CI->db->getwhere('publication', array('crossref' => $bibtex_id));
+        $Q = $CI->db->getwhere('publication', array('crossref' => $bibtex_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->pub_id);
             if ($next != null) {
@@ -309,6 +312,7 @@ class Publication_db {
   
   function add($publication)
   {
+        $CI = &get_instance();
         //check access rights (!)
     $userlogin = getUserLogin();
     if (    (!$userlogin->hasRights('publication_edit'))
@@ -413,10 +417,10 @@ class Publication_db {
     $data['group_id'] = $publication->group_id;
 
     //insert into database using active record helper
-    $this->CI->db->insert('publication', $data);
+    $CI->db->insert('publication', $data);
     
     //update this publication's pub_id
-    $publication->pub_id = $this->CI->db->insert_id();
+    $publication->pub_id = $CI->db->insert_id();
     
     
     //check whether Keywords are already available, if not, add them to the database
@@ -424,18 +428,18 @@ class Publication_db {
     //If no key the keyword still has to be added.
     if (is_array($publication->keywords)) //we bypass the ->getKeywords() function here, it would try to retrieve from DB.
     {
-      $publication->keywords  = $this->CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
+      $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
     
       foreach ($publication->keywords as $keyword_id => $keyword)
       {
         $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword_id);
-        $this->CI->db->insert('publicationkeywordlink', $data);
+        $CI->db->insert('publicationkeywordlink', $data);
       }
     }
     
     //add authors
     if (is_array($publication->authors))
-      $publication->authors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->authors);
+      $publication->authors   = $CI->author_db->ensureAuthorsInDatabase($publication->authors);
       
     $rank = 1;
     foreach ($publication->authors as $author)
@@ -444,13 +448,13 @@ class Publication_db {
                     'author_id' => $author->author_id,
                     'rank'      => $rank,
                     'is_editor' => 'N');
-      $this->CI->db->insert('publicationauthorlink', $data);
+      $CI->db->insert('publicationauthorlink', $data);
       $rank++;
     }
     
     //add editors
     if (is_array($publication->editors))
-      $publication->editors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->editors);
+      $publication->editors   = $CI->author_db->ensureAuthorsInDatabase($publication->editors);
     
     $rank = 1;
     foreach ($publication->editors as $author)
@@ -459,14 +463,14 @@ class Publication_db {
                     'author_id' => $author->author_id,
                     'rank'      => $rank,
                     'is_editor' => 'Y');
-      $this->CI->db->insert('publicationauthorlink', $data);
+      $CI->db->insert('publicationauthorlink', $data);
       $rank++;
     }
     
     //subscribe to topic 1
     $data = array('pub_id'      => $publication->pub_id,
                   'topic_id'    => 1);
-    $this->CI->db->insert('topicpublicationlink', $data);
+    $CI->db->insert('topicpublicationlink', $data);
 
     //also fix bibtex_id mappings
 	refreshBibtexIdLinks();
@@ -476,10 +480,11 @@ class Publication_db {
   
   function update($publication)
   {
+        $CI = &get_instance();
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
     $userlogin  = getUserLogin();
-    $user       = $this->CI->user_db->getByID($userlogin->userID());
+    $user       = $CI->user_db->getByID($userlogin->userID());
     $oldpublication = $this->getByID($publication->pub_id);
     if (    ($oldpublication == null) 
          ||
@@ -598,34 +603,34 @@ class Publication_db {
     }
   
     //insert into database using active record helper
-    $this->CI->db->where('pub_id', $publication->pub_id);
-    $this->CI->db->update('publication', $data);
+    $CI->db->where('pub_id', $publication->pub_id);
+    $CI->db->update('publication', $data);
     
     
     //remove old keyword links
-    $this->CI->db->delete('publicationkeywordlink', array('pub_id' => $publication->pub_id)); 
+    $CI->db->delete('publicationkeywordlink', array('pub_id' => $publication->pub_id)); 
     
     //check whether Keywords are already available, if not, add them to the database
     //keywords are in an array, the keys are the keyword_id.
     //If no key the keyword still has to be added.
     if (is_array($publication->keywords)) //we bypass the ->getKeywords() function here, it would try to retrieve from DB.
     {
-      $publication->keywords  = $this->CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
+      $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
     
       foreach ($publication->keywords as $keyword_id => $keyword)
       {
         $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword_id);
-        $this->CI->db->insert('publicationkeywordlink', $data);
+        $CI->db->insert('publicationkeywordlink', $data);
       }
     }
     
     //remove old author and editor links
-    $this->CI->db->delete('publicationauthorlink', array('pub_id' => $publication->pub_id)); 
+    $CI->db->delete('publicationauthorlink', array('pub_id' => $publication->pub_id)); 
     
     //add authors
     if (is_array($publication->authors))
     {
-      $publication->authors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->authors);
+      $publication->authors   = $CI->author_db->ensureAuthorsInDatabase($publication->authors);
       
       $rank = 1;
       foreach ($publication->authors as $author)
@@ -634,7 +639,7 @@ class Publication_db {
                       'author_id' => $author->author_id,
                       'rank'      => $rank,
                       'is_editor' => 'N');
-        $this->CI->db->insert('publicationauthorlink', $data);
+        $CI->db->insert('publicationauthorlink', $data);
         $rank++;
       }
     }
@@ -642,7 +647,7 @@ class Publication_db {
     //add editors
     if (is_array($publication->editors))
     {
-      $publication->editors   = $this->CI->author_db->ensureAuthorsInDatabase($publication->editors);
+      $publication->editors   = $CI->author_db->ensureAuthorsInDatabase($publication->editors);
     
       $rank = 1;
       foreach ($publication->editors as $author)
@@ -651,7 +656,7 @@ class Publication_db {
                       'author_id' => $author->author_id,
                       'rank'      => $rank,
                       'is_editor' => 'Y');
-        $this->CI->db->insert('publicationauthorlink', $data);
+        $CI->db->insert('publicationauthorlink', $data);
         $rank++;
       }
     }
@@ -659,7 +664,7 @@ class Publication_db {
     //changed bibtex_id?
     if ($oldpublication->bibtex_id != $publication->bibtex_id) {
         //fix all crossreffing notes
-        $this->CI->note_db->changeAllCrossrefs($publication->pub_id, $publication->bibtex_id);
+        $CI->note_db->changeAllCrossrefs($publication->pub_id, $publication->bibtex_id);
         //fix all crossreffing pubs
         $this->changeAllCrossrefs($publication->pub_id, $oldpublication->bibtex_id, $publication->bibtex_id);
 		refreshBibtexIdLinks();
@@ -671,6 +676,7 @@ class Publication_db {
 
   function validate($publication)
   {
+        $CI = &get_instance();
     $validate_required    = array();
     $validate_conditional = array();
     $fields               = getPublicationFieldArray($publication->pub_type);
@@ -728,10 +734,11 @@ class Publication_db {
 
   function getForTopic($topic_id)
   {
+        $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
-    $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
-    WHERE topicpublicationlink.topic_id = ".$this->CI->db->escape($topic_id)."
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
+    WHERE topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
     AND publication.pub_id = topicpublicationlink.pub_id
     ORDER BY actualyear, cleantitle");
 
@@ -751,10 +758,11 @@ class Publication_db {
   
   function getForAuthor($author_id)
   {
+        $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
-    $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
-    WHERE publicationauthorlink.author_id = ".$this->CI->db->escape($author_id)."
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
+    WHERE publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
     AND publication.pub_id = publicationauthorlink.pub_id
     ORDER BY actualyear, cleantitle");
 
@@ -775,9 +783,10 @@ class Publication_db {
   /** Return a list of publications for the bookmark list of the logged user */
   function getForBookmarkList()
   {
+        $CI = &get_instance();
     $userlogin = getUserLogin();
     
-    $Q = $this->CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
     WHERE userbookmarklists.user_id=".$userlogin->userId()."
     AND   userbookmarklists.pub_id=publication.pub_id
     ORDER BY actualyear, cleantitle");
@@ -800,14 +809,15 @@ class Publication_db {
     limitations. */
     function changeAllCrossrefs($pub_id, $old_bibtex_id, $new_bibtex_id) 
     {
+        $CI = &get_instance();
         if (trim($old_bibtex_id) == '')return;
-        $Q = $this->CI->db->getwhere('publication',array('crossref'=>$old_bibtex_id));
+        $Q = $CI->db->getwhere('publication',array('crossref'=>$old_bibtex_id));
         //update is done here, instead of using the update function, as some of the affected publications
         // may not be accessible for this user
         foreach ($Q->result() as $R) {
             $updatefields =  array('crossref'=>$new_bibtex_id);
-            $this->CI->db->query(
-                $this->CI->db->update_string("publication",
+            $CI->db->query(
+                $CI->db->update_string("publication",
                                              $updatefields,
                                              "pub_id=".$R->pub_id)
                                   );

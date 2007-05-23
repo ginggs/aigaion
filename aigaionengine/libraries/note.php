@@ -15,25 +15,25 @@ class Note {
     var $group_id           = 0; //group to which access is restricted
     var $pub_id             = -1;
     var $xref_ids       = array();
-    var $CI                 = null; //link to the CI base object
     
     function Note()
     {
-        $this->CI =&get_instance(); 
     }
     
     /** tries to add this note to the database. may give error message if unsuccessful, e.g. due
     insufficient rights. */
     function add() 
     {
-        $result_id = $this->CI->note_db->add($this);
+        $CI = &get_instance();
+        $result_id = $CI->note_db->add($this);
         return ($result_id > 0);
     }
     /** tries to commit this note to the database. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
     function update() 
     {
-        return $this->CI->note_db->update($this);
+        $CI = &get_instance();
+        return $CI->note_db->update($this);
     }
     
 

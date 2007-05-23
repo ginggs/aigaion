@@ -3,16 +3,15 @@
 array of User's. */
 class User_db {
   
-    var $CI = null;
   
     function User_db()
     {
-        $this->CI = &get_instance();
     }
     
     function getByID($user_id)
     {
-        $Q = $this->CI->db->query("SELECT * from users where user_id=".$user_id." AND type<>'group'");
+        $CI = &get_instance();
+        $Q = $CI->db->query("SELECT * from users where user_id=".$user_id." AND type<>'group'");
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -21,6 +20,7 @@ class User_db {
    
     function getFromRow($R)
     {
+        $CI = &get_instance();
         //no access rights check - for various reasons (e.g. finding abbreviations) we need
         //to be able to read all accounts.
         $user = new User;
@@ -45,13 +45,13 @@ class User_db {
         }
         //assigned rights
         $user->assignedrights     = array();
-        $query = $this->CI->db->query("SELECT * FROM userrights WHERE user_id=".$R->user_id);
+        $query = $CI->db->query("SELECT * FROM userrights WHERE user_id=".$R->user_id);
         foreach ($query->result() as $row) {
             $user->assignedrights[] = $row->right_name;
         }
         //the ids of all groups that the user is a part of
         $user->group_ids            = array();
-        $query = $this->CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$R->user_id);
+        $query = $CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$R->user_id);
         foreach ($query->result() as $row) {
             $user->group_ids[] = $row->group_id;
         }
@@ -64,44 +64,45 @@ class User_db {
     Return null if the POST data was not present. */
     function getFromPost()
     {
+        $CI = &get_instance();
         //correct form?
-        if ($this->CI->input->post('formname')!='user') {
+        if ($CI->input->post('formname')!='user') {
             return null;
         }
         //get basic data
         $user = new User;
-        $user->user_id            = $this->CI->input->post('user_id');
-        $user->initials           = $this->CI->input->post('initials');
-        $user->firstname          = $this->CI->input->post('firstname');
-        $user->betweenname        = $this->CI->input->post('betweenname');
-        $user->surname            = $this->CI->input->post('surname');
-        $user->email              = $this->CI->input->post('email');
-        $user->lastreviewedtopic  = $this->CI->input->post('lastreviewedtopic');
-        $user->abbreviation       = $this->CI->input->post('abbreviation');
-        $user->login              = $this->CI->input->post('login');
-        if ($this->CI->input->post('password')=='') {
+        $user->user_id            = $CI->input->post('user_id');
+        $user->initials           = $CI->input->post('initials');
+        $user->firstname          = $CI->input->post('firstname');
+        $user->betweenname        = $CI->input->post('betweenname');
+        $user->surname            = $CI->input->post('surname');
+        $user->email              = $CI->input->post('email');
+        $user->lastreviewedtopic  = $CI->input->post('lastreviewedtopic');
+        $user->abbreviation       = $CI->input->post('abbreviation');
+        $user->login              = $CI->input->post('login');
+        if ($CI->input->post('password')=='') {
             $user->password       = '';
         } else {
-            $user->password       = md5($this->CI->input->post('password'));
+            $user->password       = md5($CI->input->post('password'));
         }
-        $user->isAnonymous        = $this->CI->input->post('isAnonymous')=='isAnonymous';
+        $user->isAnonymous        = $CI->input->post('isAnonymous')=='isAnonymous';
 
-        $user->preferences['theme']              = $this->CI->input->post('theme');
-        $user->preferences['summarystyle']       = $this->CI->input->post('summarystyle');
-        $user->preferences['authordisplaystyle'] = $this->CI->input->post('authordisplaystyle');
-        $user->preferences['liststyle']          = $this->CI->input->post('liststyle');
-        $user->preferences['newwindowforatt']    = $this->CI->input->post('newwindowforatt')=='newwindowforatt';
+        $user->preferences['theme']              = $CI->input->post('theme');
+        $user->preferences['summarystyle']       = $CI->input->post('summarystyle');
+        $user->preferences['authordisplaystyle'] = $CI->input->post('authordisplaystyle');
+        $user->preferences['liststyle']          = $CI->input->post('liststyle');
+        $user->preferences['newwindowforatt']    = $CI->input->post('newwindowforatt')=='newwindowforatt';
 
         $user->assignedrights = array();
         foreach (getAvailableRights() as $right=>$description) {
-            if ($this->CI->input->post($right)) {
+            if ($CI->input->post($right)) {
                 $user->assignedrights[] = $right;
             }
         }
 
         //the ids of all groups that the user is a part of
-        foreach ($this->CI->group_db->getAllGroups() as $group) {
-            if ($this->CI->input->post('group_'.$group->group_id)) {
+        foreach ($CI->group_db->getAllGroups() as $group) {
+            if ($CI->input->post('group_'.$group->group_id)) {
                 $user->group_ids[] = $group->group_id;
             }
         }
@@ -111,8 +112,9 @@ class User_db {
         
     /** Return all Users (anon and normal) from the database. */
     function getAllUsers() {
+        $CI = &get_instance();
         $result = array();
-        $Q = $this->CI->db->query("SELECT * from users WHERE type<>'group'");
+        $Q = $CI->db->query("SELECT * from users WHERE type<>'group'");
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -120,8 +122,9 @@ class User_db {
     }
     /** Return all anonymous Users from the database. */
     function getAllAnonUsers() {
+        $CI = &get_instance();
         $result = array();
-        $Q = $this->CI->db->query("SELECT * from users WHERE type='anon'");
+        $Q = $CI->db->query("SELECT * from users WHERE type='anon'");
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -131,6 +134,7 @@ class User_db {
 
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
     function add($user) {
+        $CI = &get_instance();
         //add only allowed with right rights:
         $userlogin  = getUserLogin();
         if (!$userlogin->hasRights('user_edit_all')) {
@@ -145,8 +149,8 @@ class User_db {
         if ($user->preferences['newwindowforatt']) {
             $newwindowforatt ='TRUE';
         }
-        $this->CI->db->query(
-            $this->CI->db->insert_string("users",
+        $CI->db->query(
+            $CI->db->insert_string("users",
                                          array('initials'           => $user->initials,
                                                'firstname'          => $user->firstname,
                                                'betweenname'        => $user->betweenname,
@@ -167,34 +171,35 @@ class User_db {
                                                
         if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
-            $new_id = $this->CI->db->insert_id();
+            $new_id = $CI->db->insert_id();
             foreach ($user->assignedrights as $right) {
-                $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+                $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
             }
         }
         
         //add group links, and rightsprofiles for these groups, to the user
         foreach ($user->group_ids as $group_id) {
-            $this->CI->db->query($this->CI->db->insert_string("usergrouplink",array('user_id'=>$new_id,'group_id'=>$group_id)));
-            $group = $this->CI->group_db->getByID($group_id);
+            $CI->db->query($CI->db->insert_string("usergrouplink",array('user_id'=>$new_id,'group_id'=>$group_id)));
+            $group = $CI->group_db->getByID($group_id);
             foreach ($group->rightsprofile_ids as $rightsprofile_id) {
-                $rightsprofile = $this->CI->rightsprofile_db->getByID($rightsprofile_id);
+                $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
                 foreach ($rightsprofile->rights as $right) {
-                    $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$new_id." AND right_name='".$right."'");
-                    $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+                    $CI->db->query("DELETE FROM userrights WHERE user_id=".$new_id." AND right_name='".$right."'");
+                    $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
                 }
                 
             }
         }
         $user->user_id = $new_id;
         
-        $this->CI->topic_db->subscribeUser( $user,1);
+        $CI->topic_db->subscribeUser( $user,1);
         return $new_id;
     }
 
     /** Commit the changes in the data of the given user. Returns TRUE or FALSE depending on 
     whether the operation was successfull. */
     function update($user) {
+        $CI = &get_instance();
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('user_edit_all')
@@ -204,7 +209,7 @@ class User_db {
                 return False;
         }
         //check whether this is the correct user...
-        $user_test = $this->CI->user_db->getByID($user->user_id);
+        $user_test = $CI->user_db->getByID($user->user_id);
         if ($user_test == null) {
             return False;
         }
@@ -237,8 +242,8 @@ class User_db {
             $updatefields['password']=$user->password;
         }
 
-        $this->CI->db->query(
-            $this->CI->db->update_string("users",
+        $CI->db->query(
+            $CI->db->update_string("users",
                                          $updatefields,
                                          "user_id=".$user->user_id)
                               );
@@ -246,7 +251,7 @@ class User_db {
         //turn off the anonymous access and give a message warning
         if (!$user->isAnonymous) {
             if ($user->user_id==getConfigurationSetting("ANONYMOUS_USER")) {
-                $siteconfig = $this->CI->siteconfig_db->getSiteConfig();
+                $siteconfig = $CI->siteconfig_db->getSiteConfig();
                 $siteconfig->configSettings['ANONYMOUS_USER'] = '';
                 $siteconfig->update();
                 appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br>");
@@ -255,10 +260,10 @@ class User_db {
 
         if ($userlogin->hasRights('user_assign_rights')) {
             //remove all rights, then add the right ones again
-            $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
+            $CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
             //add rights
             foreach ($user->assignedrights as $right) {
-                $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+                $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
             }
         }
 
@@ -267,23 +272,23 @@ class User_db {
             //add group links, and rightsprofiles for these groups, to the user
             //BUT ONLY FOR GROUPS THAT WERE NOT YET LINKED TO THIS USER
             $oldgroups = array();
-            $oldgrQ = $this->CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$user->user_id);
+            $oldgrQ = $CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$user->user_id);
             foreach($oldgrQ->result() as $row) {
                 $oldgroups[] = $row->group_id;
             }
-            $this->CI->db->query("DELETE FROM usergrouplink WHERE user_id=".$user->user_id);
+            $CI->db->query("DELETE FROM usergrouplink WHERE user_id=".$user->user_id);
             foreach ($user->group_ids as $group_id) {
                 //add group (anew)
-                $this->CI->db->query($this->CI->db->insert_string("usergrouplink",array('user_id'=>$user->user_id,'group_id'=>$group_id)));
+                $CI->db->query($CI->db->insert_string("usergrouplink",array('user_id'=>$user->user_id,'group_id'=>$group_id)));
                 //skip rights if already member of this group..
                 if (in_array($group_id,$oldgroups))continue;
                 //else add pertaining rights as well
-                $group = $this->CI->group_db->getByID($group_id);
+                $group = $CI->group_db->getByID($group_id);
                 foreach ($group->rightsprofile_ids as $rightsprofile_id) {
-                    $rightsprofile = $this->CI->rightsprofile_db->getByID($rightsprofile_id);
+                    $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
                     foreach ($rightsprofile->rights as $right) {
-                        $this->CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id." AND right_name='".$right."'");
-                        $this->CI->db->query($this->CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+                        $CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id." AND right_name='".$right."'");
+                        $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
                     }
                     
                 }

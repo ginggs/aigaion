@@ -39,11 +39,9 @@ Possible flags:
 
 class Topic_db {
     
-    var $CI = null;
   
     function Topic_db()
     {
-        $this->CI = &get_instance();
     }
    
     /** Returns the Topic with the given ID. 
@@ -53,10 +51,13 @@ class Topic_db {
     WB may 27, 2007 -> $configuration was passed by reference, but variables 
     passed by reference cannot have a default value in php4.
     Removed the reference pass
+    
+    DR: THAT SHOULD NOT HAVE BEEN DONE! BETTER CHANGE THE CALLS. PASS BY REFERENCE SAWES 40 % PERFORMANCE ON TOPIC TREES
     */
-    function getByID($topic_id, $configuration = array())
+    function getByID($topic_id, &$configuration)
     {
-        $Q = $this->CI->db->getwhere('topics', array('topic_id' => $topic_id));
+        $CI = &get_instance();
+        $Q = $CI->db->getwhere('topics', array('topic_id' => $topic_id));
         //configuration stuff will be handled by the getFromRow method...
         if ($Q->num_rows() > 0)
         {
@@ -70,11 +71,14 @@ class Topic_db {
     WB may 27, 2007 -> $configuration was passed by reference, but variables 
     passed by reference cannot have a default value in php4.
     Removed the reference pass
+
+    DR: THAT SHOULD NOT HAVE BEEN DONE! BETTER CHANGE THE CALLS. PASS BY REFERENCE SAWES 40 % PERFORMANCE ON TOPIC TREES
     */
-    function getFromRow($R, $configuration = array())
+    function getFromRow($R, &$configuration)
     {
+        $CI = &get_instance();
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
+        $user       = $CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
             return null;
@@ -112,14 +116,14 @@ class Topic_db {
                 userIsGroupSubscribed
         */
         if (array_key_exists('user',$configuration)) {
-            $userSubscribedQ = $this->CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
+            $userSubscribedQ = $CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
                                                                               'user_id' => $configuration['user']->user_id));
             $groupIrrelevant = True;
             $groupSubscribed = False;
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {
                 $groupIrrelevant = False;
                 if (count($configuration['user']->group_ids)>0) {
-                    $groupSubscribedQ = $this->CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$configuration['user']->group_ids).');');
+                    $groupSubscribedQ = $CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$configuration['user']->group_ids).');');
                     $groupSubscribed = $groupSubscribedQ->num_rows()>0;
                 } else {
                     $groupSubscribed = FALSE;
@@ -157,7 +161,7 @@ class Topic_db {
                 publicationIsSubscribed
                                                */
         if (array_key_exists('publicationId',$configuration)) {
-            $pubSubscribedQ = $this->CI->db->getwhere('topicpublicationlink', 
+            $pubSubscribedQ = $CI->db->getwhere('topicpublicationlink', 
                                                        array('topic_id' => $topic->topic_id,  
                                                              'pub_id'=>$configuration['publicationId']));
             $topic->flags['publicationIsSubscribed'] = False;
@@ -182,21 +186,22 @@ class Topic_db {
     Return null if the POST data was not present. */
     function getFromPost()
     {
+        $CI = &get_instance();
         $topic = new Topic;
         //correct form?
-        if ($this->CI->input->post('formname')!='topic') {
+        if ($CI->input->post('formname')!='topic') {
             return null;
         }
         //get basic data
-        $topic->topic_id           = $this->CI->input->post('topic_id');
-        $topic->name               = $this->CI->input->post('name');
-        $topic->description        = $this->CI->input->post('description');
-        $topic->url                = $this->CI->input->post('url');
-        $topic->parent_id          = $this->CI->input->post('parent_id');
-        $topic->user_id            = $this->CI->input->post('user_id');
-        $topic->group_id           = $this->CI->input->post('group_id');
-        $topic->read_access_level  = $this->CI->input->post('read_access_level');
-        $topic->edit_access_level  = $this->CI->input->post('edit_access_level');
+        $topic->topic_id           = $CI->input->post('topic_id');
+        $topic->name               = $CI->input->post('name');
+        $topic->description        = $CI->input->post('description');
+        $topic->url                = $CI->input->post('url');
+        $topic->parent_id          = $CI->input->post('parent_id');
+        $topic->user_id            = $CI->input->post('user_id');
+        $topic->group_id           = $CI->input->post('group_id');
+        $topic->read_access_level  = $CI->input->post('read_access_level');
+        $topic->edit_access_level  = $CI->input->post('edit_access_level');
         if ($topic->group_id=='') {
             //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
             //otherwise the topic will disappear in the nonexisting group '0'
@@ -213,9 +218,10 @@ class Topic_db {
     Removed the reference pass
     */
     function getChildren($topic_id, $configuration=array()) {
+        $CI = &get_instance();
         $children = array();
         //get children from database; add to array
-        $query = $this->CI->db->query("SELECT topics.* FROM topics, topictopiclink
+        $query = $CI->db->query("SELECT topics.* FROM topics, topictopiclink
                                         WHERE topictopiclink.target_topic_id=".$topic_id."
                                           AND topictopiclink.source_topic_id=topics.topic_id
                                      ORDER BY name");
@@ -230,7 +236,8 @@ class Topic_db {
 
     /** Returns the topic_id of the parent of the given Topic through database access. */
     function getParentId($topic_id) {
-        $query = $this->CI->db->getwhere('topictopiclink',array('source_topic_id'=>$topic_id));
+        $CI = &get_instance();
+        $query = $CI->db->getwhere('topictopiclink',array('source_topic_id'=>$topic_id));
         if ($query->num_rows() > 0) {
             $row = $query->row();
             return $row->target_topic_id;
@@ -241,6 +248,7 @@ class Topic_db {
     
     /** Subscribe given publication to given topic in database. no recursion. */
     function subscribePublication($pub_id,$topic_id) {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (    
                 (!$userlogin->hasRights('publication_edit'))
@@ -248,12 +256,13 @@ class Topic_db {
 	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
 	        return;
         }
-        $this->CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
-        $this->CI->db->insert('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
+        $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
+        $CI->db->insert('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
     }
     
     /** Unsubscribe given publication from given topic in database. no recursion. */
     function unsubscribePublication($pub_id,$topic_id) {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (    
                 (!$userlogin->hasRights('publication_edit'))
@@ -261,12 +270,13 @@ class Topic_db {
 	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
 	        return;
         }
-        $this->CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
+        $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
     }
 
     
     /** Subscribe given user to given topic in database. no recursion. */
     function subscribeUser($user,$topic_id) {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
@@ -274,12 +284,13 @@ class Topic_db {
 	        appendErrorMessage('Change subscription: insufficient rights.<br>');
 	        return;
         }
-        $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
-        $this->CI->db->insert('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
+        $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
+        $CI->db->insert('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
     
     /** Unsubscribe given user from given topic in database. no recursion. */
     function unsubscribeUser($user,$topic_id) {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
@@ -287,12 +298,13 @@ class Topic_db {
 	        appendErrorMessage('Change subscription: insufficient rights.<br>');
 	        return;
         }
-        $this->CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
+        $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
     }
 
 
     /** Add a new topic with the given data. Returns the new topic_id, or -1 on failure. */
     function add($topic) {
+        $CI = &get_instance();
         //check access rights (!)
         $userlogin = getUserLogin();
         if (    
@@ -310,22 +322,23 @@ class Topic_db {
         $fields['edit_access_level']=$topic->edit_access_level;
         $fields['group_id']=$topic->group_id;
         //add new topic
-        $this->CI->db->query(
-            $this->CI->db->insert_string("topics", $fields)
+        $CI->db->query(
+            $CI->db->insert_string("topics", $fields)
                              );
                                                
         //add parent
-        $new_id = $this->CI->db->insert_id();
+        $new_id = $CI->db->insert_id();
         if ($topic->parent_id < 0)$topic->parent_id=1;
-        $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
+        $CI->db->query($CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
         //subscribe current user to new topic
-        $this->subscribeUser($this->CI->user_db->getByID($userlogin->userId()),$new_id);
+        $this->subscribeUser($CI->user_db->getByID($userlogin->userId()),$new_id);
         return $new_id;
     }
 
     /** Commit the changes in the data of the given topic. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
     function update($topic) {
+        $CI = &get_instance();
         if ($topic->topic_id==1) {
             appendErrorMessage("You cannot edit the top level topic<br>");
             return;
@@ -334,8 +347,9 @@ class Topic_db {
         //check access rights (by looking at the original topic in the database, as the POST
         //data might have been rigged!)
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
-        $topic_testrights = $this->CI->topic_db->getByID($topic->topic_id);
+        $user       = $CI->user_db->getByID($userlogin->userID());
+        $config=array();
+        $topic_testrights = $CI->topic_db->getByID($topic->topic_id,$config);
         if (    ($topic_testrights == null) 
              ||
                 (!$userlogin->hasRights('topic_edit'))
@@ -384,20 +398,20 @@ class Topic_db {
                 $updatefields['group_id']=$topic->group_id;
         }
 
-        $this->CI->db->query(
-            $this->CI->db->update_string("topics",
+        $CI->db->query(
+            $CI->db->update_string("topics",
                                          $updatefields,
                                          "topic_id=".$topic->topic_id)
                               );
         
         if ($topic_testrights->parent_id != $topic->parent_id) {
             //remove and set parent link
-            $this->CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
-            $this->CI->db->query($this->CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
+            $CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
+            $CI->db->query($CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
     
         	#change membership of publications to reflect new tree structure (are there different strategies for this?)
         	//get all publications that are member of $topic_id
-        	$Q = $this->CI->db->query(
+        	$Q = $CI->db->query(
         			"SELECT pub_id
         			FROM topicpublicationlink
         			WHERE topicpublicationlink.topic_id = ".$topic->topic_id);
@@ -414,12 +428,14 @@ class Topic_db {
     
     /** Collapse given topic for the given user, if that user is susbcribed to it */
     function collapse($topic, $user_id) {
-        $this->CI->db->query("UPDATE usertopiclink SET collapsed='1' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+        $CI = &get_instance();
+        $CI->db->query("UPDATE usertopiclink SET collapsed='1' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
     }
 
     /** Expand given topic for the given user, if that user is susbcribed to it */
     function expand($topic, $user_id) {
-        $this->CI->db->query("UPDATE usertopiclink SET collapsed='0' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+        $CI = &get_instance();
+        $CI->db->query("UPDATE usertopiclink SET collapsed='0' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
     }
     
 }

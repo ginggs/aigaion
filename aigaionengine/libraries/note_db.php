@@ -3,17 +3,16 @@
 array of Note's. */
 class Note_db {
   
-    var $CI = null;
   
     function Note_db()
     {
-        $this->CI = &get_instance();
     }
     
     /** Return the Note object with the given id, or null if insufficient rights */
     function getByID($note_id)
     {
-        $Q = $this->CI->db->getwhere('notes', array('note_id' => $note_id));
+        $CI = &get_instance();
+        $Q = $CI->db->getwhere('notes', array('note_id' => $note_id));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -25,8 +24,9 @@ class Note_db {
     /** Return the Note object stored in the given database row, or null if insufficient rights. */
     function getFromRow($R)
     {
+        $CI = &get_instance();
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
+        $user       = $CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if (!$userlogin->hasRights('note_read')) {
             return null;
@@ -63,19 +63,20 @@ class Note_db {
     Return null if the POST data was not present. */
     function getFromPost()
     {
+        $CI = &get_instance();
         $note = new Note;
         //correct form?
-        if ($this->CI->input->post('formname')!='note') {
+        if ($CI->input->post('formname')!='note') {
             return null;
         }
         //get basic data
-        $note->note_id            = $this->CI->input->post('note_id');
-        $note->text               = $this->CI->input->post('text');
-        $note->pub_id             = $this->CI->input->post('pub_id');
-        $note->user_id            = $this->CI->input->post('user_id');
-        $note->read_access_level  = $this->CI->input->post('read_access_level');
-        $note->edit_access_level  = $this->CI->input->post('edit_access_level');
-        $note->group_id           = $this->CI->input->post('group_id');
+        $note->note_id            = $CI->input->post('note_id');
+        $note->text               = $CI->input->post('text');
+        $note->pub_id             = $CI->input->post('pub_id');
+        $note->user_id            = $CI->input->post('user_id');
+        $note->read_access_level  = $CI->input->post('read_access_level');
+        $note->edit_access_level  = $CI->input->post('edit_access_level');
+        $note->group_id           = $CI->input->post('group_id');
         if ($note->group_id=='') {
             //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
             //otherwise the note will disappear in the nonexisting group '0'
@@ -89,8 +90,9 @@ class Note_db {
         
     /** Return an array of Note object for the given publication. */
     function getNotesForPublication($pub_id) {
+        $CI = &get_instance();
         $result = array();
-        $Q = $this->CI->db->getwhere('notes', array('pub_id' => $pub_id));
+        $Q = $CI->db->getwhere('notes', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->note_id);
             if ($next != null) {
@@ -104,8 +106,9 @@ class Note_db {
     Will return only accessible notes (i.e. wrt access_levels). This method can therefore
     not be used to e.g. update note texts for crossref changes due to a changed bibtex id. */
     function getXRefNotesForPublication($pub_id) {
+        $CI = &get_instance();
         $result = array();
-        $Q = $this->CI->db->getwhere('notecrossrefid', array('xref_id' => $pub_id));
+        $Q = $CI->db->getwhere('notecrossrefid', array('xref_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->note_id);
             if ($next != null) {
@@ -117,10 +120,11 @@ class Note_db {
 
     /** Add a new note with the given data. Returns the new note_id, or -1 on failure. */
     function add($note) {
+        $CI = &get_instance();
         //check access rights (!)
         $userlogin    = getUserLogin();
-        $user         = $this->CI->user_db->getByID($userlogin->userID());
-        $publication  = $this->CI->publication_db->getByID($note->pub_id);
+        $user         = $CI->user_db->getByID($userlogin->userID());
+        $publication  = $CI->publication_db->getByID($note->pub_id);
         if (    ($publication == null) 
              ||
                 (!$userlogin->hasRights('note_edit_self'))
@@ -142,20 +146,20 @@ class Note_db {
 	        return;
         }        
         //add new note
-        $this->CI->db->insert("notes", array('text'              => $note->text,
+        $CI->db->insert("notes", array('text'              => $note->text,
                                              'pub_id'            => $note->pub_id,
                                              'read_access_level' => $note->read_access_level,
                                              'edit_access_level' => $note->edit_access_level,
                                              'group_id'          => $note->group_id,
                                              'user_id'           => $userlogin->userId()));
-        $new_id = $this->CI->db->insert_id();
+        $new_id = $CI->db->insert_id();
         $note->note_id = $new_id;
         
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {
-            $this->CI->db->query(
-                $this->CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
+            $CI->db->query(
+                $CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
                                                                      'note_id'=>$note->note_id)
                                             )
                                  );
@@ -167,11 +171,12 @@ class Note_db {
     /** Commit the changes in the data of the given note. Returns TRUE or FALSE depending on 
     whether the operation was successful. */
     function update($note) {
+        $CI = &get_instance();
         //check access rights (by looking at the original note in the database, as the POST
         //data might have been rigged!)
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
-        $note_testrights = $this->CI->note_db->getByID($note->note_id);
+        $user       = $CI->user_db->getByID($userlogin->userID());
+        $note_testrights = $CI->note_db->getByID($note->note_id);
         if (    ($note_testrights == null) 
              ||
                 (!$userlogin->hasRights('note_edit_self'))
@@ -201,20 +206,20 @@ class Note_db {
                 $updatefields['group_id']=$note->group_id;
         }
 
-        $this->CI->db->query(
-            $this->CI->db->update_string("notes",
+        $CI->db->query(
+            $CI->db->update_string("notes",
                                          $updatefields,
                                          "note_id=".$note->note_id)
                               );
         
 
         //remove old xref ids
-        $this->CI->db->delete('notecrossrefid', array('note_id' => $note->note_id)); 
+        $CI->db->delete('notecrossrefid', array('note_id' => $note->note_id)); 
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {
-            $this->CI->db->query(
-                $this->CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
+            $CI->db->query(
+                $CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
                                                                      'note_id'=>$note->note_id)
                                             )
                                  );
@@ -228,17 +233,18 @@ class Note_db {
     text of all notes that are inaccessible through getByID($note_id) due to access level limitations. */
     function changeAllCrossrefs($pub_id, $new_bibtex_id) 
     {
+        $CI = &get_instance();
 		$bibtexidlinks = getBibtexIdLinks();
-        $Q = $this->CI->db->getwhere('notecrossrefid',array('xref_id'=>$pub_id));
+        $Q = $CI->db->getwhere('notecrossrefid',array('xref_id'=>$pub_id));
         foreach ($Q->result() as $R) {
-            $noteQ = $this->CI->db->getwhere('notes',array('note_id'=>$R->note_id));
+            $noteQ = $CI->db->getwhere('notes',array('note_id'=>$R->note_id));
             if ($noteQ->num_rows()>0) {
               $R = $noteQ->row();
         		  $text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $R->text);
                 //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
                 $updatefields =  array('text'=>$text);
-                $this->CI->db->query(
-                    $this->CI->db->update_string("notes",
+                $CI->db->query(
+                    $CI->db->update_string("notes",
                                                  $updatefields,
                                                  "note_id=".$R->note_id)
                                       );

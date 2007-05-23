@@ -2,17 +2,16 @@
 /** This class regulates the database access for Keywords. */
 class Keyword_db {
 
-  var $CI = null;
 
   function Keyword_db()
   {
-    $this->CI = &get_instance();
   }
 
   function getByID($keyword_id)
   {
+        $CI = &get_instance();
     //retrieve one publication row
-    $Q = $this->CI->db->query("SELECT * FROM keywords WHERE keyword_id = ".$this->CI->db->escape($keyword_id));
+    $Q = $CI->db->query("SELECT * FROM keywords WHERE keyword_id = ".$CI->db->escape($keyword_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -26,7 +25,8 @@ class Keyword_db {
   
   function getByKeyword($keyword)
   {
-    $Q = $this->CI->db->query("SELECT * FROM keywords WHERE keyword = ".$this->CI->db->escape($keyword));
+        $CI = &get_instance();
+    $Q = $CI->db->query("SELECT * FROM keywords WHERE keyword = ".$CI->db->escape($keyword));
 
     if ($Q->num_rows() > 0)
     {
@@ -40,8 +40,9 @@ class Keyword_db {
   
   function getKeywordsLike($keyword)
   {
+        $CI = &get_instance();
     //select all keywords from the database that start with the characters as in $keyword
-    $Q = $this->CI->db->query('SELECT * FROM keywords 
+    $Q = $CI->db->query('SELECT * FROM keywords 
                            WHERE keyword LIKE "'.addslashes($keyword).'%" 
                            ORDER BY keyword');
     
@@ -56,8 +57,9 @@ class Keyword_db {
   
   function getKeywordsForPublication($pub_id)
   {
-    $Q = $this->CI->db->query("SELECT keywords.* FROM keywords, publicationkeywordlink
-                               WHERE publicationkeywordlink.pub_id = ".$this->CI->db->escape($pub_id)." 
+        $CI = &get_instance();
+    $Q = $CI->db->query("SELECT keywords.* FROM keywords, publicationkeywordlink
+                               WHERE publicationkeywordlink.pub_id = ".$CI->db->escape($pub_id)." 
                                  AND publicationkeywordlink.keyword_id = keywords.keyword_id
                                ORDER BY keywords.keyword");
     $result = array();
@@ -75,11 +77,12 @@ class Keyword_db {
   
   function add($keyword)
   {
+        $CI = &get_instance();
     $data = array('keyword' => $keyword);
     
-    $this->CI->db->insert('keywords', $data);
+    $CI->db->insert('keywords', $data);
     
-    $keyword_id = $this->CI->db->insert_id();
+    $keyword_id = $CI->db->insert_id();
     
     if ($keyword_id)
     {
@@ -94,6 +97,7 @@ class Keyword_db {
   //are already in the database. If not, it will add them.
   function ensureKeywordsInDatabase($keywords)
   {
+        $CI = &get_instance();
     if (!is_array($keywords))
       return null;
     
@@ -112,6 +116,7 @@ class Keyword_db {
   
   function review($keywords)
   {
+        $CI = &get_instance();
     if (!is_array($keywords))
       return null;
     
@@ -119,7 +124,7 @@ class Keyword_db {
     
     //get database keyword array
     $db_keywords = array();
-    $Q = $this->CI->db->query("SELECT * FROM keywords ORDER BY keyword");
+    $Q = $CI->db->query("SELECT * FROM keywords ORDER BY keyword");
     if ($Q->num_rows() > 0)
     {
       foreach ($Q->result() as $R)

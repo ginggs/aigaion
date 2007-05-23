@@ -80,7 +80,8 @@ class Topics extends Controller {
 	function delete()
 	{
 	    $topic_id = $this->uri->segment(3);
-	    $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+	    $topic = $this->topic_db->getByID($topic_id,$config);
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($topic==null) {
@@ -172,7 +173,8 @@ class Topics extends Controller {
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
-      $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+      $topic = $this->topic_db->getByID($topic_id,$config);
 
 	    if ($topic==null) {
 	        appendErrorMessage('Topic does not exist.<br>');
@@ -230,7 +232,8 @@ class Topics extends Controller {
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
-        $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
 
 	    if ($topic==null) {
 	        appendErrorMessage('Topic does not exist.<br>');
@@ -374,7 +377,8 @@ class Topics extends Controller {
         $topic_id = $this->uri->segment(3,-1);
         $collapse = $this->uri->segment(4,1);
         
-        $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
             echo "<div class='errormessage'>Collapse topic: no valid topic ID provided</div>";

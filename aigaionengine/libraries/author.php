@@ -22,7 +22,7 @@ class Author {
   //class constructor
   function Author()
   {
-    $this->CI =&get_instance();
+    $CI =&get_instance();
   }
 
   //getName returns the author name, formatted according to the user's preference
@@ -110,7 +110,7 @@ function format($formatStyle, $data='')
   /** Add a new author with the given data. Returns TRUE or FALSE depending on whether the operation was
   successfull. After a successfull 'add', $this->author_id contains the new author_id. */
   function add() {
-    $this->author_id = $this->CI->author_db->add($this);
+    $this->author_id = $CI->author_db->add($this);
     if ($this->author_id > 0) {
       return True;
     }
@@ -120,7 +120,7 @@ function format($formatStyle, $data='')
   /** Update the changes in the data of this author. Returns TRUE or FALSE depending on whether the operation was
   successfull. */
   function update() {
-    return $this->CI->author_db->update($this);
+    return $CI->author_db->update($this);
   }
 }
 ?>

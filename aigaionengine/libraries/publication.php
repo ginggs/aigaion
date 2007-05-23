@@ -21,7 +21,6 @@ class Publication {
   var $cleantitle   = '';
   var $cleanjournal = '';
   var $actualyear   = '';
-  var $CI           = null;
   var $isBookmarked = False;
   
   //user vars
@@ -70,7 +69,6 @@ class Publication {
   //class constructor
   function Publication()
   {
-    $this->CI =&get_instance();
     
     //set default publication type
     $this->pub_type = 'Article';
@@ -80,7 +78,8 @@ class Publication {
     insufficient rights. */
   function add() 
   {
-    $result_id = $this->CI->publication_db->add($this);
+        $CI = &get_instance();
+    $result_id = $CI->publication_db->add($this);
     return ($result_id > 0);
   }
   
@@ -88,32 +87,36 @@ class Publication {
       on whether the operation was operation was successfull. */
   function update() 
   {
-    return $this->CI->publication_db->update($this);
+        $CI = &get_instance();
+    return $CI->publication_db->update($this);
   }
   
   function getKeywords()
   {
+        $CI = &get_instance();
     if ($this->keywords == null)
     {
-      $this->keywords = $this->CI->keyword_db->getKeywordsForPublication($this->pub_id);
+      $this->keywords = $CI->keyword_db->getKeywordsForPublication($this->pub_id);
     }
     return $this->keywords;
   }
   
   function getAttachments() 
   {
+        $CI = &get_instance();
     if ($this->attachments == null) 
     {
-        $this->attachments = $this->CI->attachment_db->getAttachmentsForPublication($this->pub_id);
+        $this->attachments = $CI->attachment_db->getAttachmentsForPublication($this->pub_id);
     }
     return $this->attachments;
   }
   
   function getNotes() 
   {
+        $CI = &get_instance();
     if ($this->notes == null) 
     {
-        $this->notes = $this->CI->note_db->getNotesForPublication($this->pub_id);
+        $this->notes = $CI->note_db->getNotesForPublication($this->pub_id);
     }
     return $this->notes;
   }

@@ -16,11 +16,9 @@ class Group {
     #system variables, not to be changed *directly* by user
     var $rightsprofile_ids  = array();
     //link to the CI base object
-    var $CI                 = null; 
 
     function Group()
     {
-        $this->CI =&get_instance(); 
 
     }
 
@@ -28,14 +26,16 @@ class Group {
     /** Add a new Group with the given data. Returns TRUE or FALSE depending on whether the operation was
     successfull. After a successfull 'add', $this->group_id contains the new group_id. */
     function add() {
-        $this->group_id = $this->CI->group_db->add($this);
+        $CI = &get_instance();
+        $this->group_id = $CI->group_db->add($this);
         return ($this->group_id > 0);
     }
 
     /** Commit the changes in the data of this group. Returns TRUE or FALSE depending on whether the operation was
     operation was successfull. */
     function update() {
-        return $this->CI->group_db->update($this);
+        $CI = &get_instance();
+        return $CI->group_db->update($this);
     }
 }
 ?>

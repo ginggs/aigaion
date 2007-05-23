@@ -3,17 +3,16 @@
 array of Authors. */
 class Author_db {
   
-    var $CI = null;
   
     function Author_db()
     {
-        $this->CI = &get_instance();
     }
 
   function getByID($author_id)
   {
+        $CI = &get_instance();
     //retrieve one author row	  
-    $Q = $this->CI->db->query("SELECT * FROM author WHERE author_id = ".$this->CI->db->escape($author_id));
+    $Q = $CI->db->query("SELECT * FROM author WHERE author_id = ".$CI->db->escape($author_id));
     if ($Q->num_rows() == 1) 
     {
       //load the author
@@ -25,6 +24,7 @@ class Author_db {
   
   function getByExactName($firstname = "", $von = "", $surname = "")
   {
+        $CI = &get_instance();
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return false;
@@ -42,7 +42,7 @@ class Author_db {
     $name = stripQuotesFromString($name);
     
     //do the query
-    $Q = $this->CI->db->query("SELECT * FROM author WHERE cleanname = ".$this->CI->db->escape($name));
+    $Q = $CI->db->query("SELECT * FROM author WHERE cleanname = ".$CI->db->escape($name));
   
     //only when a single result is found, load the result. Else fail
     if ($Q->num_rows() == 1)
@@ -53,6 +53,7 @@ class Author_db {
   
   function setByName($firstname = "", $von = "", $surname = "")
   {
+        $CI = &get_instance();
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return null;
@@ -81,6 +82,7 @@ class Author_db {
   
   function getFromPost()
   {
+        $CI = &get_instance();
     //create the array with variables to retrieve
     $fields = array('author_id',
                     //'specialchars', no! specialchars var is not set in edit form.
@@ -98,13 +100,14 @@ class Author_db {
     //retrieve all fields
     foreach ($fields as $key)
     {
-      $author->$key = $this->CI->input->post($key);
+      $author->$key = $CI->input->post($key);
     }
     return $author;
   }
   
   function add($author)
   {
+        $CI = &get_instance();
     //fields that are to be submitted
     $fields = array('specialchars',
                     'cleanname',
@@ -135,15 +138,16 @@ class Author_db {
       $data[$field] = $author->$field;
     
     //insert into database using active record helper
-    $this->CI->db->insert('author', $data);
+    $CI->db->insert('author', $data);
     
     //update this author's author_id
-    $author->author_id = $this->CI->db->insert_id();
+    $author->author_id = $CI->db->insert_id();
     return $author;
   }
   
   function update($author)
   {
+        $CI = &get_instance();
     //fields that are to be updated
     $fields = array('specialchars',
                     'cleanname',
@@ -174,14 +178,15 @@ class Author_db {
       $data[$field] = $author->$field;
     
     //update database using active record helper
-    $this->CI->db->where('author_id', $author->author_id);
-    $this->CI->db->update('author', $data);
+    $CI->db->where('author_id', $author->author_id);
+    $CI->db->update('author', $data);
 
     return $author;
   }
   
   function validate($author)
   {
+        $CI = &get_instance();
     $validate_conditional = array();
     
     //we require at least the first or the surname
@@ -215,6 +220,7 @@ class Author_db {
 
   function deleteAuthor($author)
   {
+        $CI = &get_instance();
     //only delete a valid object
     if ($author->author_id == 0)
       return false;
@@ -240,10 +246,11 @@ TODO:
   
   function getAllAuthors()
   {
+        $CI = &get_instance();
     $result = array();
     
     //get all authors from the database, order by cleanname
-    $Q = $this->CI->db->query('SELECT * FROM author ORDER BY cleanname');
+    $Q = $CI->db->query('SELECT * FROM author ORDER BY cleanname');
     
     //retrieve results or fail
     foreach ($Q->result() as $row)
@@ -259,9 +266,10 @@ TODO:
   
   function getAuthorsLike($cleanname)
   {
+        $CI = &get_instance();
     //select all authors from the database where the cleanname begins with the characters
     //as given in $cleanname
-    $Q = $this->CI->db->query('SELECT * FROM author 
+    $Q = $CI->db->query('SELECT * FROM author 
                            WHERE cleanname LIKE "'.addslashes($cleanname).'%" 
                            ORDER BY cleanname');
     
@@ -282,13 +290,14 @@ TODO:
   
   function getForPublication($pub_id, $is_editor = 'N')
   {
+        $CI = &get_instance();
     $result = array();
     
     //retrieve authors and editors
-    $Q = $this->CI->db->query("SELECT * FROM author, publicationauthorlink 
+    $Q = $CI->db->query("SELECT * FROM author, publicationauthorlink 
                            WHERE author.author_id = publicationauthorlink.author_id
-                           AND publicationauthorlink.pub_id = ".$this->CI->db->escape($pub_id)."
-                           AND publicationauthorlink.is_editor = ".$this->CI->db->escape($is_editor)."
+                           AND publicationauthorlink.pub_id = ".$CI->db->escape($pub_id)."
+                           AND publicationauthorlink.is_editor = ".$CI->db->escape($is_editor)."
                            ORDER BY publicationauthorlink.rank");
     
     //retrieve results or fail                       
@@ -306,6 +315,7 @@ TODO:
   
   function ensureAuthorsInDatabase($authors)
   {
+        $CI = &get_instance();
     if (!is_array($authors))
       return null;
       
@@ -323,13 +333,14 @@ TODO:
   
   function review($authors)
   {
+        $CI = &get_instance();
     if (!is_array($authors))
       return null;
     
     $result_message   = "";
     
     //get database author array
-    $Q = $this->CI->db->query("SELECT author_id, cleanname FROM author ORDER BY cleanname");
+    $Q = $CI->db->query("SELECT author_id, cleanname FROM author ORDER BY cleanname");
     
     $db_cleanauthors = array();
     //retrieve results or fail                       

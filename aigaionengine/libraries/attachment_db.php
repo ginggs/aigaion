@@ -3,17 +3,16 @@
 array of Attachment's. */
 class Attachment_db {
   
-    var $CI = null;
   
     function Attachment_db()
     {
-        $this->CI = &get_instance();
     }
     
     /** Return the Attachment object with the given id. */
     function getByID($att_id)
     {
-        $Q = $this->CI->db->getwhere('attachments', array('att_id' => $att_id));
+        $CI = &get_instance();
+        $Q = $CI->db->getwhere('attachments', array('att_id' => $att_id));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -25,8 +24,9 @@ class Attachment_db {
     /** Return the Attachment object stored in the given database row, or null if insufficient rights. */
     function getFromRow($R)
     {
+        $CI = &get_instance();
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
+        $user       = $CI->user_db->getByID($userlogin->userID());
         //check rights; if fail: return null
         if (!$userlogin->hasRights('attachment_read')) {
             return null;
@@ -56,24 +56,25 @@ class Attachment_db {
     Return null if the POST data was not present. */
     function getFromPost()
     {
+        $CI = &get_instance();
         $attachment = new Attachment;
         //correct form?
-        if ($this->CI->input->post('formname')!='attachment') {
+        if ($CI->input->post('formname')!='attachment') {
             return null;
         }
         //get basic data
-        $attachment->att_id             = $this->CI->input->post('att_id');
-        $attachment->name               = $this->CI->input->post('name');
-        $attachment->note               = $this->CI->input->post('note');
-        $attachment->isremote           = $this->CI->input->post('isremote');
-        $attachment->location           = $this->CI->input->post('location');
-        $attachment->ismain             = $this->CI->input->post('ismain');
-        $attachment->mime               = $this->CI->input->post('mime');
-        $attachment->pub_id             = $this->CI->input->post('pub_id');
-        $attachment->user_id            = $this->CI->input->post('user_id');
-        $attachment->group_id           = $this->CI->input->post('group_id');
-        $attachment->read_access_level  = $this->CI->input->post('read_access_level');
-        $attachment->edit_access_level  = $this->CI->input->post('edit_access_level');
+        $attachment->att_id             = $CI->input->post('att_id');
+        $attachment->name               = $CI->input->post('name');
+        $attachment->note               = $CI->input->post('note');
+        $attachment->isremote           = $CI->input->post('isremote');
+        $attachment->location           = $CI->input->post('location');
+        $attachment->ismain             = $CI->input->post('ismain');
+        $attachment->mime               = $CI->input->post('mime');
+        $attachment->pub_id             = $CI->input->post('pub_id');
+        $attachment->user_id            = $CI->input->post('user_id');
+        $attachment->group_id           = $CI->input->post('group_id');
+        $attachment->read_access_level  = $CI->input->post('read_access_level');
+        $attachment->edit_access_level  = $CI->input->post('edit_access_level');
         if ($attachment->group_id=='') {
             //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
             //otherwise the attachment will disappear in the nonexisting group '0'
@@ -89,9 +90,10 @@ class Attachment_db {
         
     /** Return an array of Attachment object for the given publication. */
     function getAttachmentsForPublication($pub_id) {
+        $CI = &get_instance();
         $result = array();
-        $this->CI->db->orderby('ismain');
-        $Q = $this->CI->db->getwhere('attachments', array('pub_id' => $pub_id));
+        $CI->db->orderby('ismain');
+        $Q = $CI->db->getwhere('attachments', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->att_id);
             if ($next != null) {
@@ -105,10 +107,11 @@ class Attachment_db {
     /** Add a new attachment with the given data. Returns the new att_id, or -1 on failure. 
     Quite a large method. */
     function add($attachment) {
+        $CI = &get_instance();
         //check access rights (!)
         $userlogin    = getUserLogin();
-        $user         = $this->CI->user_db->getByID($userlogin->userID());
-        $publication  = $this->CI->publication_db->getByID($attachment->pub_id);
+        $user         = $CI->user_db->getByID($userlogin->userID());
+        $publication  = $CI->publication_db->getByID($attachment->pub_id);
         if (    ($publication == null) 
              ||
                 (!$userlogin->hasRights('attachment_edit'))
@@ -135,7 +138,7 @@ class Attachment_db {
         	#from alternative name or from original name
         	#
         	$realname=$attachment->location;
-        	$ext=$this->CI->file_upload->get_extension($realname);
+        	$ext=$CI->file_upload->get_extension($realname);
         	if (getConfigurationSetting('ALLOW_ALL_EXTERNAL_ATTACHMENTS')!='TRUE') {
         		if (!in_array($ext, getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))) {
         			appendErrorMessage("ERROR UPLOADING: ".$ext." is not an allowed extension for remote files.<br>"
@@ -167,7 +170,7 @@ class Attachment_db {
             }
         
             //the first attachment is always a main attachment
-            $Q = $this->CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+            $Q = $CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
             if ($Q->num_rows() == 0) {
                 $attachment->ismain = True;
             }
@@ -206,29 +209,29 @@ class Attachment_db {
         		return -1;
         	}
         
-        	$this->CI->file_upload->http_error = $_FILES['upload']['error'];
+        	$CI->file_upload->http_error = $_FILES['upload']['error'];
         
-        	if ($this->CI->file_upload->http_error > 0) {
-        		appendErrorMessage("Error while uploading: ".$this->CI->file_upload->error_text($this->CI->file_upload->http_error));
+        	if ($CI->file_upload->http_error > 0) {
+        		appendErrorMessage("Error while uploading: ".$CI->file_upload->error_text($CI->file_upload->http_error));
         		return -1;
         	}
         
         	# prepare upload of file from temp to permanent location
-        	$this->CI->file_upload->the_file = $_FILES['upload']['name'];
-        	$this->CI->file_upload->the_temp_file = $_FILES['upload']['tmp_name'];
-        	$this->CI->file_upload->extensions = getConfigurationSetting("ALLOWED_ATTACHMENT_EXTENSIONS");  // specify the allowed extensions here
-        	$this->CI->file_upload->upload_dir = AIGAION_ATTACHMENT_DIR."/";  // is the folder for the uploaded files (you have to create this folder)
-        	$this->CI->file_upload->max_length_filename = 255; // change this value to fit your field length in your database (standard 100)
-        	$this->CI->file_upload->rename_file = true;
-        	$this->CI->file_upload->replace = "n"; 
-        	$this->CI->file_upload->do_filename_check = "n"; // use this boolean to check for a valid filename
+        	$CI->file_upload->the_file = $_FILES['upload']['name'];
+        	$CI->file_upload->the_temp_file = $_FILES['upload']['tmp_name'];
+        	$CI->file_upload->extensions = getConfigurationSetting("ALLOWED_ATTACHMENT_EXTENSIONS");  // specify the allowed extensions here
+        	$CI->file_upload->upload_dir = AIGAION_ATTACHMENT_DIR."/";  // is the folder for the uploaded files (you have to create this folder)
+        	$CI->file_upload->max_length_filename = 255; // change this value to fit your field length in your database (standard 100)
+        	$CI->file_upload->rename_file = true;
+        	$CI->file_upload->replace = "n"; 
+        	$CI->file_upload->do_filename_check = "n"; // use this boolean to check for a valid filename
         
         	# determine real name (the one exposed to user) and storename (the one
         	# used for storage) of file, from alternative name or from original name
         	$realname=$_FILES['upload']['name'];
-        	$ext = $this->CI->file_upload->get_extension($realname);
+        	$ext = $CI->file_upload->get_extension($realname);
         	if (isset($attachment->name) && ($attachment->name != "")) {
-        		if ($this->CI->file_upload->get_extension($attachment->name) != $ext) {
+        		if ($CI->file_upload->get_extension($attachment->name) != $ext) {
         			$attachment->name .= $ext;
         		}
         		$realname = $attachment->name;
@@ -246,7 +249,7 @@ class Attachment_db {
         	}
         
         	# execute the actual upload
-        	if ($this->CI->file_upload->upload($storename)) {  
+        	if ($CI->file_upload->upload($storename)) {  
         	    // storename is an additional filename information, use this to rename the uploaded file
         		//echo "mime:".$mime.".";
         		# upload was succesful:
@@ -259,7 +262,7 @@ class Attachment_db {
         			}
         		}
                 //the first attachment is always a main attachment
-                $Q = $this->CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+                $Q = $CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
                 if ($Q->num_rows() == 0) {
                     $attachment->ismain = True;
                 }
@@ -295,7 +298,7 @@ class Attachment_db {
         		
         		return mysql_insert_id();
         	} else {
-        		appendErrorMessage("ERROR UPLOADING: ".$this->CI->file_upload->show_error_string()
+        		appendErrorMessage("ERROR UPLOADING: ".$CI->file_upload->show_error_string()
         		  ."<br>Is the error due to allowed file types? Ask <a href='mailto:"
         		  .getConfigurationSetting("CFG_ADMINMAIL")."'>"
         		  .getConfigurationSetting("CFG_ADMIN")."</a> for more types.<br>");
@@ -312,11 +315,12 @@ class Attachment_db {
     have the proper extension. If not, this method fixes the extension. Returns TRUE or FALSE depending 
     on whether the operation was operation was successfull. */
     function update($attachment) {
+        $CI = &get_instance();
         //check access rights (by looking at the original attachment in the database, as the POST
         //data might have been rigged!)
         $userlogin  = getUserLogin();
-        $user       = $this->CI->user_db->getByID($userlogin->userID());
-        $attachment_testrights = $this->CI->attachment_db->getByID($attachment->att_id);
+        $user       = $CI->user_db->getByID($userlogin->userID());
+        $attachment_testrights = $CI->attachment_db->getByID($attachment->att_id);
         if (    ($attachment_testrights == null) 
              ||
                 (!$userlogin->hasRights('attachment_edit'))
@@ -340,8 +344,8 @@ class Attachment_db {
  
         //attachment name should be correct wrt location! 
         if (!$attachment->isremote) {
-          	$ext1=$this->CI->file_upload->get_extension($attachment->location);
-          	$ext2=$this->CI->file_upload->get_extension($attachment->name);
+          	$ext1=$CI->file_upload->get_extension($attachment->location);
+          	$ext2=$CI->file_upload->get_extension($attachment->name);
           	if ($ext1!=$ext2) {
           	    $attachment->name .= $ext1;
           	}
@@ -368,8 +372,8 @@ class Attachment_db {
                 $updatefields['group_id']=$attachment->group_id;
         }
         
-        $this->CI->db->query(
-            $this->CI->db->update_string("attachments",
+        $CI->db->query(
+            $CI->db->update_string("attachments",
                                          $updatefields,
                                          "att_id=".$attachment->att_id)
                               );

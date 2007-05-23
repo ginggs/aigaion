@@ -39,7 +39,6 @@ class User {
     //only has a value for the logged user!
     var $fullSubscriptionTree = null;
     //link to the CI base object
-    var $CI                 = null; 
 
     /** The class-tree (Category object) of  only those classes to which the user is subscribed */
     //var $personal_subscribed_tree    = null; //this is the tree as it is only filled with the topics for this individual user, i.e. the 'extra' subscribed topics
@@ -48,14 +47,14 @@ class User {
     
     function User()
     {
-        $this->CI =&get_instance(); 
 
     }
     
     /** Add a new user with the given data. Returns TRUE or FALSE depending on whether the operation was
     successfull. After a successfull 'add', $this->user_id contains the new user_id. */
     function add() {
-        $this->user_id = $this->CI->user_db->add($this);
+        $CI = &get_instance();
+        $this->user_id = $CI->user_db->add($this);
         if ($this->user_id > 0) {
             return True;
         }
@@ -65,7 +64,8 @@ class User {
     /** Commit the changes in the data of this user. Returns TRUE or FALSE depending on whether the operation was
     successfull. */
     function update() {
-        return $this->CI->user_db->update($this);
+        $CI = &get_instance();
+        return $CI->user_db->update($this);
     }
 }
 ?>

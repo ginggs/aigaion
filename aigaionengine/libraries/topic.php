@@ -25,7 +25,6 @@ class Topic {
     var $user_id            = -1; //owner who created it
     var $group_id            = 0; //group to which access is restricted
     var $children           = null; //array of Topic's. These are not necessarily all possible children, depending on the configuration provided at construction time.
-    var $CI                 = null; //link to the CI base object
 
     //this configuration array may contain any number of settings that determine the behavior of this topic (tree)
     //NOTE: upon construction, this array is set. After that it will not be changed anymore. This is relevant, because
@@ -37,26 +36,27 @@ class Topic {
         
     function Topic()
     {
-        $this->CI =&get_instance(); 
     }
     
 
     /** Return an array of Topic's. Note: not loaded until requested by this function. Every call to this
     function will return the same Topic objects (same pointers). */
     function getChildren() {
+        $CI = &get_instance();
         if ($this->children == null) {
-            $this->children = $this->CI->topic_db->getChildren($this->topic_id, $this->configuration);
+            $this->children = $CI->topic_db->getChildren($this->topic_id, $this->configuration);
         }
         return $this->children;
     }
 
     /** Return a Topic. Note: every call to this function will return a NEW Topic object. */
     function getParent() {
+        $CI = &get_instance();
         if ($this->parent_id == -1) {
-            $this->parent_id = $this->CI->topic_db->getParent($this->topic_id);
+            $this->parent_id = $CI->topic_db->getParent($this->topic_id);
         }
         if ($this->parent_id == null) return null;
-        $p = $this->CI->topic_db->getByID($this->parent_id, $this->configuration);
+        $p = $CI->topic_db->getByID($this->parent_id, $this->configuration);
         return $p;
     }
   
@@ -70,14 +70,16 @@ class Topic {
         $this->subscribeUserUpRecursive();
     }    
     function subscribeUserDownRecursive() {
-        $this->CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = True;
         foreach ($this->getChildren() as $child) {
             $child->subscribeUserDownRecursive();
         }
     }    
     function subscribeUserUpRecursive() {
-        $this->CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->subscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = True;
         $parent = $this->getParent();
         if ($parent != null) {
@@ -90,7 +92,8 @@ class Topic {
     This method unsubscribes the children as well.
     Pre: $this->configuration['user'] must be set. */  
     function unsubscribeUser() {
-        $this->CI->topic_db->unsubscribeUser($this->configuration['user'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->unsubscribeUser($this->configuration['user'], $this->topic_id);
         $this->flags['userIsSubscribed'] = False;
         foreach ($this->getChildren() as $child) {
             $child->unsubscribeUser();
@@ -106,14 +109,16 @@ class Topic {
         $this->subscribePublicationUpRecursive();
     }    
     function subscribePublicationDownRecursive() {
-        $this->CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
         $this->flags['publicationIsSubscribed'] = True;
         foreach ($this->getChildren() as $child) {
             $child->subscribePublicationDownRecursive();
         }
     }    
     function subscribePublicationUpRecursive() {
-        $this->CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->subscribePublication($this->configuration['publicationId'], $this->topic_id);
         $this->flags['publicationIsSubscribed'] = True;
         $parent = $this->getParent();
         if ($parent != null) {
@@ -130,15 +135,17 @@ class Topic {
         $this->subscribePublicationSetUpRecursive($pub_ids);
     }    
     function subscribePublicationSetDownRecursive($pub_ids) {
+        $CI = &get_instance();
         foreach ($pub_ids as $pub_id)
-            $this->CI->topic_db->subscribePublication($pub_id, $this->topic_id);
+            $CI->topic_db->subscribePublication($pub_id, $this->topic_id);
         foreach ($this->getChildren() as $child) {
             $child->subscribePublicationSetDownRecursive($pub_ids);
         }
     }    
     function subscribePublicationSetUpRecursive($pub_ids) {
+        $CI = &get_instance();
         foreach ($pub_ids as $pub_id)
-            $this->CI->topic_db->subscribePublication($pub_id, $this->topic_id);
+            $CI->topic_db->subscribePublication($pub_id, $this->topic_id);
         $parent = $this->getParent();
         if ($parent != null) {
             $parent->subscribePublicationSetUpRecursive($pub_ids);
@@ -150,7 +157,8 @@ class Topic {
     This method unsubscribes the children as well.
     Pre: $this->configuration['publicationId'] must be set. */  
     function unsubscribePublication() {
-        $this->CI->topic_db->unsubscribePublication($this->configuration['publicationId'], $this->topic_id);
+        $CI = &get_instance();
+        $CI->topic_db->unsubscribePublication($this->configuration['publicationId'], $this->topic_id);
         $this->flags['publicationIsSubscribed'] = False;
         foreach ($this->getChildren() as $child) {
             $child->unsubscribePublication();
@@ -160,26 +168,30 @@ class Topic {
     /** Add a new Topic with the given data. Returns TRUE or FALSE depending on whether the operation was
     successfull. After a successfull 'add', $this->topic_id contains the new topic_id. */
     function add() {
-        $this->topic_id = $this->CI->topic_db->add($this);
+        $CI = &get_instance();
+        $this->topic_id = $CI->topic_db->add($this);
         return ($this->topic_id > 0);
     }
 
     /** Commit the changes in the data of this topic. Returns TRUE or FALSE depending on whether the operation was
     operation was successfull. */
     function update() {
-        return $this->CI->topic_db->update($this);
+        $CI = &get_instance();
+        return $CI->topic_db->update($this);
     }
     
     /** Collapse this topic for the current logged user */
     function collapse() {
+        $CI = &get_instance();
       $userlogin = getUserLogin();
-        $this->CI->topic_db->collapse($this, $userlogin->userId());
+        $CI->topic_db->collapse($this, $userlogin->userId());
     }
 
     /** Expand this topic for the current logged user */
     function expand() {
+        $CI = &get_instance();
       $userlogin = getUserLogin();
-        $this->CI->topic_db->expand($this, $userlogin->userId());
+        $CI->topic_db->expand($this, $userlogin->userId());
     }
     
     

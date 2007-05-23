@@ -1,15 +1,14 @@
 <?php
 class Bookmarklist_db {
 
-  var $CI = null;
 
   function Bookmarklist_db()
   {
-    $this->CI = &get_instance();
   }
 
     function addPublication($pub_id)
     {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
@@ -24,6 +23,7 @@ class Bookmarklist_db {
 
     function removePublication($pub_id)
     {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
@@ -37,6 +37,7 @@ class Bookmarklist_db {
     }
 
     function clear() {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
@@ -49,13 +50,14 @@ class Bookmarklist_db {
     }
     
     function addToTopic($topic) {
+        $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
             return;
         }
         $pub_ids = array();
-        foreach ($this->CI->publication_db->getForBookmarkList() as $publication) {
+        foreach ($CI->publication_db->getForBookmarkList() as $publication) {
             $pub_ids[] = $publication->pub_id;
         }
         $topic->subscribePublicationSetUpRecursive($pub_ids);
