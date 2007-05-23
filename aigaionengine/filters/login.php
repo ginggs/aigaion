@@ -12,10 +12,11 @@
 |   The choice between the two actions is determined by the filter config parameter
 |   'action', which can have one of two values ('redirect','fail')
 |*/
+//echo 'login filter loaded';
 class Login_filter extends Filter {
+    
   function before() {
     $CI = &get_instance();
-
     //get login object
     $userlogin = getUserLogin();
 

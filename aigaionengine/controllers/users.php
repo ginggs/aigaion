@@ -391,7 +391,7 @@ class Users extends Controller {
                 redirect ('');
             }
             //redirect somewhere if commit was successfull
-            redirect('');
+            redirect('topics/browse');
         }
         
     }

@@ -19,6 +19,7 @@
 
     function getUserLogin() {
         $CI = &get_instance();
+    
         $userlogin = $CI->latesession->get('USERLOGIN');
         if (!isset($userlogin)||($userlogin==null)) {
             $userlogin = new UserLogin();

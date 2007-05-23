@@ -492,13 +492,13 @@ class Publication_db {
               && (!$userlogin->hasRights('publication_edit_all'))
              )                
          ||
-            (    ($oldpublication->edit_access_level == 'private') 
+            (    ($oldpublication->edit_access_level == 'group') 
               && (!in_array($oldpublication->group_id,$user->group_ids) ) 
               && (!$userlogin->hasRights('publication_edit_all'))
              )                   ) 
     {
-        appendErrorMessage('Edit publication: insufficient rights.<br>');
-        return;
+        appendErrorMessage('Edit publication: insufficient rights. publication_db.update<br>');
+        return $oldpublication;
     }
 
     //insert all publication data in the publication table

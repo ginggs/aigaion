@@ -26,7 +26,7 @@ The UserLogin class assumes that the connection to the database has already been
 Access is through the getUserLogin() function in the login helper
 */
 
-
+//echo 'userlogin loaded';
 class UserLogin {
     
     //note : all 'var' should actually be 'private', but PHP 4 doesn't support that :(
@@ -69,7 +69,8 @@ class UserLogin {
                 return True; //OK? return true;
             } else {
                 $this->logout();
-                $this->latesession->set('USERLOGIN', $userlogin);
+                $CI = &get_instance();
+                $CI->latesession->set('USERLOGIN', $this);
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
                                   process of being updated.<br> If you are a user with 
                                   database_manage rights, please login to complete the update. 

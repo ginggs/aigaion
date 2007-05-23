@@ -131,7 +131,7 @@ class Publications extends Controller {
              )                
         ) 
     {
-      appendErrorMessage('Edit publication: insufficient rights.<br/>');
+      appendErrorMessage('Edit publication : insufficient rights.<br/>');
       redirect('');
     }
     
@@ -205,6 +205,7 @@ class Publications extends Controller {
             ($review['editors']   != null))
         {
           $bReview = true;
+          $review['edit_type'] = $edit_type;
           $this->review($publication, $review);
         }
       }
@@ -225,7 +226,7 @@ class Publications extends Controller {
              )                
           ) 
         {
-          appendErrorMessage('Edit publication: insufficient rights.<br/>');
+          appendErrorMessage('Commit publication: insufficient rights.<br/>');
           redirect('');
         }
         
@@ -251,7 +252,7 @@ class Publications extends Controller {
     $userlogin      = getUserLogin();
     $user           = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
-         || ($oldpublication == null)
+         || (($oldpublication == null) && ($review_data['edit_type']!='new'))
          || ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
          || (    ($oldpublication->edit_access_level == 'private') 
               && ($userlogin->userId() != $oldpublication->user_id) 
@@ -262,7 +263,7 @@ class Publications extends Controller {
              )                
         ) 
     {
-      appendErrorMessage('Edit publication: insufficient rights.<br/>');
+      appendErrorMessage('Review publication: insufficient rights.<br/>');
       redirect('');
     }
 
