@@ -199,7 +199,7 @@ class Groups extends Controller {
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete group: not implemented yet');
-            redirect('');
+            redirect('users/manage');
         } else {
             //get output
             $headerdata = array();
@@ -301,10 +301,10 @@ class Groups extends Controller {
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
                 appendErrorMessage("Commit group: an error occurred. Please contact your Aigaion administrator.<br>");
-                redirect ('');
+                redirect ('users/manage');
             }
             //redirect somewhere if commit was successfull
-            redirect('');
+            redirect('users/manage');
         }
         
     }

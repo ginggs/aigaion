@@ -198,7 +198,7 @@ class Rightsprofiles extends Controller {
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete rightsprofile: not implemented yet');
-            redirect('');
+            redirect('users/manage');
         } else {
             //get output
             $headerdata = array();
@@ -301,10 +301,10 @@ class Rightsprofiles extends Controller {
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
                 appendErrorMessage("Commit rightsprofile: an error occurred. Please contact your Aigaion administrator.<br>");
-                redirect ('');
+                redirect('users/manage');
             }
             //redirect somewhere if commit was successfull
-            redirect('');
+            redirect('users/manage');
         }
         
     }

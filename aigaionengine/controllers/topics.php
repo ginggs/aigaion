@@ -10,7 +10,7 @@ class Topics extends Controller {
 	/** Pass control to the topics/browse/ controller */
 	function index()
 	{
-	  redirect('topics/browse');
+	  $this->browse();
 	}
 
     /** Simple browse page for Topics. 
@@ -39,7 +39,7 @@ class Topics extends Controller {
         $root = $this->topic_db->getByID($root_id, $config);
         if ($root == null) {
             appendErrorMessage( "Browse topics: no valid topic ID provided<br>");
-            redirect('');;
+            redirect('');
         }
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
@@ -344,10 +344,10 @@ class Topics extends Controller {
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
                 appendErrorMessage("Commit topic: an error occurred. Please contact your Aigaion administrator.<br>");
-                redirect ('');
+                redirect('topics/single/'.$topic->topic_id);
             }
             //redirect somewhere if commit was successfull
-            redirect('');
+            redirect('topics/single/'.$topic->topic_id);
 
         }
         

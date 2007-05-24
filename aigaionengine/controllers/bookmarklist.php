@@ -10,7 +10,7 @@ class Bookmarklist extends Controller {
 	/** Pass control to the bookmarklist/viewlist/ */
 	function index()
 	{
-		redirect('bookmarklist/viewlist');
+		$this->viewlist();
 	}
 
     /** 
@@ -172,7 +172,7 @@ class Bookmarklist extends Controller {
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->addToTopic($topic);
-        redirect('bookmarklist/viewlist');
+        $this->viewlist();
     }
 
     /** 
@@ -228,7 +228,7 @@ class Bookmarklist extends Controller {
 	        redirect('');
 	    }
         $this->bookmarklist_db->clear();
-        redirect('bookmarklist');
+        $this->viewlist();
     }
 }
 ?>

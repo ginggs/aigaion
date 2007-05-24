@@ -104,7 +104,7 @@ class Attachments extends Controller {
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete attachment: not implemented yet');
-            redirect('');
+            redirect('publications/show/'.$attachment->pub_id);
         } else {
             //get output: a full web page with a 'confirm delete' form
             $headerdata = array();
@@ -234,7 +234,7 @@ class Attachments extends Controller {
                  )                ) 
         {
 	        appendErrorMessage('Edit attachment: insufficient rights.<br>');
-	        redirect('');
+	        redirect('publications/show/'.$attachment->pub_id);
         }
 	    
         //get output
@@ -298,10 +298,10 @@ class Attachments extends Controller {
             //might happen, e.g. if upload fails due to post size limits, upload size limits, etc.
             //or illegal attachment extensions etc.
             appendErrorMessage("Commit attachment: an error occurred. Please contact your Aigaion administrator.<br>"); 
-            redirect ('');
+            redirect('publications/show/'.$attachment->pub_id);
         }
         //redirect somewhere if commit was successfull
-        redirect('');
+        redirect('publications/show/'.$attachment->pub_id);
 
 	}
     

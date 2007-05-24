@@ -10,7 +10,7 @@ class Site extends Controller {
 	/** Pass control to the site/configure/ controller */
 	function index()
 	{
-		redirect('site/configure');
+		$this->configure();
 	}
 
     /** 

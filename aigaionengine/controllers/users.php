@@ -278,7 +278,7 @@ class Users extends Controller {
         if ($commit=='commit') {
             //do delete, redirect somewhere
             appendErrorMessage('Delete user: not implemented yet');
-            redirect('');
+            redirect('users/manage');
         } else {
             //get output
             $headerdata = array();
@@ -391,7 +391,7 @@ class Users extends Controller {
                 redirect ('');
             }
             //redirect somewhere if commit was successfull
-            redirect('topics/browse');
+            redirect('users/edit/'.$user->user_id);
         }
         
     }
