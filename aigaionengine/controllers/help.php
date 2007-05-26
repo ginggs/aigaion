@@ -10,7 +10,7 @@ class Help extends Controller {
 	/**  */
 	function index()
 	{
-	    this->viewhelp();
+	    $this->viewhelp();
 	}
 	
 
