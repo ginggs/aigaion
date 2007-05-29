@@ -7,6 +7,7 @@
     'depth'         => -1,       //max depth for which to render the tree
     'selected'      => 1;        //which topic is selected?
     'header'        => 'Select new parent...'
+    'dropdownname' => 'parent_id'; //the name of the dropdown element
                              */
 ?>
 <?php

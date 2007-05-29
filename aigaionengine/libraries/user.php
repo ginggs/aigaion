@@ -38,7 +38,6 @@ class User {
     //the cached subscription tree (including group subscriptions!)
     //only has a value for the logged user!
     var $fullSubscriptionTree = null;
-    //link to the CI base object
 
     /** The class-tree (Category object) of  only those classes to which the user is subscribed */
     //var $personal_subscribed_tree    = null; //this is the tree as it is only filled with the topics for this individual user, i.e. the 'extra' subscribed topics

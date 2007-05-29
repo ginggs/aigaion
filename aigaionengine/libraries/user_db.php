@@ -3,7 +3,6 @@
 array of User's. */
 class User_db {
   
-  
     function User_db()
     {
     }

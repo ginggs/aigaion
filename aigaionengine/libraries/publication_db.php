@@ -488,7 +488,7 @@ class Publication_db {
     $oldpublication = $this->getByID($publication->pub_id);
     if (    ($oldpublication == null) 
          ||
-            (!$userlogin->hasRights('note_edit_self'))
+            (!$userlogin->hasRights('publciation_edit'))
          || 
             ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
          ||
@@ -593,7 +593,8 @@ class Publication_db {
     foreach($fields as $field) 
       $data[$field] = $publication->$field;
 
-    $data['user_id'] = $userlogin->userId();
+    //[DR:] line below commented out: the user id should not change when updating! the owner always stays the same!
+    //$data['user_id'] = $userlogin->userId();
   
     if (   ($oldpublication->user_id==$userlogin->userId())
         || $userlogin->hasRights('publication_edit_all')) {                        
