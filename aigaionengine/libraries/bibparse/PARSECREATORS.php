@@ -148,7 +148,7 @@ class PARSECREATORS
 			if($this->separateInitials)
 				list($firstname, $initials) = $this->separateInitials($firstname);
 			
-			$creators[] = array('firstname' => $firstname, 'initials' => $initials, 'surname' => $surname, 'jr' => $jr, 'von' => $von);
+			$creators[] = array($firstname, $initials, $surname, $jr, $von);
 		}
 		if(isset($creators))
 			return $creators;
@@ -353,8 +353,15 @@ class PARSECREATORS
 			if ($part != "")
 			{
 				$formatName .= $part;
+				
 				if ($count < $size)
-					$formatName.=". ";
+				{
+				  //if the end of part contains an escape character (either just \ or \{, we do not add the extra space
+				  if (($part{strlen($part)-1} == "\\") || ($part{strlen($part)-1} == "{"))
+				    $formatName.=".";
+				  else
+					  $formatName.=". ";
+				}
 			}
 			$count++;
 		}
