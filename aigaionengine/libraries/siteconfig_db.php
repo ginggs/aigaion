@@ -54,6 +54,7 @@ class Siteconfig_db {
         }
         $result->configSettings['LDAP_SERVER']                     = $CI->input->post('LDAP_SERVER');
         $result->configSettings['LDAP_BASE_DN']                     = $CI->input->post('LDAP_BASE_DN');
+        $result->configSettings['LDAP_DOMAIN']                     = $CI->input->post('LDAP_DOMAIN');
         if ($CI->input->post('ENABLE_ANON_ACCESS')=='ENABLE_ANON_ACCESS') {
             $result->configSettings['ENABLE_ANON_ACCESS']           = 'TRUE';
         } else {

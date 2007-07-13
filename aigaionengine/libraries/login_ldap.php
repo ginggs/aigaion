@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 
 /** Login management from LDAP. */
@@ -16,15 +17,33 @@ class Login_ldap {
             $postloginName = $_POST["loginName"];
             $postloginPwd = $_POST['loginPass'];
             //now try to login from LDAP 
-        	$ldap = new Authldap(getConfigurationSetting('LDAP_SERVER'), getConfigurationSetting('LDAP_BASE_DN'), "ActiveDirectory", /* $sDomain = */ "", $postloginName, $postloginPwd);
-        
-        	$retvalue=NULL;
-        	if ( !($ds=$ldap->connect())) {
+            $ldap = new Authldap(getConfigurationSetting('LDAP_SERVER'),
+                                 getConfigurationSetting('LDAP_BASE_DN'),
+                                 "ActiveDirectory", 
+                                 getConfigurationSetting('LDAP_DOMAIN'),
+                                 "", "");
+            //$ldap->dn = getConfigurationSetting('LDAP_BASE_DN');
+            //$ldap->server = getConfigurationSetting('LDAP_SERVER');
+        	/*
+        	$ldap = new Authldap(
+        	getConfigurationSetting('LDAP_SERVER'), 
+        	getConfigurationSetting('LDAP_BASE_DN'), 
+        	"ActiveDirectory",  $sDomain =  "", 
+        	$postloginName, $postloginPwd);
+            */
+        	$ds = $ldap->connect();
+        	if (!$ds) {
           		appendErrorMessage("LDAP auth: There was a problem.<br>");
           		appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br>");
           		appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br>");
-        	} else {//if ($ldap->authBind($bind_param,$loginPwd)) {
-        		$loginName = $postloginName;
+        	} else {
+       	    
+        	    if ($ldap->checkPass($postloginName,$postloginPwd)) {
+            		$loginName = $postloginName;
+            	} else {
+            	    appendErrorMessage($ldap->ldapErrorText);
+            	}
+        	    
         		//get groups...
         	}// else {
           		//appendErrorMessage( "LDAP auth: Password check failed.<br>");

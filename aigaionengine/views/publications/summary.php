@@ -50,6 +50,7 @@ if ($userlogin->hasRights('bookmarklist')) {
           );
   }
 }
+echo "</span>";
 $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
@@ -57,7 +58,7 @@ if (count($attachments) != 0)
                          array('attachment'   => $attachments[0]),
                          true);
 }  
-echo "</span></nobr>
+echo "</nobr>
     </td>
   </tr>";
 $notes = $publication->getNotes();

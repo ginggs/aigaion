@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /**
 views/site/edit
@@ -127,6 +128,19 @@ echo $this->validation->error_string;
         <tr>
             <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        The base DN for loggin in to the LDAP server (like: dc=dev,dc=aigaion,dc=nl).</td>
+	    </tr>
+
+	    <tr>    
+	        <td><label>Login domain:</label></td>
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_DOMAIN'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_DOMAIN")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The domain for logging in to the LDAP server (like: dev.aigaion.nl).</td>
 	    </tr>
 	    
 	    <tr>

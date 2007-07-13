@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /**
 This file defines the class Login that is used to regulate the login to the site.
@@ -271,12 +272,14 @@ class UserLogin {
                 $loginGroups = $loginInfo['groups'];
                 break;
             case "LDAP":
+                appendErrorMessage('testing for ldap login...');
                 $CI->load->library('login_ldap');
                 $CI->load->library('authldap');
                 //attempt to get loginname from external system
                 $loginInfo = $CI->login_ldap->getLoginInfo();
                 $loginName = $loginInfo['login'];
                 $loginGroups = $loginInfo['groups'];
+                appendErrorMessage('<br/>LDAP login says: '.$loginName.'<br/>');
                 break;
             //case "drupal":
                 //$CI->load->library('login_drupal');
@@ -289,18 +292,22 @@ class UserLogin {
         }
         if ($loginName == '') {
             //no login info could be found
-            return 2;
+            return 1;
         }
+        
         //login name was found. Now try to login that person
         $res = mysql_query("SELECT * FROM users WHERE login='".$loginName."'");
         if ($res && ($row = mysql_fetch_array($res))) { //user found
             $loginPwd = $row["password"];
             if ($this->_login($loginName,$loginPwd,False)==0) { //never remember external login; that's a task for the external module
                 //$this->sNotice = 'logged from httpauth';
+                //appendErrorMessage('<br/>LDAP login says: known user, logged in');
                 return 0; // success
             }
         } 
+        //appendErrorMessage('<br/>LDAP login says: unknown user, make?');
         if (getConfigurationSetting("CREATE_MISSING_USERS") == 'TRUE') {
+            //appendErrorMessage('<br/>LDAP login says: unknown user, make!');
             //no such user found. Make user on the fly?
             $newuser = new User();
             $newuser->surname = $loginName;
@@ -330,6 +337,7 @@ class UserLogin {
                     }
                 }
             }
+            //appendErrorMessage('<br/>LDAP login says: now add user...');
             //add user....
             if ($newuser->add()) {
                 if ($this->_login($newuser->login,$newuser->password,False)==0) { //never remember external login; that's a task for the external module
@@ -339,6 +347,8 @@ class UserLogin {
                 } else {
                     echo "Serious error: a new user was created and could not be logged in. ".$newuser->login." ".$newuser->password;die();
                 }
+            } else {
+                appendErrorMessage("Can't add new user");
             }
         } else {
             return 1;
