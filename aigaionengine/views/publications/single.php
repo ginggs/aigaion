@@ -5,25 +5,9 @@
 //some things are dependent on user rights.
 //$accessLevelEdit is set to true iff the edit access level of the publication does not make it
 //inaccessible to the logged user. Note: this does NOT yet garantuee atachemtn_edit or note_ediot or publication_edit rights
-$accessLevelEdit = False;
+$accessLevelEdit = $this->accesslevels_lib->canEditObject($publication);
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
-if (    
-        (!$userlogin->isAnonymous() || ($publication->edit_access_level=='public'))
-     &&
-        (    ($publication->edit_access_level != 'private') 
-          || ($userlogin->userId() == $publication->user_id) 
-          || ($userlogin->hasRights('publication_edit_all'))
-         )                
-     &&
-        (    ($publication->edit_access_level != 'group') 
-          || (in_array($publication->group_id,$user->group_ids) ) 
-          || ($userlogin->hasRights('publication_edit_all'))
-         )                
-    ) 
-{
-    $accessLevelEdit = True;
-}
     
 
 ?>
@@ -34,7 +18,13 @@ if (
         )
         echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
   ?></div>
-  <div class='header'><?php echo $publication->title; ?></div>
+  <div class='header'><?php echo $publication->title; ?>
+<?php
+    $accesslevels = "&nbsp;&nbsp;r:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_edit_access_level.'.gif')."'/>";
+    echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
+    
+?>    
+  </div>
   <table class='publication_details' width='100%'>
     <tr>
       <td>Type of publication:</td>
@@ -153,7 +143,7 @@ if (
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 
-    if (    ($userlogin->hasRights('note_edit_self'))
+    if (    ($userlogin->hasRights('note_edit'))
          && ($accessLevelEdit)
         )
         echo anchor('notes/add/'.$publication->pub_id,'[add note]');

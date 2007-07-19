@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class holds the data structure of a Note.
 
@@ -10,6 +11,8 @@ class Note {
     var $text               = '';
     var $read_access_level  = 'intern';
     var $edit_access_level  = 'intern';
+    var $derived_read_access_level  = 'intern';
+    var $derived_edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $user_id            = -1;
     var $group_id           = 0; //group to which access is restricted

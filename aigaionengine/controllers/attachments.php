@@ -81,20 +81,9 @@ class Attachments extends Controller {
 	    //besides the rights needed to READ this attachment, checked by attachment_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin  = getUserLogin();
-        $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
-                ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
-             ||
-                (    ($attachment->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $attachment->user_id) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                
-             ||
-                (    ($attachment->edit_access_level == 'group') 
-                  && (!in_array($attachment->group_id, $user->group_ids) ) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                
+                !$this->accesslevels_lib->canEditObject($attachment)
             ) 
         {
 	        appendErrorMessage('Delete attachment: insufficient rights.<br>');
@@ -158,17 +147,7 @@ class Attachments extends Controller {
         $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
-                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-             ||
-                (    ($publication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $publication->user_id) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
-             ||
-                (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id, $user->group_ids) ) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
+                !$this->accesslevels_lib->canEditObject($publication)    
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
@@ -221,17 +200,8 @@ class Attachments extends Controller {
         $user       = $this->user_db->getByID($userlogin->userID());
         if (    (!$userlogin->hasRights('attachment_edit'))
              || 
-                ($userlogin->isAnonymous() && ($attachment->edit_access_level!='public'))
-             ||
-                (    ($attachment->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $attachment->user_id) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                
-             ||
-                (    ($attachment->edit_access_level == 'group') 
-                  && (!in_array($attachment->group_id, $user->group_ids) ) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                ) 
+                !$this->accesslevels_lib->canEditObject($attachment)
+         ) 
         {
 	        appendErrorMessage('Edit attachment: insufficient rights.<br>');
 	        redirect('publications/show/'.$attachment->pub_id);

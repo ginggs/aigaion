@@ -37,7 +37,8 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','latesession','userlogin', 'ajax', 
+$autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
+                               'accesslevels_lib',
                                'topic','topic_db','user','user_db',
                                'group','group_db','rightsprofile','rightsprofile_db',
                                'siteconfig','siteconfig_db','attachment','attachment_db',
@@ -55,7 +56,7 @@ $autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
 */
 
 $autoload['helper'] = array('config','theme','url','login','message', 'form', 
-                            'rights', 'schema', 'attachments', 'bibtex');
+                            'abbrev','rights', 'schema', 'attachments', 'bibtex');
 
 
 /*

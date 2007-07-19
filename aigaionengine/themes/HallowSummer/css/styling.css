@@ -27,6 +27,10 @@ a:hover {
     width   : 1em;
     border  : 0px;
 }
+.al_icon {
+    border  : 0px;
+    width   : 11px;
+}
 
 
 /* Main layout box colors */

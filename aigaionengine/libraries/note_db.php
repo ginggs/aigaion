@@ -26,30 +26,15 @@ class Note_db {
     {
         $CI = &get_instance();
         $userlogin  = getUserLogin();
-        $user       = $CI->user_db->getByID($userlogin->userID());
-        //check rights; if fail: return null
-        if (!$userlogin->hasRights('note_read')) {
-            return null;
-        }
-        if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
-            return null;
-        }
-        if (   ($R->read_access_level=='private') 
-            && ($userlogin->userId() != $R->user_id) 
-            && (!$userlogin->hasRights('note_read_all'))) {
-            return null;
-        }
-        if (   ($R->read_access_level=='group') 
-            && (!in_array($R->group_id,$user->group_ids) ) 
-            && (!$userlogin->hasRights('note_read_all'))) {
-            return null;
-        }
-        //rights were OK; read data
+        
         $note = new Note;
         foreach ($R as $key => $value)
         {
             $note->$key = $value;
         }
+        //check rights; if fail: return null
+        if ( !$userlogin->hasRights('note_read') || !$CI->accesslevels_lib->canReadObject($note))return null;
+        
         //read the crossref_ids as they were cached in the database
         $Q = mysql_query("SELECT xref_id FROM notecrossrefid WHERE note_id = ".$note->note_id);
     	if (mysql_num_rows($Q) > 0) {
@@ -74,16 +59,6 @@ class Note_db {
         $note->text               = $CI->input->post('text');
         $note->pub_id             = $CI->input->post('pub_id');
         $note->user_id            = $CI->input->post('user_id');
-        $note->read_access_level  = $CI->input->post('read_access_level');
-        $note->edit_access_level  = $CI->input->post('edit_access_level');
-        $note->group_id           = $CI->input->post('group_id');
-        if ($note->group_id=='') {
-            //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
-            //otherwise the note will disappear in the nonexisting group '0'
-            $note->group_id='0';
-            if ($note->read_access_level=='group') $note->read_access_level='private';
-            if ($note->edit_access_level=='group') $note->edit_access_level='private';
-        }
 
         return $note;
     }
@@ -127,19 +102,9 @@ class Note_db {
         $publication  = $CI->publication_db->getByID($note->pub_id);
         if (    ($publication == null) 
              ||
-                (!$userlogin->hasRights('note_edit_self'))
+                (!$userlogin->hasRights('note_edit'))
              || 
-                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-             ||
-                (    ($publication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $publication->user_id) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
-             ||
-                (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
+                (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
 	        appendErrorMessage('Add note: insufficient rights.<br>');
@@ -148,13 +113,10 @@ class Note_db {
         //add new note
         $CI->db->insert("notes", array('text'              => $note->text,
                                              'pub_id'            => $note->pub_id,
-                                             'read_access_level' => $note->read_access_level,
-                                             'edit_access_level' => $note->edit_access_level,
-                                             'group_id'          => $note->group_id,
                                              'user_id'           => $userlogin->userId()));
         $new_id = $CI->db->insert_id();
         $note->note_id = $new_id;
-        
+        $CI->accesslevels_lib->initNoteAccessLevels($note);        
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {
@@ -179,19 +141,10 @@ class Note_db {
         $note_testrights = $CI->note_db->getByID($note->note_id);
         if (    ($note_testrights == null) 
              ||
-                (!$userlogin->hasRights('note_edit_self'))
+                (!$userlogin->hasRights('note_edit'))
              || 
-                ($userlogin->isAnonymous() && ($note_testrights->edit_access_level!='public'))
-             ||
-                (    ($note_testrights->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $note_testrights->user_id) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )                
-             ||
-                (    ($note_testrights->edit_access_level == 'private') 
-                  && (!in_array($note_testrights->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )                   ) 
+                (!$CI->accesslevels_lib->canEditObject($note_testrights))
+            )
         {
 	        appendErrorMessage('Edit note: insufficient rights.<br>');
 	        return;
@@ -199,12 +152,6 @@ class Note_db {
         
         //start update
         $updatefields =  array('text'=>$note->text);
-        if (   ($note_testrights->user_id==$userlogin->userId())
-            || $userlogin->hasRights('note_edit_all')) {                        
-                $updatefields['read_access_level']=$note->read_access_level;
-                $updatefields['edit_access_level']=$note->edit_access_level;
-                $updatefields['group_id']=$note->group_id;
-        }
 
         $CI->db->query(
             $CI->db->update_string("notes",

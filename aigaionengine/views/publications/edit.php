@@ -60,42 +60,7 @@
       <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=> ',', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
-<?php
 
-?>
-<?php
-if ($publication->user_id==$userlogin->userId() || $userlogin->hasRights('publication_edit_all') || $isAddForm) {
-?>            
-        <tr><td><label for='read_access_level'>Read access level</label></td>
-            <td>
-<?php
-$options = array('private'=>'private','intern'=>'intern','group'=>'group','public'=>'public');
-echo form_dropdown('read_access_level',$options,$publication->read_access_level);
-?>
-            </td>
-        </tr>                
-        <tr><td><label for='edit_access_level'>Edit access level</label></td>
-            <td>
-<?php
-echo form_dropdown('edit_access_level',$options,$publication->edit_access_level);
-?>
-            </td>
-        </tr>                
-        <tr><td><label for='group_id'>Group (only if 'group' selected as access level)</label></td>
-            <td>
-<?php
-$options = array();
-foreach ($user->group_ids as $group_id) {
-  $group = $this->group_db->getByID($group_id);
-    $options[$group_id] = $group->name;
-}
-echo form_dropdown('group_id',$options,$publication->group_id);
-?>
-            </td>
-        </tr>                
-<?php
-}
-?>
     <tr>
       <td valign='top'>Authors:</td>
       <td>

@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class regulates the database access for Publications. Several accessors are present that return a Publication or
 array of Publications. */
@@ -51,29 +52,17 @@ class Publication_db {
   /** Return the Publication object stored in the given database row, or null if insufficient rights. */
   function getFromRow($R)
   {
-        $CI = &get_instance();
-    $userlogin  = getUserLogin();
-    $user       = $CI->user_db->getByID($userlogin->userID());
-    //check rights; if fail: return null
-    if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
-      return null;
-    }
-    if (    ($R->read_access_level=='private')
-         && ($userlogin->userId() != $R->user_id)) {
-      return null;
-    }
-    if (   ($R->read_access_level=='group')
-        && (!in_array($R->group_id,$user->group_ids) ) 
-        ) {
-      return null;
-    }    
-    //rights were OK; read data
-
+    $CI = &get_instance();
     $publication = new Publication;
     foreach ($R as $key => $value)
     {
       $publication->$key = $value;
     }
+    
+    $userlogin  = getUserLogin();
+    //check rights; if fail: return null
+    if ( !$CI->accesslevels_lib->canReadObject($publication))return null;
+    
 
     //TODO: CHECK MERGE SETTING FOR PUBLICATIONS
     //check if we have to merge this publication with a crossref entry
@@ -204,10 +193,7 @@ class Publication_db {
     'userfields',
     'keywords',
     'authors',
-    'editors',
-    'read_access_level',
-    'edit_access_level',
-    'group_id'    
+    'editors'
     );
 
     $publication = new Publication;
@@ -217,13 +203,7 @@ class Publication_db {
     {
       $publication->$key = $CI->input->post($key);
     }
-    if ($publication->group_id=='') {
-        //no group id: i guess the user has no group. Means that any 'group' restriuction on read-access-level will be changed to 'private'?
-        //otherwise the publication will disappear in the nonexisting group '0'
-        $publication->group_id='0';
-        if ($publication->read_access_level=='group') $publication->read_access_level='private';
-        if ($publication->edit_access_level=='group') $publication->edit_access_level='private';
-    }
+
     //parse the keywords
     if ($publication->keywords)
     {
@@ -411,10 +391,6 @@ class Publication_db {
     
     $data['user_id'] = $userlogin->userId();
   
-    //during add, you can always set these access levels - the logged user is its owner after all
-    $data['read_access_level'] = $publication->read_access_level;
-    $data['edit_access_level'] = $publication->edit_access_level;
-    $data['group_id'] = $publication->group_id;
 
     //insert into database using active record helper
     $CI->db->insert('publication', $data);
@@ -474,7 +450,7 @@ class Publication_db {
 
     //also fix bibtex_id mappings
 	refreshBibtexIdLinks();
-
+    $CI->accesslevels_lib->initPublicationAccessLevels($publication);
     return $publication;
   }
   
@@ -484,23 +460,13 @@ class Publication_db {
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
     $userlogin  = getUserLogin();
-    $user       = $CI->user_db->getByID($userlogin->userID());
     $oldpublication = $this->getByID($publication->pub_id);
     if (    ($oldpublication == null) 
          ||
             (!$userlogin->hasRights('publciation_edit'))
          || 
-            ($userlogin->isAnonymous() && ($oldpublication->edit_access_level!='public'))
-         ||
-            (    ($oldpublication->edit_access_level == 'private') 
-              && ($userlogin->userId() != $oldpublication->user_id) 
-              && (!$userlogin->hasRights('publication_edit_all'))
-             )                
-         ||
-            (    ($oldpublication->edit_access_level == 'group') 
-              && (!in_array($oldpublication->group_id,$user->group_ids) ) 
-              && (!$userlogin->hasRights('publication_edit_all'))
-             )                   ) 
+            (!$CI->accesslevels_lib->canEditObject($oldpublication))
+        ) 
     {
         appendErrorMessage('Edit publication: insufficient rights. publication_db.update<br>');
         return $oldpublication;
@@ -596,12 +562,6 @@ class Publication_db {
     //[DR:] line below commented out: the user id should not change when updating! the owner always stays the same!
     //$data['user_id'] = $userlogin->userId();
   
-    if (   ($oldpublication->user_id==$userlogin->userId())
-        || $userlogin->hasRights('publication_edit_all')) {                        
-        $data['read_access_level']=$publication->read_access_level;
-        $data['edit_access_level']=$publication->edit_access_level;
-        $data['group_id']=$publication->group_id;
-    }
   
     //insert into database using active record helper
     $CI->db->where('pub_id', $publication->pub_id);

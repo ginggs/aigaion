@@ -34,17 +34,7 @@ as for the edit rights: they determine which edit links are shown.
     $userlogin = getUserLogin();
     if (    ($userlogin->hasRights('attachment_edit'))
          && 
-            (!$userlogin->isAnonymous() || ($attachment->edit_access_level=='public'))
-         &&
-            (    ($attachment->edit_access_level != 'private') 
-              || ($userlogin->userId() == $attachment->user_id) 
-              || ($userlogin->hasRights('attachment_edit_all'))
-             )          
-         &&
-            (    ($attachment->edit_access_level != 'group') 
-              || (in_array($attachment->group_id,$user->group_ids) ) 
-              || ($userlogin->hasRights('attachment_edit_all'))
-             )                
+           $this->accesslevels_lib->canEditObject($attachment)
         ) 
     {
         echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));

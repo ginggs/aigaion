@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class regulates the database access for Attachments. Several accessors are present that return a Attachment or 
 array of Attachment's. */
@@ -26,21 +27,8 @@ class Attachment_db {
     {
         $CI = &get_instance();
         $userlogin  = getUserLogin();
-        $user       = $CI->user_db->getByID($userlogin->userID());
-        //check rights; if fail: return null
-        if (!$userlogin->hasRights('attachment_read')) {
-            return null;
-        }
-        if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
-            return null;
-        }
-        if (($R->read_access_level=='private') && ($userlogin->userId() != $R->user_id) && (!$userlogin->hasRights('attachment_read_all'))) {
-            return null;
-        }
-        if (($R->read_access_level=='group') && (!in_array($R->group_id,$user->group_ids) )  && (!$userlogin->hasRights('attachment_read_all'))) {
-            return null;
-        }
-        //rights were OK; read data
+
+
         $attachment = new Attachment;
         foreach ($R as $key => $value)
         {
@@ -49,6 +37,10 @@ class Attachment_db {
             }
             $attachment->$key = $value;
         }
+
+        //check rights, if fail return null
+        if ( !$userlogin->hasRights('attachment_read') || !$CI->accesslevels_lib->canReadObject($attachment))return null;
+
         return $attachment;
     }
 
@@ -72,19 +64,7 @@ class Attachment_db {
         $attachment->mime               = $CI->input->post('mime');
         $attachment->pub_id             = $CI->input->post('pub_id');
         $attachment->user_id            = $CI->input->post('user_id');
-        $attachment->group_id           = $CI->input->post('group_id');
-        $attachment->read_access_level  = $CI->input->post('read_access_level');
-        $attachment->edit_access_level  = $CI->input->post('edit_access_level');
-        if ($attachment->group_id=='') {
-            //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
-            //otherwise the attachment will disappear in the nonexisting group '0'
-            $attachment->group_id='0';
-            if ($attachment->read_access_level=='group')
-                $attachment->read_access_level='private';
-            if ($attachment->edit_access_level=='group') 
-                $attachment->edit_access_level='private';
-            
-        }
+
         return $attachment;
     }
         
@@ -116,17 +96,7 @@ class Attachment_db {
              ||
                 (!$userlogin->hasRights('attachment_edit'))
              || 
-                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-             ||
-                (    ($publication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $publication->user_id) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
-             ||
-                (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )     
+                (!$CI->accesslevels_lib->canEditObject($tune))
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
@@ -201,7 +171,10 @@ class Attachment_db {
     			appendErrorMessage("Error adding attachment: ".mysql_error()."<br>");
     			return -1;
     		}        	
-        	return mysql_insert_id();
+            $new_id = mysql_insert_id();
+            $attachment->att_id = $new_id;
+            $CI->accesslevels_lib->initAttachmentAccessLevels($attachment);
+        	return $attachment->att_id;
 	    } else {
         	# upload not possible: return with error
         	if (getConfigurationSetting("SERVER_NOT_WRITABLE") == "TRUE") {
@@ -296,7 +269,10 @@ class Attachment_db {
                     your attachments... Please check this with your administrator.<br>");
         		}
         		
-        		return mysql_insert_id();
+                $new_id = mysql_insert_id();
+                $attachment->att_id = $new_id;
+                $CI->accesslevels_lib->initAttachmentAccessLevels($attachment);
+            	return $attachment->att_id;
         	} else {
         		appendErrorMessage("ERROR UPLOADING: ".$CI->file_upload->show_error_string()
         		  ."<br>Is the error due to allowed file types? Ask <a href='mailto:"
@@ -325,20 +301,10 @@ class Attachment_db {
              ||
                 (!$userlogin->hasRights('attachment_edit'))
              || 
-                ($userlogin->isAnonymous() && ($attachment_testrights->edit_access_level!='public'))
-             ||
-                (    ($attachment_testrights->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $attachment_testrights->user_id) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                
-             ||
-                (    ($attachment_testrights->edit_access_level == 'group') 
-                  && (!in_array($attachment_testrights->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('attachment_edit_all'))
-                 )                
+                 (!$CI->accesslevels_lib->canEditObject($attachment_testrights))
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        appendErrorMessage('Update attachment: insufficient rights.<br>');
 	        return;
         }
  
@@ -365,12 +331,6 @@ class Attachment_db {
 		}
         
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
-        if (   ($attachment_testrights->user_id==$userlogin->userId())
-            || $userlogin->hasRights('attachment_edit_all')) {                        
-                $updatefields['read_access_level']=$attachment->read_access_level;
-                $updatefields['edit_access_level']=$attachment->edit_access_level;
-                $updatefields['group_id']=$attachment->group_id;
-        }
         
         $CI->db->query(
             $CI->db->update_string("attachments",

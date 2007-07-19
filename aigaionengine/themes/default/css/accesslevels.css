@@ -1,0 +1,8 @@
+.owner_self {
+    font-weight : bold;
+    color  : green;
+}
+.owner_other {
+    font-weight : bold;
+    color  : red;
+}

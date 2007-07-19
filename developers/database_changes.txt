@@ -3,66 +3,66 @@ CHANGES TO DATABASE
 still need to be processed in a checkschema
 voer deze dingen in volgorde uit...
 
-//table 'topic' => hernoem tot table 'topics'
+---table 'topic' => hernoem tot table 'topics'
 ALTER TABLE `topic` RENAME TO `topics`;
-//col 'topics.ID' => hernoem tot 'topics.topic_id'
+---col 'topics.ID' => hernoem tot 'topics.topic_id'
 ALTER TABLE `topics` CHANGE COLUMN `ID` `topic_id` INT(10) NOT NULL AUTO_INCREMENT;
 
-//table 'person' => hernoem tot table 'users'
+---table 'person' => hernoem tot table 'users'
 ALTER TABLE `person` RENAME TO `users`;
-//col 'users.ID' => hernoem tot 'users.user_id'
+---col 'users.ID' => hernoem tot 'users.user_id'
 ALTER TABLE `users` CHANGE COLUMN `ID` `user_id` INT(10) NOT NULL AUTO_INCREMENT;
-//add col 'users.type' (enum('group','anon','normal')
+---add col 'users.type' (enum('group','anon','normal')
 ALTER TABLE `users` ADD COLUMN `type` ENUM('group','anon','normal') NOT NULL DEFAULT 'normal' AFTER `lastreviewedtopic`;
 
 
 
-//add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
+---add table `rightsprofiles` ('rightsprofile_id' INT(10) autoinc,'name' varchar(20)) 
 CREATE TABLE `rightsprofiles` (
 `rightsprofile_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `name` VARCHAR( 20 ) NOT NULL
-) 
+) ;
 
 
-//add table `rightsprofilerightlink` (rightsprofile_id INT(10), right_name VARCHAR(20))
+---add table `rightsprofilerightlink` (rightsprofile_id INT(10), right_name VARCHAR(20))
 CREATE TABLE `rightsprofilerightlink` (
 `rightsprofile_id` INT( 10 ) NOT NULL ,
 `right_name` VARCHAR( 20 ) NOT NULL ,
 PRIMARY KEY (`rightsprofile_id`, `right_name` )
-) 
+) ;
 
 
-//add table `usergrouplink` (user_id INT(10),group_id INT(10))
+---add table `usergrouplink` (user_id INT(10),group_id INT(10))
 CREATE TABLE `usergrouplink` (
 `user_id` INT( 10 ) NOT NULL ,
 `group_id` INT( 10 ) NOT NULL ,
 PRIMARY KEY ( `user_id` ,`group_id`)
-)
+);
 
 
 CREATE TABLE `grouprightsprofilelink` (
 `group_id` INT( 10 ) NOT NULL ,
 `rightsprofile_id` INT( 10 ) NOT NULL ,
 PRIMARY KEY ( `group_id` , `rightsprofile_id`)
-)
+);
 
-//rename 'topicpublication' to 'topicpublicationlink'
+---rename 'topicpublication' to 'topicpublicationlink'
 ALTER TABLE `topicpublication` RENAME TO `topicpublicationlink`;
 
-//rename 'persontopic' to 'usertopiclink'
+---rename 'persontopic' to 'usertopiclink'
 ALTER TABLE `persontopic` RENAME TO `usertopiclink`;
-//rename 'usertopiclink.person_id' to 'usertopiclink.user_id'
+---rename 'usertopiclink.person_id' to 'usertopiclink.user_id'
 ALTER TABLE `usertopiclink` CHANGE COLUMN `person_id` `user_id` INT(10) NOT NULL DEFAULT 0;
 
-//rename 'publication.pub_type' to 'publication.report_type'
-ALTER TABLE `publication` CHANGE COLUMN `pub_type` `report_type` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
+---rename 'publication.pub_type' to 'publication.report_type'
+ALTER TABLE `publication` CHANGE COLUMN `pub_type` `report_type` VARCHAR(255) NOT NULL DEFAULT '';
 
-//rename 'author.ID' to 'author.author_id'
+---rename 'author.ID' to 'author.author_id'
 ALTER TABLE `author` CHANGE COLUMN `ID` `author_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
 
-//====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
+---====modify the attachments table. This one is actually quite complicated, so it is split up in several statements
 
-//modify the tables
+---modify the tables
 
 ALTER TABLE `publicationfile` DROP PRIMARY KEY;
 ALTER TABLE `publicationfile` ADD COLUMN `att_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 AFTER `isremote`;
@@ -71,13 +71,13 @@ ALTER TABLE `publicationfile` MODIFY COLUMN `att_id` INTEGER UNSIGNED NOT NULL A
 ALTER TABLE `publicationfile` RENAME TO `attachments`;
 ALTER TABLE `attachments` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0;
 
-//because every attachment can belong to at most one publication, we don't bother making a separate 
-//publicationattachmentlink table for now
+---because every attachment can belong to at most one publication, we don't bother making a separate 
+---publicationattachmentlink table for now
 
 SET VERSION TO V2.0 if all of the above is done!!!!
 otherwise checkschema will complain :)
 
-//changes for introducing new rights management: access_level per object
+---changes for introducing new rights management: access_level per object
 
 ALTER TABLE `publication` CHANGE COLUMN `entered_by` `user_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
 ALTER TABLE `personpublicationnote` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0;
@@ -93,7 +93,7 @@ ALTER TABLE `publication` ADD COLUMN `edit_access_level` ENUM('private','public'
 ALTER TABLE `topics` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `user_id`;
 ALTER TABLE `personpublicationnote` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern' AFTER `text`;
 
-UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1
+UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1;
 
 INSERT INTO `availablerights` (`name`,`description`) VALUES 
  ('attachment_read_all','read all attachments, overriding access levels'),
@@ -102,11 +102,11 @@ INSERT INTO `availablerights` (`name`,`description`) VALUES
  
 ALTER TABLE `personpublicationnote` RENAME TO `notes`;
 
-//the notes.rights must be transferred to notes.read_access_level and notes.edit_access_level
-UPDATE notes SET (read_access_level='private',edit_access_level='private') WHERE rights='private';
+---the notes.rights must be transferred to notes.read_access_level and notes.edit_access_level
+UPDATE notes SET read_access_level='private',edit_access_level='private' WHERE rights='private';
 
-//rename 'publication.type' to 'publication.pub_type'
-ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT NULL 
+---rename 'publication.type' to 'publication.pub_type'
+ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) NULL DEFAULT NULL ;
 
 INSERT INTO `availablerights` (`name`,`description`) VALUES 
  ('attachment_edit_all','edit all attachments, overriding access levels'),
@@ -114,29 +114,29 @@ INSERT INTO `availablerights` (`name`,`description`) VALUES
  ('note_edit_all','edit all notes, overriding access levels');
  
 ------ May 5, 2007 ------
-//rename publicationauthor.author to publicationauthor.author_id
+---rename publicationauthor.author to publicationauthor.author_id
 ALTER TABLE `publicationauthor` CHANGE `author` `author_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0';
 
-//rename publicationauthor table to publicationauthorlink
+---rename publicationauthor table to publicationauthorlink
 ALTER TABLE `publicationauthor` RENAME TO `publicationauthorlink`;
 
 ------ May 8, 2007 ------
 
-//add table `keywords` ('keyword_id' INT(10) autoinc,'keyword' text) 
+---add table `keywords` ('keyword_id' INT(10) autoinc,'keyword' text) 
 CREATE TABLE `keywords` (
 `keyword_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `keyword` text NOT NULL
 );
 
 
-//add table `publicationkeywordlink` (pub_id INT(10), keyword_id INT(10))
+---add table `publicationkeywordlink` (pub_id INT(10), keyword_id INT(10))
 CREATE TABLE `publicationkeywordlink` (
 `pub_id` INT( 10 ) NOT NULL ,
 `keyword_id` INT( 10 ) NOT NULL ,
 PRIMARY KEY (`pub_id`, `keyword_id` )
 );
 
-//copy keyword values to new keyword table, this has to be done in php, place in some controller function and run once
+---copy keyword values to new keyword table, this has to be done in php, place in some controller function and run once
   function kw_convert()
   {
     $Q = $this->db->query("SELECT pub_id, keywords FROM publication");
@@ -187,12 +187,12 @@ PRIMARY KEY (`pub_id`, `keyword_id` )
     }
   }
 
-//remove 'keywords' field
+---remove 'keywords' field
 ALTER TABLE `publication` DROP `keywords`;
-=======
+---====
 
-//=== 10-5-2007
-//persistent bookmark lists
+---=== 10-5-2007
+---persistent bookmark lists
 
 CREATE TABLE `userbookmarklists` (
 `user_id` INT( 10 ) NOT NULL ,
@@ -203,8 +203,8 @@ PRIMARY KEY (`user_id`, `pub_id` )
 INSERT INTO `availablerights` (`name`,`description`) VALUES 
  ('bookmarklist','use a persistent bookmarklist');
 
-//=== 12-may-2007
-//group level access restrictions
+---=== 12-may-2007
+---group level access restrictions
 
 ALTER TABLE `topics` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
 ALTER TABLE `publication` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
@@ -212,10 +212,39 @@ ALTER TABLE `notes` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
 ALTER TABLE `attachments` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;
 
 
-==tot hier is het noodzakelijk voor het uitvoeren van de laatste code==
+---=== 19 july 2007 ===
+---new access level libs
+---derived access levels, as determined by dependencies (e.g. a public topic with a intern parent has a derived access level of intern)
+ALTER TABLE `topics`        ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `publication`  ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `notes`         ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `attachments`   ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
 
-enlarge the 'series' field
-drop irrelevant legacy columns
-drop col 'users.u_rights'
-drop col 'users.csname'
-drop col 'notes.rights'
+ALTER TABLE `topics`        ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `publication`  ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `notes`         ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+ALTER TABLE `attachments`   ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';
+
+INSERT INTO `availablerights` (`name`,`description`) VALUES 
+ ('read_all_override','read all attachments, publications, topics and notes, overriding access levels'),
+ ('edit_all_override','edit all attachments, publications, topics and notes, overriding access levels');
+
+DELETE FROM availablerights WHERE 
+     name='attachment_edit_all'
+  OR name='attachment_read_all'
+  OR name='note_read_all'
+  OR name='note_edit_all'
+  OR name='topic_read_all'
+  OR name='topic_edit_all';
+  
+UPDATE availablerights SET name='note_edit' WHERE name='note_edit_self';
+
+UPDATE topics SET read_access_level='public',derived_read_access_level='public' where topic_id=1;
+
+---still to be done:
+
+---enlarge the 'series' field
+---drop irrelevant legacy columns
+---drop col 'users.u_rights'
+---drop col 'users.csname'
+---drop col 'notes.rights'

@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class holds the data structure of a topic. 
 
@@ -21,6 +22,8 @@ class Topic {
     var $url                = '';
     var $read_access_level  = 'intern';
     var $edit_access_level  = 'intern';
+    var $derived_read_access_level  = 'intern';
+    var $derived_edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $user_id            = -1; //owner who created it
     var $group_id            = 0; //group to which access is restricted
@@ -183,14 +186,14 @@ class Topic {
     /** Collapse this topic for the current logged user */
     function collapse() {
         $CI = &get_instance();
-      $userlogin = getUserLogin();
+        $userlogin = getUserLogin();
         $CI->topic_db->collapse($this, $userlogin->userId());
     }
 
     /** Expand this topic for the current logged user */
     function expand() {
         $CI = &get_instance();
-      $userlogin = getUserLogin();
+        $userlogin = getUserLogin();
         $CI->topic_db->expand($this, $userlogin->userId());
     }
     

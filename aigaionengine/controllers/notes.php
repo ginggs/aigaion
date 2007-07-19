@@ -49,21 +49,10 @@ class Notes extends Controller {
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin  = getUserLogin();
-        $user       = $this->user_db->getByID($userlogin->userID());
 
-        if (    (!$userlogin->hasRights('note_edit_self'))
+        if (    (!$userlogin->hasRights('note_edit'))
              || 
-                ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
-             ||
-                (    ($note->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $note->user_id) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )
-             ||
-                (    ($note->edit_access_level == 'group') 
-                  && (!in_array($note->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )                
+                !$this->accesslevels_lib->canEditObject($note)        
             ) 
         {
 	        appendErrorMessage('Delete note: insufficient rights.<br>');
@@ -108,20 +97,9 @@ class Notes extends Controller {
 	    //edit_access_level and the user edit rights
 	    //in this case it's mostly the rights on the publication that determine access
         $userlogin  = getUserLogin();
-        $user       = $this->user_db->getByID($userlogin->userID());
-        if (    (!$userlogin->hasRights('note_edit_self'))
+        if (    (!$userlogin->hasRights('note_edit'))
              || 
-                ($userlogin->isAnonymous() && ($publication->edit_access_level!='public'))
-             ||
-                (    ($publication->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $publication->user_id) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
-             ||
-                (    ($publication->edit_access_level == 'group') 
-                  && (!in_array($publication->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('publication_edit_all'))
-                 )                
+                !$this->accesslevels_lib->canEditObject($publication)
             ) 
         {
 	        appendErrorMessage('Add note: insufficient rights.<br>');
@@ -163,20 +141,9 @@ class Notes extends Controller {
 	    //besides the rights needed to READ this note, checked by note_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin  = getUserLogin();
-        $user       = $this->user_db->getByID($userlogin->userID());
-        if (    (!$userlogin->hasRights('note_edit_self'))
+        if (    (!$userlogin->hasRights('note_edit'))
              || 
-                ($userlogin->isAnonymous() && ($note->edit_access_level!='public'))
-             ||
-                (    ($note->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $note->user_id) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )                
-             ||
-                (    ($note->edit_access_level == 'group') 
-                  && (!in_array($note->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('note_edit_all'))
-                 )         
+                !$this->accesslevels_lib->canEditObject($note)
             ) 
         {
 	        appendErrorMessage('Edit note: insufficient rights.<br>');

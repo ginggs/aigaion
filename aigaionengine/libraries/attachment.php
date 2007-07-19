@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class holds the data structure of an Attachment.
 
@@ -11,6 +12,8 @@ class Attachment {
     var $note               = '';
     var $read_access_level  = 'intern';
     var $edit_access_level  = 'intern';
+    var $derived_read_access_level  = 'intern';
+    var $derived_edit_access_level  = 'intern';
     #system variables, not to be changed by user
     var $mime               = '';
     var $location           = '';

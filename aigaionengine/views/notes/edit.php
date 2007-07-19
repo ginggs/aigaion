@@ -54,39 +54,7 @@ echo $this->validation->error_string;
 <?php echo form_textarea(array('name'=>'text','cols'=>'70','rows'=>'7','value'=>$note->text)); ?>
             </td>
         </tr>
-<?php
-if ($note->user_id==$userlogin->userId() || $userlogin->hasRights('note_edit_all') || $isAddForm) {
-?>            
-        <tr><td><label for='read_access_level'>Read access level</label></td>
-            <td>
-<?php
-$options = array('private'=>'private','intern'=>'intern','group'=>'group','public'=>'public');
-echo form_dropdown('read_access_level',$options,$note->read_access_level);
-?>
-            </td>
-        </tr>                
-        <tr><td><label for='edit_access_level'>Edit access level</label></td>
-            <td>
-<?php
-echo form_dropdown('edit_access_level',$options,$note->edit_access_level);
-?>
-            </td>
-        </tr>                
-        <tr><td><label for='group_id'>Group (only if 'group' selected as access level)</label></td>
-            <td>
-<?php
-$options = array();
-foreach ($user->group_ids as $group_id) {
-  $group = $this->group_db->getByID($group_id);
-  $options[$group_id] = $group->name;
-}
-echo form_dropdown('group_id',$options,$note->group_id);
-?>
-            </td>
-        </tr>                
-<?php
-}
-?>
+
         <tr><td>
 <?php
 if ($isAddForm) {

@@ -21,7 +21,6 @@ class Topics extends Controller {
 	    $root_id = $this->uri->segment(3,1);
 	    
 	    //no rights check here: anyone can (try) to browse topics (though not all topics may be visible)
-	    
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Browse topic tree';
@@ -95,17 +94,7 @@ class Topics extends Controller {
             $user       = $this->user_db->getByID($userlogin->userID());
             if (    (!$userlogin->hasRights('topic_edit'))
              || 
-                ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
-             ||
-                (    ($topic->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $topic->user_id) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
-             ||
-                (    ($topic->edit_access_level == 'group') 
-                  && (!in_array($topic->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
+                !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
 	        appendErrorMessage('Delete topic: insufficient rights.<br>');
@@ -189,17 +178,7 @@ class Topics extends Controller {
     
         if (    (!$userlogin->hasRights('topic_edit'))
              || 
-                ($userlogin->isAnonymous() && ($topic->edit_access_level!='public'))
-             ||
-                (    ($topic->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $topic->user_id) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
-             ||
-                (    ($topic->edit_access_level == 'group') 
-                  && (!in_array($topic->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )         
+                !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
 	        appendErrorMessage('Edit topic: insufficient rights.<br>');

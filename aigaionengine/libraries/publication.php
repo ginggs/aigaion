@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 
 /*
@@ -58,6 +59,8 @@ class Publication {
   var $userfields   = '';
   var $read_access_level  = 'intern';
   var $edit_access_level  = 'intern';
+  var $derived_read_access_level  = 'intern';
+  var $derived_edit_access_level  = 'intern';
    
   var $authors      = array(); //array of plain author class
   var $editors      = array(); //array of plain author class

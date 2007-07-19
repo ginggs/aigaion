@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class regulates the database access for Topic's. Several accessors are present that return a Topic or an
 array of Topic's. 
@@ -72,33 +73,19 @@ class Topic_db {
     passed by reference cannot have a default value in php4.
     Removed the reference pass
 
-    DR: THAT SHOULD NOT HAVE BEEN DONE! BETTER CHANGE THE CALLS. PASS BY REFERENCE SAWES 40 % PERFORMANCE ON TOPIC TREES
+    DR: BETTER CHANGE THE CALLS NOT TO HAVE DEFAULT VALUE. PASS BY REFERENCE SAVES 40 % PERFORMANCE ON TOPIC TREES
     */
     function getFromRow($R, &$configuration)
     {
         $CI = &get_instance();
-        $userlogin  = getUserLogin();
-        $user       = $CI->user_db->getByID($userlogin->userID());
-        //check rights; if fail: return null
-        if ($userlogin->isAnonymous() && $R->read_access_level!='public') {
-            return null;
-        }
-        if (   ($R->read_access_level=='private') 
-            && ($userlogin->userId() != $R->user_id) 
-            && (!$userlogin->hasRights('topic_read_all'))) {
-            return null;
-        }
-        if (   ($R->read_access_level=='group') 
-            && (!in_array($R->group_id,$user->group_ids) ) 
-            && (!$userlogin->hasRights('topic_read_all'))) {
-            return null;
-        }
-        //rights were OK; read data
         $topic = new Topic;
         foreach ($R as $key => $value)
         {
             $topic->$key = $value;
         }
+        $userlogin  = getUserLogin();
+        //check rights, if fail return null
+        if ( !$CI->accesslevels_lib->canReadObject($topic))return null;
         $topic->configuration = $configuration;
         //process configuration settings
         /*  onlyIfUserSubscribed            -- if set to True, only those topics 
@@ -199,16 +186,6 @@ class Topic_db {
         $topic->url                = $CI->input->post('url');
         $topic->parent_id          = $CI->input->post('parent_id');
         $topic->user_id            = $CI->input->post('user_id');
-        $topic->group_id           = $CI->input->post('group_id');
-        $topic->read_access_level  = $CI->input->post('read_access_level');
-        $topic->edit_access_level  = $CI->input->post('edit_access_level');
-        if ($topic->group_id=='') {
-            //no group id: i guess the user has no group. Means that any 'group' restriction on read-access-level will be changed to 'private'?
-            //otherwise the topic will disappear in the nonexisting group '0'
-            $topic->group_id='0';
-            if ($topic->read_access_level=='group') $topic->read_access_level='private';
-            if ($topic->edit_access_level=='group') $topic->edit_access_level='private';
-        }
         return $topic;
     }
     
@@ -217,7 +194,7 @@ class Topic_db {
     passed by reference cannot have a default value in php4.
     Removed the reference pass
 
-    DR: THAT SHOULD NOT HAVE BEEN DONE! BETTER CHANGE THE CALLS. PASS BY REFERENCE SAWES 40 % PERFORMANCE ON TOPIC TREES
+    DR: BETTER CHANGE THE CALLS NOT TO HAVE DEFAULT VALUE. PASS BY REFERENCE SAVES 40 % PERFORMANCE ON TOPIC TREES
     */
     function getChildren($topic_id, &$configuration) {
         $CI = &get_instance();
@@ -320,9 +297,6 @@ class Topic_db {
                         'description'=>$topic->description,
                         'url'=>$topic->url,
                         'user_id'=>$userlogin->userId());
-        $fields['read_access_level']=$topic->read_access_level;
-        $fields['edit_access_level']=$topic->edit_access_level;
-        $fields['group_id']=$topic->group_id;
         //add new topic
         $CI->db->query(
             $CI->db->insert_string("topics", $fields)
@@ -330,10 +304,12 @@ class Topic_db {
                                                
         //add parent
         $new_id = $CI->db->insert_id();
+        $topic->topic_id = $new_id;
         if ($topic->parent_id < 0)$topic->parent_id=1;
         $CI->db->query($CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
         //subscribe current user to new topic
         $this->subscribeUser($CI->user_db->getByID($userlogin->userId()),$new_id);
+        $CI->accesslevels_lib->initTopicAccessLevels($topic);
         return $new_id;
     }
 
@@ -356,17 +332,7 @@ class Topic_db {
              ||
                 (!$userlogin->hasRights('topic_edit'))
              || 
-                ($userlogin->isAnonymous() && ($topic_testrights->edit_access_level!='public'))
-             ||
-                (    ($topic_testrights->edit_access_level == 'private') 
-                  && ($userlogin->userId() != $topic_testrights->user_id) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
-             ||
-                (    ($topic_testrights->edit_access_level == 'group') 
-                  && (!in_array($topic_testrights->group_id,$user->group_ids) ) 
-                  && (!$userlogin->hasRights('topic_edit_all'))
-                 )                
+                (!$CI->accesslevels_lib->canEditObject($topic_testrights))
             ) 
         {
 	        appendErrorMessage('Edit topic: insufficient rights.<br>');
@@ -393,12 +359,6 @@ class Topic_db {
         $updatefields =  array('name'=>$topic->name,
                                'description'=>$topic->description,
                                'url'=>$topic->url);
-        if (   ($topic_testrights->user_id==$userlogin->userId())
-            || $userlogin->hasRights('topic_edit_all')) {                        
-                $updatefields['read_access_level']=$topic->read_access_level;
-                $updatefields['edit_access_level']=$topic->edit_access_level;
-                $updatefields['group_id']=$topic->group_id;
-        }
 
         $CI->db->query(
             $CI->db->update_string("topics",

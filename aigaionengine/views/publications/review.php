@@ -13,9 +13,6 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
     echo form_hidden('pub_type',    $publication->pub_type)."\n";
     echo form_hidden('title',       $publication->title)."\n";
     echo form_hidden('bibtex_id',   $publication->bibtex_id)."\n";
-    echo form_hidden('group_id',    $publication->group_id)."\n";
-    echo form_hidden('read_access_level',   $publication->read_access_level)."\n";
-    echo form_hidden('edit_access_level',   $publication->edit_access_level)."\n";
     foreach ($publicationfields as $key => $class):
     echo form_hidden($key,        $publication->$key)."\n";
     endforeach;

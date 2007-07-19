@@ -39,25 +39,19 @@ foreach ($note->xref_ids as $xref_id) {
 }
 
 echo "<div class='readernote'>
-  <b>[User ".$note->user_id."]</b>: ".$text;
+  <b>[".getAbbrevForUser($note->user_id)."]</b>: ";
+$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
+echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
+      
+  echo $text;
 
 //the block of edit actions: dependent on user rights
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
 
-if (    ($userlogin->hasRights('note_edit_self'))
+if (    ($userlogin->hasRights('note_edit'))
      && 
-        (!$userlogin->isAnonymous() || ($note->edit_access_level=='public'))
-     &&
-        (    ($note->edit_access_level != 'private') 
-          || ($userlogin->userId() == $note->user_id) 
-          || ($userlogin->hasRights('note_edit_all'))
-         )                
-     &&
-        (    ($note->edit_access_level != 'group') 
-          || (in_array($note->group_id,$user->group_ids) ) 
-          || ($userlogin->hasRights('note_edit_all'))
-         )                
+        $this->accesslevels_lib->canEditObject($note)      
     ) 
 {
     echo "<br/>".anchor('notes/delete/'.$note->note_id,'[delete]');

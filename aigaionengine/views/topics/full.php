@@ -21,17 +21,7 @@
     <?php 
     if (    ($userlogin->hasRights('topic_edit'))
          && 
-            (!$userlogin->isAnonymous() || ($topic->edit_access_level=='public'))
-         &&
-            (    ($topic->edit_access_level != 'private') 
-              || ($userlogin->userId() == $topic->user_id) 
-              || ($userlogin->hasRights('topic_edit_all'))
-             )                
-         &&
-            (    ($topic->edit_access_level != 'group') 
-              || (in_array($topic->group_id,$user->group_ids) ) 
-              || ($userlogin->hasRights('topic_edit_all'))
-             )                
+            $this->accesslevels_lib->canEditObject($topic)      
         ) 
     {
         echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/><br/>\n"; 
@@ -41,6 +31,9 @@
 <div class='header'>Topic:
 <?php 
     echo $name;
+    $accesslevels = "&nbsp;&nbsp;r:<img class='al_icon' src='".getIconurl('al_'.$topic->derived_read_access_level.'.gif')."'/> e:<img class='al_icon' src='".getIconurl('al_'.$topic->derived_edit_access_level.'.gif')."'/>";
+    echo anchor('accesslevels/edit/topic/'.$topic->topic_id,$accesslevels,array('title'=>'click to modify access levels'));
+
 ?>
 </div>
 <?php 
