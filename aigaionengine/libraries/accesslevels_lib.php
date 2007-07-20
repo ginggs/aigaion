@@ -416,11 +416,11 @@ class Accesslevels_lib {
     All levels set to that of the parent. */
     function initTopicAccessLevels($topic) {
         $CI = &get_instance();
-        
-        $topic->read_access_level = $topic->getParent()->derived_read_access_level;
+        $parent = $topic->getParent();
+        $topic->read_access_level = $parent->derived_read_access_level;
         $topic->derived_read_access_level = $topic->getParent()->derived_read_access_level;
-        $topic->edit_access_level = $topic->getParent()->derived_edit_access_level;
-        $topic->derived_edit_access_level = $topic->getParent()->derived_edit_access_level;
+        $topic->edit_access_level = $parent->derived_edit_access_level;
+        $topic->derived_edit_access_level = $parent->derived_edit_access_level;
         $Q = $CI->db->query("UPDATE topics 
                                 SET read_access_level='".$topic->read_access_level."',
                                     derived_read_access_level='".$topic->derived_read_access_level."',
