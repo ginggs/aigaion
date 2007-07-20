@@ -418,7 +418,7 @@ class Accesslevels_lib {
         $CI = &get_instance();
         $parent = $topic->getParent();
         $topic->read_access_level = $parent->derived_read_access_level;
-        $topic->derived_read_access_level = $topic->getParent()->derived_read_access_level;
+        $topic->derived_read_access_level = $parent->derived_read_access_level;
         $topic->edit_access_level = $parent->derived_edit_access_level;
         $topic->derived_edit_access_level = $parent->derived_edit_access_level;
         $Q = $CI->db->query("UPDATE topics 
