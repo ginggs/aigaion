@@ -5,7 +5,8 @@
     always from root.
     parameter: topic_id - the topic to be highlighted
 */
-$user_id = getUserLogin()->userId();
+$userlogin=getUserLogin();
+$user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
 <div class='header1'>Edit topic access levels</div>

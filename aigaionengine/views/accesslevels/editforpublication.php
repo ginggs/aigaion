@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php 
-$user_id = getUserLogin()->userId();
+$userlogin=getUserLogin();
+$user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
 <div class='header1'>Edit access levels</div>
