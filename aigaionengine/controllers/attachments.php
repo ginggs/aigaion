@@ -150,7 +150,7 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)    
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        appendErrorMessage('Add attachment: insufficient rights..<br>');
 	        redirect('');
         }
 

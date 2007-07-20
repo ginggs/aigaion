@@ -96,7 +96,7 @@ class Attachment_db {
              ||
                 (!$userlogin->hasRights('attachment_edit'))
              || 
-                (!$CI->accesslevels_lib->canEditObject($tune))
+                (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
 	        appendErrorMessage('Add attachment: insufficient rights.<br>');
