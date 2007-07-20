@@ -31,7 +31,7 @@ class Accesslevels_lib {
         if ($userlogin->isAnonymous()) return false;                    //anonymous, not public
         return (
                 (    ($object->derived_read_access_level != 'private') 
-                  || ($object->user_id == getUserLogin()->userId()) 
+                  || ($object->user_id == $userlogin->userId()) 
                   || ($userlogin->hasRights('read_all_override'))
                  )
                 ); //private or not
@@ -43,7 +43,7 @@ class Accesslevels_lib {
         if ($userlogin->isAnonymous())                    return false; //anonymous, not public
         return (
                 (    ($object->derived_edit_access_level != 'private') 
-                  || ($object->user_id == getUserLogin()->userId()) 
+                  || ($object->user_id == $userlogin->userId()) 
                   || ($userlogin->hasRights('edit_all_override'))
                  )
                 ); //private or not
@@ -78,11 +78,12 @@ class Accesslevels_lib {
         $title='cannot edit access levels of this object';
         $editR = '';
         $editE = '';
+        $userlogin = getUserLogin();
         if ($CI->accesslevels_lib->canEditObject($object)) {
             $grey='';
             $title='';
             $options = array('public'=>'public','intern'=>'intern');
-            if (getUserLogin()->userid()==$object->user_id)
+            if ($userlogin->userid()==$object->user_id)
                 $options['private'] = 'private';
             $editR = form_dropdown('r_al_'.$type.'_'.$object_id, $options, $object->read_access_level, "onChange='submitAccessLevel(\"".site_url('accesslevels/set')."\", \"r\",\"".$type."\",\"".$object_id."\");' id='r_al_".$type."_".$object_id."'");
             $editE = form_dropdown('e_al_'.$type.'_'.$object_id, $options, $object->edit_access_level, "onChange='submitAccessLevel(\"".site_url('accesslevels/set')."\", \"e\",\"".$type."\",\"".$object_id."\");' id='e_al_".$type."_".$object_id."'");
