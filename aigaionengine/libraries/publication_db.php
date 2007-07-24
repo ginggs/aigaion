@@ -693,15 +693,23 @@ class Publication_db {
 
 ///////publication list functions
 
-  function getForTopic($topic_id)
+  function getForTopic($topic_id,$page=0)
   {
-        $CI = &get_instance();
+    $limit = '';
+    if ($page>-1) {
+        $userlogin = getUserLogin();
+        $liststyle= $userlogin->getPreference('liststyle');
+        if ($liststyle>0) {
+            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+        }
+    }
+    $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
     WHERE topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
     AND publication.pub_id = topicpublicationlink.pub_id
-    ORDER BY actualyear, cleantitle");
+    ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -716,16 +724,32 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
+  function getCountForTopic($topic_id) {
+    $CI = &get_instance();
+    
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
+    WHERE topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+    AND publication.pub_id = topicpublicationlink.pub_id");
+    return $Q->num_rows();
+  }  
   
-  function getForAuthor($author_id)
+  function getForAuthor($author_id,$page=0)
   {
-        $CI = &get_instance();
+    $limit = '';
+    if ($page>-1) {
+        $userlogin = getUserLogin();
+        $liststyle= $userlogin->getPreference('liststyle');
+        if ($liststyle>0) {
+            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+        }
+    }
+    $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
     WHERE publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
     AND publication.pub_id = publicationauthorlink.pub_id
-    ORDER BY actualyear, cleantitle");
+    ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -740,17 +764,31 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
-  
+  function getCountForAuthor($author_id) {
+    $CI = &get_instance();
+    
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
+    WHERE publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    AND publication.pub_id = publicationauthorlink.pub_id");
+    return $Q->num_rows();
+  }  
   /** Return a list of publications for the bookmark list of the logged user */
-  function getForBookmarkList()
+  function getForBookmarkList($page=0)
   {
-        $CI = &get_instance();
     $userlogin = getUserLogin();
+    $limit = '';
+    if ($page>-1) {
+        $liststyle= $userlogin->getPreference('liststyle');
+        if ($liststyle>0) {
+            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+        }
+    }
+    $CI = &get_instance();
     
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
     WHERE userbookmarklists.user_id=".$userlogin->userId()."
     AND   userbookmarklists.pub_id=publication.pub_id
-    ORDER BY actualyear, cleantitle");
+    ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -763,7 +801,14 @@ class Publication_db {
     }
     return $result;
   }
-  
+  function getCountForBookmarkList() {
+    $CI = &get_instance();
+    
+    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
+    WHERE userbookmarklists.user_id=".$userlogin->userId()."
+    AND   userbookmarklists.pub_id=publication.pub_id");
+    return $Q->num_rows();
+  }
     /** change the crossref of all affected publications to reflect a change of the bibtex_id of the given publication.
     Note: this method does NOT make use of getByID($pub_id), because one should also change the referring 
     crossref field of all publications that are inaccessible through getByID($pub_id) due to access level 

@@ -5,35 +5,9 @@ $user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
 <div class='header'>Edit access levels</div>
-<p>When you modify access levels of individual objects, this may have consequences for the final 'effective' access level of other objects. For example, when you set a publication to private, the effective access level of all objects belonging to that publication will be set to private as well.</p>
-<p>On the other hand, when you edit the read access level of for example an attachment, and the new level is higher than that of the publication it belongs to, the <b>actual</b> read level of the publication is updated as well!</p>
-<p>Note that the effective access levels are shown on the left; the access levels defined per individual object are shown on the right. Editing of access levels is done through the right column.</p>
-<p><b>Unsure how the access levels turned out?</b> The column on the left shows which objects are effectively accessible with what levels!</p>
-<p>Example: publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well.</p>
-<p>Example: publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'.</p>
-<p>Example: attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'.</p>
-<p>Example: a publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. --&gt; Subsequently, you can no longer edit that publication :o)</p>
-<br/>
 <?php 
 echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); ?>
 <br/><br/>
-<div style='border:1px solid black;'>
-    <div style='border:1px solid black;'>
-        <b>Legenda</b>
-    </div>
-    <?php
-    echo "
-    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
-    - If nothing is shown, access level is 'intern'.<br/>
-    ";
-    ?>
-</div>
-<br/>
 <div style='border:1px solid grey'>
 <table>
     <tr >
@@ -185,4 +159,30 @@ foreach ($publication->getNotes() as $note) {
 
 </table>
 </div>
+<br/><br/>
+<div style='border:1px solid black;'>
+    <div style='border:1px solid black;'>
+        <b>Legend</b>
+    </div>
+    <?php
+    echo "
+    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
+    - If nothing is shown, access level is 'intern'.<br/>
+    ";
+    ?>
+</div>
+<br/>
+<p>When you modify access levels of individual objects, this may have consequences for the final 'effective' access level of other objects. For example, when you set a publication to private, the effective access level of all objects belonging to that publication will be set to private as well.</p>
+<p>On the other hand, when you edit the read access level of for example an attachment, and the new level is higher than that of the publication it belongs to, the <b>actual</b> read level of the publication is updated as well!</p>
+<p>Note that the effective access levels are shown on the left; the access levels defined per individual object are shown on the right. Editing of access levels is done through the right column.</p>
+<p><b>Unsure how the access levels turned out?</b> The column on the left shows which objects are effectively accessible with what levels!</p>
+<p>Example: publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well.</p>
+<p>Example: publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'.</p>
+<p>Example: attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'.</p>
+<p>Example: a publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. --&gt; Subsequently, you can no longer edit that publication :o)</p>
 

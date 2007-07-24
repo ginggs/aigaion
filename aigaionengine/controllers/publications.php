@@ -67,14 +67,14 @@ class Publications extends Controller {
   function showlist()
   {
  	      $this->load->helper('publication');
-    
+        $page   = $this->uri->segment(3,0);
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
         $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $content['header']          = 'All publications';
-        $content['publications']    = $this->publication_db->getForTopic('1');
+        $content['publications']    = $this->publication_db->getForTopic('1',$page);
         
         $output = $this->load->view('header', $headerdata, true);
         $output .= $this->load->view('publications/list', $content, true);

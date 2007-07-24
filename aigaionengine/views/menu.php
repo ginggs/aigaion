@@ -91,10 +91,9 @@ if ($userlogin->hasRights('database_manage')) {
     <li class="mainmenu-header">LOGIN</li>
 <?php
     $this->load->helper('form');
-      
+    echo '<li>';
     echo form_open('login/dologin/'.$this->uri->uri_string());
 ?>
-    <li>
       <table class='loginbox'>
         <tr>
           <td>Name:</td>
@@ -112,9 +111,9 @@ if ($userlogin->hasRights('database_manage')) {
           <td><input title='Remember me' name=remember type=checkbox><p align=right><input type=submit value='Login'></td>
         </tr>
       </table>
-    </li>
 <?php
         echo form_close();
+        echo '</li>';
 	} else {
 ?>
     <li class="mainmenu-header">LOGGED IN:</li>

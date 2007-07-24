@@ -265,3 +265,4 @@ INSERT INTO rightsprofilerightlink VALUES ('5', 'bookmarklist');
 ---drop col 'users.u_rights'
 ---drop col 'users.csname'
 ---drop col 'notes.rights'
+default add .ps, .z, .gz to allowed file types
