@@ -95,11 +95,11 @@ a:hover, a:active {
 }
 .al_icon {
     border  : 0px;
-    width   : 11px;
+    width   : 1em;
 }
 
 /* Headers */
-div.header {
+.header {
   padding         : 0.1em 4em .1em 0.5em;
   margin          : 0 0 1em 0;
   background      : #ABC41F;

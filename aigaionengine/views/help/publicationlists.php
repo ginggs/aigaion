@@ -1,5 +1,5 @@
 <div id="help-holder">
-  <p class="header">The publication lists</p>
+  <p class='header1'>The publication lists</p>
   <p>Aigaion offers multiple ways to explore your publications, the standard list sorts all publications in the database by year. You can also browse the publications sorted by title, by publicationtype or by topic.</p>
   <p>
   <div class='message'>

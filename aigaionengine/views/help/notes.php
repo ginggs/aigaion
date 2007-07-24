@@ -1,5 +1,5 @@
 <div id="help-holder">
-  <p class="header">Annotating the bibliography</p>
+  <p class='header1'>Annotating the bibliography</p>
   <p>Where a publication abstract is a purely descriptive summary of a publication, a annotation can be both descriptive and critical. Annotations are commonly used to:
     <ul>
       <li>place a publication in a context</li>
@@ -20,10 +20,10 @@
     </div>
   </p>
   
-  <p class='header'>Referencing other publications</p>
+  <p class='header1'>Referencing other publications</p>
   <p>You can reference to other publications by simply using the publications BibTeX cite ID. On displaying the note, the cite ID will be replaced by a link to the corresponding publication.</p>
   
-  <p class='header'>Formatting annotations</p>
+  <p class='header1'>Formatting annotations</p>
   <p>To improve the readability of annotations it is recommended to keep annotations short and to the point. Standard HTML formatting tags can be used to format an annotation. The most common tags are listed here:</p>
   <p align=center>
   <table>

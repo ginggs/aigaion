@@ -1,5 +1,5 @@
 <div id="help-holder">
-  <p class="header">Good practices</p>
+  <p class='header1'>Good practices</p>
   <p>This is a list of things that have been known to work for various users of Aigaion. Read them at your leisure, and use what you think might work for you as well. Or ignore everything that you think to be nonsense.</p>
     <ul>
       <li><b><i>Check if the paper was already added</i></b> before you go through all the work of adding an entry to a shared database, e.g. by searching for the author names or the title. If you share your database with other people and you want to add a new article to the database, it may be that somebody already added it. After all, if this other person added it to a topic for which you are not registered, you will not see it appear.</li>

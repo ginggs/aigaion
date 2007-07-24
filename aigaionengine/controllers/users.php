@@ -456,7 +456,7 @@ class Users extends Controller {
         $config = array('user'=>$user,'includeGroupSubscriptions'=>True);
         $root = $this->topic_db->getByID(1,$config);
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
-        $output .= "<p class='header1'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
+        $output .= "<p class='header'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
         $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br/>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',

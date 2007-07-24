@@ -4,7 +4,7 @@ $userlogin=getUserLogin();
 $user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
-<div class='header1'>Edit access levels</div>
+<div class='header'>Edit access levels</div>
 <p>When you modify access levels of individual objects, this may have consequences for the final 'effective' access level of other objects. For example, when you set a publication to private, the effective access level of all objects belonging to that publication will be set to private as well.</p>
 <p>On the other hand, when you edit the read access level of for example an attachment, and the new level is higher than that of the publication it belongs to, the <b>actual</b> read level of the publication is updated as well!</p>
 <p>Note that the effective access levels are shown on the left; the access levels defined per individual object are shown on the right. Editing of access levels is done through the right column.</p>

@@ -9,7 +9,7 @@ $userlogin=getUserLogin();
 $user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
-<div class='header1'>Edit topic access levels</div>
+<div class='header'>Edit topic access levels</div>
 For now, you still have to manually edit all access levels - there is no automatic propagation of changes up or down the tree.
 
 <br/><br/>

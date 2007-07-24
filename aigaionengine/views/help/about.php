@@ -1,5 +1,5 @@
 <div id="help-holder">
-  <p class="header">About</p>
+  <p class='header1'>About</p>
   <p>
 <?php
         $Q = $this->db->query("SELECT * FROM aigaiongeneral");

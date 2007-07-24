@@ -29,7 +29,7 @@ a:hover {
 }
 .al_icon {
     border  : 0px;
-    width   : 11px;
+    width   : 1em;
 }
 
 
@@ -142,7 +142,7 @@ input:hover, textarea:hover, select:hover {
 }
 
 
-div.header {
+.header {
   padding         : 0.1em 4em .1em 0.5em;
   margin          : 0 0 1em 0;
   background      : #9D9582;

@@ -1,5 +1,5 @@
 <div id="help-holder">
-  <p class="header">Themes</p>
+  <p class='header1'>Themes</p>
   <p>Aigaion supports the use of themes, you can select it on your 'profile' page. If you don't like the standard themes, feel free to create one yourself. Here is how to do it:
     <ul>
       <li>Create a directory where the theme-files will be stored, below the '/aigaionengine/themes/' directory.</li>
