@@ -1,12 +1,32 @@
 <div class='publication_list'>
 <?php
+  $userlogin  = getUserLogin();
   if (isset($header) && ($header != '')) {
 ?>
   <div class='header'><?php echo $header ?></div>
 <?php
   }
+  $multipagelinks='';
+  if (isset($multipage) && ($multipage == True)) {
+    $page=-1;
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle>0) {
+        $multipagelinks.= '<center><div>';
+        while ($page*$liststyle<$resultcount) {
+            $page++;
+            $multipagelinks.= ' | ';
+            $linktext = ($page*$liststyle+1).'-'.(($page+1)*$liststyle);
+            if ($page!=$currentpage) {
+                $multipagelinks.= anchor($multipageprefix.$page,$linktext);
+            } else {
+                $multipagelinks.= $linktext;
+            }
+        }
+        $multipagelinks.= ' |</div></center><br/>';
+    }
+  }
+  echo $multipagelinks;
   $b_even = true;
-  $userlogin  = getUserLogin();
 
   foreach ($publications as $publication)
   {
@@ -111,5 +131,7 @@ echo "
 
     }
   }
+
+echo $multipagelinks;
 ?>
 </div>

@@ -73,7 +73,14 @@ class Publications extends Controller {
         $headerdata['title']        = 'Publication list';
         $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
+        $userlogin = getUserLogin();
         $content['header']          = 'All publications';
+        if ($userlogin->getPreference('liststyle')>0) {
+            $content['multipage']       = True;
+            $content['resultcount']     = $this->publication_db->getCountForTopic('1');
+            $content['currentpage']     = $page;
+            $content['multipageprefix'] = 'publications/showlist/';
+        }
         $content['publications']    = $this->publication_db->getForTopic('1',$page);
         
         $output = $this->load->view('header', $headerdata, true);
