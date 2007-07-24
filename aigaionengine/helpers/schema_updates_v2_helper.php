@@ -61,9 +61,9 @@
             $R = $Q->row();
             $version = $R->version;
             if ($version != 'V2.0') {
-                appendErrorMessage("The database has not been migrated from Aigaion 1.x towards Aigaion 2.0. <br>
-                                    Automatic update is not possible, even from an account with sufficient rights.<br><br> 
-                                    PLEASE ASK YOUR ADMINISTRATOR TO RUN THE MIGRATION SCRIPTS.<br>");
+                appendErrorMessage("The database has not been migrated from Aigaion 1.x towards Aigaion 2.0. <br/>
+                                    Automatic update is not possible, even from an account with sufficient rights.<br/><br/> 
+                                    PLEASE ASK YOUR ADMINISTRATOR TO RUN THE MIGRATION SCRIPTS.<br/>");
                 return False;
             } else {
                 return True;

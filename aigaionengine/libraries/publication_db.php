@@ -298,7 +298,7 @@ class Publication_db {
     if (    (!$userlogin->hasRights('publication_edit'))
         ) 
     {
-        appendErrorMessage('Add publication: insufficient rights.<br>');
+        appendErrorMessage('Add publication: insufficient rights.<br/>');
         return;
     }        
     
@@ -468,7 +468,7 @@ class Publication_db {
             (!$CI->accesslevels_lib->canEditObject($oldpublication))
         ) 
     {
-        appendErrorMessage('Edit publication: insufficient rights. publication_db.update<br>');
+        appendErrorMessage('Edit publication: insufficient rights. publication_db.update<br/>');
         return $oldpublication;
     }
 
@@ -783,7 +783,7 @@ class Publication_db {
                                              "pub_id=".$R->pub_id)
                                   );
     		if (mysql_error()) {
-    		    appendErrorMessage("Failed to update the bibtex-id in publication ".$R->pub_id."<br>");
+    		    appendErrorMessage("Failed to update the bibtex-id in publication ".$R->pub_id."<br/>");
         	}
         }
     }

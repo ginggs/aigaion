@@ -11,12 +11,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
         mysql_query("INSERT IGNORE INTO userbookmarklists (user_id,pub_id) VALUES (".$userlogin->userId().",".$pub_id.")");
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br>");
+    		appendErrorMessage("Error changing bookmarklist<br/>");
     	}
 
     }
@@ -26,12 +26,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
         mysql_query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId()." AND pub_id=".$pub_id);
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br>");
+    		appendErrorMessage("Error changing bookmarklist<br/>");
     	}
 
     }
@@ -40,12 +40,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
         mysql_query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId());
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br>");
+    		appendErrorMessage("Error changing bookmarklist<br/>");
     	}
     }
     
@@ -53,7 +53,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br>");
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
         $pub_ids = array();
@@ -61,7 +61,7 @@ class Bookmarklist_db {
             $pub_ids[] = $publication->pub_id;
         }
         $topic->subscribePublicationSetUpRecursive($pub_ids);
-        appendMessage("Bookmarked publications added to topic<br>");
+        appendMessage("Bookmarked publications added to topic<br/>");
     }
 
 }

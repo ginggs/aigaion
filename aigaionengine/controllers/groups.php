@@ -78,7 +78,7 @@ class Groups extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Add group: insufficient rights.<br>');
+	        appendErrorMessage('Add group: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -135,7 +135,7 @@ class Groups extends Controller {
              
             ) 
         {
-	        appendErrorMessage('Edit group: insufficient rights.<br>');
+	        appendErrorMessage('Edit group: insufficient rights.<br/>');
 	        redirect('');
         }
 	    
@@ -184,14 +184,14 @@ class Groups extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($group==null) {
-	        appendErrorMessage('Delete group: non existing group specified.<br>\n');
+	        appendErrorMessage('Delete group: non existing group specified.<br/>\n');
 	        redirect('');
 	    }
 	    //check user rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) )
         {
-	        appendErrorMessage('Delete group: insufficient rights.<br>');
+	        appendErrorMessage('Delete group: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -254,7 +254,7 @@ class Groups extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Edit group: insufficient rights.<br>');
+	        appendErrorMessage('Edit group: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -300,7 +300,7 @@ class Groups extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit group: an error occurred. Please contact your Aigaion administrator.<br>");
+                appendErrorMessage("Commit group: an error occurred. Please contact your Aigaion administrator.<br/>");
                 redirect ('users/manage');
             }
             //redirect somewhere if commit was successfull
@@ -330,7 +330,7 @@ class Groups extends Controller {
 	    $group = $this->group_db->getByID($group_id);
 	    
 	    if ($group==null) {
-	        appendErrorMessage('Topic review: invalid group_id specified.<br>\n');
+	        appendErrorMessage('Topic review: invalid group_id specified.<br/>\n');
 	        redirect('');
 	    }
 	    
@@ -341,7 +341,7 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
 	        redirect('');
         }
 	    
@@ -357,7 +357,7 @@ class Groups extends Controller {
         $root = $this->topic_db->getByID(1, $config);
         $this->load->vars(array('subviews'  => array('topics/groupsubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$group->name."</p>";
-        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br/>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
@@ -410,7 +410,7 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -464,7 +464,7 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
 	        redirect('');
         }
 

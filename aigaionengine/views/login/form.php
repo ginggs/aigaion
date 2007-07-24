@@ -160,7 +160,7 @@
   <tr>
   <td colspan=2>
   If you want a password, please mail to
-  <?php echo getConfigurationSetting("CFG_ADMIN"); ?><br>
+  <?php echo getConfigurationSetting("CFG_ADMIN"); ?><br/>
   <?php echo getConfigurationSetting("CFG_ADMINMAIL"); ?>
   </td>
   </tr>

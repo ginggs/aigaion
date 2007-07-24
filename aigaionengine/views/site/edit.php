@@ -61,11 +61,11 @@ echo $this->validation->error_string;
 	        <td align='left' colspan='2'>
 	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        Select the login module to be used. 
-	        <br>- 'Aigaion' is the default built-in login system.
-	        <br>- '.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
+	        <br/>- 'Aigaion' is the default built-in login system.
+	        <br/>- '.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
 	        the name of the logged user, instead of a login form.
-	        <br>- 'LDAP' uses a connection to a LDAP server to verify the credentials filled in in the login form.
-	        <br><br><b>Note:</b> If you select a login module different from 'Aigaion', be sure to have that 
+	        <br/>- 'LDAP' uses a connection to a LDAP server to verify the credentials filled in in the login form.
+	        <br/><br/><b>Note:</b> If you select a login module different from 'Aigaion', be sure to have that 
 	        module correctly configured below in this form - otherwise you may have problems logging in and then you can also 
 	        not turn the external login module off without directly accessing the Aigaion database :)</p></td>
 	    </tr>

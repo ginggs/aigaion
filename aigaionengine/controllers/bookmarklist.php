@@ -33,7 +33,7 @@ class Bookmarklist extends Controller {
 	    //check rights
       $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("View bookmarklist: insufficient rights<br>");
+            appendErrorMessage("View bookmarklist: insufficient rights<br/>");
             redirect('');
         }
 	            	    
@@ -168,7 +168,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided.<br>");
+            appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided.<br/>");
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->addToTopic($topic);
@@ -192,14 +192,14 @@ class Bookmarklist extends Controller {
     function maketopic() {
       $userlogin = getUserLogin();
 	    if (!$userlogin->hasRights('topic_edit')) {
-	        appendErrorMessage('Insufficient rights to create topic<br>');
+	        appendErrorMessage('Insufficient rights to create topic<br/>');
 	        redirect('');
 	    }
 	    
 	    $topic = new Topic;
 	    $topic->name = '-new from bookmarklist-';
         if (!$topic->add()) {
-	        appendErrorMessage('Error creating topic<br>');
+	        appendErrorMessage('Error creating topic<br/>');
 	        redirect('');
         }
         $this->bookmarklist_db->addToTopic($topic);
@@ -224,7 +224,7 @@ class Bookmarklist extends Controller {
     function clear() {
       $userlogin = getUserLogin();
 	    if (!$userlogin->hasRights('bookmarklist')) {
-	        appendErrorMessage('Insufficient rights to clear bookmarklist<br>');
+	        appendErrorMessage('Insufficient rights to clear bookmarklist<br/>');
 	        redirect('');
 	    }
         $this->bookmarklist_db->clear();

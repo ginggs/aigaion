@@ -23,13 +23,13 @@ echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); 
     </div>
     <?php
     echo "
-    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br> 
-    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br> 
-    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br> 
-    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br> 
-    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br> 
-    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br> 
-    - If nothing is shown, access level is 'intern'.<br>
+    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
+    - If nothing is shown, access level is 'intern'.<br/>
     ";
     ?>
 </div>
@@ -39,19 +39,19 @@ echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); 
     <tr >
         <td colspan='2'>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Effective access levels (after combining all relevant access levels)'/>
-            <br>Effective
+            <br/>Effective
         </td>
         <td>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Object'/>
-            <br>Object
+            <br/>Object
         </td>
         <td>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Owner of object (only owner can change objects with private edit levels...)'/>
-            <br>Owner
+            <br/>Owner
         </td>
         <td colspan='2'>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Per-object access levels'/>
-            <br>Individual per-object access levels
+            <br/>Individual per-object access levels
         </td>
         
     </tr>
@@ -62,7 +62,7 @@ echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); 
         <td>
         </td>
         <td style='padding-left:0.5em;'>
-           <i><br>Publication:</i>
+           <i><br/>Publication:</i>
         </td>
     </tr>
     <tr <?php
@@ -100,7 +100,7 @@ echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); 
         <td>
         </td>
         <td style='padding-left:2em;'>
-           <i><br>Attachments:</i>
+           <i><br/>Attachments:</i>
         </td>
     </tr>
 <?php
@@ -144,7 +144,7 @@ foreach ($publication->getAttachments() as $attachment) {
         <td>
         </td>
         <td style='padding-left:2em;'>
-           <i><br>Notes:</i>
+           <i><br/>Notes:</i>
         </td>
     </tr>
 <?php

@@ -16,7 +16,7 @@ we assume that this view is not loaded if you don't have the appropriate read ri
 if ($attachment->isremote) {
 } else {
     if (!file_exists(AIGAION_ATTACHMENT_DIR."/".$attachment->location)) {
-        appendErrorMessage("Attachment file could not be found: ".AIGAION_ATTACHMENT_DIR."/".$attachment->location."<br>");
+        appendErrorMessage("Attachment file could not be found: ".AIGAION_ATTACHMENT_DIR."/".$attachment->location."<br/>");
         redirect('');
     } else {
         $this->load->helper('download');

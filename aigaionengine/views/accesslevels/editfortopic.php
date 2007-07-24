@@ -19,13 +19,13 @@ For now, you still have to manually edit all access levels - there is no automat
     </div>
     <?php
     echo "
-    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br> 
-    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br> 
-    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br> 
-    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br> 
-    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br> 
-    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br> 
-    - If nothing is shown, access level is 'intern'.<br>
+    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
+    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
+    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
+    - If nothing is shown, access level is 'intern'.<br/>
     ";
     ?>
 </div>
@@ -34,19 +34,19 @@ For now, you still have to manually edit all access levels - there is no automat
     <tr >
         <td colspan='2'>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Effective access levels (after combining all relevant access levels)'/>
-            <br>Effective
+            <br/>Effective
         </td>
         <td>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Topic'/>
-            <br>Topic
+            <br/>Topic
         </td>
         <td>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Owner of topic (only owner can change objects with private edit levels...)'/>
-            <br>Owner
+            <br/>Owner
         </td>
         <td colspan='2'>
             <img src='<?php echo getIconUrl('info.gif'); ?>' title='Per-object access levels'/>
-            <br>Individual per-object access levels
+            <br/>Individual per-object access levels
         </td>
         
     </tr>

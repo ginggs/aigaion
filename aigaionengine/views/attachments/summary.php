@@ -50,7 +50,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     
     //always show note
     if ($attachment->note!='') {
-        echo "<br>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
+        echo "<br/>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
     }
 ?>
 <!-- End of single attachment displays -->

@@ -43,15 +43,15 @@ if ($userlogin->hasRights('publication_edit')) {
 
 }
 ?>
-<br>
+<br/>
 [export to BiBTeX]
-<br>
+<br/>
 [export to WhaTEveR]
-<br>
+<br/>
 <?php
     echo form_open('bookmarklist/clear');
     echo form_submit(array('name'=>'clear','title'=>'Clear the bookmarklist'),'Clear bookmarklist');
     echo form_close();
 ?>
-<br>
-<br>
+<br/>
+<br/>

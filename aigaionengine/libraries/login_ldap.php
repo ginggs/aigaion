@@ -33,9 +33,9 @@ class Login_ldap {
             */
         	$ds = $ldap->connect();
         	if (!$ds) {
-          		appendErrorMessage("LDAP auth: There was a problem.<br>");
-          		appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br>");
-          		appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br>");
+          		appendErrorMessage("LDAP auth: There was a problem.<br/>");
+          		appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br/>");
+          		appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br/>");
         	} else {
        	    
         	    if ($ldap->checkPass($postloginName,$postloginPwd)) {
@@ -46,9 +46,9 @@ class Login_ldap {
         	    
         		//get groups...
         	}// else {
-          		//appendErrorMessage( "LDAP auth: Password check failed.<br>");
-          	//	appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br>");
-          		//appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br>");
+          		//appendErrorMessage( "LDAP auth: Password check failed.<br/>");
+          	//	appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br/>");
+          		//appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br/>");
         	//}
         }
         

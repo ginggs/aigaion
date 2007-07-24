@@ -44,7 +44,7 @@ class File_upload {
 	function show_error_string() {
 		$msg_string = "";
 		foreach ($this->message as $value) {
-			$msg_string .= $value."<br>\n";
+			$msg_string .= $value."<br/>\n";
 		}
 		return $msg_string;
 	}
@@ -184,7 +184,7 @@ class File_upload {
 			$error[UPLOAD_ERR_NO_FILE] = "Fout bij het uploaden, probeer het nog een keer.";
 			$error[10] = "Selecteer een bestand.";
 			$error[11] = "Het zijn alleen bestanden van dit type toegestaan: <b>".$this->ext_string."</b>";
-			$error[12] = "Sorry, de bestandsnaam bevat tekens die niet zijn toegestaan. Gebruik alleen nummer, letters en het underscore teken. <br>Een geldige naam eindigt met een punt en de extensie.";
+			$error[12] = "Sorry, de bestandsnaam bevat tekens die niet zijn toegestaan. Gebruik alleen nummer, letters en het underscore teken. <br/>Een geldige naam eindigt met een punt en de extensie.";
 			$error[13] = "De bestandsnaam is te lang, het maximum is: ".$this->max_length_filename." teken.";
 			$error[14] = "Sorry, het opgegeven directory bestaat niet!";
 			$error[15] = "Uploading <b>".$this->the_file."... Fout!</b> Sorry, er is al een bestand met deze naam aanwezig.";
@@ -200,7 +200,7 @@ class File_upload {
 			$error[UPLOAD_ERR_NO_FILE] = "Es wurde keine Datei hochgeladen";
 			$error[10] = "W&auml;hlen Sie eine Datei aus!.";
 			$error[11] = "Es sind nur Dateien mit folgenden Endungen erlaubt: <b>".$this->ext_string."</b>";
-			$error[12] = "Der Dateiname enth&auml;lt ung&uuml;ltige Zeichen. Benutzen Sie f&uuml;r den Dateinameng nur alphanumerische Zeichen und Unterstriche. <br>Ein g&uuml;ltiger Dateiname endet mit einem Punkt, gefolgt von der Endung.";
+			$error[12] = "Der Dateiname enth&auml;lt ung&uuml;ltige Zeichen. Benutzen Sie f&uuml;r den Dateinameng nur alphanumerische Zeichen und Unterstriche. <br/>Ein g&uuml;ltiger Dateiname endet mit einem Punkt, gefolgt von der Endung.";
 			$error[13] = "Der Dateiname &uuml;berschreitet die maximale Anzahl von ".$this->max_length_filename." Zeichen.";
 			$error[14] = "Das Upload-Verzeichnis existiert nicht!";
 			$error[15] = "Upload <b>".$this->the_file."... Fehler!</b> Sorry, eine Datei mit gleichem Dateinamen existiert bereits.";
@@ -216,7 +216,7 @@ class File_upload {
 			$error[UPLOAD_ERR_NO_FILE] = "El fichero no ha sido cargado.";
 			$error[10] = "Por favor seleccione un fichero a cargar.";
 			$error[11] = "Solo ficheros con las siguientes extensiones est&aacute;n permitidos: <b>".$this->ext_string."</b>";
-			$error[12] = "Lo siento, el nombre del fichero contiene car&aacute;cteres invalidos. Use solo car&aacute;cteres alfanum&eacute;ricos y separe (si es necesario) con un subrayado. <br>Un nombre de fichero correcto acaba con un punto seguido de la extensi&oacute;n.";
+			$error[12] = "Lo siento, el nombre del fichero contiene car&aacute;cteres invalidos. Use solo car&aacute;cteres alfanum&eacute;ricos y separe (si es necesario) con un subrayado. <br/>Un nombre de fichero correcto acaba con un punto seguido de la extensi&oacute;n.";
 			$error[13] = "El nombre de fichero excede de la longitud m&aacute;xima de ".$this->max_length_filename." car&aacute;cteres.";
 			$error[14] = "¡Lo siento, el directorio de destino no existe!";
 			$error[15] = "Cargando <b>".$this->the_file."... Error!</b> lo siento, un fichero con el mismo nombre ya existe.";
@@ -240,7 +240,7 @@ class File_upload {
 			// end  http errors
 			$error[10] = "Please select a file for upload.";
 			$error[11] = "Only files with the following extensions are allowed: <b>".$this->ext_string."</b>";
-			$error[12] = "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore. <br>A valid filename ends with one dot followed by the extension.";
+			$error[12] = "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore. <br/>A valid filename ends with one dot followed by the extension.";
 			$error[13] = "The filename exceeds the maximum length of ".$this->max_length_filename." characters.";
 			$error[14] = "Sorry, the upload directory doesn't exist!";
 			$error[15] = "Uploading <b>".$this->the_file."... Error!</b> Sorry, a file with this name already exists.";

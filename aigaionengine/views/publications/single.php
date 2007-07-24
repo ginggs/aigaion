@@ -103,7 +103,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
             if ($linkname == '') {
                 $linkname = $crossrefpub->title;
             }
-            echo anchor('/publications/show/'.$crossrefpub->pub_id, $linkname)."<br>";
+            echo anchor('/publications/show/'.$crossrefpub->pub_id, $linkname)."<br/>";
         }
 ?>
       </td>

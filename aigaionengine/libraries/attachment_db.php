@@ -99,7 +99,7 @@ class Attachment_db {
                 (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights.<br>');
+	        appendErrorMessage('Add attachment: insufficient rights.<br/>');
 	        return;
         }
 
@@ -111,11 +111,11 @@ class Attachment_db {
         	$ext=$CI->file_upload->get_extension($realname);
         	if (getConfigurationSetting('ALLOW_ALL_EXTERNAL_ATTACHMENTS')!='TRUE') {
         		if (!in_array($ext, getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))) {
-        			appendErrorMessage("ERROR UPLOADING: ".$ext." is not an allowed extension for remote files.<br>"
+        			appendErrorMessage("ERROR UPLOADING: ".$ext." is not an allowed extension for remote files.<br/>"
         			."Allowed types: <b>".implode(',',getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))."</b>"
         			."Need other file types? Ask <a href='mailto:"
         			.getConfigurationSetting("CFG_ADMINMAIL")."'>"
-        			.getConfigurationSetting("CFG_ADMIN")."</a><br>");
+        			.getConfigurationSetting("CFG_ADMIN")."</a><br/>");
         		    return -1;
         		}
         	}
@@ -168,7 +168,7 @@ class Attachment_db {
     		                      .$ismain."', 'TRUE', "
     		                      .$userlogin->userId().")");
     		if (mysql_error()) {
-    			appendErrorMessage("Error adding attachment: ".mysql_error()."<br>");
+    			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
     			return -1;
     		}        	
             $new_id = mysql_insert_id();
@@ -178,7 +178,7 @@ class Attachment_db {
 	    } else {
         	# upload not possible: return with error
         	if (getConfigurationSetting("SERVER_NOT_WRITABLE") == "TRUE") {
-        		appendErrorMessage("You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead.<br>");
+        		appendErrorMessage("You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead.<br/>");
         		return -1;
         	}
         
@@ -255,18 +255,18 @@ class Attachment_db {
         		                      .$ismain."', 'FALSE', "
         		                      .$userlogin->userId().")");
         		if (mysql_error()) {
-        			appendErrorMessage("Error adding attachment: ".mysql_error()."<br>");
+        			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
         			return -1;
         		}
         		
         		# check if file is really there
         		if (!is_file(AIGAION_ATTACHMENT_DIR."/".$storename.$ext))
         		{
-        	        appendErrorMessage("Error uploading. The file was not written to disk.<br>
+        	        appendErrorMessage("Error uploading. The file was not written to disk.<br/>
                     Is this error entirely unexpected? You might want to check whether 
                     the php settings 'upload_max_filesize', 'post_max_size' and 
                     'max_execution_time' are all large enough for uploading
-                    your attachments... Please check this with your administrator.<br>");
+                    your attachments... Please check this with your administrator.<br/>");
         		}
         		
                 $new_id = mysql_insert_id();
@@ -275,9 +275,9 @@ class Attachment_db {
             	return $attachment->att_id;
         	} else {
         		appendErrorMessage("ERROR UPLOADING: ".$CI->file_upload->show_error_string()
-        		  ."<br>Is the error due to allowed file types? Ask <a href='mailto:"
+        		  ."<br/>Is the error due to allowed file types? Ask <a href='mailto:"
         		  .getConfigurationSetting("CFG_ADMINMAIL")."'>"
-        		  .getConfigurationSetting("CFG_ADMIN")."</a> for more types.<br>");
+        		  .getConfigurationSetting("CFG_ADMIN")."</a> for more types.<br/>");
         		return -1;
         	}
         }
@@ -304,7 +304,7 @@ class Attachment_db {
                  (!$CI->accesslevels_lib->canEditObject($attachment_testrights))
             ) 
         {
-	        appendErrorMessage('Update attachment: insufficient rights.<br>');
+	        appendErrorMessage('Update attachment: insufficient rights.<br/>');
 	        return;
         }
  

@@ -33,7 +33,7 @@ class Attachments extends Controller {
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    
 	    if ($attachment==null) {
-	        appendErrorMessage('Download attachment: Attachment does not exist.<br>');
+	        appendErrorMessage('Download attachment: Attachment does not exist.<br/>');
 	        redirect('');
 	    }
 	    
@@ -74,7 +74,7 @@ class Attachments extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($attachment==null) {
-	        appendErrorMessage('Delete attachment: attachment does not exist.<br>');
+	        appendErrorMessage('Delete attachment: attachment does not exist.<br/>');
 	        redirect('');
 	    }
 
@@ -86,7 +86,7 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($attachment)
             ) 
         {
-	        appendErrorMessage('Delete attachment: insufficient rights.<br>');
+	        appendErrorMessage('Delete attachment: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -150,7 +150,7 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)    
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights..<br>');
+	        appendErrorMessage('Add attachment: insufficient rights..<br/>');
 	        redirect('');
         }
 
@@ -203,7 +203,7 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($attachment)
          ) 
         {
-	        appendErrorMessage('Edit attachment: insufficient rights.<br>');
+	        appendErrorMessage('Edit attachment: insufficient rights.<br/>');
 	        redirect('publications/show/'.$attachment->pub_id);
         }
 	    
@@ -267,7 +267,7 @@ class Attachments extends Controller {
         if (!$success) {
             //might happen, e.g. if upload fails due to post size limits, upload size limits, etc.
             //or illegal attachment extensions etc.
-            appendErrorMessage("Commit attachment: an error occurred. Please contact your Aigaion administrator.<br>"); 
+            appendErrorMessage("Commit attachment: an error occurred. Please contact your Aigaion administrator.<br/>"); 
             redirect('publications/show/'.$attachment->pub_id);
         }
         //redirect somewhere if commit was successfull

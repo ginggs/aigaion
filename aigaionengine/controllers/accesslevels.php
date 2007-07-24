@@ -56,7 +56,7 @@ class Accesslevels extends Controller {
         }
         //publication null: redirect with error
         if ($publication==null) {
-            appendErrorMessage("Couldn't find publication to edit access levels<br>");
+            appendErrorMessage("Couldn't find publication to edit access levels<br/>");
             redirect('');
         }
         

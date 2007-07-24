@@ -232,7 +232,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('publication_edit'))
             ) {
-	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
+	        appendErrorMessage('Categorize publication: insufficient rights.<br/>');
 	        return;
         }
         $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
@@ -246,7 +246,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('publication_edit'))
             ) {
-	        appendErrorMessage('Categorize publication: insufficient rights.<br>');
+	        appendErrorMessage('Categorize publication: insufficient rights.<br/>');
 	        return;
         }
         $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
@@ -260,7 +260,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
             ) {
-	        appendErrorMessage('Change subscription: insufficient rights.<br>');
+	        appendErrorMessage('Change subscription: insufficient rights.<br/>');
 	        return;
         }
         $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
@@ -274,7 +274,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
             ) {
-	        appendErrorMessage('Change subscription: insufficient rights.<br>');
+	        appendErrorMessage('Change subscription: insufficient rights.<br/>');
 	        return;
         }
         $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
@@ -290,7 +290,7 @@ class Topic_db {
                 (!$userlogin->hasRights('topic_edit'))
             ) 
         {
-	        appendErrorMessage('Add topic: insufficient rights.<br>');
+	        appendErrorMessage('Add topic: insufficient rights.<br/>');
 	        return;
         }        
         $fields = array('name'=>$topic->name,
@@ -318,7 +318,7 @@ class Topic_db {
     function update($topic) {
         $CI = &get_instance();
         if ($topic->topic_id==1) {
-            appendErrorMessage("You cannot edit the top level topic<br>");
+            appendErrorMessage("You cannot edit the top level topic<br/>");
             return;
         }
 
@@ -335,7 +335,7 @@ class Topic_db {
                 (!$CI->accesslevels_lib->canEditObject($topic_testrights))
             ) 
         {
-	        appendErrorMessage('Edit topic: insufficient rights.<br>');
+	        appendErrorMessage('Edit topic: insufficient rights.<br/>');
 	        return;
         }
         
@@ -344,14 +344,14 @@ class Topic_db {
     	$nexttopic_id = $topic->parent_id;
     	while ($nexttopic_id != 1) {
     		if ($nexttopic_id == $topic->topic_id) {
-    			appendErrorMessage("You cannot set a topic to be its own ancestor.<br>");
+    			appendErrorMessage("You cannot set a topic to be its own ancestor.<br/>");
     			return False;
     		}
     		$res = mysql_query("SELECT target_topic_id FROM topictopiclink WHERE source_topic_id=$nexttopic_id");
     		if ($res && $row=mysql_fetch_array($res)) {
     			$nexttopic_id = $row["target_topic_id"];
     		} else {
-    			appendErrorMessage("Error in the tree structure: the intended new parent is not connected to the top level topic.<br>");
+    			appendErrorMessage("Error in the tree structure: the intended new parent is not connected to the top level topic.<br/>");
     			return False;
     		}
     	}

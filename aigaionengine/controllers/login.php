@@ -103,14 +103,14 @@ class Login extends Controller {
     */
     function anonymous() {
         if (getConfigurationSetting('ENABLE_ANON_ACCESS')!='TRUE') {
-            appendErrorMessage('Anonymous accounts are not enabled<br>');
+            appendErrorMessage('Anonymous accounts are not enabled<br/>');
             redirect('');
         }
         
         $user_id = $this->uri->segment(3,getConfigurationSetting('ANONYMOUS_USER'));
         $user = $this->user_db->getByID($user_id);
         if (($user==null)||(!$user->isAnonymous)) {
-            appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br>');
+            appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br/>');
             redirect('');
         }
         
@@ -122,7 +122,7 @@ class Login extends Controller {
         $result = $userlogin->loginAnonymous($user->user_id);
         $this->latesession->set('USERLOGIN', $userlogin);
         if (($result==1)||($result==2)) {
-            appendErrorMessage('Error logging in anonymous account<br>');
+            appendErrorMessage('Error logging in anonymous account<br/>');
         }
         redirect('');
     }

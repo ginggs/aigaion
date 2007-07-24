@@ -131,8 +131,8 @@ class Siteconfig_db {
         	#update value
         	mysql_query("UPDATE config SET value='".addslashes($value)."' WHERE setting='$setting'");
         	if (mysql_error()) {
-        		appendErrorMessage("Error updating config: <br>");
-        		appendErrorMessage(mysql_error()."<br>");
+        		appendErrorMessage("Error updating config: <br/>");
+        		appendErrorMessage(mysql_error()."<br/>");
         	}
 	        #reset cached config settings
 	        $CI = &get_instance();

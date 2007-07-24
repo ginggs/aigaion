@@ -48,7 +48,7 @@ as for the edit rights: they determine which edit links are shown.
     
     //always show note
     if ($attachment->note!='') {
-        echo "<br>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
+        echo "<br/>&nbsp;&nbsp;&nbsp;(".$attachment->note.")";
     }
 ?>
 <!-- End of single attachment displays -->

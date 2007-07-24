@@ -216,10 +216,10 @@ class PARSEENTRIES
 // Extract a field
 	function fieldSplit($seg)
 	{
-// echo "**** ";print_r($seg);echo "<BR>";
+// echo "**** ";print_r($seg);echo "<br/>";
 		// handle fields like another-field = {}
 		$array = preg_split("/,\s*([-_.:,a-zA-Z0-9]+)\s*={1}\s*/U", $seg, PREG_SPLIT_DELIM_CAPTURE);
-// echo "**** ";print_r($array);echo "<BR>";
+// echo "**** ";print_r($array);echo "<br/>";
 		//$array = preg_split("/,\s*(\w+)\s*={1}\s*/U", $seg, PREG_SPLIT_DELIM_CAPTURE);
 		if(!array_key_exists(1, $array))
 			return array($array[0], FALSE);
@@ -270,7 +270,7 @@ class PARSEENTRIES
 			$value = trim($value);
 			$this->entries[$this->count][$key] = $value;
 		}
-// echo "**** ";print_r($this->entries[$this->count]);echo "<BR>";
+// echo "**** ";print_r($this->entries[$this->count]);echo "<br/>";
 	}
 // Start splitting a bibtex entry into component fields.
 // Store the entry type and citation.
@@ -365,7 +365,7 @@ class PARSEENTRIES
 //    to simply escape with \": Quotes must be placed inside braces. 
 	function closingDelimiter($val,$delimitEnd)
 	{
-//  echo "####>$delimitEnd $val<BR>";
+//  echo "####>$delimitEnd $val<br/>";
 		$openquote = $bracelevel = $i = $j = 0; 
 		while ($i < strlen($val))
 		{

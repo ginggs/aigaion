@@ -29,7 +29,7 @@ class Site extends Controller {
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Configure database: insufficient rights.<br>');
+	        appendErrorMessage('Configure database: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -95,14 +95,14 @@ class Site extends Controller {
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Configure database: insufficient rights.<br>');
+	        appendErrorMessage('Configure database: insufficient rights.<br/>');
 	        redirect('');
         }
 
 	    $maintenance = $this->uri->segment(3,'');
 
 	    if ($maintenance != '') {
-	        appendMessage('Maintenance function '.$maintenance.' not implemented yet.<br>');
+	        appendMessage('Maintenance function '.$maintenance.' not implemented yet.<br/>');
 	    }
 
         //get output
@@ -122,6 +122,41 @@ class Site extends Controller {
         $this->output->set_output($output);
     }
     
+	/** 
+	site/backup
+	
+	Entry point for backup
+	
+	Fails with error message when one of:
+	    insufficient user rights
+
+	Paramaters:
+	    3rd segment: win|unix|mac  determines linebreaks
+	    
+	Returns:
+	    A sql file
+	*/
+	function backup()
+	{
+	    //check rights
+        $userlogin = getUserLogin();
+        if (    (!$userlogin->hasRights('database_manage'))
+            ) 
+        {
+	        appendErrorMessage('Backup database: insufficient rights.<br/>');
+	        redirect('');
+        }
+
+	    $type = $this->uri->segment(3,'win');
+	    if (!in_array($type,array('win','unix','mac'))) {
+	        $type = 'win';
+	    }
+
+        $this->load->helper('backup');
+        $this->load->helper('download');
+        $data = getDatabaseBackup($type); // Read the file's contents
+        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $data);
+    }
 
 }
 ?>

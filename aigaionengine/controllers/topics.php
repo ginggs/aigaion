@@ -37,7 +37,7 @@ class Topics extends Controller {
                         );
         $root = $this->topic_db->getByID($root_id, $config);
         if ($root == null) {
-            appendErrorMessage( "Browse topics: no valid topic ID provided<br>");
+            appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
             redirect('');
         }
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
@@ -84,7 +84,7 @@ class Topics extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($topic==null) {
-	        appendErrorMessage('Delete topic: non existing topic specified.<br>');
+	        appendErrorMessage('Delete topic: non existing topic specified.<br/>');
 	        redirect('');
 	    }
 
@@ -97,7 +97,7 @@ class Topics extends Controller {
                 !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
-	        appendErrorMessage('Delete topic: insufficient rights.<br>');
+	        appendErrorMessage('Delete topic: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -135,7 +135,7 @@ class Topics extends Controller {
         if (    (!$userlogin->hasRights('topic_edit'))
             ) 
         {
-	        appendErrorMessage('Add topic: insufficient rights.<br>');
+	        appendErrorMessage('Add topic: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -166,7 +166,7 @@ class Topics extends Controller {
       $topic = $this->topic_db->getByID($topic_id,$config);
 
 	    if ($topic==null) {
-	        appendErrorMessage('Topic does not exist.<br>');
+	        appendErrorMessage('Topic does not exist.<br/>');
 	        redirect('');
 	    }
         	    
@@ -181,7 +181,7 @@ class Topics extends Controller {
                 !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
-	        appendErrorMessage('Edit topic: insufficient rights.<br>');
+	        appendErrorMessage('Edit topic: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -215,7 +215,7 @@ class Topics extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
 
 	    if ($topic==null) {
-	        appendErrorMessage('Topic does not exist.<br>');
+	        appendErrorMessage('Topic does not exist.<br/>');
 	        redirect('topics/browse');
 	    }
 	    
@@ -322,7 +322,7 @@ class Topics extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit topic: an error occurred. Please contact your Aigaion administrator.<br>");
+                appendErrorMessage("Commit topic: an error occurred. Please contact your Aigaion administrator.<br/>");
                 redirect('topics/single/'.$topic->topic_id);
             }
             //redirect somewhere if commit was successfull

@@ -22,6 +22,9 @@ $userlogin  = getUserLogin();
         }
     }
     echo $user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")";
+    if ($user->isAnonymous) {
+        echo ' (guest user)';
+    }
 
 ?>
 </div>

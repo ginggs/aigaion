@@ -42,7 +42,7 @@ class Notes extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($note==null) {
-	        appendErrorMessage('Delete note: non existing note specified.<br>');
+	        appendErrorMessage('Delete note: non existing note specified.<br/>');
 	        redirect('');
 	    }
 
@@ -55,7 +55,7 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($note)        
             ) 
         {
-	        appendErrorMessage('Delete note: insufficient rights.<br>');
+	        appendErrorMessage('Delete note: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -102,7 +102,7 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)
             ) 
         {
-	        appendErrorMessage('Add note: insufficient rights.<br>');
+	        appendErrorMessage('Add note: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -134,7 +134,7 @@ class Notes extends Controller {
         $note = $this->note_db->getByID($note_id);
 
 	    if ($note==null) {
-	        appendErrorMessage('Note does not exist.<br>');
+	        appendErrorMessage('Note does not exist.<br/>');
 	        redirect('');
 	    }
 
@@ -146,7 +146,7 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($note)
             ) 
         {
-	        appendErrorMessage('Edit note: insufficient rights.<br>');
+	        appendErrorMessage('Edit note: insufficient rights.<br/>');
 	        redirect('');
         }
                 	    
@@ -236,7 +236,7 @@ class Notes extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit note: an error occurred. Please contact your Aigaion administrator.<br>");
+                appendErrorMessage("Commit note: an error occurred. Please contact your Aigaion administrator.<br/>");
                 redirect ('publications/show/'.$note->pub_id);
             }
             //redirect somewhere if commit was successfull

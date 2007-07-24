@@ -1,16 +1,12 @@
-CHANGES TO DATABASE
 
-still need to be processed in a checkschema
-voer deze dingen in volgorde uit...
-
----table 'topic' => hernoem tot table 'topics'
+---table 'topic' => rename to table 'topics'
 ALTER TABLE `topic` RENAME TO `topics`;
----col 'topics.ID' => hernoem tot 'topics.topic_id'
+---col 'topics.ID' => rename to 'topics.topic_id'
 ALTER TABLE `topics` CHANGE COLUMN `ID` `topic_id` INT(10) NOT NULL AUTO_INCREMENT;
 
----table 'person' => hernoem tot table 'users'
+---table 'person' => rename to table 'users'
 ALTER TABLE `person` RENAME TO `users`;
----col 'users.ID' => hernoem tot 'users.user_id'
+---col 'users.ID' => rename to 'users.user_id'
 ALTER TABLE `users` CHANGE COLUMN `ID` `user_id` INT(10) NOT NULL AUTO_INCREMENT;
 ---add col 'users.type' (enum('group','anon','normal')
 ALTER TABLE `users` ADD COLUMN `type` ENUM('group','anon','normal') NOT NULL DEFAULT 'normal' AFTER `lastreviewedtopic`;
@@ -240,6 +236,27 @@ DELETE FROM availablerights WHERE
 UPDATE availablerights SET name='note_edit' WHERE name='note_edit_self';
 
 UPDATE topics SET read_access_level='public',derived_read_access_level='public' where topic_id=1;
+
+-- some default rights profiles that seem to make sense
+INSERT INTO rightsprofiles VALUES ('2', 'editor_rights');
+INSERT INTO rightsprofiles VALUES ('3', 'guest_rights');
+INSERT INTO rightsprofiles VALUES ('4', 'admin_rights');
+INSERT INTO rightsprofiles VALUES ('5', 'reader_rights');
+-- Insert rightsprofilerightlink data
+INSERT INTO rightsprofilerightlink VALUES ('2', 'attachment_edit');
+INSERT INTO rightsprofilerightlink VALUES ('2', 'note_edit');
+INSERT INTO rightsprofilerightlink VALUES ('2', 'publication_edit');
+INSERT INTO rightsprofilerightlink VALUES ('2', 'topic_edit');
+INSERT INTO rightsprofilerightlink VALUES ('2', 'user_edit_self');
+INSERT INTO rightsprofilerightlink VALUES ('4', 'database_manage');
+INSERT INTO rightsprofilerightlink VALUES ('4', 'edit_all_override');
+INSERT INTO rightsprofilerightlink VALUES ('4', 'read_all_override');
+INSERT INTO rightsprofilerightlink VALUES ('4', 'user_assign_rights');
+INSERT INTO rightsprofilerightlink VALUES ('4', 'user_edit_all');
+INSERT INTO rightsprofilerightlink VALUES ('5', 'attachment_read');
+INSERT INTO rightsprofilerightlink VALUES ('5', 'note_read');
+INSERT INTO rightsprofilerightlink VALUES ('5', 'topic_subscription');
+INSERT INTO rightsprofilerightlink VALUES ('5', 'bookmarklist');
 
 ---still to be done:
 

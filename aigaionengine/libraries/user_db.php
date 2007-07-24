@@ -129,6 +129,16 @@ class User_db {
         }
         return $result;
     }
+    /** Return all non-anonymous Users from the database. */
+    function getAllNormalUsers() {
+        $CI = &get_instance();
+        $result = array();
+        $Q = $CI->db->query("SELECT * from users WHERE type='normal'");
+        foreach ($Q->result() as $R) {
+            $result[] = $this->getFromRow($R);
+        }
+        return $result;
+    }
 
 
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
@@ -253,7 +263,7 @@ class User_db {
                 $siteconfig = $CI->siteconfig_db->getSiteConfig();
                 $siteconfig->configSettings['ANONYMOUS_USER'] = '';
                 $siteconfig->update();
-                appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br>");
+                appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br/>");
             }
         }
 
@@ -301,9 +311,9 @@ class User_db {
             $CI->latesession->set('USERLOGIN', $userlogin);
             if ($userlogin->hasRights("user_assign_rights")) {
     	        if (!in_array("user_assign_rights",$user->assignedrights)) {
-    	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br>");
+    	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br/>");
     	        }
-    	        appendMessage("Profile updated, changes to rights of users are applied after the user has logged in again.<br>");
+    	        appendMessage("Profile updated, changes to rights of users are applied after the user has logged in again.<br/>");
     	    }
         }
         return True;

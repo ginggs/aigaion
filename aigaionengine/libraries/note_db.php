@@ -107,7 +107,7 @@ class Note_db {
                 (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
-	        appendErrorMessage('Add note: insufficient rights.<br>');
+	        appendErrorMessage('Add note: insufficient rights.<br/>');
 	        return;
         }        
         //add new note
@@ -146,7 +146,7 @@ class Note_db {
                 (!$CI->accesslevels_lib->canEditObject($note_testrights))
             )
         {
-	        appendErrorMessage('Edit note: insufficient rights.<br>');
+	        appendErrorMessage('Edit note: insufficient rights.<br/>');
 	        return;
         }
         
@@ -196,7 +196,7 @@ class Note_db {
                                                  "note_id=".$R->note_id)
                                       );
         		if (mysql_error()) {
-        		    appendErrorMessage("Failed to update the bibtex-id in note ".$R->note_id.": <br>");
+        		    appendErrorMessage("Failed to update the bibtex-id in note ".$R->note_id.": <br/>");
             	}
             }
         }

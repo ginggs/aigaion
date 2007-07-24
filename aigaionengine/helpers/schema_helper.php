@@ -45,7 +45,7 @@
                     if (getConfigurationSetting('SERVER_NOT_WRITABLE')!='TRUE') {
                         //do backup, store in attachment dir
                         appendErrorMessage("Actually, we should still do a forced database backup saved in a 
-                                            safe place on the server before performing the actual update code.<br>");
+                                            safe place on the server before performing the actual update code.<br/>");
                     }
                     $CI->load->helper('schema_updates_v2');
                     return updateSchemaV2_0();

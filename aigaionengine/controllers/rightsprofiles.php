@@ -77,7 +77,7 @@ class Rightsprofiles extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights'))
             ) 
         {
-	        appendErrorMessage('Add rights profile: insufficient rights.<br>');
+	        appendErrorMessage('Add rights profile: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -135,7 +135,7 @@ class Rightsprofiles extends Controller {
                 !$userlogin->hasRights('user_assign_rights')
             ) 
         {
-	        appendErrorMessage('Edit rights profile: insufficient rights.<br>');
+	        appendErrorMessage('Edit rights profile: insufficient rights.<br/>');
 	        redirect('');
         }
 	    
@@ -184,14 +184,14 @@ class Rightsprofiles extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($rightsprofile==null) {
-	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br>\n');
+	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br/>\n');
 	        redirect('');
 	    }
 	    //check user rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) || !$userlogin->hasRights('user_assign_rights'))
         {
-	        appendErrorMessage('Delete rights profile: insufficient rights.<br>');
+	        appendErrorMessage('Delete rights profile: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -254,7 +254,7 @@ class Rightsprofiles extends Controller {
                 !$userlogin->hasRights('user_assign_rights')
             ) 
         {
-	        appendErrorMessage('Edit rights profile: insufficient rights.<br>');
+	        appendErrorMessage('Edit rights profile: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -300,7 +300,7 @@ class Rightsprofiles extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit rightsprofile: an error occurred. Please contact your Aigaion administrator.<br>");
+                appendErrorMessage("Commit rightsprofile: an error occurred. Please contact your Aigaion administrator.<br/>");
                 redirect('users/manage');
             }
             //redirect somewhere if commit was successfull

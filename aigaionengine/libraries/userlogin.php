@@ -73,9 +73,9 @@ class UserLogin {
                 $CI = &get_instance();
                 $CI->latesession->set('USERLOGIN', $this);
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
-                                  process of being updated.<br> If you are a user with 
+                                  process of being updated.<br/> If you are a user with 
                                   database_manage rights, please login to complete the update. 
-                                  <br>";
+                                  <br/>";
             }
         }            
         return False;
@@ -126,7 +126,7 @@ class UserLogin {
             return true;
         } else {
             echo "<div class='errormessage'>You do not have sufficient rights for the requested 
-            operation or page. <br>Sorry for the inconvenience.</div>";
+            operation or page. <br/>Sorry for the inconvenience.</div>";
             die();
             return false;
         }
@@ -137,7 +137,7 @@ class UserLogin {
     (for example because the condition is more than just one simple boolean check). */
     function failRights() {
         echo "<div class='errormessage'>You do not have sufficient rights for the requested 
-        operation or page. <br>Sorry for the inconvenience.</div>";
+        operation or page. <br/>Sorry for the inconvenience.</div>";
         die();
         return false;
     }
@@ -499,9 +499,9 @@ class UserLogin {
             if (!checkSchema()) { //checkSchema will also attempt to login...
                 $this->logout();
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
-                                  process of being updated.<br> If you are a user with 
+                                  process of being updated.<br/> If you are a user with 
                                   database_manage rights, please login to complete the update. 
-                                  <br>";
+                                  <br/>";
                 return 2;
             }
             $this->initPreferences();

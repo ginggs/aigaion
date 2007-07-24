@@ -34,7 +34,7 @@ class Users extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Manage accounts: insufficient rights.<br>');
+	        appendErrorMessage('Manage accounts: insufficient rights.<br/>');
 	        redirect('');
         }
 	    
@@ -46,10 +46,18 @@ class Users extends Controller {
         $output = $this->load->view('header', $headerdata, true);
 
         $output .= "
-            <p class='header1'>Users</p>
+            <p class='header'>Users</p>
             <ul>
             ";
-        $users = $this->user_db->getAllUsers();
+        $users = $this->user_db->getAllNormalUsers();
+        
+        foreach ($users as $user) {
+            $output .= "<li>".$this->load->view('users/summary',
+                                          array('user'   => $user),  
+                                          true)."</li>";
+        }
+        
+        $users = $this->user_db->getAllAnonUsers();
         
         foreach ($users as $user) {
             $output .= "<li>".$this->load->view('users/summary',
@@ -59,7 +67,7 @@ class Users extends Controller {
         $output .= "</ul>\n".anchor('users/add','[add a new user]')."\n";
 
         $output .= "
-            <p class='header1'>Groups</p>
+            <br/><br/><p class='header'>Groups</p>
             <ul>
             ";
         $groups = $this->group_db->getAllGroups();
@@ -73,7 +81,7 @@ class Users extends Controller {
 
 
         $output .= "
-            <p class='header1'>Rights profiles</p>
+            <br/><br/><p class='header'>Rights profiles</p>
             <ul>
             ";
         $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
@@ -155,7 +163,7 @@ class Users extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Add user: insufficient rights.<br>');
+	        appendErrorMessage('Add user: insufficient rights.<br/>');
 	        redirect('');
         }
 	    
@@ -213,7 +221,7 @@ class Users extends Controller {
                 (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
             ) 
         {
-	        appendErrorMessage('Edit account: insufficient rights.<br>');
+	        appendErrorMessage('Edit account: insufficient rights.<br/>');
 	        redirect('');
         }
 	    	    
@@ -263,7 +271,7 @@ class Users extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($user==null) {
-	        appendErrorMessage('Delete user: non existing user specified.<br>\n');
+	        appendErrorMessage('Delete user: non existing user specified.<br/>\n');
 	        redirect('');
 	    }
 
@@ -271,7 +279,7 @@ class Users extends Controller {
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) )
         {
-	        appendErrorMessage('Delete account: insufficient rights.<br>');
+	        appendErrorMessage('Delete account: insufficient rights.<br/>');
 	        redirect('');
         }
 
@@ -332,7 +340,7 @@ class Users extends Controller {
                 (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
             ) 
         {
-	        appendErrorMessage('Edit account: insufficient rights.<br>');
+	        appendErrorMessage('Edit account: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -387,7 +395,7 @@ class Users extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit user: an error occurred at '".$this->input->post('action')."'. Please contact your Aigaion administrator.<br>");
+                appendErrorMessage("Commit user: an error occurred at '".$this->input->post('action')."'. Please contact your Aigaion administrator.<br/>");
                 redirect ('');
             }
             //redirect somewhere if commit was successfull
@@ -417,7 +425,7 @@ class Users extends Controller {
 	    $user = $this->user_db->getByID($user_id);
 	    
 	    if ($user==null) {
-	        appendErrorMessage('Topic review: invalid user_id specified.<br>\n');
+	        appendErrorMessage('Topic review: invalid user_id specified.<br/>\n');
 	        redirect('');
 	    }
 	    
@@ -431,7 +439,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br>');
+	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
 	        redirect('');
         }
         
@@ -449,7 +457,7 @@ class Users extends Controller {
         $root = $this->topic_db->getByID(1,$config);
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
         $output .= "<p class='header1'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
-        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br/>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
@@ -507,7 +515,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        echo 'Topic subscription: insufficient rights.<br>';
+	        echo 'Topic subscription: insufficient rights.<br/>';
 	        return;
         }
 
@@ -568,7 +576,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        echo 'Topic subscription: insufficient rights.<br>';
+	        echo 'Topic subscription: insufficient rights.<br/>';
 	        return;
         }
         
