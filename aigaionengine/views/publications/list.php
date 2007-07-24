@@ -7,6 +7,7 @@
 <?php
   }
   $multipagelinks='';
+  //this block of code is used to display the multi-page-links. See the publications/showlist controller for how to use this - and make sure you set all parameters used there!
   if (isset($multipage) && ($multipage == True)) {
     $page=-1;
     $liststyle = $userlogin->getPreference('liststyle');

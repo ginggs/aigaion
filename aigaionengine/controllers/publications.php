@@ -75,7 +75,10 @@ class Publications extends Controller {
         
         $userlogin = getUserLogin();
         $content['header']          = 'All publications';
+        
+        
         if ($userlogin->getPreference('liststyle')>0) {
+            //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
             $content['resultcount']     = $this->publication_db->getCountForTopic('1');
             $content['currentpage']     = $page;
