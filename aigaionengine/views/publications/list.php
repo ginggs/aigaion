@@ -20,7 +20,7 @@
             if ($page!=$currentpage) {
                 $multipagelinks.= anchor($multipageprefix.$page,$linktext);
             } else {
-                $multipagelinks.= $linktext;
+                $multipagelinks.= '<b>'.$linktext.'</b>';
             }
         }
         $multipagelinks.= ' |</div></center><br/>';

@@ -164,6 +164,7 @@ if ($userlogin->hasRights('user_edit_all')) {
 
         
 if ($userlogin->hasRights('user_assign_rights')) {
+    $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
         echo "   
     
             <tr><td colspan='2'>
@@ -171,32 +172,59 @@ if ($userlogin->hasRights('user_assign_rights')) {
             </td></tr>
             
             <tr>
-            <td>Check all rights from the following rights profile</td>
+            <td>Check all rights:</td>
             <td>
             ";
-            
+    echo $this->ajax->button_to_function('Check all', "selectAllRights();");
+    
+    echo "
+            </td>
+            </tr>
+
+            <tr>
+            <td>Uncheck all rights:</td>
+            <td>
+            ";
+    echo $this->ajax->button_to_function('Uncheck all', "deselectAllRights();");
+    
+    echo "
+            </td>
+            </tr>
+
+            <tr>
+            <td>Check all rights from:</td>
+            <td>
+            ";
     $options = array();
-    foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
-        $options[$profile->rightsprofile_id] = $profile->name;
+    foreach ($rightsprofiles as $profile) {
+        $options[$profile->name] = $profile->name;
     }
-    echo form_dropdown('checkrightsprofile', $options);
-    echo "[button to submit asynch request which will receive a script that updates the rights elements]";
+    echo form_dropdown('checkrightsprofile', $options,null,"onchange='selectProfile();' id='checkrightsprofile'");
     
     echo "
             </td>
             </tr>
             
             <tr>
-            <td>Uncheck all rights from the following rights profile</td>
+            <td>Uncheck all rights from:</td>
             <td>
             ";
             
     $options = array();
-    foreach ($this->rightsprofile_db->getAllRightsprofiles() as $profile) {
-        $options[$profile->rightsprofile_id] = $profile->name;
+    foreach ($rightsprofiles as $profile) {
+        $options[$profile->name] = $profile->name;
     }
-    echo form_dropdown('uncheckrightsprofile', $options);
-    echo "[button to submit asynch request which will receive a script that updates the rights elements]";
+    echo form_dropdown('uncheckrightsprofile', $options,null,"onchange='deselectProfile();'  id='uncheckrightsprofile'");
+    
+    echo "
+            </td>
+            </tr>
+            
+            <tr>
+            <td>Restore old state:</td>
+            <td>
+            ";
+    echo $this->ajax->button_to_function('Restore', "restoreRights();");
     
     echo "
             </td>
@@ -210,8 +238,22 @@ if ($userlogin->hasRights('user_assign_rights')) {
             //list all userrights as checkboxes
             foreach (getAvailableRights() as $right=>$description) {
                 $checked = FALSE;
-                if (in_array($right,$user->assignedrights)) $checked=TRUE;
-                echo "<tr><td>".form_checkbox($right, $right, $checked).$right."</td><td>".$description."</td></tr>";
+                if (in_array($right,$user->assignedrights)) {
+                    $checked=TRUE;
+                }
+                $classes = 'rightbox';
+                foreach ($rightsprofiles as $profile) {
+                    if (in_array($right,$profile->rights)) {
+                        $classes .= ' '.$profile->name;
+                    }
+                }
+                if ($checked) {
+                    $classes .= ' rightbox_on';
+                } else {
+                    $classes .= ' rightbox_off';
+                }
+                $data=array('name'=>$right,'id'=>$right,'value'=>$right,'checked'=>$checked,'class'=>$classes);
+                echo "<tr><td>".form_checkbox($data).$right."</td><td>".$description."</td></tr>";
             }
 }
 

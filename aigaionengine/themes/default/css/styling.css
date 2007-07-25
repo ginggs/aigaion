@@ -48,7 +48,7 @@ td, table, tr, tbody {
 html, body, p, td, input, textarea, select {
     font-family     : Verdana, Arial, Helvetica, Sans-serif;
     font-size       : 10px;    
-	font-color      : #000022;
+	color      : #000022;
 }
 
 /* default font color for entire body */
@@ -169,14 +169,14 @@ li.mainmenu-spacer {
     margin          : 1em;
     padding         : 1em;
     background-color: #E0E0E0;
-    border-style    : solid 1px #DDDDDD;
+    border          : solid 1px #DDDDDD;
 }
 .errormessage {
     font-size       : 90%;
     margin          : 1em;
     padding         : 1em;
     background-color: #EE6666;
-    border-style    : solid 1px #DDDDDD;
+    border          : solid 1px #DDDDDD;
 }
 
 /* ==== FORMS ==== */
