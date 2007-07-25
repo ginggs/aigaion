@@ -9,19 +9,24 @@
   $multipagelinks='';
   //this block of code is used to display the multi-page-links. See the publications/showlist controller for how to use this - and make sure you set all parameters used there!
   if (isset($multipage) && ($multipage == True)) {
-    $page=-1;
+    $page=0;
     $liststyle = $userlogin->getPreference('liststyle');
     if ($liststyle>0) {
         $multipagelinks.= '<center><div>';
         while ($page*$liststyle<$resultcount) {
-            $page++;
             $multipagelinks.= ' | ';
-            $linktext = ($page*$liststyle+1).'-'.(($page+1)*$liststyle);
+            $linktext = ($page*$liststyle+1).'-';
+            if (($page+1)*$liststyle>$resultcount) {
+                $linktext .= $resultcount;
+            } else {
+                $linktext .= (($page+1)*$liststyle);
+            }
             if ($page!=$currentpage) {
                 $multipagelinks.= anchor($multipageprefix.$page,$linktext);
             } else {
                 $multipagelinks.= '<b>'.$linktext.'</b>';
             }
+            $page++;
         }
         $multipagelinks.= ' |</div></center><br/>';
     }

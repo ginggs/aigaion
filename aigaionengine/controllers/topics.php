@@ -208,12 +208,13 @@ class Topics extends Controller {
 	function single()
 	{
 	    $topic_id = $this->uri->segment(3,1);
+        $page   = $this->uri->segment(4,0);
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
         $config=array();
         $topic = $this->topic_db->getByID($topic_id,$config);
-
+        $userlogin=getUserLogin();
 	    if ($topic==null) {
 	        appendErrorMessage('Topic does not exist.<br/>');
 	        redirect('topics/browse');
@@ -231,7 +232,14 @@ class Topics extends Controller {
         
         $content['topic']           = $topic;
         $content['header']          = "Publications for topic: ".$topic->name;
-        $content['publications']    = $this->publication_db->getForTopic($topic_id);
+        if ($userlogin->getPreference('liststyle')>0) {
+            //set these parameters when you want to get a good multipublication list display
+            $content['multipage']       = True;
+            $content['resultcount']     = $this->publication_db->getCountForTopic($topic_id);
+            $content['currentpage']     = $page;
+            $content['multipageprefix'] = 'topics/single/'.$topic_id.'/';
+        }
+        $content['publications']    = $this->publication_db->getForTopic($topic_id,$page);
         
         $output = $this->load->view('header', $headerdata, true);
 
