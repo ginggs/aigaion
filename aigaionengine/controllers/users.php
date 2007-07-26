@@ -173,7 +173,7 @@ class Users extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js','rightsprofiles.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
