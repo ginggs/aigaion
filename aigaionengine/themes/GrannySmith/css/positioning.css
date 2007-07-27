@@ -7,10 +7,10 @@ body {
   text-align      : left;
   
   width           : 80em;
-  min-width       : 400px;
-  max-width       : 1000px;
+  min-width       : 40em;
+  max-width       : 100em;
 
-  min-height      : 600px;
+  min-height      : 60em;
 }
 
 #header_holder {

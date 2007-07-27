@@ -258,6 +258,11 @@ INSERT INTO rightsprofilerightlink VALUES ('5', 'note_read');
 INSERT INTO rightsprofilerightlink VALUES ('5', 'topic_subscription');
 INSERT INTO rightsprofilerightlink VALUES ('5', 'bookmarklist');
 
+
+-- 2007-07-26
+-- enlarge surname field, esp. for groups (they tend to get longer names)
+ALTER TABLE `users` MODIFY COLUMN `surname` VARCHAR(100) DEFAULT NULL;
+
 ---still to be done:
 
 ---enlarge the 'series' field

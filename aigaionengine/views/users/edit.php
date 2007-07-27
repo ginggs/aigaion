@@ -195,7 +195,7 @@ if ($userlogin->hasRights('user_assign_rights')) {
             <td>Check all rights from:</td>
             <td>
             ";
-    $options = array();
+    $options = array(''=>'');
     foreach ($rightsprofiles as $profile) {
         $options[$profile->name] = $profile->name;
     }
@@ -210,10 +210,6 @@ if ($userlogin->hasRights('user_assign_rights')) {
             <td>
             ";
             
-    $options = array();
-    foreach ($rightsprofiles as $profile) {
-        $options[$profile->name] = $profile->name;
-    }
     echo form_dropdown('uncheckrightsprofile', $options,null,"onchange='deselectProfile();'  id='uncheckrightsprofile'");
     
     echo "

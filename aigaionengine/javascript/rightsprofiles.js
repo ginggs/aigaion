@@ -14,6 +14,7 @@ function selectAllRights() {
 }
 function deselectProfile() {
     var dropdown = $('uncheckrightsprofile');
+    if (dropdown.value=='')return;
     var rights = $$('.'+dropdown.value);
     for(var c = 0; c < rights.length; c++)
     {
@@ -22,6 +23,7 @@ function deselectProfile() {
 }
 function selectProfile() {
     var dropdown = $('checkrightsprofile');
+    if (dropdown.value=='')return;
     var rights = $$('.'+dropdown.value);
     for(var c = 0; c < rights.length; c++)
     {
