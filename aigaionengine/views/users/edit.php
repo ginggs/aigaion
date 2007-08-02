@@ -150,7 +150,7 @@ if ($userlogin->hasRights('user_edit_all')) {
         <tr><td colspan='2'>
         <hr><b>Groups:</b><hr>
         The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
-        all rights associated with that group will be appended to the user rights of this user.
+        all rights associated with that group will be appended to the user rights of this user upon commit.
         </td></tr>
         ";
         

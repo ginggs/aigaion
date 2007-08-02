@@ -112,10 +112,11 @@ class UserLogin {
     
     /** Initializes the cached rights from the database. Always called just after login. */
     function initRights() {
+        $CI = &get_instance();
         $this->rights = array();
-        $Q = mysql_query("SELECT * FROM userrights WHERE user_id={$this->iUserId}");
-        while ($R=mysql_fetch_array($Q)) {
-            $this->rights[] = $R["right_name"];
+        $Q = $CI->db->query("SELECT * FROM userrights WHERE user_id={$this->iUserId}");
+        foreach ($Q->result() as $R) {
+            $this->rights[] = $R->right_name;
         }
     }
     
@@ -158,25 +159,25 @@ class UserLogin {
     /** Initialize the preferences. Note: this method should also be called if the preferences
     have changed. */
     function initPreferences() {
+        $CI = &get_instance();
         //right now, I just enumerate all relevant preferences from the user-table
         $nonprefs=array("password");
         $this->preferences = array();
-        $Q = mysql_query("SELECT * FROM users WHERE user_id={$this->iUserId}");
-        if ($Q) {
-            if ($R = mysql_fetch_array($Q)) {
-                //where needed, interpret setting as other than string
-                foreach ($R as $key=>$val) {
-                    if (!in_array($key ,$nonprefs)) {
-                        //some preferences must be slightly transformed here...
-                        if ($key=='theme') {
-                            if (!themeExists($val)) {
-                                appendErrorMessage("Theme '{$val}' no longer exists.<br/>");
-                                $val = "default";
-                            }
+        $Q = $CI->db->query("SELECT * FROM users WHERE user_id={$this->iUserId}");
+        if ($Q->num_rows()>0) {
+            $R = $Q->row_array();
+            //where needed, interpret setting as other than string
+            foreach ($R as $key=>$val) {
+                if (!in_array($key ,$nonprefs)) {
+                    //some preferences must be slightly transformed here...
+                    if ($key=='theme') {
+                        if (!themeExists($val)) {
+                            appendErrorMessage("Theme '{$val}' no longer exists.<br/>");
+                            $val = "default";
                         }
-                        //store preference in object
-                        $this->preferences[$key]=$val;
                     }
+                    //store preference in object
+                    $this->preferences[$key]=$val;
                 }
             }
         }        

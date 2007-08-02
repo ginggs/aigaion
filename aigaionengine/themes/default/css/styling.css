@@ -131,6 +131,8 @@ body {
   border-style    : solid;
   border-width    : 0px 0px 1px 0px;
   border-color    : #E0E0E0;
+  decoration      : none;
+  color           : #000022;
 }
 
 #menu_holder, #content_holder, #footer_holder, #login_holder {

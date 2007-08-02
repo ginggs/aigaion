@@ -38,7 +38,14 @@
           echo form_close();
           ?>
         </div>  
-        <span id='page_title'>&nbsp;Aigaion 2.0</span>
+        <?php
+        if (getConfigurationSetting('USE_UPLOADED_LOGO')=='TRUE') {
+            //echo '<img border=0 style="height:100%;" src="'.AIGAION_ATTACHMENT_URL.'/custom_logo.jpg">';
+        }
+        ?>
+        &nbsp;<?php
+            echo anchor('','Aigaion 2.0','id="page_title"');
+        ?>
         
       </div>
       <!-- End of header -->

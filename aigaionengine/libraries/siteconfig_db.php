@@ -15,17 +15,15 @@ class Siteconfig_db {
         $CI = &get_instance();
         $result = new Siteconfig();
         $result->configSettings = array();
-        $Q = mysql_query("SELECT * FROM config");
-        if ($Q) {
-            while ($R = mysql_fetch_array($Q)) {
-                //where needed, interpret setting as other than string
-                if ($R["setting"] == "ALLOWED_ATTACHMENT_EXTENSIONS") {
-                    $value = split(",",$R["value"]);
-                } else {
-                    $value = $R["value"];
-                }
-                $result->configSettings[$R["setting"]]=$value;
+        $Q = $CI->db->query("SELECT * FROM config");
+        foreach ($Q->result() as $R) {
+            //where needed, interpret setting as other than string
+            if ($R->setting == "ALLOWED_ATTACHMENT_EXTENSIONS") {
+                $value = split(",",$R->value);
+            } else {
+                $value = $R->value;
             }
+            $result->configSettings[$R->setting]=$value;
         }
         return $result;
     }
@@ -73,6 +71,11 @@ class Siteconfig_db {
             $result->configSettings['SERVER_NOT_WRITABLE']          = 'FALSE';
         }
         $result->configSettings['WINDOW_TITLE']                     = $CI->input->post('WINDOW_TITLE');
+        if ($CI->input->post('USE_UPLOADED_LOGO')=='USE_UPLOADED_LOGO') {
+            $result->configSettings['USE_UPLOADED_LOGO']           = 'TRUE';
+        } else {
+            $result->configSettings['USE_UPLOADED_LOGO']           = 'FALSE';
+        }
         if ($CI->input->post('ALWAYS_INCLUDE_PAPERS_FOR_TOPIC')=='ALWAYS_INCLUDE_PAPERS_FOR_TOPIC') {
             $result->configSettings['ALWAYS_INCLUDE_PAPERS_FOR_TOPIC'] ='TRUE';
         } else {
@@ -96,6 +99,7 @@ class Siteconfig_db {
     /** commit the config settings embodied in the given data */
     function update($siteconfig) {
         $CI = &get_instance();
+        $CI->load->library('file_upload');
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('database_manage')
@@ -103,6 +107,7 @@ class Siteconfig_db {
                 return;
         }
         foreach ($siteconfig->configSettings as $setting=>$value) {
+            $CI = &get_instance();
             if ($setting == 'ALLOWED_ATTACHMENT_EXTENSIONS') {
             	#check allowed extensions: all extensions should be prefixed with a . and should be trimmed of spaces
             	$templist = array();
@@ -127,17 +132,50 @@ class Siteconfig_db {
             	$value = implode(',',$templist);
             }
         	#check existence of setting
-        	mysql_query("INSERT IGNORE INTO config (setting) VALUES ('$setting')");
+        	$CI->db->query("INSERT IGNORE INTO config (setting) VALUES ('$setting')");
         	#update value
-        	mysql_query("UPDATE config SET value='".addslashes($value)."' WHERE setting='$setting'");
+        	$CI->db->query("UPDATE config SET value='".addslashes($value)."' WHERE setting='$setting'");
         	if (mysql_error()) {
         		appendErrorMessage("Error updating config: <br/>");
         		appendErrorMessage(mysql_error()."<br/>");
         	}
-	        #reset cached config settings
-	        $CI = &get_instance();
-            $CI->latesession->set('SITECONFIG',null);
         }
+    	#upload (from post) new custom logo, if available
+        if (  ($siteconfig->configSettings['USE_UPLOADED_LOGO']=='TRUE') 
+            || (isset($_FILES['new_logo'])) ) {
+            $siteconfig->configSettings['USE_UPLOADED_LOGO']='TRUE';
+            $max_size = 1024*10; // the max. size for uploading
+            	
+            $my_upload = new File_upload;
+            $my_upload->upload_dir = AIGAION_ATTACHMENT_DIR.'/'; // "files" is the folder for the uploaded files (you have to create this folder)
+            $my_upload->extensions = array('.jpg');
+            $my_upload->max_length_filename = 100; // change this value to fit your field length in your database (standard 100)
+            $my_upload->rename_file = true;
+        	$my_upload->the_temp_file = $_FILES['new_logo']['tmp_name'];
+        	$my_upload->the_file = $_FILES['new_logo']['name'];
+        
+        	$my_upload->http_error = $_FILES['new_logo']['error'];
+        	if ($my_upload->http_error > 0) {
+        		appendErrorMessage("Error while uploading custom logo: ".$my_upload->error_text($my_upload->http_error));
+        	} else {
+    
+            	$my_upload->replace = "y";
+            	$my_upload->do_filename_check = "n"; // use this boolean to check for a valid filename
+            
+                if (!$my_upload->upload("custom_logo")) {
+                    //if failed: set to false again and give message? no, cause maybe there just was no file uploaded :)
+                    appendErrorMessage("Failed to upload custom logo. ".$my_upload->show_error_string().'<br/>' );
+                    //$USE_UPLOADED_LOGO = "FALSE";
+                } else {
+                    appendMessage("New logo uploaded<br/>");
+                }
+            }
+        } else {
+            appendMessage("No new logo<br/>".$siteconfig->configSettings['USE_UPLOADED_LOGO']);
+        }
+        #reset cached config settings
+        $CI = &get_instance();
+        $CI->latesession->set('SITECONFIG',null);
     }
 }
 ?>

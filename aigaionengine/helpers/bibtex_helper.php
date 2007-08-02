@@ -45,13 +45,13 @@
     function refreshBibtexIdLinks() {
         $CI = &get_instance();
         $bibtexidlinks = array();
-        $Q = mysql_query("SELECT pub_id, bibtex_id FROM publication");
-        while ($R = mysql_fetch_array($Q))
+        $Q = $CI->db->query("SELECT pub_id, bibtex_id FROM publication");
+        foreach ($Q->result() as $R)
         {
-            if ($R['bibtex_id'] != "")
-                $bibtexidlinks[$R['pub_id'] ] = array($R['bibtex_id'], "/\b(?<!\.)(".preg_quote($R['bibtex_id'], "/").")\b/");
+            if ($R->bibtex_id != "")
+                $bibtexidlinks[$R->pub_id ] = array($R->bibtex_id, "/\b(?<!\.)(".preg_quote($R->bibtex_id, "/").")\b/");
             else
-                $bibtexidlinks[$R['pub_id'] ] = "";
+                $bibtexidlinks[$R->pub_id ] = "";
         }
         $CI->latesession->set('BIBTEX_ID_LINKS',$bibtexidlinks);
         return $bibtexidlinks;

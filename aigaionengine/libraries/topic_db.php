@@ -347,9 +347,10 @@ class Topic_db {
     			appendErrorMessage("You cannot set a topic to be its own ancestor.<br/>");
     			return False;
     		}
-    		$res = mysql_query("SELECT target_topic_id FROM topictopiclink WHERE source_topic_id=$nexttopic_id");
-    		if ($res && $row=mysql_fetch_array($res)) {
-    			$nexttopic_id = $row["target_topic_id"];
+    		$Q = $CI->db->query("SELECT target_topic_id FROM topictopiclink WHERE source_topic_id=$nexttopic_id");
+    		if ($Q->num_rows()>0) {
+    		    $R = $Q->row();
+    			$nexttopic_id = $R->target_topic_id;
     		} else {
     			appendErrorMessage("Error in the tree structure: the intended new parent is not connected to the top level topic.<br/>");
     			return False;

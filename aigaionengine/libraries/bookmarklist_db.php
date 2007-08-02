@@ -14,7 +14,7 @@ class Bookmarklist_db {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
-        mysql_query("INSERT IGNORE INTO userbookmarklists (user_id,pub_id) VALUES (".$userlogin->userId().",".$pub_id.")");
+        $CI->db->query("INSERT IGNORE INTO userbookmarklists (user_id,pub_id) VALUES (".$userlogin->userId().",".$pub_id.")");
     	if (mysql_error()) {
     		appendErrorMessage("Error changing bookmarklist<br/>");
     	}
@@ -29,7 +29,7 @@ class Bookmarklist_db {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
-        mysql_query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId()." AND pub_id=".$pub_id);
+        $CI->db->query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId()." AND pub_id=".$pub_id);
     	if (mysql_error()) {
     		appendErrorMessage("Error changing bookmarklist<br/>");
     	}
@@ -43,7 +43,7 @@ class Bookmarklist_db {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
-        mysql_query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId());
+        $CI->db->query("DELETE FROM userbookmarklists WHERE user_id=".$userlogin->userId());
     	if (mysql_error()) {
     		appendErrorMessage("Error changing bookmarklist<br/>");
     	}

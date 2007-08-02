@@ -21,11 +21,11 @@ foreach ($note->xref_ids as $xref_id) {
 	$link = $bibtexidlinks[$xref_id];
 	//check whether the xref is present in the session var (should be). If not, try to correct the issue.
 	if ($link == "") {
-		$Q = mysql_query("SELECT bibtex_id FROM publication WHERE pub_id = ".$xref_id);
-		if (mysql_num_rows($Q) > 0) {
-			$R = mysql_fetch_array($Q);
-			if (trim($R['bibtex_id']) != "") {
-				$bibtexidlinks[$R[$xref_id] ] = array($R['bibtex_id'], "/\b(?<!\.)(".preg_quote($R['bibtex_id'], "/").")\b/");
+		$Q = $this->db->query("SELECT bibtex_id FROM publication WHERE pub_id = ".$xref_id);
+		if ($Q->num_rows() > 0) {
+			$R = $Q->row();
+			if (trim($R->bibtex_id) != "") {
+				$bibtexidlinks[$R[$xref_id] ] = array($R->bibtex_id, "/\b(?<!\.)(".preg_quote($R->bibtex_id, "/").")\b/");
 			}
 		}
 	}

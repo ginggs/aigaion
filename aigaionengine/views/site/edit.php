@@ -12,7 +12,7 @@ we assume that this view is not loaded if you don't have the appropriate databas
 */
 $this->load->helper('form');
 echo "<div class='editform'>";
-echo form_open('site/configure/commit');
+echo form_open_multipart('site/configure/commit');
 //formname is used to check whether the POST data is coming from the right form.
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
@@ -285,6 +285,36 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td align='left' colspan='2'></td>
 	    </tr>
+
+<?php
+#use uploaded logo?
+$checked = "";
+if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
+    $checked = "CHECKED";
+?>
+        <TR><TD>Use custom logo</TD>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('USE_UPLOADED_LOGO','USE_UPLOADED_LOGO',$siteconfig->getConfigSetting("USE_UPLOADED_LOGO")== "TRUE");
+?>
+            </td>
+        </TR>
+        <tr><td align=left colspan=2><img border=0 class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>If checked, you can 
+            specify a custom logo (below) to be used on the front page.</td></tr>
+        <tr><td>Current logo:</td>
+            <td>
+<?php
+    if (file_exists(AIGAION_ATTACHMENT_DIR.'/custom_logo.jpg')) {
+        echo '<img border=0 src="'.AIGAION_ATTACHMENT_URL.'/custom_logo.jpg">';
+    } else {
+        echo '&lt;no logo uploaded&gt;';
+    }
+?>
+            </td>
+        </tr>
+        <tr><td><label for='CUSTOM_LOGO'>Select a logo file...</label></td>
+            <td><input type='file' name='new_logo' size='30'/></td>
+        </tr>
 
 <!-- INPUT/OUTPUT SETTINGS -->
 	    <tr>
