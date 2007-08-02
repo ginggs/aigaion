@@ -340,23 +340,26 @@ class Accesslevels_lib {
         //1) set derived access levels for publication to same as normal access levels
         $readPublicationQ = $CI->db->query('SELECT * FROM publication WHERE pub_id='.$pub_id);
         $pubrow = $readPublicationQ->row();
-        $Q = $CI->db->query('UPDATE publication SET derived_read_access_level="'.$pubrow->read_access_level.'",derived_edit_access_level="'.$pubrow->edit_access_level.'" WHERE pub_id='.$pub_id);
+        $CI->db->where('pub_id', $pub_id);
+        $CI->db->update('publication', array('derived_read_access_level'=>$pubrow->read_access_level,'derived_edit_access_level'=>$pubrow->edit_access_level));
         //2) for attachments, maximize derived read at publication's read; maximize derived edit at attachment's derived read
         $readAttQ = $CI->db->query('SELECT * FROM attachments WHERE pub_id='.$pub_id);
         foreach ($readAttQ->result() as $attrow) {
             $att_der_read = $this->minAccessLevel(array($pubrow->read_access_level,$attrow->read_access_level));
             $att_der_edit = $this->minAccessLevel(array($att_der_read,$attrow->edit_access_level));
-            $updateAttQ = $CI->db->query('UPDATE attachments SET derived_read_access_level="'.$att_der_read.'",derived_edit_access_level="'.$att_der_edit.'" WHERE att_id='.$attrow->att_id);
+            $CI->db->where('att_id', $attrow->att_id);
+            $CI->db->update('attachments', array('derived_read_access_level'=>$att_der_read,'derived_edit_access_level'=>$att_der_edit));
         }
         //3) for notes, maximize derived read at publication's read; maximize derived edit at note's derived read
         $readNoteQ = $CI->db->query('SELECT * FROM notes WHERE pub_id='.$pub_id);
         foreach ($readNoteQ->result() as $noterow) {
             $note_der_read = $this->minAccessLevel(array($pubrow->read_access_level,$noterow->read_access_level));
             $note_der_edit = $this->minAccessLevel(array($note_der_read,$noterow->edit_access_level));
-            $updateNoteQ = $CI->db->query('UPDATE notes SET derived_read_access_level="'.$note_der_read.'",derived_edit_access_level="'.$note_der_edit.'" WHERE note_id='.$noterow->note_id);
+            $CI->db->where('note_id', $noterow->note_id);
+            $CI->db->update('notes', array('derived_read_access_level'=>$note_der_read,'derived_edit_access_level'=>$note_der_edit));
         }
         //don't forget to note which objects have become inaccessible......
-        appendMessage('Recalculated all effective access levels<br/>');
+        //appendMessage('Recalculated all effective access levels<br/>');
     }
     
     /** return the minimum access level from the given list */
@@ -375,12 +378,11 @@ class Accesslevels_lib {
         $publication->derived_read_access_level = 'intern';
         $publication->edit_access_level = 'intern';
         $publication->derived_edit_access_level = 'intern';
-        $Q = $CI->db->query("UPDATE publication 
-                                SET read_access_level='".$publication->read_access_level."',
-                                    derived_read_access_level='".$publication->derived_read_access_level."',
-                                    edit_access_level='".$publication->edit_access_level."',
-                                    derived_edit_access_level='".$publication->derived_edit_access_level."'
-                              WHERE pub_id=".$publication->pub_id);
+        $CI->db->where('pub_id', $publication->pub_id);
+        $CI->db->update('publication', array('read_access_level'=>$publication->read_access_level,
+                                             'derived_read_access_level'=>$publication->derived_read_access_level,
+                                             'edit_access_level'=>$publication->edit_access_level,
+                                             'derived_edit_access_level'=>$publication->derived_edit_access_level));
     }
     /** initialize the access levels for the given attachment. Note: the object is in the database; both the access
     levels of the object, and in the database table, are set. 
@@ -390,10 +392,9 @@ class Accesslevels_lib {
         
         $attachment->read_access_level = 'intern';
         $attachment->edit_access_level = 'intern';
-        $Q = $CI->db->query("UPDATE attachments 
-                                SET read_access_level='".$attachment->read_access_level."',
-                                    edit_access_level='".$attachment->edit_access_level."'
-                              WHERE att_id=".$attachment->att_id);
+        $CI->db->where('att_id', $attachment->att_id);
+        $CI->db->update('attachments', array('read_access_level'=>$attachment->read_access_level,
+                                             'edit_access_level'=>$attachment->edit_access_level));
         $this->cascadeAccessLevelsForPublication($attachment->pub_id);
     }
     /** initialize the access levels for the given note. Note: the object is in the database; both the access
@@ -404,10 +405,9 @@ class Accesslevels_lib {
         
         $note->read_access_level = 'intern';
         $note->edit_access_level = 'intern';
-        $Q = $CI->db->query("UPDATE notes 
-                                SET read_access_level='".$note->read_access_level."',
-                                    edit_access_level='".$note->edit_access_level."'
-                              WHERE note_id=".$note->note_id);
+        $CI->db->where('note_id', $note->note_id);
+        $CI->db->update('notes', array('read_access_level'=>$note->read_access_level,
+                                       'edit_access_level'=>$note->edit_access_level));
         $this->cascadeAccessLevelsForPublication($note->pub_id);
     }
 
@@ -421,12 +421,11 @@ class Accesslevels_lib {
         $topic->derived_read_access_level = $parent->derived_read_access_level;
         $topic->edit_access_level = $parent->derived_edit_access_level;
         $topic->derived_edit_access_level = $parent->derived_edit_access_level;
-        $Q = $CI->db->query("UPDATE topics 
-                                SET read_access_level='".$topic->read_access_level."',
-                                    derived_read_access_level='".$topic->derived_read_access_level."',
-                                    edit_access_level='".$topic->edit_access_level."',
-                                    derived_edit_access_level='".$topic->derived_edit_access_level."'
-                              WHERE topic_id=".$topic->topic_id);
+        $CI->db->where('topic_id', $topic->topic_id);
+        $CI->db->update('topics', array('read_access_level'=>$topic->read_access_level,
+                                        'derived_read_access_level'=>$topic->derived_read_access_level,
+                                        'edit_access_level'=>$topic->edit_access_level,
+                                        'derived_edit_access_level'=>$topic->derived_edit_access_level));
     }
 }
 ?>

@@ -132,9 +132,10 @@ class Siteconfig_db {
             	$value = implode(',',$templist);
             }
         	#check existence of setting
-        	$CI->db->query("INSERT IGNORE INTO config (setting) VALUES ('$setting')");
+        	$CI->db->query("INSERT IGNORE INTO config (setting) VALUES ('".$CI->db->escape($setting)."')");
         	#update value
-        	$CI->db->query("UPDATE config SET value='".addslashes($value)."' WHERE setting='$setting'");
+            $CI->db->where('setting', $setting);
+            $CI->db->update('config', array('value'=>$value));
         	if (mysql_error()) {
         		appendErrorMessage("Error updating config: <br/>");
         		appendErrorMessage(mysql_error()."<br/>");

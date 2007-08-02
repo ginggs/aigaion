@@ -14,7 +14,7 @@ class Bookmarklist_db {
             appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
             return;
         }
-        $CI->db->query("INSERT IGNORE INTO userbookmarklists (user_id,pub_id) VALUES (".$userlogin->userId().",".$pub_id.")");
+        $CI->db->query("INSERT IGNORE INTO userbookmarklists (user_id,pub_id) VALUES ('".$CI->db->escape($userlogin->userId())."','".$CI->db->escape($pub_id)."')");
     	if (mysql_error()) {
     		appendErrorMessage("Error changing bookmarklist<br/>");
     	}

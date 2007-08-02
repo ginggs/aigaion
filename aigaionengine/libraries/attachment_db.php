@@ -147,7 +147,8 @@ class Attachment_db {
         
         	#if ismain, old main attachment should be un-main-ed
     		if ($attachment->ismain) {
-    			$res = $CI->db->query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
+                $CI->db->where('pub_id', $attachment->pub_id);
+                $CI->db->update('attachments', array('ismain'=>'FALSE'));
     			if (mysql_error()) {
     				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
     				return -1;
@@ -229,7 +230,8 @@ class Attachment_db {
         		# upload was succesful:
         		# if ismain, old main attachment should be un-main-ed
         		if ($attachment->ismain) {
-        			$res = $CI->db->query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
+                    $CI->db->where('pub_id', $attachment->pub_id);
+                    $CI->db->update('attachments', array('ismain'=>'FALSE'));
         			if (mysql_error()) {
         				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
         				return -1;
@@ -319,7 +321,8 @@ class Attachment_db {
           	}
         }
 		if ($attachment->ismain) {
-			$res = $CI->db->query("UPDATE attachments SET ismain='FALSE' where pub_id=".$attachment->pub_id);
+            $CI->db->where('pub_id', $attachment->pub_id);
+            $CI->db->update('attachments', array('ismain'=>'FALSE'));
 			if (mysql_error()) {
 				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
 				return -1;

@@ -392,13 +392,17 @@ class Topic_db {
     /** Collapse given topic for the given user, if that user is susbcribed to it */
     function collapse($topic, $user_id) {
         $CI = &get_instance();
-        $CI->db->query("UPDATE usertopiclink SET collapsed='1' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+        $CI->db->where('topic_id', $topic->topic_id);
+        $CI->db->where('user_id', $user_id);
+        $CI->db->update('usertopiclink', array('collapsed'=>'1'));
     }
 
     /** Expand given topic for the given user, if that user is susbcribed to it */
     function expand($topic, $user_id) {
         $CI = &get_instance();
-        $CI->db->query("UPDATE usertopiclink SET collapsed='0' WHERE topic_id=".$topic->topic_id." AND user_id=".$user_id);
+        $CI->db->where('topic_id', $topic->topic_id);
+        $CI->db->where('user_id', $user_id);
+        $CI->db->update('usertopiclink', array('collapsed'=>'0'));
     }
     
 }
