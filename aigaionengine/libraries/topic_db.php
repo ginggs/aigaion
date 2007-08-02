@@ -369,8 +369,8 @@ class Topic_db {
         
         if ($topic_testrights->parent_id != $topic->parent_id) {
             //remove and set parent link
-            $CI->db->query("DELETE FROM topictopiclink WHERE source_topic_id=".$topic->topic_id);
-            $CI->db->query($CI->db->insert_string("topictopiclink",array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id)));
+            $CI->db->delete('topictopiclink',array('source_topic_id'=>$topic->topic_id));
+            $CI->db->insert('topictopiclink',array('source_topic_id'=>$topic->topic_id,'target_topic_id'=>$topic->parent_id));
     
         	#change membership of publications to reflect new tree structure (are there different strategies for this?)
         	//get all publications that are member of $topic_id

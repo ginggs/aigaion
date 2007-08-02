@@ -297,9 +297,10 @@ class UserLogin {
         }
         
         //login name was found. Now try to login that person
-        $res = mysql_query("SELECT * FROM users WHERE login='".$loginName."'");
-        if ($res && ($row = mysql_fetch_array($res))) { //user found
-            $loginPwd = $row["password"];
+        $Q = $CI->db->query("SELECT * FROM users WHERE login='".$loginName."'");
+        if ($Q->num_rows()>0) { //user found
+            $row = $Q->row();
+            $loginPwd = $row->password;
             if ($this->_login($loginName,$loginPwd,False)==0) { //never remember external login; that's a task for the external module
                 //$this->sNotice = 'logged from httpauth';
                 //appendErrorMessage('<br/>LDAP login says: known user, logged in');
@@ -402,19 +403,19 @@ class UserLogin {
      *      1 - unknown user or wrong password (no or incorrect anonymous account defined)
      *      2 - no login info available */
     function loginAnonymous($user_id = -1) {
+        $CI = &get_instance();
         if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
         if ($user_id==-1) {
             $user_id = getConfigurationSetting("ANONYMOUS_USER");
         }
-        $res = mysql_query("SELECT * FROM users WHERE user_id='".$user_id."' and type='anon'");
-        if ($res) {
-            if ($row = mysql_fetch_array($res)) {
-                $loginName = $row["login"];
-                $loginPwd = $row["password"];
-                if ($this->_login($loginName,$loginPwd,False)==0) { //never remember anon login :)
-                    $this->bIsAnonymous=True;
-                    return 0; // success
-                }
+        $Q = $CI->db->query("SELECT * FROM users WHERE user_id='".$user_id."' and type='anon'");
+        if ($Q->num_rows()>0) {
+            $row = $Q->row();
+            $loginName = $row->login;
+            $loginPwd = $row->password;
+            if ($this->_login($loginName,$loginPwd,False)==0) { //never remember anon login :)
+                $this->bIsAnonymous=True;
+                return 0; // success
             }
         }
         return 1; //no or incorrect anonymous account defined
@@ -425,12 +426,14 @@ class UserLogin {
      *      0 - success
      *      1 - unknown user or wrong password */
     function _login($userName, $pwdHash, $remember) {
+        $CI = &get_instance();
         //check username / password in user-table
-        $Q = mysql_query("SELECT * FROM users WHERE login='".$userName."'");
-        if (!$Q || !($R = mysql_fetch_array($Q)) ) {
+        $Q = $CI->db->query("SELECT * FROM users WHERE login='".$userName."'");
+        if ($Q->num_rows()<=0) {
             return 1; //no such user error
         }
-        if ($pwdHash != $R["password"]) {
+        $R = $Q->row();
+        if ($pwdHash != $R->password) {
             //not a successful login: reset all class vars, return error
             //reset class vars
             $this->bIsLoggedIn = False; 
@@ -452,8 +455,8 @@ class UserLogin {
 
             //login OK
             $this->bIsLoggedIn = True;
-            $this->sLoginName = $R["login"];
-            $this->iUserId = $R["user_id"];       
+            $this->sLoginName = $R->login;
+            $this->iUserId = $R->user_id;       
             $this->bIsAnonymous = False;
             $this->bJustLoggedOut = False;  
             
@@ -471,8 +474,8 @@ class UserLogin {
             //store cookies after login was checked
             if ($remember)
             {
-                setcookie("loginname", $R['login']   ,(30*24*60*60)+time());
-                setcookie("password",  $R["password"],(30*24*60*60)+time());
+                setcookie("loginname", $R->login   ,(3*24*60*60)+time());
+                setcookie("password",  $R->password,(3*24*60*60)+time());
             }
                         
             #set a welcome message/advertisement after login

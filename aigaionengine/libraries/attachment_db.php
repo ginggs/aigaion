@@ -158,15 +158,16 @@ class Attachment_db {
     		if ($attachment->ismain) {
     		    $ismain = 'TRUE';
     		}
-    		$res = $CI->db->query("INSERT INTO attachments 
-    		                    (pub_id, note, name, location, mime, ismain, isremote, user_id) 
-    		             VALUES (".$attachment->pub_id.",'"
-    		                      .addslashes($attachment->note)."', '"
-    		                      .addslashes($realname)."', '"
-    		                      .addslashes($attachment->location)."','"
-    		                      .addslashes($attachment->mime)."','"
-    		                      .$ismain."', 'TRUE', "
-    		                      .$userlogin->userId().")");
+    		$CI->db->insert('attachments',
+    		                array('pub_id'=>$attachment->pub_id,
+    		                      'note'=>$attachment->note, 
+    		                      'name'=>$realname, 
+    		                      'location'=>$attachment->location, 
+    		                      'mime'=>$attachment->mime, 
+    		                      'ismain'=>$ismain, 
+    		                      'isremote'=>'TRUE', 
+    		                      'user_id'=>$userlogin->userId())
+    		                ); 
     		if (mysql_error()) {
     			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
     			return -1;
@@ -245,15 +246,16 @@ class Attachment_db {
         		if ($attachment->ismain) {
         		    $ismain = 'TRUE';
         		}
-        		$res = $CI->db->query("INSERT INTO attachments 
-        		                    (pub_id, note, name, location, mime, ismain, isremote, user_id) 
-        		             VALUES (".$attachment->pub_id.",'"
-        		                      .addslashes($attachment->note)."', '"
-        		                      .addslashes($realname)."', '"
-        		                      .addslashes($storename.$ext)."','"
-        		                      .addslashes($attachment->mime)."','"
-        		                      .$ismain."', 'FALSE', "
-        		                      .$userlogin->userId().")");
+        		$CI->db->insert('attachments',
+        		                array('pub_id'=>$attachment->pub_id,
+        		                      'note'=>$attachment->note, 
+        		                      'name'=>$realname, 
+        		                      'location'=>$storename.$ext, 
+        		                      'mime'=>$attachment->mime, 
+        		                      'ismain'=>$ismain, 
+        		                      'isremote'=>'FALSE', 
+        		                      'user_id'=>$userlogin->userId())
+    		                   ); 
         		if (mysql_error()) {
         			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
         			return -1;

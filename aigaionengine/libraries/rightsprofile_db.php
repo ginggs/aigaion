@@ -125,11 +125,11 @@ class Rightsprofile_db {
                                                
         //remove all rights, then add the right ones again
         foreach (getAvailableRights() as $right) {
-            $CI->db->query("DELETE FROM rightsprofilerightlink WHERE rightsprofile_id=".$rightsprofile->rightsprofile_id);
+            $CI->db->delete('rightsprofilerightlink',array('rightsprofile_id'=>$rightsprofile->rightsprofile_id));
         }
         //add rights
         foreach ($rightsprofile->rights as $right) {
-            $CI->db->query($CI->db->insert_string("rightsprofilerightlink",array('rightsprofile_id'=>$rightsprofile->rightsprofile_id,'right_name'=>$right)));
+            $CI->db->insert("rightsprofilerightlink",array('rightsprofile_id'=>$rightsprofile->rightsprofile_id,'right_name'=>$right));
         }
         
         return True;

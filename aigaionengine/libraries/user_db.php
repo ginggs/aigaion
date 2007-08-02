@@ -193,8 +193,8 @@ class User_db {
             foreach ($group->rightsprofile_ids as $rightsprofile_id) {
                 $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
                 foreach ($rightsprofile->rights as $right) {
-                    $CI->db->query("DELETE FROM userrights WHERE user_id=".$new_id." AND right_name='".$right."'");
-                    $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+                    $CI->db->delete('userrights',array('user_id'=>$new_id,'right_name'=>$right));
+                    $CI->db->insert('userrights',array('user_id'=>$new_id,'right_name'=>$right));
                 }
                 
             }
@@ -269,10 +269,10 @@ class User_db {
 
         if ($userlogin->hasRights('user_assign_rights')) {
             //remove all rights, then add the right ones again
-            $CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id);
+            $CI->db->delete('userrights',array('user_id'=>$user->user_id));
             //add rights
             foreach ($user->assignedrights as $right) {
-                $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+                $CI->db->insert('userrights',array('user_id'=>$user->user_id,'right_name'=>$right));
             }
         }
 
@@ -285,10 +285,10 @@ class User_db {
             foreach($oldgrQ->result() as $row) {
                 $oldgroups[] = $row->group_id;
             }
-            $CI->db->query("DELETE FROM usergrouplink WHERE user_id=".$user->user_id);
+            $CI->db->delete('usergrouplink',array('user_id'=>$user->user_id));
             foreach ($user->group_ids as $group_id) {
                 //add group (anew)
-                $CI->db->query($CI->db->insert_string("usergrouplink",array('user_id'=>$user->user_id,'group_id'=>$group_id)));
+                $CI->db->insert('usergrouplink',array('user_id'=>$user->user_id,'group_id'=>$group_id));
                 //skip rights if already member of this group..
                 if (in_array($group_id,$oldgroups))continue;
                 //else add pertaining rights as well
@@ -296,8 +296,8 @@ class User_db {
                 foreach ($group->rightsprofile_ids as $rightsprofile_id) {
                     $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
                     foreach ($rightsprofile->rights as $right) {
-                        $CI->db->query("DELETE FROM userrights WHERE user_id=".$user->user_id." AND right_name='".$right."'");
-                        $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$user->user_id,'right_name'=>$right)));
+                        $CI->db->delete('userrights',array('user_id'=>$user->user_id,'right_name'=>$right));
+                        $CI->db->insert('userrights',array('user_id'=>$user->user_id,'right_name'=>$right));
                     }
                     
                 }

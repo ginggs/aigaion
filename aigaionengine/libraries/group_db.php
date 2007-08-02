@@ -123,10 +123,10 @@ class Group_db {
                                          "user_id=".$group->group_id)
                               );
         //remove all rights profiles, then add the right ones again
-        $CI->db->query("DELETE FROM grouprightsprofilelink WHERE group_id=".$group->group_id);
+        $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
         //add rights profiles
         foreach ($group->rightsprofile_ids as $rightsprofile_id) {
-            $CI->db->query($CI->db->insert_string("grouprightsprofilelink",array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id)));
+            $CI->db->insert("grouprightsprofilelink",array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id));
         }
         
         return True;
