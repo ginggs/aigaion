@@ -463,7 +463,7 @@ class Publication_db {
     $oldpublication = $this->getByID($publication->pub_id);
     if (    ($oldpublication == null) 
          ||
-            (!$userlogin->hasRights('publciation_edit'))
+            (!$userlogin->hasRights('publication_edit'))
          || 
             (!$CI->accesslevels_lib->canEditObject($oldpublication))
         ) 
