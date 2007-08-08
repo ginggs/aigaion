@@ -114,7 +114,7 @@ class UserLogin {
     function initRights() {
         $CI = &get_instance();
         $this->rights = array();
-        $Q = $CI->db->query("SELECT * FROM userrights WHERE user_id={$this->iUserId}");
+        $Q = $CI->db->getwhere('userrights',array('user_id'=>$this->iUserId));
         foreach ($Q->result() as $R) {
             $this->rights[] = $R->right_name;
         }
@@ -163,7 +163,7 @@ class UserLogin {
         //right now, I just enumerate all relevant preferences from the user-table
         $nonprefs=array("password");
         $this->preferences = array();
-        $Q = $CI->db->query("SELECT * FROM users WHERE user_id={$this->iUserId}");
+        $Q = $CI->db->getwhere('users',array('user_id'=>$this->iUserId));
         if ($Q->num_rows()>0) {
             $R = $Q->row_array();
             //where needed, interpret setting as other than string
@@ -297,7 +297,7 @@ class UserLogin {
         }
         
         //login name was found. Now try to login that person
-        $Q = $CI->db->query("SELECT * FROM users WHERE login='".$loginName."'");
+        $Q = $CI->db->getwhere('users',array('login'=>$loginName));
         if ($Q->num_rows()>0) { //user found
             $row = $Q->row();
             $loginPwd = $row->password;
@@ -326,7 +326,7 @@ class UserLogin {
             }            
             $newuser->password = md5($pass);
             foreach ($loginGroups as $groupname) {
-                $groupQ = $CI->db->query("SELECT * FROM users WHERE type='group' AND abbreviation='".$groupname."'");
+                $groupQ = $CI->db->getwhere('users',array('type'=>'group','abbreviation'=>$groupname));
                 if ($groupQ->num_rows()>0) {
                   $R = $groupQ->row();
                     $newuser->group_ids[] = $R->user_id;
@@ -408,7 +408,7 @@ class UserLogin {
         if ($user_id==-1) {
             $user_id = getConfigurationSetting("ANONYMOUS_USER");
         }
-        $Q = $CI->db->query("SELECT * FROM users WHERE user_id='".$user_id."' and type='anon'");
+        $Q = $CI->db->getwhere('users',array('user_id'=>$user_id,'type'=>'anon'));
         if ($Q->num_rows()>0) {
             $row = $Q->row();
             $loginName = $row->login;
@@ -428,7 +428,7 @@ class UserLogin {
     function _login($userName, $pwdHash, $remember) {
         $CI = &get_instance();
         //check username / password in user-table
-        $Q = $CI->db->query("SELECT * FROM users WHERE login='".$userName."'");
+        $Q = $CI->db->getwhere('users',array('login'=>$userName));
         if ($Q->num_rows()<=0) {
             return 1; //no such user error
         }

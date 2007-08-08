@@ -10,7 +10,7 @@ class User_db {
     function getByID($user_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->query("SELECT * from users where user_id=".$user_id." AND type<>'group'");
+        $Q = $CI->db->query("SELECT * from users where user_id=".$CI->db->escape($user_id)." AND type<>'group'");
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -44,13 +44,13 @@ class User_db {
         }
         //assigned rights
         $user->assignedrights     = array();
-        $query = $CI->db->query("SELECT * FROM userrights WHERE user_id=".$R->user_id);
+        $query = $CI->db->getwhere('userrights',array('user_id'=>$R->user_id));
         foreach ($query->result() as $row) {
             $user->assignedrights[] = $row->right_name;
         }
         //the ids of all groups that the user is a part of
         $user->group_ids            = array();
-        $query = $CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$R->user_id);
+        $query = $CI->db->getwhere('usergrouplink',array('user_id'=>$R->user_id));
         foreach ($query->result() as $row) {
             $user->group_ids[] = $row->group_id;
         }
@@ -158,8 +158,7 @@ class User_db {
         if ($user->preferences['newwindowforatt']) {
             $newwindowforatt ='TRUE';
         }
-        $CI->db->query(
-            $CI->db->insert_string("users",
+        $CI->db->insert("users",
                                          array('initials'           => $user->initials,
                                                'firstname'          => $user->firstname,
                                                'betweenname'        => $user->betweenname,
@@ -175,20 +174,20 @@ class User_db {
                                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                                'liststyle'          => $user->preferences['liststyle'],
                                                'newwindowforatt'    => $newwindowforatt
-                                               ))
+                                               )
                               );
                                                
         if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
             $new_id = $CI->db->insert_id();
             foreach ($user->assignedrights as $right) {
-                $CI->db->query($CI->db->insert_string("userrights",array('user_id'=>$new_id,'right_name'=>$right)));
+                $CI->db->insert('userrights',array('user_id'=>$new_id,'right_name'=>$right));
             }
         }
         
         //add group links, and rightsprofiles for these groups, to the user
         foreach ($user->group_ids as $group_id) {
-            $CI->db->query($CI->db->insert_string("usergrouplink",array('user_id'=>$new_id,'group_id'=>$group_id)));
+            $CI->db->insert('usergrouplink',array('user_id'=>$new_id,'group_id'=>$group_id));
             $group = $CI->group_db->getByID($group_id);
             foreach ($group->rightsprofile_ids as $rightsprofile_id) {
                 $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
@@ -251,11 +250,7 @@ class User_db {
             $updatefields['password']=$user->password;
         }
 
-        $CI->db->query(
-            $CI->db->update_string("users",
-                                         $updatefields,
-                                         "user_id=".$user->user_id)
-                              );
+        $CI->db->update('users', $updatefields,array('user_id'=>$user->user_id));
         //if the user is NOT anonymous, but it is the 'DEFAULT ANONYMOUS ACCOUNT from the site config settings, 
         //turn off the anonymous access and give a message warning
         if (!$user->isAnonymous) {
@@ -281,7 +276,7 @@ class User_db {
             //add group links, and rightsprofiles for these groups, to the user
             //BUT ONLY FOR GROUPS THAT WERE NOT YET LINKED TO THIS USER
             $oldgroups = array();
-            $oldgrQ = $CI->db->query("SELECT * FROM usergrouplink WHERE user_id=".$user->user_id);
+            $oldgrQ = $CI->db->getwhere('usergrouplink',array('user_id'=>$user->user_id));
             foreach($oldgrQ->result() as $row) {
                 $oldgroups[] = $row->group_id;
             }

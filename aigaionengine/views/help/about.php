@@ -2,7 +2,7 @@
   <p class='header1'>About</p>
   <p>
 <?php
-        $Q = $this->db->query("SELECT * FROM aigaiongeneral");
+        $Q = $this->db->get('aigaiongeneral');
         if ($Q->num_rows()>0) {
           $R = $Q->row();
             $version = $R->version;

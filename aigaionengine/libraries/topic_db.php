@@ -110,7 +110,7 @@ class Topic_db {
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {
                 $groupIrrelevant = False;
                 if (count($configuration['user']->group_ids)>0) {
-                    $groupSubscribedQ = $CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$topic->topic_id.' AND user_id IN ('.implode(',',$configuration['user']->group_ids).');');
+                    $groupSubscribedQ = $CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$CI->db->escape($topic->topic_id).' AND user_id IN ('.$CI->db->escape(implode(',',$configuration['user']->group_ids)).');');
                     $groupSubscribed = $groupSubscribedQ->num_rows()>0;
                 } else {
                     $groupSubscribed = FALSE;
@@ -201,7 +201,7 @@ class Topic_db {
         $children = array();
         //get children from database; add to array
         $query = $CI->db->query("SELECT topics.* FROM topics, topictopiclink
-                                        WHERE topictopiclink.target_topic_id=".$topic_id."
+                                        WHERE topictopiclink.target_topic_id=".$CI->db->escape($topic_id)."
                                           AND topictopiclink.source_topic_id=topics.topic_id
                                      ORDER BY name");
         foreach ($query->result() as $row) {
@@ -298,15 +298,13 @@ class Topic_db {
                         'url'=>$topic->url,
                         'user_id'=>$userlogin->userId());
         //add new topic
-        $CI->db->query(
-            $CI->db->insert_string("topics", $fields)
-                             );
+        $CI->db->insert('topics', $fields);
                                                
         //add parent
         $new_id = $CI->db->insert_id();
         $topic->topic_id = $new_id;
         if ($topic->parent_id < 0)$topic->parent_id=1;
-        $CI->db->query($CI->db->insert_string("topictopiclink",array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id)));
+        $CI->db->insert('topictopiclink',array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id));
         //subscribe current user to new topic
         $this->subscribeUser($CI->user_db->getByID($userlogin->userId()),$new_id);
         $CI->accesslevels_lib->initTopicAccessLevels($topic);
@@ -347,7 +345,8 @@ class Topic_db {
     			appendErrorMessage("You cannot set a topic to be its own ancestor.<br/>");
     			return False;
     		}
-    		$Q = $CI->db->query("SELECT target_topic_id FROM topictopiclink WHERE source_topic_id=$nexttopic_id");
+    		$CI->db->select('target_topic_id');
+    		$Q = $CI->db->getwhere('topictopiclink',array('source_topic_id'=>$nexttopic_id));
     		if ($Q->num_rows()>0) {
     		    $R = $Q->row();
     			$nexttopic_id = $R->target_topic_id;
@@ -361,11 +360,7 @@ class Topic_db {
                                'description'=>$topic->description,
                                'url'=>$topic->url);
 
-        $CI->db->query(
-            $CI->db->update_string("topics",
-                                         $updatefields,
-                                         "topic_id=".$topic->topic_id)
-                              );
+        $CI->db->update('topics', $updatefields, array('topic_id'=>$topic->topic_id));
         
         if ($topic_testrights->parent_id != $topic->parent_id) {
             //remove and set parent link
@@ -374,10 +369,8 @@ class Topic_db {
     
         	#change membership of publications to reflect new tree structure (are there different strategies for this?)
         	//get all publications that are member of $topic_id
-        	$Q = $CI->db->query(
-        			"SELECT pub_id
-        			FROM topicpublicationlink
-        			WHERE topicpublicationlink.topic_id = ".$topic->topic_id);
+        	$CI->db->select('pub_id');
+        	$Q = $CI->db->getwhere('topicpublicationlink',array('topic_id' => $topic->topic_id));
         	if ($Q->num_rows()>0) {
         	    $pub_ids = array();
         		foreach ($Q->result() as $publication) {
