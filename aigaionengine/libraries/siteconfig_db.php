@@ -119,10 +119,11 @@ class Siteconfig_db {
             		if (strpos($ext,".") === FALSE) {
             			$ext = ".".$ext;
             		}
-            		if (strtolower($ext!='.php')) {
+            		//disallow a specific class of attachments permanently
+            		if (!in_array(strtolower($ext),array('.php','.php3','.php4','.exe','.bat'))) {
             		    $templist[] = $ext;
             		} else {
-            		    appendErrorMessage("The extension '.php' is never allowed for Aigaion attachments, and has been 
+            		    appendErrorMessage("The extension '".$ext."' is never allowed for Aigaion attachments, and has been 
             		                        removed from the list of allowed attachments.");
             		}
             	}
