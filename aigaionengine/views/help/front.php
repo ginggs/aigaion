@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>Aigaion - A Web based document management system</p>
   <p>The Aigaion system is used to maintain an annotated bibliography. This can be your own personal bibliography, or a database that is shared between a group of people working on similar topics.</p>

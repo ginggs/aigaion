@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>Attachments</p>
   <p>It is possible to attach files to your publications in two ways: by uploading them to the server, and as a 'remote' link to a document somewhere on the web. Upon import, the import data is scanned for links to attachments, which are then automatically stored as remote attachments for the imported entries. 'Remote' attachments may at a later time be downloaded to the server and turned into 'server stored attachments' with a single command.</p>

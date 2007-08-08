@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /*
 Easy PHP Upload - version 2.25

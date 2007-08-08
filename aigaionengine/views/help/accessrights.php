@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>Access rights on different levels</p>
   <p>Aigaion users can be anonymous or not, can be assigned to different groups, and can be assigned different user rights. This makes it possible to restrict access to certain objects to a limited set of users. This restriction can apply to topics, publications, notes and attachments, and can be set separately for <i>reading</i> and for <i>editing</i> them.</p>

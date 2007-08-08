@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** This class regulates the database access for User's. Several accessors are present that return a User or 
 array of User's. */

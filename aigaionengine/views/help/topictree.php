@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>The topic tree</p>
   <p>Click on a topic to read its description and find all <a href="?page=help&help=publicationlist">papers</a> that are attached to it. A paper can be attached to multiple topics! If you want to find for example the publications that are part of two topics, you can use the search interface from the menu.</p>

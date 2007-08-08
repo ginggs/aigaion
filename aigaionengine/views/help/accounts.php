@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   
   <p class='header1'>Groups, user accounts and rights profiles</p>

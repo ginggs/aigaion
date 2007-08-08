@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <ul class='nosymbol'>
 <?php
   foreach ($authorlist as $author)

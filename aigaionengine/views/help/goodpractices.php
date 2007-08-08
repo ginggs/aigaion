@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>Good practices</p>
   <p>This is a list of things that have been known to work for various users of Aigaion. Read them at your leisure, and use what you think might work for you as well. Or ignore everything that you think to be nonsense.</p>

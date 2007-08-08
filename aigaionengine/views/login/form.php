@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <body onload="javascript:document.loginForm.loginName.focus();">
   <div id="login_holder">
 <?php

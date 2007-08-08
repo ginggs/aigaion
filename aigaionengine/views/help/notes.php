@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="help-holder">
   <p class='header1'>Annotating the bibliography</p>
   <p>Where a publication abstract is a purely descriptive summary of a publication, a annotation can be both descriptive and critical. Annotations are commonly used to:

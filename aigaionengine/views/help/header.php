@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id="helpheader-holder">
   <ul class='help'>
     <li class='help-header'>Help pages</li>

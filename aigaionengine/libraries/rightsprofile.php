@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
 /** A Rightsprofile is simply a named collection of rights. Such rightsprofiles can be used to determine which rights are assigned by default 
 to new group members, or to assign a collection of rights to a user with one action. */

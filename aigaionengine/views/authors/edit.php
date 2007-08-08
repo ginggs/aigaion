@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
   $authorfields   = array('firstname', 'von', 'surname', 'email', 'url', 'institute');
   $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');

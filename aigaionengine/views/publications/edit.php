@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
   $publicationfields  = getPublicationFieldArray($publication->pub_type);
   $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');

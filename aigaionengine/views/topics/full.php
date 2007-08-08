@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div id='singletopic-content-holder'>
 <!-- Topic: HEADER AND DESCRIPTION -->
 <?php
