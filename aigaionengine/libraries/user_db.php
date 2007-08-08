@@ -11,7 +11,7 @@ class User_db {
     function getByID($user_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->query("SELECT * from users where user_id=".$CI->db->escape($user_id)." AND type<>'group'");
+        $Q = $CI->db->query("SELECT * from ".AIGAION_DB_PREFIX."users where user_id=".$CI->db->escape($user_id)." AND type<>'group'");
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -114,7 +114,7 @@ class User_db {
     function getAllUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query("SELECT * from users WHERE type<>'group'");
+        $Q = $CI->db->getwhere('users','type<>"group"');
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -124,7 +124,7 @@ class User_db {
     function getAllAnonUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query("SELECT * from users WHERE type='anon'");
+        $Q = $CI->db->getwhere('users',array('type'=>'anon'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -134,7 +134,7 @@ class User_db {
     function getAllNormalUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query("SELECT * from users WHERE type='normal'");
+        $Q = $CI->db->getwhere('users',array('type'=>'normal'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }

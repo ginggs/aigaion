@@ -5,6 +5,8 @@
 //define('AIGAION_ATTACHMENT_URL', 'http://url/for/attachments/'); 
 # Directory where to store attachments. Default: this directory/attachments
 //define('AIGAION_ATTACHMENT_DIR', '/Path/for/attachments'); 
+# Table prefix for database. Default ''
+//define('AIGAION_DB_PREFIX', '');
 
 /*==== MANDATORY SETTINGS */
 #Root URL of this instance Aigaion, WITH trailing slash

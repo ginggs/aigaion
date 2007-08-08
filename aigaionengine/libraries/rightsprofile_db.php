@@ -63,7 +63,7 @@ class Rightsprofile_db {
     function getAllRightsprofileNames() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query('SELECT DISTINCT name FROM rightsprofiles ORDER BY name ASC');
+        $Q = $CI->db->query('SELECT DISTINCT name FROM '.AIGAION_DB_PREFIX.'rightsprofiles ORDER BY name ASC');
         foreach ($Q->result() as $R) {
             $result[] = $R->name;
         }

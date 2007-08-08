@@ -33,6 +33,10 @@ if (!defined('AIGAION_ATTACHMENT_DIR') || (AIGAION_ATTACHMENT_DIR=='')) {
 if (!defined('APPURL') || (APPURL=='')) {
     define ('APPURL',AIGAION_ROOT_URL);
 }
+#AIGAION_DB_PREFIX: table prefix, default "", see config/database.php
+if (!defined('AIGAION_DB_PREFIX')) {
+    define ('AIGAION_DB_PREFIX','');
+}
 
 /*
 |--------------------------------------------------------------------------

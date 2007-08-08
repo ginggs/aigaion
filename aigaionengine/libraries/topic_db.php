@@ -110,7 +110,7 @@ class Topic_db {
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {
                 $groupIrrelevant = False;
                 if (count($configuration['user']->group_ids)>0) {
-                    $groupSubscribedQ = $CI->db->query('SELECT * FROM usertopiclink WHERE topic_id='.$CI->db->escape($topic->topic_id).' AND user_id IN ('.$CI->db->escape(implode(',',$configuration['user']->group_ids)).');');
+                    $groupSubscribedQ = $CI->db->query('SELECT * FROM '.AIGAION_DB_PREFIX.'usertopiclink WHERE topic_id='.$CI->db->escape($topic->topic_id).' AND user_id IN ('.$CI->db->escape(implode(',',$configuration['user']->group_ids)).');');
                     $groupSubscribed = $groupSubscribedQ->num_rows()>0;
                 } else {
                     $groupSubscribed = FALSE;
@@ -200,9 +200,9 @@ class Topic_db {
         $CI = &get_instance();
         $children = array();
         //get children from database; add to array
-        $query = $CI->db->query("SELECT topics.* FROM topics, topictopiclink
-                                        WHERE topictopiclink.target_topic_id=".$CI->db->escape($topic_id)."
-                                          AND topictopiclink.source_topic_id=topics.topic_id
+        $query = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."topics.* FROM ".AIGAION_DB_PREFIX."topics, ".AIGAION_DB_PREFIX."topictopiclink
+                                        WHERE ".AIGAION_DB_PREFIX."topictopiclink.target_topic_id=".$CI->db->escape($topic_id)."
+                                          AND ".AIGAION_DB_PREFIX."topictopiclink.source_topic_id=".AIGAION_DB_PREFIX."topics.topic_id
                                      ORDER BY name");
         foreach ($query->result() as $row) {
             $c = $this->getFromRow($row,$configuration);

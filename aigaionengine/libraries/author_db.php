@@ -296,11 +296,11 @@ TODO:
     $result = array();
     
     //retrieve authors and editors
-    $Q = $CI->db->query("SELECT * FROM author, publicationauthorlink 
-                           WHERE author.author_id = publicationauthorlink.author_id
-                           AND publicationauthorlink.pub_id = ".$CI->db->escape($pub_id)."
-                           AND publicationauthorlink.is_editor = ".$CI->db->escape($is_editor)."
-                           ORDER BY publicationauthorlink.rank");
+    $Q = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink 
+                           WHERE ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".$CI->db->escape($pub_id)."
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.is_editor = ".$CI->db->escape($is_editor)."
+                           ORDER BY ".AIGAION_DB_PREFIX."publicationauthorlink.rank");
     
     //retrieve results or fail                       
     foreach ($Q->result() as $row)

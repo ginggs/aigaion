@@ -134,7 +134,7 @@ class Siteconfig_db {
             	$value = implode(',',$templist);
             }
         	#check existence of setting
-        	$CI->db->query("INSERT IGNORE INTO config (setting) VALUES ('".$CI->db->escape($setting)."')");
+        	$CI->db->query("INSERT IGNORE INTO ".AIGAION_DB_PREFIX."config (setting) VALUES ('".$CI->db->escape($setting)."')");
         	#update value
             $CI->db->where('setting', $setting);
             $CI->db->update('config', array('value'=>$value));

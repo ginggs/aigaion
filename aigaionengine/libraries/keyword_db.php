@@ -59,10 +59,10 @@ class Keyword_db {
   function getKeywordsForPublication($pub_id)
   {
         $CI = &get_instance();
-    $Q = $CI->db->query("SELECT keywords.* FROM keywords, publicationkeywordlink
-                               WHERE publicationkeywordlink.pub_id = ".$CI->db->escape($pub_id)." 
-                                 AND publicationkeywordlink.keyword_id = keywords.keyword_id
-                               ORDER BY keywords.keyword");
+    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."keywords.* FROM ".AIGAION_DB_PREFIX."keywords, ".AIGAION_DB_PREFIX."publicationkeywordlink
+                               WHERE ".AIGAION_DB_PREFIX."publicationkeywordlink.pub_id = ".$CI->db->escape($pub_id)." 
+                                 AND ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".AIGAION_DB_PREFIX."keywords.keyword_id
+                               ORDER BY ".AIGAION_DB_PREFIX."keywords.keyword");
     $result = array();
 
     if ($Q->num_rows() > 0)

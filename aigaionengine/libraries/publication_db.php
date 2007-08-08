@@ -697,14 +697,14 @@ class Publication_db {
         $userlogin = getUserLogin();
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape(1*$liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
-    WHERE topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
-    AND publication.pub_id = topicpublicationlink.pub_id
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
+    WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
     ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
@@ -723,9 +723,9 @@ class Publication_db {
   function getCountForTopic($topic_id) {
     $CI = &get_instance();
     
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
-    WHERE topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
-    AND publication.pub_id = topicpublicationlink.pub_id");
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
+    WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id");
     return $Q->num_rows();
   }  
   
@@ -737,14 +737,14 @@ class Publication_db {
         $userlogin = getUserLogin();
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape(1*$liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
-    WHERE publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
-    AND publication.pub_id = publicationauthorlink.pub_id
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
+    WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
     ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
@@ -763,9 +763,9 @@ class Publication_db {
   function getCountForAuthor($author_id) {
     $CI = &get_instance();
     
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
-    WHERE publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
-    AND publication.pub_id = publicationauthorlink.pub_id");
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
+    WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id");
     return $Q->num_rows();
   }  
   /** Return a list of publications for the bookmark list of the logged user */
@@ -777,13 +777,13 @@ class Publication_db {
     if ($page>-1) {
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape(1*$liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
     
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
-    WHERE userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
-    AND   userbookmarklists.pub_id=publication.pub_id
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
+    WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
+    AND   ".AIGAION_DB_PREFIX."userbookmarklists.pub_id=".AIGAION_DB_PREFIX."publication.pub_id
     ORDER BY actualyear, cleantitle".$limit);
 
     $result = array();
@@ -800,9 +800,9 @@ class Publication_db {
   function getCountForBookmarkList() {
     $CI = &get_instance();
     
-    $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
-    WHERE userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
-    AND   userbookmarklists.pub_id=publication.pub_id");
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
+    WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
+    AND   ".AIGAION_DB_PREFIX."userbookmarklists.pub_id=".AIGAION_DB_PREFIX."publication.pub_id");
     return $Q->num_rows();
   }
     /** change the crossref of all affected publications to reflect a change of the bibtex_id of the given publication.
