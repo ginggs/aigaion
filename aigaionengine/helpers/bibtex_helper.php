@@ -45,7 +45,8 @@
     function refreshBibtexIdLinks() {
         $CI = &get_instance();
         $bibtexidlinks = array();
-        $Q = $CI->db->query("SELECT pub_id, bibtex_id FROM publication");
+        $CI->db->select('pub_id, bibtex_id');
+        $Q = $CI->db->get('publication');
         foreach ($Q->result() as $R)
         {
             if ($R->bibtex_id != "")

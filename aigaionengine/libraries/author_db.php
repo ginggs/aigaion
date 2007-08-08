@@ -12,7 +12,7 @@ class Author_db {
   {
         $CI = &get_instance();
     //retrieve one author row	  
-    $Q = $CI->db->query("SELECT * FROM author WHERE author_id = ".$CI->db->escape($author_id));
+    $Q = $CI->db->getwhere('author',array('author_id' =>$author_id));
     if ($Q->num_rows() == 1) 
     {
       //load the author
@@ -42,7 +42,7 @@ class Author_db {
     $name = stripQuotesFromString($name);
     
     //do the query
-    $Q = $CI->db->query("SELECT * FROM author WHERE cleanname = ".$CI->db->escape($name));
+    $Q = $CI->db->getwhere('author',array('cleanname' => $name));
   
     //only when a single result is found, load the result. Else fail
     if ($Q->num_rows() == 1)
@@ -250,7 +250,8 @@ TODO:
     $result = array();
     
     //get all authors from the database, order by cleanname
-    $Q = $CI->db->query('SELECT * FROM author ORDER BY cleanname');
+    $CI->db->orderby('cleanname');
+    $Q = $CI->db->get('author');
     
     //retrieve results or fail
     foreach ($Q->result() as $row)
@@ -269,9 +270,9 @@ TODO:
         $CI = &get_instance();
     //select all authors from the database where the cleanname begins with the characters
     //as given in $cleanname
-    $Q = $CI->db->query('SELECT * FROM author 
-                           WHERE cleanname LIKE "'.addslashes($cleanname).'%" 
-                           ORDER BY cleanname');
+    $CI->db->orderby('cleanname');
+    $CI->db->like('cleanname',$cleanname);
+    $Q = $CI->db->get('author');
     
     //retrieve results or fail
     $result = array();
@@ -340,7 +341,9 @@ TODO:
     $result_message   = "";
     
     //get database author array
-    $Q = $CI->db->query("SELECT author_id, cleanname FROM author ORDER BY cleanname");
+    $CI->db->select('author_id, cleanname');
+    $CI->db->orderby('cleanname');
+    $Q = $CI->db->get('author');
     
     $db_cleanauthors = array();
     //retrieve results or fail                       

@@ -62,7 +62,7 @@ class Rightsprofile_db {
     function getAllRightsprofileNames() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query("SELECT DISTINCT name FROM rightsprofiles ORDER BY name ASC");
+        $Q = $CI->db->query('SELECT DISTINCT name FROM rightsprofiles ORDER BY name ASC');
         foreach ($Q->result() as $R) {
             $result[] = $R->name;
         }
@@ -90,14 +90,12 @@ class Rightsprofile_db {
             return -1;
         }
         //add new rightsprofile
-        $CI->db->query(
-            $CI->db->insert_string("rightsprofiles", array('name'=>$rightsprofile->name))
-                             );
+        $CI->db->insert('rightsprofiles', array('name'=>$rightsprofile->name));
                                                
         //add rights
         $new_id = $CI->db->insert_id();
         foreach ($rightsprofile->rights as $right) {
-            $CI->db->query($CI->db->insert_string("rightsprofilerightlink",array('rightsprofile_id'=>$new_id,'right_name'=>$right)));
+            $CI->db->insert('rightsprofilerightlink',array('rightsprofile_id'=>$new_id,'right_name'=>$right));
         }
         return $new_id;
     }
@@ -117,11 +115,7 @@ class Rightsprofile_db {
 
         $updatefields =  array('name'=>$rightsprofile->name);
 
-        $CI->db->query(
-            $CI->db->update_string("rightsprofiles",
-                                         $updatefields,
-                                         "rightsprofile_id=".$rightsprofile->rightsprofile_id)
-                              );
+        $CI->db->update('rightsprofiles', $updatefields, array('rightsprofile_id'=>$rightsprofile->rightsprofile_id));
                                                
         //remove all rights, then add the right ones again
         foreach (getAvailableRights() as $right) {

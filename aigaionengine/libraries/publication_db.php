@@ -14,7 +14,7 @@ class Publication_db {
   {
         $CI = &get_instance();
     //retrieve one publication row
-    $Q = $CI->db->query("SELECT * FROM publication WHERE pub_id = ".$CI->db->escape($pub_id));
+    $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -30,7 +30,7 @@ class Publication_db {
   {
         $CI = &get_instance();
     //retrieve one publication row
-    $Q = $CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$CI->db->escape($bibtex_id));
+    $Q = $CI->db->getwhere('publication',array('bibtex_id'=>$bibtex_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -87,7 +87,7 @@ class Publication_db {
       //check if we found the publication in the cache, if not, retrieve from db.
       if (!isset($merge_row))
       {
-        $Q = $CI->db->query("SELECT * FROM publication WHERE bibtex_id = ".$CI->db->escape($R->crossref));
+        $Q = $CI->db->getwhere('publication',array('bibtex_id'=>$R->crossref));
 
         //if we retrieved one single row, we retrieve it and set the $do_merge flag
         if ($Q->num_rows() == 1)
@@ -142,7 +142,7 @@ class Publication_db {
     $publication->editors = $CI->author_db->getForPublication($R->pub_id, 'Y');
 
     //check if this publication was bookmarked by the logged user
-    $Q = $CI->db->query("SELECT * FROM userbookmarklists WHERE user_id = ".$userlogin->userId()." AND pub_id=".$R->pub_id);
+    $Q = $CI->db->getwhere('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
     if ($Q->num_rows()>0) {
         $publication->isBookmarked = True;
     }
@@ -695,15 +695,15 @@ class Publication_db {
 
   function getForTopic($topic_id,$page=0)
   {
+    $CI = &get_instance();
     $limit = '';
     if ($page>-1) {
         $userlogin = getUserLogin();
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
-    $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, topicpublicationlink
@@ -735,15 +735,15 @@ class Publication_db {
   
   function getForAuthor($author_id,$page=0)
   {
+    $CI = &get_instance();
     $limit = '';
     if ($page>-1) {
         $userlogin = getUserLogin();
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
-    $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, publicationauthorlink
@@ -775,18 +775,18 @@ class Publication_db {
   /** Return a list of publications for the bookmark list of the logged user */
   function getForBookmarkList($page=0)
   {
+    $CI = &get_instance();
     $userlogin = getUserLogin();
     $limit = '';
     if ($page>-1) {
         $liststyle= $userlogin->getPreference('liststyle');
         if ($liststyle>0) {
-            $limit = ' LIMIT '.$liststyle.' OFFSET '.($page*$liststyle);
+            $limit = ' LIMIT '.$CI->db->escape($liststyle).' OFFSET '.$CI->db->escape($page*$liststyle);
         }
     }
-    $CI = &get_instance();
     
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
-    WHERE userbookmarklists.user_id=".$userlogin->userId()."
+    WHERE userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
     AND   userbookmarklists.pub_id=publication.pub_id
     ORDER BY actualyear, cleantitle".$limit);
 
@@ -805,7 +805,7 @@ class Publication_db {
     $CI = &get_instance();
     
     $Q = $CI->db->query("SELECT DISTINCT publication.* FROM publication, userbookmarklists
-    WHERE userbookmarklists.user_id=".$userlogin->userId()."
+    WHERE userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
     AND   userbookmarklists.pub_id=publication.pub_id");
     return $Q->num_rows();
   }
@@ -822,11 +822,7 @@ class Publication_db {
         // may not be accessible for this user
         foreach ($Q->result() as $R) {
             $updatefields =  array('crossref'=>$new_bibtex_id);
-            $CI->db->query(
-                $CI->db->update_string("publication",
-                                             $updatefields,
-                                             "pub_id=".$R->pub_id)
-                                  );
+            $CI->db->update('publication', $updatefields, array('pub_id'=>$R->pub_id));
     		if (mysql_error()) {
     		    appendErrorMessage("Failed to update the bibtex-id in publication ".$R->pub_id."<br/>");
         	}

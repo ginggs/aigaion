@@ -140,7 +140,7 @@ class Attachment_db {
             }
         
             //the first attachment is always a main attachment
-            $Q = $CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+            $Q = $CI->db->getwhere('attachments',array('pub_id'=>$attachment->pub_id));
             if ($Q->num_rows() == 0) {
                 $attachment->ismain = True;
             }
@@ -238,7 +238,7 @@ class Attachment_db {
         			}
         		}
                 //the first attachment is always a main attachment
-                $Q = $CI->db->query('SELECT * FROM attachments WHERE pub_id = '.$attachment->pub_id);
+                $Q = $CI->db->getwhere('attachments',array('pub_id'=>$attachment->pub_id));
                 if ($Q->num_rows() == 0) {
                     $attachment->ismain = True;
                 }
@@ -337,11 +337,7 @@ class Attachment_db {
         
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
         
-        $CI->db->query(
-            $CI->db->update_string("attachments",
-                                         $updatefields,
-                                         "att_id=".$attachment->att_id)
-                              );
+        $CI->db->update("attachments", $updatefields, array("att_id"=>$attachment->att_id));
         return True;
     }
 

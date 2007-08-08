@@ -10,7 +10,7 @@ class Group_db {
     function getByID($group_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->query("SELECT * FROM users WHERE user_id=".$group_id." AND type='group'");
+        $Q = $CI->db->getwhere('users',array('user_id'=>$group_id,'type'=>'group'));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -29,7 +29,7 @@ class Group_db {
         $group->abbreviation       = $R->abbreviation;
 
         //get rights profiles
-        $Q = $CI->db->query("SELECT * FROM grouprightsprofilelink WHERE group_id=".$group->group_id);
+        $Q = $CI->db->getwhere('grouprightsprofilelink',array('group_id'=>$group->group_id));
         foreach ($Q->result() as $row) {
             $group->rightsprofile_ids[] = $row->rightsprofile_id;
         }
@@ -66,7 +66,7 @@ class Group_db {
     function getAllGroups() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->query("SELECT * from users WHERE type='group'");
+        $Q = $CI->db->getwhere('users',array('type'=>'group'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -83,14 +83,12 @@ class Group_db {
             return -1;
         }
         //add new group
-        $CI->db->query(
-            $CI->db->insert_string("users", array('surname'=>$group->name,'abbreviation'=>$group->abbreviation,'type'=>'group'))
-                             );
+        $CI->db->insert("users", array('surname'=>$group->name,'abbreviation'=>$group->abbreviation,'type'=>'group'));
                                                
         $new_id = $CI->db->insert_id();
         //add rights profiles
         foreach ($group->rightsprofile_ids as $rightsprofile_id) {
-            $CI->db->query($CI->db->insert_string("grouprightsprofilelink",array('group_id'=>$new_id,'rightsprofile_id'=>$rightsprofile_id)));
+            $CI->db->insert('grouprightsprofilelink',array('group_id'=>$new_id,'rightsprofile_id'=>$rightsprofile_id));
         }
         $group->user_id = $new_id;
         $group->group_id = $new_id;
@@ -117,16 +115,12 @@ class Group_db {
  
         $updatefields =  array('surname'=>$group->name,'abbreviation'=>$group->abbreviation);
 
-        $CI->db->query(
-            $CI->db->update_string("users",
-                                         $updatefields,
-                                         "user_id=".$group->group_id)
-                              );
+        $CI->db->update('users', $updatefields, array('user_id'=>$group->group_id));
         //remove all rights profiles, then add the right ones again
         $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
         //add rights profiles
         foreach ($group->rightsprofile_ids as $rightsprofile_id) {
-            $CI->db->insert("grouprightsprofilelink",array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id));
+            $CI->db->insert('grouprightsprofilelink',array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id));
         }
         
         return True;

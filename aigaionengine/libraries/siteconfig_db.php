@@ -15,7 +15,7 @@ class Siteconfig_db {
         $CI = &get_instance();
         $result = new Siteconfig();
         $result->configSettings = array();
-        $Q = $CI->db->query("SELECT * FROM config");
+        $Q = $CI->db->get('config');
         foreach ($Q->result() as $R) {
             //where needed, interpret setting as other than string
             if ($R->setting == "ALLOWED_ATTACHMENT_EXTENSIONS") {
@@ -120,7 +120,7 @@ class Siteconfig_db {
             			$ext = ".".$ext;
             		}
             		//disallow a specific class of attachments permanently
-            		if (!in_array(strtolower($ext),array('.php','.php3','.php4','.exe','.bat'))) {
+            		if (!in_array(strtolower(substr($ext,-4)),array('.php','php3','php4','.exe','.bat'))) {
             		    $templist[] = $ext;
             		} else {
             		    appendErrorMessage("The extension '".$ext."' is never allowed for Aigaion attachments, and has been 

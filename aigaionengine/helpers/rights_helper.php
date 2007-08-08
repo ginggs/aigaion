@@ -20,7 +20,8 @@
     function getAvailableRights() {
         $availableRights = array();
         $CI=&get_instance();
-        $Q = $CI->db->query("SELECT * FROM availablerights ORDER BY name ASC");
+        $CI->db->orderby('name','ASC');
+        $Q = $CI->db->get('availablerights');
         foreach ($Q->result() as $R) {
             $availableRights[$R->name] = $R->description;
         }

@@ -11,7 +11,7 @@ class Keyword_db {
   {
         $CI = &get_instance();
     //retrieve one publication row
-    $Q = $CI->db->query("SELECT * FROM keywords WHERE keyword_id = ".$CI->db->escape($keyword_id));
+    $Q = $CI->db->getwhere('keywords',array('keyword_id'=>$keyword_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -26,7 +26,7 @@ class Keyword_db {
   function getByKeyword($keyword)
   {
         $CI = &get_instance();
-    $Q = $CI->db->query("SELECT * FROM keywords WHERE keyword = ".$CI->db->escape($keyword));
+    $Q = $CI->db->getwhere('keywords',array('keyword'=>$keyword));
 
     if ($Q->num_rows() > 0)
     {
@@ -42,9 +42,9 @@ class Keyword_db {
   {
         $CI = &get_instance();
     //select all keywords from the database that start with the characters as in $keyword
-    $Q = $CI->db->query('SELECT * FROM keywords 
-                           WHERE keyword LIKE "'.addslashes($keyword).'%" 
-                           ORDER BY keyword');
+    $CI->db->orderby('keyword');
+    $CI->db->like('keyword',$keyword);
+    $Q = $CI->db->get('keywords');
     
     //retrieve results or fail
     $result = array();
@@ -124,7 +124,8 @@ class Keyword_db {
     
     //get database keyword array
     $db_keywords = array();
-    $Q = $CI->db->query("SELECT * FROM keywords ORDER BY keyword");
+    $CI->db->orderby('keyword');
+    $Q = $CI->db->get('keywords');
     if ($Q->num_rows() > 0)
     {
       foreach ($Q->result() as $R)

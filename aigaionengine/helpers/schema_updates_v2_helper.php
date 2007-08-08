@@ -26,7 +26,7 @@
     */
     function updateSchemaV2_1() {
         $CI = &get_instance();
-        $Q = $CI->db->query("SELECT * FROM aigaiongeneral");
+        $Q = $CI->db->get('aigaiongeneral');
         if ($Q->num_rows()>0) {
             $R = $Q->row();
             $version = $R->version;
@@ -56,7 +56,7 @@
     */
     function updateSchemaV2_0() {
         $CI = &get_instance();
-        $Q = $CI->db->query("SELECT * FROM aigaiongeneral");
+        $Q = $CI->db->get('aigaiongeneral');
         if ($Q->num_rows()>0) {
             $R = $Q->row();
             $version = $R->version;

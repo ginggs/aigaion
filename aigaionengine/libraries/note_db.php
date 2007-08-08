@@ -36,7 +36,8 @@ class Note_db {
         if ( !$userlogin->hasRights('note_read') || !$CI->accesslevels_lib->canReadObject($note))return null;
         
         //read the crossref_ids as they were cached in the database
-        $Q = $CI->db->query("SELECT xref_id FROM notecrossrefid WHERE note_id = ".$note->note_id);
+        $CI->db->select('xref_id');
+        $Q = $CI->db->getwhere('notecrossrefid',array('note_id'=>$note->note_id));
     	foreach ($Q->result() as $R) {
             $note->xref_ids[] = $R->xref_id;
     	}        
@@ -119,11 +120,7 @@ class Note_db {
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {
-            $CI->db->query(
-                $CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
-                                                                     'note_id'=>$note->note_id)
-                                            )
-                                 );
+            $CI->db->insert("notecrossrefid", array('xref_id'=>$xref_id, 'note_id'=>$note->note_id));
         }
                              
         return $new_id;
@@ -152,11 +149,7 @@ class Note_db {
         //start update
         $updatefields =  array('text'=>$note->text);
 
-        $CI->db->query(
-            $CI->db->update_string("notes",
-                                         $updatefields,
-                                         "note_id=".$note->note_id)
-                              );
+        $CI->db->update("notes", $updatefields,array('note_id'=>$note->note_id));
         
 
         //remove old xref ids
@@ -164,11 +157,7 @@ class Note_db {
         //set crossref ids
         $xref_ids = getCrossrefIDsForText($note->text);
         foreach ($xref_ids as $xref_id) {
-            $CI->db->query(
-                $CI->db->insert_string("notecrossrefid", array('xref_id'=>$xref_id,
-                                                                     'note_id'=>$note->note_id)
-                                            )
-                                 );
+            $CI->db->insert('notecrossrefid', array('xref_id'=>$xref_id,'note_id'=>$note->note_id));
         }
                                                        
         return True;
@@ -189,11 +178,7 @@ class Note_db {
         		  $text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $R->text);
                 //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
                 $updatefields =  array('text'=>$text);
-                $CI->db->query(
-                    $CI->db->update_string("notes",
-                                                 $updatefields,
-                                                 "note_id=".$R->note_id)
-                                      );
+                $CI->db->update('notes',$updatefields,array('note_id'=>$R->note_id));
         		if (mysql_error()) {
         		    appendErrorMessage("Failed to update the bibtex-id in note ".$R->note_id.": <br/>");
             	}
