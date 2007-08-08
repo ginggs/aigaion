@@ -152,6 +152,29 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
+  //import() - Call publication import page
+  function import()
+  {
+    $userlogin  = getUserLogin();
+    $user       = $this->user_db->getByID($userlogin->userID());
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Import : insufficient rights.<br/>');
+      redirect('');
+    }
+    
+    $header ['title']       = "Aigaion 2.0 - import publications";
+    $header ['javascripts'] = array();
+    
+    $content = "";
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('publications/import', $content, true);
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
   
   //delete() - Remove one publication from the database
   function delete()
@@ -344,30 +367,5 @@ class Publications extends Controller {
 
         echo "<div/>";
     }    
-    
-  function jaro()
-  {
-    $header ['title']       = "Aigaion 2.0 - ";
-    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
-    
-    
-    //get output
-    $output  = $this->load->view('header',              $header,  true);
-    $this->load->helper('specialchar');
-    
-    $str_a = $this->uri->segment(3);
-    $str_b = $this->uri->segment(4);
-    
-    for ($i = 0; $i < 1000; $i++)
-    {
-      levenshtein($str_a, $str_b);
-      //jaroSimilarity($str_a, $str_b);
-    }
-    
-    $output .= $this->load->view('footer',              '',       true);
-    
-    $this->output->set_output($output);
-    
-  }
 }
 ?>

@@ -152,14 +152,10 @@ class Publication_db {
 
   function getFromPost()
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     //we retrieve the following fields
     $fields = array('pub_id',
     'user_id',
-    //'specialchars', DR: you shouldn't get this one from post, as it is not present in the post data. It is calculated anew every add or update.
-    'cleantitle',
-    'cleanjournal',
-    'actualyear',
     'pub_type',
     'bibtex_id',
     'title',
@@ -302,7 +298,7 @@ class Publication_db {
         return;
     }        
     
-        //insert all publication data in the publication table
+    //insert all publication data in the publication table
     $fields = array(
                     'pub_type',
                     'bibtex_id',
