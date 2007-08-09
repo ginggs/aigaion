@@ -151,11 +151,36 @@ class Site extends Controller {
 	    if (!in_array($type,array('win','unix','mac'))) {
 	        $type = 'win';
 	    }
+		if ($type == "win")
+			$linebreak = "\r\n";
+		else if ($type == "unix")
+			$linebreak = "\n";
+		else if ($type == "mac")
+			$linebreak = "\r";
 
-        $this->load->helper('backup');
+        // Load the DB utility class
+        $this->load->dbutil();
+        
+        //tables to backup: only those with right prefix, if prefix set (!)
+        $tables=array();
+        if (AIGAION_DB_PREFIX!='') {
+            foreach ($this->db->list_tables() as $table) {
+                $p = strpos($table,AIGAION_DB_PREFIX);
+                if (!($p===FALSE)) {
+                    if ($p==0) {
+                        $tables[]=$table;
+                    }
+                }
+            }
+        }
+        // Backup your entire database and assign it to a variable
+        //note: we could make a site setting for whether a gz, zip or txt is returned. But gz is OK, I guess.
+        $backup =& $this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'gzip'));
+        
+        // Load the download helper and send the file to your desktop
         $this->load->helper('download');
-        $data = getDatabaseBackup($type); // Read the file's contents
-        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $data);
+        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.gz', $backup);
+        
     }
 
 }

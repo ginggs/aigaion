@@ -222,7 +222,7 @@ class CI_DB_active_record extends CI_DB_driver {
 				}
 			
 				$v = ' '.$this->escape($v);
-			}
+			} 
 						
 			$this->ar_where[] = $prefix.$k.$v;
 		}
