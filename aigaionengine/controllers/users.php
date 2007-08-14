@@ -271,7 +271,7 @@ class Users extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($user==null) {
-	        appendErrorMessage('Delete user: non existing user specified.<br/>\n');
+	        appendErrorMessage('Delete user: non existing user specified.<br/>');
 	        redirect('');
 	    }
 
@@ -425,7 +425,7 @@ class Users extends Controller {
 	    $user = $this->user_db->getByID($user_id);
 	    
 	    if ($user==null) {
-	        appendErrorMessage('Topic review: invalid user_id specified.<br/>\n');
+	        appendErrorMessage('Topic review: invalid user_id specified.<br/>');
 	        redirect('');
 	    }
 	    

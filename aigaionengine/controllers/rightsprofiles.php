@@ -184,7 +184,7 @@ class Rightsprofiles extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($rightsprofile==null) {
-	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br/>\n');
+	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br/>');
 	        redirect('');
 	    }
 	    //check user rights

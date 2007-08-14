@@ -184,7 +184,7 @@ class Groups extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($group==null) {
-	        appendErrorMessage('Delete group: non existing group specified.<br/>\n');
+	        appendErrorMessage('Delete group: non existing group specified.<br/>');
 	        redirect('');
 	    }
 	    //check user rights
@@ -330,7 +330,7 @@ class Groups extends Controller {
 	    $group = $this->group_db->getByID($group_id);
 	    
 	    if ($group==null) {
-	        appendErrorMessage('Topic review: invalid group_id specified.<br/>\n');
+	        appendErrorMessage('Topic review: invalid group_id specified.<br/>');
 	        redirect('');
 	    }
 	    

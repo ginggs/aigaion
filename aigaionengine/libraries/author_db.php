@@ -202,6 +202,12 @@ class Author_db {
             appendErrorMessage('Cannot delete author: erroneous ID');
             return;
         }
+        //no delete for authors with publications. check through tables, not through object
+        $Q = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$author->author_id));
+        if ($Q->num_rows()>0) {
+            appendErrorMessage('Cannot delete author: still has publications (possibly invisible...)<br/>');
+            return false;
+        }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('authors',array('author_id'=>$author->author_id));
         //delete links
