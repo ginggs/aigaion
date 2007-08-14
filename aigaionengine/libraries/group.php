@@ -38,5 +38,11 @@ class Group {
         $CI = &get_instance();
         return $CI->group_db->update($this);
     }
+    /** Deletes this group. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->group_db->delete($this);
+    }
 }
 ?>

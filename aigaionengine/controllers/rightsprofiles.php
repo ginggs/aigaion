@@ -197,7 +197,7 @@ class Rightsprofiles extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete rightsprofile: not implemented yet');
+            $rightsprofile->delete();
             redirect('users/manage');
         } else {
             //get output

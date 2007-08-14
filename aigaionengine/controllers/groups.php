@@ -198,7 +198,7 @@ class Groups extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete group: not implemented yet');
+            $group->delete();
             redirect('users/manage');
         } else {
             //get output

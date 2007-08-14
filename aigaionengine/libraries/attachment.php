@@ -41,6 +41,12 @@ class Attachment {
         $CI = &get_instance();
         return $CI->attachment_db->update($this);
     }
+    /** Deletes this attachment. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->attachment_db->delete($this);
+    }
    
 }
 ?>

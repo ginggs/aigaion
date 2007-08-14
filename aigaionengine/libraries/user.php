@@ -67,5 +67,11 @@ class User {
         $CI = &get_instance();
         return $CI->user_db->update($this);
     }
+    /** Deletes this user. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->user_db->delete($this);
+    }
 }
 ?>

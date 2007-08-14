@@ -32,5 +32,11 @@ class Rightsprofile {
         $CI = &get_instance();
         return $CI->rightsprofile_db->update($this);
     }
+    /** Deletes this rightsprofile. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->rightsprofile_db->delete($this);
+    }
 }
 ?>

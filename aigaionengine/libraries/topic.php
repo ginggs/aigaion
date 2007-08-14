@@ -182,6 +182,12 @@ class Topic {
         $CI = &get_instance();
         return $CI->topic_db->update($this);
     }
+    /** Deletes this topic. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->topic_db->delete($this);
+    }
     
     /** Collapse this topic for the current logged user */
     function collapse() {

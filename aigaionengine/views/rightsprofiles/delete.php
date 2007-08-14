@@ -17,7 +17,7 @@ echo form_open('rightsprofiles/delete/'.$rightsprofile->rightsprofile_id.'/commi
 echo "Are you sure that you want to delete rightsprofile \"".$rightsprofile->name."\"?<p>\n";
 echo form_submit('confirm','Confirm');
 echo form_close();
-echo form_open('');
+echo form_open('users/manage');
 echo form_submit('cancel','Cancel');
 echo form_close();
 echo "</div>";

@@ -340,7 +340,33 @@ class Attachment_db {
         $CI->db->update("attachments", $updatefields, array("att_id"=>$attachment->att_id));
         return True;
     }
-
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. Assumptino: $attachment contains a valid attachment from the database.*/
+    function delete($attachment) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('attachment_edit')
+            ||
+            !$CI->accesslevels_lib->canEditObject($attachment)
+            ) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete attachment: insufficient rights');
+            return;
+        }
+        if (empty($attachment->att_id)) {
+            appendErrorMessage('Cannot delete attachment: erroneous ID');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('attachments',array('att_id'=>$attachment->att_id));
+        if ($attachment->isremote) {
+            unlink(AIGAION_ATTACHMENT_DIR.'/'.$attachment->location);
+        }
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }  
     function generateUniqueSuffix()
     {
     	$suffix = md5(time());

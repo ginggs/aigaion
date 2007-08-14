@@ -285,7 +285,7 @@ class Users extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete user: not implemented yet');
+            $user->delete();
             redirect('users/manage');
         } else {
             //get output

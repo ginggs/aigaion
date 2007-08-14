@@ -314,6 +314,34 @@ class User_db {
         }
         return True;
     }
+
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($user) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('user_edit_all')) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete user: insufficient rights');
+            return;
+        }
+        if (empty($user->user_id)) {
+            appendErrorMessage('Cannot delete user: erroneous ID');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('users',array('user_id'=>$user->user_id));
+        //delete links
+        $CI->db->delete('usergrouplink',array('user_id'=>$user->user_id));
+        $CI->db->delete('userrights',array('user_id'=>$user->user_id));
+        $CI->db->delete('personpublicationmark',array('person_id'=>$user->user_id));
+        $CI->db->delete('userbookmarklists',array('user_id'=>$user->user_id));
+        $CI->db->delete('usertopiclink',array('user_id'=>$user->user_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }    
     
 }
 ?>

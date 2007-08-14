@@ -631,6 +631,49 @@ class Publication_db {
     return $publication;
   }
 
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($publication) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('publication_edit')
+            ||
+            !$CI->accesslevels_lib->canEditObject($publication)
+            ) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete publication: insufficient rights');
+            return false;
+        }
+        if (empty($publication->pub_id)) {
+            appendErrorMessage('Cannot delete publication: erroneous ID');
+            return;
+        }
+        //no delete for object with children. check through tables, not through object
+        $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
+        if ($Q->num_rows()>0) {
+            appendErrorMessage('Cannot delete publication: still has attachments (possibly invisible...)<br/>');
+            return false;
+        }
+        $Q = $CI->db->getwhere('notes',array('pub_id'=>$publication->pub_id));
+        if ($Q->num_rows()>0) {
+            appendErrorMessage('Cannot delete publication: still has notes attached to it (possibly invisible...)<br/>');
+            return false;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('publication',array('pub_id'=>$publication->pub_id));
+        //delete links
+        $CI->db->delete('topicpublicationlink',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('publicationauthorlink',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('publicationkeywordlink',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('publicationpublicationlink',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('userbookmarklists',array('source_pub_id'=>$publication->pub_id));
+        $CI->db->delete('userbookmarklists',array('target_pub_id'=>$publication->pub_id));
+        $CI->db->delete('personpublicationmark',array('pub_id'=>$publication->pub_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }      
   function validate($publication)
   {
         $CI = &get_instance();

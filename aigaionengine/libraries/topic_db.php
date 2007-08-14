@@ -381,7 +381,40 @@ class Topic_db {
         }
         return True;
     }
-    
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($topic) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('topic_edit')
+            ||
+            !$CI->accesslevels_lib->canEditObject($topic)
+            ) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete topic: insufficient rights');
+            return;
+        }
+        if (empty($topic->topic_id)) {
+            appendErrorMessage('Cannot delete topic: erroneous ID');
+            return;
+        }
+        //no delete for object with children. check through tables, not through object
+        $Q = $CI->db->getwhere('topictopiclink',array('target_topic_id'=>$topic->topic_id));
+        if ($Q->num_rows()>0) {
+            appendErrorMessage('Cannot delete topic: still has children (possibly invisible)<br/>');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('topics',array('topic_id'=>$topic->topic_id));
+        //delete links
+        $CI->db->delete('topictopiclink',array('source_topic_id'=>$topic->topic_id));
+        $CI->db->delete('topicpublicationlink',array('topic_id'=>$topic->topic_id));
+        $CI->db->delete('usertopiclink',array('topic_id'=>$topic->topic_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }      
     /** Collapse given topic for the given user, if that user is susbcribed to it */
     function collapse($topic, $user_id) {
         $CI = &get_instance();

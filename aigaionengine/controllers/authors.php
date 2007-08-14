@@ -108,18 +108,67 @@ class Authors extends Controller {
   }
   
   
-  //delete() - Remove one author from the database
-  function delete()
-  {
-    $userlogin = getUserLogin();
-    if (!$userlogin->hasRights('publication_edit'))
-    {
-      appendErrorMessage('Edit author: insufficient rights.<br/>');
-      redirect('');
-    }
+	/** 
+	authors/delete
+	
+	Entry point for deleting an author.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	deleting. 
+	
+	Fails with error message when one of:
+	    delete requested for non-existing author
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: author_id, the id of the to-be-deleted-author
+	    4th: if the 4th segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the delete action, if no 'commit' was specified
+        Redirects somewhere (?) after deleting, if 'commit' was specified
+	*/
+	function delete()
+	{
+	    $author_id = $this->uri->segment(3);
+	    $author = $this->author_db->getByID($author_id);
+	    $commit = $this->uri->segment(4,'');
 
-    echo "Single author delete";
-  }
+	    if ($author==null) {
+	        appendErrorMessage('Delete author: author does not exist.<br/>');
+	        redirect('');
+	    }
+
+        $userlogin  = getUserLogin();
+        if (    (!$userlogin->hasRights('publication_edit'))
+            ) 
+        {
+	        appendErrorMessage('Delete author: insufficient rights.<br/>');
+	        redirect('');
+        }
+
+        if ($commit=='commit') {
+            //do delete, redirect somewhere
+            $author->delete();
+            redirect('authors');
+        } else {
+            //get output: a full web page with a 'confirm delete' form
+            $headerdata = array();
+            $headerdata['title'] = 'Author: delete';
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('authors/delete',
+                                         array('author'=>$author),  
+                                         true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);	
+        }
+    }
   
   //commit() - Commit the posted author to the database
   function commit()

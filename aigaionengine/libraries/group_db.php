@@ -126,5 +126,31 @@ class Group_db {
         
         return True;
     }
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($group) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('user_edit_all')) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete group: insufficient rights');
+            return;
+        }
+        if (empty($group->group_id)) {
+            appendErrorMessage('Cannot delete group: erroneous ID');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('users',array('user_id'=>$group->group_id));
+        //delete links
+        $CI->db->delete('usergrouplink',array('group_id'=>$group->group_id));
+        $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
+        $CI->db->delete('usertopiclink',array('group_id'=>$group->group_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }    
+
 }
 ?>

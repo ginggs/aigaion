@@ -26,7 +26,7 @@ class Notes extends Controller {
 	    insufficient user rights
 	    
 	Parameters passed via URL segments:
-	    3rd: topic_id, the id of the to-be-deleted-note
+	    3rd: note_id, the id of the to-be-deleted-note
 	    4th: if the 4th segment is the string 'commit', no confirmation is requested.
 	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
 	         called with 'commit' specified
@@ -61,7 +61,7 @@ class Notes extends Controller {
         
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete note: not implemented yet');
+            $note->delete();
             redirect('');
         } else {
             //get output

@@ -163,6 +163,33 @@ class Note_db {
                                                        
         return True;
     }
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($note) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('note_edit')
+            ||
+            !$CI->accesslevels_lib->canEditObject($note)
+            ) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete note: insufficient rights');
+            return;
+        }
+        if (empty($note->note_id)) {
+            appendErrorMessage('Cannot delete note: erroneous ID');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('notes',array('note_id'=>$note->note_id));
+        //delete links
+        $CI->db->delete('notecrossrefid',array('note_id'=>$note->note_id));
+        $CI->db->delete('notecrossrefid',array('xref_id'=>$note->note_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }  
 
     /** change the text of all affected notes to reflect a change of the bibtex_id of the given publication.
     Note: this method does NOT make use of getByID($note_id), because one should also change the referring 

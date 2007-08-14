@@ -176,21 +176,73 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
-  //delete() - Remove one publication from the database
-  function delete()
-  {
-    $userlogin  = getUserLogin();
-    $user       = $this->user_db->getByID($userlogin->userID());
-    if ((!$userlogin->hasRights('publication_edit'))
-         || !$this->accesslevels_lib->canEditObject($publication)         
-        ) 
-    {
-      appendErrorMessage('Delete publication: insufficient rights.<br/>');
-      redirect('');
-    }
-    echo "Single publication delete";
-  }
-  
+	/** 
+	publications/delete
+	
+	Entry point for deleting a publication.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	deleting. 
+	
+	Fails with error message when one of:
+	    delete requested for non-existing publication
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: pub_id, the id of the to-be-deleted-publication
+	    4th: if the 4th segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the delete action, if no 'commit' was specified
+        Redirects somewhere (?) after deleting, if 'commit' was specified
+	*/
+	function delete()
+	{
+	    $pub_id = $this->uri->segment(3);
+	    $publication = $this->publication_db->getByID($pub_id);
+	    $commit = $this->uri->segment(4,'');
+
+	    if ($publication==null) {
+	        appendErrorMessage('Delete publication: non existing publication specified.<br/>');
+	        redirect('');
+	    }
+
+	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin  = getUserLogin();
+
+        if (    (!$userlogin->hasRights('publication_edit'))
+             || 
+                !$this->accesslevels_lib->canEditObject($publication)        
+            ) 
+        {
+	        appendErrorMessage('Delete publication: insufficient rights.<br/>');
+	        redirect('');
+        }
+        
+        if ($commit=='commit') {
+            //do delete, redirect somewhere
+            $publication->delete();
+            redirect('');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Delete publication';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('publications/delete',
+                                          array('publication'=>$publication),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }  
   
   //commit() - Commit the posted publication to the database
   function commit()

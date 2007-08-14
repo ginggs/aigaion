@@ -185,6 +185,30 @@ class Author_db {
     return $author;
   }
   
+    /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
+    in the _db class before actually deleting. */
+    function delete($author) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        //collect all cascaded to-be-deleted-id's: none
+        //check rights
+        //check, all through the cascade, whether you can read AND edit that object
+        if (!$userlogin->hasRights('publication_edit')) {
+            //if not, for any of them, give error message and return
+            appendErrorMessage('Cannot delete author: insufficient rights');
+            return;
+        }
+        if (empty($author->author_id)) {
+            appendErrorMessage('Cannot delete author: erroneous ID');
+            return;
+        }
+        //otherwise, delete all dependent objects by directly accessing the rows in the table 
+        $CI->db->delete('authors',array('author_id'=>$author->author_id));
+        //delete links
+        $CI->db->delete('publicationauthorlink',array('author_id'=>$author->author_id));
+        //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+    }    
+      
   function validate($author)
   {
         $CI = &get_instance();

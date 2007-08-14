@@ -123,5 +123,11 @@ function format($formatStyle, $data='')
   function update() {
     return $CI->author_db->update($this);
   }
+  /** Deletes this author. Returns TRUE or FALSE depending on whether the operation was
+  successful. */
+  function delete() {
+      $CI = &get_instance();
+      return $CI->author_db->delete($this);
+  }
 }
 ?>

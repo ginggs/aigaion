@@ -92,7 +92,7 @@ class Attachments extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete attachment: not implemented yet');
+            $attachment->delete();
             redirect('publications/show/'.$attachment->pub_id);
         } else {
             //get output: a full web page with a 'confirm delete' form

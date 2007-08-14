@@ -103,7 +103,7 @@ class Topics extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            appendErrorMessage('Delete topic: not implemented yet');
+            $topic->delete();
             redirect('');
         } else {
             //get output

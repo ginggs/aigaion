@@ -38,6 +38,12 @@ class Note {
         $CI = &get_instance();
         return $CI->note_db->update($this);
     }
+    /** Deletes this note. Returns TRUE or FALSE depending on whether the operation was
+    successful. */
+    function delete() {
+        $CI = &get_instance();
+        return $CI->note_db->delete($this);
+    }
     
 
 }
