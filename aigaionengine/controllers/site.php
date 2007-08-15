@@ -90,28 +90,64 @@ class Site extends Controller {
 	*/
 	function maintenance()
 	{
+	    //$this->load->helper('maintenance');
 	    //check rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Configure database: insufficient rights.<br/>');
+	        appendErrorMessage('Maintain database: insufficient rights.<br/>');
 	        redirect('');
         }
 
 	    $maintenance = $this->uri->segment(3,'');
 
-	    if ($maintenance != '') {
-	        appendMessage('Maintenance function '.$maintenance.' not implemented yet.<br/>');
+        $checkresult = "<table class='message' width='100%'>";
+        
+	    switch ($maintenance) {
+	        case 'all':
+//	        case 'attachment':
+//	            $checkresult .= checkAttachments();
+//	            if ($maintenance != 'all') 
+//	                break;
+//	        case 'topic':
+//	            $checkresult .= checkTopicss();
+//	            if ($maintenance != 'all') 
+//	                break;
+//	        case 'passwords':
+//	            $checkresult .= checkPasswords();
+//	            if ($maintenance != 'all') 
+//	            break;
+	        case 'checkupdates':
+	            $this->load->helper('checkupdates');
+                $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";
+	            $checkresult .= "<tr><td>Checking for updates...</td>";
+	            $updateinfo = checkUpdates();
+	            if ($updateinfo == '') {
+    		        $checkresult .= '<td><b>OK</b></td></tr>';
+        			$checkresult .= '<tr><td colspan=2><div class="message">This installation of Aigaion is up-to-date</div></td></tr>';
+	            } else {
+        			$checkresult .= '<td><span class="errortext">ALERT</span></td>';
+        			$checkresult .= '</tr>';
+        			$checkresult .= '<tr><td colspan=2>'.$updateinfo.'</td></tr>';
+    	        }
+	            //if ($maintenance != 'all') 
+	            break;
+	        default:
+    	        appendMessage('Maintenance function '.$maintenance.' not implemented.<br>');
+	            break;
 	    }
-
+	    
+	    $checkresult .= "</table>";
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Aigaion 2.0: Site maintenance';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
-
+        
+        $output .= $checkresult;
+        
         $output .= $this->load->view('site/maintenance',
                                       array(),
                                       true);

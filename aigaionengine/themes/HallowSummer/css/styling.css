@@ -102,6 +102,10 @@ li.mainmenu-spacer {
       border-style    : solid;
       border-width    : 1px;
 }
+.errortext {
+	color: #ee6666;
+	font-weight: bold;
+}
 
 /* FORM STUFF */
 .editform {
@@ -161,6 +165,15 @@ div.optionbox {
   text-align      : right;
 }
 
+/* a simple table style */
+.tablewithborder td, table {
+    border          : 1px solid black;
+    border-spacing  : 0px;
+    border-collapse : collapse;
+    margin          : 1px;
+    padding         : 1px;
+    vertical-align  : top;
+}   
 div.publication_summary {
   padding         : 0.1em 0.1em 1em 0.5em;
   background      : #9D9582;

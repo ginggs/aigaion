@@ -652,6 +652,8 @@ class Publication_db {
             return;
         }
         //no delete for object with children. check through tables, not through object
+        #NOTE: if we want to allow delete of publications with notes and attachments, we should make sure
+        #that current user can edit/delete all those notes and attachments!
         $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
             appendErrorMessage('Cannot delete publication: still has attachments (possibly invisible...)<br/>');

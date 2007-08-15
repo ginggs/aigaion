@@ -105,6 +105,16 @@ div.optionbox {
   text-align      : right;
 }
 
+/* a simple table style */
+td.tablewithborder , table.tablewithborder {
+    border          : 1px solid black;
+    border-spacing  : 0px;
+    border-collapse : collapse;
+    margin          : 1px;
+    padding         : 1px;
+    vertical-align  : top;
+}   
+
 /* ==== COLORS AND BASIC DEFINITIONS FOR MAIN LAYOUT ELEMENTS ====*/
 
 /* Main layout box colors */
@@ -179,6 +189,10 @@ li.mainmenu-spacer {
     padding         : 1em;
     background-color: #EE6666;
     border          : solid 1px #DDDDDD;
+}
+.errortext {
+	color: #ee6666;
+	font-weight: bold;
 }
 
 /* ==== FORMS ==== */

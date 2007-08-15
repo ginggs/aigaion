@@ -17,7 +17,7 @@
 /** By default, when no user is logged in, control is passed to the login form.
     Add controllers for which this should not happen to the exclude array. */
 $filter['login'][] = array(
-	'exclude', array('login/*'), array('action'=>'redirect')
+	'exclude', array('login/*','version/*'), array('action'=>'redirect')
 );
 /** For some controllers, failure of the login check should simply result in the
     display of a div with an error message defined in the login/fail view.

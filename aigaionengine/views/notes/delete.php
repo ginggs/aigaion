@@ -14,7 +14,7 @@ echo form_open('notes/delete/'.$note->note_id.'/commit');
 echo "Are you sure that you want to delete the note below?<p>\n";
 echo form_submit('confirm','Confirm');
 echo form_close();
-echo form_open('');
+echo form_open('publications/show/'.$note->pub_id);
 echo form_submit('cancel','Cancel');
 echo form_close();
 echo "</div>";

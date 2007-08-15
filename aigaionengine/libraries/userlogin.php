@@ -477,7 +477,11 @@ class UserLogin {
                 setcookie("loginname", $R->login   ,(3*24*60*60)+time());
                 setcookie("password",  $R->password,(3*24*60*60)+time());
             }
-                        
+            
+            #once every day (i.e. depending on when last up-to-date-check was performed), for
+            #database_manage users, an up-to-date-check is performed
+            
+            
             #set a welcome message/advertisement after login
             appendMessage("
                 <table>\n<tr><td>

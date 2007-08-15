@@ -402,6 +402,8 @@ class Topic_db {
             return;
         }
         //no delete for object with children. check through tables, not through object
+        #NOTE: if we want to change this, we should make sure that a user can only delete a topic
+        #when (s)he has edit access to ALL descendants!
         $Q = $CI->db->getwhere('topictopiclink',array('target_topic_id'=>$topic->topic_id));
         if ($Q->num_rows()>0) {
             appendErrorMessage('Cannot delete topic: still has children (possibly invisible)<br/>');

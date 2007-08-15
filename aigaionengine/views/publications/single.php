@@ -114,6 +114,15 @@ $user       = $this->user_db->getByID($userlogin->userID());
     endif;
 ?>
     <tr>
+      <td valign='top'>Added by:</td>
+      <td valign='top'>
+<?php
+        echo '<b>['.getAbbrevForUser($publication->user_id).']</b>';
+?>
+      </td>
+    </tr>
+    
+    <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 

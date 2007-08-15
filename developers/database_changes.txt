@@ -238,30 +238,45 @@ UPDATE availablerights SET name='note_edit' WHERE name='note_edit_self';
 UPDATE topics SET read_access_level='public',derived_read_access_level='public' where topic_id=1;
 
 -- some default rights profiles that seem to make sense
+INSERT INTO rightsprofiles VALUES ('1', 'admin_rights');
 INSERT INTO rightsprofiles VALUES ('2', 'editor_rights');
-INSERT INTO rightsprofiles VALUES ('3', 'guest_rights');
-INSERT INTO rightsprofiles VALUES ('4', 'admin_rights');
-INSERT INTO rightsprofiles VALUES ('5', 'reader_rights');
+INSERT INTO rightsprofiles VALUES ('3', 'reader_rights');
+INSERT INTO rightsprofiles VALUES ('4', 'guest_rights');
 -- Insert rightsprofilerightlink data
+INSERT INTO rightsprofilerightlink VALUES ('1', 'database_manage');
+INSERT INTO rightsprofilerightlink VALUES ('1', 'edit_all_override');
+INSERT INTO rightsprofilerightlink VALUES ('1', 'read_all_override');
+INSERT INTO rightsprofilerightlink VALUES ('1', 'user_assign_rights');
+INSERT INTO rightsprofilerightlink VALUES ('1', 'user_edit_all');
 INSERT INTO rightsprofilerightlink VALUES ('2', 'attachment_edit');
 INSERT INTO rightsprofilerightlink VALUES ('2', 'note_edit');
 INSERT INTO rightsprofilerightlink VALUES ('2', 'publication_edit');
 INSERT INTO rightsprofilerightlink VALUES ('2', 'topic_edit');
 INSERT INTO rightsprofilerightlink VALUES ('2', 'user_edit_self');
-INSERT INTO rightsprofilerightlink VALUES ('4', 'database_manage');
-INSERT INTO rightsprofilerightlink VALUES ('4', 'edit_all_override');
-INSERT INTO rightsprofilerightlink VALUES ('4', 'read_all_override');
-INSERT INTO rightsprofilerightlink VALUES ('4', 'user_assign_rights');
-INSERT INTO rightsprofilerightlink VALUES ('4', 'user_edit_all');
-INSERT INTO rightsprofilerightlink VALUES ('5', 'attachment_read');
-INSERT INTO rightsprofilerightlink VALUES ('5', 'note_read');
-INSERT INTO rightsprofilerightlink VALUES ('5', 'topic_subscription');
-INSERT INTO rightsprofilerightlink VALUES ('5', 'bookmarklist');
+INSERT INTO rightsprofilerightlink VALUES ('3', 'attachment_read');
+INSERT INTO rightsprofilerightlink VALUES ('3', 'note_read');
+INSERT INTO rightsprofilerightlink VALUES ('3', 'topic_subscription');
+INSERT INTO rightsprofilerightlink VALUES ('3', 'bookmarklist');
 
 
 -- 2007-07-26
 -- enlarge surname field, esp. for groups (they tend to get longer names)
 ALTER TABLE `users` MODIFY COLUMN `surname` VARCHAR(100) DEFAULT NULL;
+
+--- 2007-08-14
+--- database extension for up-to-date checks
+--- per person: time of last update check
+--- changehistory: info of older versions (release nr, type, more info)
+
+CREATE TABLE `changehistory` (
+  `version` varchar(20) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY  (`release`)
+) ENGINE=MyISAM;
+
+INSERT INTO `ai2_changehistory` (`release`,`type`,`description`) VALUES 
+ ('1.99.0','bugfix,features,layout,security','Introduction of this table; first changehistory of Aigaion 2, still to be improved. This text will be modified before the real prerelease into some more informative description of Aigaion 2.0 Update contains all types: bugfix,features,layout,security. Note that the \'type\' column contains a comma separated list of things that may have changed in this release. ');
 
 ---still to be done:
 

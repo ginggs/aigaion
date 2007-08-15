@@ -56,13 +56,13 @@ class Notes extends Controller {
             ) 
         {
 	        appendErrorMessage('Delete note: insufficient rights.<br/>');
-	        redirect('');
+	        redirect('publications/show/'.$note->pub_id);
         }
         
         if ($commit=='commit') {
             //do delete, redirect somewhere
             $note->delete();
-            redirect('');
+            redirect('publications/show/'.$note->pub_id);
         } else {
             //get output
             $headerdata = array();
