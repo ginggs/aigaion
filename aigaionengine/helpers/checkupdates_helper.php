@@ -7,10 +7,10 @@
 |
 |   Provides information whether the version of Aigaion is up-to-date by checking
 |   version information on http://aigaion.nl
-|   Used by the login module: once every day, when a dbadmin logs in, a check is done whether 
+|   Used by the login module: once every 2 days, when a dbadmin logs in, a check is done whether 
 |   the current version is up-to-date. A very short time-out is used, to make it least intrusive.
 |   If an update is available, a warning is returned and the up-to-date-check is not performed for 
-|   24 hours for this dbadmin user. If the new version is a security update, a red warning ('error message')
+|   48 hours for this dbadmin user. If the new version is a security update, a red warning ('error message')
 |   is returned.
 |
 |	Usage:
@@ -46,7 +46,7 @@
         if ($remoterelease==$thisrelease) {
             return '';
         }
-        $result = 'There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';
+        $result = '<p>There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';
         #if deviation: get detailed info for change history from aigaion.nl
         $remotechangehistory = '';
         ob_start();
@@ -123,7 +123,7 @@
             $result .= '</table>';
         }
         #give message depending on type of update (normal, minor, security, etc; max type that was missed since current version of installation); 
-        $result .= "You can download the new version <a href='http://www.aigaion.nl'>here</a>.";
+        $result .= "<p>You can download the new version <a href='http://www.aigaion.nl'>here</a>.";
         #update status of 'last check for this user'
         //return message or errormessage
         return '<div class="'.$class.'">'.$result.'</div>';

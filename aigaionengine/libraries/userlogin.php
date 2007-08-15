@@ -477,10 +477,26 @@ class UserLogin {
                 setcookie("loginname", $R->login   ,(3*24*60*60)+time());
                 setcookie("password",  $R->password,(3*24*60*60)+time());
             }
+
+            #init rights and preferences
+            $this->initRights();
             
             #once every day (i.e. depending on when last up-to-date-check was performed), for
             #database_manage users, an up-to-date-check is performed
-            
+            if (!$this->bIsAnonymous && $this->hasRights('database_manage') && ($this->theUser->lastupdatecheck+48*60*60 < time())) {
+                $CI->load->helper('checkupdates');
+	            $checkresult = "Checking for updates... ";
+	            $updateinfo = checkUpdates();
+	            if ($updateinfo == '') {
+    		        $checkresult .= '<b>OK</b><br/>';
+        			$checkresult .= 'This installation of Aigaion is up-to-date';
+	            } else {
+        			$checkresult .= '<span class="errortext">ALERT</span><br/>';
+        			$checkresult .= $updateinfo;
+    	        }
+    	        appendMessage($checkresult);
+                $CI->db->update('users',array('lastupdatecheck'=>time()),array('user_id'=>$this->iUserId));
+            }
             
             #set a welcome message/advertisement after login
             appendMessage("
@@ -499,9 +515,6 @@ class UserLogin {
                 </a>
                 </td></tr>\n</table>
               ");
-
-            #init rights and preferences
-            $this->initRights();
 
             #SO. Here, if login was successful, we will check the database structure once.
             if (!checkSchema()) { //checkSchema will also attempt to login...

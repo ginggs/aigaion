@@ -31,6 +31,7 @@ class User_db {
         $user->surname            = $R->surname;
         $user->email              = $R->email;
         $user->lastreviewedtopic  = $R->lastreviewedtopic;
+        $user->lastupdatecheck  = $R->lastupdatecheck;
         $user->abbreviation       = $R->abbreviation;
         $user->login              = $R->login;
         $user->password           = $R->password;

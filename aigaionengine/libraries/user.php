@@ -19,6 +19,7 @@ class User {
     //other info
     var $email              = '';
     var $lastreviewedtopic  = 0;
+    var $lastupdatecheck    = 0;
     //login info
     var $abbreviation       = '';
     var $login              = '';
