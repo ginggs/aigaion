@@ -93,7 +93,47 @@ class Export extends Controller {
         $this->output->set_output($output);        
 
     }        
+    /** 
+    export/bookmarklist
     
+    Export all (accessible) entries from the bookmarklist of this user
+    
+	Fails with error message when one of:
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rth: type (bibtex|ris)
+	         
+    Returns:
+        A clean text page with exported publications
+    */
+    function bookmarklist() {
+	    $type = $this->uri->segment(4,'bibtex');
+	    if (!in_array($type,array('bibtex','ris'))) {
+	        $type = 'bibtex';
+	    }
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist')) {
+	        appendErrorMessage('Export: no bookmarklist rights<br/>');
+	        redirect ('');
+	    }
+	    
+        #collect to-be-exported publications 
+        $publicationMap = $this->publication_db->getForBookmarkListAsMap();
+        #split into publications and crossreffed publications, adding crossreffed publications as needed
+        $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
+        $pubs = $splitpubs[0];
+        $xrefpubs = $splitpubs[1];
+        
+        #send to right export view
+
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+
+        //set output
+        $this->output->set_output($output);        
+
+    }        
+        
     /** 
     export/publication
     

@@ -903,6 +903,28 @@ class Publication_db {
         }
         return $result;
     }
+  /** Return a list of publications for the bookmark list of the logged user, as a map (id=>publication), for export purposes  */
+  function getForBookmarkListAsMap()
+  {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
+    WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
+    AND   ".AIGAION_DB_PREFIX."userbookmarklists.pub_id=".AIGAION_DB_PREFIX."publication.pub_id
+    ORDER BY bibtex_id");
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[$next->pub_id] = $next;
+      }
+    }
+    return $result;
+  }    
     /** splits the given publication map (id=>publication) into two maps [normal,xref],
     where xref is the map with all crossreffed publications (including those not present
     in the original map), and normal is the map with all other publications. 
