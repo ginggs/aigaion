@@ -148,7 +148,7 @@ class Group_db {
         //delete links
         $CI->db->delete('usergrouplink',array('group_id'=>$group->group_id));
         $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
-        $CI->db->delete('usertopiclink',array('group_id'=>$group->group_id));
+        $CI->db->delete('usertopiclink',array('user_id'=>$group->group_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
     }    
 
