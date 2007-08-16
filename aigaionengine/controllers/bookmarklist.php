@@ -121,7 +121,8 @@ class Bookmarklist extends Controller {
 	    //check rights is done in the $this->bookmarklist_db->addTopic function, no need to do it twice
 
         //load topic
-        $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
             appendErrorMessage("Add topic to bookmarklist: non-existing topic id passed");
@@ -194,7 +195,8 @@ class Bookmarklist extends Controller {
 	    //check rights is done in the $this->bookmarklist_db->removeTopic function, no need to do it twice
 
         //load topic
-        $topic = $this->topic_db->getByID($topic_id);
+        $config=array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
             appendErrorMessage("Removing topic from bookmarklist: non-existing topic id passed");

@@ -42,7 +42,13 @@ $user       = $this->user_db->getByID($userlogin->userID());
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo $publication->$key; ?></td>
+      <td valign='top'><?php 
+        if ($key=='doi') {
+            echo '<a target=_blank href="http://dx.doi.org/'.$publication->$key.'">'.$publication->$key.'</a>'; 
+        } else {
+            echo $publication->$key; 
+        }
+      ?></td>
     </tr>
 <?php
       endif;
