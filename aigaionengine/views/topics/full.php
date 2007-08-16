@@ -33,8 +33,8 @@
            .'&nbsp;'
            .anchor('bookmarklist/removetopic/'.$topic->topic_id,'[UnBookmarkAll]');
     }
-    echo  '&nbsp;'
-           .anchor('export/topic/'.$topic->topic_id,'[BiBTeX]');
+    echo  '&nbsp;['
+           .anchor('export/topic/'.$topic->topic_id,'BiBTeX',array('target'=>'aigaion_export')).']';
     echo "<br/><br/>\n";
     ?>
 </div>

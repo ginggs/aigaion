@@ -925,6 +925,28 @@ class Publication_db {
     }
     return $result;
   }    
+  function getForAuthorAsMap($author_id)
+  {
+    $CI = &get_instance();
+    //we need merge functionality here, so initialze a merge cache
+    $this->crossref_cache = array();
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
+    WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
+    ORDER BY bibtex_id");
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[$next->pub_id] = $next;
+      }
+    }
+
+    return $result;
+  }
     /** splits the given publication map (id=>publication) into two maps [normal,xref],
     where xref is the map with all crossreffed publications (including those not present
     in the original map), and normal is the map with all other publications. 

@@ -94,6 +94,49 @@ class Export extends Controller {
 
     }        
     /** 
+    export/author
+    
+    Export all (accessible) entries from one author
+    
+	Fails with error message when one of:
+	    non existing author_id requested
+	    
+	Parameters passed via URL segments:
+	    3rd: author_id
+	    4rth: type (bibtex|ris)
+	         
+    Returns:
+        A clean text page with exported publications
+    */
+    function author() {
+	    $author_id = $this->uri->segment(3,-1);
+	    $type = $this->uri->segment(4,'bibtex');
+	    $author = $this->author_db->getByID($author_id);
+	    if ($author==null) {
+	        appendErrorMessage('Export requested for non existing author<br/>');
+	        redirect ('');
+	    }
+	    if (!in_array($type,array('bibtex','ris'))) {
+	        $type = 'bibtex';
+	    }
+        $userlogin = getUserLogin();
+
+        #collect to-be-exported publications 
+        $publicationMap = $this->publication_db->getForAuthorAsMap($author->author_id);
+        #split into publications and crossreffed publications, adding crossreffed publications as needed
+        $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
+        $pubs = $splitpubs[0];
+        $xrefpubs = $splitpubs[1];
+        
+        #send to right export view
+
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+
+        //set output
+        $this->output->set_output($output);        
+
+    }       
+    /** 
     export/bookmarklist
     
     Export all (accessible) entries from the bookmarklist of this user

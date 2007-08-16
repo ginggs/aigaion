@@ -46,13 +46,13 @@ if ($userlogin->hasRights('publication_edit')) {
 ?>
 <br/>
 <?php
-    echo form_open('export/bookmarklist/bibtex');
+    echo form_open('export/bookmarklist/bibtex',array('target'=>'aigaion_export'));
     echo form_submit(array('name'=>'BiBTeX','title'=>'Export to BiBTeX'),'BiBTeX');
     echo form_close();
 ?>
 <br/>
 <?php
-    echo form_open('export/bookmarklist/ris');
+    echo form_open('export/bookmarklist/ris',array('target'=>'aigaion_export'));
     echo form_submit(array('name'=>'RIS','title'=>'Export to RIS'),'RIS');
     echo form_close();
 ?>

@@ -38,8 +38,8 @@ $user       = $this->user_db->getByID($userlogin->userID());
           }
         }
         echo "]</span>";        
-        echo  '&nbsp;'
-           .anchor('export/publication/'.$publication->pub_id,'[BiBTeX]');
+        echo  '&nbsp;['
+           .anchor('export/publication/'.$publication->pub_id,'BiBTeX',array('target'=>'aigaion_export')).']';
 ?>
   </div>
   <div class='header'><?php echo $publication->title; ?>
