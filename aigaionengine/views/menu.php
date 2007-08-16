@@ -17,6 +17,10 @@ if ($userlogin->hasRights('bookmarklist')) {
 <?php
 }
 
+?>
+    <li class="mainmenu"><?php echo anchor('export', 'Export BiBTeX'); ?></li>
+<?php
+
 if ($userlogin->hasRights('publication_edit'))
 {
 ?>

@@ -870,5 +870,82 @@ class Publication_db {
         }
     }
 
+    /** returns all accessible publications, as a map (id=>publication) */
+    function getAllPublicationsAsMap() {
+        $CI = &get_instance();
+        $result = array();
+        $CI->db->orderby('bibtex_id');
+        $Q = $CI->db->get('publication');
+        foreach ($Q->result() as $R) {
+            $next = $this->getFromRow($R);
+            if ($next != null) {
+                $result[$next->pub_id] = $next;
+            }
+        }
+        return $result;
+    }
+    /** returns all accessible publications from a topic, as a map (id=>publication), for export purposes */
+    function getForTopicAsMap($topic_id) {
+        $CI = &get_instance();
+        $result = array();
+        $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
+        WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+        AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
+        ORDER BY bibtex_id");
+    
+        foreach ($Q->result() as $row)
+        {
+          $next = $this->getFromRow($row);
+          if ($next != null)
+          {
+            $result[$next->pub_id] = $next;
+          }
+        }
+        return $result;
+    }
+    /** splits the given publication map (id=>publication) into two maps [normal,xref],
+    where xref is the map with all crossreffed publications (including those not present
+    in the original map), and normal is the map with all other publications. 
+    If $merge is true, all crossref entries will additionally be merged into their referring entries.
+    */
+    function resolveXref($publicationMap, $merge=false) {
+        $normal=$publicationMap;
+        $xref=array();
+        foreach ($publicationMap as $pub_id=>$publication) {
+            //$publication null? then it was apparently a crossref that was moved to the xref array; skip
+            if ($publication==null) {
+                continue;
+            }
+            //has crossref? 
+            if (trim($publication->crossref)!='') {
+                //get publication for crossref
+                $xrefpub = $this->getByBibtexID($publication->crossref);
+                if ($xrefpub!=null) {
+                    //  find crossref in xref; 
+                    if (!array_key_exists($xrefpub->pub_id,$xref)) {
+                        if (array_key_exists($xrefpub->pub_id,$normal)) {
+                            //  if not exists in xref find in and move from $normal to $xref; 
+                            $xref[$xrefpub->pub_id]=$normal[$xrefpub->pub_id];
+                            $normal[$xrefpub->pub_id] = null;
+                        } else {
+                            //  if not there either get from database and add to $xref
+                            $xref[$publication->crossref] = $xrefpub;
+                        }
+                        if ($merge) {
+                            appendMessage('resolveXref: merge xref into publication!<br/>');
+                        }
+                    }
+                } //else: don't do a thing; leave the publication in $normal where it was put in the first place
+            }
+        }
+        //finally, remove all entries from $normal that were set to null
+        $finalnormal=array();
+        foreach ($normal as $pub_id=>$publication) {
+            if ($publication!=null) {
+                $finalnormal[$pub_id] = $publication;
+            }
+        }
+        return array($finalnormal,$xref);
+    }
 }
 ?>

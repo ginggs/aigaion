@@ -129,5 +129,59 @@ class Publication {
     }
     return $this->notes;
   }
+  
+  /** returns formatted bibtex for this publication object. Does not do any crossref merging. */
+  function getBiBTeX()
+  {
+    $CI = &get_instance();
+    $CI->load->helper('specialchar');
+    $CI->load->helper('string');
+    $fields = array();
+    $maxfieldname=0;
+    //open entry
+    $result = '@'.strtoupper($this->pub_type).'{'.$this->bibtex_id.",\n";
+    //collect authors
+    $authors = "";
+    $first = true;
+    foreach ($this->authors as $author) {
+        if (!$first) $authors .= " and ";
+        $first = false;
+        $authors .= $author->getName('lvf');
+    }
+    $fields['author']=$authors;
+    //collect editors
+    $editors = "";
+    $first = true;
+    foreach ($this->editors as $editor) {
+        if (!$first) $editors .= " and ";
+        $first = false;
+        $editors .= $editor->getName('lvf');
+    }
+    $fields['editor']=$editors;
+    //collect keywords
+    $keywords = "";
+    $first = true;
+    foreach ($this->getKeywords() as $keyword) {
+        if (!$first) $keywords .= ",";
+        $first = false;
+        $keywords .= $keyword;
+    }
+    $fields['keywords']=$keywords;
+    //initial maxfieldname: the longest of the above collected fields
+    $maxfieldname = 8;
+
+
+    //process fields array, converting to bibtex special chars as you go along.
+    //maxfieldname determines the adjustment of the field names
+    $spaces = repeater(' ',$maxfieldname);
+    foreach ($fields as $name=>$value) {
+        if ($value!='') {
+            $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".latinToBibCharsFromString($value)."},\n";
+        }
+    }
+    //close entry
+    $result .= "}\n";    
+    return $result;
+  }
 }
 ?>

@@ -19,7 +19,27 @@ $user       = $this->user_db->getByID($userlogin->userID());
         )
         echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
         echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
-  ?></div>
+        
+        echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>[";
+        if ($userlogin->hasRights('bookmarklist')) {
+          if ($publication->isBookmarked) {
+            echo $this->ajax->link_to_remote("UnBookmark",
+                  array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
+                        'update'  => 'bookmark_pub_'.$publication->pub_id
+                        )
+                  );
+          } 
+          else {
+            echo $this->ajax->link_to_remote("Bookmark",
+                  array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
+                        'update'  => 'bookmark_pub_'.$publication->pub_id
+                        )
+                  );
+          }
+        }
+        echo "]</span>";        
+  ?>
+  </div>
   <div class='header'><?php echo $publication->title; ?>
 <?php
     $accesslevels = "&nbsp;&nbsp;r:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_edit_access_level.'.gif')."'/>";
