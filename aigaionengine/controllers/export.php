@@ -92,6 +92,50 @@ class Export extends Controller {
         //set output
         $this->output->set_output($output);        
 
+    }        
+    
+    /** 
+    export/publication
+    
+    Export one publication
+    
+	Fails with error message when one of:
+	    non existing pub_id requested
+	    
+	Parameters passed via URL segments:
+	    3rd: pub_id
+	    4rth: type (bibtex|ris)
+	         
+    Returns:
+        A clean text page with exported publications
+    */
+    function publication() {
+	    $pub_id = $this->uri->segment(3,-1);
+	    $type = $this->uri->segment(4,'bibtex');
+	    $publication = $this->publication_db->getByID($pub_id);
+	    if ($publication==null) {
+	        appendErrorMessage('Export requested for non existing publication<br/>');
+	        redirect ('');
+	    }
+	    if (!in_array($type,array('bibtex','ris'))) {
+	        $type = 'bibtex';
+	    }
+        $userlogin = getUserLogin();
+
+        #collect to-be-exported publications 
+        $publicationMap = array($publication->pub_id=>$publication);
+        #split into publications and crossreffed publications, adding crossreffed publications as needed
+        $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
+        $pubs = $splitpubs[0];
+        $xrefpubs = $splitpubs[1];
+        
+        #send to right export view
+
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+
+        //set output
+        $this->output->set_output($output);        
+
     }    
 }
 ?>

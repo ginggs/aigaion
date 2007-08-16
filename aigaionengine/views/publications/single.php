@@ -38,7 +38,9 @@ $user       = $this->user_db->getByID($userlogin->userID());
           }
         }
         echo "]</span>";        
-  ?>
+        echo  '&nbsp;'
+           .anchor('export/publication/'.$publication->pub_id,'[BiBTeX]');
+?>
   </div>
   <div class='header'><?php echo $publication->title; ?>
 <?php
