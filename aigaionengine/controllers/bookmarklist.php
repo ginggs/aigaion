@@ -31,7 +31,7 @@ class Bookmarklist extends Controller {
 	    //get URL segments: none
 	    
 	    //check rights
-      $userlogin = getUserLogin();
+        $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
             appendErrorMessage("View bookmarklist: insufficient rights<br/>");
             redirect('');
@@ -100,6 +100,38 @@ class Bookmarklist extends Controller {
       
     }
 
+    /** 
+    bookmarklist/addtopic
+    
+    Entry point for adding all accessible publications from a give topic to the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    adding nonexisting topic_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: topic_id
+	         
+    Returns:
+        to the vieww page of that topic
+    */
+    function addtopic() {
+        $topic_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->addTopic function, no need to do it twice
+
+        //load topic
+        $topic = $this->topic_db->getByID($topic_id);
+        if ($topic == null)
+        {
+            appendErrorMessage("Add topic to bookmarklist: non-existing topic id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->addTopic($topic->topic_id);
+        redirect('topics/single/'.$topic->topic_id);
+      
+    }
 
     /** 
     bookmarklist/removepublication
@@ -138,6 +170,39 @@ class Bookmarklist extends Controller {
 
         //set output
         $this->output->set_output($output);        
+    }
+    
+
+    /** 
+    bookmarklist/removetopic
+    
+    Entry point for removing all accessible publications of a topic from the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    removing nonexisting topic_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: topic_id
+	         
+    Returns:
+        to the single view page of that topic
+    */
+    function removetopic() {
+        $topic_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->removeTopic function, no need to do it twice
+
+        //load topic
+        $topic = $this->topic_db->getByID($topic_id);
+        if ($topic == null)
+        {
+            appendErrorMessage("Removing topic from bookmarklist: non-existing topic id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->removeTopic($topic->topic_id);
+        redirect('topics/single/'.$topic->topic_id);      
     }
 
 

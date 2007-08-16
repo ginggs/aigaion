@@ -27,6 +27,12 @@
     {
         echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]')."<br/><br/>\n"; 
     }
+    if ($userlogin->hasRights('bookmarklist')) {
+      echo  anchor('bookmarklist/addtopic/'.$topic->topic_id,'[BookmarkAll]')
+           .'&nbsp;'
+           .anchor('bookmarklist/removetopic/'.$topic->topic_id,'[UnBookmarkAll]');
+    }
+
     ?>
 </div>
 <div class='header'>Topic:
