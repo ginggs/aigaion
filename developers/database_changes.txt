@@ -272,10 +272,10 @@ CREATE TABLE `changehistory` (
   `version` varchar(20) NOT NULL,
   `type` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  PRIMARY KEY  (`release`)
+  PRIMARY KEY  (`version`)
 ) ENGINE=MyISAM;
 
-INSERT INTO `changehistory` (`release`,`type`,`description`) VALUES 
+INSERT INTO `changehistory` (`version`,`type`,`description`) VALUES 
  ('1.99.0','bugfix,features,layout,security','Introduction of this table; first changehistory of Aigaion 2, still to be improved. This text will be modified before the real prerelease into some more informative description of Aigaion 2.0 Update contains all types: bugfix,features,layout,security. Note that the \'type\' column contains a comma separated list of things that may have changed in this release. ');
 
 ALTER TABLE `users` ADD COLUMN `lastupdatecheck` INTEGER UNSIGNED NOT NULL DEFAULT 0;
