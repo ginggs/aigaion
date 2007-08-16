@@ -82,7 +82,7 @@ echo "
     </table>
      ";
 echo form_close();
-echo form_open('');
+echo form_open('users/manage');
 echo form_submit('cancel','Cancel');
 echo form_close();
 echo "</div>";
