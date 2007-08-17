@@ -23,7 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 This helper provides functions for selecting publicationtype dependent fields.
 */
 
-/*
+function getFullFieldArray() {
+    return array(
                   'report_type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
@@ -36,7 +37,7 @@ This helper provides functions for selecting publicationtype dependent fields.
                   'month'           => 'hidden',
                   'firstpage'       => 'hidden',
                   'lastpage'        => 'hidden',
-                  'pages'		        => 'hidden',
+                  'pages'		    => 'hidden',
                   'publisher'       => 'hidden',
                   'location'        => 'hidden',
                   'institution'     => 'hidden',
@@ -45,7 +46,7 @@ This helper provides functions for selecting publicationtype dependent fields.
                   'address'         => 'hidden',
                   'howpublished'    => 'hidden',
                   'note'            => 'hidden',
-                  'keywords         => 'hidden',
+                  'keywords'        => 'hidden',
                   'abstract'        => 'hidden',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
@@ -54,7 +55,8 @@ This helper provides functions for selecting publicationtype dependent fields.
                   'crossref'        => 'hidden',
                   'namekey'         => 'hidden',
                   'userfields'      => 'hidden'
-*/
+    );
+}
 
 function getPublicationFieldArray($type)
 {

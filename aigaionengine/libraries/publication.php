@@ -172,9 +172,14 @@ class Publication {
 
     //process user fields
     //see old bibtex export for how to export userfields? Directly DUMP user fields? (but what about layout :( )
-    
+    $done = array('author','editor','keywords','pub_type','bibtex_id','userfields');
     //now add all other fields that are relevant for exporting
-    
+    foreach (getFullFieldArray() as $field) {
+        $maxfieldname = max(strlen($field),$maxfieldname);
+        if (!in_array($field,$done) && (trim($publication->$field)!='')) {
+            $fields[$field]=$publication->$field;
+        }
+    }
     
 
     //process fields array, converting to bibtex special chars as you go along.
