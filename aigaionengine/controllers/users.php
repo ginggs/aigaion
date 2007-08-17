@@ -45,7 +45,7 @@ class Users extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
         
-        $output .= '<div class="optionbox">'.anchor('users/add','[add a new user]')."</div>\n";
+        $output .= '<div class="optionbox">['.anchor('users/add','add a new user')."]</div>\n";
         $output .= "
             <div class='header'>Users</div>
             <ul>
@@ -67,7 +67,7 @@ class Users extends Controller {
         }
         $output .= "</ul><br/><br/>\n";
 
-        $output .= '<div class="optionbox">'.anchor('groups/add','[add a new group]')."</div>\n";
+        $output .= '<div class="optionbox">['.anchor('groups/add','add a new group')."]</div>\n";
         $output .= "
             <div class='header'>Groups</div>
             <ul>
@@ -81,7 +81,7 @@ class Users extends Controller {
         }
         $output .= "</ul><br/><br/>\n";
 
-        $output .= '<div class="optionbox">'.anchor('rightsprofiles/add','[add a new rightsprofile]')."</div>\n";
+        $output .= '<div class="optionbox">['.anchor('rightsprofiles/add','add a new rightsprofile')."]</div>\n";
 
         $output .= "
             <div class='header'>Rights profiles</div>

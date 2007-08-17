@@ -11,8 +11,8 @@ Parameters:
 we assume that this view is not loaded if you don't have the appropriate read and edit rights
 
 */
-    echo anchor('rightsprofiles/edit/'.$rightsprofile->rightsprofile_id,'[edit]')."&nbsp;"
-    .anchor('rightsprofiles/delete/'.$rightsprofile->rightsprofile_id,'[delete]')."&nbsp;"
+    echo '['.anchor('rightsprofiles/edit/'.$rightsprofile->rightsprofile_id,'edit')."]&nbsp;["
+    .anchor('rightsprofiles/delete/'.$rightsprofile->rightsprofile_id,'delete')."]&nbsp;"
     .$rightsprofile->name;
 ?>
 </div>

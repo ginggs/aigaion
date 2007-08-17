@@ -12,12 +12,12 @@ Parameters:
 access rights: we presume that this view is not loaded when the user doesn't have the user_edit_all rights.
 
 */
-    echo anchor('groups/edit/'.$group->group_id,'[edit]')."&nbsp;"
-    .anchor('groups/delete/'.$group->group_id,'[delete]')."&nbsp;";
+    echo '['.anchor('groups/edit/'.$group->group_id,'edit')."]&nbsp;"
+    .'['.anchor('groups/delete/'.$group->group_id,'delete')."]&nbsp;";
     
     $userlogin = getUserLogin();
     if ($userlogin->hasRights('topic_subscription')) {
-        echo anchor('groups/topicreview/'.$group->group_id,'[topic subscription]')."&nbsp;";
+        echo '['.anchor('groups/topicreview/'.$group->group_id,'topic subscription')."]&nbsp;";
     }
     echo $group->name;
 

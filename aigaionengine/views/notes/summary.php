@@ -56,8 +56,8 @@ if (    ($userlogin->hasRights('note_edit'))
         $this->accesslevels_lib->canEditObject($note)      
     ) 
 {
-    echo "<br/>".anchor('notes/delete/'.$note->note_id,'[delete]');
-    echo "&nbsp;".anchor('notes/edit/'.$note->note_id,'[edit]');
+    echo "<br/>[".anchor('notes/delete/'.$note->note_id,'delete');
+    echo "]&nbsp;[".anchor('notes/edit/'.$note->note_id,'edit').']';
 }
 ?>
 </div>

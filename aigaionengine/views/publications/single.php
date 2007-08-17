@@ -157,7 +157,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     if (    ($userlogin->hasRights('attachment_edit'))
          && ($accessLevelEdit)
         )
-        echo anchor('attachments/add/'.$publication->pub_id,'[add attachment]');
+        echo '['.anchor('attachments/add/'.$publication->pub_id,'add attachment').']';
 ?>
         </div>
         <div class='header'>Attachments</div>
@@ -185,7 +185,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     if (    ($userlogin->hasRights('note_edit'))
          && ($accessLevelEdit)
         )
-        echo anchor('notes/add/'.$publication->pub_id,'[add note]');
+        echo '['.anchor('notes/add/'.$publication->pub_id,'add note').']';
 ?>
         </div>
         <div class='header'>Notes</div>
@@ -216,9 +216,9 @@ $user       = $this->user_db->getByID($userlogin->userID());
         ) 
     {
         if ($categorize == True) {
-            echo anchor('publications/show/'.$publication->pub_id,'[finish categorization]');
+            echo '['.anchor('publications/show/'.$publication->pub_id,'finish categorization').']';
         } else {
-            echo anchor('publications/show/'.$publication->pub_id.'/categorize','[categorize publication]');
+            echo '['.anchor('publications/show/'.$publication->pub_id.'/categorize','categorize publication').']';
         } 
     }
 ?>

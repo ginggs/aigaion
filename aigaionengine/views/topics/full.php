@@ -25,13 +25,13 @@
             $this->accesslevels_lib->canEditObject($topic)      
         ) 
     {
-        echo anchor('topics/edit/'.$topic->topic_id,'[edit]')."&nbsp;".anchor('topics/delete/'.$topic->topic_id,'[delete]'); 
+        echo '['.anchor('topics/edit/'.$topic->topic_id,'edit')."]&nbsp;[".anchor('topics/delete/'.$topic->topic_id,'delete').']'; 
     }
     if ($userlogin->hasRights('bookmarklist')) {
-      echo  '&nbsp;'
-           .anchor('bookmarklist/addtopic/'.$topic->topic_id,'[BookmarkAll]')
-           .'&nbsp;'
-           .anchor('bookmarklist/removetopic/'.$topic->topic_id,'[UnBookmarkAll]');
+      echo  '&nbsp;['
+           .anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')
+           .']&nbsp;['
+           .anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll').']';
     }
     echo  '&nbsp;['
            .anchor('export/topic/'.$topic->topic_id,'BiBTeX',array('target'=>'aigaion_export')).']';

@@ -6,7 +6,7 @@ $this->load->helper('form');
 ?>
 <div class='header'>Edit access levels</div>
 <?php 
-echo anchor('publications/show/'.$publication->pub_id,'[back to publication]'); ?>
+echo '['.anchor('publications/show/'.$publication->pub_id,'back to publication').']'; ?>
 <br/><br/>
 <div style='border:1px solid grey'>
 <table>
