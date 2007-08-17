@@ -43,7 +43,7 @@ class Export extends Controller {
         
         #send to right export view
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications'), True);
 
         //set output
         $this->output->set_output($output);        
@@ -87,7 +87,7 @@ class Export extends Controller {
         
         #send to right export view
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications for topic "'.$topic->name.'"'), True);
 
         //set output
         $this->output->set_output($output);        
@@ -130,7 +130,7 @@ class Export extends Controller {
         
         #send to right export view
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications for '.$author->getName()), True);
 
         //set output
         $this->output->set_output($output);        
@@ -170,7 +170,7 @@ class Export extends Controller {
         
         #send to right export view
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'Exported from bookmarklist'), True);
 
         //set output
         $this->output->set_output($output);        

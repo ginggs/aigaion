@@ -44,9 +44,10 @@ class Users extends Controller {
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
-
+        
+        $output .= '<div class="optionbox">'.anchor('users/add','[add a new user]')."</div>\n";
         $output .= "
-            <p class='header'>Users</p>
+            <div class='header'>Users</div>
             <ul>
             ";
         $users = $this->user_db->getAllNormalUsers();
@@ -64,10 +65,11 @@ class Users extends Controller {
                                           array('user'   => $user),  
                                           true)."</li>";
         }
-        $output .= "</ul>\n".anchor('users/add','[add a new user]')."\n";
+        $output .= "</ul><br/><br/>\n";
 
+        $output .= '<div class="optionbox">'.anchor('groups/add','[add a new group]')."</div>\n";
         $output .= "
-            <br/><br/><p class='header'>Groups</p>
+            <div class='header'>Groups</div>
             <ul>
             ";
         $groups = $this->group_db->getAllGroups();
@@ -77,11 +79,12 @@ class Users extends Controller {
                                           array('group'   => $group),  
                                           true)."</li>";
         }
-        $output .= "</ul>\n".anchor('groups/add','[add a new group]')."\n";
+        $output .= "</ul><br/><br/>\n";
 
+        $output .= '<div class="optionbox">'.anchor('rightsprofiles/add','[add a new rightsprofile]')."</div>\n";
 
         $output .= "
-            <br/><br/><p class='header'>Rights profiles</p>
+            <div class='header'>Rights profiles</div>
             <ul>
             ";
         $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
@@ -91,7 +94,7 @@ class Users extends Controller {
                                           array('rightsprofile'   => $rightsprofile),  
                                           true)."</li>";
         }
-        $output .= "</ul>\n".anchor('rightsprofiles/add','[add a new rightsprofile]')."\n";
+        $output .= "</ul>\n";
 
         $output .= $this->load->view('footer','', true);
 

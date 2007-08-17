@@ -89,11 +89,11 @@ class Bookmarklist extends Controller {
         }
         
         $this->bookmarklist_db->addPublication($publication->pub_id);
-        $output = $this->ajax->link_to_remote("[UnBookmark]", 
+        $output = '['.$this->ajax->link_to_remote("UnBookmark", 
                                      array('url' => site_url('/bookmarklist/removepublication/'.$publication->pub_id), 
                                            'update' => 'bookmark_pub_'.$publication->pub_id
                                            )
-                                     );
+                                     ).']';
 
         //set output
         $this->output->set_output($output);        
@@ -163,11 +163,11 @@ class Bookmarklist extends Controller {
         }
         
         $this->bookmarklist_db->removePublication($publication->pub_id);
-        $output = $this->ajax->link_to_remote("[Bookmark]", 
+        $output = '['.$this->ajax->link_to_remote("Bookmark", 
                                      array('url' => site_url('/bookmarklist/addpublication/'.$publication->pub_id), 
                                            'update' => 'bookmark_pub_'.$publication->pub_id
                                            )
-                                     );
+                                     ).']';
 
         //set output
         $this->output->set_output($output);        

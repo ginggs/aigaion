@@ -170,6 +170,12 @@ class Publication {
     //initial maxfieldname: the longest of the above collected fields
     $maxfieldname = 8;
 
+    //process user fields
+    //see old bibtex export for how to export userfields? Directly DUMP user fields? (but what about layout :( )
+    
+    //now add all other fields that are relevant for exporting
+    
+    
 
     //process fields array, converting to bibtex special chars as you go along.
     //maxfieldname determines the adjustment of the field names
@@ -179,6 +185,7 @@ class Publication {
             $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".latinToBibCharsFromString($value)."},\n";
         }
     }
+    $result .= $this->userfields."\n";
     //close entry
     $result .= "}\n";    
     return $result;

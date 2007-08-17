@@ -289,3 +289,4 @@ ALTER TABLE `users` ADD COLUMN `lastupdatecheck` INTEGER UNSIGNED NOT NULL DEFAU
 ---drop col 'notes.rights'
 default add .ps, .z, .gz to allowed file types
 drop release column from aigaiongeneral (keep database version column! possibly rename :) )
+example groups (w/ the rights profiles)
