@@ -174,11 +174,14 @@ class Publication {
   //process user fields
     //see old bibtex export for how to export userfields? Directly DUMP user fields? (but what about layout :( )
     $done = array('author','editor','keywords','pub_type','bibtex_id','userfields');
+    $omitifzero = array('chapter','firstpage','lastpage','year','month');
     //now add all other fields that are relevant for exporting
     foreach (getFullFieldArray() as $field) {
-        $maxfieldname = max(strlen($field),$maxfieldname);
         if (!in_array($field,$done) && (trim($this->$field)!='')) {
-            $fields[$field]=$this->$field;
+            if (!(in_array($field,$omitifzero)&&($this->$field=='0'||$this->$field=='0000'))) {
+                $fields[$field]=$this->$field;
+                $maxfieldname = max(strlen($field),$maxfieldname);
+            }
         }
     }
     
@@ -193,7 +196,9 @@ class Publication {
     }
     
     //hmmm -- could have done better layout here for userfields
-    $result .= $this->userfields."\n";
+    if (trim($this->userfields)!='') {
+        $result .= $this->userfields."\n";
+    }
     
     //close entry
     $result .= "}\n";    
