@@ -136,6 +136,7 @@ class Publication {
     $CI = &get_instance();
     $CI->load->helper('specialchar');
     $CI->load->helper('string');
+    $CI->load->helper('publication');
     $fields = array();
     $maxfieldname=0;
     //open entry
@@ -170,14 +171,14 @@ class Publication {
     //initial maxfieldname: the longest of the above collected fields
     $maxfieldname = 8;
 
-    //process user fields
+  //process user fields
     //see old bibtex export for how to export userfields? Directly DUMP user fields? (but what about layout :( )
     $done = array('author','editor','keywords','pub_type','bibtex_id','userfields');
     //now add all other fields that are relevant for exporting
     foreach (getFullFieldArray() as $field) {
         $maxfieldname = max(strlen($field),$maxfieldname);
-        if (!in_array($field,$done) && (trim($publication->$field)!='')) {
-            $fields[$field]=$publication->$field;
+        if (!in_array($field,$done) && (trim($this->$field)!='')) {
+            $fields[$field]=$this->$field;
         }
     }
     
@@ -190,7 +191,10 @@ class Publication {
             $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".latinToBibCharsFromString($value)."},\n";
         }
     }
+    
+    //hmmm -- could have done better layout here for userfields
     $result .= $this->userfields."\n";
+    
     //close entry
     $result .= "}\n";    
     return $result;
