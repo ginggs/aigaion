@@ -59,11 +59,16 @@ echo $this->validation->error_string;
     $config = array('onlyIfUserSubscribed'=>True,
                     'includeGroupSubscriptions'=>True,
                     'user'=>$user);
+if (isset($parent)) {
+    $parent_id = $parent->topic_id;
+} else {
+    $parent_id = $topic->parent_id;
+}
 echo $this->load->view('topics/optiontree',
                        array('topics'   => $this->topic_db->getByID(1,$config),
                             'showroot'  => True,
                             'depth'     => -1,
-                            'selected'  => $topic->parent_id
+                            'selected'  => $parent_id
                             ),  
                        true)."\n";
 ?>

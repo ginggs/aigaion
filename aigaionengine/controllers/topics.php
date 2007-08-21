@@ -133,7 +133,9 @@ class Topics extends Controller {
 	{
         $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
-
+        $parent_id = $this->uri->segment(3,-1);
+        $config = array();
+        $parent = $this->topic_db->getByID($parent_id,$config);
 	    //edit_access_level and the user edit rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('topic_edit'))
@@ -149,7 +151,7 @@ class Topics extends Controller {
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output  = $this->load->view('header', $headerdata, true);
-        $output .= $this->load->view('topics/edit' , array(),  true);
+        $output .= $this->load->view('topics/edit' , array('parent'=>$parent),  true);
         $output .= $this->load->view('footer','', true);
 
         //set output

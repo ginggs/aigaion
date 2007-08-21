@@ -33,7 +33,7 @@
             $todo = array($topics);
         }
     }
-    
+    $currentdepth=0;
     $first = True;
     /* This is an experiment in left traversal of the tree that does not need nested views. (loading nested views seems to be extremely inefficient) */
     while (sizeof($todo)>0){
@@ -49,6 +49,7 @@
             //remove collapse status from todo list
             unset($todo[1]);
             $todo = array_values($todo); //reindex
+            $currentdepth--;
         } else {
             //if next is a node: 
             $children = $next->getChildren();
@@ -66,7 +67,8 @@
                                           True);
                 }
             }
-            if (sizeof($children)>0) {
+            if ((sizeof($children)>0) && (($depth<0) || ($currentdepth<$depth))) {
+                $currentdepth++;
                 echo "<ul class='topictree-list'>\n<div id='topic_children_".$next->topic_id."' class='topictree-children'>\n";
                 //has children: open node and add all children + end marker in front of todo list; print this node
                 
