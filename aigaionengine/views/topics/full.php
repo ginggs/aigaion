@@ -42,9 +42,9 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
 ?>
 </div>
 
-<table>
+<table width='100%'>
 <tr>
-    <td>
+    <td  width='100%'>
 <?php
 $this->load->vars(array('subviews'  => array('topics/simpletreerow'=>array())));
 echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"

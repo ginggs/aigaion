@@ -73,13 +73,10 @@ foreach ($summaryfields as $key => $prefix) {
     echo $prefix.$val;
   }
 }
-if (trim($publication->doi)!='') {
-    echo "&nbsp;[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
-}
 echo "
     </td>
     <td width='8%' align='right' valign='top'>
-      <nobr><span id='bookmark_pub_".$publication->pub_id."'>";
+      <span id='bookmark_pub_".$publication->pub_id."'>";
 if ($userlogin->hasRights('bookmarklist')) {
   if ($publication->isBookmarked) {
     echo '['.$this->ajax->link_to_remote("UnBookmark",
@@ -96,7 +93,7 @@ if ($userlogin->hasRights('bookmarklist')) {
           ).']';
   }
 }
-echo "</span>";
+echo "</span><br/>";
 $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
@@ -114,7 +111,11 @@ if (count($attachments) != 0)
         echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachments[0]->name))."\n";
     }
 }  
-echo "</nobr>
+if (trim($publication->doi)!='') {
+    echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+}
+
+echo "
     </td>
   </tr>";
 $notes = $publication->getNotes();
