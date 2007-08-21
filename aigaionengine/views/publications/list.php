@@ -73,7 +73,9 @@ foreach ($summaryfields as $key => $prefix) {
     echo $prefix.$val;
   }
 }
-
+if (trim($publication->doi)!='') {
+    echo "&nbsp;[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+}
 echo "
     </td>
     <td width='8%' align='right' valign='top'>

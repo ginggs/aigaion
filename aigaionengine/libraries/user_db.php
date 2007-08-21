@@ -338,7 +338,7 @@ class User_db {
         //delete links
         $CI->db->delete('usergrouplink',array('user_id'=>$user->user_id));
         $CI->db->delete('userrights',array('user_id'=>$user->user_id));
-        $CI->db->delete('personpublicationmark',array('person_id'=>$user->user_id));
+        $CI->db->delete('userpublicationmark',array('user_id'=>$user->user_id));
         $CI->db->delete('userbookmarklists',array('user_id'=>$user->user_id));
         $CI->db->delete('usertopiclink',array('user_id'=>$user->user_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible

@@ -106,6 +106,14 @@ class Author_db {
     return $author;
   }
   
+  function getAuthorCount() {
+  	$CI = &get_instance();
+  	$CI->db->select("COUNT(*)");
+    $Q = $CI->db->get("author");
+    $R = $Q->row_array();
+    return $R['COUNT(*)'];
+
+  }
   function add($author)
   {
         $CI = &get_instance();

@@ -280,6 +280,15 @@ INSERT INTO `changehistory` (`version`,`type`,`description`) VALUES
 
 ALTER TABLE `users` ADD COLUMN `lastupdatecheck` INTEGER UNSIGNED NOT NULL DEFAULT 0;
 
+--- 2007-08-21
+--- fix outdated column name
+ALTER TABLE `personpublicationmark` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0,
+ DROP PRIMARY KEY,
+ ADD PRIMARY KEY  USING BTREE(`pub_id`, `user_id`);
+ 
+ALTER TABLE `personpublicationmark` RENAME TO `userpublicationmark`;
+ 
+ 
 ---still to be done:
 
 ---enlarge the 'series' field

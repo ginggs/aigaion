@@ -673,7 +673,7 @@ class Publication_db {
         $CI->db->delete('publicationpublicationlink',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('userbookmarklists',array('source_pub_id'=>$publication->pub_id));
         $CI->db->delete('userbookmarklists',array('target_pub_id'=>$publication->pub_id));
-        $CI->db->delete('personpublicationmark',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('userpublicationmark',array('pub_id'=>$publication->pub_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
     }      
   function validate($publication)

@@ -178,7 +178,7 @@ class Publication {
     //now add all other fields that are relevant for exporting
     foreach (getFullFieldArray() as $field) {
         if (!in_array($field,$done) && (trim($this->$field)!='')) {
-            if (!(in_array($field,$omitifzero)&&($this->$field=='0'||$this->$field=='0000'))) {
+            if (!in_array($field,$omitifzero)||($this->$field!='0'&&$this->$field!='0000')) {
                 $fields[$field]=$this->$field;
                 $maxfieldname = max(strlen($field),$maxfieldname);
             }

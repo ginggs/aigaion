@@ -432,6 +432,41 @@ class Topic_db {
         $CI->db->where('user_id', $user_id);
         $CI->db->update('usertopiclink', array('collapsed'=>'0'));
     }
-    
+  function getTopicCount() {
+  	$CI = &get_instance();
+  	$CI->db->select("COUNT(*)");
+    $Q = $CI->db->get("topics");
+    $R = $Q->row_array();
+    return $R['COUNT(*)'];
+
+  }
+  function getMainTopicCount() {
+  	$CI = &get_instance();
+  	$CI->db->select("COUNT(source_topic_id)");
+    $Q = $CI->db->getwhere("topictopiclink",array('target_topic_id'=>'1'));
+    $R = $Q->row_array();
+    return $R['COUNT(source_topic_id)'];
+
+  }
+  function getPublicationCountForTopic($topic_id) {
+    $CI = &get_instance();
+    $CI->db->select("COUNT(DISTINCT pub_id)");
+    $Q = $CI->db->getwhere("topicpublicationlink",array('topic_id'=>$topic_id));
+    $R = $Q->row_array();
+    return $R["COUNT(DISTINCT pub_id)"];
+  } 
+  function getReadPublicationCountForTopic($topic_id) {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    $query = "SELECT COUNT(DISTINCT ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id)
+                FROM ".AIGAION_DB_PREFIX."topicpublicationlink,".AIGAION_DB_PREFIX."userpublicationmark
+               WHERE topic_id=".$CI->db->escape($topic_id)."
+                 AND ".AIGAION_DB_PREFIX."userpublicationmark.user_id = ".$CI->db->escape($userlogin->userId())."
+                 AND ".AIGAION_DB_PREFIX."userpublicationmark.pub_id  = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
+                 AND ".AIGAION_DB_PREFIX."userpublicationmark.read = 'y'";
+    $Q = $CI->db->query($query);
+    $R = $Q->row_array();
+    return $R["COUNT(DISTINCT ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id)"];  
+  } 
 }
 ?>

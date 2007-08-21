@@ -40,6 +40,10 @@ class Topics extends Controller {
             appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
             redirect('');
         }
+        $output .= "<div style='border:1px solid black;padding:0.2em;float:right;'>"
+                    .$this->load->view('site/stats',
+                                      array(),  
+                                      true)."</div>\n";
         $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
