@@ -186,7 +186,9 @@ class Publication {
     $fields['key'] = $this->namekey;
     //month is a number in the database...
     $months = getMonthsEng();
-    $fields['month'] = $months[$this->month];
+    if (array_key_exists($this->month,$months)) {
+        $fields['month'] = $months[$this->month];
+    }
     //initial maxfieldname: the longest of the above collected fields
     $maxfieldname = 8;
   //process user fields
