@@ -185,7 +185,8 @@ class Publication {
     //key is named 'namekey' in the database
     $fields['key'] = $this->namekey;
     //month is a number in the database...
-    $fields['month'] = getMonthsEng($this->month);
+    $months = getMonthsEng();
+    $fields['month'] = $months[$this->month];
     //initial maxfieldname: the longest of the above collected fields
     $maxfieldname = 8;
   //process user fields
