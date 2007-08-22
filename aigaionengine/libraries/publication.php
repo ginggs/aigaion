@@ -168,13 +168,39 @@ class Publication {
         $keywords .= $keyword;
     }
     $fields['keywords']=$keywords;
+    //parse fstpage - lastpage into pages
+    $pages = "";
+	if (($this->firstpage != "0") || ($this->lastpage != "0")) {
+		if ($this->firstpage != "0") {
+			$pages = $this->firstpage;
+		}
+		if (($this->firstpage != $this->lastpage)&& ($this->lastpage != "0")) {
+			if ($pages != "") {
+				$pages .= "--";
+			}
+			$pages .= $this->lastpage;
+		}
+	}
+    $fields['pages']=$pages;
+    //key is named 'namekey' in the database
+    $fields['key'] = $this->namekey;
+    //month is a number in the database...
+    $fields['month'] = getMonthsEng($this->month);
     //initial maxfieldname: the longest of the above collected fields
     $maxfieldname = 8;
-
   //process user fields
     //see old bibtex export for how to export userfields? Directly DUMP user fields? (but what about layout :( )
-    $done = array('author','editor','keywords','pub_type','bibtex_id','userfields');
-    $omitifzero = array('chapter','firstpage','lastpage','year','month');
+    $done = array('author',
+                  'editor',
+                  'keywords',
+                  'pub_type',
+                  'bibtex_id',
+                  'userfields',
+                  'firstpage',
+                  'lastpage',
+                  'namekey',
+                  'month');
+    $omitifzero = array('chapter','year');
     //now add all other fields that are relevant for exporting
     foreach (getFullFieldArray() as $field) {
         if (!in_array($field,$done) && (trim($this->$field)!='')) {

@@ -58,6 +58,11 @@ function getFullFieldArray() {
     );
 }
 
+//move to somewhere else?
+function getMonthsEng()
+    return array("","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+}
+
 function getPublicationFieldArray($type)
 {
 	$type = ucfirst(strtolower(trim($type)));
