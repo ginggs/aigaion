@@ -59,7 +59,7 @@ function getFullFieldArray() {
 }
 
 //move to somewhere else?
-function getMonthsEng()
+function getMonthsEng() {
     return array("","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 }
 
