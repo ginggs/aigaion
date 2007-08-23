@@ -11,20 +11,33 @@ xref: map of [id=>publication] for crossreffed-publications
 
 */
 if (!isset($header)||($header==null))$header='';
-echo '<pre>';
-echo "%Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."\n";
-echo "%".date('l dS \of F Y h:i:s A')."\n";
-echo "%".$header."\n\n";
+
+$result = '';
+
+$result .= "%Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."\n";
+$result .= "%".date('l dS \of F Y h:i:s A')."\n";
+$result .= "%".$header."\n\n";
 
 $this->load->helper('export');
 foreach ($nonxrefs as $pub_id=>$publication) {
-    echo getBibtexForPublication($publication)."\n";
+    $result .= getBibtexForPublication($publication)."\n";
 }
-if (count($xrefs)>0) echo "\n\n%crossreffed publications: \n";
+if (count($xrefs)>0) $result .= "\n\n%crossreffed publications: \n";
 foreach ($xrefs as $pub_id=>$publication) {
-    echo getBibtexForPublication($publication)."\n";
+    $result .= getBibtexForPublication($publication)."\n";
 }
-
-echo '</pre>';
+$userlogin = getUserLogin();
+if ($userlogin->getPreference('exportinbrowser')=='TRUE') {
+    echo '<pre>';
+    echo $result;
+    echo '</pre>';
+} else {
+    // Load the download helper and send the file to your desktop
+    $this->output->set_header("Content-type: application/bibtex");
+    $this->output->set_header("Cache-Control: cache, must-revalidate");
+    $this->output->set_header("Pragma: public");
+    $this->load->helper('download');
+    force_download(AIGAION_DB_NAME."_export_".date("Y_m_d").'.bib', $result);
+}
 
 ?>

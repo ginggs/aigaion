@@ -14,15 +14,28 @@ header: not used here.
 if (!isset($header)||($header==null))$header='';
 
 //no header
-echo '<pre>';
+$result = '';
 $this->load->helper('export');
 foreach ($nonxrefs as $pub_id=>$publication) {
-    echo getRISForPublication($publication);
+    $result .= getRISForPublication($publication);
 }
 foreach ($xrefs as $pub_id=>$publication) {
-    echo getRISForPublication($publication);
+    $result .= getRISForPublication($publication);
 }
-echo '</pre>';
+
+$userlogin = getUserLogin();
+if ($userlogin->getPreference('exportinbrowser')=='TRUE') {
+    echo '<pre>';
+    echo $result;
+    echo '</pre>';
+} else {
+    // Load the download helper and send the file to your desktop
+    $this->output->set_header("Content-type: application/ris");
+    $this->output->set_header("Cache-Control: cache, must-revalidate");
+    $this->output->set_header("Pragma: public");
+    $this->load->helper('download');
+    force_download(AIGAION_DB_NAME."_export_".date("Y_m_d").'.ris', $result);
+} 
 
 
 ?>

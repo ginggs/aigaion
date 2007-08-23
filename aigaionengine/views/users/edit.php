@@ -307,6 +307,20 @@ echo "
 
 
         <tr>
+        <td>Open export data in browser</td>
+        <td>
+        ".form_checkbox('exportinbrowser','exportinbrowser',$user->preferences['exportinbrowser']=="TRUE")."
+        </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
+	        instead of downloading it as a file.
+	        </td>
+	    </tr>
+
+
+        <tr>
         <td colspan=2><hr></td>
         </tr>
         <tr><td>";

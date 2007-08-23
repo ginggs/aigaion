@@ -167,7 +167,7 @@
         $result .= getRISExportLine('N2',$publication->abstract);
 
     	if (trim($publication->userfields) != "") {
-    		$field = strtok($userfields,",");
+    		$field = strtok($publication->userfields,",");
     		while (strlen($field) > 0)
     		{
     			$result .= "M1  - ".$field."\n";

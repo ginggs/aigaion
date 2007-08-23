@@ -288,7 +288,11 @@ ALTER TABLE `personpublicationmark` CHANGE COLUMN `person_id` `user_id` INTEGER 
  
 ALTER TABLE `personpublicationmark` RENAME TO `userpublicationmark`;
  
- 
+--- 2007-08-23
+--- new preference: open export data in browser instead of downloading
+ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'TRUE';
+
+
 ---still to be done:
 
 ---enlarge the 'series' field

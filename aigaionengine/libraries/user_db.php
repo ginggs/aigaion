@@ -93,6 +93,7 @@ class User_db {
         $user->preferences['authordisplaystyle'] = $CI->input->post('authordisplaystyle');
         $user->preferences['liststyle']          = $CI->input->post('liststyle');
         $user->preferences['newwindowforatt']    = $CI->input->post('newwindowforatt')=='newwindowforatt';
+        $user->preferences['exportinbrowser']    = $CI->input->post('exportinbrowser')=='exportinbrowser';
 
         $user->assignedrights = array();
         foreach (getAvailableRights() as $right=>$description) {
@@ -160,6 +161,10 @@ class User_db {
         if ($user->preferences['newwindowforatt']) {
             $newwindowforatt ='TRUE';
         }
+        $exportinbrowser ='FALSE';
+        if ($user->preferences['exportinbrowser']) {
+            $exportinbrowser ='TRUE';
+        }
         $CI->db->insert("users",
                                          array('initials'           => $user->initials,
                                                'firstname'          => $user->firstname,
@@ -175,7 +180,8 @@ class User_db {
                                                'summarystyle'       => $user->preferences['summarystyle'],
                                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                                'liststyle'          => $user->preferences['liststyle'],
-                                               'newwindowforatt'    => $newwindowforatt
+                                               'newwindowforatt'    => $newwindowforatt,
+                                               'exportinbrowser'    => $exportinbrowser
                                                )
                               );
                                                
@@ -232,6 +238,10 @@ class User_db {
         if ($user->preferences['newwindowforatt']) {
             $newwindowforatt ='TRUE';
         }
+        $exportinbrowser ='FALSE';
+        if ($user->preferences['exportinbrowser']) {
+            $exportinbrowser ='TRUE';
+        }
         $updatefields =  array('initials'           => $user->initials,
                                'firstname'          => $user->firstname,
                                'betweenname'        => $user->betweenname,
@@ -245,7 +255,8 @@ class User_db {
                                'summarystyle'       => $user->preferences['summarystyle'],
                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                'liststyle'          => $user->preferences['liststyle'],
-                               'newwindowforatt'    => $newwindowforatt
+                               'newwindowforatt'    => $newwindowforatt,
+                               'exportinbrowser'    => $exportinbrowser
                                );
         //update password only if not empty
         if (isset($user->password) && ($user->password!="")) {

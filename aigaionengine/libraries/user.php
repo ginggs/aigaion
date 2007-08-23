@@ -31,7 +31,8 @@ class User {
                                     'summarystyle'=>'author',
                                     'authordisplaystyle'=>'fvl',
                                     'liststyle'=>'0',
-                                    'newwindowforatt'=>'FALSE'
+                                    'newwindowforatt'=>'FALSE',
+                                    'exportinbrowser'=>'TRUE'
                                     ); //an array of ($preferencename=>preferencevalue)
     //assigned rights
     var $assignedrights     = array(); //an array of ($assignedright)
