@@ -161,6 +161,7 @@
         $result .= getRISExportLine('SN',$publication->issn);
         $result .= getRISExportLine('N1',$publication->note);
         $result .= getRISExportLine('UR',$publication->url);
+        $result .= getRISExportLine('M2',$publication->doi);
     	foreach($publication->getKeywords() as $keyword)
     		$result .= getRISExportLine("KW", trim($keyword));
         $result .= getRISExportLine('N1',$publication->note);
@@ -182,11 +183,13 @@
     function getRISExportLine($field,$value) {
     	//U1: edition
     	//U2: chapter
+    	//M2: used here as 'DOI'
     	$result = "";
     	if (trim($value) != "")
     	{
     	  if ($field == "U1") $value = "Edition: ".$value;
     	  if ($field == "U2") $value = "Chapter: ".$value;
+    	  if ($field == "M2") $value = "doi: ".$value;
     	  $result .= $field."  - ".urldecode($value)."\n";
     	}
     	return $result;
