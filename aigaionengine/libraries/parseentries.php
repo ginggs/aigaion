@@ -180,6 +180,7 @@ class Parseentries
 // Get a non-empty line from the bib file or from the bibtexString
 	function getLine()
 	{
+	  $line = false;
 		if($this->parseFile)
 		{
 			if(!feof($this->fid))
@@ -195,12 +196,15 @@ class Parseentries
 		}
 		else
 		{
-			do
-			{
-				$line = trim($this->bibtexString[$this->currentLine]);
-				$this->currentLine++;
-			}
-			while($this->currentLine < count($this->bibtexString) && !$line);
+		  if ($this->currentLine < count($this->bibtexString))
+		  {
+  			do
+  			{
+  				$line = trim($this->bibtexString[$this->currentLine]);
+  				$this->currentLine++;
+  			}
+  			while($this->currentLine < count($this->bibtexString) && !$line);
+  		}
 			return $line;
 		}
 	}

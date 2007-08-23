@@ -25,6 +25,7 @@ This helper provides functions for selecting publicationtype dependent fields.
 
 function getFullFieldArray() {
     return array(
+                  'title'          ,
                   'report_type'	   ,
                   'journal'        ,
                   'booktitle'      ,

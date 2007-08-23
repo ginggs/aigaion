@@ -226,6 +226,7 @@ class Publication_db {
     if ($publication->authors)
     {
       $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
+      
       $authors          = array();
       foreach ($authors_array as $author)
       {
@@ -678,7 +679,7 @@ class Publication_db {
     }      
   function validate($publication)
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     $validate_required    = array();
     $validate_conditional = array();
     $fields               = getPublicationFieldArray($publication->pub_type);

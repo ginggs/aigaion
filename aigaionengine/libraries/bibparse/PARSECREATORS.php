@@ -31,9 +31,9 @@ http://bibliophile.sourceforge.net
 	print_r($creatorArray);
 ***********************/
 
-class PARSECREATORS
+class Parsecreators
 {
-	function PARSECREATORS()
+	function Parsecreators()
 	{
 		//if true, separate initials from firstname
 		$this->separateInitials = false;

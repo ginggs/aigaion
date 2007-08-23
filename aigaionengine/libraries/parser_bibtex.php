@@ -1,9 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
-include_once("bibparse/PARSECREATORS.php");
-include_once("bibparse/PARSEENTRIES.php");
-include_once("bibparse/PARSEPAGE.php");
-include_once("bibparse/PARSEMONTH.php");
+//include_once("bibparse/PARSECREATORS.php");
+//include_once("bibparse/PARSEENTRIES.php");
+//include_once("bibparse/PARSEPAGE.php");
+//include_once("bibparse/PARSEMONTH.php");
 
 class Parser_Bibtex
 {
@@ -23,12 +23,17 @@ class Parser_Bibtex
   //class constructor
   function Parser_Bibtex()
   {
-    $this->cEntryParser   = new PARSEENTRIES;
-    $this->cAuthorParser  = new PARSECREATORS;
-    $this->cPageParser    = new PARSEPAGE;
-    $this->cMonthParser   = new PARSEMONTH;
+    $this->CI = &get_instance();
+    $this->CI->load->library('parseentries');
+    $this->CI->load->library('parsecreators');
+    $this->CI->load->library('parsepage');
+    $this->CI->load->library('parsemonth');
+    $this->CI->load->helper('publication');
     
-    $CI = &get_instance();
+    $this->cEntryParser   = $this->CI->parseentries;
+    $this->cAuthorParser  = $this->CI->parsecreators;
+    $this->cPageParser    = $this->CI->parsepage;
+    $this->cMonthParser   = $this->CI->parsemonth;
   }
   
   //loadData: get the data and store in the class;
@@ -57,7 +62,7 @@ class Parser_Bibtex
   	//we have to convert to our publication objects
   	foreach ($entries as $entry)
   	{
-  	  
+  	  $this->publications[] = $this->bibliophileToPublication($entry);
   	}
   }
   
@@ -71,10 +76,10 @@ class Parser_Bibtex
   function bibliophileToPublication($bibliophileEntry)
   {
     $publication = $this->CI->publication;
-    $CI = &get_instance();
+    
+    
     //we retrieve the following fields without special operations
     $fields = array(
-    'bibtex_id',
     'title',
     'year',
     'journal',
@@ -104,33 +109,43 @@ class Parser_Bibtex
     );
 
     $publication->pub_type = ucfirst(strtolower($bibliophileEntry['bibtexEntryType']));
+    unset($bibliophileEntry['bibtexEntryType']);
     
     foreach ($fields as $field)
     {
-      if ($bibliophileEntry[$field])
+      if (isset($bibliophileEntry[$field]))
       {
         $publication->$field = $bibliophileEntry[$field];
       }
     }
-  	if ($bibliophileEntry['author']) {
-  		$publication->authors = $this->authorParser($bibliophileEntry['author']);
-  	}
-  
-  	if ($bibliophileEntry['editor']) {
-  		$publication->editors = bibParseAuthors($bibliophileEntry['editor']);
-  	}
-  	
-  	if ($bibliophileEntry['pages'] != '') {
-		  list($publication->firstpage, $publication->lastpage) = bibParsePages($entry['pages']);
+    if (isset($bibliophileEntry['bibtexCitation'])) {
+      $publication->bibtex_id = $bibliophileEntry['bibtexCitation'];
+      unset($bibliophileEntry['bibtexCitation']);
     }
     
-    if (!$bibliophileEntry['month'] || ($bibliophileEntry['month'] == '')) {
-  		$publication->month = '0';
-  	} else {
-  		list($publication->month, $dummy) = bibParseMonth($bibliophileEntry['month']);
+  	if (isset($bibliophileEntry['author'])) {
+  		$publication->authors = $this->cAuthorParser->parse($bibliophileEntry['author']);
+  		unset($bibliophileEntry['author']);
+  	}
+  
+  	if (isset($bibliophileEntry['editor'])) {
+  		$publication->editors = $this->cAuthorParser->parse($bibliophileEntry['editor']);
+  		unset($bibliophileEntry['editor']);
   	}
   	
-  	$userFields = array_diff(array_keys($bibliophileEntry), bibGetSupportedFields());
+  	if (isset($bibliophileEntry['pages']) && ($bibliophileEntry['pages'] != '')) {
+  	  list($publication->firstpage, $publication->lastpage) = $this->cPageParser->init($bibliophileEntry['pages']);
+		  unset($bibliophileEntry['pages']);
+    }
+    
+    if (!isset($bibliophileEntry['month']) || ($bibliophileEntry['month'] == '')) {
+  		$publication->month = '0';
+  	} else {
+  		list($publication->month, $dummy) = $this->cMonthParser->init($bibliophileEntry['month']);
+  		unset($bibliophileEntry['month']);
+  	}
+  	
+  	$userFields = array_diff(array_keys($bibliophileEntry), getFullFieldArray());
   	$userFieldsText = "";
   	foreach ($userFields as $field) {
   		if (trim($bibliophileEntry[$field]) != "")
@@ -140,6 +155,7 @@ class Parser_Bibtex
   	{
   	  $publication->userfields = $userFieldsText;
   	}
+  	return $publication;
 	}
 }
 

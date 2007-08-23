@@ -3,8 +3,8 @@
   <div class='header'>Import publications</div>
 <?php
   //open the edit form
-  $formAttributes     = array('ID' => 'publication_import');
-  echo form_open('publications/commit', $formAttributes)."\n";
+  $formAttributes     = array('ID' => 'import_form');
+  echo form_open('import/commit', $formAttributes)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
 ?>
   <table class='publication_edit_form' width='100%'>
