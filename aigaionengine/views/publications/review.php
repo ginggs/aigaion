@@ -8,19 +8,36 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
 <?php
     //open the edit form
     echo form_open('publications/commit', $formAttributes)."\n";
+    echo form_hidden('edit_type',   $review['edit_type'])."\n";
     echo form_hidden('pub_id',      $publication->pub_id)."\n";
     echo form_hidden('user_id',     $publication->user_id)."\n";
     echo form_hidden('submit_type', 'review')."\n";
     echo form_hidden('pub_type',    $publication->pub_type)."\n";
     echo form_hidden('title',       $publication->title)."\n";
-    echo form_hidden('bibtex_id',   $publication->bibtex_id)."\n";
     foreach ($publicationfields as $key => $class):
     echo form_hidden($key,        $publication->$key)."\n";
     endforeach;
 ?>    
     <table class='publication_review_form' width='100%'>
 <?php
-//keyword review
+    //cite id review
+    if ($review['bibtex_id'] != null)
+    {
+      $key    = 'bibtex_id';
+      $class  = 'required';
+?>
+      <tr>
+        <td colspan = 2>
+          <div class='errormessage'><?php echo $review['bibtex_id']; ?></div>
+        </td>
+      </tr>
+      <tr>
+        <td valign='top'>Citation:</td>
+        <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->bibtex_id);?></span></td>
+      </tr>
+<?php
+    }
+    //keyword review
     if ($review['keywords'] != null)
     {
 ?>

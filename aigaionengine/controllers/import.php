@@ -46,19 +46,20 @@ class Import extends Controller {
     $this->load->library('parser_bibtex');
 
     $import_data = $this->input->post('import_data');    
-    echo "data: ".$import_data."<br/>\n";
     
     //TODO: DETECT WHETER BIBTEX OR RIS. FOR NOW: ASSUME BIBTEX
     $this->parser_bibtex->loadData($import_data);
-    echo "loaded<br/>\n";
     $this->parser_bibtex->parse();
-    echo "parsed<br/>\n";
     $publications = $this->parser_bibtex->getPublications();
-    echo "gotten<br/>\n";
-    print_r($publications);
     
+    $reviewed_publications  = array();
+    $review_messages        = array();
+    $count                  = 0;
     foreach ($publications as $publication) {
         //get review messages
+        //review bibtex_id
+        $review['bibtex_id']   = $this->publication_db->reviewBibtexID($publication);
+        
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
@@ -66,17 +67,16 @@ class Import extends Controller {
         $review['authors']   = $this->author_db->review($publication->authors);
         $review['editors']   = $this->author_db->review($publication->editors);
         
-        if (($review['keywords']  != null) || 
-            ($review['authors']   != null) || 
-            ($review['editors']   != null))
-        {
-          $bReview = true;
-          $review['edit_type'] = $edit_type;
-          $this->review($publication, $review);
-        }
+        $reviewed_publications[$count] = $publication;
+        $review_messages[$count]       = $review;
+        $count++;
+        unset($review);
       }
-      if (!$bReview)
+      $this->review($reviewed_publications[0], $review_messages[0]);
+
+/*    if (!$bReview)
       {
+        
         //do actual commit, depending on the edit_type, choose add or update
         $userlogin  = getUserLogin();
         $user       = $this->user_db->getByID($userlogin->userID());
@@ -96,14 +96,15 @@ class Import extends Controller {
               
         //show publication
         redirect('publications/show/'.$publication->pub_id);
+  
       }
-    }
+    
     else //there were validation errors
     {
       //edit the publication once again
       $this->edit($publication);
     }
-    */
+  */  
   }
   
   function review($publication, $review_data)
@@ -111,9 +112,10 @@ class Import extends Controller {
     $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged
     $userlogin      = getUserLogin();
     $user           = $this->user_db->getByID($userlogin->userID());
+    $review_data['edit_type'] = 'new';
     if ((!$userlogin->hasRights('publication_edit'))
          || (($oldpublication == null) && ($review_data['edit_type']!='new'))
-         || !$this->accesslevels_lib->canEditObject($oldpublication) 
+         || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
         ) 
     {
       appendErrorMessage('Review publication: insufficient rights.<br/>');

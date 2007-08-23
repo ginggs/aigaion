@@ -411,33 +411,35 @@ class Publication_db {
     }
     
     //add authors
-    if (is_array($publication->authors))
+    if (is_array($publication->authors)) {
       $publication->authors   = $CI->author_db->ensureAuthorsInDatabase($publication->authors);
-      
-    $rank = 1;
-    foreach ($publication->authors as $author)
-    {
-      $data = array('pub_id'    => $publication->pub_id,
-                    'author_id' => $author->author_id,
-                    'rank'      => $rank,
-                    'is_editor' => 'N');
-      $CI->db->insert('publicationauthorlink', $data);
-      $rank++;
+
+      $rank = 1;
+      foreach ($publication->authors as $author)
+      {
+        $data = array('pub_id'    => $publication->pub_id,
+                      'author_id' => $author->author_id,
+                      'rank'      => $rank,
+                      'is_editor' => 'N');
+        $CI->db->insert('publicationauthorlink', $data);
+        $rank++;
+      }
     }
     
     //add editors
-    if (is_array($publication->editors))
+    if (is_array($publication->editors)) {
       $publication->editors   = $CI->author_db->ensureAuthorsInDatabase($publication->editors);
     
-    $rank = 1;
-    foreach ($publication->editors as $author)
-    {
-      $data = array('pub_id'    => $publication->pub_id,
-                    'author_id' => $author->author_id,
-                    'rank'      => $rank,
-                    'is_editor' => 'Y');
-      $CI->db->insert('publicationauthorlink', $data);
-      $rank++;
+      $rank = 1;
+      foreach ($publication->editors as $author)
+      {
+        $data = array('pub_id'    => $publication->pub_id,
+                      'author_id' => $author->author_id,
+                      'rank'      => $rank,
+                      'is_editor' => 'Y');
+        $CI->db->insert('publicationauthorlink', $data);
+        $rank++;
+      }
     }
     
     //subscribe to topic 1
@@ -991,6 +993,28 @@ class Publication_db {
             }
         }
         return array($finalnormal,$xref);
+    }
+    
+    /*
+    reviewBibtexID($publication) -> checks for duplicate cite_id. If the publication ID is set, one duplicate is allowed.
+    */
+    function reviewBibtexID($publication) {
+      $CI = &get_instance();
+      $Q = $CI->db->query("SELECT pub_id FROM ".AIGAION_DB_PREFIX."publication
+                           WHERE bibtex_id = ".$CI->db->escape($publication->bibtex_id));
+  
+      $num_rows = $Q->num_rows();
+      if ($num_rows > 0)
+      {
+        foreach ($Q->result() as $row)
+        {
+          if ($row->pub_id != $publication->pub_id)
+          {
+            return "The cite id is not unique, please choose another cite id.";
+          }
+        }
+      }
+      else return null;
     }
 }
 ?>

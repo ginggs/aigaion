@@ -17,23 +17,21 @@ class Parser_Bibtex
   var $cPageParser;
   var $cMonthParser;
   
-  //instance of CI
-  var $CI;
   
   //class constructor
   function Parser_Bibtex()
   {
-    $this->CI = &get_instance();
-    $this->CI->load->library('parseentries');
-    $this->CI->load->library('parsecreators');
-    $this->CI->load->library('parsepage');
-    $this->CI->load->library('parsemonth');
-    $this->CI->load->helper('publication');
+    $CI = &get_instance();
+    $CI->load->library('parseentries');
+    $CI->load->library('parsecreators');
+    $CI->load->library('parsepage');
+    $CI->load->library('parsemonth');
+    $CI->load->helper('publication');
     
-    $this->cEntryParser   = $this->CI->parseentries;
-    $this->cAuthorParser  = $this->CI->parsecreators;
-    $this->cPageParser    = $this->CI->parsepage;
-    $this->cMonthParser   = $this->CI->parsemonth;
+    $this->cEntryParser   = $CI->parseentries;
+    $this->cAuthorParser  = $CI->parsecreators;
+    $this->cPageParser    = $CI->parsepage;
+    $this->cMonthParser   = $CI->parsemonth;
   }
   
   //loadData: get the data and store in the class;
@@ -75,7 +73,8 @@ class Parser_Bibtex
   
   function bibliophileToPublication($bibliophileEntry)
   {
-    $publication = $this->CI->publication;
+    $CI = &get_instance();
+    $publication = $CI->publication;
     
     
     //we retrieve the following fields without special operations
@@ -122,16 +121,50 @@ class Parser_Bibtex
       $publication->bibtex_id = $bibliophileEntry['bibtexCitation'];
       unset($bibliophileEntry['bibtexCitation']);
     }
-    
-  	if (isset($bibliophileEntry['author'])) {
-  		$publication->authors = $this->cAuthorParser->parse($bibliophileEntry['author']);
-  		unset($bibliophileEntry['author']);
-  	}
-  
-  	if (isset($bibliophileEntry['editor'])) {
-  		$publication->editors = $this->cAuthorParser->parse($bibliophileEntry['editor']);
-  		unset($bibliophileEntry['editor']);
-  	}
+
+    if (isset($bibliophileEntry['author'])) {
+      $authors          = array();
+      $bibtex_authors   = $this->cAuthorParser->parse($bibliophileEntry['author']);
+      
+      foreach ($bibtex_authors as $author)
+      {
+        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+        if ($author_db  != null)
+        {
+          $authors[]    = $author_db;
+        }
+        else
+        {
+          $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+          $authors[]    = $author_db;
+        }
+      }
+
+      $publication->authors = $authors;
+      unset($bibliophileEntry['author']);
+    }
+
+    if (isset($bibliophileEntry['editor'])) {
+      $editors          = array();
+      $bibtex_editors   = $this->cAuthorParser->parse($bibliophileEntry['editor']);
+      
+      foreach ($bibtex_editors as $editor)
+      {
+        $editor_db      = $CI->author_db->getByExactName($editor['firstname'], $editor['von'], $editor['surname']);
+        if ($editor_db  != null)
+        {
+          $editors[]    = $editor_db;
+        }
+        else
+        {
+          $editor_db    = $CI->author_db->setByName($editor['firstname'], $editor['von'], $editor['surname']);
+          $editors[]    = $editor_db;
+        }
+      }
+
+      $publication->editors = $editors;
+      unset($bibliophileEntry['editor']);
+    }
   	
   	if (isset($bibliophileEntry['pages']) && ($bibliophileEntry['pages'] != '')) {
   	  list($publication->firstpage, $publication->lastpage) = $this->cPageParser->init($bibliophileEntry['pages']);

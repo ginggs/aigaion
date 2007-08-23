@@ -264,6 +264,9 @@ class Publications extends Controller {
       $bReview = false;
       if ($submit_type != 'review')
       {
+        //review cite id
+        $review['bibtex_id']   = $this->publication_db->reviewBibtexID($publication);
+        
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
@@ -271,7 +274,8 @@ class Publications extends Controller {
         $review['authors']   = $this->author_db->review($publication->authors);
         $review['editors']   = $this->author_db->review($publication->editors);
         
-        if (($review['keywords']  != null) || 
+        if (($review['bibtex_id']   != null) ||
+            ($review['keywords']  != null) || 
             ($review['authors']   != null) || 
             ($review['editors']   != null))
         {
@@ -287,7 +291,7 @@ class Publications extends Controller {
         $user       = $this->user_db->getByID($userlogin->userID());
         if ( (!$userlogin->hasRights('publication_edit'))
           || (($oldpublication == null) && ($edit_type != 'new'))
-          || !$this->accesslevels_lib->canEditObject($oldpublication)
+          || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
           ) 
         {
           appendErrorMessage('Commit publication: insufficient rights.<br/>');
@@ -317,7 +321,7 @@ class Publications extends Controller {
     $user           = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
          || (($oldpublication == null) && ($review_data['edit_type']!='new'))
-         || !$this->accesslevels_lib->canEditObject($oldpublication) 
+         || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
         ) 
     {
       appendErrorMessage('Review publication: insufficient rights.<br/>');
