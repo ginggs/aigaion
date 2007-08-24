@@ -19,6 +19,7 @@ if ($userlogin->hasRights('bookmarklist')) {
 
 ?>
     <li class="mainmenu"><?php echo anchor('export', 'Export BiBTeX',array('target'=>'aigaion_export')); ?></li>
+    <li class="mainmenu"><?php echo anchor('export/all/ris', 'Export RIS',array('target'=>'aigaion_export')); ?></li>
 <?php
 
 if ($userlogin->hasRights('publication_edit'))

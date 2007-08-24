@@ -3,6 +3,8 @@
   <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, 'delete', array('title' => 'Delete this author'))."]&nbsp[".anchor('authors/edit/'.$author->author_id, 'edit', array('title' => 'Edit this author'))."]";
     echo  '&nbsp;['
            .anchor('export/author/'.$author->author_id,'BiBTeX',array('target'=>'aigaion_export')).']';
+    echo  '&nbsp;['
+           .anchor('export/author/'.$author->author_id.'/ris','RIS',array('target'=>'aigaion_export')).']';
     
     ?>
   </div>

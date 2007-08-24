@@ -155,12 +155,12 @@ body {
 /* ==== MENU COLORS AND EFFECTS ==== */
 ul.mainmenu {
   list-style-type : none;
-  padding         : 0;
-  margin          : 0;
+  padding         : 0em;
+  margin          : 0em;
 }
 li.mainmenu {
   background      : #DDDDDD;
-  margin          : 0 0 0.5em 0;
+  margin          : 0em 0em 0.5em 0em;
   padding         : 0.2em;
 }
 li.mainmenu:hover {
@@ -171,7 +171,12 @@ li.mainmenu-header {
   margin-bottom   : 0.2em;
 }
 li.mainmenu-spacer {
-  margin          : 1.5em;
+  margin          : 0em 0em 0em 0em ;
+  padding         : 0em 0em 0em 0em ;
+  height          : 0em;
+  clear:left; /* sjeesj..... why?????? otherwise IE adds 2em of whitespace here!!! */
+  float:left; /* and the same for this entry - otherwise IE adds 2em of whitespace here!!! */
+  
 }
 
 /* ==== MESSAGES AND ERRORS ==== */

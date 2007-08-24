@@ -181,7 +181,7 @@ li.mainmenu-header {
   margin-bottom   : 0.2em;
 }
 li.mainmenu-spacer {
-  margin          : 1.5em;
+  margin          : 0em;
 }
 
 /* ==== MESSAGES AND ERRORS ==== */

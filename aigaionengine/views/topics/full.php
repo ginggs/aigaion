@@ -92,6 +92,8 @@ echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
     }
 echo  "<li><nobr>["
       .anchor('export/topic/'.$topic->topic_id,'BiBTeX',array('target'=>'aigaion_export'))."]</nobr></li>
+       <li><nobr>["
+      .anchor('export/topic/'.$topic->topic_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
 </ul>
 ";
 
@@ -100,10 +102,11 @@ echo '</div>';
     </td>
 </tr>
 </table>
-</div>
+
 <?php
     
   if (isset($publications))
     $this->load->view('publications/list', $publications);
 ?>
-</div>
+
+</div> 
