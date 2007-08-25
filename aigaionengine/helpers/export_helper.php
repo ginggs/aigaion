@@ -131,7 +131,6 @@
     /** returns formatted RIS for this publication object. Does not do any crossref merging. */
     function getRISForPublication($publication) {
         $CI = &get_instance();
-        $CI->load->helper('specialchar');
         $CI->load->helper('string');
         $CI->load->helper('publication');
         

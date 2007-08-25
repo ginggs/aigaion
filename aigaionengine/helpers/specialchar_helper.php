@@ -76,6 +76,9 @@
 
 */
 
+appendErrorMessage('You just loaded the specialchar helper. This is not good; it should be replaced by a combination of the bibtexutf8 (for converting bibtex codes to utf) helper and the utf8_to_ascii library (for transliteration, generating clean ascii for cleanname and cleantitle rows) available in include/...)');
+    
+    
 function findSpecialCharsInArray(&$array)
 {
 	$bFound = false;

@@ -19,6 +19,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
+        //might give problems if location is something containing UFT8 higher characters!
         $extension=strtolower(substr(strrchr($attachment->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
@@ -26,8 +27,9 @@ $user       = $this->user_db->getByID($userlogin->userID());
         echo anchor('attachments/single/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachment->name))."\n";
     }
     $name = $attachment->name;
-    if (strlen($name)>31) {
-        $name = substr($name,0,30)."...";
+    $this->load->helper('utf8');
+    if (utf8_strlen($name)>31) {
+        $name = utf8_substr($name,0,30)."...";
     }
     echo $name;
     $accesslevels = $this->accesslevels_lib->getAccessLevelSummary($attachment);

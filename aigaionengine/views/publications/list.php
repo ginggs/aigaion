@@ -97,13 +97,11 @@ echo "</span><br/>";
 $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
-//  echo $this->load->view('attachments/icon_link',
-//                         array('attachment'   => $attachments[0]),
-//                         true);
     if ($attachments[0]->isremote) {
         echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
+        //might give problems if location is something containing UFT8 higher characters!
         $extension=strtolower(substr(strrchr($attachments[0]->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
