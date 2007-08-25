@@ -42,6 +42,11 @@ td, table, tr, tbody {
     vertical-align  : top;
 }   
 
+div.clearer {
+    clear       : both; 
+    line-height : 0; 
+    height      : 0;
+}
 /* ==== BASIC FONT DEFINITIONS ==== */
 
 /* fonts */

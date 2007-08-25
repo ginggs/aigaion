@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -73,7 +73,7 @@ class Scaffolding {
 		$this->CI->load->vars($data);
 		
 		// Load the language file and create variables
-		$this->lang = $this->CI->load->language('scaffolding', '', TRUE);		
+		$this->lang = $this->CI->load->scaffold_language('scaffolding', '', TRUE);
 		$this->CI->load->vars($this->lang);
 				
 		//  Load the helper files we plan to use

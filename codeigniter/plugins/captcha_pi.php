@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -250,9 +250,9 @@ function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = 
 	//  Assign colors
 	// -----------------------------------
 	
-	$bg_color		= ImageColorAllocate($im, 255, 255, 255);
-	$border_color	= ImageColorAllocate($im, 153, 102, 102);
-	$text_color		= ImageColorAllocate($im, 204, 153, 153);
+	$bg_color		= imagecolorallocate ($im, 255, 255, 255);
+	$border_color	= imagecolorallocate ($im, 153, 102, 102);
+	$text_color		= imagecolorallocate ($im, 204, 153, 153);
 	$grid_color		= imagecolorallocate($im, 255, 182, 182);
 	$shadow_color	= imagecolorallocate($im, 255, 240, 240);
 

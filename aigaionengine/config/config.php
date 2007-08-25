@@ -112,6 +112,16 @@ $config['url_suffix'] = "";
 */
 $config['language']	= "english";
 
+/*
+|--------------------------------------------------------------------------
+| Default Character Set
+|--------------------------------------------------------------------------
+|
+| This determines which character set is used by default in various methods
+| that require a character set to be provided.
+|
+*/
+$config['charset'] = "UTF-8";
 
 /*
 |--------------------------------------------------------------------------

@@ -319,6 +319,19 @@ echo "
 	        </td>
 	    </tr>
 
+        <tr>
+        <td>Export BiBTeX as UTF8</td>
+        <td>
+        ".form_checkbox('utf8bibtex','utf8bibtex',$user->preferences['utf8bibtex']=="TRUE")."
+        </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
+	        Aigaion to convert special characters to BiBTeX codes such as {\\'e}
+	        </td>
+	    </tr>
+
 
         <tr>
         <td colspan=2><hr></td>

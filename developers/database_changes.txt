@@ -292,6 +292,37 @@ ALTER TABLE `personpublicationmark` RENAME TO `userpublicationmark`;
 --- new preference: open export data in browser instead of downloading
 ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'TRUE';
 
+--- 2007-08-25
+--- new preference: download bibtex encoded as UTF8, or converted to BiBTeX special chars?
+ALTER TABLE `users` ADD COLUMN `utf8bibtex` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'FALSE';
+--- convert tables to utf8 (in principle, the data should automatically be converted as well...)
+ALTER DATABASE ai2db CHARACTER SET utf8;
+ALTER TABLE ai2_aigaiongeneral CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_attachments CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_author CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_availablerights CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_changehistory CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_config CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_grouprightsprofilelink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_keywords CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_notecrossrefid CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_notes CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_publication CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_publicationauthorlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_publicationkeywordlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_publicationpublicationlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_rightsprofilerightlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_rightsprofiles CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_textfragments CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_topicpublicationlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_topics CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_topictopiclink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_userbookmarklists CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_usergrouplink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_userpublicationmark CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_userrights CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_users CONVERT TO CHARACTER SET utf8;
+ALTER TABLE ai2_usertopiclink CONVERT TO CHARACTER SET utf8;
 
 ---still to be done:
 
@@ -302,4 +333,7 @@ ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL D
 ---drop col 'notes.rights'
 default add .ps, .z, .gz to allowed file types
 drop release column from aigaiongeneral (keep database version column! possibly rename :) )
-example groups (w/ the rights profiles)
+reinit all cleanfields!
+convert all tables and columns to utf8 and corresponding collation
+do the bibtexthing (both in conversion controller)
+    

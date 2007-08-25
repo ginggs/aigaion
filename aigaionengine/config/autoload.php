@@ -21,7 +21,8 @@
 | 1. Libraries
 | 2. Helper files
 | 3. Plugins
-| 5. Custom config files
+| 4. Custom config files
+| 5. Language files
 |
 */
 
@@ -87,15 +88,6 @@ $autoload['plugin'] = array();
 $autoload['config'] = array();
 
 
-/*
-| -------------------------------------------------------------------
-|  Auto-load Core Libraries
-| -------------------------------------------------------------------
-|
-| DEPRECATED:  Use $autoload['libraries'] above instead.
-|
-*/
-// $autoload['core'] = array();
-
+$autoload['language'] = array();
 
 ?>

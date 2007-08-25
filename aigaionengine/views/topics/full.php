@@ -56,9 +56,10 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                               true)."</ul>\n</div>\n";
 
     if ($topic->url != '') {
+        $this->load->helper('utf8');
         $urlname = prep_url($topic->url);
-        if (strlen($urlname)>21) {
-            $urlname = substr($urlname,0,20)."...";
+        if (utf8_strlen($urlname)>21) {
+            $urlname = utf8_substr($urlname,0,20)."...";
         }
         echo "URL: <a href='".prep_url($topic->url)."' target='_blank'>[".$urlname."]</a><br/><br/>\n";
     }

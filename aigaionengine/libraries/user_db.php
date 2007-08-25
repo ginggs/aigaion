@@ -94,6 +94,7 @@ class User_db {
         $user->preferences['liststyle']          = $CI->input->post('liststyle');
         $user->preferences['newwindowforatt']    = $CI->input->post('newwindowforatt')=='newwindowforatt';
         $user->preferences['exportinbrowser']    = $CI->input->post('exportinbrowser')=='exportinbrowser';
+        $user->preferences['utf8bibtex']         = $CI->input->post('utf8bibtex')=='utf8bibtex';
 
         $user->assignedrights = array();
         foreach (getAvailableRights() as $right=>$description) {
@@ -165,6 +166,10 @@ class User_db {
         if ($user->preferences['exportinbrowser']) {
             $exportinbrowser ='TRUE';
         }
+        $utf8bibtex ='FALSE';
+        if ($user->preferences['utf8bibtex']) {
+            $utf8bibtex ='TRUE';
+        }
         $CI->db->insert("users",
                                          array('initials'           => $user->initials,
                                                'firstname'          => $user->firstname,
@@ -181,7 +186,8 @@ class User_db {
                                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                                'liststyle'          => $user->preferences['liststyle'],
                                                'newwindowforatt'    => $newwindowforatt,
-                                               'exportinbrowser'    => $exportinbrowser
+                                               'exportinbrowser'    => $exportinbrowser,
+                                               'utf8bibtex'         => $utf8bibtex
                                                )
                               );
                                                
@@ -242,6 +248,10 @@ class User_db {
         if ($user->preferences['exportinbrowser']) {
             $exportinbrowser ='TRUE';
         }
+        $utf8bibtex ='FALSE';
+        if ($user->preferences['utf8bibtex']) {
+            $utf8bibtex ='TRUE';
+        }
         $updatefields =  array('initials'           => $user->initials,
                                'firstname'          => $user->firstname,
                                'betweenname'        => $user->betweenname,
@@ -256,7 +266,8 @@ class User_db {
                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                'liststyle'          => $user->preferences['liststyle'],
                                'newwindowforatt'    => $newwindowforatt,
-                               'exportinbrowser'    => $exportinbrowser
+                               'exportinbrowser'    => $exportinbrowser,
+                               'utf8bibtex'         => $utf8bibtex
                                );
         //update password only if not empty
         if (isset($user->password) && ($user->password!="")) {

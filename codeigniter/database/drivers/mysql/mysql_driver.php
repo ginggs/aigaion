@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -222,11 +222,6 @@ class CI_DB_mysql_driver extends CI_DB {
 	 */
 	function escape_str($str)	
 	{	
-		if (get_magic_quotes_gpc())
-		{
-			return $str;
-		}
-
 		if (function_exists('mysql_real_escape_string'))
 		{
 			return mysql_real_escape_string($str, $this->conn_id);

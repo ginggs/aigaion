@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -122,7 +122,7 @@ class CI_Pagination {
 			$this->cur_page = $CI->uri->segment($this->uri_segment);
 			
 			// Prep the current page - no funny business!
-			$this->cur_page = preg_replace("/[a-z\-]/", "", $this->cur_page);
+			$this->cur_page = (int) $this->cur_page;
 		}
 				
 		if ( ! is_numeric($this->cur_page))
@@ -146,8 +146,8 @@ class CI_Pagination {
 		$end   = (($this->cur_page + $this->num_links) < $num_pages) ? $this->cur_page + $this->num_links : $num_pages;
 
 		// Add a trailing slash to the base URL if needed
-		$this->base_url = preg_replace("/(.+?)\/*$/", "\\1/",  $this->base_url);
-		
+		$this->base_url = rtrim($this->base_url, '/') .'/';
+
   		// And here we go...
 		$output = '';
 

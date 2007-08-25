@@ -32,7 +32,8 @@ class User {
                                     'authordisplaystyle'=>'fvl',
                                     'liststyle'=>'0',
                                     'newwindowforatt'=>'FALSE',
-                                    'exportinbrowser'=>'TRUE'
+                                    'exportinbrowser'=>'TRUE',
+                                    'utf8bibtex'=>'FALSE'
                                     ); //an array of ($preferencename=>preferencevalue)
     //assigned rights
     var $assignedrights     = array(); //an array of ($assignedright)

@@ -219,7 +219,7 @@ class File_upload {
 			$error[11] = "Solo ficheros con las siguientes extensiones est&aacute;n permitidos: <b>".$this->ext_string."</b>";
 			$error[12] = "Lo siento, el nombre del fichero contiene car&aacute;cteres invalidos. Use solo car&aacute;cteres alfanum&eacute;ricos y separe (si es necesario) con un subrayado. <br/>Un nombre de fichero correcto acaba con un punto seguido de la extensi&oacute;n.";
 			$error[13] = "El nombre de fichero excede de la longitud m&aacute;xima de ".$this->max_length_filename." car&aacute;cteres.";
-			$error[14] = "¡Lo siento, el directorio de destino no existe!";
+			$error[14] = "Â¡Lo siento, el directorio de destino no existe!";
 			$error[15] = "Cargando <b>".$this->the_file."... Error!</b> lo siento, un fichero con el mismo nombre ya existe.";
 			$error[16] = "The uploaded file is renamed to <b>".$this->file_copy."</b>.";
 			$error[17] = "Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory.";

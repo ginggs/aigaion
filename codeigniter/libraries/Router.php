@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -70,11 +70,11 @@ class CI_Router {
 		// If so, we're done since segment based URIs are not used with query strings.
 		if ($this->config->item('enable_query_strings') === TRUE AND isset($_GET[$this->config->item('controller_trigger')]))
 		{
-			$this->set_class($_GET[$this->config->item('controller_trigger')]);
+			$this->set_class(trim($this->_filter_uri($_GET[$this->config->item('controller_trigger')])));
 
 			if (isset($_GET[$this->config->item('function_trigger')]))
 			{
-				$this->set_method($_GET[$this->config->item('function_trigger')]);
+				$this->set_method(trim($this->_filter_uri($_GET[$this->config->item('function_trigger')])));
 			}
 			
 			return;
@@ -303,7 +303,7 @@ class CI_Router {
 		
 			// Is there a PATH_INFO variable?
 			// Note: some servers seem to have trouble with getenv() so we'll test it two ways		
-			$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');	
+			$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');			
 			if ($path != '' AND $path != "/".SELF)
 			{
 				return $path;
@@ -428,12 +428,13 @@ class CI_Router {
 	function _parse_routes()
 	{
 		// Do we even have any custom routing to deal with?
-		if (count($this->routes) == 0)
+		// There is a default scaffolding trigger, so we'll look just for 1
+		if (count($this->routes) == 1)
 		{
 			$this->_compile_segments($this->segments);
 			return;
 		}
-	
+
 		// Turn the segment array into a URI string
 		$uri = implode('/', $this->segments);
 		$num = count($this->segments);

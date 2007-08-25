@@ -19,9 +19,10 @@
     /** returns formatted bibtex for this publication object. Does not do any crossref merging. */
     function getBibtexForPublication($publication) {
         $CI = &get_instance();
-        $CI->load->helper('specialchar');
+        $CI->load->helper('bibtexutf8');
         $CI->load->helper('string');
         $CI->load->helper('publication');
+        $userlogin = getUserLogin();
         $fields = array();
         $maxfieldname=0;
         //open entry
@@ -105,13 +106,21 @@
         $spaces = repeater(' ',$maxfieldname);
         foreach ($fields as $name=>$value) {
             if ($value!='') {
-                $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".latinToBibCharsFromString($value)."},\n";
+                if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."},\n";
+                } else {
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".utf8ToBibCharsFromString($value)."},\n";
+                }
             }
         }
         
         //hmmm -- could have done better layout here for userfields
         if (trim($publication->userfields)!='') {
-            $result .= $publication->userfields."\n";
+            if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
+                $result .= $publication->userfields."\n";
+            } else {
+                $result .= utf8ToBibCharsFromString($publication->userfields)."\n";
+            }
         }
         
         //close entry

@@ -25,15 +25,26 @@ foreach ($xrefs as $pub_id=>$publication) {
 
 $userlogin = getUserLogin();
 if ($userlogin->getPreference('exportinbrowser')=='TRUE') {
-    echo '<pre>';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>        
+  <body>
+    <pre>
+<?php
     echo $result;
-    echo '</pre>';
+?>
+    </pre>
+  </body>
+</html>
+<?php
 } else {
     // Load the download helper and send the file to your desktop
-    $this->output->set_header("Content-type: application/ris");
-    $this->output->set_header("Cache-Control: cache, must-revalidate");
-    $this->output->set_header("Pragma: public");
     $this->load->helper('download');
+    //how to tell browser that encoding is utf8? it SEEMS the browser understands all by itself. If not, we should 
+    //introduce a 3rd param for force_download, which takes care of the utf 8 charset somehow
     force_download(AIGAION_DB_NAME."_export_".date("Y_m_d").'.ris', $result);
 } 
 

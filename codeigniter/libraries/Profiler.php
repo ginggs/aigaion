@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * Code Igniter Profiler Class
+ * CodeIgniter Profiler Class
  *
  * This class enables you to display benchmark, query, and other data
  * in order to help with debugging and optimization.
@@ -123,7 +123,7 @@ class CI_Profiler {
 				foreach ($this->CI->db->queries as $val)
 				{
 					$output .= '<div style="padding:3px;margin:12px 0 12px 0;background-color:#ddd;color:#000">';
-					$output .= $val;
+					$output .= htmlspecialchars($val, ENT_QUOTES);
 					$output .= "</div>\n";
 				}	
 			}
@@ -165,7 +165,17 @@ class CI_Profiler {
 					$key = "'".$key."'";
 				}
 			
-				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp;</td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>".htmlspecialchars(stripslashes($val))."</td></tr>\n";
+//				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp;</td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>".htmlspecialchars(stripslashes($val))."</td></tr>\n";
+				$output .= "<tr><td width='50%' style='color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp; </td><td width='50%' style='color:#009900;font-weight:normal;background-color:#ddd;'>";
+				if (is_array($val))
+				{
+					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
+				}
+				else
+				{
+					$output .= htmlspecialchars(stripslashes($val));
+				}
+				$output .= "</td></tr>\n";
 			}
 			
 			$output .= "</table>\n";

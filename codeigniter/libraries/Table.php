@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.3.1
@@ -286,7 +286,7 @@ class CI_Table {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Clears the table arrays.  Useful if multiple tables are beting generated
+	 * Clears the table arrays.  Useful if multiple tables are being generated
 	 *
 	 * @access	public
 	 * @return	void

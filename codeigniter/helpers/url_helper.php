@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * Code Igniter URL Helpers
+ * CodeIgniter URL Helpers
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
@@ -90,6 +90,8 @@ function index_page()
  */	
 function anchor($uri = '', $title = '', $attributes = '')
 {
+	$title = (string) $title;
+	
 	if ( ! is_array($uri))
 	{
 		$site_url = ( ! preg_match('!^\w+://!i', $uri)) ? site_url($uri) : $uri;
@@ -132,6 +134,8 @@ function anchor($uri = '', $title = '', $attributes = '')
  */
 function anchor_popup($uri = '', $title = '', $attributes = FALSE)
 {	
+	$title = (string) $title;
+	
 	$site_url = ( ! preg_match('!^\w+://!i', $uri)) ? site_url($uri) : $uri;
 	
 	if ($title == '')
@@ -170,6 +174,8 @@ function anchor_popup($uri = '', $title = '', $attributes = FALSE)
  */
 function mailto($email, $title = '', $attributes = '')
 {
+	$title = (string) $title;
+	
 	if ($title == "")
 	{
 		$title = $email;
@@ -195,6 +201,8 @@ function mailto($email, $title = '', $attributes = '')
  */
 function safe_mailto($email, $title = '', $attributes = '')
 {
+	$title = (string) $title;
+	
 	if ($title == "")
 	{
 		$title = $email;
@@ -444,7 +452,7 @@ function redirect($uri = '', $method = 'location')
 	{
 		case 'refresh'	: header("Refresh:0;url=".site_url($uri));
 			break;
-		default			: header("location:".site_url($uri));
+		default			: header("Location: ".site_url($uri));
 			break;
 	}
 	exit;

@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -477,16 +477,27 @@ class CI_Upload {
 	 */	
 	function is_image()
 	{
+		// IE will sometimes return odd mime-types during upload, so here we just standardize all
+		// jpegs or pngs to the same file type.
+
+		$png_mimes  = array('image/x-png');
+		$jpeg_mimes = array('image/jpg', 'image/jpe', 'image/jpeg', 'image/pjpeg');
+		
+		if (in_array($this->file_type, $png_mimes))
+		{
+			$this->file_type = 'image/png';
+		}
+		
+		if (in_array($this->file_type, $jpeg_mimes))
+		{
+			$this->file_type = 'image/jpeg';
+		}
+
 		$img_mimes = array(
 							'image/gif',
-							'image/jpg',
-							'image/jpe',
 							'image/jpeg',
-							'image/pjpeg',
 							'image/png',
-							'image/x-png'
 						   );
-
 
 		return (in_array($this->file_type, $img_mimes, TRUE)) ? TRUE : FALSE;
 	}
@@ -708,19 +719,21 @@ class CI_Upload {
 		{
 			return FALSE;
 		}
-	
-		if ( ! $fp = @fopen($file, 'rb'))
+
+		if (($data = @file_get_contents($file)) === FALSE)
 		{
 			return FALSE;
 		}
-			
-		flock($fp, LOCK_EX);
-
-		$data = fread($fp, filesize($file));
 		
+		if ( ! $fp = @fopen($file, 'r+b'))
+		{
+			return FALSE;
+		}
+
 		$CI =& get_instance();	
 		$data = $CI->input->xss_clean($data);
-
+		
+		flock($fp, LOCK_EX);
 		fwrite($fp, $data);
 		flock($fp, LOCK_UN);
 		fclose($fp);

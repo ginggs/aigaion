@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * Code Igniter Date Helpers
+ * CodeIgniter Date Helpers
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
@@ -111,7 +111,6 @@ function standard_date($fmt = 'DATE_RFC822', $time = '')
 					'DATE_RFC850'	=>	'%l, %d-%M-%y %H:%m:%i UTC',
 					'DATE_RFC1036'	=>	'%D, %d %M %y %H:%i:%s %O',
 					'DATE_RFC1123'	=>	'%D, %d %M %Y %H:%i:%s %O',
-					'DATE_RFC2822'	=>	'%D, %d %M %Y %H:%i:%s %O',
 					'DATE_RSS'		=>	'%D, %d %M %Y %H:%i:%s %O',
 					'DATE_W3C'		=>	'%Y-%m-%dT%H:%i:%s%Q'
 					);

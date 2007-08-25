@@ -215,9 +215,26 @@ class Site extends Controller {
         
         // Load the download helper and send the file to your desktop
         $this->load->helper('download');
-        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.gz', $backup);
+        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql.gz', $backup);
         
     }
 
+	/** 
+	site/restore
+	
+	Entry point for restoring from a backup file
+	
+	Fails with error message when one of:
+	    insufficient user rights
+
+	Paramaters:
+	    uploaded sql file from earlier backup
+	    
+	Returns:
+	    To the front page, with a message
+	*/
+	function restore()
+	{
+	}
 }
 ?>

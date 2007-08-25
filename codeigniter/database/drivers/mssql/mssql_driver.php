@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -69,19 +69,6 @@ class CI_DB_mssql_driver extends CI_DB {
 
 	// --------------------------------------------------------------------
 	
-	/**
-	 * Version number query string
-	 *
-	 * @access	public
-	 * @return	string
-	 */
-	function _version()
-	{
-		return "SELECT version() AS ver";
-	}
-	
-	// --------------------------------------------------------------------
-
 	/**
 	 * Execute the query
 	 *
@@ -222,15 +209,51 @@ class CI_DB_mssql_driver extends CI_DB {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Insert ID
-	 *
-	 * @access	public
-	 * @return	integer
-	 */
+	* Insert ID
+	*
+	* Returns the last id created in the Identity column.
+	*
+	* @access public
+	* @return integer
+	*/
 	function insert_id()
 	{
-		// Not supported in MS SQL?
-		return 0;
+		$ver = self::_parse_major_version($this->version());
+		$sql = ($ver >= 8 ? "SELECT SCOPE_IDENTITY() AS last_id" : "SELECT @@IDENTITY AS last_id");
+		$query = $this->query($sql);
+		$row = $query->row();
+		return $row->last_id;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	* Parse major version
+	*
+	* Grabs the major version number from the 
+	* database server version string passed in.
+	*
+	* @access private
+	* @param string $version
+	* @return int16 major version number
+	*/
+	function _parse_major_version($version)
+	{
+		preg_match('/([0-9]+)\.([0-9]+)\.([0-9]+)/', $version, $ver_info);
+		return $ver_info[1]; // return the major version b/c that's all we're interested in.
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	* Version number query string
+	*
+	* @access public
+	* @return string
+	*/
+	function _version()
+	{
+		return "SELECT @@VERSION AS ver";
 	}
 
 	// --------------------------------------------------------------------

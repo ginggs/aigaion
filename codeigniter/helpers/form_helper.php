@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * Code Igniter Form Helpers
+ * CodeIgniter Form Helpers
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
@@ -196,9 +196,15 @@ function form_textarea($data = '', $value = '', $extra = '')
 {
 	$defaults = array('name' => (( ! is_array($data)) ? $data : ''), 'cols' => '90', 'rows' => '12');
 	
-	$val = (( ! is_array($data) OR ! isset($data['value'])) ? $value : $data['value']);
-
-	unset ($data['value']); // textareas don't use the value attribute
+    if ( ! is_array($data) OR ! isset($data['value']))
+	{
+		$val = $value;
+	}
+    else
+	{
+		$val = $data['value']; 
+		unset($data['value']); // textareas don't use the value attribute
+	}
 		
 	return "<textarea ".parse_form_attributes($data, $defaults).$extra.">".$val."</textarea>\n";
 }
@@ -223,6 +229,9 @@ function form_dropdown($name = '', $options = array(), $selected = '', $extra = 
 	
 	foreach ($options as $key => $val)
 	{
+		$key = (string) $key;
+		$val = (string) $val;
+		
 		$sel = ($selected != $key) ? '' : ' selected="selected"';
 		
 		$form .= '<option value="'.$key.'"'.$sel.'>'.$val."</option>\n";
@@ -233,33 +242,6 @@ function form_dropdown($name = '', $options = array(), $selected = '', $extra = 
 	return $form;
 }
 	
-/**
- * Multiselect field
- *
- * @access	public
- * @param	mixed
- * @param	array
- * @param	string
- * @return	string
- */	
-function form_multiselect($data = '', $options = array(), $selected = '')
-{
-	$defaults = array('name' => (( ! is_array($data)) ? $data : ''), 'size' => '5');
-		
-	$form = "<select multiple ".parse_form_attributes($data, $defaults).">\n";
-	
-	foreach ($options as $key => $val)
-	{
-		$sel = ($selected != $key) ? '' : ' selected="selected"';
-		
-		$form .= '<option value="'.$key.'"'.$sel.'>'.form_prep($val)."</option>\n";
-	}
-
-	$form .= '</select>';
-	
-	return $form;
-}
-
 // ------------------------------------------------------------------------
 
 /**
@@ -281,7 +263,13 @@ function form_checkbox($data = '', $value = '', $checked = TRUE, $extra = '')
 		$checked = $data['checked'];
 		
 		if ($checked == FALSE)
+		{
 			unset($data['checked']);
+		}
+		else
+		{
+			$data['checked'] = 'checked';
+		}
 	}
 	
 	if ($checked == TRUE)

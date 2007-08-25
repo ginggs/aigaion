@@ -40,7 +40,7 @@ class Topics extends Controller {
             appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
             redirect('');
         }
-        $output .= "<div style='border:1px solid black;padding:0.2em;float:right;'>"
+        $output .= "<div style='border:1px solid black;padding:0.2em;float:right;clear:right;'>"
                     .$this->load->view('site/stats',
                                       array(),  
                                       true)."</div>\n";

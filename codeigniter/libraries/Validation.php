@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -194,7 +194,7 @@ class CI_Validation {
 			//Explode out the rules!
 			$ex = explode('|', $rules);
 
-			// Is the field required?  If not, if the field is blank  we'll move on to the next text
+			// Is the field required?  If not, if the field is blank  we'll move on to the next test
 			if ( ! in_array('required', $ex, TRUE) AND strpos($rules, 'callback_') === FALSE)
 			{
 				if ( ! isset($_POST[$field]) OR $_POST[$field] == '')
@@ -419,7 +419,7 @@ class CI_Validation {
 	 */	
 	function min_length($str, $val)
 	{
-		if ( ! is_numeric($val))
+		if (preg_match("/[^0-9]/", $val))
 		{
 			return FALSE;
 		}
@@ -438,7 +438,7 @@ class CI_Validation {
 	 */	
 	function max_length($str, $val)
 	{
-		if ( ! is_numeric($val))
+		if (preg_match("/[^0-9]/", $val))
 		{
 			return FALSE;
 		}
@@ -457,7 +457,7 @@ class CI_Validation {
 	 */	
 	function exact_length($str, $val)
 	{
-		if ( ! is_numeric($val))
+		if (preg_match("/[^0-9]/", $val))
 		{
 			return FALSE;
 		}
@@ -490,7 +490,7 @@ class CI_Validation {
 	 */
 	function valid_ip($ip)
 	{
-		return ( ! preg_match( "/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/", $ip)) ? FALSE : TRUE;
+		return $this->CI->valid_ip($ip);
 	}
 
 	// --------------------------------------------------------------------
@@ -504,7 +504,7 @@ class CI_Validation {
 	 */		
 	function alpha($str)
 	{
-		return ( ! preg_match("/^([-a-z])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z])+$/i", $str)) ? FALSE : TRUE;
 	}
 	
 	// --------------------------------------------------------------------
@@ -518,7 +518,7 @@ class CI_Validation {
 	 */	
 	function alpha_numeric($str)
 	{
-		return ( ! preg_match("/^([-a-z0-9])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z0-9])+$/i", $str)) ? FALSE : TRUE;
 	}
 	
 	// --------------------------------------------------------------------

@@ -209,6 +209,7 @@ class Publication_db {
   						
       $keywords = explode('###', $keywords);
       
+        //NOTE: this will give problems when our data is in UTF8, due to substr and strlen. Don't forget to check!
       foreach ($keywords as $keyword)
       {
         if (trim($keyword) != '')

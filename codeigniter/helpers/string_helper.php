@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Code Igniter
+ * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
  * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
  * @license		http://www.codeignitor.com/user_guide/license.html
  * @link		http://www.codeigniter.com
  * @since		Version 1.0
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * Code Igniter String Helpers
+ * CodeIgniter String Helpers
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
@@ -44,8 +44,8 @@
  */	
 function trim_slashes($str)
 {
-	return preg_replace("|^/*(.+?)/*$|", "\\1", $str);
-}
+    return trim($str, '/');
+} 
 	
 // ------------------------------------------------------------------------
 
@@ -147,8 +147,8 @@ function alternator()
  */	
 function repeater($data, $num = 1)
 {
-	return str_repeat($data, $num);
-}
+	return (($num > 0) ? str_repeat($data, $num) : '');
+} 
 
 
 ?>
