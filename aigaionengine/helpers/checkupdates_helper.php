@@ -36,7 +36,7 @@
             return "<div class='message'>Couldn't obtain release version info from demo.aigaion.nl</div>";
         }
         #compare info to current version
-        $CI->db->orderby('type','desc');
+        $CI->db->orderby('version','desc');
         $CI->db->limit(1);
         $Q = $CI->db->get('changehistory');
         foreach ($Q->result() as $R) {

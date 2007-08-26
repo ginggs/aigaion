@@ -39,7 +39,7 @@
         <td class='tablewithborder'>Description</td>
     </tr>
 <?php
-    $this->db->orderby('type','desc');
+    $this->db->orderby('version','desc');
     $Q = $this->db->get('changehistory');
     foreach ($Q->result() as $R) {
         echo '<tr>';
