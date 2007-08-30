@@ -286,11 +286,12 @@ class Authors extends Controller {
     }
   }
   
-  function li_authors()
+  function li_authors($fieldname = "")
   {
-    $author = $this->input->post('authors');
-    if (!$author)
-      $author = $this->input->post('editors');
+    if ($fieldname == "")
+      $fieldname = 'authors';
+      
+    $author = $this->input->post($fieldname);
     
     if ($author != "")
     {

@@ -37,7 +37,12 @@ if ($userlogin->hasRights('topic_edit'))
     <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
 <?php
 } 
-
+if ($userlogin->hasRights('publication_edit'))
+{
+?>
+    <li class='mainmenu'><?php echo anchor('import', 'Import BibTeX'); ?></li>
+<?php
+}
 $ACCOUNT_MENU = "";
 if ($userlogin->hasRights('user_edit_self')) {
     $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";

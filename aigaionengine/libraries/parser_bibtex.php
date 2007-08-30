@@ -74,7 +74,7 @@ class Parser_Bibtex
   function bibliophileToPublication($bibliophileEntry)
   {
     $CI = &get_instance();
-    $publication = $CI->publication;
+    $publication = new $CI->publication;
     
     
     //we retrieve the following fields without special operations
@@ -178,6 +178,28 @@ class Parser_Bibtex
   		unset($bibliophileEntry['month']);
   	}
   	
+  	if ($publication->keywords)
+    {
+      $keywords = preg_replace('/ *([^,]+)/',
+  						                 "###\\1",
+  						                 $publication->keywords);
+  						
+      $keywords = explode('###', $keywords);
+      
+        //NOTE: this will give problems when our data is in UTF8, due to substr and strlen. Don't forget to check!
+      foreach ($keywords as $keyword)
+      {
+        if (trim($keyword) != '')
+        {
+          if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
+            $keyword = substr($keyword, 0, strlen($keyword) - 1);
+          
+          $keyword_array[] = $keyword;
+        }
+      }
+      $publication->keywords = $keyword_array;
+    }
+    
   	$userFields = array_diff(array_keys($bibliophileEntry), getFullFieldArray());
   	$userFieldsText = "";
   	foreach ($userFields as $field) {

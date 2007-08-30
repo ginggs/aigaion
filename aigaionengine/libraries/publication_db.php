@@ -150,7 +150,7 @@ class Publication_db {
     return $publication;
   }
 
-  function getFromPost()
+  function getFromPost($suffix = "")
   {
     $CI = &get_instance();
     //we retrieve the following fields
@@ -197,7 +197,7 @@ class Publication_db {
 
     foreach ($fields as $key)
     {
-      $publication->$key = $CI->input->post($key);
+      $publication->$key = $CI->input->post($key.$suffix);
     }
 
     //parse the keywords

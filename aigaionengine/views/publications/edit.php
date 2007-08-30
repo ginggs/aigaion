@@ -79,7 +79,7 @@
         ?>
         <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
         </div>
-        <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/authors/li_authors/', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+        <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/authors/li_authors/authors', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
     <tr>
@@ -99,7 +99,7 @@
         ?>
         <div name='editor_autocomplete' id='editor_autocomplete' class='autocomplete'>
         </div>
-        <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/authors/li_authors/', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+        <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/authors/li_authors/editors', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
     

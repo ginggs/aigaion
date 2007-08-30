@@ -117,7 +117,7 @@ class Keyword_db {
   
   function review($keywords)
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     if (!is_array($keywords))
       return null;
     

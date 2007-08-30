@@ -15,9 +15,12 @@ class Keywords extends Controller {
     $this->li_keywords();
 	}
 
-  function li_keywords()
+  function li_keywords($fieldname = "")
   {
-    $keyword = $this->input->post('keywords');
+    if ($fieldname == "")
+      $fieldname = 'keywords';
+    
+    $keyword = $this->input->post($fieldname);
     if ($keyword != "")
     {
       $keywords = $this->keyword_db->getKeywordsLike($keyword);
