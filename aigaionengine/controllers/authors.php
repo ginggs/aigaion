@@ -180,7 +180,6 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $this->load->helper('specialchar');
     
     $author = $this->author_db->getFromPost();
     //check the submit type, if 'type_change', we redirect to the edit form

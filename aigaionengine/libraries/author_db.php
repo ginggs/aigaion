@@ -26,6 +26,8 @@ class Author_db {
   function getByExactName($firstname = "", $von = "", $surname = "")
   {
         $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
+    $CI->load->helper('utf8_to_ascii');
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return false;
@@ -39,8 +41,8 @@ class Author_db {
       ($name != '') ? $name .= ", ".$firstname : $name = $firstname;
     
     //strip out any special characters
-    $name = stripBibCharsFromString($name);
-    $name = stripQuotesFromString($name);
+    $name = bibCharsToUtf8FromString($name);
+    $name = utf8_to_ascii($name);
     
     //do the query
     $Q = $CI->db->getwhere('author',array('cleanname' => $name));
@@ -84,6 +86,8 @@ class Author_db {
   function getFromPost()
   {
         $CI = &get_instance();
+        $CI->load->helper('utf8_to_ascii');
+        $CI->load->helper('bibtexutf8');
     //create the array with variables to retrieve
     $fields = array('author_id',
                     //'specialchars', no! specialchars var is not set in edit form.
@@ -103,6 +107,15 @@ class Author_db {
     {
       $author->$key = $CI->input->post($key);
     }
+    
+    //check for specialchars
+    $specialfields = array('firstname', 'von', 'surname', 'institute');
+    foreach ($specialfields as $field)
+    {
+        //remove bibchars
+        $author->$field = bibCharsToUtf8FromString($author->$field);
+    }
+    $author->cleanname = utf8_to_ascii($author->getName('lvf'));
     return $author;
   }
   
@@ -117,6 +130,8 @@ class Author_db {
   function add($author)
   {
         $CI = &get_instance();
+        $CI ->load->helper('bibtexutf8');
+        $CI ->load->helper('utf8_to_ascii');
     //fields that are to be submitted
     $fields = array('specialchars',
                     'cleanname',
@@ -132,13 +147,12 @@ class Author_db {
     $specialfields = array('firstname', 'von', 'surname', 'institute');
     foreach ($specialfields as $field)
     {
-      if (findSpecialCharsInString($author->$field))
-        $author->specialchars = 'TRUE';
+        //remove bibchars
+        $author->$field = bibCharsToUtf8FromString($author->$field);
     }
     
     //create cleanname
-    $cleanname = stripBibCharsFromString($author->getName('lvf'));
-    $cleanname = stripQuotesFromString($cleanname);
+    $cleanname = utf8_to_ascii($author->getName('lvf'));
     $author->cleanname = $cleanname;
     
     //get the data to store in the database
@@ -157,6 +171,8 @@ class Author_db {
   function update($author)
   {
         $CI = &get_instance();
+        $CI->load->helper('bibtexutf8');
+        $CI->load->helper('utf8_to_ascii');
     //fields that are to be updated
     $fields = array('specialchars',
                     'cleanname',
@@ -172,13 +188,12 @@ class Author_db {
     $specialfields = array('firstname', 'von', 'surname', 'institute');
     foreach ($specialfields as $field)
     {
-      if (findSpecialCharsInString($author->$field))
-        $author->specialchars = 'TRUE';
+        $author->$field = bibCharsToUtf8FromString($author->$field);
+        
     }
     
     //create cleanname
-    $cleanname = stripBibCharsFromString($author->getName('lvf'));
-    $cleanname = stripQuotesFromString($cleanname);
+    $cleanname = utf8_to_ascii($author->getName('lvf'));
     $author->cleanname = $cleanname;
     
     //get the data to store in the database
@@ -374,6 +389,7 @@ TODO:
   function review($authors)
   {
         $CI = &get_instance();
+        $CI->load->helper('utf8_to_ascii');
     if (!is_array($authors))
       return null;
     
@@ -401,8 +417,7 @@ TODO:
         
         //check on cleanname
         //create cleanname
-        $cleanname = stripBibCharsFromString($author->getName('lvf'));
-        $cleanname = strtolower(stripQuotesFromString($cleanname));
+        $cleanname = utf8_to_ascii($author->getName('lvf'));
         $author->cleanname = $cleanname;
         
         $db_distances = array();
