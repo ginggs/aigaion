@@ -42,7 +42,7 @@ class Author_db {
     
     //strip out any special characters
     $name = bibCharsToUtf8FromString($name);
-    $name = utf8_to_ascii($name);
+    //$name = utf8_to_ascii($name); but not transliteration: a name is NOT exactly the same if it differs in accents and diacritics
     
     //do the query
     $Q = $CI->db->getwhere('author',array('cleanname' => $name));
@@ -404,7 +404,7 @@ TODO:
     //retrieve results or fail                       
     foreach ($Q->result() as $R)
     {
-      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname);
+      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname); //why strtolower?
     }
     
     
