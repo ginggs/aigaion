@@ -232,7 +232,7 @@ class Author_db {
             return false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
-        $CI->db->delete('authors',array('author_id'=>$author->author_id));
+        $CI->db->delete('author',array('author_id'=>$author->author_id));
         //delete links
         $CI->db->delete('publicationauthorlink',array('author_id'=>$author->author_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
