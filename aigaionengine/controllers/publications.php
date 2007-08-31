@@ -247,7 +247,6 @@ class Publications extends Controller {
   //commit() - Commit the posted publication to the database
   function commit()
   {
-    //$this->load->helper('specialchar');
     
     $publication = $this->publication_db->getFromPost();
     $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged

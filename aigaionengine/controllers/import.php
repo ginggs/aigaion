@@ -42,7 +42,6 @@ class Import extends Controller {
   //commit() - Commit the posted publication to the database
   function commit()
   {
-    $this->load->helper('specialchar');
     $this->load->library('parser_bibtex');
 
     $import_data  = $this->input->post('import_data');    

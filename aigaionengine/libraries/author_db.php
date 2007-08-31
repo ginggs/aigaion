@@ -47,13 +47,14 @@ class Author_db {
   
   function setByName($firstname = "", $von = "", $surname = "")
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return null;
     
     //pack into array
-    $authorArray = array("firstname" => $firstname, "von" => $von, "surname" => $surname);
+    $authorArray = array("firstname" => bibCharsToUtf8FromString($firstname), "von" => bibCharsToUtf8FromString($von), "surname" => bibCharsToUtf8FromString($surname));
     
     //load from array
     return $this->getFromArray($authorArray);

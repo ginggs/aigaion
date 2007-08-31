@@ -76,6 +76,8 @@ class Parser_Bibtex
   function bibliophileToPublication($bibliophileEntry)
   {
     $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
+    $CI->load->helper('utf8_to_ascii');
     $publication = new $CI->publication;
     
     
@@ -141,7 +143,7 @@ class Parser_Bibtex
     foreach ($specialfields as $field)
     {
       //remove bibchars
-        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+      $publication->$field = bibCharsToUtf8FromString($publication->$field);
     }
     
     //create cleantitle and cleanjournal
@@ -155,6 +157,7 @@ class Parser_Bibtex
       //if exact match exists: take that one; otherwise create a new one
       foreach ($bibtex_authors as $author)
       {
+        //getByExactName will return data where bibtexchars are already stripped
         $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
         if ($author_db  != null)
         {
@@ -162,6 +165,7 @@ class Parser_Bibtex
         }
         else
         {
+          //setByName will return data where bibtexchars are already stripped
           $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
           $authors[]    = $author_db;
         }
