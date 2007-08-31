@@ -25,27 +25,18 @@ class Author_db {
   
   function getByExactName($firstname = "", $von = "", $surname = "")
   {
-        $CI = &get_instance();
+    //this function cannot operate on the cleanname; because then we can never have two different authors that just differn in e.g. diacritics.
+    $CI = &get_instance();
     $CI->load->helper('bibtexutf8');
     $CI->load->helper('utf8_to_ascii');
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return false;
       
-    //prepare the name
-    $name = $surname;
-    if ($von != '')
-      ($name != '') ? $name .= ", ".$von : $name = $von;
-    
-    if ($firstname != '')
-      ($name != '') ? $name .= ", ".$firstname : $name = $firstname;
-    
-    //strip out any special characters
-    $name = bibCharsToUtf8FromString($name);
-    //$name = utf8_to_ascii($name); but not transliteration: a name is NOT exactly the same if it differs in accents and diacritics
-    
     //do the query
-    $Q = $CI->db->getwhere('author',array('cleanname' => $name));
+    $Q = $CI->db->getwhere('author',array('firstname' => bibCharsToUtf8FromString($firstname)
+                                         ,'von' => bibCharsToUtf8FromString($von)
+                                         ,'surname' => bibCharsToUtf8FromString($surname)));
   
     //only when a single result is found, load the result. Else fail
     if ($Q->num_rows() == 1)
@@ -105,7 +96,7 @@ class Author_db {
     //retrieve all fields
     foreach ($fields as $key)
     {
-      $author->$key = $CI->input->post($key);
+      $author->$key = trim($CI->input->post($key));
     }
     
     //check for specialchars
@@ -388,8 +379,8 @@ TODO:
   
   function review($authors)
   {
-        $CI = &get_instance();
-        $CI->load->helper('utf8_to_ascii');
+    $CI = &get_instance();
+    $CI->load->helper('utf8_to_ascii');
     if (!is_array($authors))
       return null;
     
@@ -443,6 +434,8 @@ TODO:
           }
           $result_message .= "</ul>\n";
         }
+      } else {
+        //exact match! this author exists!
       }
     }
     if ($result_message != "")

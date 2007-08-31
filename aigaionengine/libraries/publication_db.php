@@ -197,7 +197,7 @@ class Publication_db {
 
     foreach ($fields as $key)
     {
-      $publication->$key = $CI->input->post($key.$suffix);
+      $publication->$key = trim($CI->input->post($key.$suffix));
     }
 
     //parse the keywords

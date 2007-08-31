@@ -203,11 +203,18 @@ class Authors extends Controller {
       if (!$bReview)
       {
         //do actual commit, depending on the edit_type, choose add or update
-        
+        //
         $edit_type = $this->input->post('edit_type');
-        if ($edit_type == 'new')
-          $author = $this->author_db->add($author);
-        else
+        if ($edit_type == 'new') {
+          //note: the author_db review method will not give an error if ONE EXACT MATCH EXISTS
+          //so we should still check that here
+          if ($this->author_db->getByExactName($author->firstname,$author->von,$author->surname) != null) {
+            appendMessage('Author "'.$author->getName('lvf').'" already exists in the database.<br/>');
+            redirect('authors/add');
+          } else {
+            $author = $this->author_db->add($author);
+          }
+        } else
           $author = $this->author_db->update($author);
               
         //show publication

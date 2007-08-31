@@ -108,7 +108,20 @@ class Parser_Bibtex
     'namekey',
     'keywords'
     );
-
+    //the following fields should after retrieval be de-bibtexxed
+    $specialfields = array(
+                    'title',
+                    'journal',
+                    'booktitle',
+                    'series',
+                    'publisher',
+                    'location',
+                    'institution',
+                    'organization',
+                    'school',
+                    'note',
+                    'abstract'
+    );
     $publication->pub_type = ucfirst(strtolower($bibliophileEntry['bibtexEntryType']));
     unset($bibliophileEntry['bibtexEntryType']);
     
@@ -123,11 +136,23 @@ class Parser_Bibtex
       $publication->bibtex_id = $bibliophileEntry['bibtexCitation'];
       unset($bibliophileEntry['bibtexCitation']);
     }
+    
+    //check for specialchars
+    foreach ($specialfields as $field)
+    {
+      //remove bibchars
+        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+    }
+    
+    //create cleantitle and cleanjournal
+    $publication->cleantitle    = utf8_to_ascii($publication->title);
+    $publication->cleanjournal    = utf8_to_ascii($publication->journal);
 
     if (isset($bibliophileEntry['author'])) {
       $authors          = array();
       $bibtex_authors   = $this->cAuthorParser->parse($bibliophileEntry['author']);
       
+      //if exact match exists: take that one; otherwise create a new one
       foreach ($bibtex_authors as $author)
       {
         $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
