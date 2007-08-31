@@ -291,6 +291,8 @@ class Publication_db {
   function add($publication)
   {
         $CI = &get_instance();
+        $CI->load->helper('bibtexutf8');
+        $CI->load->helper('utf8_to_ascii');
         //check access rights (!)
     $userlogin = getUserLogin();
     if (    (!$userlogin->hasRights('publication_edit'))
@@ -358,15 +360,13 @@ class Publication_db {
     //check for specialchars
     foreach ($specialfields as $field)
     {
-      if (findSpecialCharsInString($publication->$field)) 
-        $publication->specialchars = 'TRUE';
+      //remove bibchars
+        $publication->$field = bibCharsToUtf8FromString($publication->$field);
     }
 
     //create cleantitle and cleanjournal
-    $cleantitle                 = stripBibCharsFromString($publication->title);
-    $publication->cleantitle    = stripQuotesFromString($cleantitle);
-    $cleanjournal               = stripBibCharsFromString($publication->journal);
-    $publication->cleanjournal  = stripQuotesFromString($cleanjournal);
+    $publication->cleantitle    = utf8_to_ascii($publication->title);
+    $publication->cleanjournal    = utf8_to_ascii($publication->journal);
     
     //get actual year
     if (trim($publication->year) == '')
@@ -457,6 +457,8 @@ class Publication_db {
   function update($publication)
   {
         $CI = &get_instance();
+        $CI->load->helper('bibtexutf8');
+        $CI->load->helper('utf8_to_ascii');
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
     $userlogin  = getUserLogin();
@@ -530,15 +532,13 @@ class Publication_db {
     //check for specialchars
     foreach ($specialfields as $field)
     {
-      if (findSpecialCharsInString($publication->$field))
-        $publication->specialchars = 'TRUE';
+      //remove bibchars
+        $publication->$field = bibCharsToUtf8FromString($publication->$field);
     }
     
     //create cleantitle and cleanjournal
-    $cleantitle                 = stripBibCharsFromString($publication->title);
-    $publication->cleantitle    = stripQuotesFromString($cleantitle);
-    $cleanjournal               = stripBibCharsFromString($publication->journal);
-    $publication->cleanjournal  = stripQuotesFromString($cleanjournal);
+    $publication->cleantitle    = utf8_to_ascii($publication->title);
+    $publication->cleanjournal    = utf8_to_ascii($publication->journal);
     
     //get actual year
     if (trim($publication->year) == '')

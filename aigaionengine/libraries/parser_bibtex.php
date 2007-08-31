@@ -64,13 +64,15 @@ class Parser_Bibtex
   	}
   }
   
-  //getPublications: get the parsed publications
+  //getPublications: get the parsed publications. 
   function getPublications()
   {
     return $this->publications;
   }
   
   
+  //TODO: AT THIS POINT, BIBTEX SHOULD BE STRIPPED, LEAVING ONLY UTF8 DATA! Input was from a form, 
+  //therefore already in UTF8. So - take all affected fields and bash them through bibToUtf8?
   function bibliophileToPublication($bibliophileEntry)
   {
     $CI = &get_instance();

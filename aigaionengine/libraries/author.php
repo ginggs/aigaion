@@ -91,6 +91,7 @@ function format($formatStyle, $data='')
     }
     
     //only format if there are special characters in the data
+    //TODO: that's no longer true; everything is in UTF8 so there are no specialchars in that sense.
     if ($data->specialchars == 'TRUE')
     {  
       //the only fields where special characters should be formatted:
