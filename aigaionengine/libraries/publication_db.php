@@ -997,6 +997,28 @@ class Publication_db {
     }
     
     /*
+    reviewTitle($publication) -> checks for duplicate titles.
+    */
+    function reviewTitle($publication) {
+      $CI = &get_instance();
+      $CI->load->helper('bibtexutf8');
+      $CI->load->helper('utf8_to_ascii');
+      
+      $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
+      $publication->cleantitle = utf8_to_ascii($publication->cleantitle);
+
+      $Q = $CI->db->query("SELECT cleantitle FROM ".AIGAION_DB_PREFIX."publication
+                           WHERE cleantitle = ".$CI->db->escape($publication->cleantitle));
+  
+      $num_rows = $Q->num_rows();
+      if ($num_rows > 0)
+      {
+        return "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database.";
+      }
+      else return null;
+    }
+    
+    /*
     reviewBibtexID($publication) -> checks for duplicate cite_id. If the publication ID is set, one duplicate is allowed.
     */
     function reviewBibtexID($publication) {
@@ -1011,7 +1033,25 @@ class Publication_db {
         {
           if ($row->pub_id != $publication->pub_id)
           {
-            return "The cite id is not unique, please choose another cite id.";
+            $message = "The cite id is not unique, please choose another cite id.";
+            
+            $Q = $CI->db->query("SELECT bibtex_id FROM ".AIGAION_DB_PREFIX."publication
+                                 WHERE bibtex_id LIKE ".$CI->db->escape($publication->bibtex_id."%"));
+            $num_rows = $Q->num_rows();
+            
+            if ($num_rows > 1)
+            {
+              $list = "";
+              foreach ($Q->result() as $row)
+              {
+                $list .= "<li>".$row->bibtex_id."</li>\n";
+              }
+              if ($list != "")
+                $message .= "<br/>\nSimilar cite ids:<br/><ul>\n".$list."</ul>\n";
+              
+            }
+
+            return $message;
           }
         }
       }

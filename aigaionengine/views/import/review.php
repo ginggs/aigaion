@@ -7,6 +7,9 @@ echo form_open('import/commit',   $formAttributes)."\n";
 echo form_hidden('import_count',  $importCount)."\n";
 $b_even = true;
 
+echo "<div class='publication'>\n";
+echo "  <div class='header'>Review publications</div>\n";
+
 for ($i = 0; $i < $importCount; $i++)
 {
 
@@ -16,10 +19,6 @@ for ($i = 0; $i < $importCount; $i++)
   else
   $even = 'odd';
 
-  ?>
-  <div class='publication'>
-    <div class='header'>Review publications</div>
-    <?php
     echo "<div class='publication_summary ".$even."' id='publicationsummary".$i."'>\n";
     echo "<table width='100%'>\n";
     //open the edit form
@@ -28,8 +27,25 @@ for ($i = 0; $i < $importCount; $i++)
 
     ?>
     <tr>
-      <td colspan = 2><?php echo "import ".$publications[$i]->pub_type.": ".$publications[$i]->title; ?></td>
+      <td colspan = 2><?php
+        echo form_checkbox(array('name' => 'do_import_'.$i, 'id' => 'import_'.$i, 'value' => 'CHECKED'));
+        echo "Import: <b>".$publications[$i]->title."</b>\n"; 
+        
+        if ($reviews[$i]['title'] != null)
+          echo "<div class='errormessage'>".$reviews[$i]['title']."</div>\n";
+        ?>
+        </td>
     </tr>
+    <?php
+    if ($reviews[$i]['bibtex_id'] != null)
+    {
+    ?>
+    <tr>
+      <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['bibtex_id'] ?></div></td>
+    </tr>
+    <?php
+    }
+    ?>
     <tr>
       <td>Citation:</td>
       <td><?php echo form_input(array('name' => 'bibtex_id_'.$i, 'id' => 'bibtex_id_'.$i, 'size' => '45'), $publications[$i]->bibtex_id); ?></td>
@@ -165,6 +181,7 @@ for ($i = 0; $i < $importCount; $i++)
 
     ?>
   </table>
+  </div>
   <?php
 
 } //end for each publication

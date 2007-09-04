@@ -59,8 +59,12 @@ class Import extends Controller {
       $count                  = 0;
       foreach ($publications as $publication) {
           //get review messages
+          
+          //review title
+          $review['title']     = $this->publication_db->reviewTitle($publication);
+          
           //review bibtex_id
-          $review['bibtex_id']   = $this->publication_db->reviewBibtexID($publication);
+          $review['bibtex_id'] = $this->publication_db->reviewBibtexID($publication);
           
           //review keywords
           $review['keywords']  = $this->keyword_db->review($publication->keywords);
@@ -78,58 +82,24 @@ class Import extends Controller {
     }
     if ($import_count != null)
     {
+      $count = 0;
       for ($i = 0; $i < $import_count; $i++)
       {
-        $publication = $this->publication_db->getFromPost("_".$i);
-        echo "publication add:<br/>";
-        print_r($publication);
-        echo "<br/>";
-        //$publication = $this->publication_db->add($publication);
-      }
-      echo '<br/><b>Import still in testing phase. Not imported the '.$import_count.' publications.</b>';
-      //appendMessage('Succesfully imported '.$import_count.' publications.');
-      //redirect('');
-    }
-    
-    
-/*    if (!$bReview)
-      {
-        
-        //do actual commit, depending on the edit_type, choose add or update
-        $userlogin  = getUserLogin();
-        $user       = $this->user_db->getByID($userlogin->userID());
-        if ( (!$userlogin->hasRights('publication_edit'))
-          || (($oldpublication == null) && ($edit_type != 'new'))
-          || !$this->accesslevels_lib->canEditObject($oldpublication)
-          ) 
+        if ($this->input->post('do_import_'.$i) == 'CHECKED')
         {
-          appendErrorMessage('Commit publication: insufficient rights.<br/>');
-          redirect('');
-        }
-        
-        if ($edit_type == 'new')
+          $count++;
+          $publication = $this->publication_db->getFromPost("_".$i);
           $publication = $this->publication_db->add($publication);
-        else
-          $publication = $this->publication_db->update($publication);
-              
-        //show publication
-        redirect('publications/show/'.$publication->pub_id);
-  
+        }
       }
-    
-    else //there were validation errors
-    {
-      //edit the publication once again
-      $this->edit($publication);
+      appendMessage('Succesfully imported '.$count.' publications.');
+      redirect('');
     }
-  */  
   }
   
   function review($publications, $review_data)
   {
     $userlogin      = getUserLogin();
-    $user           = $this->user_db->getByID($userlogin->userID());
-    $review_data['edit_type'] = 'new';
     if (!$userlogin->hasRights('publication_edit'))
     {
       appendErrorMessage('Review publication: insufficient rights.<br/>');

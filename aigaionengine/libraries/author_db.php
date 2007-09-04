@@ -313,7 +313,7 @@ TODO:
   
   function getAuthorsLike($cleanname)
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     //select all authors from the database where the cleanname begins with the characters
     //as given in $cleanname
     $CI->db->orderby('cleanname');
