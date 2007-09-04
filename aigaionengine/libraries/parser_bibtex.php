@@ -78,7 +78,7 @@ class Parser_Bibtex
     $CI = &get_instance();
     $CI->load->helper('bibtexutf8');
     $CI->load->helper('utf8_to_ascii');
-    $publication = new $CI->publication;
+    $publication = new Publication(); 
     
     
     //we retrieve the following fields without special operations
