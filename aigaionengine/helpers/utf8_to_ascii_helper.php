@@ -9,4 +9,4 @@
 
 require_once(APPPATH.'include/utf8_to_ascii/utf8_to_ascii.php');
 
-?> 
+?>
