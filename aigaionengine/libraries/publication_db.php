@@ -1007,7 +1007,7 @@ class Publication_db {
       $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
       $publication->cleantitle = utf8_to_ascii($publication->cleantitle);
 
-      $Q = $CI->db->query("SELECT cleantitle FROM ".AIGAION_DB_PREFIX."publication
+      $Q = $CI->db->query("SELECT DISTINCT cleantitle FROM ".AIGAION_DB_PREFIX."publication
                            WHERE cleantitle = ".$CI->db->escape($publication->cleantitle));
   
       $num_rows = $Q->num_rows();
@@ -1049,13 +1049,12 @@ class Publication_db {
               if ($list != "")
                 $message .= "<br/>\nSimilar cite ids:<br/><ul>\n".$list."</ul>\n";
               
+              return $message;  
             }
-
-            return $message;
           }
         }
       }
-      else return null;
+      return null;
     }
 }
 ?>

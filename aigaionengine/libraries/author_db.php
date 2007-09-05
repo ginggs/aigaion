@@ -373,7 +373,7 @@ TODO:
       if ($current == null)
         $current    = $this->add($author);
       
-      $result[] = $author;
+      $result[] = $current;
     }
     return $result;
   }
