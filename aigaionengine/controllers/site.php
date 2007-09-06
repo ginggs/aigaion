@@ -90,7 +90,7 @@ class Site extends Controller {
 	*/
 	function maintenance()
 	{
-	    //$this->load->helper('maintenance');
+	    $this->load->helper('maintenance');
 	    //check rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('database_manage'))
@@ -106,18 +106,18 @@ class Site extends Controller {
         
 	    switch ($maintenance) {
 	        case 'all':
-//	        case 'attachment':
-//	            $checkresult .= checkAttachments();
-//	            if ($maintenance != 'all') 
-//	                break;
-//	        case 'topic':
-//	            $checkresult .= checkTopicss();
-//	            if ($maintenance != 'all') 
-//	                break;
-//	        case 'passwords':
-//	            $checkresult .= checkPasswords();
-//	            if ($maintenance != 'all') 
-//	            break;
+	        case 'attachments':
+	            $checkresult .= checkAttachments();
+	            if ($maintenance != 'all') 
+	                break;
+	        case 'topics':
+	            $checkresult .= checkTopics();
+	            if ($maintenance != 'all') 
+	                break;
+	        case 'passwords':
+	            $checkresult .= checkPasswords();
+	            if ($maintenance != 'all') 
+	            break;
 	        case 'checkupdates':
 	            $this->load->helper('checkupdates');
                 $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";
@@ -132,6 +132,8 @@ class Site extends Controller {
         			$checkresult .= '<tr><td colspan=2>'.$updateinfo.'</td></tr>';
     	        }
 	            //if ($maintenance != 'all') 
+	            break;
+	        case '':
 	            break;
 	        default:
     	        appendMessage('Maintenance function '.$maintenance.' not implemented.<br>');
