@@ -117,7 +117,11 @@ class Site extends Controller {
 	        case 'passwords':
 	            $checkresult .= checkPasswords();
 	            if ($maintenance != 'all') 
-	            break;
+	                break;
+	        case 'cleannames':
+	            $checkresult .= checkCleanNames();
+	            if ($maintenance != 'all') 
+	                break;
 	        case 'checkupdates':
 	            $this->load->helper('checkupdates');
                 $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";

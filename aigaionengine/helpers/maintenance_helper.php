@@ -16,44 +16,11 @@
 |       $report = checkPasswords(); 
 | 
 |
-    checkMissingFiles()
-        Checks the filesystem for files that are listed in the database, but are not on disk.
-        returns a <ul> with missing files.
-
-    checkUnknownFiles()
-        Checks the filesystem for files that are in the document directory but not listed in the
-        database as being an attachment.
-        returns a <ul> with links to found files.
-
-    checkMimeTypes()
-        Checks the database for missing or invalid mimetypes and resolves conflicts.
-        returns a <ul> with repair status.
-
-    checkAttachmentPublicationLinks()
-        checks for links between publicationss and attachments where the publication does not exist anymore.
-        silently deletes invalid links and attachments.      
-        
-	checkTopicTopicLinks()
-		checks for topics that appear in the topictopiclink table but that are not available anymore.
-		returns the number of deleted links.
-
-	checkTopicPublicationLinks()
-		checks for TopicPublication where the pub or topic does not exist anymore.
-		returns the number of deleted links.
-
-	checkTopicParents()
-		checks for topics that have no parents, sets parent to top if no parent.
-		returns a <ul> with parentless topics.
-
-	checkEmptyTopics()
-		checks for topics that are empty.
-		returns a <ul> with empty topics.
-		
-    checkPasswords()
-        check whether anyone has an empty password or a password that is the same as the username
-
+  
 */
-
+/*
+        check whether anyone has an empty password or a password that is the same as the username
+*/
     function checkPasswords() {
 		$result = "<tr><td colspan=2><p class='header1'>Passwords check</p></td></tr>\n";
 
@@ -88,7 +55,7 @@
 		$result = "<tr><td colspan=2><p class='header1'>Attachments check</p></td></tr>\n";
 
 		#check attachments where file on server is missing
-		$result .= "<tr><td>Check missende attachments...</td>";
+		$result .= "<tr><td>Check missing attachments...</td>";
 		$checkResult = checkMissingFiles();
 		if ($checkResult != "")
 		{
@@ -112,7 +79,7 @@
 //			$result .= "</td></tr>\n";
 //		}
 //		else
-			$result .= "<td><b>NOT IMPLEMENTED</b></td></tr>\n";
+			$result .= "<td  class=errortext><b>NOT IMPLEMENTED</b></td></tr>\n";
 
 		#check for unknown files
 		$result .= "<tr><td>Check unknown files...</td>";
@@ -185,11 +152,20 @@
 //			$result .= "</td></tr>\n";
 //		}
 //		else
-			$result .= "<td><b>NOT IMPLEMENTED</b></td></tr>\n";
+			$result .= "<td  class=errortext><b>NOT IMPLEMENTED</b></td></tr>\n";
         return $result;
     }
-    
+    function checkCleanNames() {
+  	    $result = "<tr><td colspan=2><p class='header1'>Reinit searchable names and titles</p></td></tr>\n";
 
+        $result .= "<tr><td>Checking...</td><td  class=errortext><b>NOT IMPLEMENTED</b></td></tr>\n";
+        return $result;
+    }
+
+/*
+        Checks the filesystem for files that are listed in the database, but are not on disk.
+        returns a <ul> with missing files.
+*/
 function checkMissingFiles()
 {
     $CI = &get_instance();
@@ -221,6 +197,11 @@ function checkMissingFiles()
     return $result;
 }
 
+/*
+        Checks the filesystem for files that are in the document directory but not listed in the
+        database as being an attachment.
+        returns a <ul> with links to found files.
+*/
 function checkUnknownFiles()
 {
     $CI = &get_instance();
@@ -253,6 +234,10 @@ function checkUnknownFiles()
 }
 
  
+/*
+        checks for links between publicationss and attachments where the publication does not exist anymore.
+        silently deletes invalid links and attachments.      
+*/
 //function checkAttachmentPublicationLinks()
 //{
 //    $CI = &get_instance();
@@ -275,6 +260,10 @@ function checkUnknownFiles()
 
 
 
+/*
+		checks for topics that appear in the topictopiclink table but that are not available anymore.
+		returns the number of deleted links.
+*/
 function checkTopicTopicLinks()
 {
     $CI = &get_instance();
@@ -303,6 +292,10 @@ function checkTopicTopicLinks()
 	return $count;
 }
 
+/*
+		checks for TopicPublication where the pub or topic does not exist anymore.
+		returns the number of deleted links.
+*/
 function checkTopicPublicationLinks()
 {
     $CI = &get_instance();
@@ -320,6 +313,10 @@ function checkTopicPublicationLinks()
 }
 
 
+/*
+		checks for topics that have no parents, sets parent to top if no parent.
+		returns a <ul> with parentless topics.
+*/
 function checkTopicParents()
 {
     $CI = &get_instance();
@@ -343,6 +340,10 @@ function checkTopicParents()
 }
 
 
+/*
+		checks for topics that are empty.
+		returns a <ul> with empty topics.
+*/
 function checkEmptyTopics()
 {
 	$result = "";
