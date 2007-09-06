@@ -63,4 +63,10 @@ if ($userlogin->hasRights('publication_edit')) {
     echo form_close();
 ?>
 <br/>
+<?php
+    echo form_open('bookmarklist/deleteall');
+    echo form_submit(array('name'=>'deleteall','title'=>'Delete all publications on the bookmarklist from the database'),'Delete all bookmarked publications');
+    echo form_close();
+?>
+<br/>
 <br/>

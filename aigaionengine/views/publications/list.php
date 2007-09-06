@@ -101,7 +101,7 @@ if (count($attachments) != 0)
         echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
-        //might give problems if location is something containing UFT8 higher characters!
+        //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
         $extension=strtolower(substr(strrchr($attachments[0]->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");

@@ -223,8 +223,11 @@ class Publications extends Controller {
         
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            $publication->delete();
-            redirect('');
+            if ($publication->delete()) {
+                redirect('');
+            } else {
+                redirect('publications/show/'.$publication->pub_id);
+            }
         } else {
             //get output
             $headerdata = array();

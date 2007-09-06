@@ -653,20 +653,56 @@ class Publication_db {
         }
         if (empty($publication->pub_id)) {
             appendErrorMessage('Cannot delete publication: erroneous ID');
-            return;
+            return false;
         }
         //no delete for object with children. check through tables, not through object
         #NOTE: if we want to allow delete of publications with notes and attachments, we should make sure
         #that current user can edit/delete all those notes and attachments!
         $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
-            appendErrorMessage('Cannot delete publication: still has attachments (possibly invisible...)<br/>');
-            return false;
+            //check if you can delete attachments 
+            foreach ($Q->result() as $row) {
+                $attachment = $CI->attachment_db->getByID($row->att_id);
+                if ($attachment == null) {
+                    appendErrorMessage('Cannot delete publication: it contains some attachments that you do not have permission to delete<br/>');
+                    return false;
+                }
+                if (!$CI->accesslevels_lib->canEditObject($attachment)) {
+                    appendErrorMessage('Cannot delete publication: it contains some attachments that you do not have permission to delete<br/>');
+                    return false;
+                }
+            }
         }
         $Q = $CI->db->getwhere('notes',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
-            appendErrorMessage('Cannot delete publication: still has notes attached to it (possibly invisible...)<br/>');
-            return false;
+            //check if you can delete notes
+            foreach ($Q->result() as $row) {
+                $note = $CI->note_db->getByID($row->note_id);
+                if ($note == null) {
+                    appendErrorMessage('Cannot delete publication: it contains some notes that you do not have permission to delete<br/>');
+                    return false;
+                }
+                if (!$CI->accesslevels_lib->canEditObject($note)) {
+                    appendErrorMessage('Cannot delete publication: it contains some notes that you do not have permission to delete<br/>');
+                    return false;
+                }
+            }
+        }
+        $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
+        if ($Q->num_rows()>0) {
+            //do actual delete of attachments, AFTER you know it is OK to proceed with delete
+            foreach ($Q->result() as $row) {
+                $attachment = $CI->attachment_db->getByID($row->att_id);
+                $attachment->delete();
+            }
+        }
+        $Q = $CI->db->getwhere('notes',array('pub_id'=>$publication->pub_id));
+        if ($Q->num_rows()>0) {
+            //do actual delete of notes, AFTER you know it is OK to proceed with delete
+            foreach ($Q->result() as $row) {
+                $note = $CI->note_db->getByID($row->note_id);
+                $note->delete();
+            }
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('publication',array('pub_id'=>$publication->pub_id));
@@ -674,11 +710,10 @@ class Publication_db {
         $CI->db->delete('topicpublicationlink',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('publicationauthorlink',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('publicationkeywordlink',array('pub_id'=>$publication->pub_id));
-        $CI->db->delete('publicationpublicationlink',array('pub_id'=>$publication->pub_id));
-        $CI->db->delete('userbookmarklists',array('source_pub_id'=>$publication->pub_id));
-        $CI->db->delete('userbookmarklists',array('target_pub_id'=>$publication->pub_id));
+        $CI->db->delete('userbookmarklists',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('userpublicationmark',array('pub_id'=>$publication->pub_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+        return true;
     }      
   function validate($publication)
   {

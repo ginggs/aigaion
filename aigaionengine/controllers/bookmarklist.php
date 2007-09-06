@@ -258,6 +258,10 @@ class Bookmarklist extends Controller {
     */
     function maketopic() {
       $userlogin = getUserLogin();
+	    if (!$userlogin->hasRights('bookmarklist')) {
+	        appendErrorMessage('Making topic from bookmarklist: insufficient rights<br/>');
+	        redirect('');
+	    }
 	    if (!$userlogin->hasRights('topic_edit')) {
 	        appendErrorMessage('Insufficient rights to create topic<br/>');
 	        redirect('');
@@ -273,6 +277,76 @@ class Bookmarklist extends Controller {
         redirect('topics/edit/'.$topic->topic_id);
     }
 
+	/** 
+	bookmarklist/deleteall
+	
+	Entry point for deleting all from the bookmarklist.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	deleting. 
+	
+	Fails with error message when one of:
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    4rd: if the 3rd segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the delete action, if no 'commit' was specified
+        Redirects somewhere (bookmarklist page) after deleting, if 'commit' was specified
+	*/
+	function deleteall()
+	{
+	    $commit = $this->uri->segment(3,'');
+
+	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin  = getUserLogin();
+
+	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
+	        appendErrorMessage('Deleting publications from bookmarklist: insufficient rights<br/>');
+	        redirect('');
+	    }
+
+        if ($commit=='commit') {
+            //do delete, redirect somewhere
+            $publications = $this->publication_db->getForBookmarkList(-1);
+            $nrdeleted = 0;
+            $nrskipped = 0;
+            foreach ($publications as $publication) {
+                if ($this->accesslevels_lib->canEditObject($publication)) {
+                    if ($publication->delete()) {
+                        $nrdeleted++;
+                    } else {
+                        $nrskipped++;
+                    }
+                } else {
+                    $nrskipped++;
+                }
+            }
+            appendMessage('Deleted '.$nrdeleted.' publications<br>');
+            appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            redirect('bookmarklist');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Delete all from bookmarklist';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('bookmarklist/delete',
+                                          array(),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }  
+  
 
     /** 
     bookmarklist/clear

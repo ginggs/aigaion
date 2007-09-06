@@ -177,11 +177,11 @@ class Note_db {
             ) {
             //if not, for any of them, give error message and return
             appendErrorMessage('Cannot delete note: insufficient rights');
-            return;
+            return false;
         }
         if (empty($note->note_id)) {
             appendErrorMessage('Cannot delete note: erroneous ID');
-            return;
+            return false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('notes',array('note_id'=>$note->note_id));
@@ -189,6 +189,7 @@ class Note_db {
         $CI->db->delete('notecrossrefid',array('note_id'=>$note->note_id));
         $CI->db->delete('notecrossrefid',array('xref_id'=>$note->note_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+        return true;
     }  
 
     /** change the text of all affected notes to reflect a change of the bibtex_id of the given publication.

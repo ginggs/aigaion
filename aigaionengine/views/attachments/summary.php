@@ -19,7 +19,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
-        //might give problems if location is something containing UFT8 higher characters!
+        //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
         $extension=strtolower(substr(strrchr($attachment->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
