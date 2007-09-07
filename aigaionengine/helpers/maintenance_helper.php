@@ -70,16 +70,16 @@
 
 		#check for orphaned attachments
 		$result .= "<tr><td>Check orphaned attachments...</td>";
-//		$checkResult = checkAttachmentPublicationLinks(); //remove attachments of Publications no longer in the database
-//		if ($checkResult > 0)
-//		{
-//			$result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
-//			$result .= "<div class='message'>";
-//			$result .= $checkResult." references to attachments that no longer belong to a publication have been removed.</div>\n";
-//			$result .= "</td></tr>\n";
-//		}
-//		else
-			$result .= "<td  class=errortext><b>NOT IMPLEMENTED</b></td></tr>\n";
+		$checkResult = checkAttachmentPublicationLinks(); //remove attachments of Publications no longer in the database
+		if ($checkResult > 0)
+		{
+			$result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+			$result .= "<div class='message'>";
+			$result .= $checkResult." references to attachments that no longer belong to a publication have been removed.</div>\n";
+			$result .= "</td></tr>\n";
+		}
+		else
+			$result .= "<td><b>OK</b></td></tr>\n";
 
 		#check for unknown files
 		$result .= "<tr><td>Check unknown files...</td>";
@@ -238,25 +238,25 @@ function checkUnknownFiles()
         checks for links between publicationss and attachments where the publication does not exist anymore.
         silently deletes invalid links and attachments.      
 */
-//function checkAttachmentPublicationLinks()
-//{
-//    $CI = &get_instance();
-//    $count = 0;
-//
-//    $Q = $CI->db->query("SELECT DISTINCT tuneattlink.att_id
-//                             FROM tuneattlink LEFT JOIN tunes 
-//                                              ON (tuneattlink.tune_id = tunes.tune_id) 
-//                             WHERE tunes.tune_id IS NULL");
-//    if (mysql_num_rows($Q) > 0)
-//    {
-//        while ($R = mysql_fetch_array($Q)) //found files that do not belong to a tune anymore
-//        {
-//            appendErrorMessage('Need to delete: '.$R["att_id"]."<br/>");
-//            $count++;
-//        }
-//    }
-//    return $count;
-//}
+function checkAttachmentPublicationLinks()
+{
+    $CI = &get_instance();
+    $count = 0;
+
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."attachments.*
+                             FROM ".AIGAION_DB_PREFIX."attachments LEFT JOIN ".AIGAION_DB_PREFIX."publication 
+                                              ON (".AIGAION_DB_PREFIX."attachments.pub_id = ".AIGAION_DB_PREFIX."publication.pub_id) 
+                             WHERE ".AIGAION_DB_PREFIX."publication.pub_id IS NULL");
+    foreach ($Q->result() as $R) 
+    {
+        if ($R->isremote!="TRUE") {
+            unlink(AIGAION_ATTACHMENT_DIR.'/'.$R->location);
+        }
+        $CI->db->delete('attachments',array('att_id'=>$R->att_id));
+        $count++;
+    }
+    return $count;
+}
 
 
 
