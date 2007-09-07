@@ -217,7 +217,7 @@ class Site extends Controller {
         }
         // Backup your entire database and assign it to a variable
         //note: we could make a site setting for whether a gz, zip or txt is returned. But gz is OK, I guess.
-        $backup =& $this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'gzip'));
+        $backup =$this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'gzip'));
         
         // Load the download helper and send the file to your desktop
         $this->load->helper('download');
