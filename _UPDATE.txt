@@ -1,7 +1,7 @@
     
     This documentation is for migrating an existing Aigaion 1.x installation to Aigaion 2.0
     If you want to install Aigaion 2.0 from scratch, with an empty database, follow the instructions 
-    in XXXXXXXXXXXXXXXXx
+    in _INSTALL.txt
     
     The instructions below presume the following:
     - The existing Aigaion 1.x is installed in the directory <WEBROOT>/<aigaion1_rootdir>/

@@ -1,0 +1,23 @@
+    
+    This documentation is for installing Aigaion 2.0 from scratch, with an empty database
+    
+    The instructions below presume the following:
+    - You want to install Aigaion 2.0 in the directory <WEBROOT>/<aigaion2_rootdir>/
+    - The attachments in the new Aigaion 2.0 will be stored in a directory 
+        <WEBROOT>/<aigaion2_rootdir>/<documents_dir>/
+    - The Aigaion 2.0 MYSQL database will be named '<db_aigaion2>'
+    
+    NOTE: We have a simplistic mechanism to provide a little bit of security for the install scripts. 
+    However, that security is only designed to work for a short time while you are actually installing - 
+    afterwards you should simply remove the two directories containing the install and migration scripts.
+    
+    INSTALLING AN EMPTY AIGAION 2 SYSTEM FROM SCRATCH
+    1) Copy the Aigaion 2.0 files to <WEBROOT>/<aigaion2_rootdir>/
+    2) Create the new database '<db_aigaion2>', with an appropriate user. The database is empty.
+    3) fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/install/database.php
+    4) define password for installing in <WEBROOT>/<aigaion2_rootdir>/install/sec.php
+    5) go to http://<server>/<aigaion2_rootdir>/install/install.php
+    
+    last) if install was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
+    last) if install was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
+    

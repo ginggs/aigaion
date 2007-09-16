@@ -195,33 +195,33 @@ if ( $pwd !=''
         _query("ALTER TABLE `publication` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
         _query("ALTER TABLE `topics` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
         _query("ALTER TABLE `personpublicationnote` ADD COLUMN `read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `attachments` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `publication` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `topics` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `personpublicationnote` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `attachments` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `publication` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `topics` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `personpublicationnote` ADD COLUMN `edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
         
-        mysql_query("UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1;");
+        _query("UPDATE topics SET read_access_level = 'public' WHERE topic_id = 1;");
         
-        mysql_query("INSERT INTO `availablerights` (`name`,`description`) VALUES ('attachment_read_all','read all attachments, overriding access levels'), ('topic_read_all','read all topics, overriding access levels'), ('note_read_all','read all notes, overriding access levels');");
+        _query("INSERT INTO `availablerights` (`name`,`description`) VALUES ('attachment_read_all','read all attachments, overriding access levels'), ('topic_read_all','read all topics, overriding access levels'), ('note_read_all','read all notes, overriding access levels');");
          
-        mysql_query("ALTER TABLE `personpublicationnote` RENAME TO `notes`;");
+        _query("ALTER TABLE `personpublicationnote` RENAME TO `notes`;");
         
-        mysql_query("UPDATE notes SET read_access_level='private',edit_access_level='private' WHERE rights='private';");
+        _query("UPDATE notes SET read_access_level='private',edit_access_level='private' WHERE rights='private';");
         
-        mysql_query("ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) NULL DEFAULT NULL ;");
+        _query("ALTER TABLE `publication` CHANGE `type` `pub_type` ENUM( 'Article', 'Book', 'Booklet', 'Inbook', 'Incollection', 'Inproceedings', 'Manual', 'Mastersthesis', 'Misc', 'Phdthesis', 'Proceedings', 'Techreport', 'Unpublished' ) NULL DEFAULT NULL ;");
         
-        mysql_query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('attachment_edit_all','edit all attachments, overriding access levels'), ('topic_edit_all','edit all topics, overriding access levels'), ('note_edit_all','edit all notes, overriding access levels');");
+        _query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('attachment_edit_all','edit all attachments, overriding access levels'), ('topic_edit_all','edit all topics, overriding access levels'), ('note_edit_all','edit all notes, overriding access levels');");
          
-        mysql_query("ALTER TABLE `publicationauthor` CHANGE `author` `author_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0';");
+        _query("ALTER TABLE `publicationauthor` CHANGE `author` `author_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0';");
         
-        mysql_query("ALTER TABLE `publicationauthor` RENAME TO `publicationauthorlink`;");
+        _query("ALTER TABLE `publicationauthor` RENAME TO `publicationauthorlink`;");
         
-        mysql_query("CREATE TABLE `keywords` (`keyword_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,`keyword` text NOT NULL);");
+        _query("CREATE TABLE `keywords` (`keyword_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,`keyword` text NOT NULL);");
         
-        mysql_query("CREATE TABLE `publicationkeywordlink` (`pub_id` INT( 10 ) NOT NULL ,`keyword_id` INT( 10 ) NOT NULL ,PRIMARY KEY (`pub_id`, `keyword_id` ));");
+        _query("CREATE TABLE `publicationkeywordlink` (`pub_id` INT( 10 ) NOT NULL ,`keyword_id` INT( 10 ) NOT NULL ,PRIMARY KEY (`pub_id`, `keyword_id` ));");
         
         //copy keyword values to new keyword table
-        $res = mysql_query("SELECT pub_id, keywords FROM publication");
+        $res = _query("SELECT pub_id, keywords FROM publication");
         
         $keyword_array = array();
         if ($res) {
@@ -247,7 +247,7 @@ if ( $pwd !=''
             
             foreach ($keyword_array as $entry)
             {
-              $res = mysql_query("SELECT keyword_id FROM keywords WHERE keyword='".$entry['keyword']."'");
+              $res = _query("SELECT keyword_id FROM keywords WHERE keyword='".$entry['keyword']."'");
               if (mysql_num_rows($res) > 0)
               {
                 while ($row = mysql_fetch_array($res))
@@ -257,11 +257,11 @@ if ( $pwd !=''
               }
               else
               {
-                $res = mysql_query("INSERT INTO keywords (keyword) VALUES (".addslashes($entry['keyword']).")");
+                $res = _query("INSERT INTO keywords (keyword) VALUES (".addslashes($entry['keyword']).")");
                 $keyword_id = mysql_insert_id();
               }
               
-              $res = mysql_query("INSERT INTO publicationkeywordlink (pub_id, keyword_id) VALUES (".$entry['pub_id'].", ".$keyword_id.");");
+              $res = _query("INSERT INTO publicationkeywordlink (pub_id, keyword_id) VALUES (".$entry['pub_id'].", ".$keyword_id.");");
               
               if (mysql_affected_rows() == 1)
               {
@@ -270,94 +270,94 @@ if ( $pwd !=''
             }
           }
         
-        mysql_query("ALTER TABLE `publication` DROP `keywords`;");
+        _query("ALTER TABLE `publication` DROP `keywords`;");
         
-        mysql_query("CREATE TABLE `userbookmarklists` (`user_id` INT( 10 ) NOT NULL ,`pub_id` INT( 10 ) NOT NULL ,PRIMARY KEY (`user_id`, `pub_id` ));");
+        _query("CREATE TABLE `userbookmarklists` (`user_id` INT( 10 ) NOT NULL ,`pub_id` INT( 10 ) NOT NULL ,PRIMARY KEY (`user_id`, `pub_id` ));");
         
-        mysql_query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('bookmarklist','use a persistent bookmarklist');");
+        _query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('bookmarklist','use a persistent bookmarklist');");
         
-        mysql_query("ALTER TABLE `topics` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
-        mysql_query("ALTER TABLE `publication` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
-        mysql_query("ALTER TABLE `notes` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
-        mysql_query("ALTER TABLE `attachments` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
+        _query("ALTER TABLE `topics` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
+        _query("ALTER TABLE `publication` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
+        _query("ALTER TABLE `notes` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
+        _query("ALTER TABLE `attachments` ADD COLUMN `group_id` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
         
         
-        mysql_query("ALTER TABLE `topics`        ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `publication`  ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `notes`         ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `attachments`   ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `topics`        ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `publication`  ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `notes`         ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
-        mysql_query("ALTER TABLE `attachments`   ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `topics`        ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `publication`  ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `notes`         ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `attachments`   ADD COLUMN `derived_read_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `topics`        ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `publication`  ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `notes`         ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
+        _query("ALTER TABLE `attachments`   ADD COLUMN `derived_edit_access_level` ENUM('private','public','intern','group') NOT NULL DEFAULT 'intern';");
         
-        mysql_query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('read_all_override','read all attachments, publications, topics and notes, overriding access levels'), ('edit_all_override','edit all attachments, publications, topics and notes, overriding access levels');");
-        mysql_query("DELETE FROM availablerights WHERE  name='attachment_edit_all'  OR name='attachment_read_all'  OR name='note_read_all'  OR name='note_edit_all'  OR name='topic_read_all'  OR name='topic_edit_all';");
+        _query("INSERT INTO `availablerights` (`name`,`description`) VALUES  ('read_all_override','read all attachments, publications, topics and notes, overriding access levels'), ('edit_all_override','edit all attachments, publications, topics and notes, overriding access levels');");
+        _query("DELETE FROM availablerights WHERE  name='attachment_edit_all'  OR name='attachment_read_all'  OR name='note_read_all'  OR name='note_edit_all'  OR name='topic_read_all'  OR name='topic_edit_all';");
           
-        mysql_query("UPDATE availablerights SET name='note_edit' WHERE name='note_edit_self';");
+        _query("UPDATE availablerights SET name='note_edit' WHERE name='note_edit_self';");
         
-        mysql_query("UPDATE topics SET read_access_level='public',derived_read_access_level='public' where topic_id=1;");
+        _query("UPDATE topics SET read_access_level='public',derived_read_access_level='public' where topic_id=1;");
         
-        mysql_query("INSERT INTO rightsprofiles VALUES ('1', 'admin_rights');");
-        mysql_query("INSERT INTO rightsprofiles VALUES ('2', 'editor_rights');");
-        mysql_query("INSERT INTO rightsprofiles VALUES ('3', 'reader_rights');");
-        mysql_query("INSERT INTO rightsprofiles VALUES ('4', 'guest_rights');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('1', 'database_manage');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('1', 'edit_all_override');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('1', 'read_all_override');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('1', 'user_assign_rights');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('1', 'user_edit_all');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('2', 'attachment_edit');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('2', 'note_edit');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('2', 'publication_edit');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('2', 'topic_edit');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('2', 'user_edit_self');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('3', 'attachment_read');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('3', 'note_read');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('3', 'topic_subscription');");
-        mysql_query("INSERT INTO rightsprofilerightlink VALUES ('3', 'bookmarklist');");
+        _query("INSERT INTO rightsprofiles VALUES ('1', 'admin_rights');");
+        _query("INSERT INTO rightsprofiles VALUES ('2', 'editor_rights');");
+        _query("INSERT INTO rightsprofiles VALUES ('3', 'reader_rights');");
+        _query("INSERT INTO rightsprofiles VALUES ('4', 'guest_rights');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('1', 'database_manage');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('1', 'edit_all_override');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('1', 'read_all_override');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('1', 'user_assign_rights');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('1', 'user_edit_all');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('2', 'attachment_edit');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('2', 'note_edit');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('2', 'publication_edit');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('2', 'topic_edit');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('2', 'user_edit_self');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('3', 'attachment_read');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('3', 'note_read');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('3', 'topic_subscription');");
+        _query("INSERT INTO rightsprofilerightlink VALUES ('3', 'bookmarklist');");
         
-        mysql_query("ALTER TABLE `users` MODIFY COLUMN `surname` VARCHAR(100) DEFAULT NULL;");
+        _query("ALTER TABLE `users` MODIFY COLUMN `surname` VARCHAR(100) DEFAULT NULL;");
         
-        mysql_query("CREATE TABLE `changehistory` (  `version` varchar(20) NOT NULL,  `type` varchar(50) NOT NULL,  `description` text NOT NULL,  PRIMARY KEY  (`version`)) ENGINE=MyISAM;");
-        mysql_query("INSERT INTO `changehistory` (`version`,`type`,`description`) VALUES  ('1.99.0','bugfix,features,layout,security','Introduction of this table; first changehistory of Aigaion 2, still to be improved. This text will be modified before the real prerelease into some more informative description of Aigaion 2.0 Update contains all types: bugfix,features,layout,security. Note that the \'type\' column contains a comma separated list of things that may have changed in this release. ');");
+        _query("CREATE TABLE `changehistory` (  `version` varchar(20) NOT NULL,  `type` varchar(50) NOT NULL,  `description` text NOT NULL,  PRIMARY KEY  (`version`)) ENGINE=MyISAM;");
+        _query("INSERT INTO `changehistory` (`version`,`type`,`description`) VALUES  ('1.99.0','bugfix,features,layout,security','Introduction of this table; first changehistory of Aigaion 2, still to be improved. This text will be modified before the real prerelease into some more informative description of Aigaion 2.0 Update contains all types: bugfix,features,layout,security. Note that the \'type\' column contains a comma separated list of things that may have changed in this release. ');");
         
-        mysql_query("ALTER TABLE `users` ADD COLUMN `lastupdatecheck` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
+        _query("ALTER TABLE `users` ADD COLUMN `lastupdatecheck` INTEGER UNSIGNED NOT NULL DEFAULT 0;");
         
-        mysql_query("ALTER TABLE `personpublicationmark` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0, DROP PRIMARY KEY, ADD PRIMARY KEY  USING BTREE(`pub_id`, `user_id`);");
+        _query("ALTER TABLE `personpublicationmark` CHANGE COLUMN `person_id` `user_id` INTEGER NOT NULL DEFAULT 0, DROP PRIMARY KEY, ADD PRIMARY KEY  USING BTREE(`pub_id`, `user_id`);");
          
-        mysql_query("ALTER TABLE `personpublicationmark` RENAME TO `userpublicationmark`;");
+        _query("ALTER TABLE `personpublicationmark` RENAME TO `userpublicationmark`;");
          
-        mysql_query("ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'TRUE';");
+        _query("ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'TRUE';");
         
-        mysql_query("ALTER TABLE `users` ADD COLUMN `utf8bibtex` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'FALSE';");
-        mysql_query("ALTER DATABASE ".AIGAION2_DB_NAME." CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE aigaiongeneral CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE attachments CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE author CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE availablerights CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE changehistory CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE config CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE grouprightsprofilelink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE keywords CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE notecrossrefid CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE notes CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE publication CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE publicationauthorlink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE publicationkeywordlink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE rightsprofilerightlink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE rightsprofiles CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE topicpublicationlink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE topics CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE topictopiclink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE userbookmarklists CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE usergrouplink CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE userpublicationmark CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE userrights CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE users CONVERT TO CHARACTER SET utf8;");
-        mysql_query("ALTER TABLE usertopiclink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE `users` ADD COLUMN `utf8bibtex` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'FALSE';");
+        _query("ALTER DATABASE ".AIGAION2_DB_NAME." CHARACTER SET utf8;");
+        _query("ALTER TABLE aigaiongeneral CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE attachments CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE author CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE availablerights CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE changehistory CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE config CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE grouprightsprofilelink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE keywords CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE notecrossrefid CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE notes CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE publication CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE publicationauthorlink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE publicationkeywordlink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE rightsprofilerightlink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE rightsprofiles CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE topicpublicationlink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE topics CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE topictopiclink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE userbookmarklists CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE usergrouplink CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE userpublicationmark CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE userrights CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE users CONVERT TO CHARACTER SET utf8;");
+        _query("ALTER TABLE usertopiclink CONVERT TO CHARACTER SET utf8;");
         
-        mysql_query("UPDATE aigaiongeneral SET version='V2.0'");
+        _query("UPDATE aigaiongeneral SET version='V2.0'");
         
         //---enlarge the 'series' field
         //---drop irrelevant legacy columns
@@ -376,7 +376,7 @@ if ( $pwd !=''
 	    include('../aigaionengine/helpers/bibtexutf8_helper.php');
 	    
         //author->surname, von, firstname, institute
-	    $res = mysql_query('SELECT * FROM author');
+	    $res = _query('SELECT * FROM author');
 	    if ($res) {
 	        while ($row = mysql_fetch_array($res)) {
                                 
@@ -389,21 +389,21 @@ if ( $pwd !=''
             }
 	    }
         //keywords->keyword
-	    $res = mysql_query('SELECT * FROM keywords');
+	    $res = _query('SELECT * FROM keywords');
         if ($res) {
             while ($row = mysql_fetch_array($res)) {
                 _query('UPDATE keywords SET keyword="'.addslashes(bibCharsToUtf8FromString($row['keyword'])).'" WHERE keyword_id='.$row['keyword_id']);
             }
         }
         //notes->text
-	    $res = mysql_query('SELECT * FROM notes');
+	    $res = _query('SELECT * FROM notes');
         if ($res) {
             while ($row = mysql_fetch_array($res)) {
                 _query('UPDATE notes SET text="'.addslashes(bibCharsToUtf8FromString($row['text'])).'" WHERE note_id='.$row['note_id']);
             }
         }
         //publication->title, series, publisher, location, journal, booktitle, institution, address, organisation, school, note, abstract, 
-	    $res = mysql_query('SELECT * FROM publication');
+	    $res = _query('SELECT * FROM publication');
 	    if ($res) {
 	        while ($row = mysql_fetch_array($res)) {
                                 
@@ -480,32 +480,10 @@ if ( $pwd !=''
 }
 
 
-/** help functions for the conversion to utf8 */
-function _getDatabaseTables()
-{
-	$tableNames = array();
-	$Q = mysql_query("SHOW TABLES FROM ".AIGAION_DB_NAME);
-	if (mysql_num_rows($Q) > 0) {
-		while ($R = mysql_fetch_array($Q)) {
-			$tableNames[] = $R['Tables_in_'.AIGAION_DB_NAME];
-		}
-	}
-	return $tableNames;
-}	
-function _getColumns($tablename)
-{
-	$colNames = array();
-	$Q = mysql_query("SHOW COLUMNS FROM ".$tablename);
-	if (mysql_num_rows($Q) > 0) {
-		while ($R = mysql_fetch_array($Q)) {
-			$colNames[] = $R['Field'];
-		}
-	}
-	return $colNames;
-}
 function _query($q) {
-    mysql_query($q);
+    $res = mysql_query($q);
     if (mysql_error())
         echo mysql_error().'<br/>';
+    return $res;
 }
 ?>
