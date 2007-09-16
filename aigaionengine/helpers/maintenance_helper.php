@@ -14,7 +14,7 @@
 |       $report = checkAttachments(); 
 |       $report = checkTopics(); 
 |       $report = checkPasswords(); 
-| 
+|       $report = checkCleanNames();
 |
   
 */
@@ -156,9 +156,41 @@
         return $result;
     }
     function checkCleanNames() {
+        $CI = &get_instance();
+        $CI->load->helper('utf8_to_ascii');
   	    $result = "<tr><td colspan=2><p class='header1'>Reinit searchable names and titles</p></td></tr>\n";
 
-        $result .= "<tr><td>Checking...</td><td  class=errortext><b>NOT IMPLEMENTED</b></td></tr>\n";
+        $result .= "<tr><td>Checking... ";
+        # check clean names of authors (author.cleanname)
+        $authorcount = 0;
+        foreach ($CI->author_db->getAllAuthors() as $author) { //all authors are accessible to all users...
+            $oldcleanname = $author->cleanname;
+            $author->cleanname = utf8_to_ascii($author->getName('lvf'));
+            if ($author->cleanname!=$oldcleanname) {
+                $author->update();
+                $authorcount++;
+            }
+        }
+        if ($authorcount > 0) {
+            $result .= "<br/>Fixed searchable names of ".$authorcount." authors.";
+        }
+        # check clean titles of publications and journals (publication.cleantitle, publication.cleanjournal)
+        $pubcount = 0;
+        $Q = $CI->db->get('publication');
+        foreach ($Q->result() as $row) { //not all publications are accessible to all users... so go directly to sql
+            $oldcleantitle = $row->cleantitle;
+            $oldcleanjournal = $row->cleanjournal;
+            $cleantitle = utf8_to_ascii($row->title);
+            $cleanjournal = utf8_to_ascii($row->journal);
+            if ($oldcleanjournal!=$cleanjournal || $oldcleantitle!=$cleantitle) {
+                $CI->db->update('publication',array('cleantitle'=>$cleantitle, 'cleanjournal'=>$cleanjournal),array('pub_id'=>$row->pub_id));
+                $pubcount++;
+            }
+        }
+        if ($pubcount > 0) {
+            $result .= "<br/>Fixed searchable names of ".$pubcount." publications.";
+        }
+        $result .= "</td><td><b>OK</b></td></tr>\n";
         return $result;
     }
 

@@ -122,6 +122,7 @@ function format($formatStyle, $data='')
   /** Update the changes in the data of this author. Returns TRUE or FALSE depending on whether the operation was
   successfull. */
   function update() {
+      $CI = &get_instance();
     return $CI->author_db->update($this);
   }
   /** Deletes this author. Returns TRUE or FALSE depending on whether the operation was

@@ -232,15 +232,21 @@ class Parser_Bibtex
   	$userFields = array_diff(array_keys($bibliophileEntry), getFullFieldArray());
   	$userFieldsText = "";
   	foreach ($userFields as $field) {
-  		if (trim($bibliophileEntry[$field]) != "")
+  		if (trim($bibliophileEntry[$field]) != "") {
+  		    //this field should be checked to see if it contains an url or a doi (fieldname: pdf, ee, ...) 
+  		    //TODO: USE ATTACHMENTS HELPER
   			$userFieldsText.=$field."={".$bibliophileEntry[$field]."},\n";
+  		}
   	}
   	if ($userFieldsText != '')
   	{
   	  $publication->userfields = $userFieldsText;
   	}
+  	
+  	//some post processing:
+  	//TODO: url and doi fields can be handled better... use attachments helper to clean and strip the contents of those fields
   	return $publication;
-	}
+  }
 }
 
 ?>
