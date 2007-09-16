@@ -145,7 +145,11 @@ class Siteconfig_db {
         }
     	#upload (from post) new custom logo, if available
         if (  ($siteconfig->configSettings['USE_UPLOADED_LOGO']=='TRUE') 
-            || (isset($_FILES['new_logo'])) ) {
+            || (
+                isset($_FILES['new_logo'])
+                &&
+                $_FILES['new_logo']['error']==0
+                ) ) {
             $siteconfig->configSettings['USE_UPLOADED_LOGO']='TRUE';
             $max_size = 1024*10; // the max. size for uploading
             	
@@ -159,7 +163,7 @@ class Siteconfig_db {
         
         	$my_upload->http_error = $_FILES['new_logo']['error'];
         	if ($my_upload->http_error > 0) {
-        		appendErrorMessage("Error while uploading custom logo: ".$my_upload->error_text($my_upload->http_error));
+        		//appendErrorMessage("Error while uploading custom logo: ".$my_upload->error_text($my_upload->http_error));
         	} else {
     
             	$my_upload->replace = "y";
@@ -174,7 +178,7 @@ class Siteconfig_db {
                 }
             }
         } else {
-            appendMessage("No new logo<br/>".$siteconfig->configSettings['USE_UPLOADED_LOGO']);
+            //appendMessage("No new logo<br/>".$siteconfig->configSettings['USE_UPLOADED_LOGO']);
         }
         #reset cached config settings
         $CI = &get_instance();
