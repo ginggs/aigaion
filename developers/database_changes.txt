@@ -336,4 +336,4 @@ drop release column from aigaiongeneral (keep database version column! possibly 
 reinit all cleanfields!
 convert all tables and columns to utf8 and corresponding collation
 do the bibtexthing (both in conversion controller)
-    
+set all correct rights for existing users, given new righst set...
