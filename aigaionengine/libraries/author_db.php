@@ -467,13 +467,11 @@ TODO:
     }
     //check on cleanname
     //create cleanname
-    $cleanname = utf8_to_ascii($author->getName('lvf'));
-    $author->cleanname = $cleanname;
     
     $db_distances = array();
     foreach ($db_cleanauthors as $author_id => $db_author)
     {
-      $distance = levenshtein($db_author, $cleanname);
+      $distance = levenshtein($db_author, strtolower($author->cleanname));
       if (($distance < 3) && ($author_id != $author->author_id))
         $db_distances[$author_id] = $distance;
     }
