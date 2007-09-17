@@ -21,14 +21,11 @@
     /** Returns a piece of HTML giving the result of the check for updates, or empty string if no update available. */
     function checkUpdates() {
         $CI = &get_instance();
+        $CI->load->helper('readremote');
         //return '<div class="message">no info on updates available</div>';
         #try with short timeout, to get version info from aigaion.nl
-        $remoterelease = '';
-        ob_start();
-
-        if (@readfile ("http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version") !== FALSE) {
-            $remoterelease=ob_get_contents();
-        } else {
+        $remoterelease = getRemoteFile ('http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version');
+        if ($remoterelease == '') {
             return "<div class='message'>Couldn't connect to demo.aigaion.nl to check for updates</div>";
         }
         ob_end_clean();
