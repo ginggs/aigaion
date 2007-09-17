@@ -158,9 +158,8 @@ class Authors extends Controller {
       appendErrorMessage('Cannot merge authors: insufficient rights.<br/>');
       redirect('');
     }
-    appendMessage ('Merge authors: '.$author->author_id.' and '.$simauthor->author_id.'; actual merge still needs to be implemented.<br/>');
     $author->update(); //this updates the new name info into the author
-    //$author->merge($simauthor_id) -- this function steals the publications and kills the similar author
+    $author->merge($simauthor_id);
     redirect ('authors/show/'.$author->author_id);
   }  
   

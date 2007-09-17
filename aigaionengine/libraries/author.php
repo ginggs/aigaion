@@ -137,5 +137,10 @@ function format($formatStyle, $data='')
       $CI = &get_instance();
       return $CI->author_db->getSimilarAuthors($this);
   }
+  //this function steals the publications and kills the similar author
+  function merge($simauthor_id) {
+      $CI = &get_instance();
+      return $CI->author_db->merge($this,$simauthor_id);
+  }
 }
 ?>
