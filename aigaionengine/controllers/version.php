@@ -15,7 +15,7 @@ class Version extends Controller {
 	
 
 	function release() {
-        $this->db->orderby('type','desc');
+        $this->db->orderby('version','desc');
         $this->db->limit(1);
         $Q = $this->db->get('changehistory');
         foreach ($Q->result() as $R) {
@@ -28,7 +28,7 @@ class Version extends Controller {
 	}
 	//return detailed change history of all versions newer than the given
 	function details() {
-        $this->db->orderby('type','desc');
+        $this->db->orderby('version','desc');
         $fromversion = $this->uri->segment(3,'');
         if ($fromversion=='') {
             $Q = $this->db->get('changehistory');

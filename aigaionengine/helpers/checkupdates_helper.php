@@ -28,7 +28,6 @@
         if ($remoterelease == '') {
             return "<div class='message'>Couldn't connect to demo.aigaion.nl to check for updates</div>";
         }
-        ob_end_clean();
         if ($remoterelease == '') {
             return "<div class='message'>Couldn't obtain release version info from demo.aigaion.nl</div>";
         }
@@ -45,12 +44,7 @@
         }
         $result = '<p>There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';
         #if deviation: get detailed info for change history from aigaion.nl
-        $remotechangehistory = '';
-        ob_start();
-        if (@readfile ("http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version/details/".$thisrelease) !== FALSE) {
-            $remotechangehistory=ob_get_contents();
-        } 
-        ob_end_clean();
+        $remotechangehistory = getRemoteFile("http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version/details/".$thisrelease);
         #parse detailed info
         $class='message';
         if ($remotechangehistory=='') {

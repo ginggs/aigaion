@@ -31,7 +31,7 @@ function getRemoteFile($url)
    $response = '';
 
    // connect to the remote server
-   $fp = @fsockopen($host, '80', $errno, $errstr, $timeout );
+   $fp = @fsockopen($host, $port, $errno, $errstr, $timeout );
 
    if( !$fp ) {
       appendErrorMessage( "Cannot retrieve $url");
@@ -50,6 +50,7 @@ function getRemoteFile($url)
       // retrieve the response from the remote server
       while ( $line = fread( $fp, 4096 ) ) {
          $response .= $line;
+         
       }
 
       fclose( $fp );

@@ -126,6 +126,7 @@ class Site extends Controller {
 	            $this->load->helper('checkupdates');
                 $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";
 	            $checkresult .= "<tr><td>Checking for updates...</td>";
+//	            $updateinfo = '';
 	            $updateinfo = checkUpdates();
 	            if ($updateinfo == '') {
     		        $checkresult .= '<td><b>OK</b></td></tr>';
