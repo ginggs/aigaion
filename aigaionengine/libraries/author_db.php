@@ -396,7 +396,7 @@ TODO:
     //retrieve results or fail                       
     foreach ($Q->result() as $R)
     {
-      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname); //why strtolower?
+      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname); //why strtolower? because we want to check case insensitive.
     }
     
     
@@ -423,7 +423,7 @@ TODO:
         //sort while keeping key relationship
         asort($db_distances, SORT_NUMERIC);
         
-        //are there similar keywords?
+        //are there similar authors?
         if (count($db_distances) > 0)
         {
           $result_message .= "Found similar authors for <b>&quot;".$author->getName('lvf')."&quot;</b>:<br/>\n";
@@ -446,6 +446,46 @@ TODO:
     }
     else
       return null;
+  }
+
+  /** returns a list of similar authors (possibly empty) */
+  function getSimilarAuthors($author) {
+    $result = array();
+    $CI = &get_instance();
+    $CI->load->helper('utf8_to_ascii');
+    
+    //get database author array
+    $CI->db->select('author_id, cleanname');
+    $CI->db->orderby('cleanname');
+    $Q = $CI->db->get('author');
+    
+    $db_cleanauthors = array();
+    //retrieve results or fail                       
+    foreach ($Q->result() as $R)
+    {
+      $db_cleanauthors[$R->author_id] = strtolower($R->cleanname); //why strtolower? because we want to check case insensitive.
+    }
+    //check on cleanname
+    //create cleanname
+    $cleanname = utf8_to_ascii($author->getName('lvf'));
+    $author->cleanname = $cleanname;
+    
+    $db_distances = array();
+    foreach ($db_cleanauthors as $author_id => $db_author)
+    {
+      $distance = levenshtein($db_author, $cleanname);
+      if (($distance < 3) && ($author_id != $author->author_id))
+        $db_distances[$author_id] = $distance;
+    }
+    
+    //sort while keeping key relationship
+    asort($db_distances, SORT_NUMERIC);
+    
+    foreach($db_distances as $key => $value)
+    {
+      $result[]= $this->getByID($key);
+    }
+    return $result;
   }
 }
 ?>

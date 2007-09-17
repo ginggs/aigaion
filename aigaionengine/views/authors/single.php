@@ -26,5 +26,19 @@
   }
 ?>
   </table>
+<?php
+    $similar = $author->getSimilarAuthors();
+    if (count($similar)>0) {
+        echo "<div class='message'>Found authors with very similar names.
+              You can choose to merge the following authors with this author 
+              by clicking on the merge link.<br/>\n";
+        foreach ($similar as $simauth) {
+            echo anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('title' => 'Click to show details'))."\n";
+		    echo '('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('title' => 'Click to merge')).")<br />\n";
+		}
+		echo "</div>\n";
+    }
+?>
+
   <br/>
 </div>

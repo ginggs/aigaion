@@ -131,5 +131,11 @@ function format($formatStyle, $data='')
       $CI = &get_instance();
       return $CI->author_db->delete($this);
   }
+  
+  /** returns a list of similar authors (possibly empty) */
+  function getSimilarAuthors() {
+      $CI = &get_instance();
+      return $CI->author_db->getSimilarAuthors($this);
+  }
 }
 ?>

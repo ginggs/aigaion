@@ -107,6 +107,62 @@ class Authors extends Controller {
     $this->output->set_output($output);
   }
   
+  //merge() - Call author merge form. 
+  function merge()
+  {
+    $author_id = $this->uri->segment(3);
+    $simauthor_id = $this->uri->segment(4);
+    $author = $this->author_db->getByID($author_id);
+    $simauthor = $this->author_db->getByID($simauthor_id);
+    if ($author==null || $simauthor==null) {
+        appendErrorMessage("Cannot merge authors: missing parameters<br/>");
+        redirect('');
+    }
+    
+
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Merge authors: insufficient rights.<br/>');
+      redirect('');
+    }
+
+    $header ['title']       = "Aigaion 2.0 - merge authors";
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['author']      = $author;
+    $content['simauthor']      = $simauthor;
+    
+    //get output
+    $output  = $this->load->view('header',        $header,  true);
+    $output .= $this->load->view('authors/merge',  $content, true);
+    $output .= $this->load->view('footer',        '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }  
+  
+  //mergecommit() - Do merge commit
+  function mergecommit()
+  {
+    $author = $this->author_db->getFromPost();
+    $simauthor_id = $this->input->post('simauthor_id');
+    $simauthor = $this->author_db->getByID($simauthor_id);
+    if ($author==null || $simauthor==null) {
+        appendErrorMessage("Cannot merge authors: missing parameters<br/>");
+        redirect('');
+    }
+
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage('Cannot merge authors: insufficient rights.<br/>');
+      redirect('');
+    }
+    appendMessage ('Merge authors: '.$author->author_id.' and '.$simauthor->author_id.'; actual merge still needs to be implemented.<br/>');
+    $author->update(); //this updates the new name info into the author
+    //$author->merge($simauthor_id) -- this function steals the publications and kills the similar author
+    redirect ('authors/show/'.$author->author_id);
+  }  
   
 	/** 
 	authors/delete
