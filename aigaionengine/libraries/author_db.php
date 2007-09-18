@@ -487,7 +487,9 @@ TODO:
   }
   //this function steals the publications and kills the similar author
   function merge($author, $simauthor_id) {
-    appendMessage ('Merge authors: '.$author->author_id.' and '.$simauthor_id.'; actual merge still needs to be implemented.<br/>');
+    $CI = &get_instance();
+    $CI->db->update('publicationauthorlink',array('author_id'=>$author->author_id),array('author_id'=>$simauthor_id));
+    $CI->db->delete('author',array('author_id'=>$simauthor_id));
   }
 }
 ?>
