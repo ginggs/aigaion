@@ -151,7 +151,7 @@ class Export extends Controller {
         A clean text page with exported publications
     */
     function bookmarklist() {
-	    $type = $this->uri->segment(4,'bibtex');
+	    $type = $this->uri->segment(3,'bibtex');
 	    if (!in_array($type,array('bibtex','ris'))) {
 	        $type = 'bibtex';
 	    }

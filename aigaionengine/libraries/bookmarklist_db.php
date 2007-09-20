@@ -68,6 +68,37 @@ class Bookmarklist_db {
         }
 
     }
+    function addAuthor($author_id)
+    {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist')) {
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            return;
+        }
+        //get all accessible publications for this author
+        $pubs = $CI->publication_db->getForAuthor($author_id,-1);
+        foreach ($pubs as $pub) {
+            $this->addPublication($pub->pub_id);
+        }
+
+    }
+    
+    function removeAuthor($author_id)
+    {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist')) {
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            return;
+        }
+        //get all accessible publications for this author
+        $pubs = $CI->publication_db->getForAuthor($author_id,-1);
+        foreach ($pubs as $pub) {
+            $this->removePublication($pub->pub_id);
+        }
+
+    }
 
     function clear() {
         $CI = &get_instance();

@@ -1,10 +1,18 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
+$userlogin = getUserLogin();
+?>
 <div class='author'>
   <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, 'delete', array('title' => 'Delete this author'))."]&nbsp[".anchor('authors/edit/'.$author->author_id, 'edit', array('title' => 'Edit this author'))."]";
     echo  '&nbsp;['
            .anchor('export/author/'.$author->author_id,'BiBTeX',array('target'=>'aigaion_export')).']';
     echo  '&nbsp;['
            .anchor('export/author/'.$author->author_id.'/ris','RIS',array('target'=>'aigaion_export')).']';
+    if ($userlogin->hasRights('bookmarklist')) {
+      echo  '&nbsp;['
+           .anchor('bookmarklist/addauthor/'.$author->author_id,'BookmarkAll')
+           .']&nbsp;['
+           .anchor('bookmarklist/removeauthor/'.$author->author_id,'UnBookmarkAll').']';
+    }
     
     ?>
   </div>

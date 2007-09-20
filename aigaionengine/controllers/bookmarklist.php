@@ -133,6 +133,39 @@ class Bookmarklist extends Controller {
         redirect('topics/single/'.$topic->topic_id);
       
     }
+    
+    /** 
+    bookmarklist/addauthor
+    
+    Entry point for adding all accessible publications from a given author to the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    adding nonexisting author_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: author_id
+	         
+    Returns:
+        to the view page of that author
+    */
+    function addauthor() {
+        $author_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->addAuthor function, no need to do it twice
+
+        //load author
+        $author = $this->author_db->getByID($author_id);
+        if ($author == null)
+        {
+            appendErrorMessage("Add author to bookmarklist: non-existing author id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->addAuthor($author->author_id);
+        redirect('authors/show/'.$author->author_id);
+      
+    }    
 
     /** 
     bookmarklist/removepublication
@@ -207,6 +240,37 @@ class Bookmarklist extends Controller {
         redirect('topics/single/'.$topic->topic_id);      
     }
 
+    /** 
+    bookmarklist/removeauthor
+    
+    Entry point for removing all accessible publications of an author from the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    removing nonexisting author_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: author_id
+	         
+    Returns:
+        to the single view page of that author
+    */
+    function removeauthor() {
+        $author_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->removeAuthor function, no need to do it twice
+
+        //load author
+        $author = $this->author_db->getByID($author_id);
+        if ($author == null)
+        {
+            appendErrorMessage("Removing author from bookmarklist: non-existing author id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->removeAuthor($author->author_id);
+        redirect('authors/show/'.$author->author_id);      
+    }
 
     /** 
     bookmarklist/addtotopic
