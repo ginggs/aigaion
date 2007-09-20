@@ -37,6 +37,209 @@ echo $this->validation->error_string;
 	        <td align='left'><input type='text' cols='60' size=50 name='CFG_ADMINMAIL' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMINMAIL"); ?>'></td>
 	    </tr>
 
+<!-- ANONYMOUS ACCESS SETTINGS -->
+        <tr>
+            <td colspan='2'><hr><p class='header2'>Anonymous access:</p></td>
+        </tr>
+
+        <tr>
+	        <td><label>Enable anonymous access:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('ENABLE_ANON_ACCESS','ENABLE_ANON_ACCESS',$siteconfig->getConfigSetting("ENABLE_ANON_ACCESS")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box to enable anonymous (guest) access.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+
+        <tr>
+            <td>Default anonymous user account</td>
+            <td>
+<?php              
+            $options = array(''=>'');
+            foreach ($this->user_db->getAllAnonUsers() as $anonUser) {
+                $options[$anonUser->user_id] = $anonUser->login;
+            }
+            echo form_dropdown('ANONYMOUS_USER', $options,$siteconfig->getConfigSetting("ANONYMOUS_USER"));
+?>
+            </td>                
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'>
+	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Select the user account that will be used by default for logging in anonymous users. 
+	        <p>Note: Be careful in assigning user rights to anonymous accounts!</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+
+<!-- ATTACHMENT SETTINGS -->
+        <tr>
+            <td colspan='2'><hr><p class='header2'>Attachment settings:</p></td>
+        </tr>
+	    <tr>    
+	        <td><label>Allowed extensions for attachments:</label></td>
+	        <td align='left'><input type='text' cols='100' size=50  name='ALLOWED_ATTACHMENT_EXTENSIONS'	
+<?php
+             echo "value='".implode(",",$siteconfig->getConfigSetting("ALLOWED_ATTACHMENT_EXTENSIONS"))."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The list of allowed extensions for attachments. Attachments that do not have an extension from this 
+	        list can not be uploaded.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+	    <tr>
+	        <td><label>Allow all remote attachments:</label></td>
+	        <td align='left'>
+<?php
+            echo form_checkbox('ALLOW_ALL_EXTERNAL_ATTACHMENTS','ALLOW_ALL_EXTERNAL_ATTACHMENTS',$siteconfig->getConfigSetting("ALLOW_ALL_EXTERNAL_ATTACHMENTS")== "TRUE");
+?>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box if you want to allow all external attachment names, instead of just those ending in 
+	        one of the 'allowed extensions' specified above. This may be useful because external attachments are 
+	        often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a 
+	        proper file name. This only affects *remote* attachments.</td>
+	    </tr>
+	
+	    <tr>
+	        <td><label>The server is read only:</label></td>
+	        <td align='left'>
+<?php 
+            echo form_checkbox('SERVER_NOT_WRITABLE','SERVER_NOT_WRITABLE',$siteconfig->getConfigSetting("SERVER_NOT_WRITABLE")== "TRUE");
+?>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box if the server is read-only, i.e. if you cannot write files such as attachments to 
+	        the server.</td>
+	    </tr>
+
+<!-- INPUT/OUTPUT SETTINGS -->
+	    <tr>
+	        <td colspan='2'><hr><p class='header2'>In- and output settings:</p></td>
+	    </tr>
+	    <tr>
+	        <td><label>Convert latinchars</label></td>
+	        <td align='left'>
+<?php
+            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->getConfigSetting("CONVERT_LATINCHARS_IN")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Turn this on if you want to convert input latin characters to bibtex conform characters.
+	        Latin characters are &uuml;, &ntilde;, &ccedil; etc...</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+	
+	    <tr>
+	        <td valign='top'><label for='BIBTEX_STRINGS_IN'>BibTeX strings:</label></td>
+	        <td><textarea name='BIBTEX_STRINGS_IN' wrap='virtual' cols='50' rows='10'><?php echo $siteconfig->getConfigSetting("BIBTEX_STRINGS_IN"); ?></textarea></td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.
+	        The correct syntax for strings is: @string {AIG = \"Aigaion bibliography System\"}<br/><br/></td>
+	    </tr>
+<!-- DISPLAY SETTINGS -->
+	    <tr>
+	        <td colspan='2'><hr><p class='header2'>Some display settings:</p></td>
+	    </tr>
+
+        <tr>
+	        <td><label for='WINDOW_TITLE'>Title of the site:</label></td>
+	        <td align='left'><input type='text' cols='60' size=50 name='WINDOW_TITLE' 
+<?php
+	        echo "value='".$siteconfig->getConfigSetting("WINDOW_TITLE")."'>";
+?>
+	        </td>
+
+        <tr>
+	        <td><label>Display publications on single-topic page:</label></td>
+	        <td align='left'>
+<?php
+            echo form_checkbox('ALWAYS_INCLUDE_PAPERS_FOR_TOPIC','ALWAYS_INCLUDE_PAPERS_FOR_TOPIC',$siteconfig->getConfigSetting("ALWAYS_INCLUDE_PAPERS_FOR_TOPIC")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Checking this box means that the full list of publications for a topic is included below the topic 
+	        description, to speed up browsing for papers. Turning this on might however slow down the loading 
+	        of the topic pages.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+	
+	    <tr>
+	        <td><label>Merge crossreffed publications in single publication view:</label></td>
+	        <td align='left'>
+<?php
+            echo form_checkbox('PUBLICATION_XREF_MERGE','PUBLICATION_XREF_MERGE',$siteconfig->getConfigSetting("PUBLICATION_XREF_MERGE")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check to merge cross-referenced publications on a single publication page view.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+
+<?php
+#use uploaded logo?
+$checked = "";
+if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
+    $checked = "CHECKED";
+?>
+<!--
+        <TR><TD>Use custom logo</TD>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('USE_UPLOADED_LOGO','USE_UPLOADED_LOGO',$siteconfig->getConfigSetting("USE_UPLOADED_LOGO")== "TRUE");
+?>
+            </td>
+        </TR>
+        <tr><td align=left colspan=2><img border=0 class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>If checked, you can 
+            specify a custom logo (below) to be used on the front page.</td></tr>
+        <tr><td colspan=2>Current logo:</td></tr>
+        <tr><td colspan=2>
+<?php
+    if (file_exists(AIGAION_ATTACHMENT_DIR.'/custom_logo.jpg')) {
+        echo '<img border=0 src="'.AIGAION_ATTACHMENT_URL.'/custom_logo.jpg">';
+    } else {
+        echo '&lt;no logo uploaded&gt;';
+    }
+?>
+            </td>
+        </tr>
+        <tr><td><label for='CUSTOM_LOGO'>Select a new logo file...</label></td>
+            <td><input type='file' name='new_logo' size='30'/></td>
+        </tr>
+
+-->
+
 <!-- EXTERNAL LOGIN MODULES -->
         <tr>
             <td colspan='2'><hr><p class='header2'>Login modules:</p></td>
@@ -146,207 +349,6 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td align='left' colspan='2'></td>
 	    </tr>
-<!-- ANONYMOUS ACCESS SETTINGS -->
-        <tr>
-            <td colspan='2'><hr><p class='header2'>Anonymous access:</p></td>
-        </tr>
-
-        <tr>
-	        <td><label>Enable anonymous access:</label></td>
-	        <td align='left'>
-<?php	            
-    echo form_checkbox('ENABLE_ANON_ACCESS','ENABLE_ANON_ACCESS',$siteconfig->getConfigSetting("ENABLE_ANON_ACCESS")== "TRUE");
-?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Check this box to enable anonymous (guest) access.</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-
-        <tr>
-            <td>Default anonymous user account</td>
-            <td>
-<?php              
-            $options = array(''=>'');
-            foreach ($this->user_db->getAllAnonUsers() as $anonUser) {
-                $options[$anonUser->user_id] = $anonUser->login;
-            }
-            echo form_dropdown('ANONYMOUS_USER', $options,$siteconfig->getConfigSetting("ANONYMOUS_USER"));
-?>
-            </td>                
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'>
-	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Select the user account that will be used by default for logging in anonymous users. 
-	        <p>Note: Be careful in assigning user rights to anonymous accounts!</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-
-<!-- ATTACHMENT SETTINGS -->
-        <tr>
-            <td colspan='2'><hr><p class='header2'>Attachment settings:</p></td>
-        </tr>
-	    <tr>    
-	        <td><label>Allowed extensions for attachments:</label></td>
-	        <td align='left'><input type='text' cols='100' size=50  name='ALLOWED_ATTACHMENT_EXTENSIONS'	
-<?php
-             echo "value='".implode(",",$siteconfig->getConfigSetting("ALLOWED_ATTACHMENT_EXTENSIONS"))."'>";
-?>
-	        </td>
-        </tr>
-        <tr>
-            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        The list of allowed extensions for attachments. Attachments that do not have an extension from this 
-	        list can not be uploaded.</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-	    <tr>
-	        <td><label>Allow all remote attachments:</label></td>
-	        <td align='left'>
-<?php
-            echo form_checkbox('ALLOW_ALL_EXTERNAL_ATTACHMENTS','ALLOW_ALL_EXTERNAL_ATTACHMENTS',$siteconfig->getConfigSetting("ALLOW_ALL_EXTERNAL_ATTACHMENTS")== "TRUE");
-?>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Check this box if you want to allow all external attachment names, instead of just those ending in 
-	        one of the 'allowed extensions' specified above. This may be useful because external attachments are 
-	        often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a 
-	        proper file name. This only affects *remote* attachments.</td>
-	    </tr>
-	
-	    <tr>
-	        <td><label>The server is read only:</label></td>
-	        <td align='left'>
-<?php 
-            echo form_checkbox('SERVER_NOT_WRITABLE','SERVER_NOT_WRITABLE',$siteconfig->getConfigSetting("SERVER_NOT_WRITABLE")== "TRUE");
-?>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Check this box if the server is read-only, i.e. if you cannot write files such as attachments to 
-	        the server.</td>
-	    </tr>
-
-<!-- DISPLAY SETTINGS -->
-	    <tr>
-	        <td colspan='2'><hr><p class='header2'>Some display settings:</p></td>
-	    </tr>
-
-        <tr>
-	        <td><label for='WINDOW_TITLE'>Title of the site:</label></td>
-	        <td align='left'><input type='text' cols='60' size=50 name='WINDOW_TITLE' 
-<?php
-	        echo "value='".$siteconfig->getConfigSetting("WINDOW_TITLE")."'>";
-?>
-	        </td>
-
-        <tr>
-	        <td><label>Display publications on single-topic page:</label></td>
-	        <td align='left'>
-<?php
-            echo form_checkbox('ALWAYS_INCLUDE_PAPERS_FOR_TOPIC','ALWAYS_INCLUDE_PAPERS_FOR_TOPIC',$siteconfig->getConfigSetting("ALWAYS_INCLUDE_PAPERS_FOR_TOPIC")== "TRUE");
-?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Checking this box means that the full list of publications for a topic is included below the topic 
-	        description, to speed up browsing for papers. Turning this on might however slow down the loading 
-	        of the topic pages.</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-	
-	    <tr>
-	        <td><label>Merge crossreffed publications in single publication view:</label></td>
-	        <td align='left'>
-<?php
-            echo form_checkbox('PUBLICATION_XREF_MERGE','PUBLICATION_XREF_MERGE',$siteconfig->getConfigSetting("PUBLICATION_XREF_MERGE")== "TRUE");
-?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Check to merge cross-referenced publications on a single publication page view.</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-
-<?php
-#use uploaded logo?
-$checked = "";
-if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
-    $checked = "CHECKED";
-?>
-        <TR><TD>Use custom logo</TD>
-	        <td align='left'>
-<?php	            
-    echo form_checkbox('USE_UPLOADED_LOGO','USE_UPLOADED_LOGO',$siteconfig->getConfigSetting("USE_UPLOADED_LOGO")== "TRUE");
-?>
-            </td>
-        </TR>
-        <tr><td align=left colspan=2><img border=0 class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>If checked, you can 
-            specify a custom logo (below) to be used on the front page.</td></tr>
-        <tr><td>Current logo:</td>
-            <td>
-<?php
-    if (file_exists(AIGAION_ATTACHMENT_DIR.'/custom_logo.jpg')) {
-        echo '<img border=0 src="'.AIGAION_ATTACHMENT_URL.'/custom_logo.jpg">';
-    } else {
-        echo '&lt;no logo uploaded&gt;';
-    }
-?>
-            </td>
-        </tr>
-        <tr><td><label for='CUSTOM_LOGO'>Select a logo file...</label></td>
-            <td><input type='file' name='new_logo' size='30'/></td>
-        </tr>
-
-<!-- INPUT/OUTPUT SETTINGS -->
-	    <tr>
-	        <td colspan='2'><hr><p class='header2'>In- and output settings:</p></td>
-	    </tr>
-	    <tr>
-	        <td><label>Convert latinchars</label></td>
-	        <td align='left'>
-<?php
-            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->getConfigSetting("CONVERT_LATINCHARS_IN")== "TRUE");
-?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Turn this on if you want to convert input latin characters to bibtex conform characters.
-	        Latin characters are &uuml;, &ntilde;, &ccedil; etc...</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
-	
-	    <tr>
-	        <td valign='top'><label for='BIBTEX_STRINGS_IN'>BibTeX strings:</label></td>
-	        <td><textarea name='BIBTEX_STRINGS_IN' wrap='virtual' cols='50' rows='10'><?php echo $siteconfig->getConfigSetting("BIBTEX_STRINGS_IN"); ?></textarea></td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.
-	        The correct syntax for strings is: @string {AIG = \"Aigaion bibliography System\"}<br/><br/></td>
-	    </tr>
-
         <tr><td>
 <?php
     echo form_submit('submit','Change');

@@ -8,7 +8,7 @@
         $initial = strtolower($author->cleanname[0]);
         echo '<li><b>'.$author->cleanname[0].'</b></li>';
     }
-    echo "  <li>".anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."</li>\n";
+    echo "  <li>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</li>\n";
   }
 ?>
 </ul>

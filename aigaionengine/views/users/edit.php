@@ -146,6 +146,85 @@ if ($userlogin->hasRights('user_edit_all')) {
 }
 
 
+$theme_array = array();
+$availableThemes = getThemes();
+foreach ($availableThemes as $theme)
+{
+  $theme_array[$theme] = $theme;
+}
+echo "
+        
+        <tr><td colspan='2'>
+        <hr><b>Display preferences:</b><hr/>
+        </td></tr>
+        
+        <tr>
+        <td>Theme</td>
+        <td>
+        ".form_dropdown('theme',
+                        $theme_array,
+                        $user->preferences["theme"])."
+        </td>
+        </tr>
+        <tr>
+        <td>Publication summary style</td>
+        <td>
+        ".form_dropdown('summarystyle',
+                        array('author'=>'author first','title'=>'title first'),
+                        $user->preferences["summarystyle"])."
+        </td>
+        </tr>
+        <tr>
+        <td>Author display style</td>
+        <td>
+        ".form_dropdown('authordisplaystyle',
+                        array('fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
+                        $user->preferences["authordisplaystyle"])."
+        </td>
+        </tr>
+        <tr>
+        <td>Number of publications per page</td>
+        <td>
+        ".form_dropdown('liststyle',
+                        array('0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
+                        $user->preferences["liststyle"])."
+        </td>
+        </tr>
+        <tr>
+        <td>Open attachments in new browser window</td>
+        <td>
+        ".form_checkbox('newwindowforatt','newwindowforatt',$user->preferences['newwindowforatt']=="TRUE")."
+        </td>
+        </tr>
+
+
+        <tr>
+        <td>Open export data in browser</td>
+        <td>
+        ".form_checkbox('exportinbrowser','exportinbrowser',$user->preferences['exportinbrowser']=="TRUE")."
+        </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
+	        instead of downloading it as a file.
+	        </td>
+	    </tr>
+
+        <tr>
+        <td>Export BiBTeX as UTF8</td>
+        <td>
+        ".form_checkbox('utf8bibtex','utf8bibtex',$user->preferences['utf8bibtex']=="TRUE")."
+        </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
+	        Aigaion to convert special characters to BiBTeX codes such as {\\'e}
+	        </td>
+	    </tr>
+";
+
 if ($userlogin->hasRights('user_edit_all')) {
     echo "   
         <tr><td colspan='2'>
@@ -254,84 +333,7 @@ if ($userlogin->hasRights('user_assign_rights')) {
             }
 }
 
-$theme_array = array();
-$availableThemes = getThemes();
-foreach ($availableThemes as $theme)
-{
-  $theme_array[$theme] = $theme;
-}
 echo "
-        
-        <tr><td colspan='2'>
-        <hr><b>Display preferences:</b><hr/>
-        </td></tr>
-        
-        <tr>
-        <td>Theme</td>
-        <td>
-        ".form_dropdown('theme',
-                        $theme_array,
-                        $user->preferences["theme"])."
-        </td>
-        </tr>
-        <tr>
-        <td>Publication summary style</td>
-        <td>
-        ".form_dropdown('summarystyle',
-                        array('author'=>'author first','title'=>'title first'),
-                        $user->preferences["summarystyle"])."
-        </td>
-        </tr>
-        <tr>
-        <td>Author display style</td>
-        <td>
-        ".form_dropdown('authordisplaystyle',
-                        array('fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
-                        $user->preferences["authordisplaystyle"])."
-        </td>
-        </tr>
-        <tr>
-        <td>Number of publications per page</td>
-        <td>
-        ".form_dropdown('liststyle',
-                        array('0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
-                        $user->preferences["liststyle"])."
-        </td>
-        </tr>
-        <tr>
-        <td>Open attachments in new browser window</td>
-        <td>
-        ".form_checkbox('newwindowforatt','newwindowforatt',$user->preferences['newwindowforatt']=="TRUE")."
-        </td>
-        </tr>
-
-
-        <tr>
-        <td>Open export data in browser</td>
-        <td>
-        ".form_checkbox('exportinbrowser','exportinbrowser',$user->preferences['exportinbrowser']=="TRUE")."
-        </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
-	        instead of downloading it as a file.
-	        </td>
-	    </tr>
-
-        <tr>
-        <td>Export BiBTeX as UTF8</td>
-        <td>
-        ".form_checkbox('utf8bibtex','utf8bibtex',$user->preferences['utf8bibtex']=="TRUE")."
-        </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
-	        Aigaion to convert special characters to BiBTeX codes such as {\\'e}
-	        </td>
-	    </tr>
-
 
         <tr>
         <td colspan=2><hr></td>

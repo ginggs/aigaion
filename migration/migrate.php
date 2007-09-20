@@ -176,6 +176,7 @@ if ( $pwd !=''
         _query("CREATE TABLE `rightsprofilerightlink` (`rightsprofile_id` INT( 10 ) NOT NULL ,`right_name` VARCHAR( 20 ) NOT NULL ,PRIMARY KEY (`rightsprofile_id`, `right_name` ));");
         _query("CREATE TABLE `usergrouplink` (`user_id` INT( 10 ) NOT NULL ,`group_id` INT( 10 ) NOT NULL ,PRIMARY KEY ( `user_id` ,`group_id`));");
         _query("CREATE TABLE `grouprightsprofilelink` (`group_id` INT( 10 ) NOT NULL ,`rightsprofile_id` INT( 10 ) NOT NULL ,PRIMARY KEY ( `group_id` , `rightsprofile_id`));");
+        _query("INSERT INTO  `grouprightsprofilelink` (`group_id`,`rightsprofile_id`) VALUES  (2,1),(2,2),(2,3),(2,4),(3,3),(3,4),(4,2),(4,3),(4,4),(5,4);");
         
         _query("ALTER TABLE `topicpublication` RENAME TO `topicpublicationlink`;");
         
@@ -358,6 +359,7 @@ if ( $pwd !=''
         _query("ALTER TABLE userrights CONVERT TO CHARACTER SET utf8;");
         _query("ALTER TABLE users CONVERT TO CHARACTER SET utf8;");
         _query("ALTER TABLE usertopiclink CONVERT TO CHARACTER SET utf8;");
+        _query("INSERT INTO users (`user_id`,`surname`,`abbreviation`,`type`) VALUES  (2,'admins','adm_grp','group'),(3,'readers','read_grp','group'),(4,'editors','ed_grp','group'),(5,'guests','gue_grp','group');");
         
         _query("UPDATE aigaiongeneral SET version='V2.0'");
         
