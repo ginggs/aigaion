@@ -7,7 +7,10 @@
   <ul class="mainmenu">
     <li class="mainmenu-header">BROWSE</li>
     <li class="mainmenu"><?php echo anchor('topics', 'Topics'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications', 'Publicationlist'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications', 'Publications (year)'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/title', '&nbsp;&nbsp;&nbsp;- Alphabetic'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/type', '&nbsp;&nbsp;&nbsp;- Type/journal'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', '&nbsp;&nbsp;&nbsp;- Recent'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
 <?php
 
@@ -18,8 +21,6 @@ if ($userlogin->hasRights('bookmarklist')) {
 }
 
 ?>
-    <li class="mainmenu"><?php echo anchor('export', 'Export BiBTeX',array('target'=>'aigaion_export')); ?></li>
-    <li class="mainmenu"><?php echo anchor('export/all/ris', 'Export RIS',array('target'=>'aigaion_export')); ?></li>
 <?php
 
 if ($userlogin->hasRights('publication_edit'))
@@ -65,16 +66,21 @@ if ($ACCOUNT_MENU != "") {
     <li class="mainmenu-header">HELP</li>
     <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
     <li class="mainmenu"><?php echo anchor('help/viewhelp/about', 'About this site'); ?></li>
+
+    <li class="mainmenu-spacer"></li>
+    <li class="mainmenu-header">SITE</li>
 <?php
 if ($userlogin->hasRights('database_manage')) {
 ?>
-    <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">SITE</li>
     <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
     <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
 <?php
 }
+
 ?>
+    <li class="mainmenu"><?php echo anchor('export', 'Export BiBTeX',array('target'=>'aigaion_export')); ?></li>
+    <li class="mainmenu"><?php echo anchor('export/all/ris', 'Export RIS',array('target'=>'aigaion_export')); ?></li>
+
     <li class="mainmenu-spacer"></li>
 <?php
 	if ($userlogin->isAnonymous()) {

@@ -245,7 +245,7 @@ class Topics extends Controller {
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'topics/single/'.$topic_id.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic($topic_id,$page);
+        $content['publications']    = $this->publication_db->getForTopic($topic_id,'',$page);
         
         $output = $this->load->view('header', $headerdata, true);
 

@@ -773,8 +773,23 @@ class Publication_db {
 
 ///////publication list functions
 
-  function getForTopic($topic_id,$page=0)
+  function getForTopic($topic_id,$order='',$page=0)
   {
+    $orderby='actualyear, cleantitle';
+    switch ($order) {
+      case 'year':
+        $orderby='actualyear DESC, cleantitle';
+        break;
+      case 'type':
+        $orderby='pub_type, cleanjournal, actualyear, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        break;
+      case 'recent':
+        $orderby='pub_id DESC';
+        break;
+      case 'title':
+        $orderby='cleantitle';
+        break;
+    }
     $CI = &get_instance();
     $limit = '';
     if ($page>-1) {
@@ -789,7 +804,7 @@ class Publication_db {
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
     WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
-    ORDER BY actualyear, cleantitle".$limit);
+    ORDER BY ".$orderby.$limit);
 
     $result = array();
     foreach ($Q->result() as $row)

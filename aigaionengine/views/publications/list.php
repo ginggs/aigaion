@@ -1,6 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class='publication_list'>
 <?php
+  //note that when 'order' is set, this view supposes that the data is actually ordered in that way! Otherwise the headers won't work :)
+  if (!isset($order))$order='';
+  
   $userlogin  = getUserLogin();
   if (isset($header) && ($header != '')) {
 ?>
@@ -34,7 +37,10 @@
   }
   echo $multipagelinks;
   $b_even = true;
-
+  
+  $subheader = '';
+  $subsubheader = '';
+  
   foreach ($publications as $publication)
   {
     if ($publication!=null) {
@@ -43,6 +49,46 @@
       $even = 'even';
     else
       $even = 'odd';
+   
+    //check whether we should display a new header/subheader, depending on the $order parameter
+    switch ($order) {
+      case 'year':
+        $newsubheader = $publication->actualyear;
+        if ($newsubheader!=$subheader) {
+          $subheader = $newsubheader;
+          echo '<div><br/></div><div class="header">'.$subheader.'</div><div><br/></div>';
+        }
+        break;
+      case 'title':
+        $newsubheader = $publication->cleantitle[0];
+        if ($newsubheader!=$subheader) {
+          $subheader = $newsubheader;
+          echo '<div><br/></div><div class="header">'.strtoupper($subheader).'</div><div><br/></div>';
+        }
+        break;
+      case 'type':
+        $newsubheader = $publication->pub_type;
+        if ($newsubheader!=$subheader) {
+          $subheader = $newsubheader;
+          echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
+        }
+        if ($publication->pub_type=='Article') {
+            $newsubsubheader = $publication->cleanjournal;
+            if ($newsubsubheader!=$subsubheader) {
+              $subsubheader = $newsubsubheader;
+              echo '<div><br/></div><div class="header">'.$publication->journal.'</div><div><br/></div>';
+            }
+        } else {
+            $newsubsubheader = $publication->actualyear;
+            if ($newsubsubheader!=$subsubheader) {
+              $subsubheader = $newsubsubheader;
+              echo '<div><br/></div><div class="header">'.$subsubheader.'</div><div><br/></div>';
+            }
+        }
+        break;
+      case 'recent':
+        break;
+    }
     
     $summaryfields = getPublicationSummaryFieldArray($publication->pub_type);
 

@@ -64,10 +64,29 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
+  /** 
+  publications/showlist
+  
+  Entry point for showing a list of publications.
+  
+  fails with error message when one of:
+    insufficient user rights
+	    
+  Parameters passed via URL segments:
+      3rd: order by info
+	  4rth: page number
+	         
+  Returns:
+      A full HTML page with all a list of all publications
+    */
   function showlist()
   {
  	      $this->load->helper('publication');
-        $page   = $this->uri->segment(3,0);
+        $order   = $this->uri->segment(3,'year');
+        if (!in_array($order,array('year','type','recent','title'))) {
+          $order='';
+        }
+        $page   = $this->uri->segment(4,0);
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
@@ -75,6 +94,17 @@ class Publications extends Controller {
         
         $userlogin = getUserLogin();
         $content['header']          = 'All publications';
+        switch ($order) {
+            case 'type':
+                $content['header']          = 'All publications ordered on journal and type';
+                break;
+            case 'recent':
+                $content['header']          = 'All recent publications';
+                break;
+            case 'title':
+                $content['header']          = 'All recent on title';
+                break;
+        }
         
         
         if ($userlogin->getPreference('liststyle')>0) {
@@ -82,9 +112,10 @@ class Publications extends Controller {
             $content['multipage']       = True;
             $content['resultcount']     = $this->publication_db->getCountForTopic('1');
             $content['currentpage']     = $page;
-            $content['multipageprefix'] = 'publications/showlist/';
+            $content['multipageprefix'] = 'publications/showlist/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic('1',$page);
+        $content['publications']    = $this->publication_db->getForTopic('1',$order,$page);
+        $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);
         $output .= $this->load->view('publications/list', $content, true);
