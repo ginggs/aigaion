@@ -35,7 +35,9 @@
        (both for the old installation, and for the new installation)
     5) define password for installing in <WEBROOT>/<aigaion2_rootdir>/migration/sec.php
     6) go to http://<server>/<aigaion2_rootdir>/migration/migrate.php
-    
+    7) ensure through some spot checks that special characters in your database (non ascii, accented, diacritics, 
+       chinese, arabic, etc) are not broken in the new Aigaion 2.0 database. If they are, please contact the 
+       *developers* to help fix this problem.
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
     last) if migration was successfull, deactivate old Aigaion 1.x installation by renaming index.php.
