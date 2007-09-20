@@ -149,7 +149,7 @@ if ( $pwd !=''
         $success = true;
         $utf8 = new UTF8();
         foreach ($migrate_queries as $query) {
-            mysql_query($utf8->smartUtf8_encode($query)); //DR: I use the utf8 smart encode here because some Aigaion 1.x installations did not convert latin1 chars on import; in those cases that data should be converted to utf8
+            mysql_query($utf8->smartUtf8_encode($query)); //DR: I use the utf8 smart encode here because some Aigaion 1.x installations did not convert latin1 chars on import; in those cases that data should be converted to utf8...
             if (mysql_error()) {
                 $success = false;
                 echo mysql_error().'<br/>';
