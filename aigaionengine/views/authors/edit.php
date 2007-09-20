@@ -37,7 +37,18 @@
 ?>
   </table>
 <?php
-  echo form_submit('publication_submit', 'Submit')."\n";
+if ($edit_type=='edit') {
+  echo form_submit('publication_submit', 'Change')."\n";
+} else {
+  echo form_submit('publication_submit', 'Add')."\n";
+}
+  echo form_close()."\n";
+if ($edit_type=='edit') {
+  echo form_open('authors/show/'.$author->author_id);
+} else {
+  echo form_open('');
+}
+  echo form_submit('Cancel', 'Cancel');
   echo form_close()."\n";
 ?>
 </div>
