@@ -76,6 +76,7 @@ class Parser_Bibtex
     $CI = &get_instance();
     $CI->load->helper('bibtexutf8');
     $CI->load->helper('utf8_to_ascii');
+    $CI->load->helper('attachments');
     $publication = new Publication(); 
     
     
@@ -234,8 +235,27 @@ class Parser_Bibtex
   	foreach ($userFields as $field) {
   		if (trim($bibliophileEntry[$field]) != "") {
   		    //this field should be checked to see if it contains an url or a doi (fieldname: pdf, ee, ...) 
-  		    //TODO: USE ATTACHMENTS HELPER
-  			$userFieldsText.=$field."={".$bibliophileEntry[$field]."},\n";
+  		    if (in_array(strtolower(trim($field)),array('pdf','ee'))) {
+                list($parsed, $attUrl, $doi) = parseUrlField($field, $bibliophileEntry[$field]);
+                //if $parsed is True, the contents of the field have been successfully interpreted 
+                //and $attUrl or $doi contain the result. Information that has been interpreted as a 
+                //DOI will not be returned as attUrl as well.
+                if ($parsed) {
+                    if ($attUrl!='') {
+                        if ($publication->url!='') {
+                            $publication->url.='    \n'.$attUrl;
+                        } else {
+                            $publication->url = $attUrl;
+                        }
+                    } else {
+                        $publication->doi=$doi;
+                    } 
+                } else {
+                    $userFieldsText.=$field."={".$bibliophileEntry[$field]."},\n";
+                }
+  		    } else {
+  			    $userFieldsText.=$field."={".$bibliophileEntry[$field]."},\n";
+  			}
   		}
   	}
   	if ($userFieldsText != '')
@@ -245,6 +265,21 @@ class Parser_Bibtex
   	
   	//some post processing:
   	//TODO: url and doi fields can be handled better... use attachments helper to clean and strip the contents of those fields
+  	if ($publication->doi != '') {
+  	    //try to parse
+  	    list($parsed, $attUrl, $doi) = parseUrlField('doi', $publication->doi);
+  	    if ($parsed) {
+  	        $publication->doi = $doi;
+  	    }
+  	}
+  	if ($publication->url != '') {
+  	    //try to parse
+  	    list($parsed, $attUrl, $doi) = parseUrlField('url', $publication->url);
+  	    if ($parsed && ($doi != '')) {
+  	        $publication->doi = $doi;
+  	        $publication->url = '';
+  	    }
+  	}
   	return $publication;
   }
 }

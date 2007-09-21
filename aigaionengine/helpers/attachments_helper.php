@@ -30,7 +30,9 @@
 */
 
     /** This function will probably evolve and extend a lot over time, as
-    we ever find new ways in which urls have been encoded in import data. */
+    we ever find new ways in which urls have been encoded in import data. 
+    Note: the incoming data is UTF8. However, if its really a doi or url, it will 
+    contain only ascii characters and we need not worry. */
     function parseUrlField($name, $value) {
         $parsed = False;
         $attUrl = '';

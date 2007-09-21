@@ -93,7 +93,7 @@ class Import extends Controller {
         }
       }
       appendMessage('Succesfully imported '.$count.' publications.');
-      redirect('');
+      redirect('publications/showlist/recent');
     }
   }
   
