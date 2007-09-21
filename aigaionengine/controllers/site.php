@@ -114,6 +114,14 @@ class Site extends Controller {
 	            $checkresult .= checkTopics();
 	            if ($maintenance != 'all') 
 	                break;
+	        case 'notes':
+	            $checkresult .= checkNotes();
+	            if ($maintenance != 'all') 
+	                break;
+	        case 'authors':
+	            $checkresult .= checkAuthors();
+	            if ($maintenance != 'all') 
+	                break;
 	        case 'passwords':
 	            $checkresult .= checkPasswords();
 	            if ($maintenance != 'all') 
@@ -141,7 +149,7 @@ class Site extends Controller {
 	        case '':
 	            break;
 	        default:
-    	        appendMessage('Maintenance function '.$maintenance.' not implemented.<br>');
+    	        appendMessage('Maintenance function "'.$maintenance.'" not implemented.<br>');
 	            break;
 	    }
 	    

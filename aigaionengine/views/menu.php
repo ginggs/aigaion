@@ -41,7 +41,7 @@ if ($userlogin->hasRights('topic_edit'))
 if ($userlogin->hasRights('publication_edit'))
 {
 ?>
-    <li class='mainmenu'><?php echo anchor('import', 'Import BibTeX'); ?></li>
+    <li class='mainmenu'><?php echo anchor('import', 'Import'); ?></li>
 <?php
 }
 $ACCOUNT_MENU = "";

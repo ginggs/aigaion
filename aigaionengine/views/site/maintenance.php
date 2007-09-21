@@ -17,6 +17,8 @@ There is a set of maintenance functions available. You can either perform the ma
 <ul>
 	<li><?php echo anchor('site/maintenance/attachments','Check attachments'); ?></li>
 	<li><?php echo anchor('site/maintenance/topics','Check topics'); ?></li>
+	<li><?php echo anchor('site/maintenance/notes','Check notes'); ?></li>
+	<li><?php echo anchor('site/maintenance/authors','Check authors'); ?></li>
 	<li><?php echo anchor('site/maintenance/passwords','Check passwords'); ?></li>
 	<li><?php echo anchor('site/maintenance/cleannames','Check searchable names and titles'); ?></li>
 	<li><?php echo anchor('site/maintenance/checkupdates','Check for updates'); ?></li>
