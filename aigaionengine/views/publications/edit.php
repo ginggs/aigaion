@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <td>Citation:</td>
-      <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '45'), $publication->bibtex_id); ?></td>
+      <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '90'), $publication->bibtex_id); ?></td>
     </tr>
 <?php 
     //show all publication fields that are not hidden
@@ -38,7 +38,7 @@
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key);?></span></td>
+      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key);?></span></td>
     </tr>
 <?php
       endif; //class != hidden
@@ -55,7 +55,7 @@
 ?>      
     <tr>
       <td valign='top'>Keywords:</td>
-      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
+      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
       <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
       </div>
       <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=> ',', 'frequency' => '0.01'))."\n";?>
@@ -75,7 +75,7 @@
           }
         }
 
-        echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '42', 'value' => implode($authors, "\n")));
+        echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '87', 'value' => implode($authors, "\n")));
         ?>
         <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
         </div>
@@ -95,7 +95,7 @@
           }
         }
 
-        echo form_textarea(array('name' => 'editors', 'id' => 'editors', 'rows' => '5', 'cols' => '42', 'value' => implode($editors, "\n")));
+        echo form_textarea(array('name' => 'editors', 'id' => 'editors', 'rows' => '5', 'cols' => '87', 'value' => implode($editors, "\n")));
         ?>
         <div name='editor_autocomplete' id='editor_autocomplete' class='autocomplete'>
         </div>

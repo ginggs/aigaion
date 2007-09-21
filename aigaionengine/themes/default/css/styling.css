@@ -41,6 +41,9 @@ td, table, tr, tbody {
     padding         : 0px;
     vertical-align  : top;
 }   
+td {
+    padding          : 1px;
+}
 
 div.clearer {
     clear       : both; 
@@ -242,6 +245,7 @@ input:hover, textarea:hover, select:hover {
 /* special styles for publication edit forms */
 input.required, textarea.required, select.required {
   border-color    : #CC0300;
+  background-color: #FFEEEE;
 }
 
 input.conditional, textarea.conditional, select.conditional {

@@ -113,6 +113,7 @@ echo "
         .form_input(array('name'=>'login',
                           'size'=>'10',
                           'value'=>$user->login,
+                          'class'=>'required',
                           'AUTOCOMPLETE'=>'off'))."
         </td>
         </tr>
