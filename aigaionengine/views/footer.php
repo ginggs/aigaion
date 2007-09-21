@@ -1,4 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+      <div style='clear:both;'></div>
       </div>
       <!-- End of content_holder -->
 

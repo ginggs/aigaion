@@ -211,9 +211,8 @@ class Attachment_db {
         		}
         		$realname = $attachment->name;
         	}
-        	$storename = (str_replace(' ', '_', $realname))."-".$this->generateUniqueSuffix();
-        	# sanitize quotes and other stuff out of name
-        	$storename = str_replace (array("'", '"', "\\", "/"), "", $storename);
+        	$CI->load->helper('filename');
+        	$storename = toCleanName($realname)."-".$this->generateUniqueSuffix();
         
         	# get mime type...
         	$mime = $_FILES['upload']['type'];

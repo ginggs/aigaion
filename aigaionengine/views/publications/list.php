@@ -2,7 +2,7 @@
 <div class='publication_list'>
 <?php
   //note that when 'order' is set, this view supposes that the data is actually ordered in that way! Otherwise the headers won't work :)
-  if (!isset($order))$order='';
+  if (!isset($order))$order='year';
   
   $userlogin  = getUserLogin();
   if (isset($header) && ($header != '')) {
@@ -148,6 +148,7 @@ if (count($attachments) != 0)
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
+        //however, internal file names were created using transliteration, so this is not a problem
         $extension=strtolower(substr(strrchr($attachments[0]->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");

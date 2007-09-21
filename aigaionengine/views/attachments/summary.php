@@ -20,6 +20,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
+        //however, internal file names were created using transliteration, so this is not a problem
         $extension=strtolower(substr(strrchr($attachment->location,"."),1));
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");

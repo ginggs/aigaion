@@ -10,9 +10,9 @@
 */
 
     function toCleanName($string) {
-        $string = strtolower($string);
-        $string =  preg_replace('[\W]','',$string);
-        return $string;
+        $CI = &get_instance();
+        $CI->load->helper('utf8_to_ascii');
+        return utf8_to_ascii($string);
     }
 
 ?>

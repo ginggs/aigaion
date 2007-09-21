@@ -775,7 +775,7 @@ class Publication_db {
 
   function getForTopic($topic_id,$order='',$page=0)
   {
-    $orderby='actualyear, cleantitle';
+    $orderby='actualyear DESC, cleantitle';
     switch ($order) {
       case 'year':
         $orderby='actualyear DESC, cleantitle';
@@ -844,7 +844,7 @@ class Publication_db {
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
     WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
-    ORDER BY actualyear, cleantitle".$limit);
+    ORDER BY actualyear DESC, cleantitle".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)

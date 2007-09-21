@@ -350,7 +350,11 @@ echo "
     </table>
      ";
 echo form_close();
-echo form_open('');
+if ($userlogin->hasRights('user_edit_all')) {
+    echo form_open('users/manage');
+} else {
+    echo form_open('');
+}
 echo form_submit('cancel','Cancel');
 echo form_close();
 echo "</div>";
