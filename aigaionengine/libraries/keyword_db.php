@@ -96,6 +96,7 @@ class Keyword_db {
   
   //ensureKewordsInDatabase($keywords) checks if all keywords in the array 
   //are already in the database. If not, it will add them.
+  //returns a map of (keyword_id=>keyword)
   function ensureKeywordsInDatabase($keywords)
   {
         $CI = &get_instance();
@@ -103,13 +104,14 @@ class Keyword_db {
       return null;
     
     $result = array();
-    foreach($keywords as $keyword_id => $keyword)
+    foreach($keywords as $keyword)
     {
       $current      = $this->getByKeyword($keyword);
       if ($current == null)
         $current    = $this->add($keyword);
       
-      $result[]     = $current;
+      foreach ($current as $keyword_id=>$keyword)
+        $result[$keyword_id]     = $keyword;
     }
     
     return $result;
