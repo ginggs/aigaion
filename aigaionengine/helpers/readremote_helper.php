@@ -46,14 +46,15 @@ function getRemoteFile($url)
                  "Keep-Alive: 300\r\n" .
                  "Connection: keep-alive\r\n" .
                  "Referer: http://$host\r\n\r\n");
-
-      // retrieve the response from the remote server
-      while ( $line = fread( $fp, 4096 ) ) {
-         $response .= $line;
-         
+//$count = 0;
+      while (!feof($fp)) {
+        $response .= fread( $fp, 8192);
+        $count++;
+        
       }
-
       fclose( $fp );
+//$response .= $count;
+//why is the above taking so long? how many packets do we get?
 
       // strip the headers
       $pos      = strpos($response, "\r\n\r\n");

@@ -237,7 +237,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
             ) 
         {
         
-            echo "<div class='message'>Click on a topic name to change it's subscription status.</div>";
+            echo "<div class='message'>Click on a topic name to change its subscription status.</div>";
             $user = $this->user_db->getByID($userlogin->userId());
             $config = array('onlyIfUserSubscribed'=>True,
                               'user'=>$user,

@@ -70,8 +70,6 @@ class UserLogin {
                 return True; //OK? return true;
             } else {
                 $this->logout();
-                $CI = &get_instance();
-                $CI->latesession->set('USERLOGIN', $this);
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
                                   process of being updated.<br/> If you are a user with 
                                   database_manage rights, please login to complete the update. 
@@ -440,6 +438,7 @@ class UserLogin {
             $this->bIsAnonymous = False;
             $this->sLoginName = "";
             $this->iUserId = "";                
+            $CI->latesession->set('USERLOGIN', $this);
             return 1; //password error
         } else { 
             clearErrorMessage();
@@ -526,6 +525,7 @@ class UserLogin {
                 return 2;
             }
             $this->initPreferences();
+            $CI->latesession->set('USERLOGIN', $this);
             return 0;
         } 
     }
@@ -545,6 +545,8 @@ class UserLogin {
         //Delete cookie values
         setcookie("loginname",FALSE);
         setcookie("password",FALSE);
+        $CI = &get_instance();
+        $CI->latesession->set('USERLOGIN', $this);
     }
 
 }

@@ -83,14 +83,14 @@ if ($userlogin->hasRights('database_manage')) {
 
     <li class="mainmenu-spacer"></li>
 <?php
-	if ($userlogin->isAnonymous()) {
+  if ($userlogin->isAnonymous()) {
     $anonusers = $this->user_db->getAllAnonUsers();
-    if (count($anonusers)>0) {
-      //more than one anonymous user: show a dropdown where you can choose between the different guest users
 ?>	    
-    <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">GUEST USER</li>
+      <li class="mainmenu-spacer"></li>
+      <li class="mainmenu-header">GUEST USER</li>
 <?php
+    if (count($anonusers)>1) {
+      //more than one anonymous user: show a dropdown where you can choose between the different guest users
       $options = array();
       foreach ($anonusers as $anon) {
           $options[$anon->user_id] = $anon->login;
@@ -101,6 +101,8 @@ if ($userlogin->hasRights('database_manage')) {
                             $userlogin->userId(),
                             "OnChange='var url=\"".site_url('/login/anonymous/')."\";window.document.location=(url+\"/\"+$(\"anonlogin\").value);' id='anonlogin'")
              ."</li>";
+    } else {
+      echo "<li class='mainmenu'>".$anonusers[0]->login."</li>";
     }
         
 ?>	    
@@ -131,13 +133,13 @@ if ($userlogin->hasRights('database_manage')) {
 <?php
         echo form_close();
         echo '</li>';
-	} else {
+  } else {
 ?>
     <li class="mainmenu-header">LOGGED IN:</li>
     <li class="mainmenu"><?php echo $userlogin->loginName(); ?></li>
     <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
 <?php
-    }
+  }
 ?>
   </ul>
 </div>

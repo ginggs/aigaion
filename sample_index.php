@@ -2,10 +2,16 @@
 
 /*==== OPTIONAL SETTINGS */
 # URL where to store attachments. Default: root_url/attachments
+# Only uncomment and fill this line if your directory for storing attachments on server 
+# is different from the default
 //define('AIGAION_ATTACHMENT_URL', 'http://url/for/attachments/'); 
 # Directory where to store attachments. Default: this directory/attachments
+# Only uncomment and fill this line if your directory for storing attachments on server 
+# is different from the default
 //define('AIGAION_ATTACHMENT_DIR', '/Path/for/attachments'); 
-# Table prefix for database. Default ''
+# Table prefix for database. 
+# By default, no table prefix is defined. If your tables have been defined 
+# with a table prefix, uncomment the following line and fill in the prefix:
 //define('AIGAION_DB_PREFIX', '');
 
 /*==== MANDATORY SETTINGS */
@@ -22,9 +28,8 @@ define('AIGAION_DB_PWD', 'userpass');
 # Name of the standard database
 define('AIGAION_DB_NAME', 'aigaion');
 
-#If your instance of the system is NOT located in the application directory,
-#you must specify the URL to the application here.
-#NOTE: EXPLAIN THIS MORE CAREFULLY< WHY AND WHEN THIS WOULD HAPPEN!
+#We need to know where your aigaion - engine is located.
+#By default this is http://localhost/aigaion2root/aigaionengine/
 define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 
 /*
@@ -32,7 +37,7 @@ define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 | PHP ERROR REPORTING LEVEL
 |---------------------------------------------------------------
 |
-| By default CI runs with error reporting set to ALL.  For security
+| By default Aigaion runs with error reporting set to ALL.  For security
 | reasons you are encouraged to change this when your site goes live.
 | For more info visit:  http://www.php.net/error_reporting
 |
@@ -44,9 +49,11 @@ define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 | SYSTEM FOLDER NAME
 |---------------------------------------------------------------
 |
-| This variable must contain the name of your "system" folder.
+| This variable must contain the name of your code igniter "system" folder.
 | Include the path if the folder is not in the same  directory
 | as this file.
+| This is normally only changed when you are sharing the same Aigaion 2 code base
+| between several instances of Aigaion 2
 |
 | NO TRAILING SLASH!
 |
@@ -58,11 +65,10 @@ define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 | APPLICATION FOLDER NAME
 |---------------------------------------------------------------
 |
-| If you want this front controller to use a different "application"
-| folder then the default one you can set its name here. The folder 
-| can also be renamed or relocated anywhere on your server.
-| For more info please see the user guide:
-| http://www.codeigniter.com/user_guide/general/managing_apps.html
+| Points to the folder of the aigaion engine. If not relative from the directory
+| in which this file is located, use a path.
+| This is normally only changed when you are sharing the same Aigaion 2 code base
+| between several instances of Aigaion 2
 |
 |
 | NO TRAILING SLASH!

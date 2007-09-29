@@ -12,11 +12,17 @@
     afterwards you should simply remove the two directories containing the install and migration scripts.
     
     INSTALLING AN EMPTY AIGAION 2 SYSTEM FROM SCRATCH
-    1) Copy the Aigaion 2.0 files to <WEBROOT>/<aigaion2_rootdir>/
-    2) Create the new database '<db_aigaion2>', with an appropriate user. The database is empty.
-    3) fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/install/database.php
-    4) define password for installing in <WEBROOT>/<aigaion2_rootdir>/install/sec.php
-    5) go to http://<server>/<aigaion2_rootdir>/install/install.php
+    1)  Copy the Aigaion 2.0 files to <WEBROOT>/<aigaion2_rootdir>/
+    2)  Create the new database '<db_aigaion2>', with an appropriate user. The database is empty.
+    3)  fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/install/install_config.php
+    4)  define password for installing in <WEBROOT>/<aigaion2_rootdir>/install/install_config.php
+    5)  go to http://<server>/<aigaion2_rootdir>/install/install.php
+    6)  if no errors occurred, the database has been initialized correctly. You can now proceed to 
+        configure your Aigaion 2 installation in the following steps.
+    7)  Rename <WEBROOT>/<aigaion2_rootdir>/sample_index.php to <WEBROOT>/<aigaion2_rootdir>/index.php
+    8)  Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
+    9)  Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
+    10) Change the admin login
     
     last) if install was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
     last) if install was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration

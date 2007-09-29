@@ -1,6 +1,6 @@
 <?php
-include ('database.php');
-include ('sec.php');
+include ('install_config.php');
+
 //split script on POST user/paswd var.
 $pwd='';
 if (isset($_POST['aigaion2_pwd']))
@@ -101,6 +101,8 @@ if ( $pwd !=''
         _query("INSERT INTO  `".AIGAION2_DB_PREFIX."users` (`user_id`,`surname`,`abbreviation`,`type`) VALUES  (2,'admins','adm_grp','group'),(3,'readers','read_grp','group'),(4,'editors','ed_grp','group'),(5,'guests','gue_grp','group');");
         _query("CREATE TABLE `".AIGAION2_DB_PREFIX."usertopiclink` (  `collapsed` int(2) NOT NULL default '0',  `user_id` int(10) NOT NULL default '0',  `topic_id` int(10) NOT NULL default '0',  `star` int(2) NOT NULL default '0',  PRIMARY KEY  (`user_id`,`topic_id`),  KEY `topic_id` (`topic_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
         _query("INSERT INTO  `".AIGAION2_DB_PREFIX."usertopiclink` (`collapsed`,`user_id`,`topic_id`,`star`) VALUES  (0,1,1,0); ");
+        echo 'If no errors occurred, you can now start to fill in index.php and then proceed to login into Aigaion 2<br/>';
+        
 } else {
     //no or incorrect pwd - show form
     ?>
@@ -129,6 +131,7 @@ if ( $pwd !=''
 
 function _query($q) {
     $res = mysql_query($q);
+    echo $q.'<br/>';
     if (mysql_error())
         echo mysql_error().'<br/>';
     return $res;

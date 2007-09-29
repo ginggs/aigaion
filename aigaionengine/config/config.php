@@ -29,9 +29,9 @@ if (!defined('AIGAION_ATTACHMENT_URL') || (AIGAION_ATTACHMENT_URL=='')) {
 if (!defined('AIGAION_ATTACHMENT_DIR') || (AIGAION_ATTACHMENT_DIR=='')) {
     define ('AIGAION_ATTACHMENT_DIR',$ROOT_PATH."/attachments");
 }
-#URL to the application: default same as AIGAION_ROOT_URL
+#URL to the application: default same as AIGAION_ROOT_URL/aigaionengine
 if (!defined('APPURL') || (APPURL=='')) {
-    define ('APPURL',AIGAION_ROOT_URL);
+    define ('APPURL',AIGAION_ROOT_URL.'/aigaionengine');
 }
 #AIGAION_DB_PREFIX: table prefix, default "", see config/database.php
 if (!defined('AIGAION_DB_PREFIX')) {

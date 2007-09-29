@@ -117,7 +117,7 @@ class User_db {
     function getAllUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->getwhere('users','type<>"group"');
+        $Q = $CI->db->getwhere('users',array('type<>'=>'group'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
