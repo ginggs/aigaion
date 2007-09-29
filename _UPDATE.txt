@@ -31,19 +31,20 @@
     2)  Copy the attachments from your previous installation <WEBROOT>/<aigaion1_rootdir>/<documents_dir>/
         to your new installation <WEBROOT>/<aigaion2_rootdir>/<documents_dir>/
     3)  Create the new database '<db_aigaion2>', with an appropriate user. The database is empty.
-    4)  fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
+    4)  Unpack <WEBROOT>/<aigaion2_rootdir>/migrate/migrate.zip into the directory <WEBROOT>/<aigaion2_rootdir>/migrate/
+    5)  fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
         (both for the old installation, and for the new installation)
-    5)  define password for installing in <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
-    6)  go to http://<server>/<aigaion2_rootdir>/migration/migrate.php
-    7)  ensure through some spot checks that special characters in your database (non ascii, accented, diacritics, 
+    6)  define password for installing in <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
+    7)  go to http://<server>/<aigaion2_rootdir>/migration/migrate.php
+    8)  ensure through some spot checks that special characters in your database (non ascii, accented, diacritics, 
         chinese, arabic, etc) are not broken in the new Aigaion 2.0 database. If they are, please contact the 
         *developers* to help fix this problem.
-    8)  if no errors occurred, the database has been initialized correctly. You can now proceed to 
+    9)  if no errors occurred, the database has been initialized correctly. You can now proceed to 
         configure your Aigaion 2 installation in the following steps.
-    9)  Rename <WEBROOT>/<aigaion2_rootdir>/sample_index.php to <WEBROOT>/<aigaion2_rootdir>/index.php
-    10) Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
-    11) Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
-    12) Change the admin login
+    10) Rename <WEBROOT>/<aigaion2_rootdir>/sample_index.php to <WEBROOT>/<aigaion2_rootdir>/index.php
+    11) Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
+    12) Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
+    13) Change the admin login
     
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
