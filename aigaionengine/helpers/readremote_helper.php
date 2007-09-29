@@ -49,7 +49,7 @@ function getRemoteFile($url)
 //$count = 0;
       while (!feof($fp)) {
         $response .= fread( $fp, 8192);
-        $count++;
+//        $count++;
         
       }
       fclose( $fp );
