@@ -409,9 +409,8 @@ TODO:
         
         //check on cleanname
         //create cleanname
-        $cleanname = utf8_to_ascii($author->getName('lvf'));
+        $cleanname = strtolower(utf8_to_ascii($author->getName('lvf')));
         $author->cleanname = $cleanname;
-        
         $db_distances = array();
         foreach ($db_cleanauthors as $author_id => $db_author)
         {
