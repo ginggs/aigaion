@@ -42,9 +42,38 @@
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
       <td valign='top'><?php 
         if ($key == "pages")
-          echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 'id' => 'firstpage', 'size' => '3', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->firstpage)." - ".form_input(array('name' => 'lastpage', 'id' => 'lastpage', 'size' => '3', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->lastpage)."</span></td>\n";
+          echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
+                                                                  'id' => 'firstpage', 
+                                                                  'size' => '3', 
+                                                                  'alt' => $class, 
+                                                                  'autocomplete' => 'off', 
+                                                                  'class' => $class), 
+                                                            $publication->firstpage)
+                                                ." - "
+                                                .form_input(array('name' => 'lastpage', 
+                                                                  'id' => 'lastpage', 
+                                                                  'size' => '3', 
+                                                                  'alt' => $class, 
+                                                                  'autocomplete' => 'off', 
+                                                                  'class' => $class), 
+                                                            $publication->lastpage)."</span></td>\n";
+        elseif ($key == "abstract")
+          echo "<span title='".$class." field'>".form_textarea(array('name' => $key, 
+                                                                     'id' => $key, 
+                                                                     'cols' => '90', 
+                                                                     'rows' => '20', 
+                                                                     'alt' => $class, 
+                                                                     'autocomplete' => 'off', 
+                                                                     'class' => $class), 
+                                                               $publication->$key)."</span></td>\n";
         else
-          echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key)."</span></td>\n";
+          echo "<span title='".$class." field'>".form_input(array('name' => $key, 
+                                                                     'id' => $key, 
+                                                                     'size' => '90', 
+                                                                     'alt' => $class, 
+                                                                     'autocomplete' => 'off', 
+                                                                     'class' => $class), 
+                                                               $publication->$key)."</span></td>\n";
 ?>
     </tr>
 <?php

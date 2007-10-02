@@ -73,7 +73,8 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td align='left' colspan='2'>
 	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Select the user account that will be used by default for logging in anonymous users. 
+	        Select the user account that will be used by default for logging in anonymous users. Only
+	        users that are marked 'anonymous' on the edit user page can be selected here!
 	        <p>Note: Be careful in assigning user rights to anonymous accounts!</td>
 	    </tr>
 	    <tr>
