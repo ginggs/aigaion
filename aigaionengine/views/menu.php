@@ -51,9 +51,6 @@ if ($userlogin->hasRights('user_edit_self')) {
 if ($userlogin->hasRights('topic_subscription')) {
     $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Review')."</li>\n";
 }
-if ($userlogin->hasRights('user_edit_all')) {
-    $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/manage', 'Manage All Accounts')."</li>\n";
-}
 if ($ACCOUNT_MENU != "") {
 ?>
     <li class="mainmenu-spacer"></li>
@@ -75,6 +72,9 @@ if ($userlogin->hasRights('database_manage')) {
     <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
     <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
 <?php
+}
+if ($userlogin->hasRights('user_edit_all')) {
+    echo "    <li class='mainmenu'>".anchor('users/manage', 'Manage All Accounts')."</li>\n";
 }
 
 ?>
