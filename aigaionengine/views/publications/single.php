@@ -62,14 +62,30 @@ $user       = $this->user_db->getByID($userlogin->userID());
     </tr>
 <?php 
     foreach ($publicationfields as $key => $class):
-      if ($publication->$key):
+      $pages = false;
+      if ($key == "pages")
+      {
+        if ($publication->firstpage || $publication->lastpage)
+          $pages = true;
+      }   
+      if ($publication->$key || $pages):
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
       <td valign='top'><?php 
         if ($key=='doi') {
             echo '<a target=_blank href="http://dx.doi.org/'.$publication->$key.'">'.$publication->$key.'</a>'; 
-        } else {
+        } else if ($key == 'pages') {
+          $pages = $publication->firstpage;
+          if ($publication->lastpage) {
+            if ($pages)
+              $pages .= " - ".$publication->lastpage;
+            else
+              $pages = $publication->lastpage;
+          }
+          echo $pages;
+        }
+        else {
             echo $publication->$key; 
         }
       ?></td>

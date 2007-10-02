@@ -4,7 +4,7 @@
   $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
-
+  
 ?>
 <div class='publication'>
   <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
@@ -34,11 +34,18 @@
     //show all publication fields that are not hidden
     //at the end of this table, we show all hidden fields as hidden form elements
     foreach ($publicationfields as $key => $class):
+      
       if ($class != 'hidden'):
+        
 ?>
     <tr>
       <td valign='top'><?php echo ucfirst($key); ?>:</td>
-      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key);?></span></td>
+      <td valign='top'><?php 
+        if ($key == "pages")
+          echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 'id' => 'firstpage', 'size' => '3', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->firstpage)." - ".form_input(array('name' => 'lastpage', 'id' => 'lastpage', 'size' => '3', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->lastpage)."</span></td>\n";
+        else
+          echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->$key)."</span></td>\n";
+?>
     </tr>
 <?php
       endif; //class != hidden
