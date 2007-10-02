@@ -8,12 +8,16 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
 <?php
     //open the edit form
     echo form_open('publications/commit', $formAttributes)."\n";
+    
+    //first display form elements that are not in the publicationfields array
     echo form_hidden('edit_type',   $review['edit_type'])."\n";
     echo form_hidden('pub_id',      $publication->pub_id)."\n";
     echo form_hidden('user_id',     $publication->user_id)."\n";
     echo form_hidden('submit_type', 'review')."\n";
     echo form_hidden('pub_type',    $publication->pub_type)."\n";
     echo form_hidden('title',       $publication->title)."\n";
+    
+    //then display publicationfiels array elements
     foreach ($publicationfields as $key => $class):
     echo form_hidden($key,        $publication->$key)."\n";
     endforeach;
@@ -37,6 +41,9 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
       </tr>
 <?php
     }
+    else
+      echo form_hidden('bibtex_id',   $publication->bibtex_id)."\n";
+    
     //keyword review
     if ($review['keywords'] != null)
     {
