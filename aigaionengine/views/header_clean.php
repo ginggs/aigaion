@@ -7,7 +7,7 @@
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <script type="text/javascript">
       //<![CDATA[
-      base_url = '<?= base_url();?>index.php/';
+      base_url = '<?php echo base_url();?>index.php/';
       //]]>
     </script>
 

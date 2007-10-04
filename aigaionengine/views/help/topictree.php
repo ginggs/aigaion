@@ -15,5 +15,5 @@
     </ul>
   <p class='header1'>Subscribing for topics.</p>
   <p>It may be that not every user of a certain Aigaion database is interested in exactly the same topics. Therefore Aigaion contains a mechanism that allows you to subscribe to - or unsubscribe from - any topic, meaning that you can determine which topics you will see while browsing the system.
-  By default, a new user will not be subscribed to any topic. To review which topics already exist in this copy of Aigaion, go to the <? echo anchor('users/topicreview','topic review page'); ?> and subscribe to any topic that you are interested in. Those topics will then appear in your topic tree.</p>
+  By default, a new user will not be subscribed to any topic. To review which topics already exist in this copy of Aigaion, go to the <?php echo anchor('users/topicreview','topic review page'); ?> and subscribe to any topic that you are interested in. Those topics will then appear in your topic tree.</p>
 </div>

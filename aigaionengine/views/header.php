@@ -23,7 +23,7 @@
 ?>
     <script type="text/javascript">
       //<![CDATA[
-      base_url = '<?= base_url();?>index.php/';
+      base_url = '<?php echo base_url();?>index.php/';
       //]]>
     </script>
 

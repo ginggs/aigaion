@@ -55,7 +55,7 @@ if ($ACCOUNT_MENU != "") {
 ?>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">ACCOUNT</li>
-<?
+<?php
     echo $ACCOUNT_MENU;
 }
 ?>
