@@ -21,6 +21,11 @@ class Authors extends Controller {
       //retrieve author ID
       $author_id   = $this->uri->segment(3);
     }
+    $order   = $this->uri->segment(4,'year');
+    if (!in_array($order,array('year','type','recent','title'))) {
+      $order='year';
+    }
+    $page   = $this->uri->segment(5,0);
     
     //load author
     $author = $this->author_db->getByID($author_id);
@@ -32,6 +37,7 @@ class Authors extends Controller {
     
     $this->load->helper('publication');
     
+    $userlogin = getUserLogin();
     
     //set header data
     $header ['title']       = 'Aigaion 2.0 - '.$author->getName();
@@ -40,7 +46,26 @@ class Authors extends Controller {
     //set data
     $authorContent['author']            = $author;
     $publicationContent['header']       = 'Publications of '.$author->getName();
-    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id);
+    switch ($order) {
+        case 'type':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on journal and type';
+            break;
+        case 'recent':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on recency';
+            break;
+        case 'title':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on title';
+            break;
+    }
+    if ($userlogin->getPreference('liststyle')>0) {
+        //set these parameters when you want to get a good multipublication list display
+        $publicationContent['multipage']       = True;
+        $publicationContent['resultcount']     = $this->publication_db->getCountForAuthor($author_id);
+        $publicationContent['currentpage']     = $page;
+        $publicationContent['multipageprefix'] = 'authors/show/'.$author_id.'/'.$order.'/';
+    }    
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,$page);
+    $publicationContent['order'] = $order;
 
     
     //get output

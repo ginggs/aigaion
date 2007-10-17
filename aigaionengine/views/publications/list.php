@@ -114,9 +114,30 @@ foreach ($publication->authors as $author)
 }
 
 foreach ($summaryfields as $key => $prefix) {
-  $val = trim($publication->$key);
+  if ($key == 'pages') {
+    $pages = "";
+    if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
+      if ($publication->firstpage != "0") {
+        $pages = $publication->firstpage;
+      }
+      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0")) {
+        if ($pages != "") {
+            $pages .= "-";
+        }
+        $pages .= $publication->lastpage;
+      }
+    }
+    $val = $pages;
+  } else {
+    $val = trim($publication->$key);
+  }
+  $postfix='';
+  if (is_array($prefix)) {
+    $postfix = $prefix[1];
+    $prefix = $prefix[0];
+  }
   if ($val) {
-    echo $prefix.$val;
+    echo $prefix.$val.$postfix;
   }
 }
 echo "

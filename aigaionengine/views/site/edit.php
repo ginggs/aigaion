@@ -193,7 +193,7 @@ echo $this->validation->error_string;
 	    </tr>
 	
 	    <tr>
-	        <td><label>Merge crossreffed publications in single publication view:</label></td>
+	        <td><label>Merge crossreferenced publications in single publication view:</label></td>
 	        <td align='left'>
 <?php
             echo form_checkbox('PUBLICATION_XREF_MERGE','PUBLICATION_XREF_MERGE',$siteconfig->getConfigSetting("PUBLICATION_XREF_MERGE")== "TRUE");

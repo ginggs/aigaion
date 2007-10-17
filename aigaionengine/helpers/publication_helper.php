@@ -468,16 +468,18 @@ function getPublicationFieldArray($type)
 }
 
 //REMINDER: TECHREPORT CASE -> 'report_type' FIELD IS TO BE RENAMED
+//note: the prefix may be an array instead of a string, in that case its (prefix,postfix)
 function getPublicationSummaryFieldArray($type)
 {
 	$type = ucfirst(strtolower($type));
 	switch ($type) {
 		case "Article":
-			return array( 'journal'       => ', in: ',
-	                  'number'        => ', number ',
-	                  'pages'         => ', pages ',
-	                  'volume'        => ', volume ', 
-	                  'actualyear'    => ', '
+			return array( 
+	                  'actualyear'    => array(' (',')'),
+			          'journal'       => ', in: ',
+	                  'volume'        => ', ', 
+	                  'number'        => ':',
+	                  'pages'         => array('(',')')
 	                );
 		break;
 		case "Book":

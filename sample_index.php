@@ -28,7 +28,7 @@ define('AIGAION_DB_PWD', 'userpass');
 # Name of the standard database
 define('AIGAION_DB_NAME', 'aigaion');
 
-#We need to know where your aigaion - engine is located.
+#We need to know where your aigaion - engine is located. WITH trailing slash.
 #By default this is http://localhost/aigaion2root/aigaionengine/
 define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 

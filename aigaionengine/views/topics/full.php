@@ -2,6 +2,7 @@
 <div id='singletopic-content-holder'>
 <!-- Topic: HEADER AND DESCRIPTION -->
 <?php
+
     $userlogin  = getUserLogin();
     $user       = $this->user_db->getByID($userlogin->userID());
 
@@ -95,6 +96,12 @@ echo  "<li><nobr>["
       .anchor('export/topic/'.$topic->topic_id,'BiBTeX',array('target'=>'aigaion_export'))."]</nobr></li>
        <li><nobr>["
       .anchor('export/topic/'.$topic->topic_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
+       <li><nobr>["
+      .anchor('topics/single/'.$topic->topic_id.'/type','Order on type/journal')."]</nobr></li>
+       <li><nobr>["
+      .anchor('topics/single/'.$topic->topic_id.'/title','Order alphabetically on title')."]</nobr></li>
+       <li><nobr>["
+      .anchor('topics/single/'.$topic->topic_id.'/year','Order on year')."]</nobr></li>
 </ul>
 ";
 

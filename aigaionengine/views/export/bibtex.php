@@ -13,9 +13,9 @@ xref: map of [id=>publication] for crossreffed-publications
 if (!isset($header)||($header==null))$header='';
 
 $result = "
-%Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."
-%".date('l dS \of F Y h:i:s A')."
-%".$header."
+Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."
+".date('l d F Y h:i:s A')."
+".$header."
 ";
 
 
@@ -23,7 +23,7 @@ $this->load->helper('export');
 foreach ($nonxrefs as $pub_id=>$publication) {
     $result .= getBibtexForPublication($publication)."\n";
 }
-if (count($xrefs)>0) $result .= "\n\n%crossreffed publications: \n";
+if (count($xrefs)>0) $result .= "\n\ncrossreferenced publications: \n";
 foreach ($xrefs as $pub_id=>$publication) {
     $result .= getBibtexForPublication($publication)."\n";
 }

@@ -214,7 +214,11 @@ class Topics extends Controller {
 	function single()
 	{
 	    $topic_id = $this->uri->segment(3,1);
-        $page   = $this->uri->segment(4,0);
+        $order   = $this->uri->segment(4,'year');
+        if (!in_array($order,array('year','type','recent','title'))) {
+          $order='year';
+        }
+        $page   = $this->uri->segment(5,0);
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
@@ -238,20 +242,30 @@ class Topics extends Controller {
         
         $content['topic']           = $topic;
         $content['header']          = "Publications for topic: ".$topic->name;
+        switch ($order) {
+            case 'type':
+                $content['header']          = 'Publications for topic '.$topic->name.' ordered on journal and type';
+                break;
+            case 'recent':
+                $content['header']          = 'Publications for topic '.$topic->name.' ordered on recency';
+                break;
+            case 'title':
+                $content['header']          = 'Publications for topic '.$topic->name.' ordered on title';
+                break;
+        }
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
             $content['resultcount']     = $this->publication_db->getCountForTopic($topic_id);
             $content['currentpage']     = $page;
-            $content['multipageprefix'] = 'topics/single/'.$topic_id.'/';
+            $content['multipageprefix'] = 'topics/single/'.$topic_id.'/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic($topic_id,'',$page);
+        $content['publications']    = $this->publication_db->getForTopic($topic_id,$order,$page);
+        $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);
 
         $output  .= $this->load->view('topics/full', $content,  true);
-        
-        
         
         $output .= $this->load->view('footer','', true);
 

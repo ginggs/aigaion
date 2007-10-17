@@ -81,7 +81,7 @@ class Publications extends Controller {
     */
   function showlist()
   {
- 	      $this->load->helper('publication');
+ 	    $this->load->helper('publication');
         $order   = $this->uri->segment(3,'year');
         if (!in_array($order,array('year','type','recent','title'))) {
           $order='';
@@ -102,7 +102,7 @@ class Publications extends Controller {
                 $content['header']          = 'All recent publications';
                 break;
             case 'title':
-                $content['header']          = 'All recent on title';
+                $content['header']          = 'All publications ordered on title';
                 break;
         }
         
