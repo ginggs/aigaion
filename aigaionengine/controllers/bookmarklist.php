@@ -89,11 +89,12 @@ class Bookmarklist extends Controller {
         }
         
         $this->bookmarklist_db->addPublication($publication->pub_id);
-        $output = '['.$this->ajax->link_to_remote("UnBookmark", 
-                                     array('url' => site_url('/bookmarklist/removepublication/'.$publication->pub_id), 
-                                           'update' => 'bookmark_pub_'.$publication->pub_id
-                                           )
-                                     ).']';
+        $output = '<span title="Click to UnBookmark publication">'
+                 .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('bookmarked.gif')."'>",
+                  array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
+                        'update'  => 'bookmark_pub_'.$publication->pub_id
+                        )
+                  ).'</span>';
 
         //set output
         $this->output->set_output($output);        
@@ -196,11 +197,12 @@ class Bookmarklist extends Controller {
         }
         
         $this->bookmarklist_db->removePublication($publication->pub_id);
-        $output = '['.$this->ajax->link_to_remote("Bookmark", 
-                                     array('url' => site_url('/bookmarklist/addpublication/'.$publication->pub_id), 
-                                           'update' => 'bookmark_pub_'.$publication->pub_id
-                                           )
-                                     ).']';
+        $output = '<span title="Click to Bookmark publication">'
+                 .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('nonbookmarked.gif')."'>",
+                  array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
+                        'update'  => 'bookmark_pub_'.$publication->pub_id
+                        )
+                  ).'</span>';
 
         //set output
         $this->output->set_output($output);        
