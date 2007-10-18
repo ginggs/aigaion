@@ -35,7 +35,7 @@
     //at the end of this table, we show all hidden fields as hidden form elements
     foreach ($publicationfields as $key => $class):
       
-      if ($class != 'hidden'):
+      if ($class != 'hidden'): 
         
 ?>
     <tr>
@@ -142,7 +142,7 @@
   </table>
 <?php
   foreach ($publicationfields as $key => $class):
-    if ($class == 'hidden'):
+    if ($class == 'hidden'): 
       echo form_hidden($key, $publication->$key)."\n";
     endif;
   endforeach;
