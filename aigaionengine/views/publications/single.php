@@ -84,6 +84,68 @@ $user       = $this->user_db->getByID($userlogin->userID());
               $pages = $publication->lastpage;
           }
           echo $pages;
+        } elseif ($key == 'crossref') {
+            $xref_pub = $this->publication_db->getByBibtexID($publication->$key);
+            if ($xref_pub != null) {
+                echo '<i>'.anchor('publications/show/'.$xref_pub->pub_id,$publication->$key).':</i>';
+                //and then the summary of the crossreffed pub. taken from views/publications/list
+                $summaryfields = getPublicationSummaryFieldArray($xref_pub->pub_type);
+                echo "<div class='message'>
+                      <span class='title'>".anchor('publications/show/'.$xref_pub->pub_id, $xref_pub->title, array('title' => 'View publication details'))."</span>";
+                
+                //authors of crossref
+                $num_authors    = count($xref_pub->authors);
+                $current_author = 1;
+                
+                foreach ($xref_pub->authors as $author)
+                {
+                  if (($current_author == $num_authors) & ($num_authors > 1)) {
+                    echo " and ";
+                  }
+                  else {
+                    echo ", ";
+                  }
+                
+                  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
+                  $current_author++;
+                }
+                
+                //editors of crossref
+                $num_editors    = count($xref_pub->editors);
+                $current_editor= 1;
+                
+                foreach ($xref_pub->editors as $editor)
+                {
+                  if (($current_editor == $num_editors) & ($num_editors > 1)) {
+                    echo " and ";
+                  }
+                  else {
+                    echo ", ";
+                  }
+                
+                  echo  "<span class='author'>".anchor('authors/show/'.$editor->author_id, $editor->getName(), array('title' => 'All information on '.$editor->cleanname))."</span>";
+                  $current_editor++;
+                }
+                if ($num_editors>1) {
+                    echo ' (eds)';
+                } elseif ($num_editors>0) {
+                    echo ' (ed)';
+                }     
+                foreach ($summaryfields as $key => $prefix) {
+                  $val = trim($xref_pub->$key);
+                  $postfix='';
+                  if (is_array($prefix)) {
+                    $postfix = $prefix[1];
+                    $prefix = $prefix[0];
+                  }
+                  if ($val) {
+                    echo $prefix.$val.$postfix;
+                  }
+                }
+                echo "</div>"; //end of publication_summary div for crossreffed publication
+            } else {
+                echo $publication->$key;
+            }
         }
         else {
             echo $publication->$key; 
@@ -114,7 +176,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         <span class='authorlist'>
 <?php     foreach ($publication->authors as $author)
           {
-            echo anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."<br />\n";
+            echo anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
 ?>
         </span>
@@ -130,7 +192,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         <span class='authorlist'>
 <?php     foreach ($publication->editors as $author)
           {
-            echo anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."<br />\n";
+            echo anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
 ?>
         </span>

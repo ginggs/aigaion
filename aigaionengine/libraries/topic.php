@@ -62,6 +62,10 @@ class Topic {
         $p = $CI->topic_db->getByID($this->parent_id, $this->configuration);
         return $p;
     }
+    function getAuthors() {
+        $CI = &get_instance();
+        return $CI->topic_db->getAuthorsForTopic($this->topic_id);
+    }
   
     
     /** if this topic is a user subscription tree, use this method to set the user to being subscribed to this

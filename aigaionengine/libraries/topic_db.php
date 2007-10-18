@@ -480,5 +480,21 @@ class Topic_db {
     $R = $Q->row_array();
     return $R["COUNT(DISTINCT ".AIGAION_DB_PREFIX."author.author_id)"];  
   }
+  function getAuthorsForTopic($topic_id) {
+	# get authors for this topic
+	$CI = &get_instance();
+    $query = "SELECT DISTINCT ".AIGAION_DB_PREFIX."author.author_id
+			FROM ".AIGAION_DB_PREFIX."publicationauthorlink, ".AIGAION_DB_PREFIX."topicpublicationlink, ".AIGAION_DB_PREFIX."author
+			WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+				AND ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
+				AND ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".AIGAION_DB_PREFIX."author.author_id
+		   ORDER BY ".AIGAION_DB_PREFIX."author.cleanname";
+    $Q = $CI->db->query($query);
+    $result = array();
+    foreach ($Q->result() as $R) {
+        $result[] = $CI->author_db->getByID($R->author_id);
+    }        
+    return $result;
+  }
 }
 ?>

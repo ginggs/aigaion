@@ -30,10 +30,11 @@ class Author {
   function getName($style = '')
   {
     //if no style is given, get style from user preference
-    if ($style == '')
-    $style = 'vlf';
-    //TODO: GET STYLE FROM USER PREF
-
+    if ($style == '') {
+        $userlogin = getUserLogin();
+        $style = $userlogin->getPreference('authordisplaystyle');
+    }
+        
     switch($style) {
       case 'fvl':   //first von last
       $name = $this->firstname;

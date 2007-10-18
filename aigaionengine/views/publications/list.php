@@ -109,7 +109,7 @@ foreach ($publication->authors as $author)
     echo ", ";
   }
 
-  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->cleanname, array('title' => 'All information on '.$author->cleanname))."</span>";
+  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
   $current_author++;
 }
 

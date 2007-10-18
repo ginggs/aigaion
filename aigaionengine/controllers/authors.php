@@ -332,6 +332,39 @@ class Authors extends Controller {
     $this->output->set_output($output);
   }
 
+  function fortopic()
+  {
+    $this->load->helper('form');
+
+    $topic_id = $this->uri->segment(3,-1);
+    $config = array();
+    $topic = $this->topic_db->getByID($topic_id,$config);
+
+    if ($topic==null) {
+        appendErrorMessage('Authors for topic: non existing topic specified.<br/>');
+        redirect('');
+    }
+    
+    $authorList = $topic->getAuthors();
+    
+    
+    
+    //set header data
+    $header ['title']         = 'Aigaion 2.0 - Authors';
+    $header ['javascripts']   = array('prototype.js');
+    $content['header']        = "Authors on topic ".anchor('topics/single/'.$topic->topic_id,$topic->name);
+    $content['authorlist']    = $authorList;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('authors/list',        $content, true);
+    
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+
+  }
   
   function _authorlist()
   {
@@ -346,6 +379,7 @@ class Authors extends Controller {
     $header ['javascripts']   = array('prototype.js');
     $content['header']        = "All authors in the database";
     $content['authorlist']    = $authorList;
+    $content['searchbox']     = True;
     
     //get output
     $output  = $this->load->view('header',              $header,  true);
