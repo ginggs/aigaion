@@ -374,10 +374,10 @@ class Accesslevels_lib {
     All levels set to intern. */
     function initPublicationAccessLevels($publication) {
         $CI = &get_instance();
-        $publication->read_access_level = 'intern';
-        $publication->derived_read_access_level = 'intern';
-        $publication->edit_access_level = 'intern';
-        $publication->derived_edit_access_level = 'intern';
+        $publication->read_access_level = getConfigurationSetting("PUB_DEFAULT_READ");
+        $publication->derived_read_access_level = getConfigurationSetting("PUB_DEFAULT_READ");
+        $publication->edit_access_level = getConfigurationSetting("PUB_DEFAULT_EDIT");
+        $publication->derived_edit_access_level = getConfigurationSetting("PUB_DEFAULT_EDIT");
         $CI->db->where('pub_id', $publication->pub_id);
         $CI->db->update('publication', array('read_access_level'=>$publication->read_access_level,
                                              'derived_read_access_level'=>$publication->derived_read_access_level,
@@ -390,8 +390,8 @@ class Accesslevels_lib {
     function initAttachmentAccessLevels($attachment) {
         $CI = &get_instance();
         
-        $attachment->read_access_level = 'intern';
-        $attachment->edit_access_level = 'intern';
+        $attachment->read_access_level = getConfigurationSetting("ATT_DEFAULT_READ");
+        $attachment->edit_access_level = getConfigurationSetting("ATT_DEFAULT_EDIT");
         $CI->db->where('att_id', $attachment->att_id);
         $CI->db->update('attachments', array('read_access_level'=>$attachment->read_access_level,
                                              'edit_access_level'=>$attachment->edit_access_level));
@@ -403,8 +403,8 @@ class Accesslevels_lib {
     function initNoteAccessLevels($note) {
         $CI = &get_instance();
         
-        $note->read_access_level = 'intern';
-        $note->edit_access_level = 'intern';
+        $note->read_access_level = getConfigurationSetting("NOTE_DEFAULT_READ");
+        $note->edit_access_level = getConfigurationSetting("NOTE_DEFAULT_EDIT");
         $CI->db->where('note_id', $note->note_id);
         $CI->db->update('notes', array('read_access_level'=>$note->read_access_level,
                                        'edit_access_level'=>$note->edit_access_level));
@@ -417,10 +417,10 @@ class Accesslevels_lib {
     function initTopicAccessLevels($topic) {
         $CI = &get_instance();
         $parent = $topic->getParent();
-        $topic->read_access_level = $parent->derived_read_access_level;
-        $topic->derived_read_access_level = $parent->derived_read_access_level;
-        $topic->edit_access_level = $parent->derived_edit_access_level;
-        $topic->derived_edit_access_level = $parent->derived_edit_access_level;
+        $topic->read_access_level = getConfigurationSetting("TOPIC_DEFAULT_READ");
+        $topic->derived_read_access_level = $this->minAccessLevel(array($parent->derived_read_access_level,$topic->read_access_level));
+        $topic->edit_access_level = getConfigurationSetting("TOPIC_DEFAULT_EDIT");
+        $topic->derived_edit_access_level = $this->minAccessLevel(array($parent->derived_edit_access_level,$topic->edit_access_level));
         $CI->db->where('topic_id', $topic->topic_id);
         $CI->db->update('topics', array('read_access_level'=>$topic->read_access_level,
                                         'derived_read_access_level'=>$topic->derived_read_access_level,

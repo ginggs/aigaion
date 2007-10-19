@@ -93,6 +93,14 @@ class Siteconfig_db {
             $result->configSettings['CONVERT_LATINCHARS_IN']='FALSE';
         }
         $result->configSettings['BIBTEX_STRINGS_IN']                = $CI->input->post('BIBTEX_STRINGS_IN');
+        $result->configSettings['ATT_DEFAULT_READ']                = $CI->input->post('ATT_DEFAULT_READ');
+        $result->configSettings['ATT_DEFAULT_EDIT']                = $CI->input->post('ATT_DEFAULT_EDIT');
+        $result->configSettings['PUB_DEFAULT_READ']               = $CI->input->post('PUB_DEFAULT_READ');
+        $result->configSettings['PUB_DEFAULT_EDIT']               = $CI->input->post('PUB_DEFAULT_EDIT');
+        $result->configSettings['NOTE_DEFAULT_READ']               = $CI->input->post('NOTE_DEFAULT_READ');
+        $result->configSettings['NOTE_DEFAULT_EDIT']               = $CI->input->post('NOTE_DEFAULT_EDIT');
+        $result->configSettings['TOPIC_DEFAULT_READ']                = $CI->input->post('TOPIC_DEFAULT_READ');
+        $result->configSettings['TOPIC_DEFAULT_EDIT']                = $CI->input->post('TOPIC_DEFAULT_EDIT');
         
         return $result;
     }

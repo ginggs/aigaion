@@ -22,13 +22,19 @@ class Bookmarklist extends Controller {
 	    insufficient rights
 	    
 	Parameters passed via URL segments:
-	    none
+	    3rd: list type
+	    4rth: page nr
 	         
     Returns:
         A full HTML page with the list of bookmarked publications
     */
     function viewlist() {
-	    //get URL segments: none
+	    //get URL segments
+        $order   = $this->uri->segment(3,'year');
+        if (!in_array($order,array('year','type','recent','title'))) {
+          $order='year';
+        }
+        $page   = $this->uri->segment(4,0);
 	    
 	    //check rights
         $userlogin = getUserLogin();
@@ -43,12 +49,30 @@ class Bookmarklist extends Controller {
         $headerdata = array();
         $headerdata['title'] = 'Bookmark list';
         $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
+        switch ($order) {
+            case 'type':
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on journal and type';
+                break;
+            case 'recent':
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on recency';
+                break;
+            case 'title':
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on title';
+                break;
+        }
+        if ($userlogin->getPreference('liststyle')>0) {
+            //set these parameters when you want to get a good multipublication list display
+            $content['multipage']       = True;
+            $content['resultcount']     = $this->publication_db->getCountForBookmarkList();
+            $content['currentpage']     = $page;
+            $content['multipageprefix'] = 'bookmarklist/viewlist/'.$order.'/';
+        }        
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
-        $content['publications']    = $this->publication_db->getForBookmarkList();
-        
+        $content['publications']    = $this->publication_db->getForBookmarkList($order,$page);
+        $content['order'] = $order;
         
         $output .= $this->load->view('bookmarklist/controls', array(), True);
         $output .= $this->load->view('publications/list', $content, true);
@@ -377,7 +401,7 @@ class Bookmarklist extends Controller {
 
         if ($commit=='commit') {
             //do delete, redirect somewhere
-            $publications = $this->publication_db->getForBookmarkList(-1);
+            $publications = $this->publication_db->getForBookmarkList('',-1);
             $nrdeleted = 0;
             $nrskipped = 0;
             foreach ($publications as $publication) {

@@ -883,8 +883,23 @@ class Publication_db {
     return $Q->num_rows();
   }  
   /** Return a list of publications for the bookmark list of the logged user */
-  function getForBookmarkList($page=0)
+  function getForBookmarkList($order='',$page=0)
   {
+    $orderby='actualyear DESC, cleantitle';
+    switch ($order) {
+      case 'year':
+        $orderby='actualyear DESC, cleantitle';
+        break;
+      case 'type':
+        $orderby='pub_type, cleanjournal, actualyear, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        break;
+      case 'recent':
+        $orderby='pub_id DESC';
+        break;
+      case 'title':
+        $orderby='cleantitle';
+        break;
+    }
     $CI = &get_instance();
     $userlogin = getUserLogin();
     $limit = '';
@@ -898,7 +913,7 @@ class Publication_db {
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
     WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
     AND   ".AIGAION_DB_PREFIX."userbookmarklists.pub_id=".AIGAION_DB_PREFIX."publication.pub_id
-    ORDER BY actualyear, cleantitle".$limit);
+    ORDER BY ".$orderby.$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -913,12 +928,13 @@ class Publication_db {
   }
   function getCountForBookmarkList() {
     $CI = &get_instance();
-    
+    $userlogin = getUserLogin();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
     WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
     AND   ".AIGAION_DB_PREFIX."userbookmarklists.pub_id=".AIGAION_DB_PREFIX."publication.pub_id");
     return $Q->num_rows();
   }
+  
     /** change the crossref of all affected publications to reflect a change of the bibtex_id of the given publication.
     Note: this method does NOT make use of getByID($pub_id), because one should also change the referring 
     crossref field of all publications that are inaccessible through getByID($pub_id) due to access level 

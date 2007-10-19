@@ -1,5 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 $userlogin = getUserLogin();
+$this->load->helper('publication');
+
 //$resulttabs will be 'title'=>'resultdisplay'.
 //later on, display will take care of surrounding divs, and show-and-hide-scripts for the tabs
 $resulttabs = array();
@@ -25,17 +27,20 @@ foreach ($searchresults as $type=>$resultList) {
             $pubdisplay = "<ul>";
             foreach ($resultList as $publication) {
                 $pubdisplay .= '<li>';
-                $pubdisplay .= $publication->title;
+                $pubdisplay .= anchor('publications/show/'.$publication->pub_id,$publication->title);
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";
             $resulttabs['Publications: '.count($resultList)] = $pubdisplay;
+            //option below displays the publciations as list, but I don't want the headers and everything... maybe make an option in that view that 
+            //determines whether headers are displayed?
+            //$resulttabs['Publications: '.count($resultList)] = $this->load->view('publications/list', array('publications'=>$resultList), true);
             break;
         case 'publications_bibtex_id':
             $pubdisplay = "<ul>";
             foreach ($resultList as $publication) {
                 $pubdisplay .= '<li>';
-                $pubdisplay .= $publication->bibtex_id.': '.$publication->title;
+                $pubdisplay .= anchor('publications/show/'.$publication->pub_id,$publication->bibtex_id.': '.$publication->title);
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";
@@ -45,7 +50,7 @@ foreach ($searchresults as $type=>$resultList) {
             $pubdisplay = "<ul>";
             foreach ($resultList as $publication) {
                 $pubdisplay .= '<li>';
-                $pubdisplay .= $publication->title;
+                $pubdisplay .= anchor('publications/show/'.$publication->pub_id,$publication->title);
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";

@@ -241,6 +241,48 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
 
 -->
 
+<!-- default access levels -->
+        <TR><TD colspan=2>
+        <hr><p class=header2>Default access levels:</p>
+        </TD></TR>
+        <tr><td align=left colspan=2><img border=0 src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+        Specify here the default access levels for different types of objects.</td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td>Default access level:</td>
+        </tr>
+<?php
+    $types = array('ATT_DEFAULT_READ'=>'Default attachment read level',
+          'ATT_DEFAULT_EDIT'=>'Default attachment edit level',
+          'PUB_DEFAULT_READ'=>'Default publication read level',
+          'PUB_DEFAULT_EDIT'=>'Default publication edit level',
+          'NOTE_DEFAULT_READ'=>'Default note read level',
+          'NOTE_DEFAULT_EDIT'=>'Default note edit level',
+          'TOPIC_DEFAULT_READ'=>'Default topic read level',
+          'TOPIC_DEFAULT_EDIT'=>'Default topic edit level');
+    
+    $levels = array('private'=>'private','intern'=>'intern','public'=>'public');
+    
+    foreach ($types as $type=>$desc) {
+?>        
+        <TR>
+        <td><label><?php echo $desc; ?></label></td>
+        <td align=left>
+<?php
+        $level = 'intern';
+        if ($siteconfig->getConfigSetting($type)!='') {
+            $level = $siteconfig->getConfigSetting($type);
+        }
+        
+        echo form_dropdown($type, $levels, $level);
+?>
+	    </td>
+        </tr>
+        </TR>
+<?php
+    }
+?>
 <!-- EXTERNAL LOGIN MODULES -->
         <tr>
             <td colspan='2'><hr><p class='header2'>Login modules:</p></td>

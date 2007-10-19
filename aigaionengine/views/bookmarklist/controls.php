@@ -69,4 +69,16 @@ if ($userlogin->hasRights('publication_edit')) {
     echo form_close();
 ?>
 <br/>
+<?php
+echo '['.anchor('bookmarklist/viewlist/type','Order on type/journal').']';
+?>
+<br/>
+<?php
+echo '['.anchor('bookmarklist/viewlist/year','Order on year').']';
+?>
+<br/>
+<?php
+echo '['.anchor('bookmarklist/viewlist/title','Order alphabetically on title').']';
+?>
+<br/>
 <br/>
