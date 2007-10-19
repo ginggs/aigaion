@@ -15,9 +15,12 @@ class Search_lib {
 
     /** A simple search on all types of data using a single string of query.
     Returns an array map ('type'=>$resultArray) like this:
-    ('author'=>$arrayOfAuthors,
-     'topic'=>$arrayOfTopics,
-     'publication'=>array(pub=>'title,keyword,note,abstract') //types dependent on how publication was found
+    ('authors'=>$arrayOfAuthors,
+     'topics'=>$arrayOfTopics,
+     'keywords'=>$arrayOfKeywords,
+     'publications_content'=>$arrayOfPubs,
+     'publications_note'=>$arrayOfPubs,
+     'publications_bibtex_id'=>$arrayOfPubs,
      ) */
     function simpleSearch($query) {
         $result = array();
@@ -26,7 +29,10 @@ class Search_lib {
         if (count($keywordArray)==0) {
             return $result;
         }
+        
         //find author hits on 'like' clause for cleanname
+        //DR note: here we could also enforce that the author should publish on a subscribed topic. Would make things a lot slower,
+        //but I think people will want this.
         $authorQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."author WHERE ".$this->keywordsToLikeQuery($keywordArray,'cleanname')." ORDER BY cleanname;");
         if ($authorQ->num_rows()>0) {
             $arrayOfAuthors = array();
@@ -35,7 +41,8 @@ class Search_lib {
             }
             $result['authors'] = $arrayOfAuthors;
         }
-        //find topic hits on 'like' clause for name
+        
+        //find topic hits on 'like' clause for name [DR]: should be changed to using some 'cleanname' column!
         $userlogin = getUserLogin();
         $user = $CI->user_db->getByID($userlogin->userId());
         //by default: only search for subscribed topics
@@ -53,6 +60,52 @@ class Search_lib {
             }
             $result['topics'] = $arrayOfTopics;
         }
+        
+        //find publication hits on 'like' clause for cleantitle, bibtex_id, cleanjournal
+        //DR note: here we could also enforce that the publicaiton should be in a subscribed topic. Would make things a lot slower,
+        //but I think people will want this.
+        $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
+                              .$this->keywordsToLikeQuery($keywordArray,'cleantitle')
+                              .' OR '
+                              .$this->keywordsToLikeQuery($keywordArray,'cleanjournal')
+                              ." ORDER BY cleantitle, actualyear;");
+        if ($pubQ->num_rows()>0) {
+            $arrayOfPubs = array();
+            foreach ($pubQ->result() as $R) {
+                $next = $CI->publication_db->getFromRow($R); //create publication from row
+                if ($next != null)
+                    $arrayOfPubs[] = $next;
+            }
+            $result['publications_content'] = $arrayOfPubs;
+        }
+
+        $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
+                              .$this->keywordsToLikeQuery($keywordArray,'bibtex_id')
+                              ." ORDER BY cleantitle, actualyear;");
+        if ($pubQ->num_rows()>0) {
+            $arrayOfPubs = array();
+            foreach ($pubQ->result() as $R) {
+                $next = $CI->publication_db->getFromRow($R); //create publication from row
+                if ($next != null)
+                    $arrayOfPubs[] = $next;
+            }
+            $result['publications_bibtex_id'] = $arrayOfPubs;
+        }
+
+
+        $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."notes WHERE "
+                              .$this->keywordsToLikeQuery($keywordArray,'text'));
+        if ($pubQ->num_rows()>0) {
+            $arrayOfPubs = array();
+            foreach ($pubQ->result() as $R) {
+                $note = $CI->note_db->getByID($R->note_id); 
+                $next = $CI->publication_db->getByID($note->pub_id);
+                if ($next != null)
+                    $arrayOfPubs[] = $next;
+            }
+            $result['publications_note'] = $arrayOfPubs;
+        }
+                
         //return result
         return $result;
     }

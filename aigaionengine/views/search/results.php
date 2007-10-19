@@ -21,6 +21,36 @@ foreach ($searchresults as $type=>$resultList) {
             $topicdisplay .= "</ul>";
             $resulttabs['Topics: '.count($resultList)] = $topicdisplay;
             break;
+        case 'publications_content':
+            $pubdisplay = "<ul>";
+            foreach ($resultList as $publication) {
+                $pubdisplay .= '<li>';
+                $pubdisplay .= $publication->title;
+                $pubdisplay .= '</li>';
+            }
+            $pubdisplay .= "</ul>";
+            $resulttabs['Publications: '.count($resultList)] = $pubdisplay;
+            break;
+        case 'publications_bibtex_id':
+            $pubdisplay = "<ul>";
+            foreach ($resultList as $publication) {
+                $pubdisplay .= '<li>';
+                $pubdisplay .= $publication->bibtex_id.': '.$publication->title;
+                $pubdisplay .= '</li>';
+            }
+            $pubdisplay .= "</ul>";
+            $resulttabs['BiBTeX ID: '.count($resultList)] = $pubdisplay;
+            break;
+        case 'publications_note':
+            $pubdisplay = "<ul>";
+            foreach ($resultList as $publication) {
+                $pubdisplay .= '<li>';
+                $pubdisplay .= $publication->title;
+                $pubdisplay .= '</li>';
+            }
+            $pubdisplay .= "</ul>";
+            $resulttabs['Notes: '.count($resultList)] = $pubdisplay;
+            break;
         default:
             break;
     }
