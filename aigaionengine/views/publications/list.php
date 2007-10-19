@@ -95,8 +95,10 @@
 echo "<div class='publication_summary ".$even."' id='publicationsummary".$publication->pub_id."'>
 <table width='100%'>
   <tr>
-    <td>
-      <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";
+    <td>";
+if ($userlogin->getPreference('summarystyle') == 'title')    
+    echo " <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>, ";
+    
 $num_authors    = count($publication->authors);
 $current_author = 1;
 
@@ -105,13 +107,17 @@ foreach ($publication->authors as $author)
   if (($current_author == $num_authors) & ($num_authors > 1)) {
     echo " and ";
   }
-  else {
+  elseif ($current_author >1) {
     echo ", ";
   }
 
   echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
   $current_author++;
 }
+
+if ($userlogin->getPreference('summarystyle') == 'author')    
+    echo ", <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
+
 
 foreach ($summaryfields as $key => $prefix) {
   if ($key == 'pages') {
