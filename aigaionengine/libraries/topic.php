@@ -25,8 +25,9 @@ class Topic {
     var $derived_read_access_level  = 'intern';
     var $derived_edit_access_level  = 'intern';
     #system variables, not to be changed by user
+    var $cleanname          = '';
     var $user_id            = -1; //owner who created it
-    var $group_id            = 0; //group to which access is restricted
+    var $group_id           = 0; //group to which access is restricted
     var $children           = null; //array of Topic's. These are not necessarily all possible children, depending on the configuration provided at construction time.
 
     //this configuration array may contain any number of settings that determine the behavior of this topic (tree)

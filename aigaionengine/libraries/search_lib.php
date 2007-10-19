@@ -42,7 +42,7 @@ class Search_lib {
             $result['authors'] = $arrayOfAuthors;
         }
         
-        //find topic hits on 'like' clause for name [DR]: should be changed to using some 'cleanname' column!
+        //find topic hits on 'like' clause for cleanname 
         $userlogin = getUserLogin();
         $user = $CI->user_db->getByID($userlogin->userId());
         //by default: only search for subscribed topics
@@ -50,7 +50,7 @@ class Search_lib {
                          'user'=>$user,
                          'includeGroupSubscriptions'=>True
                         );
-        $topicQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."topics WHERE ".$this->keywordsToLikeQuery($keywordArray,'name')." ORDER BY name;");
+        $topicQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."topics WHERE ".$this->keywordsToLikeQuery($keywordArray,'cleanname')." ORDER BY name;");
         if ($topicQ->num_rows()>0) {
             $arrayOfTopics = array();
             foreach ($topicQ->result() as $R) {

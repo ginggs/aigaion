@@ -287,6 +287,20 @@
         if ($pubcount > 0) {
             $result .= "<br/>Fixed searchable names of ".$pubcount." publications.";
         }
+        # check clean names of topics (topics.cleanname)
+        $topiccount = 0;
+        $Q = $CI->db->get('topics');
+        foreach ($Q->result() as $row) { //not all topics are accessible to all users... so go directly to sql
+            $oldcleanname = $row->cleanname;
+            $cleanname = utf8_to_ascii($row->name);
+            if ($oldcleanname!=$cleanname) {
+                $CI->db->update('topics',array('cleanname'=>$cleanname),array('topic_id'=>$row->topic_id));
+                $topiccount++;
+            }
+        }
+        if ($topiccount > 0) {
+            $result .= "<br/>Fixed searchable names of ".$topiccount." topics.";
+        }
         $result .= "</td><td><b>OK</b></td></tr>\n";
         return $result;
     }

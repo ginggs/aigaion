@@ -20,6 +20,7 @@ class Publication {
   var $group_id     = 0; //group to which access is restricted
   var $specialchars = 'FALSE';
   var $cleantitle   = '';
+  var $cleanauthor  = '';
   var $cleanjournal = '';
   var $actualyear   = '';
   var $isBookmarked = False;

@@ -324,6 +324,9 @@ ALTER TABLE ai2_userrights CONVERT TO CHARACTER SET utf8;
 ALTER TABLE ai2_users CONVERT TO CHARACTER SET utf8;
 ALTER TABLE ai2_usertopiclink CONVERT TO CHARACTER SET utf8;
 
+====== 19-10-2007
+ALTER TABLE `publication` ADD COLUMN `cleanauthor` VARCHAR(255) NOT NULL default '';
+ALTER TABLE `topics` ADD COLUMN `cleanname` VARCHAR(50) NOT NULL default '';
 
 ---still to be done:
 

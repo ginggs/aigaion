@@ -410,6 +410,9 @@ class Publication_db {
         $CI->db->insert('publicationkeywordlink', $data);
       }
     }
+
+    //start building up clean author value
+    $publication->cleanauthor = "";
     
     //add authors
     if (is_array($publication->authors)) {
@@ -424,6 +427,7 @@ class Publication_db {
                       'is_editor' => 'N');
         $CI->db->insert('publicationauthorlink', $data);
         $rank++;
+        $publication->cleanauthor .= ' '.$author->cleanname;
       }
     }
     
@@ -440,8 +444,13 @@ class Publication_db {
                       'is_editor' => 'Y');
         $CI->db->insert('publicationauthorlink', $data);
         $rank++;
+        $publication->cleanauthor .= ' '.$author->cleanname;
       }
     }
+    
+    //update cleanauthor value
+    $CI->db->where('pub_id', $publication->pub_id);
+    $CI->db->update('publication', array('cleanauthor'=>trim($publication->cleanauthor)));
     
     //subscribe to topic 1
     $data = array('pub_id'      => $publication->pub_id,
@@ -562,10 +571,10 @@ class Publication_db {
     //[DR:] line below commented out: the user id should not change when updating! the owner always stays the same!
     //$data['user_id'] = $userlogin->userId();
   
-  
-    //insert into database using active record helper
+    //insert into database using active record helper. 
     $CI->db->where('pub_id', $publication->pub_id);
     $CI->db->update('publication', $data);
+
     
     
     //remove old keyword links
@@ -588,6 +597,9 @@ class Publication_db {
     //remove old author and editor links
     $CI->db->delete('publicationauthorlink', array('pub_id' => $publication->pub_id)); 
     
+    //start building up clean author value
+    $publication->cleanauthor = "";
+    
     //add authors
     if (is_array($publication->authors))
     {
@@ -602,6 +614,7 @@ class Publication_db {
                       'is_editor' => 'N');
         $CI->db->insert('publicationauthorlink', $data);
         $rank++;
+        $publication->cleanauthor .= ' '.$author->cleanname;
       }
     }
     
@@ -619,8 +632,14 @@ class Publication_db {
                       'is_editor' => 'Y');
         $CI->db->insert('publicationauthorlink', $data);
         $rank++;
+        $publication->cleanauthor .= ' '.$author->cleanname;
       }
     }
+
+    //update cleanauthor value
+    $CI->db->where('pub_id', $publication->pub_id);
+    $CI->db->update('publication', array('cleanauthor'=>trim($publication->cleanauthor)));
+
 
     //changed bibtex_id?
     if ($oldpublication->bibtex_id != $publication->bibtex_id) {
