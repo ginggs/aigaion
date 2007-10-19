@@ -22,7 +22,7 @@ class Authors extends Controller {
       $author_id   = $this->uri->segment(3);
     }
     $order   = $this->uri->segment(4,'year');
-    if (!in_array($order,array('year','type','recent','title'))) {
+    if (!in_array($order,array('year','type','recent','title','author'))) {
       $order='year';
     }
     $page   = $this->uri->segment(5,0);
@@ -55,6 +55,9 @@ class Authors extends Controller {
             break;
         case 'title':
             $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on title';
+            break;
+        case 'author':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on first author';
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {

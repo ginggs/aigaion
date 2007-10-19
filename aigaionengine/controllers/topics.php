@@ -215,7 +215,7 @@ class Topics extends Controller {
 	{
 	    $topic_id = $this->uri->segment(3,1);
         $order   = $this->uri->segment(4,'year');
-        if (!in_array($order,array('year','type','recent','title'))) {
+        if (!in_array($order,array('year','type','recent','title','author'))) {
           $order='year';
         }
         $page   = $this->uri->segment(5,0);
@@ -251,6 +251,9 @@ class Topics extends Controller {
                 break;
             case 'title':
                 $content['header']          = 'Publications for topic '.$topic->name.' ordered on title';
+                break;
+            case 'author':
+                $content['header']          = 'Publications for topic '.$topic->name.' ordered on first author';
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {

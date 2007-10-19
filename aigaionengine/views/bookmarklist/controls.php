@@ -81,4 +81,8 @@ echo '['.anchor('bookmarklist/viewlist/year','Order on year').']';
 echo '['.anchor('bookmarklist/viewlist/title','Order alphabetically on title').']';
 ?>
 <br/>
+<?php
+echo '['.anchor('bookmarklist/viewlist/author','Order alphabetically on author').']';
+?>
+<br/>
 <br/>

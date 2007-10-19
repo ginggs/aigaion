@@ -808,6 +808,9 @@ class Publication_db {
       case 'title':
         $orderby='cleantitle';
         break;
+      case 'author':
+        $orderby='cleanauthor';
+        break;
     }
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
@@ -847,6 +850,9 @@ class Publication_db {
       case 'title':
         $orderby='cleantitle';
         break;
+      case 'author':
+        $orderby='cleanauthor';
+        break;
     }
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
@@ -885,6 +891,9 @@ class Publication_db {
         break;
       case 'title':
         $orderby='cleantitle';
+        break;
+      case 'author':
+        $orderby='cleanauthor';
         break;
     }
     $CI = &get_instance();

@@ -275,14 +275,19 @@
         $pubcount = 0;
         $Q = $CI->db->get('publication');
         foreach ($Q->result() as $row) { //not all publications are accessible to all users... so go directly to sql
+            //check clean title
             $oldcleantitle = $row->cleantitle;
             $oldcleanjournal = $row->cleanjournal;
+            $oldcleanauthor = $row->cleanauthor;
             $cleantitle = utf8_to_ascii($row->title);
             $cleanjournal = utf8_to_ascii($row->journal);
-            if ($oldcleanjournal!=$cleanjournal || $oldcleantitle!=$cleantitle) {
-                $CI->db->update('publication',array('cleantitle'=>$cleantitle, 'cleanjournal'=>$cleanjournal),array('pub_id'=>$row->pub_id));
+            //check clean author? that's tricky. We cannot get to the publication object, so some code from publication.update needs to be replicated here :(
+            $cleanauthor = getCleanAuthor($row);
+            if ($oldcleanjournal!=$cleanjournal || $oldcleantitle!=$cleantitle || $oldcleanauthor!=$cleanauthor) {
+                $CI->db->update('publication',array('cleantitle'=>$cleantitle, 'cleanjournal'=>$cleanjournal, 'cleanauthor'=>$cleanauthor),array('pub_id'=>$row->pub_id));
                 $pubcount++;
             }
+            
         }
         if ($pubcount > 0) {
             $result .= "<br/>Fixed searchable names of ".$pubcount." publications.";
@@ -303,6 +308,29 @@
         }
         $result .= "</td><td><b>OK</b></td></tr>\n";
         return $result;
+    }
+    /** return a proper clean author for the given publication row without creating publication object */
+    function getCleanAuthor($row) {
+        //check clean author? that's tricky. We cannot get to the publication object, so some code from publication.update needs to be replicated here :(
+        $CI = &get_instance();
+        $authors = $CI->author_db->getForPublication($row->pub_id, 'N');
+        $editors = $CI->author_db->getForPublication($row->pub_id, 'Y');
+        $cleanauthor = "";
+        //add authors
+        if (is_array($authors)) {
+          foreach ($authors as $author)
+          {
+            $cleanauthor .= ' '.$author->cleanname;
+          }
+        }
+        if (is_array($editors)) {
+          foreach ($editors as $author)
+          {
+            $cleanauthor .= ' '.$author->cleanname;
+          }
+        }
+        return trim($cleanauthor);
+        
     }
 
 /*

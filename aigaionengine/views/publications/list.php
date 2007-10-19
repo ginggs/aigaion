@@ -67,7 +67,18 @@
         }
         break;
       case 'title':
-        $newsubheader = $publication->cleantitle[0];
+        $newsubheader = "";
+        if (strlen($publication->cleantitle)>0)
+            $newsubheader = $publication->cleantitle[0];
+        if ($newsubheader!=$subheader) {
+          $subheader = $newsubheader;
+          echo '<div><br/></div><div class="header">'.strtoupper($subheader).'</div><div><br/></div>';
+        }
+        break;
+      case 'author':
+        $newsubheader = "";
+        if (strlen($publication->cleanauthor)>0)
+            $newsubheader = $publication->cleanauthor[0];
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
           echo '<div><br/></div><div class="header">'.strtoupper($subheader).'</div><div><br/></div>';

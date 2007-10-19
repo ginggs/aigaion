@@ -31,7 +31,7 @@ class Bookmarklist extends Controller {
     function viewlist() {
 	    //get URL segments
         $order   = $this->uri->segment(3,'year');
-        if (!in_array($order,array('year','type','recent','title'))) {
+        if (!in_array($order,array('year','type','recent','title','author'))) {
           $order='year';
         }
         $page   = $this->uri->segment(4,0);
@@ -59,6 +59,9 @@ class Bookmarklist extends Controller {
                 break;
             case 'title':
                 $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on title';
+                break;
+            case 'author':
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on first author';
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {

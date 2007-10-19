@@ -48,6 +48,8 @@ echo  "<li><nobr>["
        <li><nobr>["
       .anchor('authors/show/'.$author->author_id.'/title','Order alphabetically on title')."]</nobr></li>
        <li><nobr>["
+      .anchor('authors/show/'.$author->author_id.'/author','Order alphabetically on author')."]</nobr></li>
+       <li><nobr>["
       .anchor('authors/show/'.$author->author_id.'/year','Order on year')."]</nobr></li>
 </ul>
 ";

@@ -101,6 +101,8 @@ echo  "<li><nobr>["
        <li><nobr>["
       .anchor('topics/single/'.$topic->topic_id.'/title','Order alphabetically on title')."]</nobr></li>
        <li><nobr>["
+      .anchor('topics/single/'.$topic->topic_id.'/author','Order alphabetically on author')."]</nobr></li>
+       <li><nobr>["
       .anchor('topics/single/'.$topic->topic_id.'/year','Order on year')."]</nobr></li>
 </ul>
 ";

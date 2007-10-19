@@ -83,7 +83,7 @@ class Publications extends Controller {
   {
  	    $this->load->helper('publication');
         $order   = $this->uri->segment(3,'year');
-        if (!in_array($order,array('year','type','recent','title'))) {
+        if (!in_array($order,array('year','type','recent','title','author'))) {
           $order='';
         }
         $page   = $this->uri->segment(4,0);
@@ -103,6 +103,9 @@ class Publications extends Controller {
                 break;
             case 'title':
                 $content['header']          = 'All publications ordered on title';
+                break;
+            case 'author':
+                $content['header']          = 'All publications ordered on author';
                 break;
         }
         

@@ -10,6 +10,7 @@
     <li class="mainmenu"><?php echo anchor('publications', 'Publications (year)'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/showlist/title', '&nbsp;&nbsp;&nbsp;- Alphabetic'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/showlist/type', '&nbsp;&nbsp;&nbsp;- Type/journal'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/author', '&nbsp;&nbsp;&nbsp;- Author'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/showlist/recent', '&nbsp;&nbsp;&nbsp;- Recent'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
 <?php
