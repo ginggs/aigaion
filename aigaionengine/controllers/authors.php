@@ -60,11 +60,10 @@ class Authors extends Controller {
     if ($userlogin->getPreference('liststyle')>0) {
         //set these parameters when you want to get a good multipublication list display
         $publicationContent['multipage']       = True;
-        $publicationContent['resultcount']     = $this->publication_db->getCountForAuthor($author_id);
         $publicationContent['currentpage']     = $page;
         $publicationContent['multipageprefix'] = 'authors/show/'.$author_id.'/'.$order.'/';
     }    
-    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,$page);
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
     $publicationContent['order'] = $order;
 
     

@@ -110,11 +110,10 @@ class Publications extends Controller {
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
-            $content['resultcount']     = $this->publication_db->getCountForTopic('1');
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'publications/showlist/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic('1',$order,$page);
+        $content['publications']    = $this->publication_db->getForTopic('1',$order);
         $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);

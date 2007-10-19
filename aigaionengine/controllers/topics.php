@@ -256,11 +256,10 @@ class Topics extends Controller {
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
-            $content['resultcount']     = $this->publication_db->getCountForTopic($topic_id);
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'topics/single/'.$topic_id.'/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic($topic_id,$order,$page);
+        $content['publications']    = $this->publication_db->getForTopic($topic_id,$order);
         $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);

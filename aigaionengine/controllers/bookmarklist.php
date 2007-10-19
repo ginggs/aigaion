@@ -64,14 +64,13 @@ class Bookmarklist extends Controller {
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
-            $content['resultcount']     = $this->publication_db->getCountForBookmarkList();
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'bookmarklist/viewlist/'.$order.'/';
         }        
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $content['publications']    = $this->publication_db->getForBookmarkList($order,$page);
+        $content['publications']    = $this->publication_db->getForBookmarkList($order);
         $content['order'] = $order;
         
         $output .= $this->load->view('bookmarklist/controls', array(), True);

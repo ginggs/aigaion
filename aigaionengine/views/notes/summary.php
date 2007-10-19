@@ -19,7 +19,7 @@ $text = auto_link($note->text);
 $link = "";
 $bibtexidlinks = getBibtexIdLinks();
 foreach ($note->xref_ids as $xref_id) {
-	$link = $bibtexidlinks[$xref_id];
+    $link = $bibtexidlinks[$xref_id];
 	//check whether the xref is present in the session var (should be). If not, try to correct the issue.
 	if ($link == "") {
 	    $this->db->select('bibtex_id');
@@ -27,7 +27,8 @@ foreach ($note->xref_ids as $xref_id) {
 		if ($Q->num_rows() > 0) {
 			$R = $Q->row();
 			if (trim($R->bibtex_id) != "") {
-				$bibtexidlinks[$R[$xref_id] ] = array($R->bibtex_id, "/\b(?<!\.)(".preg_quote($R->bibtex_id, "/").")\b/");
+				$bibtexidlinks[$xref_id ] = array($R->bibtex_id, "/\b(?<!\.)(".preg_quote($R->bibtex_id, "/").")\b/");
+				$link = $bibtexidlinks[$xref_id ];
 			}
 		}
 	}
@@ -42,9 +43,8 @@ foreach ($note->xref_ids as $xref_id) {
 
 echo "<div class='readernote'>
   <b>[".getAbbrevForUser($note->user_id)."]</b>: ";
-$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
-echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
-      
+  $accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
+  echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
   echo $text;
 
 //the block of edit actions: dependent on user rights

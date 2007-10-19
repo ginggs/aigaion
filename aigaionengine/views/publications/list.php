@@ -17,11 +17,11 @@
     $liststyle = $userlogin->getPreference('liststyle');
     if ($liststyle>0) {
         $multipagelinks.= '<center><div>';
-        while ($page*$liststyle<$resultcount) {
+        while ($page*$liststyle<count($publications)) {
             $multipagelinks.= ' | ';
             $linktext = ($page*$liststyle+1).'-';
-            if (($page+1)*$liststyle>$resultcount) {
-                $linktext .= $resultcount;
+            if (($page+1)*$liststyle>count($publications)) {
+                $linktext .= count($publications);
             } else {
                 $linktext .= (($page+1)*$liststyle);
             }
@@ -41,8 +41,15 @@
   $subheader = '';
   $subsubheader = '';
   
+  $pubno = 0;
+  $liststyle = $userlogin->getPreference('liststyle');
   foreach ($publications as $publication)
   {
+    $pubno++;
+    if (isset($multipage) && ($multipage == True)) {
+        if (($currentpage*$liststyle > $pubno) || (($currentpage+1)*$liststyle < $pubno))
+            continue;
+    }
     if ($publication!=null) {
       $b_even = !$b_even;
     if ($b_even)
