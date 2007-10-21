@@ -152,7 +152,7 @@ class Parseentries
 		$this->parseFile = TRUE;
 	}
   // Load a bibtex string to parse it
-	function loadBibtexString($bibtex_string)
+	function loadImportString($bibtex_string)
 	{
 		if(is_string($bibtex_string))
 		{

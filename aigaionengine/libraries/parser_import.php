@@ -4,12 +4,12 @@
 //include_once("bibparse/PARSEENTRIES.php");
 //include_once("bibparse/PARSEPAGE.php");
 //include_once("bibparse/PARSEMONTH.php");
-appendErrorMessage("The Parser_Bibtex was initialized. However, it's functionality was taken over by Parser_Import, so this should not have happened.  It's not a porblem, since this class still works, but I would appreciate it if you could forward this warning to the developers.<br/>Regards, Dennis<br/>");
+
 /** IN THE PROCESS OF BEING REPLACED WITH A PARSER THAT WORKS FOR ALLL INPUT TYPES, GIVEN THE RIGHT ENTRYPARSER */
-class Parser_Bibtex
+class Parser_Import
 {
   //class member variables
-  var $bibtexData   = '';
+  var $importData   = '';
   var $publications = array();
   
   //the parser itself
@@ -20,25 +20,23 @@ class Parser_Bibtex
   
   
   //class constructor
-  function Parser_Bibtex()
+  function Parser_Import()
   {
     $CI = &get_instance();
-    $CI->load->library('parseentries');
     $CI->load->library('parsecreators');
     $CI->load->library('parsepage');
     $CI->load->library('parsemonth');
     $CI->load->helper('publication');
     
-    $this->cEntryParser   = $CI->parseentries;
     $this->cAuthorParser  = $CI->parsecreators;
     $this->cPageParser    = $CI->parsepage;
     $this->cMonthParser   = $CI->parsemonth;
   }
   
   //loadData: get the data and store in the class;
-  function loadImportData($data)
+  function loadData($data)
   {
-    $this->bibtexData = $data;
+    $this->importData = $data;
     
     //as soon as we load new data, existing (parsed) publications become invalid
     unset($this->publications);
@@ -46,18 +44,21 @@ class Parser_Bibtex
   }
   
   //parse: call actual parser, retrieve results and store in publications array;
-  function parse()
+  function parse($entryparser)
   {
+    $this->cEntryParser   = $entryparser;
+
     //todo: load user strings and prepend to bibtex data
     
+    
     //load bibtex to parser and extract entries
-    $this->cEntryParser->loadBibtexString($this->bibtexData);
+    $this->cEntryParser->loadImportString($this->importData);
    	$this->cEntryParser->extractEntries();
   
     //retrieve parsed entries from parser
   	list($preamble, $strings, $entries) = $this->cEntryParser->returnArrays();
   
-  	//now, $entries contains the parsed bibtex, Bibliophile style.
+  	//now, $entries contains the parsed data, Bibliophile style.
   	//we have to convert to our publication objects
   	foreach ($entries as $entry)
   	{

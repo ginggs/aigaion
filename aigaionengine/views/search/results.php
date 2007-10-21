@@ -60,7 +60,9 @@ foreach ($searchresults as $type=>$resultList) {
             break;
     }
 }
-
+if (count($resulttabs)==0){
+    echo 'no results for query<br/>';
+}
 //show all relevant result tabs
 foreach ($resulttabs as $title=>$tabdisplay) {
     echo '<p class="header1">'.$title.'</p>';

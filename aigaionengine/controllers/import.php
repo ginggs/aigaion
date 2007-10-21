@@ -2,18 +2,18 @@
 
 class Import extends Controller {
 
-	function Import()
-	{
-		parent::Controller();
-		
-		$this->load->helper('publication');
-	}
-	
+    function Import()
+    {
+        parent::Controller();
+        
+        $this->load->helper('publication');
+    }
+    
   /** Default function: list publications */
   function index()
-	{
+    {
     $this->viewform();
-	}
+    }
 
   function viewform()
   {
@@ -38,21 +38,52 @@ class Import extends Controller {
     $this->output->set_output($output);
   }
   
-	
+    
   //commit() - Commit the posted publication to the database
   function commit()
   {
-    $this->load->library('parser_bibtex');
+    $this->load->library('parser_import');
 
     $import_data  = $this->input->post('import_data');    
-    $import_count = $this->input->post('import_count');
+    $type = 'BibTeX';
+    //determine type of input
+    if (preg_match("/(@[A-Za-z]{4,}\s*[\r\n\t]*{)/", $import_data) == 1)
+    {
+      $type = "BibTeX";
+    } 
+    else if (preg_match("/(TY\s{1,2}-\s)/", $import_data) == 1)
+    {
+      $type = "ris";
+    }
+    else if (preg_match("/\%0/", $import_data) == 1)
+    {
+      $type = "refer";
+    }
     
+    $import_count = $this->input->post('import_count');
+    $markasread   = $this->input->post('markasread')=='markasread'; // true iff all imported entries should be marked as 'read' for the user
     if ($import_data != null)
     {
-      //TODO: DETECT WHETER BIBTEX OR RIS. FOR NOW: ASSUME BIBTEX
-      $this->parser_bibtex->loadData($import_data);
-      $this->parser_bibtex->parse();
-      $publications = $this->parser_bibtex->getPublications();
+      switch ($type) {
+        case 'BibTeX':
+          $this->load->library('parseentries');
+          $this->parser_import->loadData($import_data);
+          $this->parser_import->parse($this->parseentries);
+          $publications = $this->parser_import->getPublications();
+          break;
+        case 'ris':
+          $this->load->library('parseentries_ris');
+          $this->parser_import->loadData($import_data);
+          $this->parser_import->parse($this->parseentries_ris);
+          $publications = $this->parser_import->getPublications();
+          break;
+        case 'refer':
+          $this->load->library('parseentries_refer');
+          $this->parser_import->loadData($import_data);
+          $this->parser_import->parse($this->parseentries_refer);
+          $publications = $this->parser_import->getPublications();
+          break;
+      }
       
       $reviewed_publications  = array();
       $review_messages        = array();

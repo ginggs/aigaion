@@ -336,6 +336,7 @@ class Publication_db {
                     'namekey',
                     'userfields',
                     'cleantitle',
+                    'cleanauthor',
                     'cleanjournal',
                     'actualyear',
                     'specialchars'
@@ -367,6 +368,7 @@ class Publication_db {
     //create cleantitle and cleanjournal
     $publication->cleantitle    = utf8_to_ascii($publication->title);
     $publication->cleanjournal    = utf8_to_ascii($publication->journal);
+    $publication->cleanauthor = ""; //will be filled later, after authors have been done
     
     //get actual year
     if (trim($publication->year) == '')

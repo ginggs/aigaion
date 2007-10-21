@@ -7,6 +7,7 @@
   echo form_open('import/commit', $formAttributes)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
 ?>
+
   <table class='publication_edit_form' width='100%'>
     <tr>
       <td>
@@ -19,7 +20,7 @@
   </table>
 <?php
 
-  echo form_submit('publication_submit', 'Submit')."\n";
+  echo form_submit('publication_submit', 'Submit');//.'&nbsp;'.form_checkbox('markasread','markasread',False).' Mark imported entries as read.'."\n";
   echo form_close()."\n";
 ?>
 </div>
