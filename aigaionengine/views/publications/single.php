@@ -231,6 +231,50 @@ $user       = $this->user_db->getByID($userlogin->userID());
     </tr>
     
     <tr>
+      <td valign='top'>Total mark:</td>
+      <td valign='top'>
+<?php
+        echo $publication->mark;
+?>
+      </td>
+    </tr>
+<?php
+    if ($userlogin->hasRights('note_edit')) {
+      $this->load->helper('form');
+?>
+      <tr>
+        <td valign='top'>Your mark:</td>
+        <td valign='top'>
+<?php
+          echo form_open('publications/read/'.$publication->pub_id);
+
+          $mark = $publication->getUserMark();
+          if ($mark==-1) {//not read
+            echo form_submit('read','Read/Add mark');
+          } else {
+            echo form_submit('read','Update mark');
+          }
+          echo '1';
+          for ($i = 1; $i < 6; $i++)
+          {
+            echo form_radio('mark',$i,$i==$mark); 
+          }
+          echo '5&nbsp;';
+          if ($mark==-1) {//not read
+            echo form_close();
+          } else {
+            echo form_close();
+            echo form_open('publications/unread/'.$publication->pub_id);
+            echo form_submit('unread','Unread');
+            echo form_close();
+          }
+?>
+        </td>
+      </tr>
+<?php
+    }
+?>
+    <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
 <?php 

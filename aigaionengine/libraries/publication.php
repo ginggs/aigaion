@@ -24,6 +24,7 @@ class Publication {
   var $cleanjournal = '';
   var $actualyear   = '';
   var $isBookmarked = False;
+  var $mark         = 0;
   
   //user vars
   var $pub_type     = '';
@@ -123,7 +124,7 @@ class Publication {
   
   function getNotes() 
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     if ($this->notes == null) 
     {
         $this->notes = $CI->note_db->getNotesForPublication($this->pub_id);
@@ -131,5 +132,22 @@ class Publication {
     return $this->notes;
   }
   
+  function getUserMark() 
+  {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    return $CI->publication_db->getUserMark($this->pub_id,$userlogin->userId());
+  }
+  /** read & mark for this user */
+  function read($mark) {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    $CI->publication_db->read($mark,$this->getUserMark(),$this->pub_id,$userlogin->userId());
+  }
+  function unread() {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    $CI->publication_db->unread($this->getUserMark(),$this->pub_id,$userlogin->userId());
+  }
 }
 ?>

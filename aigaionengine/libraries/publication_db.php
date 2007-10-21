@@ -339,6 +339,7 @@ class Publication_db {
                     'cleanauthor',
                     'cleanjournal',
                     'actualyear',
+                    'mark', //always 0 by default; mark value will only be changed in a separate method so it doesn't need to get a value ehre or in the update method
                     'specialchars'
     );
   
@@ -522,7 +523,7 @@ class Publication_db {
                     'cleanjournal',
                     'actualyear',
                     'specialchars'
-    );
+    ); //'mark' doesn't need to get updated as that is done through other methods.
   
     $specialfields = array(
                     'title',
@@ -1015,6 +1016,8 @@ class Publication_db {
 
     return $result;
   }
+  
+  
     /** splits the given publication map (id=>publication) into two maps [normal,xref],
     where xref is the map with all crossreffed publications (including those not present
     in the original map), and normal is the map with all other publications. 
@@ -1119,6 +1122,55 @@ class Publication_db {
         }
       }
       return null;
+    }
+    
+    /** return the mark given to the publication by the user, or '' if the publication was read but not marked, 
+    or -1 if the publication wasn't read */
+    function getUserMark($pub_id,$user_id) {
+        $CI = &get_instance();
+        $Q = $CI->db->getwhere('userpublicationmark',array('pub_id'=>$pub_id,'user_id'=>$user_id));
+        if ($Q->num_rows()==0) {
+            return -1;
+        }
+        $R = $Q->row();
+        if ($R->read == 'n') {
+            return -1;
+        }
+        return $R->mark;
+    }
+    function read($mark,$oldmark,$pub_id,$user_id) {
+        $CI = &get_instance();
+        //set proper mark for user
+        $Q = $CI->db->delete("userpublicationmark",array('pub_id'=>$pub_id,'user_id'=>$user_id));
+        $Q = $CI->db->query("INSERT INTO ".AIGAION_DB_PREFIX."userpublicationmark 
+                                (`user_id`,`pub_id`,`read`,`mark`)
+                                VALUES
+                                (".$user_id.",".$pub_id.",'y','".$mark."')");
+        //and now fix total mark
+        if ($oldmark<0) {
+            $oldmark = 0;
+        }
+        //subtract old mark from current mark for given publication
+        $CI->db->select('mark');
+        $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
+        $R = $Q->row();
+        $Q = $CI->db->update('publication',array('mark'=>($R->mark-$oldmark+$mark)),array('pub_id'=>$pub_id));
+    }
+    function unread($oldmark,$pub_id,$user_id) {
+        $CI = &get_instance();
+        //set proper mark for user
+        $Q = $CI->db->query("UPDATE ".AIGAION_DB_PREFIX."userpublicationmark 
+                                SET `read`='n' 
+                              WHERE pub_id=".$pub_id." 
+                                    AND user_id=".$user_id);
+        //and now fix total mark
+        if ($oldmark>0) {
+            //subtract old mark from current mark for given publication
+            $CI->db->select('mark');
+            $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
+            $R = $Q->row();
+            $Q = $CI->db->update('publication',array('mark'=>($R->mark-$oldmark)),array('pub_id'=>$pub_id));
+        }
     }
 }
 ?>

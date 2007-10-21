@@ -458,5 +458,69 @@ class Publications extends Controller {
 
         echo "<div/>";
     }    
+    
+    /**
+    publications/read
+    
+    marks a publication as read
+    
+	Fails with error message when one of:
+	    read requested for non-existing publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: publication_id 
+	    possibly through post: mark
+	         
+    Redirects to publication view
+    */
+    function read() {
+        $pub_id = $this->uri->segment(3,-1);
+        
+        $publication = $this->publication_db->getByID($pub_id);
+        if ($publication == null) {
+            appendErrorMessage('Mark publication: unknown publication');
+            redirect ('');
+        }
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('note_edit')) {
+            appendErrorMessage('Mark publication: insufficient rights');
+            redirect ('publications/show/'.$publication->pub_id);
+        }
+        $mark = $this->input->post('mark','');
+        if ($mark==0)$mark='';
+        $publication->read($mark);
+        redirect ('publications/show/'.$publication->pub_id);
+    }
+    /**
+    publications/unread
+    
+    marks a publication as not-read
+    
+	Fails with error message when one of:
+	    unread requested for non-existing publication
+	    insufficient user rights
+	    
+	Parameters passed via URL:
+	    3rd segment: publication_id 
+	         
+    Redirects to publication view
+    */
+    function unread() {
+        $pub_id = $this->uri->segment(3,-1);
+        
+        $publication = $this->publication_db->getByID($pub_id);
+        if ($publication == null) {
+            appendErrorMessage('Mark publication: unknown publication');
+            redirect ('');
+        }
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('note_edit')) {
+            appendErrorMessage('Mark publication: insufficient rights');
+            redirect ('publications/show/'.$publication->pub_id);
+        }
+        $publication->unread();
+        redirect ('publications/show/'.$publication->pub_id);
+    }
 }
 ?>
