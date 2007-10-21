@@ -45,7 +45,7 @@ class Import extends Controller {
     $this->load->library('parser_import');
 
     $import_data  = $this->input->post('import_data');    
-    $type = 'BibTeX';
+    $type = '';
     //determine type of input
     if (preg_match("/(@[A-Za-z]{4,}\s*[\r\n\t]*{)/", $import_data) == 1)
     {
@@ -82,6 +82,10 @@ class Import extends Controller {
           $this->parser_import->loadData($import_data);
           $this->parser_import->parse($this->parseentries_refer);
           $publications = $this->parser_import->getPublications();
+          break;
+        default:
+          appendErrorMessage("Import: can't figure out import data format; no parsing possible");
+          redirect('import/viewform');
           break;
       }
       
