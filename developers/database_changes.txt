@@ -329,15 +329,15 @@ ALTER TABLE `publication` ADD COLUMN `cleanauthor` TEXT NOT NULL default '';
 ALTER TABLE `topics` ADD COLUMN `cleanname` VARCHAR(50) NOT NULL default '';
 
 
-    INSERT INTO `config` (setting,value) 
-                 VALUES ('ATT_DEFAULT_READ','intern'),
-                        ('ATT_DEFAULT_EDIT','intern'),
-                        ('PUB_DEFAULT_READ','intern'),
-                        ('PUB_DEFAULT_EDIT','intern'),
-                        ('NOTE_DEFAULT_READ','intern'),
-                        ('NOTE_DEFAULT_EDIT','intern'),
-                        ('TOPIC_DEFAULT_READ','intern'),
-                        ('TOPIC_DEFAULT_EDIT','intern');
+INSERT INTO `config` (setting,value) 
+             VALUES ('ATT_DEFAULT_READ','intern'),
+                    ('ATT_DEFAULT_EDIT','intern'),
+                    ('PUB_DEFAULT_READ','intern'),
+                    ('PUB_DEFAULT_EDIT','intern'),
+                    ('NOTE_DEFAULT_READ','intern'),
+                    ('NOTE_DEFAULT_EDIT','intern'),
+                    ('TOPIC_DEFAULT_READ','intern'),
+                    ('TOPIC_DEFAULT_EDIT','intern');
                         
 ALTER TABLE `userpublicationmark` 
           MODIFY COLUMN `mark` 
