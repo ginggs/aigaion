@@ -297,36 +297,51 @@ ALTER TABLE `users` ADD COLUMN `exportinbrowser` ENUM('TRUE','FALSE') NOT NULL D
 ALTER TABLE `users` ADD COLUMN `utf8bibtex` ENUM('TRUE','FALSE') NOT NULL DEFAULT 'FALSE';
 --- convert tables to utf8 (in principle, the data should automatically be converted as well...)
 ALTER DATABASE ai2db CHARACTER SET utf8;
-ALTER TABLE ai2_aigaiongeneral CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_attachments CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_author CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_availablerights CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_changehistory CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_config CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_grouprightsprofilelink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_keywords CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_notecrossrefid CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_notes CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_publication CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_publicationauthorlink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_publicationkeywordlink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_publicationpublicationlink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_rightsprofilerightlink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_rightsprofiles CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_textfragments CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_topicpublicationlink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_topics CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_topictopiclink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_userbookmarklists CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_usergrouplink CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_userpublicationmark CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_userrights CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_users CONVERT TO CHARACTER SET utf8;
-ALTER TABLE ai2_usertopiclink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE aigaiongeneral CONVERT TO CHARACTER SET utf8;
+ALTER TABLE attachments CONVERT TO CHARACTER SET utf8;
+ALTER TABLE author CONVERT TO CHARACTER SET utf8;
+ALTER TABLE availablerights CONVERT TO CHARACTER SET utf8;
+ALTER TABLE changehistory CONVERT TO CHARACTER SET utf8;
+ALTER TABLE config CONVERT TO CHARACTER SET utf8;
+ALTER TABLE grouprightsprofilelink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE keywords CONVERT TO CHARACTER SET utf8;
+ALTER TABLE notecrossrefid CONVERT TO CHARACTER SET utf8;
+ALTER TABLE notes CONVERT TO CHARACTER SET utf8;
+ALTER TABLE publication CONVERT TO CHARACTER SET utf8;
+ALTER TABLE publicationauthorlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE publicationkeywordlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE publicationpublicationlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE rightsprofilerightlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE rightsprofiles CONVERT TO CHARACTER SET utf8;
+ALTER TABLE textfragments CONVERT TO CHARACTER SET utf8;
+ALTER TABLE topicpublicationlink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE topics CONVERT TO CHARACTER SET utf8;
+ALTER TABLE topictopiclink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE userbookmarklists CONVERT TO CHARACTER SET utf8;
+ALTER TABLE usergrouplink CONVERT TO CHARACTER SET utf8;
+ALTER TABLE userpublicationmark CONVERT TO CHARACTER SET utf8;
+ALTER TABLE userrights CONVERT TO CHARACTER SET utf8;
+ALTER TABLE users CONVERT TO CHARACTER SET utf8;
+ALTER TABLE usertopiclink CONVERT TO CHARACTER SET utf8;
 
 ====== 19-10-2007
 ALTER TABLE `publication` ADD COLUMN `cleanauthor` TEXT NOT NULL default '';
 ALTER TABLE `topics` ADD COLUMN `cleanname` VARCHAR(50) NOT NULL default '';
+
+
+    INSERT INTO `config` (setting,value) 
+                 VALUES ('ATT_DEFAULT_READ','intern'),
+                        ('ATT_DEFAULT_EDIT','intern'),
+                        ('PUB_DEFAULT_READ','intern'),
+                        ('PUB_DEFAULT_EDIT','intern'),
+                        ('NOTE_DEFAULT_READ','intern'),
+                        ('NOTE_DEFAULT_EDIT','intern'),
+                        ('TOPIC_DEFAULT_READ','intern'),
+                        ('TOPIC_DEFAULT_EDIT','intern');
+                        
+ALTER TABLE `userpublicationmark` 
+          MODIFY COLUMN `mark` 
+                        ENUM('','1','2','3','4','5') NOT NULL DEFAULT 3;
 
 ---still to be done:
 
