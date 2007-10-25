@@ -2,14 +2,14 @@
 <?php
   $publicationfields = getPublicationFieldArray($publication->pub_type);
   if (!isset($categorize)) $categorize= False;
-  
+
 //some things are dependent on user rights.
 //$accessLevelEdit is set to true iff the edit access level of the publication does not make it
 //inaccessible to the logged user. Note: this does NOT yet garantuee atachemtn_edit or note_ediot or publication_edit rights
 $accessLevelEdit = $this->accesslevels_lib->canEditObject($publication);
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
-    
+
 
 ?>
 <div class='publication'>
@@ -20,24 +20,24 @@ $user       = $this->user_db->getByID($userlogin->userID());
         echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
         echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
         
-        echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>[";
         if ($userlogin->hasRights('bookmarklist')) {
+          echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
           if ($publication->isBookmarked) {
-            echo $this->ajax->link_to_remote("UnBookmark",
+            echo '['.$this->ajax->link_to_remote("UnBookmark",
                   array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
                         'update'  => 'bookmark_pub_'.$publication->pub_id
                         )
-                  );
+                  ).']';
           } 
           else {
-            echo $this->ajax->link_to_remote("Bookmark",
+            echo '['.$this->ajax->link_to_remote("Bookmark",
                   array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
                         'update'  => 'bookmark_pub_'.$publication->pub_id
                         )
-                  );
+                  ).']';
           }
         }
-        echo "]</span>";        
+        echo "</span>";        
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id,'BiBTeX',array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['

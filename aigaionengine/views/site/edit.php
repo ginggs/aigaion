@@ -394,7 +394,7 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
 	    </tr>
         <tr><td>
 <?php
-    echo form_submit('submit','Change');
+    echo form_submit('submit','Store new settings');
 ?>
         </td>
         </tr>
