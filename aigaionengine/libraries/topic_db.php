@@ -467,7 +467,7 @@ class Topic_db {
                WHERE topic_id=".$CI->db->escape($topic_id)."
                  AND ".AIGAION_DB_PREFIX."userpublicationmark.user_id = ".$CI->db->escape($userlogin->userId())."
                  AND ".AIGAION_DB_PREFIX."userpublicationmark.pub_id  = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
-                 AND ".AIGAION_DB_PREFIX."userpublicationmark.read = 'y'";
+                 AND ".AIGAION_DB_PREFIX."userpublicationmark.hasread = 'y'";
     $Q = $CI->db->query($query);
     $R = $Q->row_array();
     return $R["COUNT(DISTINCT ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id)"];  

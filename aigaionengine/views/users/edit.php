@@ -120,10 +120,17 @@ echo "
         <tr>
         <td>Password (leave blank for no change)</td>
         <td>"
-        .form_password(array('name'=>'password',
-                          'size'=>'10',
-                          'value'=>'',
-                          'AUTOCOMPLETE'=>'off'))."
+        .form_password(array('name'=>'password', /////
+                                                 //one VERY annoying firefox feature is to 
+                                                 //always autocomplete password fields. Even 
+                                                 //ignoring the autocomplete=off attribute. So now
+                                                 //we need to find another way to clean the field...
+                                                 //see e.g.:
+                                                 //http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
+                             'id'=>'password',                       
+                             'size'=>'10',
+                             'value'=>'',
+                             'autocomplete'=>'off'))."
         </td>
         </tr>
         <tr>
@@ -133,6 +140,13 @@ echo "
                           'size'=>'10',
                           'value'=>'',
                           'AUTOCOMPLETE'=>'off'))."
+            <script language='JavaScript' type='text/javascript'>
+            // this *brutally* clears a password field in firefox
+            // compliments of verysimple.com, adapted to use the prototype framework
+            // http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
+            window.setTimeout('$(\"password\").value = \"\";', 100);
+            window.setTimeout('$(\"password_check\").value = \"\";', 100);
+            </script>                          
         </td>
         </tr>";
 
@@ -343,7 +357,7 @@ echo "
 if ($isAddForm) {
     echo form_submit('submit','Add');
 } else {
-    echo form_submit('submit','Change');
+    echo form_submit('submit','Store new settings');
 }
 echo "
         </td>

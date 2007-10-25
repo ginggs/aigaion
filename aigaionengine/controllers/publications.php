@@ -130,7 +130,72 @@ class Publications extends Controller {
         $this->output->set_output($output);
 
   }
+  /** 
+  publications/unassigned
   
+  Entry point for showing a list of publications that are not assigned to a topic.
+  
+  fails with error message when one of:
+    insufficient user rights
+	    
+  Parameters passed via URL segments:
+      3rd: order by info
+	  4rth: page number
+	         
+  Returns:
+      A full HTML page with all a list of all publications that are not assigned to a topic.
+    */
+  function unassigned()
+  {
+ 	    $this->load->helper('publication');
+        $order   = $this->uri->segment(3,'year');
+        if (!in_array($order,array('year','type','recent','title','author'))) {
+          $order='';
+        }
+        $page   = $this->uri->segment(4,0);
+        //get output
+        $headerdata                 = array();
+        $headerdata['title']        = 'Publication list';
+        $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $userlogin = getUserLogin();
+        $content['header']          = 'All publications not assigned to a topic';
+        switch ($order) {
+            case 'type':
+                $content['header']          = 'All publications not assigned to a topic ordered on journal and type';
+                break;
+            case 'recent':
+                $content['header']          = 'All recent publications not assigned to a topic';
+                break;
+            case 'title':
+                $content['header']          = 'All publications not assigned to a topic ordered on title';
+                break;
+            case 'author':
+                $content['header']          = 'All publications not assigned to a topic ordered on author';
+                break;
+        }
+        
+        
+        if ($userlogin->getPreference('liststyle')>0) {
+            //set these parameters when you want to get a good multipublication list display
+            $content['multipage']       = True;
+            $content['currentpage']     = $page;
+            $content['multipageprefix'] = 'publications/unassigned/'.$order.'/';
+        }
+        $content['publications']    = $this->publication_db->getUnassigned('1',$order);
+        $content['order'] = $order;
+        
+        $output = $this->load->view('header', $headerdata, true);
+        $output .= $this->load->view('publications/list', $content, true);
+        
+        
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);
+
+  }  
   //Calls an empty publication edit form
   function add()
   {

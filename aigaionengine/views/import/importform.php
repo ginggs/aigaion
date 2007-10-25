@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class='publication'>
   <div class='header'>Import publications</div>
+  <p>Paste the entries (BiBTeX, RIS or Refer) to import in the text area below and then press "Import". </p>
 <?php
   //open the edit form
   $formAttributes     = array('ID' => 'import_form');

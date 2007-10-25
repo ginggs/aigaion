@@ -343,6 +343,9 @@ ALTER TABLE `userpublicationmark`
           MODIFY COLUMN `mark` 
                         ENUM('','1','2','3','4','5') NOT NULL DEFAULT 3;
 
+ALTER TABLE `personpublicationmark`
+    		CHANGE COLUMN `read` `hasread` enum('y','n') NOT NULL default 'y';
+
 ---still to be done:
 
 ---enlarge the 'series' field

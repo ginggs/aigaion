@@ -836,7 +836,50 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
-  
+  function getUnassigned($order='')
+  {
+    $orderby='actualyear DESC, cleantitle';
+    switch ($order) {
+      case 'year':
+        $orderby='actualyear DESC, cleantitle';
+        break;
+      case 'type':
+        $orderby='pub_type, cleanjournal, actualyear, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        break;
+      case 'recent':
+        $orderby='pub_id DESC';
+        break;
+      case 'title':
+        $orderby='cleantitle';
+        break;
+      case 'author':
+        $orderby='cleanauthor';
+        break;
+    }
+    $CI = &get_instance();
+    //we need merge functionality here, so initialze a merge cache
+    $this->crossref_cache = array();
+    ///////////////////
+    //DR: this query is copied from another method - needs to be modified to retrieve all unassigned papers.
+    ///////////////////
+//    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
+//    WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+//    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
+//    ORDER BY ".$orderby);
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+
+    unset($this->crossref_cache);
+    return $result;
+  }  
   function getForAuthor($author_id,$order='')
   {
     $orderby='actualyear DESC, cleantitle';
@@ -1143,7 +1186,7 @@ class Publication_db {
         //set proper mark for user
         $Q = $CI->db->delete("userpublicationmark",array('pub_id'=>$pub_id,'user_id'=>$user_id));
         $Q = $CI->db->query("INSERT INTO ".AIGAION_DB_PREFIX."userpublicationmark 
-                                (`user_id`,`pub_id`,`read`,`mark`)
+                                (`user_id`,`pub_id`,`hasread`,`mark`)
                                 VALUES
                                 (".$user_id.",".$pub_id.",'y','".$mark."')");
         //and now fix total mark
@@ -1160,7 +1203,7 @@ class Publication_db {
         $CI = &get_instance();
         //set proper mark for user
         $Q = $CI->db->query("UPDATE ".AIGAION_DB_PREFIX."userpublicationmark 
-                                SET `read`='n' 
+                                SET `hasread`='n' 
                               WHERE pub_id=".$pub_id." 
                                     AND user_id=".$user_id);
         //and now fix total mark
