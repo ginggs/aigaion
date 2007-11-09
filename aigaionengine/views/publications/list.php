@@ -115,7 +115,7 @@ echo "<div class='publication_summary ".$even."' id='publicationsummary".$public
   <tr>
     <td>";
 if ($userlogin->getPreference('summarystyle') == 'title')    
-    echo " <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>, ";
+    echo " <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
     
 $num_authors    = count($publication->authors);
 $current_author = 1;
@@ -125,7 +125,7 @@ foreach ($publication->authors as $author)
   if (($current_author == $num_authors) & ($num_authors > 1)) {
     echo " and ";
   }
-  elseif ($current_author >1) {
+  else {
     echo ", ";
   }
 
@@ -134,7 +134,7 @@ foreach ($publication->authors as $author)
 }
 
 if ($userlogin->getPreference('summarystyle') == 'author')    
-    echo ", <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
 
 
 foreach ($summaryfields as $key => $prefix) {
