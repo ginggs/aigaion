@@ -44,17 +44,11 @@ if ($userlogin->hasRights('publication_edit')) {
 
 }
 ?>
-<br/>
 <?php
-    echo form_open('export/bookmarklist/bibtex',array('target'=>'aigaion_export'));
-    echo form_submit(array('name'=>'BiBTeX','title'=>'Export to BiBTeX'),'BiBTeX');
-    echo form_close();
-?>
-<br/>
-<?php
-    echo form_open('export/bookmarklist/ris',array('target'=>'aigaion_export'));
-    echo form_submit(array('name'=>'RIS','title'=>'Export to RIS'),'RIS');
-    echo form_close();
+//<br/>
+    //echo form_open('export/bookmarklist/');
+    //echo form_submit(array('name'=>'Export','title'=>'Export publicatinos on the bookmarklist'),'Export');
+    //echo form_close();
 ?>
 <br/>
 <?php
@@ -67,22 +61,6 @@ if ($userlogin->hasRights('publication_edit')) {
     echo form_open('bookmarklist/deleteall');
     echo form_submit(array('name'=>'deleteall','title'=>'Delete all publications on the bookmarklist from the database'),'Delete all bookmarked publications');
     echo form_close();
-?>
-<br/>
-<?php
-echo '['.anchor('bookmarklist/viewlist/type','Order on type/journal').']';
-?>
-<br/>
-<?php
-echo '['.anchor('bookmarklist/viewlist/year','Order on year').']';
-?>
-<br/>
-<?php
-echo '['.anchor('bookmarklist/viewlist/title','Order alphabetically on title').']';
-?>
-<br/>
-<?php
-echo '['.anchor('bookmarklist/viewlist/author','Order alphabetically on author').']';
 ?>
 <br/>
 <br/>

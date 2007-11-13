@@ -11,6 +11,15 @@
     <link href="<?php echo getCssUrl("accesslevels.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("help.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
 <?php
+    //view parameter to be passed to menu: a prefix for the sort options. See views/menu.php for more info
+    if (!isset($sortPrefix))
+      $sortPrefix = '';
+    //view parameter to be passed to menu: a command relevant for the menu export option. See views/menu.php for more info
+    if (!isset($exportCommand))
+      $exportCommand = '';
+    if (!isset($exportName))
+      $exportName = 'Export browse list';
+    //view parameter: the javascripts that should be linked
     if (!isset($javascripts))
       $javascripts = array();
     elseif (!is_array($javascripts))
@@ -54,7 +63,7 @@
 
       <?php
         //load menu
-        $this->load->view('menu');
+        $this->load->view('menu', array('sortPrefix'=>$sortPrefix,'exportCommand'=>$exportCommand,'exportName'=>$exportName));
       ?>
 
       <!-- Aigaion main content -->

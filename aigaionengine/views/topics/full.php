@@ -92,18 +92,9 @@ echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
            .']</nobr></li><li><nobr>['
            .anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll').']</nobr></li>';
     }
-echo  "<li><nobr>["
-      .anchor('export/topic/'.$topic->topic_id,'BiBTeX',array('target'=>'aigaion_export'))."]</nobr></li>
-       <li><nobr>["
-      .anchor('export/topic/'.$topic->topic_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
-       <li><nobr>["
-      .anchor('topics/single/'.$topic->topic_id.'/type','Order on type/journal')."]</nobr></li>
-       <li><nobr>["
-      .anchor('topics/single/'.$topic->topic_id.'/title','Order alphabetically on title')."]</nobr></li>
-       <li><nobr>["
-      .anchor('topics/single/'.$topic->topic_id.'/author','Order alphabetically on author')."]</nobr></li>
-       <li><nobr>["
-      .anchor('topics/single/'.$topic->topic_id.'/year','Order on year')."]</nobr></li>
+//echo  "<li><nobr>["
+//      .anchor('export/topic/'.$topic->topic_id,'Export')."]</nobr></li>
+echo  "
 </ul>
 ";
 

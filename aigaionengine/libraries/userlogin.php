@@ -308,10 +308,8 @@ class UserLogin {
         //appendErrorMessage('<br/>LDAP login says: unknown user, make?');
         if (getConfigurationSetting("CREATE_MISSING_USERS") == 'TRUE') {
             //appendErrorMessage('<br/>LDAP login says: unknown user, make!');
-            //no such user found. Make user on the fly?
-            $newuser = new User();
-            $newuser->surname = $loginName;
-            $newuser->login   = $loginName;
+            //no such user found. Make user on the fly. Don't use the user_db class for this, as 
+            // we would run into problems with the checkrights performed in user_db->add(...)
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
             srand((double)microtime()*1000000);
             $i = 0;
@@ -322,33 +320,65 @@ class UserLogin {
                 $pass = $pass . $tmp;
                 $i++;
             }            
-            $newuser->password = md5($pass);
+            $group_ids = array();
             foreach ($loginGroups as $groupname) {
                 $groupQ = $CI->db->getwhere('users',array('type'=>'group','abbreviation'=>$groupname));
                 if ($groupQ->num_rows()>0) {
-                  $R = $groupQ->row();
-                    $newuser->group_ids[] = $R->user_id;
+                    $R = $groupQ->row();
+                    $group_ids[] = $R->user_id;
                 } else {
                     //group must also be created...
-                    $group = new Group();
-                    $group->name = $groupname;
-                    if ($group->add()) {
-                        $newuser->group_ids[] = $group->group_id;
-                    }
+                    $CI->db->insert("users", array('surname'=>$groupname,'abbreviation'=>$groupname,'type'=>'group'));
+                    $new_id = $CI->db->insert_id();
+                    //subscribe group to top topic
+                    $CI->db->insert('usertopiclink', array('user_id' => $new_id, 'topic_id' => 1)); 
+                    $group_ids[] = $new_id;
                 }
             }
             //appendErrorMessage('<br/>LDAP login says: now add user...');
             //add user....
-            if ($newuser->add()) {
-                if ($this->_login($newuser->login,$newuser->password,False)==0) { //never remember external login; that's a task for the external module
-                    //$this->sNotice = 'logged from httpauth';
-                    appendMessage('Created missing user: '.$loginName.' as member of groups: '.implode(',',$loginGroups));
-                    return 0; // success
-                } else {
-                    echo "Serious error: a new user was created and could not be logged in. ".$newuser->login." ".$newuser->password;die();
+            $CI->db->insert("users",     array('initials'           => '',
+                                               'firstname'          => '',
+                                               'betweenname'        => '',
+                                               'surname'            => $loginName,
+                                               'email'              => '',
+                                               'lastreviewedtopic'  => 1,
+                                               'abbreviation'       => '',
+                                               'login'              => $loginName,
+                                               'password'           => md5($pass),
+                                               'type'               => 'normal',
+                                               'theme'              => 'default',
+                                               'summarystyle'       => 'author',
+                                               'authordisplaystyle' => 'fvl',
+                                               'liststyle'          => '0',
+                                               'newwindowforatt'    => 'FALSE',
+                                               'exportinbrowser'    => 'TRUE',
+                                               'utf8bibtex'         => 'FALSE'
+                                               )
+                              );
+            $new_id = $CI->db->insert_id();
+            //add group links, and rightsprofiles for these groups, to the user
+            foreach ($group_ids as $group_id) {
+                $CI->db->insert('usergrouplink',array('user_id'=>$new_id,'group_id'=>$group_id));
+                $group = $CI->group_db->getByID($group_id);
+                foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+                    $rightsprofile = $CI->rightsprofile_db->getByID($rightsprofile_id);
+                    foreach ($rightsprofile->rights as $right) {
+                        $CI->db->delete('userrights',array('user_id'=>$new_id,'right_name'=>$right));
+                        $CI->db->insert('userrights',array('user_id'=>$new_id,'right_name'=>$right));
+                    }
+                    
                 }
+            }
+            //subscribe new user to top topic
+            $CI->db->insert('usertopiclink', array('user_id' => $new_id, 'topic_id' => 1)); 
+            //after adding the new user, log in as that new user
+            if ($this->_login($loginName,md5($pass),False)==0) { //never remember external login; that's a task for the external module
+                //$this->sNotice = 'logged from httpauth';
+                appendMessage('Created missing user: '.$loginName.' as member of groups: '.implode(',',$loginGroups));
+                return 0; // success
             } else {
-                appendErrorMessage("Can't add new user");
+                echo "Serious error: a new user was created and could not be logged in. ".md5($pass)." ";die();
             }
         } else {
             return 1;

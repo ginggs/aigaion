@@ -1,10 +1,18 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class='publication_list'>
 <?php
+  $userlogin  = getUserLogin();
+
+  //note: you can switch off the bookmarklist buttons by passing the parameter $noBookmarkList=True to this view
+  $useBookmarkList = $userlogin->hasRights('bookmarklist');
+  if ($useBookmarkList) {
+    if (isset($noBookmarkList)&&$noBookmarkList) {
+        $useBookmarkList = false;
+    }
+  }
   //note that when 'order' is set, this view supposes that the data is actually ordered in that way! Otherwise the headers won't work :)
   if (!isset($order))$order='year';
   
-  $userlogin  = getUserLogin();
   if (isset($header) && ($header != '')) {
 ?>
   <div class='header'><?php echo $header ?></div>
@@ -168,7 +176,7 @@ echo "
     </td>
     <td width='8%' align='right' valign='top'>
       <span id='bookmark_pub_".$publication->pub_id."'>";
-if ($userlogin->hasRights('bookmarklist')) {
+if ($useBookmarkList) {
   if ($publication->isBookmarked) {
     echo '<span title="Click to UnBookmark publication">'
          .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('bookmarked.gif')."'>",

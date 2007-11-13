@@ -190,10 +190,9 @@ class User_db {
                                                'utf8bibtex'         => $utf8bibtex
                                                )
                               );
-                                               
+        $new_id = $CI->db->insert_id();                                   
         if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
-            $new_id = $CI->db->insert_id();
             foreach ($user->assignedrights as $right) {
                 $CI->db->insert('userrights',array('user_id'=>$new_id,'right_name'=>$right));
             }

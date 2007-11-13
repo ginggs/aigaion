@@ -39,18 +39,9 @@ echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
            .']</nobr></li><li><nobr>['
            .anchor('bookmarklist/removeauthor/'.$author->author_id,'UnBookmarkAll').']</nobr></li>';
     }
-echo  "<li><nobr>["
-      .anchor('export/author/'.$author->author_id,'BiBTeX',array('target'=>'aigaion_export'))."]</nobr></li>
-       <li><nobr>["
-      .anchor('export/author/'.$author->author_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
-       <li><nobr>["
-      .anchor('authors/show/'.$author->author_id.'/type','Order on type/journal')."]</nobr></li>
-       <li><nobr>["
-      .anchor('authors/show/'.$author->author_id.'/title','Order alphabetically on title')."]</nobr></li>
-       <li><nobr>["
-      .anchor('authors/show/'.$author->author_id.'/author','Order alphabetically on author')."]</nobr></li>
-       <li><nobr>["
-      .anchor('authors/show/'.$author->author_id.'/year','Order on year')."]</nobr></li>
+//echo  "<li><nobr>["
+//      .anchor('export/author/'.$author->author_id,'Export')."]</nobr></li>
+echo  "
 </ul>
 ";
 
@@ -60,6 +51,8 @@ echo '</div>';
 </tr>
 </table>
 <?php
+if ($userlogin->hasRights("publication_edit")) {
+    
     $similar = $author->getSimilarAuthors();
     if (count($similar)>0) {
         echo "<div class='message'>Found authors with very similar names.
@@ -71,6 +64,7 @@ echo '</div>';
 		}
 		echo "</div>\n";
     }
+}
 ?>
 
   <br/>

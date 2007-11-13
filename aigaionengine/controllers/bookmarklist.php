@@ -48,7 +48,11 @@ class Bookmarklist extends Controller {
 
         $headerdata = array();
         $headerdata['title'] = 'Bookmark list';
-        $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['sortPrefix'] = '/bookmarklist/viewlist/';
+        $headerdata['exportCommand']    = 'export/bookmarklist/';
+        $headerdata['exportName']    = 'Export bookmarklist';
+
         $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
         switch ($order) {
             case 'type':

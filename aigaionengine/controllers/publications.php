@@ -91,6 +91,7 @@ class Publications extends Controller {
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
         $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['sortPrefix']        = 'publications/showlist/';
         
         $userlogin = getUserLogin();
         $content['header']          = 'All publications';
@@ -157,6 +158,7 @@ class Publications extends Controller {
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
         $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['sortPrefix']        = 'publications/unassigned/';
         
         $userlogin = getUserLogin();
         $content['header']          = 'All publications not assigned to a topic';

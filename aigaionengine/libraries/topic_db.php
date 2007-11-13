@@ -117,7 +117,7 @@ class Topic_db {
                 }
                 $topic->flags['userIsGroupSubscribed'] = $groupSubscribed;
             }
-            if (array_key_exists('onlyIfUserSubscribed',$configuration)) {
+            if (array_key_exists('onlyIfUserSubscribed',$configuration) && $configuration['onlyIfUserSubscribed']) {
                 if ($userSubscribedQ->num_rows() == 0) { //not subscribed: check group subscriptions
                     if ($groupIrrelevant || !$groupSubscribed) {
                         return null;
@@ -136,6 +136,7 @@ class Topic_db {
                 }
             } else {
                 $topic->flags['userIsSubscribed'] = False;
+                $topic->flags['userIsCollapsed'] = True;
             }
                 
         }

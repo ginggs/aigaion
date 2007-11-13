@@ -14,7 +14,7 @@ class Topics extends Controller {
 	}
 
     /** Simple browse page for Topics. 
-        This controller returns a full web page.
+        This controller returns a full web page of the subscribed topics
         Third parameter selects root topic_id for tree (default:1) */
 	function browse()
 	{
@@ -58,7 +58,51 @@ class Topics extends Controller {
         //set output
         $this->output->set_output($output);
 	}
+    /** Simple browse page for Topics. 
+        This controller returns a full web page of ALL available topics
+        Third parameter selects root topic_id for tree (default:1) */
+	function all()
+	{
+	    $root_id = $this->uri->segment(3,1);
+	    
+	    //no rights check here: anyone can (try) to browse topics (though not all topics may be visible)
+        //get output
+        $headerdata = array();
+        $headerdata['title'] = 'Browse topic tree (include all topics)';
+        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+        
+        $userlogin = getUserLogin();
+        $user = $this->user_db->getByID($userlogin->userId());
+        $config = array('onlyIfUserSubscribed'=>False,
+                         'flagCollapsed'=>True,
+                         'user'=>$user,
+                         'includeGroupSubscriptions'=>True
+                        );
+        $root = $this->topic_db->getByID($root_id, $config);
+        if ($root == null) {
+            appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
+            redirect('');
+        }
+        $output .= "<div style='border:1px solid black;padding:0.2em;float:right;clear:right;'>"
+                    .$this->load->view('site/stats',
+                                      array(),  
+                                      true)."</div>\n";
+        $this->load->vars(array('subviews'  => array('topics/maintreerow'=>array('useCollapseCallback'=>True))));
+        $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+                    .$this->load->view('topics/tree',
+                                      array('topics'   => $root->getChildren(),
+                                            'showroot'  => True,
+                                            'depth'     => -1
+                                            ),  
+                                      true)."</ul>\n</div>\n";
+        
+        $output .= $this->load->view('footer','', true);
 
+        //set output
+        $this->output->set_output($output);
+	}
 	/** 
 	topics/delete
 	
@@ -239,6 +283,9 @@ class Topics extends Controller {
         $headerdata                 = array();
         $headerdata['title']        = 'View topic';
         $headerdata['javascripts']  = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['sortPrefix']        = 'topics/single/'.$topic->topic_id.'/';
+        $headerdata['exportCommand']        = 'export/topic/'.$topic->topic_id.'/';
+        $headerdata['exportName']    = 'Export topic';
         
         $content['topic']           = $topic;
         $content['header']          = "Publications for topic: ".$topic->name;

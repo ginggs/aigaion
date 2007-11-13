@@ -12,6 +12,7 @@ class Export extends Controller {
 	{
 		$this->all();
 	}
+	
 
     /** 
     export/all
@@ -28,9 +29,19 @@ class Export extends Controller {
         A clean text page with exported publications
     */
     function all() {
-	    $type = $this->uri->segment(3,'bibtex');
+	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris'))) {
-	        $type = 'bibtex';
+            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            
+            //get output
+            $output  = $this->load->view('header',        $header,  true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all publications','exportCommand'=>'export/all/'), true);
+            $output .= $this->load->view('footer',        '',       true);
+            
+            //set output
+            $this->output->set_output($output);
+            return;
 	    }
         $userlogin = getUserLogin();
 
@@ -66,7 +77,7 @@ class Export extends Controller {
     */
     function topic() {
 	    $topic_id = $this->uri->segment(3,-1);
-	    $type = $this->uri->segment(4,'bibtex');
+	    $type = $this->uri->segment(4,'');
 	    $config = array();
 	    $topic = $this->topic_db->getByID($topic_id,$config);
 	    if ($topic==null) {
@@ -74,7 +85,17 @@ class Export extends Controller {
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris'))) {
-	        $type = 'bibtex';
+            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            
+            //get output
+            $output  = $this->load->view('header',        $header,  true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all for topic '.$topic->name,'exportCommand'=>'export/topic/'.$topic->topic_id.'/'), true);
+            $output .= $this->load->view('footer',        '',       true);
+            
+            //set output
+            $this->output->set_output($output);
+            return;
 	    }
         $userlogin = getUserLogin();
 
@@ -110,14 +131,24 @@ class Export extends Controller {
     */
     function author() {
 	    $author_id = $this->uri->segment(3,-1);
-	    $type = $this->uri->segment(4,'bibtex');
+	    $type = $this->uri->segment(4,'');
 	    $author = $this->author_db->getByID($author_id);
 	    if ($author==null) {
 	        appendErrorMessage('Export requested for non existing author<br/>');
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris'))) {
-	        $type = 'bibtex';
+            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            
+            //get output
+            $output  = $this->load->view('header',        $header,  true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all for author '.$author->getName(),'exportCommand'=>'export/author/'.$author->author_id.'/'), true);
+            $output .= $this->load->view('footer',        '',       true);
+            
+            //set output
+            $this->output->set_output($output);
+            return;
 	    }
         $userlogin = getUserLogin();
 
@@ -151,9 +182,19 @@ class Export extends Controller {
         A clean text page with exported publications
     */
     function bookmarklist() {
-	    $type = $this->uri->segment(3,'bibtex');
+	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris'))) {
-	        $type = 'bibtex';
+            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            
+            //get output
+            $output  = $this->load->view('header',        $header,  true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all publications on bookmarklist','exportCommand'=>'export/bookmarklist/'), true);
+            $output .= $this->load->view('footer',        '',       true);
+            
+            //set output
+            $this->output->set_output($output);
+            return;
 	    }
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {

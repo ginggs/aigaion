@@ -42,7 +42,10 @@ class Authors extends Controller {
     //set header data
     $header ['title']       = 'Aigaion 2.0 - '.$author->getName();
     $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
-    
+    $header ['sortPrefix']       = 'authors/show/'.$author->author_id.'/';
+    $header ['exportCommand']    = 'export/author/'.$author->author_id.'/';
+    $header ['exportName']    = 'Export author';
+
     //set data
     $authorContent['author']            = $author;
     $publicationContent['header']       = 'Publications of '.$author->getName();
@@ -83,6 +86,91 @@ class Authors extends Controller {
     //set output
     $this->output->set_output($output);  
   }
+
+  /** 
+  authors/embed
+  
+  A controller that should return only the basic contents of the single author publication listing.
+  Can be used to embed a few of your own publications into acompletely different page. Note that in that case
+  you need to 
+  a) have anonymous access enabled
+  b) have the publications of the requested author that you want to show embedded in another page set as being public
+     (that concerns the access levels)
+  c) from this surrounding page (presumably your own web page?), somehow read
+     the file <aigaion2_root>/index.php/authors/embed/<author_id>/type
+     and past the resulting html on screen :)
+     (the php function readfile might works on your server)
+  d) have a proper stylesheet included in that surrounding page (?)
+  
+  takes as arguments: 
+    3rd: author_id
+    4rth: sort order
+    5th: page number 
+  */
+  function embed()
+  {
+    //retrieve author ID
+    $author_id   = $this->uri->segment(3);
+    $order   = $this->uri->segment(4,'year');
+    if (!in_array($order,array('year','type','recent','title','author'))) {
+      $order='year';
+    }
+    $page   = $this->uri->segment(5,0);
+    
+    //load author
+    $author = $this->author_db->getByID($author_id);
+    if ($author == null)
+    {
+      appendErrorMessage("View Author: non-existing author id passed");
+      redirect('');
+    }
+    
+    $this->load->helper('publication');
+    
+    $userlogin = getUserLogin();
+    
+    //set header data
+    //$header ['title']       = 'Aigaion 2.0 - '.$author->getName();
+    //$header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    
+    //set data
+    $authorContent['author']            = $author;
+    $publicationContent['header']       = 'Publications of '.$author->getName();
+    switch ($order) {
+        case 'type':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on journal and type';
+            break;
+        case 'recent':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on recency';
+            break;
+        case 'title':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on title';
+            break;
+        case 'author':
+            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on first author';
+            break;
+    }
+    if ($userlogin->getPreference('liststyle')>0) {
+        //set these parameters when you want to get a good multipublication list display
+        $publicationContent['multipage']       = True;
+        $publicationContent['currentpage']     = $page;
+        $publicationContent['multipageprefix'] = 'authors/embed/'.$author_id.'/'.$order.'/';
+    }    
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
+    $publicationContent['order'] = $order;
+    $publicationContent['noBookmarkList'] = True;
+
+    
+    //get output
+    $output = $this->load->view('authors/embed',      $authorContent, true);
+    
+    if ($publicationContent['publications'] != null) {
+      $output .= $this->load->view('publications/list', $publicationContent, true);
+    }
+    
+    //set output
+    $this->output->set_output($output);  
+  }  
   
   //Calls an empty author edit form
   function add()

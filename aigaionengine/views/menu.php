@@ -1,72 +1,89 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <!-- Aigaion menu -->
 <?php
+  //view parameter: if $sortPrefix is set, the sort options will be shown in the menu as links to $sortPrefix.'title' etc
+  //view parameter: if $exportCommand is set, the export block will include an export command for the browse list
+  //view parameter: if $exportName is set, this determines the text for the exportCommand menu option
+  
   $userlogin = getUserLogin();
 ?>
 <div id="menu_holder">
   <ul class="mainmenu">
     <li class="mainmenu-header">BROWSE</li>
-    <li class="mainmenu"><?php echo anchor('topics', 'Topics'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications', 'Publications (year)'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/title', '&nbsp;&nbsp;&nbsp;- Alphabetic'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/type', '&nbsp;&nbsp;&nbsp;- Type/journal'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/author', '&nbsp;&nbsp;&nbsp;- Author'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', '&nbsp;&nbsp;&nbsp;- Recent'); ?></li>
-    <li class="mainmenu"><?php echo anchor('authors', 'Authors'); ?></li>
-<?php
+    <li class="mainmenu"><?php echo anchor('topics', 'My Topics'); ?></li>
+    <?php
+    if ($userlogin->hasRights('bookmarklist')) 
+    {
+      ?>
+      <li class="mainmenu"><?php echo anchor('bookmarklist', 'My Bookmarks'); ?></li>
+      <?php
+    }
+    ?>
+    <li class="mainmenu"><?php echo anchor('topics/all', 'All Topics'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications', 'All Publications'); ?></li>
+    <li class="mainmenu"><?php echo anchor('authors', 'All Authors'); ?></li>
 
-if ($userlogin->hasRights('bookmarklist')) {
-?>
-    <li class="mainmenu"><?php echo anchor('bookmarklist', 'My Bookmark List'); ?></li>
-<?php
-}
+    <?php
+    //the export option is slightly dependent on the view parameter 'exportCommand'
+    //
+    ?>
+    <li class="mainmenu-spacer"></li>
+    <li class="mainmenu-header">EXPORT</li>
+    <li class="mainmenu"><?php echo anchor('export', 'Export all publications'); ?></li>
+    <?php
+    if (isset($exportCommand)&&($exportCommand!=''))
+    {
+      ?>
+      <li class="mainmenu"><?php echo anchor($exportCommand, $exportName); ?></li>
+      <?php
+    }
+    ?>
+
+    <?php
+    //the sort options are only available if the view is called with a 'sortPrefix' option that is not ''
+    //
+    if (isset($sortPrefix)&&($sortPrefix!=''))
+    {
+      ?>
+      <li class="mainmenu-spacer"></li>
+      <li class="mainmenu-header">SORT BY</li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
+      <?php
+    }
+
+    //you need the proper userrrights to create new items
+    if ($userlogin->hasRights('publication_edit'))
+    {
+      ?>  
+      <li class="mainmenu-spacer"></li>
+      <li class="mainmenu-header">NEW DATA</li>
+      <li class='mainmenu'><?php echo anchor('publications/add', 'New Publication'); ?></li>
+      <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
+      <?php
+    } //New publication / author menu
+    if ($userlogin->hasRights('topic_edit'))
+    {
+      ?>
+      <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
+      <?php
+    } 
+    if ($userlogin->hasRights('publication_edit'))
+    {
+      ?>
+      <li class='mainmenu'><?php echo anchor('import', 'Import'); ?></li>
+      <?php
+    }
 
 ?>
-<?php
-
-if ($userlogin->hasRights('publication_edit'))
-{
-?>
-    <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">NEW DATA</li>
-    <li class='mainmenu'><?php echo anchor('publications/add', 'New Publication'); ?></li>
-    <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
-<?php
-} //New publication / author menu
-if ($userlogin->hasRights('topic_edit'))
-{
-?>
-    <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
-<?php
-} 
-if ($userlogin->hasRights('publication_edit'))
-{
-?>
-    <li class='mainmenu'><?php echo anchor('import', 'Import'); ?></li>
-<?php
-}
-$ACCOUNT_MENU = "";
-if ($userlogin->hasRights('user_edit_self')) {
-    $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
-}
-if ($userlogin->hasRights('topic_subscription')) {
-    $ACCOUNT_MENU .= "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Review')."</li>\n";
-}
-if ($ACCOUNT_MENU != "") {
-?>
-    <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">ACCOUNT</li>
-<?php
-    echo $ACCOUNT_MENU;
-}
-?>
-    <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">HELP</li>
-    <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
-    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', 'About this site'); ?></li>
 
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header">SITE</li>
+    <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', 'About this site'); ?></li>
 <?php
 if ($userlogin->hasRights('database_manage')) {
 ?>
@@ -79,8 +96,6 @@ if ($userlogin->hasRights('user_edit_all')) {
 }
 
 ?>
-    <li class="mainmenu"><?php echo anchor('export', 'Export BiBTeX',array('target'=>'aigaion_export')); ?></li>
-    <li class="mainmenu"><?php echo anchor('export/all/ris', 'Export RIS',array('target'=>'aigaion_export')); ?></li>
 
     <li class="mainmenu-spacer"></li>
 <?php
@@ -105,6 +120,14 @@ if ($userlogin->hasRights('user_edit_all')) {
     } else {
       echo "<li class='mainmenu'>".$anonusers[0]->login."</li>";
     }
+
+//probably no-one would ever assign these two rights to the anon user, but nevertheless....:
+if ($userlogin->hasRights('user_edit_self')) {
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
+}
+if ($userlogin->hasRights('topic_subscription')) {
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Subscribe')."</li>\n";
+}
         
 ?>	    
     <li class="mainmenu-spacer"></li>
@@ -138,6 +161,14 @@ if ($userlogin->hasRights('user_edit_all')) {
 ?>
     <li class="mainmenu-header">LOGGED IN:</li>
     <li class="mainmenu"><?php echo $userlogin->loginName(); ?></li>
+<?php
+if ($userlogin->hasRights('user_edit_self')) {
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
+}
+if ($userlogin->hasRights('topic_subscription')) {
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Subscribe')."</li>\n";
+}
+?>
     <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
 <?php
   }
