@@ -159,7 +159,7 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.
-	        The correct syntax for strings is: @string {AIG = \"Aigaion bibliography System\"}<br/><br/></td>
+	        The correct syntax for strings is: @string {AIG = "Aigaion bibliography System"}<br/><br/></td>
 	    </tr>
 <!-- DISPLAY SETTINGS -->
 	    <tr>

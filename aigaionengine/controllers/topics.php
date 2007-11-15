@@ -53,6 +53,7 @@ class Topics extends Controller {
                                             ),  
                                       true)."</ul>\n</div>\n";
         
+        
         $output .= $this->load->view('footer','', true);
 
         //set output

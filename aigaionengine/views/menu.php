@@ -21,6 +21,7 @@
     ?>
     <li class="mainmenu"><?php echo anchor('topics/all', 'All Topics'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications', 'All Publications'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/unassigned', 'Unassigned'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'All Authors'); ?></li>
 
     <?php

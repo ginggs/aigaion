@@ -886,10 +886,11 @@ class Publication_db {
     ///////////////////
     //DR: this query is copied from another method - needs to be modified to retrieve all unassigned papers.
     ///////////////////
-//    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
-//    WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
-//    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
-//    ORDER BY ".$orderby);
+    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication 
+                                    LEFT JOIN ".AIGAION_DB_PREFIX."topicpublicationlink
+                        			       ON (".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id AND (".AIGAION_DB_PREFIX."topicpublicationlink.topic_id != 1))
+                          WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IS NULL
+                       ORDER BY ".$orderby);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -1157,6 +1158,7 @@ class Publication_db {
     */
     function reviewBibtexID($publication) {
       $CI = &get_instance();
+      if (trim($publication->bibtex_id)=='') return null;
       $Q = $CI->db->query("SELECT pub_id FROM ".AIGAION_DB_PREFIX."publication
                            WHERE bibtex_id = ".$CI->db->escape($publication->bibtex_id));
   
