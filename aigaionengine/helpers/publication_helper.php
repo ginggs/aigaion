@@ -224,7 +224,7 @@ function getPublicationFieldArray($type)
 		case "Inproceedings":
 		return array( 'report_type'	    => 'hidden',
                   'journal'         => 'hidden',
-                  'booktitle'       => 'required',
+                  'booktitle'       => 'optional', //cannot be required, since it may have been stored in a crossref entry! (and then this field stays empty)
                   'edition'         => 'hidden',
                   'series'          => 'optional',
                   'volume'          => 'optional',

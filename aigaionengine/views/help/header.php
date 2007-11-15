@@ -10,6 +10,7 @@
 
     <li class='help'>[<?php echo anchor('help/viewhelp/accounts','Accounts'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/accessrights','Access rights'); ?>]</li>
+    <li class='help'>[<?php echo anchor('help/viewhelp/crossref','Crossref'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/goodpractices','Good practices'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/themes','Themes'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/about','About'); ?>]</li>

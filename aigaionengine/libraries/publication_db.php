@@ -116,10 +116,10 @@ class Publication_db {
                 && (    $this->enforceMerge 
                      || (getConfigurationSetting('PUBLICATION_XREF_MERGE')=='TRUE')
                     );
+                    
     if ($do_merge)
     
     {
-        appendMessage('still merge');
       //copy the row to the publication object. If the original row is empty, retrieve the info
       //from the crossref merge row.
       foreach ($R as $key => $value)
@@ -153,7 +153,15 @@ class Publication_db {
     //retrieve authors and editors
     $publication->authors = $CI->author_db->getForPublication($R->pub_id, 'N');
     $publication->editors = $CI->author_db->getForPublication($R->pub_id, 'Y');
-
+    
+    if (count($publication->authors)==0 && $do_merge) { //yes, those too...
+        $publication->authors = $CI->author_db->getForPublication($merge_row->pub_id, 'N');
+    }
+    if (count($publication->editors)==0 && $do_merge) {
+        $publication->editors = $CI->author_db->getForPublication($merge_row->pub_id, 'Y');
+    }
+        
+        
     //check if this publication was bookmarked by the logged user
     $Q = $CI->db->getwhere('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
     if ($Q->num_rows()>0) {
