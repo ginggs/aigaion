@@ -1202,7 +1202,7 @@ class Publication_db {
             return -1;
         }
         $R = $Q->row();
-        if ($R->read == 'n') {
+        if ($R->hasread == 'n') {
             return -1;
         }
         return $R->mark;

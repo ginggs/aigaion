@@ -61,6 +61,16 @@ class Search_lib {
             $result['topics'] = $arrayOfTopics;
         }
         
+        //find keywords hits on 'like' clause for keyword
+        $keywordQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."keywords WHERE ".$this->keywordsToLikeQuery($keywordArray,'keyword')." ORDER BY keyword;");
+        if ($keywordQ->num_rows()>0) {
+            $arrayOfKeywords = array();
+            foreach ($keywordQ->result() as $R) {
+                $arrayOfKeywords[] = array($R->keyword_id,$R->keyword);
+            }
+            $result['keywords'] = $arrayOfKeywords;
+        }
+        
         //find publication hits on 'like' clause for cleantitle, bibtex_id, cleanjournal
         //DR note: here we could also enforce that the publicaiton should be in a subscribed topic. Would make things a lot slower,
         //but I think people will want this.
