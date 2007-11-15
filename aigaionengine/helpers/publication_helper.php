@@ -96,7 +96,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Book":
@@ -127,7 +127,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Booklet":
@@ -158,7 +158,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Inbook":
@@ -188,7 +188,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Incollection":
@@ -218,7 +218,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Inproceedings":
@@ -248,7 +248,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Manual":
@@ -278,7 +278,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Mastersthesis":
@@ -308,7 +308,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Misc":
@@ -338,7 +338,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Phdthesis":
@@ -368,7 +368,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Proceedings":
@@ -398,7 +398,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Techreport":
@@ -428,7 +428,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		case "Unpublished":
@@ -458,7 +458,7 @@ function getPublicationFieldArray($type)
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
-                  'userfields'      => 'hidden'
+                  'userfields'      => 'optional'
 								);
 		break;
 		default:

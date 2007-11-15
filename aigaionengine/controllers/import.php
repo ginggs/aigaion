@@ -117,6 +117,8 @@ class Import extends Controller {
     }
     if ($import_count != null)
     {
+      $to_import = array();
+      $old_bibtex_ids = array();
       $count = 0;
       for ($i = 0; $i < $import_count; $i++)
       {
@@ -124,8 +126,20 @@ class Import extends Controller {
         {
           $count++;
           $publication = $this->publication_db->getFromPost("_".$i);
-          $publication = $this->publication_db->add($publication);
+          $publication->actualyear = $this->input->post('actualyear_'.$i); //note that the actualyear is a field that normally is derived on update or add, but in the case of import, it has been set through the review form!
+          $to_import[] = $publication;
+          $old_bibtex_ids[$this->input->post('old_bibtex_id_'.$i)] = $count-1;
         }
+      }
+      foreach ($to_import as $pub_to_import) {
+        //if necessary, change crossref (if reffed pub has changed bibtex_id)
+        if (trim($pub_to_import->crossref)!= '') {
+  	        if (array_key_exists($pub_to_import->crossref,$old_bibtex_ids)) {
+  	            $pub_to_import->crossref = $to_import[$old_bibtex_ids[$pub_to_import->crossref]]->bibtex_id;
+  	            //appendMessage('changed crossref entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref);
+  	        }
+        }            
+        $pub_to_import = $this->publication_db->add($pub_to_import);
       }
       appendMessage('Succesfully imported '.$count.' publications.');
       redirect('publications/showlist/recent');

@@ -11,7 +11,6 @@ class Parser_Import
   //class member variables
   var $importData   = '';
   var $publications = array();
-  
   //the parser itself
   var $cEntryParser;
   var $cAuthorParser;
@@ -60,9 +59,26 @@ class Parser_Import
   
   	//now, $entries contains the parsed data, Bibliophile style.
   	//we have to convert to our publication objects
+  	$pubs = array();
+  	$bibtex_ids = array();
+  	$i = 0;
   	foreach ($entries as $entry)
   	{
-  	  $this->publications[] = $this->bibliophileToPublication($entry);
+  	  $nextpub = $this->bibliophileToPublication($entry);
+  	  $pubs[] = $nextpub;
+  	  $bibtex_ids[$nextpub->bibtex_id] = $i;
+  	  $i++;
+  	}
+  	//and finally, when crossrefs were present, we need to set the actualyear values
+  	foreach ($pubs as $publication) {
+  	    if (trim($publication->crossref)!='') {
+  	        if (array_key_exists($publication->crossref,$bibtex_ids)) {
+  	            $publication->actualyear = $pubs[$bibtex_ids[$publication->crossref]]->year;
+  	            //appendMessage('entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref.' actualyear:'.$publication->actualyear);
+  	        }
+  	    }
+  	    $this->publications[] = $publication;
+  	    //appendMessage('entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref.' actualyear:'.$publication->actualyear);
   	}
   }
   

@@ -178,6 +178,8 @@ for ($i = 0; $i < $importCount; $i++)
         echo form_hidden('keywords_'.$i, $publications[$i]->keywords)."\n";
       }
     }
+    echo form_hidden("actualyear_".$i,     $publications[$i]->actualyear)."\n"; //don't forget to remember this one... as during import, actualyear is determined in parser_import.php
+    echo form_hidden("old_bibtex_id_".$i,     $publications[$i]->bibtex_id)."\n"; //don't forget to remember this one... when the bibtexID is changed in the edit box, we need to know whether we should change any crossrefs (later on in controller import.php#commit() )
 
     ?>
   </table>

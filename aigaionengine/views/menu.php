@@ -42,18 +42,26 @@
     <?php
     //the sort options are only available if the view is called with a 'sortPrefix' option that is not ''
     //
-    if (isset($sortPrefix)&&($sortPrefix!=''))
+    if (!isset($sortPrefix)||($sortPrefix==''))
     {
+      $sortPrefix = 'publications/showlist/';
+      ?>
+      <li class="mainmenu-spacer"></li>
+      <li class="mainmenu-header">BROWSE ALL BY</li>
+      <?php
+    } else {
       ?>
       <li class="mainmenu-spacer"></li>
       <li class="mainmenu-header">SORT BY</li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
       <?php
     }
+    ?>
+    <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
+    <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
+    <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
+    <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
+    <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
+    <?php
 
     //you need the proper userrrights to create new items
     if ($userlogin->hasRights('publication_edit'))

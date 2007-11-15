@@ -104,7 +104,7 @@ class Publication_db {
       }
     } //end of crossref retrieval. If we need to merge, this is now signaled in $do_merge
 
-
+$do_merge = false;
     if ($do_merge)
     {
       //copy the row to the publication object. If the original row is empty, retrieve the info
@@ -377,7 +377,9 @@ class Publication_db {
       if (trim($publication->crossref) != '')
       {
         $xref_pub = $CI->publication_db->getByBibtexID($publication->crossref);
-        $publication->actualyear = $xref_pub->year;
+        if ($xref_pub!=null) //otherwise, the crossref doesn't exist in the database. If it's an entry being imported, the actualyear should have been set in another way, by the parser
+          $publication->actualyear = $xref_pub->year;
+                     
       }
     }
     else
@@ -558,7 +560,8 @@ class Publication_db {
       if (trim($publication->crossref) != '')
       {
         $xref_pub = $this->publication_db->getByBibtexID($publication->crossref);
-        $publication->actualyear = $xref_pub->year;
+        if ($xref_pub != null)
+          $publication->actualyear = $xref_pub->year;
       }
     }
     else
