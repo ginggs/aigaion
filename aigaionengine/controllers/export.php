@@ -44,7 +44,18 @@ class Export extends Controller {
             return;
 	    }
         $userlogin = getUserLogin();
-
+        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        switch ($type) {
+            case 'bibtex':
+                $this->publication_db->suppressMerge = True;
+                break;
+            case 'ris':
+                $this->publication_db->enforceMerge = True;
+                break;
+            default:
+                break;
+                
+        }
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getAllPublicationsAsMap();
         #split into publications and crossreffed publications, adding crossreffed publications as needed
@@ -98,6 +109,18 @@ class Export extends Controller {
             return;
 	    }
         $userlogin = getUserLogin();
+        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        switch ($type) {
+            case 'bibtex':
+                $this->publication_db->suppressMerge = True;
+                break;
+            case 'ris':
+                $this->publication_db->enforceMerge = True;
+                break;
+            default:
+                break;
+                
+        }
 
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getForTopicAsMap($topic->topic_id);
@@ -151,6 +174,18 @@ class Export extends Controller {
             return;
 	    }
         $userlogin = getUserLogin();
+        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        switch ($type) {
+            case 'bibtex':
+                $this->publication_db->suppressMerge = True;
+                break;
+            case 'ris':
+                $this->publication_db->enforceMerge = True;
+                break;
+            default:
+                break;
+                
+        }
 
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getForAuthorAsMap($author->author_id);
@@ -201,6 +236,18 @@ class Export extends Controller {
 	        appendErrorMessage('Export: no bookmarklist rights<br/>');
 	        redirect ('');
 	    }
+        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        switch ($type) {
+            case 'bibtex':
+                $this->publication_db->suppressMerge = True;
+                break;
+            case 'ris':
+                $this->publication_db->enforceMerge = True;
+                break;
+            default:
+                break;
+                
+        }
 	    
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getForBookmarkListAsMap();
@@ -235,14 +282,36 @@ class Export extends Controller {
     */
     function publication() {
 	    $pub_id = $this->uri->segment(3,-1);
-	    $type = $this->uri->segment(4,'bibtex');
+	    $type = $this->uri->segment(4,'');
+        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        switch ($type) {
+            case 'bibtex':
+                $this->publication_db->suppressMerge = True;
+                break;
+            case 'ris':
+                $this->publication_db->enforceMerge = True; //although the crossreferenced publications are STILL exported...
+                break;
+            default:
+                break;
+                
+        }
 	    $publication = $this->publication_db->getByID($pub_id);
 	    if ($publication==null) {
 	        appendErrorMessage('Export requested for non existing publication<br/>');
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris'))) {
-	        $type = 'bibtex';
+            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            
+            //get output
+            $output  = $this->load->view('header',        $header,  true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export one publication','exportCommand'=>'export/publication/'.$publication->pub_id.'/'), true);
+            $output .= $this->load->view('footer',        '',       true);
+            
+            //set output
+            $this->output->set_output($output);
+            return;
 	    }
         $userlogin = getUserLogin();
 

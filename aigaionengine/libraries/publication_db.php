@@ -4,6 +4,12 @@
 array of Publications. */
 class Publication_db {
 
+  /* if neither $suppressMerge is set nor $enforceMerge, merging is determined by the configuration setting */
+  
+  /** set this to true if you don't want any merges to occur. (Merge: copy crossref info into publication object) */
+  var $suppressMerge = False;
+  /** set this to true if you want to enforce merges. (Merge: copy crossref info into publication object) */
+  var $enforceMerge = False;
 
   function Publication_db()
   {
@@ -104,9 +110,16 @@ class Publication_db {
       }
     } //end of crossref retrieval. If we need to merge, this is now signaled in $do_merge
 
-$do_merge = false;
+    /* if neither $suppressMerge is set nor $enforceMerge, merging is determined by the configuration setting */
+    $do_merge =    $do_merge 
+                && !$this->suppressMerge
+                && (    $this->enforceMerge 
+                     || (getConfigurationSetting('PUBLICATION_XREF_MERGE')=='TRUE')
+                    );
     if ($do_merge)
+    
     {
+        appendMessage('still merge');
       //copy the row to the publication object. If the original row is empty, retrieve the info
       //from the crossref merge row.
       foreach ($R as $key => $value)

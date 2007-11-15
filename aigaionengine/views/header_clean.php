@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title><?php $title; ?></title>
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
+    <link href="<?php echo getCssUrl("positioning.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <script type="text/javascript">
       //<![CDATA[
       base_url = '<?php echo base_url();?>index.php/';

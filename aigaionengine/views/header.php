@@ -82,5 +82,6 @@
                 echo "<div class='message'>".$msg."</div>";
                 clearMessage();
             }      
+
         ?>
         <!---->

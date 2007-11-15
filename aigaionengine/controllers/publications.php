@@ -41,6 +41,7 @@ class Publications extends Controller {
     if (!$pub_id)
       redirect('');
 
+    
     //load publication
     $publication = $this->publication_db->getByID($pub_id);
     if ($publication == null)
@@ -207,6 +208,7 @@ class Publications extends Controller {
   //edit() - Call publication edit form. When no ID is given: new publicationform
   function edit($publication = "")
   {
+    $this->publication_db->suppressMerge = True;//note: in the edit form, we should NOT see the data from the crossreferenced publication, so suppress merging
     if (is_numeric($publication))
     {
       $pub_id = $publication;
