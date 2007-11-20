@@ -25,7 +25,10 @@ $user       = $this->user_db->getByID($userlogin->userID());
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        echo anchor('attachments/single/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachment->name))."\n";
+        $params = array('title'=>'Download '.$attachment->name);
+        if ($userlogin->getPreference('newwindowforatt')=='TRUE')
+            $params['target'] = '_blank';
+        echo anchor('attachments/single/'.$attachment->att_id,"<img class='icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
     $name = $attachment->name;
     $this->load->helper('utf8');

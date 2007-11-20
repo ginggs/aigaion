@@ -208,7 +208,10 @@ if (count($attachments) != 0)
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='icon' src='".$iconUrl."'/>" ,array('title'=>'Download '.$attachments[0]->name))."\n";
+        $params = array('title'=>'Download '.$attachments[0]->name);
+        if ($userlogin->getPreference('newwindowforatt')=='TRUE')
+            $params['target'] = '_blank';
+        echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }  
 if (trim($publication->doi)!='') {

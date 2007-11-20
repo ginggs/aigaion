@@ -13,7 +13,7 @@ Parameters:
 
 we assume that this view is not loaded if you don't have the appropriate read rights
 */
-
+$userlogin = getUserLogin();
 if ($attachment->isremote) {
 } else {
     if (!file_exists(AIGAION_ATTACHMENT_DIR."/".$attachment->location)) {
@@ -22,7 +22,12 @@ if ($attachment->isremote) {
     } else {
         $this->load->helper('download');
         $this->output->set_header("Content-type: ".$attachment->mime);
-        $this->output->set_header('Content-Disposition: attachment; filename="'.$attachment->name.'"');
+        if ($userlogin->getPreference('newwindowforatt') == 'TRUE') {
+            $this->output->set_header('Content-Disposition: inline; filename="'.$attachment->name.'"');
+            $this->output->set_header('Title: "'.$attachment->name.'"');
+        } else {
+            $this->output->set_header('Content-Disposition: attachment; filename="'.$attachment->name.'"');
+        }
         $this->output->set_header("Cache-Control: cache, must-revalidate");
         //$this->output->set_header("Content-Length: ".strlen($data)); ?
         $this->output->set_header("Pragma: public");
