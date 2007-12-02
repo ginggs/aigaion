@@ -294,6 +294,7 @@ div.autocomplete {
   border-color    : #DDDDDD;
   margin          : 0px;
   padding         : 0px;
+  z-index         : 999;
 }
 div.autocomplete ul {
     list-style      : none!important;

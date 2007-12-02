@@ -101,6 +101,30 @@
     <tr>
       <td valign='top'>Authors:</td>
       <td>
+        <table width='100%'>
+        <tr>
+            <td width='45%'>
+<?php
+                //echo "<div id='sortableauthors'>";
+                //echo "<div id='authorlist_container_".$publication->pub_id."_n'>";
+                //echo $this->load->view('publications/reorderauthors',array('publication'=>$publication,'editors'=>'n'),true);
+                //echo "</div>";
+                //echo "</div>";
+?>                
+            </td>
+            <td>
+<?php
+            //echo $this->ajax->link_to_remote("[<<]",
+            //      array('url'     => site_url('/publications/sortableauthors/n'),
+            //            'update'  => 'sortableauthors'));
+            //echo form_input(array('name' => 'newauthor', 'id' => 'newauthor', 'size' => '40'),'');
+?>
+            <div name='autocomplete_author' id='autocomplete_author' class='autocomplete'>
+            </div>
+            <?php //echo $this->ajax->auto_complete_field('newauthor', array('url' => base_url().'index.php/authors/li_authors/newauthor', 'update' => 'autocomplete_author', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+            </td>
+        </tr>
+        </table>
 <?php
         $authors = array();
         if (is_array($publication->authors))
@@ -112,15 +136,24 @@
         }
 
         echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '87', 'value' => implode($authors, "\n")));
-        ?>
+?>
         <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
         </div>
-        <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/authors/li_authors/authors', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
+<?php 
+        echo $this->ajax->auto_complete_field('authors', array('url' => base_url().'index.php/authors/li_authors/authors', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";
+?>
       </td>
     </tr>
     <tr>
       <td valign='top'>Editors:</td>
       <td>
+        <table width='100%'>
+        <tr>
+            <td width='45%'></td>
+            <td>
+            </td>
+        </tr>
+        </table>
 <?php
         $editors = array();
         if (is_array($publication->editors))

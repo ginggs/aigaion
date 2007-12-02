@@ -1241,5 +1241,25 @@ class Publication_db {
             $Q = $CI->db->update('publication',array('mark'=>($R->mark-$oldmark)),array('pub_id'=>$pub_id));
         }
     }
+
+
+    /** reorder authorlist based on given map from new rank to old rank */
+//    function reorderauthors($pub_id, $reorder, $editors='n') {
+//        $CI = &get_instance();
+//        $userlogin  = getUserLogin();
+//        
+//        $CI->db->select('MAX(rank)');
+//        $Q = $CI->db->getwhere('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
+//        $R = $Q->row_array();
+//        $maxrank = $R['MAX(rank)'];
+//        $Q = $CI->db->getwhere('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
+//        foreach ($Q->result() as $row) {
+//            $CI->db->query('UPDATE '.AIGAION_DB_PREFIX.'publicationauthorlink SET rank='.($row->rank+$maxrank).' WHERE pub_id='.$pub_id.' AND rank='.$row->rank." AND is_editor='".$editors."'");
+//        }
+//        foreach ($reorder as $newrank => $oldrank) {
+//            //$newrank starts at 0, but in table should start at 1
+//            $CI->db->query('UPDATE '.AIGAION_DB_PREFIX.'publicationauthorlink SET rank='.($newrank+1).' WHERE pub_id='.$pub_id.' AND rank='.($oldrank+$maxrank+1)." AND is_editor='".$editors."'");
+//        }
+//    }    
 }
 ?>

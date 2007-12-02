@@ -591,5 +591,44 @@ class Publications extends Controller {
         $publication->unread();
         redirect ('publications/show/'.$publication->pub_id);
     }
+    
+    /**
+    fails if:
+        insufficient rights
+        
+    3rd: pub_id
+    4rth: (n|y) : editors? (default: n, is authors)
+    */
+//    function reorderauthors() {
+//   	    $pub_id = $this->uri->segment(3);
+//   	    $publication = $this->publication_db->getByID($pub_id);
+//   	    $editors = $this->uri->segment(4,'n');
+//   	    
+//        if ($publication == null)
+//        {
+//          echo 'Reorder authors and editors: non-existing publication id passed';
+//          return;
+//        }
+//        $userlogin=getUserLogin();
+//        if (    (!$userlogin->hasRights('publication_edit'))
+//             || !$this->accesslevels_lib->canEditObject($publication)           
+//            ) 
+//        {
+//          echo('Reorder authors: insufficient rights.<br/>');
+//          return;
+//        }
+//        
+//        //do reorder based on post info
+//        $reorder = $this->input->post('authorlist_'.$pub_id.'_'.$editors);
+//        //print_r($reorder);
+//        $this->publication_db->reorderauthors($pub_id, $reorder, $editors);
+//        $publication = $this->publication_db->getByID($pub_id);
+//        
+//        //get output
+//        $output  = $this->load->view('publications/reorderauthors' , array('publication'=>$publication,'editors'=>$editors),  true);
+//
+//        //set output
+//        $this->output->set_output($output);	        
+//    }
 }
 ?>
