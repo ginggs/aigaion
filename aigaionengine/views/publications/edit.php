@@ -16,6 +16,8 @@
   echo form_hidden('pub_id',      $publication->pub_id)."\n";
   echo form_hidden('user_id',     $publication->user_id)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
+  echo "<input type='hidden' name='pubform_authors' id='pubform_authors' value=''/>\n";//into this field, the selectedauthors box will be parsed upon commit
+  echo "<input type='hidden' name='pubform_editors' id='pubform_editors' value=''/>\n";//into this field, the selectededitors box will be parsed upon commit
 ?>
   <table class='publication_edit_form' width='100%'>
     <tr>
@@ -97,81 +99,94 @@
       <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=> ',', 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
-
+<?php
+	include_once(APPPATH."/javascript/authorselection.js");
+	include_once(APPPATH."/javascript/publications.js");
+	/*a short note: the following long piece of code creates the author and editor boxes which can be 
+	filled, emptied and reordered. When the main form is committed, these boxes should be processed into 
+	two form fields using the 'getAUthors' and 'getEditors' javascript functions*/
+?>
     <tr>
-      <td valign='top'>Authors:</td>
-      <td>
-        <table width='100%'>
-        <tr>
-            <td width='45%'>
+        <td colspan='2'>
+    	<table width='100%'>
+			<!--tr><td colspan='2' align='center'>
+				<span class='islink' onclick=\"javascript:window.open('indexlight.php?page=author&kind=new','author_window',
+					'resizable, scrollbars, width=800, height=480, dependent, left=0, top=0');\">[Add new author]</span>
+			</td></tr-->
+			<tr>
+				<td  width='55%' valign='top'>
+					<table width='100%'>
+						<tr><td width='80%' align='left'>Authors</td>
+							<td width='20%'></td></tr>
+						<tr><td align='right'>
+							<select name='selectedauthors' id='selectedauthors' style='width:100%;' size='10'>
 <?php
-                //echo "<div id='sortableauthors'>";
-                //echo "<div id='authorlist_container_".$publication->pub_id."_n'>";
-                //echo $this->load->view('publications/reorderauthors',array('publication'=>$publication,'editors'=>'n'),true);
-                //echo "</div>";
-                //echo "</div>";
-?>                
-            </td>
-            <td>
+                                if (is_array($publication->authors))
+                                {
+                                  foreach ($publication->authors as $author)
+                                  {
+                            		echo "<option value=".$author->author_id.">".$author->cleanname."</option>\n";
+                            	  }
+                            	}
+?>
+							</select>
+						</td>
+						<td align='center'>
 <?php
-            //echo $this->ajax->link_to_remote("[<<]",
-            //      array('url'     => site_url('/publications/sortableauthors/n'),
-            //            'update'  => 'sortableauthors'));
-            //echo form_input(array('name' => 'newauthor', 'id' => 'newauthor', 'size' => '40'),'');
+                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;add','AddAuthor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function('rem&nbsp;&gt;&gt;','RemoveAuthor();').']<br/>';
 ?>
-            <div name='autocomplete_author' id='autocomplete_author' class='autocomplete'>
-            </div>
-            <?php //echo $this->ajax->auto_complete_field('newauthor', array('url' => base_url().'index.php/authors/li_authors/newauthor', 'update' => 'autocomplete_author', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
-            </td>
-        </tr>
-        </table>
+                        </td>
+                        </tr>
+						<tr><td align='right'>
 <?php
-        $authors = array();
-        if (is_array($publication->authors))
-        {
-          foreach ($publication->authors as $author)
-          {
-            $authors[] = $author->getName();
-          }
-        }
-
-        echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '87', 'value' => implode($authors, "\n")));
+                            echo '['.$this->ajax->link_to_function('up','AuthorUp();').']';
+                            echo '['.$this->ajax->link_to_function('down','AuthorDown();').']';
 ?>
-        <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
-        </div>
-<?php 
-        echo $this->ajax->auto_complete_field('authors', array('url' => base_url().'index.php/authors/li_authors/authors', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";
+						</td><td></td></tr>
+						<tr><td align='left'>Editors</td><td></td></tr>
+						<tr>
+						<td align='right'>
+							<select name='selectededitors' id='selectededitors' style='width: 100%;' size='10'>
+<?php
+                                if (is_array($publication->editors))
+                                {
+                                  foreach ($publication->editors as $editor)
+                                  {
+                            		echo "<option value=".$editor->author_id.">".$editor->cleanname."</option>\n";
+                            	  }
+                            	}
 ?>
-      </td>
+							</select></td>
+						<td align='center'>
+<?php
+                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;add','AddEditor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function('rem&nbsp;&gt;&gt;','RemoveEditor();').']<br/>';
+?>
+                        </td>
+					    </tr>
+						<tr><td align='right'>
+<?php
+                            echo '['.$this->ajax->link_to_function('up','EditorUp();').']';
+                            echo '['.$this->ajax->link_to_function('down','EditorDown();').']';
+?>
+						</td><td></td></tr>
+					</table>
+				</td>
+				<td width='45%' valign='top'>
+					<table width='100%'>
+						<tr><td><input type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='50'></td></tr>
+						<tr><td><select style='width:100%;' size='23' name='authorinputselect' id='authorinputselect'></select></td></tr>
+						<tr><td align='right'></td></tr>
+					</table>
+				</td>
+				
+			</tr>
+		</table>
+	    <script language='JavaScript'>Init();</script>
+	    </td>
     </tr>
-    <tr>
-      <td valign='top'>Editors:</td>
-      <td>
-        <table width='100%'>
-        <tr>
-            <td width='45%'></td>
-            <td>
-            </td>
-        </tr>
-        </table>
-<?php
-        $editors = array();
-        if (is_array($publication->editors))
-        {
-          foreach ($publication->editors as $author)
-          {
-            $editors[] = $author->cleanname;
-          }
-        }
 
-        echo form_textarea(array('name' => 'editors', 'id' => 'editors', 'rows' => '5', 'cols' => '87', 'value' => implode($editors, "\n")));
-        ?>
-        <div name='editor_autocomplete' id='editor_autocomplete' class='autocomplete'>
-        </div>
-        <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/authors/li_authors/editors', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
-      </td>
-    </tr>
-    
   </table>
 <?php
   foreach ($publicationfields as $key => $class):
@@ -182,9 +197,9 @@
       
 
 if ($edit_type=='edit') {
-  echo form_submit('publication_submit', 'Change')."\n";
+  echo $this->ajax->button_to_function('Change',"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
 } else {
-  echo form_submit('publication_submit', 'Add')."\n";
+  echo $this->ajax->button_to_function('Add',"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
 }
   echo form_close()."\n";
 

@@ -208,9 +208,9 @@ class Publication_db {
     'crossref',
     'namekey',
     'userfields',
-    'keywords',
-    'authors',
-    'editors'
+    'keywords'
+    //'authors',
+    //'editors'
     );
 
     $publication = new Publication;
@@ -245,49 +245,31 @@ class Publication_db {
     }
     
     //parse the authors
-    if ($publication->authors)
-    {
-      $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->authors));
-      
-      $authors          = array();
-      foreach ($authors_array as $author)
-      {
-        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
-        if ($author_db  != null)
-        {
-          $authors[]    = $author_db;
+    $selectedauthors = $CI->input->post('pubform_authors');
+    $authors          = array();
+    if (trim($selectedauthors)!='') {
+        $author_ids = split(',',$selectedauthors);
+        foreach ($author_ids as $author_id) {
+            $next = $CI->author_db->getByID($author_id);
+            if ($next!=null)
+                $authors[] = $next;
         }
-        else
-        {
-          $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
-          $authors[]    = $author_db;
-        }
-      }
-
-      $publication->authors = $authors;
     }
+    $publication->authors = $authors;
 
     //parse the editors
-    if ($publication->editors)
-    {
-      $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $publication->editors));
-      $authors          = array();
-      foreach ($authors_array as $author)
-      {
-        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
-        if ($author_db != null)
-        {
-          $authors[]      = $author_db;
+    $selectededitors = $CI->input->post('pubform_editors');
+    $editors         = array();
+    if (trim($selectededitors)!='') {
+        $editor_ids = split(',',$selectededitors);
+        foreach ($editor_ids as $editor_id) {
+            $next = $CI->author_db->getByID($editor_id);
+            if ($next!=null)
+                $editors[] = $next;
         }
-        else
-        {
-          $author_db     = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
-          $authors[]  = $author_db;
-        }
-      }
-
-      $publication->editors = $authors;
     }
+    $publication->editors = $editors;
+
     return $publication;
   }
 
