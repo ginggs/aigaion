@@ -171,7 +171,8 @@ class Publication_db {
     return $publication;
   }
 
-  function getFromPost($suffix = "")
+  //if fromImport is true, the authors are availabele as text field instead of as collapsed set of author_ids!
+  function getFromPost($suffix = "", $fromImport = False)
   {
     $CI = &get_instance();
     //we retrieve the following fields
@@ -244,34 +245,83 @@ class Publication_db {
       $publication->keywords = $keyword_array;
     }
     
-    //parse the authors
-    $selectedauthors = $CI->input->post('pubform_authors');
-    $authors          = array();
-    if (trim($selectedauthors)!='') {
-        $author_ids = split(',',$selectedauthors);
-        foreach ($author_ids as $author_id) {
-            if ($author_id==null || trim($author_id)=='')continue;
-            $next = $CI->author_db->getByID($author_id);
-            if ($next!=null)
-                $authors[] = $next;
+    if (!$fromImport) {
+        //parse the authors
+        $selectedauthors = $CI->input->post('pubform_authors');
+        $authors          = array();
+        if (trim($selectedauthors)!='') {
+            $author_ids = split(',',$selectedauthors);
+            foreach ($author_ids as $author_id) {
+                if ($author_id==null || trim($author_id)=='')continue;
+                $next = $CI->author_db->getByID($author_id);
+                if ($next!=null)
+                    $authors[] = $next;
+            }
         }
-    }
-    $publication->authors = $authors;
-
-    //parse the editors
-    $selectededitors = $CI->input->post('pubform_editors');
-    $editors         = array();
-    if (trim($selectededitors)!='') {
-        $editor_ids = split(',',$selectededitors);
-        foreach ($editor_ids as $editor_id) {
-            if ($editor_id==null || trim($editor_id)=='')continue;
-            $next = $CI->author_db->getByID($editor_id);
-            if ($next!=null)
-                $editors[] = $next;
+        $publication->authors = $authors;
+    
+        //parse the editors
+        $selectededitors = $CI->input->post('pubform_editors');
+        $editors         = array();
+        if (trim($selectededitors)!='') {
+            $editor_ids = split(',',$selectededitors);
+            foreach ($editor_ids as $editor_id) {
+                if ($editor_id==null || trim($editor_id)=='')continue;
+                $next = $CI->author_db->getByID($editor_id);
+                if ($next!=null)
+                    $editors[] = $next;
+            }
         }
+        $publication->editors = $editors;
+    } else {
+        //data comes from import review, so apparently authors are not present as comma separated ids in pubform_authors, but as text field in 'authors'
+        //parse the authors
+        $authorsFromForm = $CI->input->post('authors'.$suffix);
+        if ($authorsFromForm)
+        {
+          $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $authorsFromForm));
+          
+          $authors          = array();
+          foreach ($authors_array as $author)
+          {
+            $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+            if ($author_db  != null)
+            {
+              $authors[]    = $author_db;
+            }
+            else
+            {
+              $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+              $authors[]    = $author_db;
+            }
+          }
+    
+          $publication->authors = $authors;
+        }
+    
+        //parse the editors
+        $editorsFromForm = $CI->input->post('editors'.$suffix);
+        if ($editorsFromForm)
+        {
+          $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $editorsFromForm));
+          $authors          = array();
+          foreach ($authors_array as $author)
+          {
+            $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+            if ($author_db != null)
+            {
+              $authors[]      = $author_db;
+            }
+            else
+            {
+              $author_db     = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+              $authors[]  = $author_db;
+            }
+          }
+    
+          $publication->editors = $authors;
+        }        
     }
-    $publication->editors = $editors;
-
     return $publication;
   }
 

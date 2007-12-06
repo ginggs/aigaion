@@ -125,7 +125,7 @@ class Import extends Controller {
         if ($this->input->post('do_import_'.$i) == 'CHECKED')
         {
           $count++;
-          $publication = $this->publication_db->getFromPost("_".$i);
+          $publication = $this->publication_db->getFromPost("_".$i,True);
           $publication->actualyear = $this->input->post('actualyear_'.$i); //note that the actualyear is a field that normally is derived on update or add, but in the case of import, it has been set through the review form!
           $to_import[] = $publication;
           $old_bibtex_ids[$this->input->post('old_bibtex_id_'.$i)] = $count-1;

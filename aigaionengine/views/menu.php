@@ -21,8 +21,8 @@
     ?>
     <li class="mainmenu"><?php echo anchor('topics/all', 'All Topics'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications', 'All Publications'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/unassigned', 'Unassigned'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'All Authors'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/unassigned', 'Unassigned'); ?></li>
 
     <?php
     //the export option is slightly dependent on the view parameter 'exportCommand'
@@ -45,23 +45,21 @@
     //
     if (!isset($sortPrefix)||($sortPrefix==''))
     {
-      $sortPrefix = 'publications/showlist/';
-      ?>
-      <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header">BROWSE ALL BY</li>
-      <?php
+      //$sortPrefix = 'publications/showlist/';
+      //<li class="mainmenu-spacer"></li>
+      //<li class="mainmenu-header">BROWSE ALL BY</li>
     } else {
       ?>
       <li class="mainmenu-spacer"></li>
       <li class="mainmenu-header">SORT BY</li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
       <?php
     }
     ?>
-    <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
-    <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
-    <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
-    <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
-    <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
     <?php
 
     //you need the proper userrrights to create new items
