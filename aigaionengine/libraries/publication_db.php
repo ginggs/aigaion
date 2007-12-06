@@ -250,6 +250,7 @@ class Publication_db {
     if (trim($selectedauthors)!='') {
         $author_ids = split(',',$selectedauthors);
         foreach ($author_ids as $author_id) {
+            if ($author_id==null || trim($author_id)=='')continue;
             $next = $CI->author_db->getByID($author_id);
             if ($next!=null)
                 $authors[] = $next;
@@ -263,6 +264,7 @@ class Publication_db {
     if (trim($selectededitors)!='') {
         $editor_ids = split(',',$selectededitors);
         foreach ($editor_ids as $editor_id) {
+            if ($editor_id==null || trim($editor_id)=='')continue;
             $next = $CI->author_db->getByID($editor_id);
             if ($next!=null)
                 $editors[] = $next;
@@ -742,9 +744,11 @@ class Publication_db {
         $CI->db->delete('userpublicationmark',array('pub_id'=>$publication->pub_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
         return true;
-    }      
+    }
+    
   function validate($publication)
   {
+    //DR: when crossref set, nothing is required :) (see end of function)
     $CI = &get_instance();
     $validate_required    = array();
     $validate_conditional = array();
@@ -789,7 +793,7 @@ class Publication_db {
       }
     }
     
-    if ($validation_message != '')
+    if ($validation_message != '' && (trim($publication->crossref)=='')) //when crossref set, nothing is required :)
     {
       appendErrorMessage("Changes not committed:<br/>\n".$validation_message);
       return false;
@@ -1141,7 +1145,7 @@ class Publication_db {
     function reviewBibtexID($publication) {
       $CI = &get_instance();
       if (trim($publication->bibtex_id)=='') return null;
-      $Q = $CI->db->query("SELECT pub_id FROM ".AIGAION_DB_PREFIX."publication
+      $Q = $CI->db->query("SELECT pub_id,title FROM ".AIGAION_DB_PREFIX."publication
                            WHERE bibtex_id = ".$CI->db->escape($publication->bibtex_id));
   
       $num_rows = $Q->num_rows();
@@ -1151,7 +1155,7 @@ class Publication_db {
         {
           if ($row->pub_id != $publication->pub_id)
           {
-            $message = "The cite id is not unique, please choose another cite id.";
+            $message = "The cite id is not unique, please choose another cite id. <br/>Publication with same cite id: \"".$row->title."\"";
             
             $Q = $CI->db->query("SELECT bibtex_id FROM ".AIGAION_DB_PREFIX."publication
                                  WHERE bibtex_id LIKE ".$CI->db->escape($publication->bibtex_id."%"));
@@ -1162,13 +1166,14 @@ class Publication_db {
               $list = "";
               foreach ($Q->result() as $row)
               {
-                $list .= "<li>".$row->bibtex_id."</li>\n";
+                if ($row->pub_id != $publication->pub_id)
+                  $list .= "<li>".$row->bibtex_id."</li>\n";
               }
               if ($list != "")
                 $message .= "<br/>\nSimilar cite ids:<br/><ul>\n".$list."</ul>\n";
               
-              return $message;  
             }
+            return $message;  
           }
         }
       }

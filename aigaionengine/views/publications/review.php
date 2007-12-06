@@ -83,33 +83,11 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
     {
       foreach ($publication->authors as $author)
       {
-        $authors[] = $author->getName();
+        $authors[] = $author->author_id;
       }
     }
 
-    if ($review['authors'] != null)
-    {
-?>
-      <tr>
-        <td colspan = 2>
-          <div class='errormessage'><?php echo $review['authors']; ?></div>
-        </td>
-      </tr>
-      <tr>
-        <td valign='top'>Authors:</td>
-        <td>
-<?php
-          echo form_textarea(array('name' => 'authors', 'id' => 'authors', 'rows' => '5', 'cols' => '42', 'value' => implode($authors, "\n")));
-?>
-          <div name='author_autocomplete' id='author_autocomplete' class='autocomplete'>
-          </div>
-          <?php echo $this->ajax->auto_complete_field('authors', $options = array('url' => base_url().'index.php/publications/li_keywords/', 'update' => 'author_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
-        </td>
-      </tr>
-<?php
-    }
-    else
-    echo form_hidden('authors', implode($authors, "\n"))."\n";
+    echo form_hidden('pubform_authors', implode($authors, ","))."\n";
 
     //editor review
     $editors = array();
@@ -117,33 +95,12 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
     {
       foreach ($publication->editors as $author)
       {
-        $editors[] = $author->getName();
+        $editors[] = $author->author_id;
       }
     }
 
-    if ($review['editors'] != null)
-    {
-?>
-      <tr>
-        <td colspan = 2>
-          <div class='errormessage'><?php echo $review['editors']; ?></div>
-        </td>
-      </tr>
-      <tr>
-        <td valign='top'>editors:</td>
-        <td>
-<?php
-          echo form_textarea(array('name' => 'editors', 'id' => 'editors', 'rows' => '5', 'cols' => '42', 'value' => implode($editors, "\n")));
-?>
-          <div name='editor_autocomplete' id='editor_autocomplete' class='autocomplete'>
-          </div>
-          <?php echo $this->ajax->auto_complete_field('editors', $options = array('url' => base_url().'index.php/publications/li_keywords/', 'update' => 'editor_autocomplete', 'tokens'=> '\n', 'frequency' => '0.01'))."\n";?>
-        </td>
-      </tr>
-<?php
-    }
-    else
-      echo form_hidden('editors', implode($editors, "\n"))."\n";
+    echo form_hidden('pubform_editors', implode($editors, ","))."\n";
+
 ?>
   </table>
 

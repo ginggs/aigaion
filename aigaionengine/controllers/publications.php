@@ -375,13 +375,14 @@ class Publications extends Controller {
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
         //review authors and editors
-        $review['authors']   = $this->author_db->review($publication->authors);
-        $review['editors']   = $this->author_db->review($publication->editors);
+        //[DR] no longer needed now we don't edit authors through a text area anymore
+        //$review['authors']   = $this->author_db->review($publication->authors);
+        //$review['editors']   = $this->author_db->review($publication->editors);
         
         if (($review['bibtex_id']   != null) ||
-            ($review['keywords']  != null) || 
-            ($review['authors']   != null) || 
-            ($review['editors']   != null))
+            ($review['keywords']  != null)) 
+            //($review['authors']   != null) || 
+            //($review['editors']   != null))
         {
           $bReview = true;
           $review['edit_type'] = $edit_type;
@@ -598,6 +599,7 @@ class Publications extends Controller {
         
     3rd: pub_id
     4rth: (n|y) : editors? (default: n, is authors)
+    
     */
 //    function reorderauthors() {
 //   	    $pub_id = $this->uri->segment(3);
