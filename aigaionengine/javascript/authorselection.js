@@ -27,7 +27,7 @@ function AuthorSearch ()
 {
 	searchtext = $('authorinputtext').value;
 	$('authorinputselect').length = 0;
-	for (a in AUTHORIDS)  {
+	for (a=0;a<AUTHORIDS.length; a++) {
 		astring = new String (AUTHORS [AUTHORIDS [a]]);
 		if (astring.toLowerCase().indexOf(searchtext.toLowerCase ()) != -1)  {
 			$('authorinputselect').options [$('authorinputselect').length] = new Option (astring,a,false,false);
