@@ -57,7 +57,7 @@ $autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
 */
 
 $autoload['helper'] = array('config','theme','url','login','message', 'form', 
-                            'abbrev','rights', 'schema', 'attachments', 'bibtex');
+                            'abbrev','rights', 'schema', 'attachments', 'bibtex','utf8');
 
 
 /*

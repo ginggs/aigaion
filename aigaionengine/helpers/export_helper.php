@@ -90,6 +90,34 @@
                       'lastpage',
                       'namekey',
                       'month');
+        //a list of all fields that can be converted to bibtex codes...
+        $utf8ConvertFields = array(
+                  'title'          ,
+                  'journal'        ,
+                  'booktitle'      ,
+                  'edition'        ,
+                  'series'         ,
+                  'volume'         ,
+                  'number'         ,
+                  'chapter'        ,
+                  'year'           ,
+                  'month'          ,
+                  'firstpage'      ,
+                  'lastpage'       ,
+                  'pages'		   ,
+                  'publisher'      ,
+                  'location'       ,
+                  'institution'    ,
+                  'organization'   ,
+                  'school'         ,
+                  'address'        ,
+                  'howpublished'   ,
+                  'note'           ,
+                  'keywords'       ,
+                  'abstract'       ,
+                  'issn'           ,
+                  'isbn'           ,
+                  'namekey'        );
         $omitifzero = array('chapter','year');
         //now add all other fields that are relevant for exporting
         foreach (getFullFieldArray() as $field) {
@@ -105,18 +133,27 @@
         //process fields array, converting to bibtex special chars as you go along.
         //maxfieldname determines the adjustment of the field names
         $spaces = repeater(' ',$maxfieldname);
+        $first = True;
         foreach ($fields as $name=>$value) {
             if ($value!='') {
-                if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
-                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."},\n";
+                if ($first) {
+                    $first = False;
                 } else {
-                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".utf8ToBibCharsFromString($value)."},\n";
+                    $result .= ",\n";
+                }
+                if (($userlogin->getPreference('utf8bibtex')=='TRUE')||!in_array($name,$utf8ConvertFields)) {
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."}";
+                } else {
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".utf8ToBibCharsFromString($value)."}";
                 }
             }
         }
         
         //hmmm -- could have done better layout here for userfields
         if (trim($publication->userfields)!='') {
+            if (!$first) {
+                $result .= ",\n";
+            }
             if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
                 $result .= $publication->userfields."\n";
             } else {
@@ -125,7 +162,7 @@
         }
         
         //close entry
-        $result .= "}\n";    
+        $result .= "\n}\n";    
         return $result;
     }  
 

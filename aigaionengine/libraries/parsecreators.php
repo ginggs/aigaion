@@ -29,6 +29,7 @@ http://bibliophile.sourceforge.net
 	$creatorArray = $creator->parse($authors);
 	print_r($creatorArray);
 ***********************/
+require_once(APPPATH."include/utf8/trim.php");
 
 class Parsecreators
 {
@@ -148,11 +149,11 @@ class Parsecreators
 			if($this->separateInitials)
 				list($firstname, $initials) = $this->separateInitials($firstname);
 			
-			$creators[] = array('firstname' => $firstname, 
-			                    'initials'  => $initials, 
-			                    'surname'   => $surname, 
-			                    'jr'        => $jr, 
-			                    'von'       => $von);
+			$creators[] = array('firstname' => utf8_trim($firstname), 
+			                    'initials'  => utf8_trim($initials), 
+			                    'surname'   => utf8_trim($surname), 
+			                    'jr'        => utf8_trim($jr), 
+			                    'von'       => utf8_trim($von));
 		}
 		if(isset($creators))
 			return $creators;
@@ -211,11 +212,11 @@ class Parsecreators
 	function explodeString($delimiter, $val)
 	{
 		$bracelevel = $i = $j = 0;
-		$len = strlen($val);
-		if (strlen($delimiter) > 1)
+		$len = utf8_strlen($val);
+		if (utf8_strlen($delimiter) > 1)
 		{
 			$long = true;
-			$dlen = strlen($delimiter);
+			$dlen = utf8_strlen($delimiter);
 		}
 		else
 			$long = false;
@@ -291,13 +292,13 @@ class Parsecreators
 		$name = explode(' ', $firstname);
 		foreach ($name as $part)
 		{
-			$size = strlen($part);
+			$size = utf8_strlen($part);
 			if (($part{($size-1)} == ".") && ($size < 4))
 				$initials .= $part;
 			elseif (preg_match("/([A-Z])/", $part, $firstChar))
 				$initials .= $firstChar[0].". ";
 		}
-		return trim($initials);
+		return utf8_trim($initials);
 	}
 	
 	//separates initials form a firstname
@@ -319,18 +320,18 @@ class Parsecreators
 		//old-parser conform
 		foreach ($name as $part)
 		{
-			$size = strlen($part);
+			$size = utf8_strlen($part);
 			
-			if(preg_match("/[a-zA-Z]{2,}/", trim($part)))
-				$remain[] = trim($part);
+			if(preg_match("/[a-zA-Z]{2,}/", utf8_trim($part)))
+				$remain[] = utf8_trim($part);
 			else
-				$initials[] = str_replace(".", " ", trim($part));
+				$initials[] = str_replace(".", " ", utf8_trim($part));
 		}
 		if(isset($initials))
 		{
 			$initials_ = '';
 			foreach($initials as $initial)
-				$initials_ .= ' ' . trim($initial);
+				$initials_ .= ' ' . utf8_trim($initial);
 				
 			$initials = $initials_;
 		}
@@ -352,7 +353,7 @@ class Parsecreators
 		$size = count($name);
 		foreach ($name as $part)
 		{
-			$part = trim($part);
+			$part = utf8_trim($part);
 			
 			if ($part != "")
 			{
@@ -361,7 +362,7 @@ class Parsecreators
 				if ($count < $size)
 				{
 				  //if the end of part contains an escape character (either just \ or \{, we do not add the extra space
-				  if (($part{strlen($part)-1} == "\\") || ($part{strlen($part)-1} == "{"))
+				  if (($part{utf8_strlen($part)-1} == "\\") || ($part{utf8_strlen($part)-1} == "{"))
 				    $formatName.=".";
 				  else
 					  $formatName.=". ";
