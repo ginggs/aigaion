@@ -96,7 +96,8 @@
         $newsubheader = $publication->pub_type;
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
-          echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
+          if ($publication->pub_type!='Article')
+            echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
         }
         if ($publication->pub_type=='Article') {
             $newsubsubheader = $publication->cleanjournal;
@@ -216,6 +217,9 @@ if (count($attachments) != 0)
 }  
 if (trim($publication->doi)!='') {
     echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+}
+if (trim($publication->url)!='') {
+    echo "<br/>[<a title='".prep_url($publication->url)."' target='_blank' href='".prep_url($publication->url)."'>URL</a>]";
 }
 
 echo "
