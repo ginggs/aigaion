@@ -50,16 +50,16 @@ class Authors extends Controller {
     $publicationContent['header']       = 'Publications of '.$author->getName();
     switch ($order) {
         case 'type':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on journal and type';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by journal and type';
             break;
         case 'recent':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on recency';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by recency';
             break;
         case 'title':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on title';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by title';
             break;
         case 'author':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on first author';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by first author';
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {
@@ -137,16 +137,16 @@ class Authors extends Controller {
     $publicationContent['header']       = 'Publications of '.$author->getName();
     switch ($order) {
         case 'type':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on journal and type';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by journal and type';
             break;
         case 'recent':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on recency';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by recency';
             break;
         case 'title':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on title';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by title';
             break;
         case 'author':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' ordered on first author';
+            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by first author';
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {

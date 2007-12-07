@@ -292,16 +292,16 @@ class Topics extends Controller {
         $content['header']          = "Publications for topic: ".$topic->name;
         switch ($order) {
             case 'type':
-                $content['header']          = 'Publications for topic '.$topic->name.' ordered on journal and type';
+                $content['header']          = 'Publications for topic '.$topic->name.' sorted by journal and type';
                 break;
             case 'recent':
-                $content['header']          = 'Publications for topic '.$topic->name.' ordered on recency';
+                $content['header']          = 'Publications for topic '.$topic->name.' sorted by recency';
                 break;
             case 'title':
-                $content['header']          = 'Publications for topic '.$topic->name.' ordered on title';
+                $content['header']          = 'Publications for topic '.$topic->name.' sorted by title';
                 break;
             case 'author':
-                $content['header']          = 'Publications for topic '.$topic->name.' ordered on first author';
+                $content['header']          = 'Publications for topic '.$topic->name.' sorted by first author';
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {

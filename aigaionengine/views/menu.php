@@ -23,6 +23,7 @@
     <li class="mainmenu"><?php echo anchor('publications', 'All Publications'); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', 'All Authors'); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/unassigned', 'Unassigned'); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', 'Recent'); ?></li>
 
     <?php
     //the export option is slightly dependent on the view parameter 'exportCommand'

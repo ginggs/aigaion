@@ -41,8 +41,10 @@ function utf8_to_ascii($str, $unknown = '?') {
     # the average request time for the example from ~0.46ms to 0.41ms
     # See http://phplens.com/lens/php-book/optimizing-debugging-php.php
     # Section  "High Return Code Optimizations"
-    ob_start();
-    
+    //[DR]: switched off for use in Aigaion, because CodeIgniter already does output buffering.
+    //Thanks Sebastian for finding this!
+    //ob_start();
+    $result = '';
     while ( $i < $len ) {
         
         $ord = NULL;
@@ -91,7 +93,7 @@ function utf8_to_ascii($str, $unknown = '?') {
                         
                     } else {
                         
-                        ob_end_clean();
+                        //ob_end_clean();
                         trigger_error("utf8_to_ascii: looks like badly formed UTF-8 at byte $i");
                         return FALSE;
                         
@@ -114,7 +116,7 @@ function utf8_to_ascii($str, $unknown = '?') {
                 
                 # Load the appropriate database
                 if ( !include  $bankfile ) {
-                    ob_end_clean();
+                    //ob_end_clean();
                     trigger_error("utf8_to_ascii: unable to load $bankfile");
                 }
                 
@@ -129,17 +131,17 @@ function utf8_to_ascii($str, $unknown = '?') {
         $newchar = $ord & 255;
         
         if ( array_key_exists($newchar, $UTF8_TO_ASCII[$bank]) ) {
-            echo $UTF8_TO_ASCII[$bank][$newchar];
+            $result .= $UTF8_TO_ASCII[$bank][$newchar];
         } else {
-            echo $unknown;
+            $result .= $unknown;
         }
         
         $i += $increment;
         
     }
     
-    $str = ob_get_contents();
-    ob_end_clean();
-    return $str;
+    //$str = ob_get_contents();
+    //ob_end_clean();
+    return $result;
     
 }

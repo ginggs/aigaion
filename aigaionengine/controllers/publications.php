@@ -98,16 +98,16 @@ class Publications extends Controller {
         $content['header']          = 'All publications';
         switch ($order) {
             case 'type':
-                $content['header']          = 'All publications ordered on journal and type';
+                $content['header']          = 'All publications sorted by journal and type';
                 break;
             case 'recent':
                 $content['header']          = 'All recent publications';
                 break;
             case 'title':
-                $content['header']          = 'All publications ordered on title';
+                $content['header']          = 'All publications sorted by title';
                 break;
             case 'author':
-                $content['header']          = 'All publications ordered on author';
+                $content['header']          = 'All publications sorted by author';
                 break;
         }
         
@@ -165,16 +165,16 @@ class Publications extends Controller {
         $content['header']          = 'All publications not assigned to a topic';
         switch ($order) {
             case 'type':
-                $content['header']          = 'All publications not assigned to a topic ordered on journal and type';
+                $content['header']          = 'All publications not assigned to a topic, sorted by journal and type';
                 break;
             case 'recent':
                 $content['header']          = 'All recent publications not assigned to a topic';
                 break;
             case 'title':
-                $content['header']          = 'All publications not assigned to a topic ordered on title';
+                $content['header']          = 'All publications not assigned to a topic, sorted by title';
                 break;
             case 'author':
-                $content['header']          = 'All publications not assigned to a topic ordered on author';
+                $content['header']          = 'All publications not assigned to a topic, sorted by author';
                 break;
         }
         

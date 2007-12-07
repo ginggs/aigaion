@@ -56,16 +56,16 @@ class Bookmarklist extends Controller {
         $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
         switch ($order) {
             case 'type':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on journal and type';
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by journal and type';
                 break;
             case 'recent':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on recency';
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by recency';
                 break;
             case 'title':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on title';
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by title';
                 break;
             case 'author':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' ordered on first author';
+                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by first author';
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {
@@ -422,7 +422,7 @@ class Bookmarklist extends Controller {
                 }
             }
             appendMessage('Deleted '.$nrdeleted.' publications<br>');
-            appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
             redirect('bookmarklist');
         } else {
             //get output

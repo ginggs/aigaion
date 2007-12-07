@@ -46,6 +46,7 @@
     12) Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
     13) Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
     14) Change the admin login
+    15) RUN A SERIES OF MAINTENANCE CHECKS on the site maintenance page. Especially, don't forget to run 'Check searchable names and titles'
     
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
