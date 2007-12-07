@@ -26,7 +26,7 @@ class Login extends Controller {
         $data = array('segments' => $segments);
   
         //set header data
-        $header ['title']       = 'Aigaion 2.0 - Please login';
+        $header ['title']       = 'Please login';
         
         //get output
         $output  = $this->load->view('header_clean',        $header,  true);

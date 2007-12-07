@@ -179,7 +179,7 @@ echo "
 if ($useBookmarkList) {
   if ($publication->isBookmarked) {
     echo '<span title="Click to UnBookmark publication">'
-         .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('bookmarked.gif')."'>",
+         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('bookmarked.gif')."'>",
           array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
                 )
@@ -187,7 +187,7 @@ if ($useBookmarkList) {
   } 
   else {
     echo '<span title="Click to Bookmark publication">'
-         .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('nonbookmarked.gif')."'>",
+         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('nonbookmarked.gif')."'>",
           array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
                 )
@@ -199,7 +199,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' class='icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -211,7 +211,7 @@ if (count($attachments) != 0)
         $params = array('title'=>'Download '.$attachments[0]->name);
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['target'] = '_blank';
-        echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='icon' src='".$iconUrl."'/>" ,$params)."\n";
+        echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }  
 if (trim($publication->doi)!='') {

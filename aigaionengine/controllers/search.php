@@ -34,7 +34,7 @@ class Search extends Controller {
 	    
         //get output: search result page
         $headerdata = array();
-        $headerdata['title'] = 'Aigaion 2.0: Search results';
+        $headerdata['title'] = 'Search results';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);

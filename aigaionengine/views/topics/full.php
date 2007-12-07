@@ -60,9 +60,9 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
         $this->load->helper('utf8');
         $urlname = prep_url($topic->url);
         if (utf8_strlen($urlname)>21) {
-            $urlname = utf8_substr($urlname,0,20)."...";
+            $urlname = utf8_substr($urlname,0,30)."...";
         }
-        echo "URL: <a href='".prep_url($topic->url)."' target='_blank'>[".$urlname."]</a><br/><br/>\n";
+        echo "URL: <a  title='".prep_url($topic->url)."' href='".prep_url($topic->url)."' target='_blank'>".$urlname."</a><br/><br/>\n";
     }
     if ($description)
         echo "<p>".$description."</p>\n";

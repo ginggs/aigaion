@@ -39,7 +39,7 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     
     //set header data
-    $header ['title']       = 'Aigaion 2.0 - '.$author->getName();
+    $header ['title']       = $author->getName();
     $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     $header ['sortPrefix']       = 'authors/show/'.$author->author_id.'/';
     $header ['exportCommand']    = 'export/author/'.$author->author_id.'/';
@@ -129,7 +129,7 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     
     //set header data
-    //$header ['title']       = 'Aigaion 2.0 - '.$author->getName();
+    //$header ['title']       = $author->getName();
     //$header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     
     //set data
@@ -207,7 +207,7 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $header ['title']       = "Aigaion 2.0 - ".$edit_type." author";
+    $header ['title']       = $edit_type." author";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $edit_type;
     $content['author']      = $author;
@@ -241,7 +241,7 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $header ['title']       = "Aigaion 2.0 - merge authors";
+    $header ['title']       = "Authors: merge";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['author']      = $author;
     $content['simauthor']      = $simauthor;
@@ -406,7 +406,7 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $header ['title']       = "Aigaion 2.0 - review publication";
+    $header ['title']       = "review publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $this->input->post('edit_type');
     $content['author']      = $author;
@@ -439,7 +439,7 @@ class Authors extends Controller {
     
     
     //set header data
-    $header ['title']         = 'Aigaion 2.0 - Authors';
+    $header ['title']         = 'Authors';
     $header ['javascripts']   = array('prototype.js');
     $content['header']        = "Authors on topic ".anchor('topics/single/'.$topic->topic_id,$topic->name);
     $content['authorlist']    = $authorList;
@@ -464,7 +464,7 @@ class Authors extends Controller {
     
     
     //set header data
-    $header ['title']         = 'Aigaion 2.0 - Authors';
+    $header ['title']         = 'Authors';
     $header ['javascripts']   = array('prototype.js');
     $content['header']        = "All authors in the database";
     $content['authorlist']    = $authorList;

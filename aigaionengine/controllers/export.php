@@ -31,7 +31,7 @@ class Export extends Controller {
     function all() {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
             //get output
@@ -106,7 +106,7 @@ class Export extends Controller {
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
             //get output
@@ -180,7 +180,7 @@ class Export extends Controller {
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
             //get output
@@ -248,7 +248,7 @@ class Export extends Controller {
     function bookmarklist() {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
             //get output
@@ -347,7 +347,7 @@ class Export extends Controller {
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Aigaion 2.0 - Select export format";
+            $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
             //get output

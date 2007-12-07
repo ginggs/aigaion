@@ -12,7 +12,7 @@ $userlogin = getUserLogin();
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname', 'von', 'surname', 'email', 'url', 'institute');
+      $authorfields = array('firstname', 'von', 'surname', 'email', 'institute');
       foreach ($authorfields as $field)
       {
         if (trim($author->$field) != '')
@@ -24,6 +24,14 @@ $userlogin = getUserLogin();
           </tr>
 <?php
         }
+      }
+      if ($author->url != '') {
+        $this->load->helper('utf8');
+        $urlname = prep_url($author->url);
+        if (utf8_strlen($urlname)>21) {
+            $urlname = utf8_substr($urlname,0,30)."...";
+        }
+        echo "<tr><td>URL:</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' target='_blank'>".$urlname."</a></td></tr>\n";
       }
 ?>
       </table>

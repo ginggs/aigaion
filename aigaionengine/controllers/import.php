@@ -25,7 +25,7 @@ class Import extends Controller {
       redirect('');
     }
     
-    $header ['title']       = "Aigaion 2.0 - import publications";
+    $header ['title']       = "import publications";
     $header ['javascripts'] = array();
     
     $content = "";
@@ -155,7 +155,7 @@ class Import extends Controller {
       redirect('');
     }
 
-    $header ['title']       = "Aigaion 2.0 - review publication";
+    $header ['title']       = "review publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publications'] = $publications;
     $content['reviews']      = $review_data;

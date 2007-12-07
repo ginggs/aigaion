@@ -51,7 +51,7 @@ class Publications extends Controller {
     }
     
     //set header data
-    $header ['title']       = 'Aigaion 2.0 - '.$publication->title;
+    $header ['title']       = $publication->title;
     $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
     $content['publication'] = $publication;
     $content['categorize']  = $categorize=='categorize';
@@ -240,7 +240,7 @@ class Publications extends Controller {
       redirect('');
     }
     
-    $header ['title']       = "Aigaion 2.0 - ".$edit_type." publication";
+    $header ['title']       = $edit_type." publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $edit_type;
     $content['publication'] = $publication;
@@ -265,7 +265,7 @@ class Publications extends Controller {
       redirect('');
     }
     
-    $header ['title']       = "Aigaion 2.0 - import publications";
+    $header ['title']       = "import publications";
     $header ['javascripts'] = array();
     
     $content = "";
@@ -433,7 +433,7 @@ class Publications extends Controller {
       redirect('');
     }
 
-    $header ['title']       = "Aigaion 2.0 - review publication";
+    $header ['title']       = "review publication";
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publication'] = $publication;
     $content['review']      = $review_data;

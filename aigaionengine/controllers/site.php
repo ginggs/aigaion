@@ -55,7 +55,7 @@ class Site extends Controller {
 	    
         //get output: always return to configuration page
         $headerdata = array();
-        $headerdata['title'] = 'Aigaion 2.0: Site configuration';
+        $headerdata['title'] = 'Site configuration';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -156,7 +156,7 @@ class Site extends Controller {
 	    $checkresult .= "</table>";
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Aigaion 2.0: Site maintenance';
+        $headerdata['title'] = 'Site maintenance';
         $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         $output = $this->load->view('header', $headerdata, true);

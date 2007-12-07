@@ -88,6 +88,10 @@ a:hover, a:active {
     width   : 1em;
     border  : 0px;
 }
+.large_icon {
+    width   : 1.5em;
+    border  : 0px;
+}
 .al_icon {
     border  : 0px;
     width   : 1em;
