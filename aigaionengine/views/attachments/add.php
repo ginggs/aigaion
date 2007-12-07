@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /**
 views/attachments/add
 
@@ -112,4 +111,3 @@ echo form_close();
 echo "</div>";
 
 ?>
-

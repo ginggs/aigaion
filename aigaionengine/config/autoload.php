@@ -44,7 +44,7 @@ $autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
                                'group','group_db','rightsprofile','rightsprofile_db',
                                'siteconfig','siteconfig_db','attachment','attachment_db',
                                'note','note_db','publication','publication_db','author','author_db',
-                               'keyword_db','bookmarklist_db','parsecreators','file_upload');
+                               'keyword_db','bookmarklist_db','parsecreators','parsemonth','parsepage','file_upload');
 
 
 /*

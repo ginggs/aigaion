@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class regulates the database access for Keywords. */
 class Keyword_db {
 

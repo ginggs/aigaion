@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /*
 Easy PHP Upload - version 2.25
 A easy to use class for your (multiple) file uploads

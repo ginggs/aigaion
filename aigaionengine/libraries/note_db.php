@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class regulates the database access for Notes. Several accessors are present that return a Note or 
 array of Note's. */
 class Note_db {

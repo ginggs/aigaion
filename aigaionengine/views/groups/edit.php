@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /**
 views/groups/edit
 
@@ -110,4 +109,3 @@ echo form_close();
 echo "</div>";
 
 ?>
-

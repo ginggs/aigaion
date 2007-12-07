@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php 
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php 
 $userlogin=getUserLogin();
 $user_id = $userlogin->userId();
 $this->load->helper('form');

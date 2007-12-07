@@ -30,7 +30,7 @@ class Export extends Controller {
     */
     function all() {
 	    $type = $this->uri->segment(3,'');
-	    if (!in_array($type,array('bibtex','ris'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Aigaion 2.0 - Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
@@ -43,14 +43,21 @@ class Export extends Controller {
             $this->output->set_output($output);
             return;
 	    }
+	    $exportdata = array();
         $userlogin = getUserLogin();
-        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+        //for export, bibtex should NOT merge crossrefs; ris and formatted SHOULD merge crossrefs
         switch ($type) {
             case 'bibtex':
                 $this->publication_db->suppressMerge = True;
                 break;
             case 'ris':
                 $this->publication_db->enforceMerge = True;
+                break;
+            case 'formatted':
+                $this->publication_db->enforceMerge = True;
+                $exportdata['format'] = $this->input->post('format');
+                $exportdata['sort'] = $this->input->post('sort');
+                $exportdata['style'] = $this->input->post('style');
                 break;
             default:
                 break;
@@ -64,8 +71,11 @@ class Export extends Controller {
         $xrefpubs = $splitpubs[1];
         
         #send to right export view
+        $exportdata['nonxrefs'] = $pubs;
+        $exportdata['xrefs']    = $xrefpubs;
+        $exportdata['header']   = 'All publications';
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications'), True);
+        $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
         $this->output->set_output($output);        
@@ -95,7 +105,7 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing topic<br/>');
 	        redirect ('');
 	    }
-	    if (!in_array($type,array('bibtex','ris'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Aigaion 2.0 - Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
@@ -108,6 +118,7 @@ class Export extends Controller {
             $this->output->set_output($output);
             return;
 	    }
+	    $exportdata = array();
         $userlogin = getUserLogin();
         //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
         switch ($type) {
@@ -116,6 +127,12 @@ class Export extends Controller {
                 break;
             case 'ris':
                 $this->publication_db->enforceMerge = True;
+                break;
+            case 'formatted':
+                $this->publication_db->enforceMerge = True;
+                $exportdata['format'] = $this->input->post('format');
+                $exportdata['sort'] = $this->input->post('sort');
+                $exportdata['style'] = $this->input->post('style');
                 break;
             default:
                 break;
@@ -130,8 +147,10 @@ class Export extends Controller {
         $xrefpubs = $splitpubs[1];
         
         #send to right export view
-
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications for topic "'.$topic->name.'"'), True);
+        $exportdata['nonxrefs'] = $pubs;
+        $exportdata['xrefs']    = $xrefpubs;
+        $exportdata['header']   = 'All publications for topic "'.$topic->name.'"';
+        $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
         $this->output->set_output($output);        
@@ -160,7 +179,7 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing author<br/>');
 	        redirect ('');
 	    }
-	    if (!in_array($type,array('bibtex','ris'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Aigaion 2.0 - Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
@@ -173,6 +192,7 @@ class Export extends Controller {
             $this->output->set_output($output);
             return;
 	    }
+	    $exportdata = array();
         $userlogin = getUserLogin();
         //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
         switch ($type) {
@@ -181,6 +201,12 @@ class Export extends Controller {
                 break;
             case 'ris':
                 $this->publication_db->enforceMerge = True;
+                break;
+            case 'formatted':
+                $this->publication_db->enforceMerge = True;
+                $exportdata['format'] = $this->input->post('format');
+                $exportdata['sort'] = $this->input->post('sort');
+                $exportdata['style'] = $this->input->post('style');
                 break;
             default:
                 break;
@@ -195,8 +221,11 @@ class Export extends Controller {
         $xrefpubs = $splitpubs[1];
         
         #send to right export view
+        $exportdata['nonxrefs'] = $pubs;
+        $exportdata['xrefs']    = $xrefpubs;
+        $exportdata['header']   = 'All publications for '.$author->getName();
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'All publications for '.$author->getName()), True);
+        $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
         $this->output->set_output($output);        
@@ -218,7 +247,7 @@ class Export extends Controller {
     */
     function bookmarklist() {
 	    $type = $this->uri->segment(3,'');
-	    if (!in_array($type,array('bibtex','ris'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Aigaion 2.0 - Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
@@ -231,6 +260,7 @@ class Export extends Controller {
             $this->output->set_output($output);
             return;
 	    }
+	    $exportdata = array();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
 	        appendErrorMessage('Export: no bookmarklist rights<br/>');
@@ -243,6 +273,12 @@ class Export extends Controller {
                 break;
             case 'ris':
                 $this->publication_db->enforceMerge = True;
+                break;
+            case 'formatted':
+                $this->publication_db->enforceMerge = True;
+                $exportdata['format'] = $this->input->post('format');
+                $exportdata['sort'] = $this->input->post('sort');
+                $exportdata['style'] = $this->input->post('style');
                 break;
             default:
                 break;
@@ -257,8 +293,11 @@ class Export extends Controller {
         $xrefpubs = $splitpubs[1];
         
         #send to right export view
+        $exportdata['nonxrefs'] = $pubs;
+        $exportdata['xrefs']    = $xrefpubs;
+        $exportdata['header']   = 'Exported from bookmarklist';
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs,'header'=>'Exported from bookmarklist'), True);
+        $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
         $this->output->set_output($output);        
@@ -284,12 +323,19 @@ class Export extends Controller {
 	    $pub_id = $this->uri->segment(3,-1);
 	    $type = $this->uri->segment(4,'');
         //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+	    $exportdata = array();
         switch ($type) {
             case 'bibtex':
                 $this->publication_db->suppressMerge = True;
                 break;
             case 'ris':
                 $this->publication_db->enforceMerge = True; //although the crossreferenced publications are STILL exported...
+                break;
+            case 'formatted':
+                $this->publication_db->enforceMerge = True;
+                $exportdata['format'] = $this->input->post('format');
+                $exportdata['sort'] = $this->input->post('sort');
+                $exportdata['style'] = $this->input->post('style');
                 break;
             default:
                 break;
@@ -300,7 +346,7 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing publication<br/>');
 	        redirect ('');
 	    }
-	    if (!in_array($type,array('bibtex','ris'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Aigaion 2.0 - Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
             
@@ -323,8 +369,10 @@ class Export extends Controller {
         $xrefpubs = $splitpubs[1];
         
         #send to right export view
+        $exportdata['nonxrefs'] = $pubs;
+        $exportdata['xrefs']    = $xrefpubs;
 
-        $output = $this->load->view('export/'.$type, array('nonxrefs'=>$pubs,'xrefs'=>$xrefpubs), True);
+        $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
         $this->output->set_output($output);        

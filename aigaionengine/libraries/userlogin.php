@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /**
 This file defines the class Login that is used to regulate the login to the site.
 The UserLogin object is used to start, stop and query a user login.

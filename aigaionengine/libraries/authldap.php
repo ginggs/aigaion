@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /**
  * class.AuthLdap.php , version 0.2
  * Mark Round, April 2002 - http://www.markround.com/unix

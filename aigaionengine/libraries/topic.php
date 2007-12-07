@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class holds the data structure of a topic. 
 
 A Topic also serves as a (possibly implicit) configurable tree structure, through functions such

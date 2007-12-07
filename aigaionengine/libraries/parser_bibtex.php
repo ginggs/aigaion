@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 //include_once("bibparse/PARSECREATORS.php");
 //include_once("bibparse/PARSEENTRIES.php");
 //include_once("bibparse/PARSEPAGE.php");

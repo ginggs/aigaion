@@ -16,6 +16,7 @@
 |
 */
 
+    
     /** returns formatted bibtex for this publication object. Does not do any crossref merging. */
     function getBibtexForPublication($publication) {
         $CI = &get_instance();
@@ -250,5 +251,137 @@
     		break;
     	}
     	return $return;
+    }
+    
+    function getOSBibFormattingForPublication($publication,$bibformat,$style = "apa",  $format = "html") {
+        $CI = &get_instance();
+        $CI->load->helper('bibtexutf8');
+        $CI->load->helper('string');
+        $CI->load->helper('publication');
+    	$bibformat->output=$format;
+    	//$bibformat->cleanEntry=TRUE; //-- If TRUE, convert BibTeX (and LaTeX) special characters to UTF-8. Default is FALSE.
+    	$bibformat->bibtexParsePath = APPPATH."libraries";
+    
+    	list($info, $citation, $footnote, $styleCommon, $styleTypes) = $bibformat->loadStyle(APPPATH."include/OSBib/styles/bibliography/", $style);
+    	$bibformat->getStyle($styleCommon, $styleTypes, $footnote);
+    
+    	# $resourceArray must be an array of all the elements in the resource where the key names are valid, lowercase BibTeX field names. 
+    	//start collecting info from publication...
+        $userlogin = getUserLogin();
+        $fields = array();
+        //collect authors
+        $authors = "";
+        $first = true;
+        foreach ($publication->authors as $author) {
+            if (!$first) $authors .= " and ";
+            $first = false;
+            $authors .= $author->getName('lvf');
+        }
+        $fields['author']=$authors;
+        //collect editors
+        $editors = "";
+        $first = true;
+        foreach ($publication->editors as $editor) {
+            if (!$first) $editors .= " and ";
+            $first = false;
+            $editors .= $editor->getName('lvf');
+        }
+        $fields['editor']=$editors;
+        //collect keywords
+        $keywords = "";
+        $first = true;
+        foreach ($publication->getKeywords() as $keyword) {
+            if (!$first) $keywords .= ",";
+            $first = false;
+            $keywords .= $keyword;
+        }
+        $fields['keywords']=$keywords;
+        //parse fstpage - lastpage into pages
+        $pages = "";
+        if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
+        	if ($publication->firstpage != "0") {
+        		$pages = $publication->firstpage;
+        	}
+        	if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0")) {
+        		if ($pages != "") {
+        			$pages .= "--";
+        		}
+        		$pages .= $publication->lastpage;
+        	}
+        }
+        $fields['pages']=$pages;
+        //key is named 'namekey' in the database
+        $fields['key'] = $publication->namekey;
+        //month is a number in the database...
+        $months = getMonthsEng();
+        if (array_key_exists($publication->month,$months)) {
+            $fields['month'] = $months[$publication->month];
+        }
+        //process user fields?
+        $done = array('author',
+                      'editor',
+                      'keywords',
+                      'pub_type',
+                      'bibtex_id',
+                      'userfields',
+                      'firstpage',
+                      'lastpage',
+                      'namekey',
+                      'month');
+        $omitifzero = array('chapter','year');
+        //now add all other fields that are relevant for exporting
+        foreach (getFullFieldArray() as $field) {
+            if (!in_array($field,$done) && (trim($publication->$field)!='')) {
+                if (!in_array($field,$omitifzero)||($publication->$field!='0'&&$publication->$field!='0000')) {
+                    $fields[$field]=$publication->$field;
+                }
+            }
+        }
+        $resourceArray = $fields;
+        $resourceType = strtolower($publication->pub_type);
+        $resourceArray['bibtexEntryType'] = $resourceType;
+    
+    	//$resourceType = "dfgh";
+    	//print_r($resourceArray);
+    	//echo $resourceType;
+    	//echo $resourceArray['bibtexEntryType'];
+    
+    	# FIX types for preprocess :(
+    	switch ($resourceType) {
+    		case 'mastersthesis':
+    			$resourceType = 'thesis';
+    			$resourceArray['type'] = "Master's Dissertation";
+    		break;
+    		case 'phdthesis':
+    			$resourceType = 'thesis';
+    			$resourceArray['type'] = "PhD Thesis";
+    		break;
+    		case 'booklet':
+    			$resourceType = 'miscellaneous';
+    		break;
+    		case 'conference':
+    			$resourceType = 'proceedings_article';
+    		break;
+    		// case 'incollection':
+    			// $resourceType = 'book_article';
+    		// break;
+    		case 'manual':
+    			$resourceType = 'report';
+    		break;
+    	}
+    
+    	// In this case, BIBFORMAT::preProcess() adds all the resource elements automatically to the BIBFORMAT::item array...
+    	if ($bibformat->preProcess($resourceType, $resourceArray)) {
+    		// Finally, get the formatted resource string ready for printing to the web browser or exporting to RTF, OpenOffice or plain text
+    		if ($format=="rtf") {
+    			$CI->load->helper('rtf');
+    			$rtf = new MINIMALRTF();
+    			return $rtf->utf8_2_unicode($bibformat->map());
+    		} else {
+    			return $bibformat->map(); //$utf8->decodeUtf8($bibformat->map());
+    		}
+    		// process loop ends here
+    	}
+    	return "NO FORMAT POSSIBLE<br>";
     }
 ?>

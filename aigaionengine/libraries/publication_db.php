@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class regulates the database access for Publications. Several accessors are present that return a Publication or
 array of Publications. */
 class Publication_db {

@@ -1,5 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class regulates the access levels for reading and editing objects.
 It provides methods such as canReadObject and canEditObject as well as a number
 of methods to change access levels that take into account the cascaded dependencies
