@@ -123,10 +123,12 @@ echo "<div class='publication_summary ".$even."' id='publicationsummary".$public
 <table width='100%'>
   <tr>
     <td>";
-if ($userlogin->getPreference('summarystyle') == 'title')    
-    echo " <span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
-    
 $num_authors    = count($publication->authors);
+$summarystyle = $userlogin->getPreference('summarystyle');
+if ($summarystyle == 'title') {
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";
+}
+    
 $current_author = 1;
 
 foreach ($publication->authors as $author)
@@ -134,7 +136,7 @@ foreach ($publication->authors as $author)
   if (($current_author == $num_authors) & ($num_authors > 1)) {
     echo " and ";
   }
-  else {
+  else if ($current_author>1 || ($summarystyle == 'title')) {
     echo ", ";
   }
 
@@ -142,8 +144,12 @@ foreach ($publication->authors as $author)
   $current_author++;
 }
 
-if ($userlogin->getPreference('summarystyle') == 'author')    
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span> ";
+if ($summarystyle == 'author') {
+    if ($num_authors > 0) {
+        echo ', ';
+    }
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";
+}
 
 
 foreach ($summaryfields as $key => $prefix) {
@@ -162,7 +168,7 @@ foreach ($summaryfields as $key => $prefix) {
     }
     $val = $pages;
   } else {
-    $val = trim($publication->$key);
+    $val = utf8_trim($publication->$key);
   }
   $postfix='';
   if (is_array($prefix)) {
@@ -215,10 +221,10 @@ if (count($attachments) != 0)
         echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }  
-if (trim($publication->doi)!='') {
+if (utf8_trim($publication->doi)!='') {
     echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
 }
-if (trim($publication->url)!='') {
+if (utf8_trim($publication->url)!='') {
     echo "<br/>[<a title='".prep_url($publication->url)."' target='_blank' href='".prep_url($publication->url)."'>URL</a>]";
 }
 
