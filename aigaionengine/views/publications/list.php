@@ -179,6 +179,21 @@ foreach ($summaryfields as $key => $prefix) {
     echo $prefix.$val.$postfix;
   }
 }
+$notes = $publication->getNotes();
+if ($notes != null) {
+//  <tr>
+//    <td colspan=2>
+echo "<br/>
+      <ul class='notelist'>";
+  foreach ($notes as $note) {
+    echo "
+        <li>".$this->load->view('notes/summary', array('note' => $note), true)."</li>";
+  }
+  echo "
+      </ul>";
+//    </td>
+//  </tr>";
+}
 echo "
     </td>
     <td width='8%' align='right' valign='top'>
@@ -201,7 +216,7 @@ if ($useBookmarkList) {
           ).'</span>';
   }
 }
-echo "</span><br/>";
+echo "</span>";
 $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
@@ -218,7 +233,7 @@ if (count($attachments) != 0)
         $params = array('title'=>'Download '.$attachments[0]->name);
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['target'] = '_blank';
-        echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
+        echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }  
 if (utf8_trim($publication->doi)!='') {
@@ -231,21 +246,7 @@ if (utf8_trim($publication->url)!='') {
 echo "
     </td>
   </tr>";
-$notes = $publication->getNotes();
-if ($notes != null) {
-echo "
-  <tr>
-    <td colspan=2>
-      <ul class='notelist'>";
-  foreach ($notes as $note) {
-    echo "
-        <li>".$this->load->view('notes/summary', array('note' => $note), true)."</li>";
-  }
-  echo "
-      </ul>
-    </td>
-  </tr>";
-}
+
 echo "
 </table>
 </div>
