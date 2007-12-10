@@ -96,8 +96,19 @@ class Parser_Import
     $CI->load->helper('attachments');
     $publication = new Publication(); 
     
+    //some fields should, before anything else happens, be set to 'explicitly empty'.
+    //That is, if in the import data a field is present but empty, this should somehow be stored
+    //in the database. We choose to do this by setting the value in the database to ""
+    //this would later on be exported as 
+    //field={} 
+    foreach ($bibliophileEntry as $k=>$v) {
+        if ($v=='') {
+            //appendMessage('Explicitly empty field: '.$k.','.$v.'<br/>');
+            $bibliophileEntry[$k] = '""';
+        }
+    }
     
-    //we retrieve the following fields without special operations
+    //we first retrieve the following fields without special operations
     $fields = array(
     'title',
     'year',

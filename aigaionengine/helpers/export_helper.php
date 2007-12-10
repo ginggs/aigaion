@@ -13,9 +13,13 @@
 |       //get export text for an entry
 |       $bibtex = getBibtexForPublication($publication);
 |       $ris    = getRISForPublication($publication);
+|       $formattedExport = getOSBibFormattingForPublication($publication,$bibformat,$style = "apa",  $format = "html")
 |
+|   note the following: if a field is set to "" in the database (two double quotes), those double quotes 
+|   will be stripped during export, resulting in an explicitly empty field.
 */
 
+require_once(APPPATH."include/utf8/trim.php");
     
     /** returns formatted bibtex for this publication object. Does not do any crossref merging. */
     function getBibtexForPublication($publication) {
@@ -121,7 +125,7 @@
         $omitifzero = array('chapter','year');
         //now add all other fields that are relevant for exporting
         foreach (getFullFieldArray() as $field) {
-            if (!in_array($field,$done) && (trim($publication->$field)!='')) {
+            if (!in_array($field,$done) && (utf8_trim($publication->$field)!='')) {
                 if (!in_array($field,$omitifzero)||($publication->$field!='0'&&$publication->$field!='0000')) {
                     $fields[$field]=$publication->$field;
                     $maxfieldname = max(strlen($field),$maxfieldname);
@@ -141,6 +145,8 @@
                 } else {
                     $result .= ",\n";
                 }
+                //note: fields containing "" are exported as explicitly empty fields....
+                if (utf8_trim($value)=='""') $value='';
                 if (($userlogin->getPreference('utf8bibtex')=='TRUE')||!in_array($name,$utf8ConvertFields)) {
                     $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."}";
                 } else {
@@ -150,7 +156,7 @@
         }
         
         //hmmm -- could have done better layout here for userfields
-        if (trim($publication->userfields)!='') {
+        if (utf8_trim($publication->userfields)!='') {
             if (!$first) {
                 $result .= ",\n";
             }
@@ -209,11 +215,11 @@
         $result .= getRISExportLine('UR',$publication->url);
         $result .= getRISExportLine('M2',$publication->doi);
     	foreach($publication->getKeywords() as $keyword)
-    		$result .= getRISExportLine("KW", trim($keyword));
-        $result .= getRISExportLine('N1',$publication->note);
+    		$result .= getRISExportLine("KW", utf8_trim($keyword));
         $result .= getRISExportLine('N2',$publication->abstract);
 
-    	if (trim($publication->userfields) != "") {
+        //DR: note: this is not correct! if a userfield contains a comma we have a problem!
+    	if (utf8_trim($publication->userfields) != "") {
     		$field = strtok($publication->userfields,",");
     		while (strlen($field) > 0)
     		{
@@ -231,8 +237,10 @@
     	//U2: chapter
     	//M2: used here as 'DOI'
     	$result = "";
-    	if (trim($value) != "")
+    	if (utf8_trim($value) != "")
     	{
+          //note: fields containing "" are exported as explicitly empty fields....
+          if (utf8_trim($value)=='""') $value='';
     	  if ($field == "U1") $value = "Edition: ".$value;
     	  if ($field == "U2") $value = "Chapter: ".$value;
     	  if ($field == "M2") $value = "doi: ".$value;
@@ -368,13 +376,18 @@
         $omitifzero = array('chapter','year');
         //now add all other fields that are relevant for exporting
         foreach (getFullFieldArray() as $field) {
-            if (!in_array($field,$done) && (trim($publication->$field)!='')) {
+            if (!in_array($field,$done) && (utf8_trim($publication->$field)!='')) {
                 if (!in_array($field,$omitifzero)||($publication->$field!='0'&&$publication->$field!='0000')) {
                     $fields[$field]=$publication->$field;
                 }
             }
         }
-        $resourceArray = $fields;
+        $resourceArray=array();
+        foreach ($fields as $field=>$value) {
+            //note: fields containing "" are exported as explicitly empty fields....
+            if (utf8_trim($value)=='""') $value='';
+            $resourceArray[$field] = $value;
+        }
         $resourceType = strtolower($publication->pub_type);
         $resourceArray['bibtexEntryType'] = $resourceType;
     

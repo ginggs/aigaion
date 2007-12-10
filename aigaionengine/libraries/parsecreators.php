@@ -48,7 +48,7 @@ class Parsecreators
 */
 	function parse($input)
 	{
-		$input = trim($input);
+		$input = utf8_trim($input);
 		
 		//remove linebreaks
 		$input = preg_replace('/[\r\n\t]/', ' ', $input);

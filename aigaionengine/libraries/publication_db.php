@@ -613,7 +613,7 @@ class Publication_db {
     {
       if (trim($publication->crossref) != '')
       {
-        $xref_pub = $this->publication_db->getByBibtexID($publication->crossref);
+        $xref_pub = $this->getByBibtexID($publication->crossref);
         if ($xref_pub != null)
           $publication->actualyear = $xref_pub->year;
       }
