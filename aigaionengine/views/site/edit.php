@@ -134,22 +134,23 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td colspan='2'><hr><p class='header2'>In- and output settings:</p></td>
 	    </tr>
-	    <tr>
-	        <td><label>Convert latinchars</label></td>
-	        <td align='left'>
 <?php
-            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->getConfigSetting("CONVERT_LATINCHARS_IN")== "TRUE");
+//      NO LONGER RELEVANT
+//	    <tr>
+//	        <td><label>Convert latinchars</label></td>
+//	        <td align='left'>
+//            echo form_checkbox('CONVERT_LATINCHARS_IN','CONVERT_LATINCHARS_IN',$siteconfig->getConfigSetting("CONVERT_LATINCHARS_IN")== "TRUE");
+//            </td>
+//        </tr>
+//	    <tr>
+//	        <td align='left' colspan='2'><img class='icon' src=' echo getIconUrl("small_arrow.gif"); '>
+//	        Turn this on if you want to convert input latin characters to bibtex conform characters.
+//	        Latin characters are &uuml;, &ntilde;, &ccedil; etc...</td>
+//	    </tr>
+//	    <tr>
+//	        <td align='left' colspan='2'></td>
+//	    </tr>
 ?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Turn this on if you want to convert input latin characters to bibtex conform characters.
-	        Latin characters are &uuml;, &ntilde;, &ccedil; etc...</td>
-	    </tr>
-	    <tr>
-	        <td align='left' colspan='2'></td>
-	    </tr>
 	
 	    <tr>
 	        <td valign='top'><label for='BIBTEX_STRINGS_IN'>BibTeX strings:</label></td>

@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<body onload="javascript:document.loginForm.loginName.focus();">
+<body onload="$('loginName').focus();">
   <div id="login_holder">
 <?php
     $userlogin=getUserLogin();
@@ -14,7 +14,7 @@
     }
 
     //the login form is NOT shown if 'external login module' is activated
-    if ((getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') || (getConfigurationSetting("EXTERNAL_LOGIN_MODULE")!='Httpauth')) {
+    if (getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') {
         $formAttributes = array('id' => 'loginForm');
         echo form_open_multipart('login/dologin/'.implode('/',$segments),$formAttributes);
     ?>
@@ -78,6 +78,15 @@
         </table>
     <?php
         echo form_close();
+    } else {
+        echo "<div class='message' width='40em'>This Aigaion 2.0 database uses external login modules. 
+              Login is not possible through the login form.
+              [".anchor('/','CLICK HERE TO TRY AGAIN')."]<br/>
+              <br/>
+              (If you want to turn of the external login module, use your MySQL database program to edit the 
+              '".AIGAION_DB_PREFIX."config' table. Find the setting 'USE_EXTERNAL_LOGIN', set it to 'FALSE',
+              close your browser windows, restart your browser and try to login through the normal login form.)
+              </div>";
     }
     ?>
   </div>

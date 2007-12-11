@@ -86,11 +86,11 @@ class Siteconfig_db {
         } else {
             $result->configSettings['PUBLICATION_XREF_MERGE']       = 'FALSE';
         }
-        if ($CI->input->post('CONVERT_LATINCHARS_IN')=='CONVERT_LATINCHARS_IN') {
-            $result->configSettings['CONVERT_LATINCHARS_IN']='TRUE';
-        } else {
-            $result->configSettings['CONVERT_LATINCHARS_IN']='FALSE';
-        }
+        //if ($CI->input->post('CONVERT_LATINCHARS_IN')=='CONVERT_LATINCHARS_IN') {
+        //    $result->configSettings['CONVERT_LATINCHARS_IN']='TRUE';
+        //} else {
+        //    $result->configSettings['CONVERT_LATINCHARS_IN']='FALSE';
+        //}
         $result->configSettings['BIBTEX_STRINGS_IN']                = $CI->input->post('BIBTEX_STRINGS_IN');
         $result->configSettings['ATT_DEFAULT_READ']                = $CI->input->post('ATT_DEFAULT_READ');
         $result->configSettings['ATT_DEFAULT_EDIT']                = $CI->input->post('ATT_DEFAULT_EDIT');

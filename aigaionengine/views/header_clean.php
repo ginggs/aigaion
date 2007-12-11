@@ -6,6 +6,18 @@
     <title><?php $title; ?></title>
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("positioning.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
+<?php
+    //view parameter: the javascripts that should be linked
+    if (!isset($javascripts))
+      $javascripts = array();
+    elseif (!is_array($javascripts))
+      $javascripts = array($javascripts);
+    foreach ($javascripts as $jsName):
+?>
+    <script src="<?php echo APPURL."javascript/".$jsName; ?>" type="text/javascript"></script>
+<?php
+    endforeach;
+?>
     <script type="text/javascript">
       //<![CDATA[
       base_url = '<?php echo base_url();?>index.php/';

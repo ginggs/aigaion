@@ -27,6 +27,7 @@ class Login extends Controller {
   
         //set header data
         $header ['title']       = 'Please login';
+        $header ['javascripts']       = array('tree.js','scriptaculous.js','builder.js','prototype.js');
         
         //get output
         $output  = $this->load->view('header_clean',        $header,  true);
