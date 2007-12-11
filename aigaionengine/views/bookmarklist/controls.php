@@ -57,9 +57,31 @@ if ($userlogin->hasRights('publication_edit')) {
 ?>
 <br/>
 <?php
+if ($userlogin->hasRights('publication_edit')) {
     echo form_open('bookmarklist/deleteall');
     echo form_submit(array('name'=>'deleteall','title'=>'Delete all publications on the bookmarklist from the database'),'Delete all bookmarked publications');
     echo form_close();
+}
 ?>
 <br/>
+<?php
+
+if ($userlogin->hasRights('publication_edit')) {
+    echo 'Set read access level for all bookmarked publications:';
+    echo form_open('bookmarklist/setpubaccesslevel');
+    echo form_dropdown('accesslevel',array('public'=>'public','intern'=>'intern','private'=>'private'),'intern');
+    echo form_submit(array('name'=>'setpubaccesslevel','title'=>'Set the read  access levels for all publications on the bookmarklist'),'Set publication access level');
+    echo form_close();
+}
+?>
+<br/>
+<?php
+if ($userlogin->hasRights('publication_edit')) {
+    echo 'Set read access level for all attachments of bookmarked publications:';
+    echo form_open('bookmarklist/setattaccesslevel');
+    echo form_dropdown('accesslevel',array('public'=>'public','intern'=>'intern','private'=>'private'),'intern');
+    echo form_submit(array('name'=>'setattaccesslevel','title'=>'Set the read access levels for all attachments of publications on the bookmarklist'),'Set attachment access level');
+    echo form_close();
+}
+?>
 <br/>

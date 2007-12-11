@@ -24,12 +24,12 @@
         $CI->load->helper('readremote');
         //return '<div class="message">no info on updates available</div>';
         #try with short timeout, to get version info from aigaion.nl
-        $remoterelease = getRemoteFile ('http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version');
+        $remoterelease = getRemoteFile ('http://demo2.aigaion.nl/index.php/version');
         if ($remoterelease == '') {
-            return "<div class='message'>Couldn't connect to demo.aigaion.nl to check for updates</div>";
+            return "<div class='message'>Couldn't connect to demo2.aigaion.nl to check for updates</div>";
         }
         if ($remoterelease == '') {
-            return "<div class='message'>Couldn't obtain release version info from demo.aigaion.nl</div>";
+            return "<div class='message'>Couldn't obtain release version info from demo2.aigaion.nl</div>";
         }
         #compare info to current version
         $CI->db->orderby('version','desc');
@@ -44,11 +44,11 @@
         }
         $result = '<p>There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';
         #if deviation: get detailed info for change history from aigaion.nl
-        $remotechangehistory = getRemoteFile("http://gonnagles.adsl.utwente.nl:81/aigaion2/index.php/version/details/".$thisrelease);
+        $remotechangehistory = getRemoteFile("http://demo2.aigaion.nl/index.php/version/details/".$thisrelease);
         #parse detailed info
         $class='message';
         if ($remotechangehistory=='') {
-            $result .= "Couldn't obtain detailed update info from demo.aigaion.nl<br/>";
+            $result .= "Couldn't obtain detailed update info from demo2.aigaion.nl<br/>";
         } else { 
             #note: we use quite ugly parsing here - assuming that version/details outputs exactly what we expect and assuming that description contains NO XML
             $p = xml_parser_create();

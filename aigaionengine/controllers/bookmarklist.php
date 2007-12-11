@@ -442,7 +442,158 @@ class Bookmarklist extends Controller {
             $this->output->set_output($output);
         }
     }  
-  
+
+	/** 
+	bookmarklist/setpubaccesslevel
+	
+	Entry point for setting the READ access level for all publications on the bookmarklist.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	changing access levels. 
+	
+	Fails with error message when one of:
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    4rd: if the 3rd segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+
+	Parameters passed via POST:
+	    accesslevel: (public|intern|private)
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the action, if no 'commit' was specified
+        Redirects somewhere (bookmarklist page) after setting access levels, if 'commit' was specified
+	*/
+	function setpubaccesslevel()
+	{
+	    $commit = $this->uri->segment(3,'');
+        $accesslevel = $this->input->post('accesslevel');
+	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin  = getUserLogin();
+
+	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
+	        appendErrorMessage('Setting access levels of publications from bookmarklist: insufficient rights<br/>');
+	        redirect('');
+	    }
+        if (!in_array($accesslevel,array('public','intern','private'))) {
+	        appendErrorMessage('Setting access levels of publications from bookmarklist: no existing access level specified<br/>');
+	        redirect('bookmarklist');
+        }
+        if ($commit=='commit') {
+            //do set levels, redirect somewhere
+            $publications = $this->publication_db->getForBookmarkList('',-1);
+            $nrchanged = 0;
+            $nrskipped = 0;
+            foreach ($publications as $publication) {
+                if ($this->accesslevels_lib->canEditObject($publication)) {
+                    if ($publication->read_access_level != $accesslevel) {
+                        $this->accesslevels_lib->setReadAccessLevel('publication',$publication->pub_id,$accesslevel);
+                        $nrchanged++;
+                    } 
+                } else {
+                    $nrskipped++;
+                }
+            }
+            appendMessage('Set access level of '.$nrchanged.' publications to "'.$accesslevel.'"<br>');
+            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            redirect('bookmarklist');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Set access level to '.$accesslevel.' for all from bookmarklist';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('bookmarklist/setpubaccesslevel',
+                                          array('accesslevel'=>$accesslevel),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }    
+
+	/** 
+	bookmarklist/setattaccesslevel
+	
+	Entry point for setting the READ access level for all attachments of publications on the bookmarklist.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	changing access levels. 
+	
+	Fails with error message when one of:
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    4rd: if the 3rd segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+
+	Parameters passed via POST:
+	    accesslevel: (public|intern|private)
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the action, if no 'commit' was specified
+        Redirects somewhere (bookmarklist page) after setting access levels, if 'commit' was specified
+	*/
+	function setattaccesslevel()
+	{
+	    $commit = $this->uri->segment(3,'');
+        $accesslevel = $this->input->post('accesslevel');
+	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
+	    //edit_access_level and the user edit rights
+        $userlogin  = getUserLogin();
+
+	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('attachment_edit')) {
+	        appendErrorMessage('Setting access levels of publications from bookmarklist: insufficient rights<br/>');
+	        redirect('');
+	    }
+        if (!in_array($accesslevel,array('public','intern','private'))) {
+	        appendErrorMessage('Setting access levels of publications from bookmarklist: no existing access level specified<br/>');
+	        redirect('bookmarklist');
+        }
+        if ($commit=='commit') {
+            //do set levels, redirect somewhere
+            $publications = $this->publication_db->getForBookmarkList('',-1);
+            $nrchanged = 0;
+            $nrskipped = 0;
+            foreach ($publications as $publication) {
+                foreach ($publication->getAttachments() as $attachment) {
+                    if ($this->accesslevels_lib->canEditObject($attachment)) {
+                        if ($attachment->read_access_level != $accesslevel) {
+                            $this->accesslevels_lib->setReadAccessLevel('attachment',$attachment->att_id,$accesslevel);
+                            $nrchanged++;
+                        } 
+                    } else {
+                        $nrskipped++;
+                    }
+                }
+            }
+            appendMessage('Changed access level of '.$nrchanged.' attachments to "'.$accesslevel.'"<br>');
+            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' attachments due to insufficient rights<br>');
+            redirect('bookmarklist');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = 'Set access level to '.$accesslevel.' for all attachments of publications on bookmarklist';
+            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('bookmarklist/setattaccesslevel',
+                                          array('accesslevel'=>$accesslevel),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }    
 
     /** 
     bookmarklist/clear
