@@ -113,7 +113,7 @@ class Import extends Controller {
           $count++;
           unset($review);
         }
-        $this->review($reviewed_publications, $review_messages);
+        $this->review($reviewed_publications, $review_messages,$markasread);
     }
     if ($import_count != null)
     {
@@ -140,13 +140,14 @@ class Import extends Controller {
   	        }
         }            
         $pub_to_import = $this->publication_db->add($pub_to_import);
+        if ($markasread)$pub_to_import->read('');
       }
       appendMessage('Succesfully imported '.$count.' publications.');
       redirect('publications/showlist/recent');
     }
   }
   
-  function review($publications, $review_data)
+  function review($publications, $review_data,$markasread)
   {
     $userlogin      = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
@@ -159,7 +160,7 @@ class Import extends Controller {
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publications'] = $publications;
     $content['reviews']      = $review_data;
-    
+    $content['markasread']   = $markasread;
     //get output
     $output  = $this->load->view('header',              $header,  true);
     $output .= $this->load->view('import/review',       $content, true);
