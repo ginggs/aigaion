@@ -981,6 +981,47 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
+  function getForKeyword($keyword_id,$order='')
+  {
+    $orderby='actualyear DESC, cleantitle';
+    switch ($order) {
+      case 'year':
+        $orderby='actualyear DESC, cleantitle';
+        break;
+      case 'type':
+        $orderby='pub_type, cleanjournal, actualyear, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        break;
+      case 'recent':
+        $orderby='pub_id DESC';
+        break;
+      case 'title':
+        $orderby='cleantitle';
+        break;
+      case 'author':
+        $orderby='cleanauthor';
+        break;
+    }
+    $CI = &get_instance();
+    //we need merge functionality here, so initialze a merge cache
+    $this->crossref_cache = array();
+    $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationkeywordlink
+    WHERE ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".$CI->db->escape($keyword_id)."
+    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationkeywordlink.pub_id
+    ORDER BY ".$orderby);
+
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+
+    unset($this->crossref_cache);
+    return $result;
+  }  
   /** Return a list of publications for the bookmark list of the logged user */
   function getForBookmarkList($order='')
   {
