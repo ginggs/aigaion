@@ -20,6 +20,7 @@ There is a set of maintenance functions available. You can either perform the ma
 	<li><?php echo anchor('site/maintenance/authors','Check authors'); ?></li>
 	<li><?php echo anchor('site/maintenance/passwords','Check passwords'); ?></li>
 	<li><?php echo anchor('site/maintenance/cleannames','Check searchable names and titles'); ?></li>
+	<li><?php echo anchor('site/maintenance/publicationmarks','Check publication marks'); ?></li>
 	<li><?php echo anchor('site/maintenance/checkupdates','Check for updates'); ?></li>
 </ul>
 <p class='header'>Backup and restore</p>

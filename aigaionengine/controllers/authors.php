@@ -272,6 +272,8 @@ class Authors extends Controller {
       appendErrorMessage('Cannot merge authors: insufficient rights.<br/>');
       redirect('');
     }
+    
+    //so... actually, we should now test whether the user has edit access on all involved publications!!!
     $author->update(); //this updates the new name info into the author
     $author->merge($simauthor_id);
     redirect ('authors/show/'.$author->author_id);

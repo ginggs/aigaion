@@ -130,6 +130,10 @@ class Site extends Controller {
 	            $checkresult .= checkCleanNames();
 	            if ($maintenance != 'all') 
 	                break;
+	        case 'publicationmarks':
+	            $checkresult .= checkPublicationMarks();
+	            if ($maintenance != 'all') 
+	                break;
 	        case 'checkupdates':
 	            $this->load->helper('checkupdates');
                 $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";

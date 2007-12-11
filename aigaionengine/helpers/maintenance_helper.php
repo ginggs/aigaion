@@ -309,6 +309,26 @@
         $result .= "</td><td><b>OK</b></td></tr>\n";
         return $result;
     }
+    /** repair the 'total marks' for all publications */
+    function checkPublicationMarks() {
+        $markcount = 0;
+        $CI = &get_instance();
+        $Q = $CI->db->get('publication');
+        $result = "<tr><td colspan=2><p class='header1'>Check total publication marks</p></td></tr>\n";
+
+        $result .= "<tr><td>Checking... ";
+        foreach ($Q->result() as $R) {
+            $oldmark = $R->mark;
+            $newmark = $CI->publication_db->recalcTotalMark($R->pub_id);
+            if ($oldmark != $newmark) $markcount++;
+        }
+        if ($markcount > 0) {
+            $result .= "<br/>Fixed total topic mark of ".$markcount." publications.";
+        }
+        $result .= "</td><td><b>OK</b></td></tr>\n";
+        return $result;        
+    }
+
     /** return a proper clean author for the given publication row without creating publication object */
     function getCleanAuthor($row) {
         //check clean author? that's tricky. We cannot get to the publication object, so some code from publication.update needs to be replicated here :(

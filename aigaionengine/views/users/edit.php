@@ -38,7 +38,7 @@ if (!isset($user)||($user==null)||(isset($action)&&$action=='add')) {
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Create a new user</p>";
+    echo "<p class='header2'>Create a New User</p>";
 } else {
     echo "<p class='header2'>Edit User Preferences</p>";
 }
@@ -48,62 +48,9 @@ echo $this->validation->error_string;
 
 echo "
     <table width='100%'>
-        
-        <tr><td colspan='2'>
-        <hr><b>Person details:</b><hr>
-        </td></tr>
 
-        <tr>
-        <td>Initials</td>
-        <td>"
-        .form_input(array('name'=>'initials',
-                          'size'=>'5',
-                          'value'=>$user->initials))."
-        </td>
-        </tr>
-        <tr>
-        <td>First name</td>
-        <td>"
-        .form_input(array('name'=>'firstname',
-                          'size'=>'10',
-                          'value'=>$user->firstname))."
-        </td>
-        </tr>
-        <tr>
-        <td>Middle name</td>
-        <td>"
-        .form_input(array('name'=>'betweenname',
-                          'size'=>'5',
-                          'value'=>$user->betweenname))."
-        </td>
-        </tr>
-        <tr>
-        <td>Surname</td>
-        <td>"
-        .form_input(array('name'=>'surname',
-                          'size'=>'15',
-                          'value'=>$user->surname))."
-        </td>
-        </tr>
-        <tr>
-        <td>Abbreviation (about three characters)</td>
-        <td>"
-        .form_input(array('name'=>'abbreviation',
-                          'size'=>'5',
-                          'value'=>$user->abbreviation))."
-        </td>
-        </tr>
-        <tr>
-        <td>E-Mail Address</td>
-        <td>"
-        .form_input(array('name'=>'email',
-                          'size'=>'20',
-                          'value'=>$user->email))."
-        </td>
-        </tr>
-        
         <tr><td colspan='2'>
-        <hr><b>Account settings:</b><hr>
+        <hr><b>Account settings:</b> ('Account settings' is the only block of settings that is <i>mandatory</i>)<hr>
         </td></tr>
         
         <tr>
@@ -158,6 +105,63 @@ if ($userlogin->hasRights('user_edit_all')) {
         </td>
         </tr>";
 }
+
+echo "        
+        <tr><td colspan='2'>
+        <hr><b>Person details:</b><hr>
+        </td></tr>
+
+        <tr>
+        <td>Initials</td>
+        <td>"
+        .form_input(array('name'=>'initials',
+                          'size'=>'5',
+                          'value'=>$user->initials))."
+        </td>
+        </tr>
+        <tr>
+        <td>First name</td>
+        <td>"
+        .form_input(array('name'=>'firstname',
+                          'size'=>'10',
+                          'value'=>$user->firstname))."
+        </td>
+        </tr>
+        <tr>
+        <td>Middle name</td>
+        <td>"
+        .form_input(array('name'=>'betweenname',
+                          'size'=>'5',
+                          'value'=>$user->betweenname))."
+        </td>
+        </tr>
+        <tr>
+        <td>Surname</td>
+        <td>"
+        .form_input(array('name'=>'surname',
+                          'size'=>'15',
+                          'value'=>$user->surname))."
+        </td>
+        </tr>
+        <tr>
+        <td>Abbreviation (about three characters)</td>
+        <td>"
+        .form_input(array('name'=>'abbreviation',
+                          'size'=>'5',
+                          'value'=>$user->abbreviation))."
+        </td>
+        </tr>
+        <tr>
+        <td>E-Mail Address</td>
+        <td>"
+        .form_input(array('name'=>'email',
+                          'size'=>'20',
+                          'value'=>$user->email))."
+        </td>
+        </tr>
+        ";
+        
+
 
 
 $theme_array = array();

@@ -1233,6 +1233,7 @@ class Publication_db {
     or -1 if the publication wasn't read */
     function getUserMark($pub_id,$user_id) {
         $CI = &get_instance();
+        if (trim($pub_id)=='') return;
         $Q = $CI->db->getwhere('userpublicationmark',array('pub_id'=>$pub_id,'user_id'=>$user_id));
         if ($Q->num_rows()==0) {
             return -1;
@@ -1245,6 +1246,7 @@ class Publication_db {
     }
     function read($mark,$oldmark,$pub_id,$user_id) {
         $CI = &get_instance();
+        if (trim($pub_id)=='') return;
         //set proper mark for user
         $Q = $CI->db->delete("userpublicationmark",array('pub_id'=>$pub_id,'user_id'=>$user_id));
         $Q = $CI->db->query("INSERT INTO ".AIGAION_DB_PREFIX."userpublicationmark 
@@ -1252,32 +1254,40 @@ class Publication_db {
                                 VALUES
                                 (".$user_id.",".$pub_id.",'y','".$mark."')");
         //and now fix total mark
-        if ($oldmark<0) {
-            $oldmark = 0;
-        }
-        //subtract old mark from current mark for given publication
-        $CI->db->select('mark');
-        $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
-        $R = $Q->row();
-        $Q = $CI->db->update('publication',array('mark'=>($R->mark-$oldmark+$mark)),array('pub_id'=>$pub_id));
+        $this->recalcTotalMark($pub_id);
     }
     function unread($oldmark,$pub_id,$user_id) {
         $CI = &get_instance();
+        if (trim($pub_id)=='') return;
         //set proper mark for user
         $Q = $CI->db->query("UPDATE ".AIGAION_DB_PREFIX."userpublicationmark 
                                 SET `hasread`='n' 
                               WHERE pub_id=".$pub_id." 
                                     AND user_id=".$user_id);
         //and now fix total mark
-        if ($oldmark>0) {
-            //subtract old mark from current mark for given publication
-            $CI->db->select('mark');
-            $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
-            $R = $Q->row();
-            $Q = $CI->db->update('publication',array('mark'=>($R->mark-$oldmark)),array('pub_id'=>$pub_id));
-        }
+        $this->recalcTotalMark($pub_id);
     }
-
+    //returns new mark
+    function recalcTotalMark($pub_id) {
+        $CI = &get_instance();
+        if (trim($pub_id)=='') return;
+        $Q = $CI->db->getwhere('userpublicationmark',array('pub_id'=>$pub_id));
+        $totalmark = 0;
+        $count = 0;
+        foreach ($Q->result() as $R) {
+            if ($R->hasread=='y') {
+                $count++;
+                $totalmark += $R->mark;
+            }
+        }
+        $newmark = 0;
+        if ($count!=0) {
+            $newmark = $totalmark / $count;
+        }
+        $CI->db->where('pub_id', $pub_id);
+        $CI->db->update('publication',array('mark'=>$newmark));
+        return $newmark;
+    }
 
     /** reorder authorlist based on given map from new rank to old rank */
 //    function reorderauthors($pub_id, $reorder, $editors='n') {
