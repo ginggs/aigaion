@@ -70,7 +70,13 @@ $user       = $this->user_db->getByID($userlogin->userID());
       if ($publication->$key || $pages):
 ?>
     <tr>
-      <td valign='top'><?php echo ucfirst($key); ?>:</td>
+      <td valign='top'><?php
+        if ($key=='namekey') {
+            echo 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
+        } else { 
+            echo ucfirst($key); 
+        }
+      ?>:</td>
       <td valign='top'><?php 
         if ($key=='doi') {
             echo '<a target=_blank href="http://dx.doi.org/'.$publication->$key.'">'.$publication->$key.'</a>'; 

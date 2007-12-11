@@ -40,7 +40,13 @@
         
 ?>
     <tr>
-      <td valign='top'><?php echo ucfirst($key); ?>:</td>
+      <td valign='top'><?php
+        if ($key=='namekey') {
+          echo 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
+        } else { 
+          echo ucfirst($key); 
+        }
+      ?>:</td>
       <td valign='top'><?php 
         if ($key == "pages")
           echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 

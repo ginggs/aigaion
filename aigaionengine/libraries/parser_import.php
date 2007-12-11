@@ -134,7 +134,6 @@ class Parser_Import
     'url',
     'doi',
     'crossref',
-    'namekey',
     'keywords'
     );
     //the following fields should after retrieval be de-bibtexxed
@@ -166,6 +165,12 @@ class Parser_Import
       unset($bibliophileEntry['bibtexCitation']);
     }
     
+    //'key' is stored as 'namekey' in the database... so should be converted here
+    if (isset($bibliophileEntry['key'])) {
+      $publication->namekey = $bibliophileEntry['key'];
+      unset($bibliophileEntry['key']);
+    }
+
     //check for specialchars
     foreach ($specialfields as $field)
     {

@@ -73,7 +73,7 @@ require_once(APPPATH."include/utf8/trim.php");
         	}
         }
         $fields['pages']=$pages;
-        //key is named 'namekey' in the database
+        //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
         //month is a number in the database...
         $months = getMonthsEng();
@@ -355,7 +355,7 @@ require_once(APPPATH."include/utf8/trim.php");
         	}
         }
         $fields['pages']=$pages;
-        //key is named 'namekey' in the database
+        //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
         //month is a number in the database...
         $months = getMonthsEng();
