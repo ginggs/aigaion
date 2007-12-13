@@ -86,7 +86,7 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('author_'.$i.'_'.$j.'_inputlast',$author->surname);
             $similar_authors = $reviews[$i]['authors'][1][$j];
             if (count($similar_authors)!=0 ) {
-                echo '<br/>Options for BiBTeX-author '.$author->getName('lvf').':<br/>';
+                echo '<br/>Options for import-author '.$author->getName('lvf').':<br/>';
                 $exactMatch = false;
                 $alternatives = '';
                 $radiocheck = false;
@@ -180,7 +180,7 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('editor_'.$i.'_'.$j.'_inputlast',$editor->surname);
             $similar_editors = $reviews[$i]['editors'][1][$j];
             if (count($similar_editors)!=0 ) {
-                echo '<br/>Options for BiBTeX-editor '.$editor->getName('lvf').':<br/>';
+                echo '<br/>Options for import-editor '.$editor->getName('lvf').':<br/>';
                 $exactMatch = false;
                 $alternatives = '';
                 $radiocheck = false;
