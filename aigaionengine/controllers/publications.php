@@ -185,7 +185,7 @@ class Publications extends Controller {
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'publications/unassigned/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getUnassigned('1',$order);
+        $content['publications']    = $this->publication_db->getUnassigned($order);
         $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);
