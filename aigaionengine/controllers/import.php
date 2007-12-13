@@ -67,7 +67,7 @@ class Import extends Controller {
       switch ($type) {
         case 'BibTeX':
           $this->load->library('parseentries');
-          $this->parser_import->loadData($import_data);
+          $this->parser_import->loadData(getConfigurationSetting('BIBTEX_STRINGS_IN')."\n".$import_data);
           $this->parser_import->parse($this->parseentries);
           $publications = $this->parser_import->getPublications();
           break;
