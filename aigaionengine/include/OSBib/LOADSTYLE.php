@@ -45,7 +45,8 @@ class LOADSTYLE
 				if($fh = fopen($stylesDir . '/' . $dir . "/" . $fileName, "r"))
 				{
 					preg_match("/<description>(.*)<\\/description>/i", fgets($fh), $matches);
-					$array[strtoupper($dir)] = $matches[1];
+					if (count($matches)>1)
+					    $array[strtoupper($dir)] = $matches[1];
 				}
 				fclose($fh);
 			}
