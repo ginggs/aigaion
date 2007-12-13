@@ -54,6 +54,8 @@ for ($i = 0; $i < $importCount; $i++)
     </tr>
     <?php
 
+    echo form_hidden('authorcount_'.$i,count($publications[$i]->authors));
+    
     /** 
     the review form contains the following data,
     for a to-be-reviewed author j [0..nrAuthors] 
@@ -79,7 +81,9 @@ for ($i = 0; $i < $importCount; $i++)
           $j = 0;
           foreach ($publications[$i]->authors as $author)
           {
-            echo form_hidden('author_'.$i.'_'.$j.'_input',$author->getName('lvf'));
+            echo form_hidden('author_'.$i.'_'.$j.'_inputfirst',$author->firstname);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputvon',$author->von);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputlast',$author->surname);
             $similar_authors = $reviews[$i]['authors'][1][$j];
             if (count($similar_authors)!=0 ) {
                 echo '<br/>Options for BiBTeX-author '.$author->getName('lvf').':<br/>';
@@ -128,64 +132,119 @@ for ($i = 0; $i < $importCount; $i++)
     }
     else
     {
-      //authors
-      $authors = array();
-      if (is_array($publications[$i]->authors))
-      {
-        foreach ($publications[$i]->authors as $author)
-        {
-          $authors[] = $author->getName();
-        }
-        echo form_hidden('authors_'.$i, implode($authors, "\n"))."\n";
-      }
-      else
-        echo form_hidden('authors_'.$i, '')."\n";
+      //authors 
+      //no review message, i.e. either exact matches or new authors. proceed accordingly to build up hidden fields.
+          $j = 0;
+          foreach ($publications[$i]->authors as $author)
+          {
+            echo form_hidden('author_'.$i.'_'.$j.'_inputfirst',$author->firstname);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputvon',$author->von);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputlast',$author->surname);
+            //no similar authors. Either we have ONE exact match, OR we have NO macth at all
+            $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname);
+            if ($exactMatchingAuthor == null) {
+                echo form_hidden('author_'.$i.'_'.$j.'_alternative',-1);
+            } else {
+                echo form_hidden('author_'.$i.'_'.$j.'_alternative',$exactMatchingAuthor->author_id);
+            }
+            $j++;
+          }
     }
 
-    if ($reviews[$i]['editors'] != null)
+    echo form_hidden('editorcount_'.$i,count($publications[$i]->editors));
+    
+    /** 
+    the review form contains the following data,
+    for a to-be-reviewed editor j [0..nrEditors] 
+    for publication i [0..import_count]:
+      editor_i_j_input: the original bibtex parsed version of the input text for this editor as hidden field
+      editor_i_j_alternative: a value normally determined by a radio button selection. 
+           A value of -1 means: create new editor from input text. (if no alternatives at all, -1 is used)
+           If this radio button has another value it determines the existing editor that should be used.
+    */
+    if ($reviews[$i]['editors'] != null) //each item consists of an array A with A[0] a review message, and A[1] an array of the similar author ID
     {
 
       ?>
       <tr>
-        <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['editors'] ?></div></td>
+        <td></td><td valign='top'><br/><b>Choose alternative editors:</b></td>
       </tr>
       <tr>
-        <td valign='top'>Editors:</td>
-        <td>
+        <td></td><td>
           <?php
-          $authors = array();
-          if (is_array($publications[$i]->editors))
+          $j = 0;
+          foreach ($publications[$i]->editors as $editor)
           {
-            foreach ($publications[$i]->editors as $author)
-            {
-              $authors[] = $author->getName();
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputfirst',$editor->firstname);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputvon',$editor->von);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputlast',$editor->surname);
+            $similar_editors = $reviews[$i]['editors'][1][$j];
+            if (count($similar_editors)!=0 ) {
+                echo '<br/>Options for BiBTeX-editor '.$editor->getName('lvf').':<br/>';
+                $exactMatch = false;
+                $alternatives = '';
+                $radiocheck = false;
+                foreach ($similar_editors as $sa_id) {
+                  $sa = $this->author_db->getByID($sa_id);
+                  $feedback = '[from database]';
+                  if ($sa->getName('lvf') == $editor->getName('lvf')) { //exact match!
+                    $exactMatch = True;
+                    $feedback = '[keep]';
+                    $radiocheck = true;
+                  }
+                  $alternatives .= form_radio(array('name'        => 'editor_'.$i.'_'.$j.'_alternative',
+                                        'id'          => 'editor_'.$i.'_'.$j.'_alternative',
+                                        'title'       => 'select to use similar editor found in database',
+                                        'value'       => $sa_id,
+                                        'checked'     => $radiocheck
+                                       )).$sa->getName('lvf').' '.$feedback.'<br/>';
+                }
+                if (!$exactMatch)
+                  echo form_radio(array('name'        => 'editor_'.$i.'_'.$j.'_alternative',
+                                        'id'          => 'editor_'.$i.'_'.$j.'_alternative',
+                                        'title'       => 'select to use editor as found in BiBTeX',
+                                        'value'       => '-1',
+                                        'checked'     => TRUE
+                                       )).$editor->getName('lvf').' [add new]<br/>';
+                echo $alternatives;
+            } else {
+                //no similar editors. Either we have ONE exact match, OR we have NO macth at all
+                $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname);
+                if ($exactMatchingEditor == null) {
+                    echo form_hidden('editor_'.$i.'_'.$j.'_alternative',-1);
+                } else {
+                    echo form_hidden('editor_'.$i.'_'.$j.'_alternative',$exactMatchingEditor->author_id);
+                }
             }
+            $j++;
           }
 
-          echo form_textarea(array('name' => 'editors_'.$i, 'id' => 'editors_'.$i, 'rows' => '5', 'cols' => '42', 'value' => implode($authors, "\n")));
-          echo "<div name='editor_autocomplete_".$i."' id='editor_autocomplete_".$i."'class='autocomplete'></div>\n";
-          echo $this->ajax->auto_complete_field('editors_'.$i, $options = array('url' => base_url().'index.php/authors/li_authors/editors_'.$i, 'update' => 'editor_autocomplete_'.$i, 'tokens'=> '\n', 'frequency' => '0.01'))."\n";
           ?>
         </td>
       </tr>
       <?php
-
     }
     else
     {
-      //editors
-      $editors = array();
-      if (is_array($publications[$i]->editors))
-      {
-        foreach ($publications[$i]->editors as $editor)
-        {
-          $editors[] = $editor->getName();
-        }
-        echo form_hidden('editors_'.$i, implode($editors, "\n"))."\n";
-      }
-      else
-        echo form_hidden('editors_'.$i, '')."\n";
+      //editor 
+      //no review message, i.e. either exact matches or new editors. proceed accordingly to build up hidden fields.
+          $j = 0;
+          foreach ($publications[$i]->editors as $editor)
+          {
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputfirst',$editor->firstname);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputvon',$editor->von);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputlast',$editor->surname);
+            //no similar editors. Either we have ONE exact match, OR we have NO macth at all
+            $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname);
+            if ($exactMatchingEditor == null) {
+                echo form_hidden('editor_'.$i.'_'.$j.'_alternative',-1);
+            } else {
+                echo form_hidden('editor_'.$i.'_'.$j.'_alternative',$exactMatchingEditor->author_id);
+            }
+            $j++;
+          }
     }
+
 
 
     if ($reviews[$i]['keywords'] != null)

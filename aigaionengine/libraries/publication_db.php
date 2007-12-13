@@ -275,30 +275,50 @@ class Publication_db {
     } else {
         //data comes from import review, so authors and editors are present in a special way, as specified in the import/review.php view...
         //parse the authors
-        $authorsFromForm = $CI->input->post('authors'.$suffix);
-        if ($authorsFromForm)
+        //1) get authorcount
+        $authorsCount = $CI->input->post('authorcount'.$suffix);
+        $authors = array();
+        //2) for each available author
+        for ($j = 0; $j < $authorsCount; $j++) 
         {
-          $authors_array    = $CI->parsecreators->parse(preg_replace('/[\r\n\t]/', ' and ', $authorsFromForm));
-          
-          $authors          = array();
-          foreach ($authors_array as $author)
-          {
-            $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
-            if ($author_db  != null)
-            {
-              $authors[]    = $author_db;
+            //a) get 'alternative' value
+            $authorAlternativeRadio = $CI->input->post('author'.$suffix.'_'.$j.'_alternative');
+            //b) determine whether to make new author or to use existing
+            if ($authorAlternativeRadio == -1) {
+                //c) create new from original input data
+                $authors[] = $CI->author_db->setByName($CI->input->post('author'.$suffix.'_'.$j.'_inputfirst'), 
+                                                       $CI->input->post('author'.$suffix.'_'.$j.'_inputvon'),
+                                                       $CI->input->post('author'.$suffix.'_'.$j.'_inputlast'));
+            } else {
+                //use existing
+                $authors[] = $CI->author_db->getByID($authorAlternativeRadio);
             }
-            else
-            {
-              $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
-              $authors[]    = $author_db;
-            }
-          }
-    
-          $publication->authors = $authors;
         }
-    
+        $publication->authors = $authors;
+
         //parse the editors
+        //1) get editorcount
+        $editorsCount = $CI->input->post('editorcount'.$suffix);
+        $editors = array();
+        //2) for each available author
+        for ($j = 0; $j < $editorsCount; $j++) 
+        {
+            //a) get 'alternative' value
+            $editorAlternativeRadio = $CI->input->post('editor'.$suffix.'_'.$j.'_alternative');
+            //b) determine whether to make new editor or to use existing
+            if ($editorAlternativeRadio == -1) {
+                //c) create new from original input data
+                $editors[] = $CI->author_db->setByName($CI->input->post('editor'.$suffix.'_'.$j.'_inputfirst'), 
+                                                       $CI->input->post('editor'.$suffix.'_'.$j.'_inputvon'),
+                                                       $CI->input->post('editor'.$suffix.'_'.$j.'_inputlast'));
+            } else {
+                //use existing
+                $editors[] = $CI->author_db->getByID($editorAlternativeRadio);
+            }
+        }
+        $publication->editors = $editors;
+
+
         $editorsFromForm = $CI->input->post('editors'.$suffix);
         if ($editorsFromForm)
         {

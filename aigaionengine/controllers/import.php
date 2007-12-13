@@ -131,6 +131,7 @@ class Import extends Controller {
           $old_bibtex_ids[$this->input->post('old_bibtex_id_'.$i)] = $count-1;
         }
       }
+      $last_id = -1;
       foreach ($to_import as $pub_to_import) {
         //if necessary, change crossref (if reffed pub has changed bibtex_id)
         if (trim($pub_to_import->crossref)!= '') {
@@ -141,9 +142,15 @@ class Import extends Controller {
         }            
         $pub_to_import = $this->publication_db->add($pub_to_import);
         if ($markasread)$pub_to_import->read('');
+        $last_id = $pub_to_import->pub_id;
       }
       appendMessage('Succesfully imported '.$count.' publications.');
-      redirect('publications/showlist/recent');
+      if ($count == 1) {
+        redirect('publications/show/'.$last_id);
+      } else {
+        redirect('publications/showlist/recent');
+      }
+        
     }
   }
   
