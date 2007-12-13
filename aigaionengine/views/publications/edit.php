@@ -130,7 +130,7 @@
                                 {
                                   foreach ($publication->authors as $author)
                                   {
-                            		echo "<option value=".$author->author_id.">".$author->cleanname."</option>\n";
+                            		echo "<option value=".$author->author_id.">".$author->getName('vlf')."</option>\n";
                             	  }
                             	}
 ?>
@@ -158,7 +158,7 @@
                                 {
                                   foreach ($publication->editors as $editor)
                                   {
-                            		echo "<option value=".$editor->author_id.">".$editor->cleanname."</option>\n";
+                            		echo "<option value=".$editor->author_id.">".$editor->getName('vlf')."</option>\n";
                             	  }
                             	}
 ?>
@@ -180,8 +180,8 @@
 				</td>
 				<td width='45%' valign='top'>
 					<table width='100%'>
-						<tr><td><input type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='50'></td></tr>
-						<tr><td><select style='width:100%;' size='23' name='authorinputselect' id='authorinputselect'></select></td></tr>
+						<tr><td>Search: <input title='Type in name to quick search. Note: use unaccented letters!' type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='30'></td></tr>
+						<tr><td><select style='width:22em;' size='23' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>
 				</td>

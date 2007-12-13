@@ -105,8 +105,8 @@ class Import extends Controller {
           $review['keywords']  = $this->keyword_db->review($publication->keywords);
           
           //review authors and editors
-          $review['authors']   = $this->author_db->review($publication->authors);
-          $review['editors']   = $this->author_db->review($publication->editors);
+          $review['authors']   = $this->author_db->review($publication->authors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
+          $review['editors']   = $this->author_db->review($publication->editors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
           
           $reviewed_publications[$count] = $publication;
           $review_messages[$count]       = $review;

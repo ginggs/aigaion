@@ -377,6 +377,11 @@ TODO:
     return $result;
   }
   
+  /** if no similar authors found, returns null.
+  else, returns an array with two items:
+   [] a review message
+   [] an array of arrays of similar author ids (for each author)
+  */
   function review($authors)
   {
     $CI = &get_instance();
@@ -385,6 +390,7 @@ TODO:
       return null;
     
     $result_message   = "";
+    $all_similar_authors = array();
     
     //get database author array
     $CI->db->select('author_id, cleanname');
@@ -402,6 +408,7 @@ TODO:
     //check availability of the authors in the database
     foreach ($authors as $author)
     {
+      $similar_authors = array();
       if ($this->getByExactName($author->firstname, $author->von, $author->surname) == null)
       {
         //no exact match, or more than one authors exist in the database
@@ -430,17 +437,19 @@ TODO:
           {
             $author = $this->getByID($key);
             $result_message .= "<li>".$author->getName('lvf')."</li>\n";
+            $similar_authors[] = $author->author_id;
           }
           $result_message .= "</ul>\n";
         }
       } else {
         //exact match! this author exists!
       }
+      $all_similar_authors[] = $similar_authors;
     }
     if ($result_message != "")
     {
       $result_message .= "Please review the entered authors.<br/>\n";
-      return $result_message;
+      return array($result_message,$all_similar_authors);
     }
     else
       return null;

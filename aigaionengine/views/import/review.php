@@ -49,34 +49,78 @@ for ($i = 0; $i < $importCount; $i++)
     }
     ?>
     <tr>
-      <td>Citation:</td>
-      <td><?php echo form_input(array('name' => 'bibtex_id_'.$i, 'id' => 'bibtex_id_'.$i, 'size' => '45'), $publications[$i]->bibtex_id); ?></td>
+      <td style='width:2em;'></td>
+      <td>Citation: <?php echo form_input(array('name' => 'bibtex_id_'.$i, 'id' => 'bibtex_id_'.$i, 'size' => '45'), $publications[$i]->bibtex_id); ?></td>
     </tr>
     <?php
 
-    if ($reviews[$i]['authors'] != null)
+    /** 
+    the review form contains the following data,
+    for a to-be-reviewed author j [0..nrAuthors] 
+    for publication i [0..import_count]:
+      author_i_j_input: the original bibtex parsed version of the input text for this author as hidden field
+      author_i_j_alternative: a value normally determined by a radio button selection. 
+           A value of -1 means: create new author from input text. (if no alternatives at all, -1 is used)
+           If this radio button has another value it determines the existing author that should be used.
+    */
+    if ($reviews[$i]['authors'] != null) //each item consists of an array A with A[0] a review message, and A[1] an array of the similar author ID
     {
 
       ?>
+      <!--tr>
+        <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['authors'][0] ?></div></td>
+      </tr-->
       <tr>
-        <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['authors'] ?></div></td>
+        <td></td><td valign='top'><br/><b>Choose alternative authors:</b></td>
       </tr>
       <tr>
-        <td valign='top'>Authors:</td>
-        <td>
+        <td></td><td>
           <?php
-          $authors = array();
-          if (is_array($publications[$i]->authors))
+          $j = 0;
+          foreach ($publications[$i]->authors as $author)
           {
-            foreach ($publications[$i]->authors as $author)
-            {
-              $authors[] = $author->getName();
+            echo form_hidden('author_'.$i.'_'.$j.'_input',$author->getName('lvf'));
+            $similar_authors = $reviews[$i]['authors'][1][$j];
+            if (count($similar_authors)!=0 ) {
+                echo '<br/>Options for BiBTeX-author '.$author->getName('lvf').':<br/>';
+                $exactMatch = false;
+                $alternatives = '';
+                $radiocheck = false;
+                foreach ($similar_authors as $sa_id) {
+                  $sa = $this->author_db->getByID($sa_id);
+                  $feedback = '[from database]';
+                  if ($sa->getName('lvf') == $author->getName('lvf')) { //exact match!
+                    $exactMatch = True;
+                    $feedback = '[keep]';
+                    $radiocheck = true;
+                  }
+                  $alternatives .= form_radio(array('name'        => 'author_'.$i.'_'.$j.'_alternative',
+                                        'id'          => 'author_'.$i.'_'.$j.'_alternative',
+                                        'title'       => 'select to use similar author found in database',
+                                        'value'       => $sa_id,
+                                        'checked'     => $radiocheck
+                                       )).$sa->getName('lvf').' '.$feedback.'<br/>';
+                }
+                if (!$exactMatch)
+                  echo form_radio(array('name'        => 'author_'.$i.'_'.$j.'_alternative',
+                                        'id'          => 'author_'.$i.'_'.$j.'_alternative',
+                                        'title'       => 'select to use author as found in BiBTeX',
+                                        'value'       => '-1',
+                                        'checked'     => TRUE
+                                       )).$author->getName('lvf').' [add new]<br/>';
+                echo $alternatives;
+            } else {
+                //no similar authors. Either we have ONE exact match, OR we have NO macth at all
+                $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname);
+                if ($exactMatchingAuthor == null) {
+                    echo form_hidden('author_'.$i.'_'.$j.'_alternative',-1);
+                } else {
+                    echo form_hidden('author_'.$i.'_'.$j.'_alternative',$exactMatchingAuthor->author_id);
+                }
             }
+            $j++;
           }
 
-          echo form_textarea(array('name' => 'authors_'.$i, 'id' => 'authors_'.$i, 'rows' => '5', 'cols' => '42', 'value' => implode($authors, "\n")));
-          echo "<div name='author_autocomplete_".$i."' id='author_autocomplete_".$i."' class='autocomplete'></div>\n";
-          echo $this->ajax->auto_complete_field('authors_'.$i, $options = array('url' => base_url().'index.php/authors/li_authors/authors_'.$i, 'update' => 'author_autocomplete_'.$i, 'tokens'=> '\n', 'frequency' => '0.01'))."\n";
           ?>
         </td>
       </tr>

@@ -96,6 +96,8 @@ require_once(APPPATH."include/utf8/trim.php");
                       'month');
         //a list of all fields that can be converted to bibtex codes...
         $utf8ConvertFields = array(
+                  'author'          ,
+                  'editor'          ,
                   'title'          ,
                   'journal'        ,
                   'booktitle'      ,

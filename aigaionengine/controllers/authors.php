@@ -362,8 +362,8 @@ class Authors extends Controller {
       if ($submit_type != 'review')
       {
 
-        //review authors and editors
-        $review['author']   = $this->author_db->review(array($author));
+        //review author for similar authors
+        list($review['author'],$similar_ids)   = $this->author_db->review(array($author));
         
         if ($review['author'] != null)
         {
@@ -399,7 +399,7 @@ class Authors extends Controller {
     }
   }
 
-  function review($author, $review_data)
+  function review($author, $review_message)
   {
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
@@ -412,7 +412,7 @@ class Authors extends Controller {
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $this->input->post('edit_type');
     $content['author']      = $author;
-    $content['review']      = $review_data;
+    $content['review']      = $review_message;
     
     //get output
     $output  = $this->load->view('header',              $header,  true);

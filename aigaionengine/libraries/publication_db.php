@@ -273,7 +273,7 @@ class Publication_db {
         }
         $publication->editors = $editors;
     } else {
-        //data comes from import review, so apparently authors are not present as comma separated ids in pubform_authors, but as text field in 'authors'
+        //data comes from import review, so authors and editors are present in a special way, as specified in the import/review.php view...
         //parse the authors
         $authorsFromForm = $CI->input->post('authors'.$suffix);
         if ($authorsFromForm)

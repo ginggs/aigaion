@@ -3,14 +3,18 @@
 	$count = 0;
 	echo "var AUTHORIDS = new Array();\n";
 	echo "var AUTHORS = new Array();\n";
+	echo "var CLEANAUTHORS = new Array();\n"; //separate authors and clean authors list. One is for searching, the other for showing
     $CI = &get_instance();
     $CI->db->orderby('cleanname');
-    $CI->db->select('author_id,cleanname');
-	$Q = $CI->db->get("author");
+    $Q = $CI->db->get("author");
 	foreach ($Q->result() as $R)  {
-		$name = addslashes ($R->cleanname);
+	    $author = $CI->author_db->getFromRow($R);
+	    
+		$cleanname = addslashes ($author->cleanname);
+		$name = addslashes ($author->getName('vlf'));
 
 		echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
+		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
 		echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
 
 		$count++;
@@ -20,7 +24,6 @@
 function Init ()
 {
 	AuthorSearch ();
-	$('authorinputtext').focus ();
 }
 
 function AuthorSearch ()
@@ -28,9 +31,10 @@ function AuthorSearch ()
 	searchtext = $('authorinputtext').value;
 	$('authorinputselect').length = 0;
 	for (a=0;a<AUTHORIDS.length; a++) {
-		astring = new String (AUTHORS [AUTHORIDS [a]]);
-		if (astring.toLowerCase().indexOf(searchtext.toLowerCase ()) != -1)  {
-			$('authorinputselect').options [$('authorinputselect').length] = new Option (astring,a,false,false);
+		cleanAuthorString = new String (CLEANAUTHORS [AUTHORIDS [a]]);
+		authorString = new String (AUTHORS [AUTHORIDS [a]]);
+		if (cleanAuthorString.toLowerCase().indexOf(searchtext.toLowerCase ()) != -1)  {
+			$('authorinputselect').options [$('authorinputselect').length] = new Option (authorString,a,false,false);
 		}
 	}
 }
