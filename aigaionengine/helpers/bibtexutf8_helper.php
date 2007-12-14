@@ -230,8 +230,8 @@ function getUtf8CharsReplaceArray()
 function getBibtexCharsArray()
 {
     return array(
-            "/{(\$.*\$)*[^\$]*([aeiouyAEIOUYnN])}/",//first, replace all single chars between {}; hopefully this catches the {\"{e}} to {\"e}, which is easier to convert
-                                     //note: they should not be in Math mode!
+            "/^([^\$]*){([aeiouyAEIOUYnN])}/",//first, replace all single chars between {}; hopefully this catches the {\"{e}} to {\"e}, which is easier to convert
+                                     //note: they should not be in Math mode! To be sure, we only convert until the first math sign. After that, we give up
             "/{(\\\`[aeiou])}/i",//remove the outside braces...
             "/{(\\\'[aeiou])}/i",
             "/{(\\\\\^[aeiou])}/i",
@@ -313,7 +313,7 @@ function getBibtexCharsArray()
 function getBibtexCharsReplaceArray()
 {
     return array(
-            "$2",
+            "$1$2",
             "$1",
             "$1",
             "$1",
