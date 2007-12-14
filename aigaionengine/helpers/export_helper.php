@@ -38,7 +38,7 @@ require_once(APPPATH."include/utf8/trim.php");
         foreach ($publication->authors as $author) {
             if (!$first) $authors .= " and ";
             $first = false;
-            $authors .= $author->getName('lvf');
+            $authors .= $author->getName('vlf');
         }
         $fields['author']=$authors;
         //collect editors
@@ -47,7 +47,7 @@ require_once(APPPATH."include/utf8/trim.php");
         foreach ($publication->editors as $editor) {
             if (!$first) $editors .= " and ";
             $first = false;
-            $editors .= $editor->getName('lvf');
+            $editors .= $editor->getName('vlf');
         }
         $fields['editor']=$editors;
         //collect keywords
@@ -163,9 +163,9 @@ require_once(APPPATH."include/utf8/trim.php");
                 $result .= ",\n";
             }
             if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
-                $result .= $publication->userfields."\n";
+                $result .= $publication->userfields;
             } else {
-                $result .= utf8ToBibCharsFromString($publication->userfields)."\n";
+                $result .= utf8ToBibCharsFromString($publication->userfields);
             }
         }
         
@@ -187,9 +187,9 @@ require_once(APPPATH."include/utf8/trim.php");
 	
         $result .= getRISExportLine('T1',$publication->title);
     	foreach ($publication->authors as $author) 
-	    	$result .= getRISExportLine('A1', $author->getName('lvf'));
+	    	$result .= getRISExportLine('A1', $author->getName('vlf'));
     	foreach ($publication->editors as $editor) 
-	    	$result .= getRISExportLine('ED', $editor->getName('lvf'));
+	    	$result .= getRISExportLine('ED', $editor->getName('vlf'));
         $result .= getRISExportLine('JA',$publication->journal);
         $result .= getRISExportLine('TI',$publication->booktitle);
         $result .= getRISExportLine('T3',$publication->series);
@@ -322,7 +322,7 @@ require_once(APPPATH."include/utf8/trim.php");
         foreach ($publication->authors as $author) {
             if (!$first) $authors .= " and ";
             $first = false;
-            $authors .= $author->getName('lvf');
+            $authors .= $author->getName('vlf');
         }
         $fields['author']=$authors;
         //collect editors
@@ -331,7 +331,7 @@ require_once(APPPATH."include/utf8/trim.php");
         foreach ($publication->editors as $editor) {
             if (!$first) $editors .= " and ";
             $first = false;
-            $editors .= $editor->getName('lvf');
+            $editors .= $editor->getName('vlf');
         }
         $fields['editor']=$editors;
         //collect keywords

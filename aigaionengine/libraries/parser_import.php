@@ -235,7 +235,7 @@ class Parser_Import
     }
     
     if (!isset($bibliophileEntry['month']) || ($bibliophileEntry['month'] == '')) {
-  		$publication->month = '0';
+  		//$publication->month = '0';  DR: no need to do this, since month is no longer an enumeration. Maybe we should stop converting import months at all? Or only on request?
   	} else {
   		list($publication->month, $dummy) = $this->cMonthParser->init($bibliophileEntry['month']);
   		unset($bibliophileEntry['month']);
