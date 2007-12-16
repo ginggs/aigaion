@@ -1267,17 +1267,17 @@ class Publication_db {
           {
             $message = "The cite id is not unique, please choose another cite id. <br/>Publication with same cite id: \"".$row->title."\"";
             
-            $Q = $CI->db->query("SELECT bibtex_id FROM ".AIGAION_DB_PREFIX."publication
+            $Q2 = $CI->db->query("SELECT bibtex_id,pub_id FROM ".AIGAION_DB_PREFIX."publication
                                  WHERE bibtex_id LIKE ".$CI->db->escape($publication->bibtex_id."%"));
-            $num_rows = $Q->num_rows();
+            $num_rows2 = $Q2->num_rows();
             
-            if ($num_rows > 1)
+            if ($num_rows2 > 1)
             {
               $list = "";
-              foreach ($Q->result() as $row)
+              foreach ($Q2->result() as $row2)
               {
-                if ($row->pub_id != $publication->pub_id)
-                  $list .= "<li>".$row->bibtex_id."</li>\n";
+                if ($row2->pub_id != $publication->pub_id)
+                  $list .= "<li>".$row2->bibtex_id."</li>\n";
               }
               if ($list != "")
                 $message .= "<br/>\nSimilar cite ids:<br/><ul>\n".$list."</ul>\n";
