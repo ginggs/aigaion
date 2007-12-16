@@ -48,7 +48,16 @@
         }
       ?>:</td>
       <td valign='top'><?php 
-        if ($key == "pages")
+        if ($key == "month")
+        {
+          $month = $publication->month;
+          if ($month == "" || $month < 0 || $month > 12 )
+            $month = 0;
+            
+          echo form_dropdown('month', getMonthsArray(), $month);
+
+        }
+        else if ($key == "pages")
           echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
                                                                   'id' => 'firstpage', 
                                                                   'size' => '3', 

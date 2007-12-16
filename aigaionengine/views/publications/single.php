@@ -87,6 +87,11 @@ $user       = $this->user_db->getByID($userlogin->userID());
                 $urlname = utf8_substr($urlname,0,30)."...";
             }
             echo "<a title='".prep_url($publication->url)."' href='".prep_url($publication->url)."' target='_blank'>".$urlname."</a>\n";
+        } else if ($key == 'month') {
+          if ($publication->month != "" && $publication->month > 0 && $publication->month <= 12 ) {
+            $months = getMonthsEng();
+            echo $months[$publication->month];
+          }
         } else if ($key == 'pages') {
           $pages = $publication->firstpage;
           if ($publication->lastpage) {
