@@ -364,10 +364,10 @@ class Publication_db {
   
   function add($publication)
   {
-        $CI = &get_instance();
-        $CI->load->helper('bibtexutf8');
-        $CI->load->helper('utf8_to_ascii');
-        //check access rights (!)
+    $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
+    $CI->load->helper('cleanname');
+    //check access rights (!)
     $userlogin = getUserLogin();
     if (    (!$userlogin->hasRights('publication_edit'))
         ) 
@@ -441,8 +441,8 @@ class Publication_db {
     }
 
     //create cleantitle and cleanjournal
-    $publication->cleantitle    = utf8_to_ascii($publication->title);
-    $publication->cleanjournal    = utf8_to_ascii($publication->journal);
+    $publication->cleantitle    = cleanTitle($publication->title);
+    $publication->cleanjournal    = cleanTitle($publication->journal);
     $publication->cleanauthor = ""; //will be filled later, after authors have been done
     
     //get actual year
@@ -544,9 +544,9 @@ class Publication_db {
   
   function update($publication)
   {
-        $CI = &get_instance();
-        $CI->load->helper('bibtexutf8');
-        $CI->load->helper('utf8_to_ascii');
+    $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
+    $CI->load->helper('cleanname');
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
     $userlogin  = getUserLogin();
@@ -625,8 +625,8 @@ class Publication_db {
     }
     
     //create cleantitle and cleanjournal
-    $publication->cleantitle    = utf8_to_ascii($publication->title);
-    $publication->cleanjournal    = utf8_to_ascii($publication->journal);
+    $publication->cleantitle    = cleanTitle($publication->title);
+    $publication->cleanjournal    = cleanTitle($publication->journal);
     
     //get actual year
     if (trim($publication->year) == '')
@@ -1233,10 +1233,10 @@ class Publication_db {
     function reviewTitle($publication) {
       $CI = &get_instance();
       $CI->load->helper('bibtexutf8');
-      $CI->load->helper('utf8_to_ascii');
+      $CI->load->helper('cleanname');
       
       $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
-      $publication->cleantitle = utf8_to_ascii($publication->cleantitle);
+      $publication->cleantitle = cleanTitle($publication->cleantitle);
 
       $Q = $CI->db->query("SELECT DISTINCT cleantitle FROM ".AIGAION_DB_PREFIX."publication
                            WHERE cleantitle = ".$CI->db->escape($publication->cleantitle));

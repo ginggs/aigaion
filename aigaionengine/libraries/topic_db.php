@@ -284,7 +284,7 @@ class Topic_db {
     /** Add a new topic with the given data. Returns the new topic_id, or -1 on failure. */
     function add($topic) {
         $CI = &get_instance();
-        $CI->load->helper('utf8_to_ascii');
+        $CI->load->helper('cleanname');
         //check access rights (!)
         $userlogin = getUserLogin();
         if (    
@@ -295,7 +295,7 @@ class Topic_db {
 	        return;
         }        
         $fields = array('name'=>$topic->name,
-                        'cleanname'=>utf8_to_ascii($topic->name),
+                        'cleanname'=>cleanTitle($topic->name),
                         'description'=>$topic->description,
                         'url'=>$topic->url,
                         'user_id'=>$userlogin->userId());
@@ -317,7 +317,7 @@ class Topic_db {
     whether the operation was successful. */
     function update($topic) {
         $CI = &get_instance();
-        $CI->load->helper('utf8_to_ascii');
+        $CI->load->helper('cleanname');
         if ($topic->topic_id==1) {
             appendErrorMessage("You cannot edit the top level topic<br/>");
             return;
@@ -360,7 +360,7 @@ class Topic_db {
     	}
 
         $updatefields =  array('name'=>$topic->name,
-                               'cleanname'=>utf8_to_ascii($topic->name),
+                               'cleanname'=>cleanTitle($topic->name),
                                'description'=>$topic->description,
                                'url'=>$topic->url);
 

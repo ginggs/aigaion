@@ -254,7 +254,7 @@
     }
     function checkCleanNames() {
         $CI = &get_instance();
-        $CI->load->helper('utf8_to_ascii');
+        $CI->load->helper('cleanname');
         $result = "<tr><td colspan=2><p class='header1'>Reinit searchable names and titles</p></td></tr>\n";
 
         $result .= "<tr><td>Checking... ";
@@ -262,7 +262,7 @@
         $authorcount = 0;
         foreach ($CI->author_db->getAllAuthors() as $author) { //all authors are accessible to all users...
             $oldcleanname = $author->cleanname;
-            $author->cleanname = utf8_to_ascii($author->getName('lvf'));
+            $author->cleanname = authorCleanName($author);
             if ($author->cleanname!=$oldcleanname) {
                 $author->update();
                 $authorcount++;
@@ -279,8 +279,8 @@
             $oldcleantitle = $row->cleantitle;
             $oldcleanjournal = $row->cleanjournal;
             $oldcleanauthor = $row->cleanauthor;
-            $cleantitle = utf8_to_ascii($row->title);
-            $cleanjournal = utf8_to_ascii($row->journal);
+            $cleantitle = cleanTitle($row->title);
+            $cleanjournal = cleanTitle($row->journal);
             //check clean author? that's tricky. We cannot get to the publication object, so some code from publication.update needs to be replicated here :(
             $cleanauthor = getCleanAuthor($row);
             if ($oldcleanjournal!=$cleanjournal || $oldcleantitle!=$cleantitle || $oldcleanauthor!=$cleanauthor) {
@@ -297,7 +297,7 @@
         $Q = $CI->db->get('topics');
         foreach ($Q->result() as $row) { //not all topics are accessible to all users... so go directly to sql
             $oldcleanname = $row->cleanname;
-            $cleanname = utf8_to_ascii($row->name);
+            $cleanname = cleanTitle($row->name);
             if ($oldcleanname!=$cleanname) {
                 $CI->db->update('topics',array('cleanname'=>$cleanname),array('topic_id'=>$row->topic_id));
                 $topiccount++;

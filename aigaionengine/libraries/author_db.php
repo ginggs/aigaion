@@ -76,9 +76,9 @@ class Author_db {
   
   function getFromPost()
   {
-        $CI = &get_instance();
-        $CI->load->helper('utf8_to_ascii');
-        $CI->load->helper('bibtexutf8');
+    $CI = &get_instance();
+    $CI->load->helper('cleanname');
+    $CI->load->helper('bibtexutf8');
     //create the array with variables to retrieve
     $fields = array('author_id',
                     //'specialchars', no! specialchars var is not set in edit form.
@@ -106,7 +106,7 @@ class Author_db {
         //remove bibchars
         $author->$field = bibCharsToUtf8FromString($author->$field);
     }
-    $author->cleanname = utf8_to_ascii($author->getName('lvf'));
+    $author->cleanname = authorCleanName($author);
     return $author;
   }
   
@@ -122,7 +122,7 @@ class Author_db {
   {
         $CI = &get_instance();
         $CI ->load->helper('bibtexutf8');
-        $CI ->load->helper('utf8_to_ascii');
+        $CI ->load->helper('cleanname');
     //fields that are to be submitted
     $fields = array('specialchars',
                     'cleanname',
@@ -143,8 +143,7 @@ class Author_db {
     }
     
     //create cleanname
-    $cleanname = utf8_to_ascii($author->getName('lvf'));
-    $author->cleanname = $cleanname;
+    $author->cleanname = authorCleanName($author);
     
     //get the data to store in the database
     $data = array();
@@ -161,9 +160,9 @@ class Author_db {
   
   function update($author)
   {
-        $CI = &get_instance();
-        $CI->load->helper('bibtexutf8');
-        $CI->load->helper('utf8_to_ascii');
+    $CI = &get_instance();
+    $CI->load->helper('bibtexutf8');
+    $CI->load->helper('cleanname');
     //fields that are to be updated
     $fields = array('specialchars',
                     'cleanname',
@@ -184,8 +183,7 @@ class Author_db {
     }
     
     //create cleanname
-    $cleanname = utf8_to_ascii($author->getName('lvf'));
-    $author->cleanname = $cleanname;
+    $author->cleanname = authorCleanName($author);
     
     //get the data to store in the database
     $data = array();
@@ -196,6 +194,37 @@ class Author_db {
     $CI->db->where('author_id', $author->author_id);
     $CI->db->update('author', $data);
 
+    //update 'cleanauthor' for all publications where this author is author
+    $relevantPubsQ = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$author->author_id));
+    foreach ($relevantPubsQ->result() as $relevantPubR)
+    {
+      //start building up clean author value
+      $pubcleanauthor = "";
+
+      $CI->db->orderby('rank');
+      $authorsQ = $CI->db->getwhere('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'N'));
+    
+      //add authors
+      foreach ($authorsQ->result() as $authorsR) 
+      {
+        $nextAuthor = $this->getByID($authorsR->author_id);
+        $pubcleanauthor .= ' '.$nextAuthor->cleanname;
+      }
+
+      $CI->db->orderby('rank');
+      $editorsQ = $CI->db->getwhere('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'Y'));
+    
+      //add editors
+      foreach ($editorsQ->result() as $editorsR) 
+      {
+        $nextEditor = $this->getByID($editorsR->author_id);
+        $pubcleanauthor .= ' '.$nextEditor->cleanname;
+      }
+
+      //update cleanauthor value
+      $CI->db->where('pub_id', $relevantPubR->pub_id);
+      $CI->db->update('publication', array('cleanauthor'=>trim($pubcleanauthor)));
+    }
     return $author;
   }
   
@@ -415,12 +444,11 @@ TODO:
         
         //check on cleanname
         //create cleanname
-        $cleanname = strtolower(utf8_to_ascii($author->getName('lvf')));
-        $author->cleanname = $cleanname;
+        $author->cleanname = strtolower(authorCleanName($author));
         $db_distances = array();
         foreach ($db_cleanauthors as $author_id => $db_author)
         {
-          $distance = levenshtein($db_author, $cleanname);
+          $distance = levenshtein($db_author, $author->cleanname);
           if (($distance < 3) && ($author_id != $author->author_id))
             $db_distances[$author_id] = $distance;
         }
