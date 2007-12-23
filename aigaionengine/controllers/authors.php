@@ -510,5 +510,33 @@ class Authors extends Controller {
       echo $this->load->view('authors/li_authors', array('authors' => $authors), true);
     }
   }
+  
+  /** create a new author from the text in the post value 'authorname'.
+  Used e.g. for quick author creation in the publication edit page.
+  Returns ID */
+  function quickcreate() 
+  {
+    require_once(APPPATH."include/utf8/trim.php");
+    $this->load->helper('encode');
+    $name = $this->input->post('authorname');
+    if (utf8_trim($name)=='') 
+    {
+        echo '';
+        return;
+    }
+    $authors_array    = $this->parsecreators->parse($name);
+    if (count($authors_array)>0) {
+      $existingauthor = $this->author_db->getByExactName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname']);
+      if ($existingauthor==null) {
+        $newauthor = $this->author_db->setByName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname']);
+        $result = $this->author_db->add($newauthor);
+        echo $result->author_id;
+      } else {
+        echo '';
+      }
+    } else {
+      echo '';
+    }
+  }
 }
 ?>

@@ -37,6 +37,11 @@ function AuthorSearch ()
 			$('authorinputselect').options [$('authorinputselect').length] = new Option (authorString,a,false,false);
 		}
 	}
+//	if ($('authorinputselect').length == 0) {
+//	    $('addnewauthorbutton').replace('<div id="addnewauthorbutton">[<a href="#" onclick="AddNewAuthor(); return false;">Create as new name</a>]</div>');
+//	} else {
+//	    $('addnewauthorbutton').replace('<div id="addnewauthorbutton"></div>');
+//	}
 }
 
 function AddAuthor()	{  AddWriter ($('selectedauthors'));  }
@@ -111,6 +116,29 @@ function WriterDown (obj)
 		}
 		oldAuthorID = obj.options [i].value;
 	}
+}
+
+function AddNewAuthor() 
+{
+   newname = $('authorinputtext').value.strip();
+   if (newname == '') {
+    alert('Cannot add empty author name');
+    return;
+   }
+   req = '<?php echo site_url('authors/quickcreate/'); ?>';
+   new Ajax.Request(req,{method:'post',postBody:'authorname='+newname,onSuccess:function(request){ShowNewAuthorFromAjaxCall(request)},onFailure:function(request){alert('Error returned while trying to create author: '+request.responseText)}, evalScripts:true});
+}
+
+function ShowNewAuthorFromAjaxCall(request) 
+{
+    newid = request.responseText.strip();
+    if (newid=='') {
+        alert ('Could not add author '+$('authorinputtext').value);
+    } else {
+    	AUTHORIDS.unshift(newid);
+	    AUTHORS[newid] = $('authorinputtext').value;
+        $('authorinputselect').options [$('authorinputselect').length] = new Option ($('authorinputtext').value,0,false,false);
+    }
 }
 
 function ShowNewAuthor (ID, CleanName)

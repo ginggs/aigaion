@@ -190,6 +190,7 @@
 				<td width='45%' valign='top'>
 					<table width='100%'>
 						<tr><td>Search: <input title='Type in name to quick search. Note: use unaccented letters!' type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='30'></td></tr>
+						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;">Create as new name</a>]</div></td></tr>
 						<tr><td><select style='width:22em;' size='23' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>
