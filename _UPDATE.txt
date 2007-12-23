@@ -23,6 +23,10 @@
     NOTE 2: We have a simplistic mechanism to provide a little bit of security for the install scripts. 
     However, that security is only designed to work for a short time while you are actually installing - 
     afterwards you should simply remove the two directories containing the install and migration scripts.
+
+    NOTE 3: Aigaion 2.0 uses UTF8 throughout the site. If you are running a very old mysql version (< 4.1),
+    this gives some problems with the migration script. In that case, read the file '_OLD_MYSQL.txt', and 
+    replace step 8 below with a visit to an alternative migration page.
     
     INSTALLING AIGAION 2 ON THE SAME SERVER WHERE AIGAION 1 IS RUNNING
     0)  backup your Aigaion 1.x installation using the backup function on the maintenance page. Store the backup 
@@ -37,6 +41,8 @@
         (both for the old installation, and for the new installation)
     7)  define password for installing in <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
     8)  go to http://<server>/<aigaion2_rootdir>/migration/migrate.php
+      OR, IF YOUR SERVER RUNS A MYSQL VERSION < 4.1
+           go to http://<server>/<aigaion2_rootdir>/migration/migrate_oldmysql.php
     9)  ensure through some spot checks that special characters in your database (non ascii, accented, diacritics, 
         chinese, arabic, etc) are not broken in the new Aigaion 2.0 database. If they are, please contact the 
         *developers* to help fix this problem.
@@ -46,7 +52,8 @@
     12) Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
     13) Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
     14) Change the admin login
-    15) RUN A SERIES OF MAINTENANCE CHECKS on the site maintenance page. Especially, don't forget to run 'Check searchable names and titles'
+    15) RUN A SERIES OF MAINTENANCE CHECKS on the site maintenance page. Especially, don't forget to 
+        run 'Check searchable names and titles'
     
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
     last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
