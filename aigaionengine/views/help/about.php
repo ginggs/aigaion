@@ -61,7 +61,7 @@
             echo '<img class="icon" title="This release contains security fixes!" src="'.getIconUrl('check.gif').'"/>';
         }
         echo '</td>';
-        echo '<td class="tablewithborder">'.$R->description.'</td>';
+        echo '<td class="tablewithborder">'.str_replace("\n","<br/>",$R->description).'</td>';
         echo '</tr>';
     }
 ?>

@@ -123,10 +123,16 @@ echo "<div class='publication_summary ".$even."' id='publicationsummary".$public
 <table width='100%'>
   <tr>
     <td>";
+$displayTitle = $publication->title;
+//remove braces in list display
+if (strpos($displayTitle,'$')===false) {
+  $displayTitle = str_replace(array('{','}'),'',$displayTitle);
+}
+
 $num_authors    = count($publication->authors);
 $summarystyle = $userlogin->getPreference('summarystyle');
 if ($summarystyle == 'title') {
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
 }
     
 $current_author = 1;
@@ -148,7 +154,7 @@ if ($summarystyle == 'author') {
     if ($num_authors > 0) {
         echo ', ';
     }
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $publication->title, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
 }
 
 

@@ -108,7 +108,7 @@
                     $result .= '<img class="icon" title="This release contains security fixes!" src="'.getIconUrl('check.gif').'"/>';
                 }
                 $result .= '</td>';
-                $result .= '<td class="tablewithborder">'.$version[2].'</td>';
+                $result .= '<td class="tablewithborder">'.str_replace("\n","<br/>",$version[2]).'</td>';
                 $result .= '</tr>';            
             }
             $result .= '</table>';

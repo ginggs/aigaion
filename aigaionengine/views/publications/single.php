@@ -123,7 +123,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                     echo ", ";
                   }
                 
-                  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
+                  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName('vlf'), array('title' => 'All information on '.$author->cleanname))."</span>";
                   $current_author++;
                 }
                 
@@ -140,7 +140,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                     echo ", ";
                   }
                 
-                  echo  "<span class='author'>".anchor('authors/show/'.$editor->author_id, $editor->getName(), array('title' => 'All information on '.$editor->cleanname))."</span>";
+                  echo  "<span class='author'>".anchor('authors/show/'.$editor->author_id, $editor->getName('vlf'), array('title' => 'All information on '.$editor->cleanname))."</span>";
                   $current_editor++;
                 }
                 if ($num_editors>1) {
@@ -193,7 +193,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         <span class='authorlist'>
 <?php     foreach ($publication->authors as $author)
           {
-            echo anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."<br />\n";
+            echo anchor('authors/show/'.$author->author_id, $author->getName('vlf'), array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
 ?>
         </span>
@@ -209,7 +209,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         <span class='authorlist'>
 <?php     foreach ($publication->editors as $author)
           {
-            echo anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."<br />\n";
+            echo anchor('authors/show/'.$author->author_id, $author->getName('vlf'), array('title' => 'All information on '.$author->cleanname))."<br />\n";
           }
 ?>
         </span>

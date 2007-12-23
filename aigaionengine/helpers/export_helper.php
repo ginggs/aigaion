@@ -65,7 +65,7 @@ require_once(APPPATH."include/utf8/trim.php");
         	if ($publication->firstpage != "0") {
         		$pages = $publication->firstpage;
         	}
-        	if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0")) {
+        	if (($publication->firstpage != $publication->lastpage)&& (trim($publication->lastpage) != "0")&& (trim($publication->lastpage) != "")) {
         		if ($pages != "") {
         			$pages .= "--";
         		}
@@ -349,7 +349,7 @@ require_once(APPPATH."include/utf8/trim.php");
         	if ($publication->firstpage != "0") {
         		$pages = $publication->firstpage;
         	}
-        	if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0")) {
+        	if (($publication->firstpage != $publication->lastpage)&& (trim($publication->lastpage) != "0")&& (trim($publication->lastpage) != "")) {
         		if ($pages != "") {
         			$pages .= "--";
         		}
