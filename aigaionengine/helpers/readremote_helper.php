@@ -31,7 +31,7 @@ function getRemoteFile($url)
    $response = '';
 
    // connect to the remote server
-   $fp = @fsockopen($host, $port, $errno, $errstr, $timeout );
+   $fp = fsockopen($host, $port, $errno, $errstr, $timeout );
 
    if( !$fp ) {
       appendErrorMessage( "Cannot retrieve $url");

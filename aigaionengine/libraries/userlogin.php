@@ -525,7 +525,7 @@ class UserLogin {
     	        appendMessage($checkresult);
                 $CI->db->update('users',array('lastupdatecheck'=>time()),array('user_id'=>$this->iUserId));
             }
-            
+
             #set a welcome message/advertisement after login
             appendMessage("
                 <table>\n<tr><td>

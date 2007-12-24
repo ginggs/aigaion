@@ -68,6 +68,9 @@ class Login extends Controller {
             //remove first two elements
             array_shift($segments);
             array_shift($segments);
+            //note: if cookies are enabled, and we still could not log in here for some reason, we must log out
+            //because otherwise we get eternal redirects
+            $userlogin->logout(); //it SHOULD be the case that an error message has been set already.
             redirect('/login/index/'.implode('/',$segments));
         }
     }
