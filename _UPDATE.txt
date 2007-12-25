@@ -11,11 +11,12 @@
     - You want to install Aigaion 2.0 in the directory <WEBROOT>/<aigaion2_rootdir>/
     - The attachments in the new Aigaion 2.0 will be stored in a directory 
         <WEBROOT>/<aigaion2_rootdir>/<documents_dir>/
-    - The Aigaion 2.0 MYSQL database will be named '<db_aigaion2>'
+    - The Aigaion 2.0 MYSQL database will be named '<db_aigaion2>' and is NOT the same as your old
+      Aigaion 1.x database
     
     NOTE: We do our best to provide you with safe and sound installation instructions. However,
     in the world of computers and software installations many things can go wrong. Remember 
-    therefore that you should install Aigaion 2.0 in a new location using a new database, and you 
+    therefore that you should install Aigaion 2.0 in a *new location using a new database*, and you 
     should not delete your old installation and database of Aigaion 1.x until Aigaion 2.0 has run 
     long enough that you can be certain that no data was accidentally destroyed. And *please*, 
     remember to keep making database backups regularly.
