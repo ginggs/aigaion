@@ -59,7 +59,7 @@ define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 | NO TRAILING SLASH!
 |
 */
-	$system_folder = "codeigniter";
+	$system_folder = "./codeigniter";
 
 /*
 |---------------------------------------------------------------
@@ -71,11 +71,16 @@ define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 | This is normally only changed when you are sharing the same Aigaion 2 code base
 | between several instances of Aigaion 2
 |
+| If you want to use a relative path, always include ./ or ../
+| E.g. like this: ./aigaionengine
+|
+| This is normally only changed when you are sharing the same Aigaion 2 code base
+| between several instances of Aigaion 2
 |
 | NO TRAILING SLASH!
 |
 */
-	$application_folder = "aigaionengine";
+	$application_folder = "./aigaionengine";
 
 
 /*
