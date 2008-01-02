@@ -144,7 +144,7 @@ class Bookmarklist extends Controller {
 	    3rd: topic_id
 	         
     Returns:
-        to the vieww page of that topic
+        to the view page of that topic
     */
     function addtopic() {
         $topic_id   = $this->uri->segment(3,-1);
@@ -164,6 +164,42 @@ class Bookmarklist extends Controller {
         redirect('topics/single/'.$topic->topic_id);
       
     }
+    
+
+    /** 
+    bookmarklist/addkeyword
+    
+    Entry point for adding all accessible publications from a given keyword to the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    adding nonexisting keyword_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: keyword_id
+	         
+    Returns:
+        to the view page of that keyword
+    */
+    function addkeyword() {
+        $keyword_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->addKeyword function, no need to do it twice
+
+        //load topic
+        $config=array();
+        $keyword = $this->keyword_db->getByID($keyword_id);
+        if ($keyword == null)
+        {
+            appendErrorMessage("Add topic to bookmarklist: non-existing keyword id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->addKeyword($keyword->keyword_id);
+        redirect('keywords/single/'.$keyword->keyword_id);
+      
+    }
+    
     
     /** 
     bookmarklist/addauthor
@@ -272,6 +308,39 @@ class Bookmarklist extends Controller {
         redirect('topics/single/'.$topic->topic_id);      
     }
 
+    /** 
+    bookmarklist/removekeyword
+    
+    Entry point for removing all accessible publications of a keyword from the bookmark list of the logged user.
+    
+	Fails with error message when one of:
+	    removing nonexisting keyword_id 
+	    insufficient rights
+	    
+	Parameters passed via URL segments:
+	    3rd: keyword_id
+	         
+    Returns:
+        to the single view page of that keyword
+    */
+    function removekeyword() {
+        $keyword_id   = $this->uri->segment(3,-1);
+
+	    //check rights is done in the $this->bookmarklist_db->removeAuthor function, no need to do it twice
+
+        //load keyword
+        $keyword = $this->keyword_db->getByID($keyword_id);
+        if ($keyword == null)
+        {
+            appendErrorMessage("Removing keyword from bookmarklist: non-existing keyword id passed");
+            redirect('');
+        }
+        
+        $this->bookmarklist_db->removeKeyword($keyword->keyword_id);
+        redirect('keyword/single/'.$keyword->keyword_id);      
+    }
+    
+    
     /** 
     bookmarklist/removeauthor
     

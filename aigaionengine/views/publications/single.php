@@ -176,11 +176,16 @@ $user       = $this->user_db->getByID($userlogin->userID());
     $keywords = $publication->getKeywords();
     if (is_array($keywords))
     {
-      $keywords = implode($keywords, ', ');
+      $keyword_string = "";
+      foreach ($keywords as $keyword)
+      {
+        $keyword_string .= anchor('keywords/single/'.$keyword->keyword_id, $keyword->keyword).", ";
+      }
+      $keyword_string = substr($keyword_string, 0, -2);
 ?>      
     <tr>
       <td valign='top'>Keywords:</td>
-      <td valign='top'><?php echo $keywords ?></td>
+      <td valign='top'><?php echo $keyword_string ?></td>
     </tr>
 <?php
     }

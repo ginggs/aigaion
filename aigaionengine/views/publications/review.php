@@ -55,7 +55,14 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
 <?php
       $keywords = $publication->keywords;
       if (is_array($keywords))
-      $keywords = implode($keywords, ', ');
+        {
+                $keyword_string = "";
+        foreach ($keywords as $keyword)
+        {
+          $keyword_string .= $keyword->keyword.", ";
+        }
+        $keywords = substr($keyword_string, 0, -2);
+      }
       else
       $keywords = "";
 
@@ -71,7 +78,15 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
     else
     {
       if (is_array($publication->keywords))
-      echo form_hidden('keywords', implode($publication->keywords, ', '))."\n";
+      {
+        $keyword_string = "";
+        foreach ($keywords as $keyword)
+        {
+          $keyword_string .= $keyword->keyword.", ";
+        }
+        $keywords = substr($keyword_string, 0, -2);
+        echo form_hidden('keywords', implode($publication->keywords, ', '))."\n";
+      }
       else
       echo form_hidden('keywords', '')."\n";
     }

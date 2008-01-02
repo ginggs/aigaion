@@ -26,7 +26,7 @@ foreach ($searchresults as $type=>$resultList) {
         case 'keywords':
             $keyworddisplay = "<ul>";
             foreach ($resultList as $kw) {
-                $keyworddisplay .= '<li>'.anchor('publications/keyword/'.$kw[0],$kw[1]).'</li>';
+                $keyworddisplay .= '<li>'.anchor('keywords/single/'.$kw[0],$kw[1]).'</li>';
             }
             $keyworddisplay .= "</ul>";
             $resulttabs['Keywords: '.count($resultList)] = $keyworddisplay;

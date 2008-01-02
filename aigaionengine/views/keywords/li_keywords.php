@@ -4,7 +4,7 @@
 
   foreach ($keywords as $keyword_id => $keyword)
   {
-    echo "  <li>".$keyword."</li>\n";
+    echo "  <li>".$keyword->keyword."</li>\n";
   }
 ?>
 </ul>

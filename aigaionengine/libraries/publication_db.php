@@ -238,7 +238,9 @@ class Publication_db {
           if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
             $keyword = substr($keyword, 0, strlen($keyword) - 1);
           
-          $keyword_array[] = $keyword;
+          $kw->keyword = $keyword;
+          $keyword_array[] = $kw;
+          unset($kw);
         }
       }
       $publication->keywords = $keyword_array;
@@ -483,9 +485,9 @@ class Publication_db {
     {
       $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
     
-      foreach ($publication->keywords as $keyword_id => $keyword)
+      foreach ($publication->keywords as $keyword)
       {
-        $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword_id);
+        $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword->keyword_id);
         $CI->db->insert('publicationkeywordlink', $data);
       }
     }
@@ -667,13 +669,12 @@ class Publication_db {
     {
       $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
     
-      foreach ($publication->keywords as $keyword_id => $keyword)
+      foreach ($publication->keywords as $keyword)
       {
-        $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword_id);
+        $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword->keyword_id);
         $CI->db->insert('publicationkeywordlink', $data);
       }
     }
-    
     //remove old author and editor links
     $CI->db->delete('publicationauthorlink', array('pub_id' => $publication->pub_id)); 
     
@@ -1001,7 +1002,8 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
-  function getForKeyword($keyword_id,$order='')
+ 
+  function getForKeyword($keyword,$order='')
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1025,7 +1027,7 @@ class Publication_db {
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationkeywordlink
-    WHERE ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".$CI->db->escape($keyword_id)."
+    WHERE ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".$CI->db->escape($keyword->keyword_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationkeywordlink.pub_id
     ORDER BY ".$orderby);
 

@@ -98,7 +98,14 @@
 
     $keywords = $publication->keywords;
     if (is_array($keywords))
-      $keywords = implode($keywords, ', ');
+    {
+      $keyword_string = "";
+      foreach ($keywords as $keyword)
+      {
+        $keyword_string .= $keyword->keyword.", ";
+      }
+      $keywords = substr($keyword_string, 0, -2);
+    }
     else
       $keywords = "";
       
