@@ -59,11 +59,11 @@ class JavaScript {
 		{
 			foreach ($option as $value)
       {
-				if(!empty($return_val))$ret_val.=', ';
+				if(!empty($return_val)) $return_val.="', '";
 				$return_val.=$value;
 			}
 
-			return '['.$return_val.']';
+			return "['".$return_val."']";
 		}
 
 			return "'$option'";
