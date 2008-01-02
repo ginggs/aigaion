@@ -278,7 +278,16 @@ for ($i = 0; $i < $importCount; $i++)
       else if ($reviews[$i]['keywords'] == null)
       {
         if (is_array($publications[$i]->keywords))
-        echo form_hidden('keywords_'.$i, implode($publications[$i]->keywords, ', '))."\n";
+        {
+          $keywords = $publications[$i]->keywords;
+          $keyword_string = "";
+          foreach ($keywords as $keyword)
+          {
+            $keyword_string .= $keyword->keyword.", ";
+          }
+          $keywords = substr($keyword_string, 0, -2);
+          echo form_hidden('keywords_'.$i, $keywords)."\n";
+        }
         else
         echo form_hidden('keywords_'.$i, $publications[$i]->keywords)."\n";
       }

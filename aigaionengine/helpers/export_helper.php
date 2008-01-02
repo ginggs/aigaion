@@ -54,9 +54,9 @@ require_once(APPPATH."include/utf8/trim.php");
         $keywords = "";
         $first = true;
         foreach ($publication->getKeywords() as $keyword) {
-            if (!$first) $keywords .= ",";
+            if (!$first) $keywords .= ", ";
             $first = false;
-            $keywords .= $keyword;
+            $keywords .= $keyword->keyword;
         }
         $fields['keywords']=$keywords;
         //parse fstpage - lastpage into pages

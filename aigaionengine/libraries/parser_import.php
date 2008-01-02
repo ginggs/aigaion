@@ -247,7 +247,7 @@ class Parser_Import
   	
   	if ($publication->keywords)
     {
-      $keywords = preg_replace('/ *([^,]+)/',
+      $keywords = preg_replace('/ *([^,;]+)/',
   						                 "###\\1",
   						                 $publication->keywords);
   						
@@ -261,7 +261,9 @@ class Parser_Import
           if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
             $keyword = substr($keyword, 0, strlen($keyword) - 1);
           
-          $keyword_array[] = $keyword;
+          $kw->keyword = $keyword;
+          $keyword_array[] = $kw;
+          unset($kw);
         }
       }
       $publication->keywords = $keyword_array;

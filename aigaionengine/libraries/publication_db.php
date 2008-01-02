@@ -224,7 +224,7 @@ class Publication_db {
     //parse the keywords
     if ($publication->keywords)
     {
-      $keywords = preg_replace('/ *([^,]+)/',
+      $keywords = preg_replace('/ *([^,;]+)/',
   						                 "###\\1",
   						                 $publication->keywords);
   						

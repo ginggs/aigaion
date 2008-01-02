@@ -117,7 +117,7 @@
       <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
       <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
       </div>
-      <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens'=> ',', 'frequency' => '0.01'))."\n";?>
+      <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens' => array(",", ";"), 'frequency' => '0.01'))."\n";?>
       </td>
     </tr>
 <?php
