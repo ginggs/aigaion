@@ -94,6 +94,8 @@ class Parseentries_ris
     'AD', //Address
     'AV', //Availability
     'UR', //Web/URL
+    'M1', //User field
+    'M2', //DOI (aigaion export)
     'ER'  //End of Reference
     );
     //Please note that the 'Miscellaneous 1-3, User definable 1-5 and Link 1-4 are not supported in this parser
@@ -131,6 +133,8 @@ class Parseentries_ris
     'address', //Address
     'note', //Availability
     'url', //Web/URL
+    'risuserfield', //ris user field (aigaion export)
+    'doi', //DOI (aigaion export)
     'risEOR'
     );
     
@@ -151,6 +155,7 @@ class Parseentries_ris
  
       $sLine = $this->getLine();
       $matchArray = explode(" -", $sLine); // split the line and store in array $matchArray
+
       if (count($matchArray) > 1) // there was a " - ", so there seems to be an item. Check if it really is
       {
         $tmpElementName = trim($matchArray[0]);
@@ -158,6 +163,9 @@ class Parseentries_ris
             in_array($tmpElementName, $risAuthorElements)) //we found a valid item
         {
           $elementName = trim($tmpElementName);
+          $elementName = str_replace($risElements, $BibTeXElements, $elementName);
+          $elementName = str_replace($risAuthorElements, $BibTeXAuthorElements, $elementName);
+
         }
         array_shift($matchArray);
       }
@@ -171,8 +179,6 @@ class Parseentries_ris
         $elementValue = trim($matchArray[0]);
       }
       
-      $elementName = str_replace($risElements, $BibTeXElements, $elementName);
-      $elementName = str_replace($risAuthorElements, $BibTeXAuthorElements, $elementName);
       
       if (substr($elementName,0,3) == "ris")
       {
@@ -263,6 +269,21 @@ class Parseentries_ris
               case 12: $currentEntry["month"]="dec";break;
             }
           }
+        }
+        //USERFIELD
+        else if ($elementName == 'userfield')
+        {
+          //check if we can split on '=', if so: there is a fieldname
+          $userfield_array = explode("=", $elementValue);
+          if (count($userfield_array) == 2) //valid split
+          {
+            $elementName = trim($userfield_array[0]);
+            $elementValue = trim($userfield_array[1]);
+          }
+          if (!empty($currentEntry[$elementName]))
+            $currentEntry[$elementName] .= $elementValue;
+          else
+            $currentEntry[$elementName] = $elementValue;
         }
         //EOR
         else if ($elementName == 'EOR')

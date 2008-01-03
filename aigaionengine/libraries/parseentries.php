@@ -280,7 +280,7 @@ class Parseentries
 // Store the entry type and citation.
 	function fullSplit($entry)
 	{        
-		$matches = preg_split("/@(.*)[{(](.*),/U", $entry, 2, PREG_SPLIT_DELIM_CAPTURE); 
+	  $matches = preg_split("/@(.*)[{(](.*),/U", $entry, 2, PREG_SPLIT_DELIM_CAPTURE); 
 		$this->entries[$this->count]['bibtexEntryType'] = strtolower(trim($matches[1]));
 		// sometimes a bibtex entry will have no citation key
 		if(preg_match("/=/", $matches[2])) // this is a field
