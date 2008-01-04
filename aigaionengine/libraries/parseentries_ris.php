@@ -225,11 +225,11 @@ class Parseentries_ris
         {
           if (empty($currentEntry[$elementName]))
           {
-            $currentEntry[$elementName] = trim($elementValue);
+            $currentEntry[$elementName] = $elementValue;
           }
           else
           {
-            $currentEntry[$elementName] .= " and ".trim($elementValue);
+            $currentEntry[$elementName] .= " and ".$elementValue;
           }
         }
         //KEYWORDS
@@ -237,11 +237,11 @@ class Parseentries_ris
         {
           if (empty($currentEntry[$elementName]))
           {
-            $currentEntry[$elementName] = trim($elementValue);
+            $currentEntry[$elementName] = $elementValue;
           }
           else
           {
-            $currentEntry[$elementName] .= ", ".trim($elementValue);
+            $currentEntry[$elementName] .= ", ".$elementValue;
           }
         }
         //YEAR
@@ -340,11 +340,12 @@ class Parseentries_ris
       }
       else if (empty($currentEntry[$elementName]))
       {
-        $currentEntry[$elementName] = trim($elementValue);
+        $currentEntry[$elementName] = $elementValue;
       }
       else
       {
-        $currentEntry[$elementName] .= " ".trim($elementValue);
+        if (strtolower($currentEntry[$elementName]) != strtolower($elementValue))
+          $currentEntry[$elementName] .= ", ".$elementValue;
       }
     }
   }
