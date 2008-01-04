@@ -217,7 +217,7 @@ require_once(APPPATH."include/utf8/trim.php");
         $result .= getRISExportLine('UR',$publication->url);
         $result .= getRISExportLine('M2',$publication->doi);
     	foreach($publication->getKeywords() as $keyword)
-    		$result .= getRISExportLine("KW", utf8_trim($keyword));
+    		$result .= getRISExportLine("KW", utf8_trim($keyword->keyword));
         $result .= getRISExportLine('N2',$publication->abstract);
 
         //DR: note: this is not correct! if a userfield contains a comma we have a problem!
