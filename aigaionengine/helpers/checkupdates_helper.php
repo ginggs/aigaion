@@ -39,7 +39,12 @@
             $thisrelease = $R->version;
         }
         #if same: report 'up to date'
-        if ($remoterelease==$thisrelease) {
+        if ($remoterelease == $thisrelease) {
+            return '';
+        }
+        #if current installed version higher: SVN?
+        if ($remoterelease < $thisrelease) {
+            appendMessage('Your database version is higher than the official release. Probably you are using the SVN version?<br/>');
             return '';
         }
         $result = '<p>There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';

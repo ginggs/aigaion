@@ -30,30 +30,102 @@
     check for the new version number. Also change this method to call the correct new schema update function.
     */
     function checkSchema() {
+
         $CI = &get_instance();
-        $Q = $CI->db->get('aigaiongeneral');
-        if ($Q->num_rows()>0) {
-            $R = $Q->row();
-            $version = $R->version;
-            if ($version == 'V2.0') { 
-                return True;
-            } else {
-                $userlogin = getUserLogin(); //note: a not logged in user has no rights :)
-                if ($userlogin->hasRights("database_manage")) {
-                    //sufficient rights: attempt to update schema
-                    //but first: push a database backup to the user? or save one in a safe place?
-                    if (getConfigurationSetting('SERVER_NOT_WRITABLE')!='TRUE') {
-                        //do backup, store in attachment dir
-                        appendErrorMessage("Actually, we should still do a forced database backup saved in a 
-                                            safe place on the server before performing the actual update code.<br/>");
-                    }
-                    $CI->load->helper('schema_updates_v2');
-                    return updateSchemaV2_0();
+
+    	$bSilent = false;
+
+        if (!checkVersion('V2.0')) {
+            $userlogin = getUserLogin(); //note: a not logged in user has no rights :)
+            if ($userlogin->hasRights("database_manage")) {
+                //sufficient rights: attempt to update schema
+                //but first: push a database backup to the user? or save one in a safe place?
+                if (getConfigurationSetting('SERVER_NOT_WRITABLE')!='TRUE') {
+                    //do backup, store in attachment dir
+                   // appendErrorMessage("Actually, we should still do a forced database backup saved in a 
+                                        //safe place on the server before performing the actual update code.<br/>");
                 }
-                return False;
+                $CI->load->helper('schema_updates_v2');
+                if (updateSchemaV2_0()) {
+                    //clear config settings cache, because settings may have been changed by the schema update
+                    $siteconfig = $CI->siteconfig_db->getSiteConfig();
+                    $CI->latesession->set('SITECONFIG',$siteconfig);
+                    return True;
+                } else {
+                    return False;
+                }
             }
+            return False;
+        } else {
+            return True;
         }
         return False;
     }
 
+
+//================================================================
+//  INTERNAL HELPER METHODS
+//================================================================
+
+//returns true if version number exists and is correct
+//also display debug information
+function checkVersion($v, $bSilent=false) {
+    $CI = &get_instance();
+    $Q = $CI->db->get('aigaiongeneral');
+    if ($Q->num_rows()>0) {
+        $row = $Q->row();
+		if ($row->version==$v) { //if version == latest version number, return true
+			return true;
+		}
+	}
+	if (!$bSilent)
+	{
+		appendMessage("Checking version ".$v."... update needed.<br/>");
+	}
+	return false;
+}
+
+//set the version of the database to the given version; show some debug information.
+function setVersion($v, $bSilent=false) {
+    $CI = &get_instance();
+    $CI->db->query("UPDATE ".AIGAION_DB_PREFIX."aigaiongeneral SET version='".$v."'");
+	if (mysql_error()) {
+		dbError(mysql_error());
+		return false;
+	}
+	if (!$bSilent)
+	{
+		appendMessage("Update version ".$v." Succeeded<br/>");
+	}
+	return true;
+}
+
+//set the version of the release to the given version; show some debug information.
+//NOTE: no html or xml in description allowed!
+function setReleaseVersion($v, $type, $description, $bSilent=false) {
+    $CI = &get_instance();
+    $CI->load->helper('utf8');
+    include_once(APPPATH.'/include/utf8/str_ireplace.php');
+    $description = utf8_ireplace('<','',$description);
+    $CI->db->insert('changehistory',array('version'=>$v,'type'=>$type,'description'=>$description));
+	if (mysql_error()) {
+		dbError(mysql_error());
+		return false;
+	}
+	if (!$bSilent)
+	{
+		appendMessage("Update to release version ".$v." Succeeded<br/>");
+	}
+	return true;
+}
+
+//error function
+function dbError($mysqlerror)
+{
+    appendErrorMessage("
+	    <br/>".$mysqlerror."<br/>UPDATE WAS NOT SUCCESSFUL<br/>
+	    Some database operations require mysql root privileges. Please ensure that the mysql<br/>
+	    user in your index.php file has sufficient rights.<br/>
+	    ");
+}
 ?>

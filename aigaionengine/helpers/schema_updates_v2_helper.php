@@ -25,20 +25,17 @@
     Note: THIS SCHEMA UPDATE IS NOT ACTIVATED YET, AS WE HAVE NO DATABASE SCHEMA UPDATES BEYOND THE 1.X=>2.0 MIGRATION
     */
     function updateSchemaV2_1() {
-        $CI = &get_instance();
-        $Q = $CI->db->get('aigaiongeneral');
-        if ($Q->num_rows()>0) {
-            $R = $Q->row();
-            $version = $R->version;
-            if ($version != 'V2.1') {
-                updateSchemaV2_0(); //FIRST CHECK OLDER VERSION
-                //ATTEMPT TO RUN DATABASE UPDATING CODE FOR THIS VERSION... if fail, rollback?
-                return False;
-            } else {
-                return True;
-            }
+        if (checkVersion('V2.1')) {
+            return True;
         }
-        return False;
+        if (!updateSchemaV2_0()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        //ATTEMPT TO RUN DATABASE UPDATING CODE FOR THIS VERSION... if fail, rollback?
+        if (!setReleaseVersion('2.0.1.beta','bugfix,features','The first bug reports on the beta release are fixed. Furthermore, automated install scripts have been added to the release.')) 
+            return False;
+        
+        return setVersion('V2.1');
     }
     
     /** 
