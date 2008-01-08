@@ -124,18 +124,18 @@ class Attachment_db {
         	}
         
         	# get mime type...
-        	//// $mime = $ext; //not good... how to get proper mime info here?
-        	//$mime = $_FILES['upload']['type']; // answer: like this #DR: NO!!! there is no files upload here :)
+        	//// $attachment->mime = $ext; //not good... how to get proper mime info here?
+        	//$attachment->mime = $_FILES['upload']['type']; // answer: like this #DR: NO!!! there is no files upload here :)
 
             //fix often used types..
             if ($ext == ".pdf") {
-                $mime="application/pdf";
+                $attachment->mime="application/pdf";
             }
             if ($ext == ".doc") {
-                $mime="application/msword";
+                $attachment->mime="application/msword";
             }
             if ($ext == ".txt") {
-                $mime="text/plain";
+                $attachment->mime="text/plain";
             }
         
             //the first attachment is always a main attachment
@@ -214,17 +214,17 @@ class Attachment_db {
         	$storename = toCleanName($realname)."-".$this->generateUniqueSuffix();
         
         	# get mime type...
-        	$mime = $_FILES['upload']['type'];
+        	$attachment->mime = $_FILES['upload']['type'];
         	# and fix some problematic types - is this needed?
         	# DR: yes, I've run into problems here sometimes with my apache not finding the right mime types :/
         	if ($ext == ".doc") {
-        		$mime = "application/msword";
+        		$attachment->mime = "application/msword";
         	}
         
         	# execute the actual upload
         	if ($CI->file_upload->upload($storename)) {  
         	    // storename is an additional filename information, use this to rename the uploaded file
-        		//echo "mime:".$mime.".";
+        		//echo "mime:".$attachment->mime.".";
         		# upload was succesful:
         		# if ismain, old main attachment should be un-main-ed
         		if ($attachment->ismain) {
