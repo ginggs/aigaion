@@ -51,7 +51,7 @@ echo "
     </table>
      ";
 echo form_close();
-echo form_open('');
+echo form_open('publications/show/'.$attachment->pub_id);
 echo form_submit('cancel','Cancel');
 echo form_close();
 echo "</div>";
