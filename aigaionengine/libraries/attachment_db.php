@@ -334,7 +334,9 @@ class Attachment_db {
 		}
         
         $updatefields =  array('name'=>$attachment->name,'note'=>$attachment->note,'ismain'=>$ismain);
-        
+        if ($attachment->isremote) {
+            $updatefields['location'] = $attachment->location;
+        }
         $CI->db->update("attachments", $updatefields, array("att_id"=>$attachment->att_id));
         return True;
     }

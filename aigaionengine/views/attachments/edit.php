@@ -17,7 +17,6 @@ echo form_open_multipart('attachments/commit','',array('action'=>'edit',
                                                        'att_id'=>$attachment->att_id,
                                                        'isremote'=>$attachment->isremote,
                                                        'ismain'=>$attachment->ismain,
-                                                       'location'=>$attachment->location,
                                                        'pub_id'=>$attachment->pub_id,
                                                        'user_id'=>$attachment->user_id,
                                                        'mime'=>$attachment->mime));
@@ -25,8 +24,15 @@ echo form_open_multipart('attachments/commit','',array('action'=>'edit',
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
+
+                                                       
 echo form_hidden('user_id',$attachment->user_id);
 echo "<p class='header2'>Edit attachment info for \"".$attachment->name."\"</p>";
+if ($attachment->isremote) {
+    echo ('Link to remote attachment.<br/>');
+} else {
+    echo ('Attachment stored on server.<br/>');
+}
 echo "
     <table>
         <tr><td><label for='name'>Set internal name</label></td>
@@ -35,7 +41,20 @@ echo "
 echo form_input(array('name'=>'name','size'=>'30','value'=>$attachment->name));
 echo "
             </td>
-        </tr>
+        </tr>";
+if (!$attachment->isremote) {
+    echo form_hidden('location','$attachment->location');
+} else {
+    echo "
+            <tr><td><label for='location'>Set URL</label></td>
+                <td>
+         ";
+    echo form_input(array('name'=>'location','size'=>'30','value'=>$attachment->location));
+    echo "
+                </td>
+            </tr>";
+}
+echo "
         <tr><td><label for='note'>Note</label></td>
             <td>
      ";
