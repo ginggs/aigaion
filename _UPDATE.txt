@@ -1,62 +1,12 @@
     
-    This documentation is for migrating an existing Aigaion 1.x installation to Aigaion 2.0
-    If you want to install Aigaion 2.0 from scratch, with an empty database, follow the instructions 
-    in _INSTALL.txt
+This documentation is for updating Aigaion 2.0 from an Aigaion 1.x installation
     
-    The instructions below presume the following:
-    - The existing Aigaion 1.x is installed in the directory <WEBROOT>/<aigaion1_rootdir>/
-    - The attachments in the existing Aigaion 1.x are stored in the directory 
-        <WEBROOT>/<aigaion1_rootdir>/<documents_dir>/
-    - The Aigaion 1.x MYSQL database is named '<db_aigaion1>'
-    - You want to install Aigaion 2.0 in the directory <WEBROOT>/<aigaion2_rootdir>/
-    - The attachments in the new Aigaion 2.0 will be stored in a directory 
-        <WEBROOT>/<aigaion2_rootdir>/<documents_dir>/
-    - The Aigaion 2.0 MYSQL database will be named '<db_aigaion2>' and is NOT the same as your old
-      Aigaion 1.x database
-    
-    NOTE: We do our best to provide you with safe and sound installation instructions. However,
-    in the world of computers and software installations many things can go wrong. Remember 
-    therefore that you should install Aigaion 2.0 in a *new location using a new database*, and you 
-    should not delete your old installation and database of Aigaion 1.x until Aigaion 2.0 has run 
-    long enough that you can be certain that no data was accidentally destroyed. And *please*, 
-    remember to keep making database backups regularly.
-    
-    NOTE 2: We have a simplistic mechanism to provide a little bit of security for the install scripts. 
-    However, that security is only designed to work for a short time while you are actually installing - 
-    afterwards you should simply remove the two directories containing the install and migration scripts.
-
-    NOTE 3: Aigaion 2.0 uses UTF8 throughout the site. If you are running a very old mysql version (< 4.1),
-    this gives some problems with the migration script. In that case, read the file '_OLD_MYSQL.txt', and 
-    replace step 8 below with a visit to an alternative migration page.
-    
-    INSTALLING AIGAION 2 ON THE SAME SERVER WHERE AIGAION 1 IS RUNNING
-    0)  backup your Aigaion 1.x installation using the backup function on the maintenance page. Store the backup 
-        somewhere for safety.
     1)  Copy the Aigaion 2.0 files to <WEBROOT>/<aigaion2_rootdir>/
-    2)  Copy the attachments from your previous installation <WEBROOT>/<aigaion1_rootdir>/<documents_dir>/
-        to your new installation <WEBROOT>/<aigaion2_rootdir>/<documents_dir>/
-    3)  Create the new database '<db_aigaion2>', with an appropriate user. The database is empty.
-    4)  Unpack <WEBROOT>/<aigaion2_rootdir>/migrate/migrate.zip into the directory <WEBROOT>/<aigaion2_rootdir>/migrate/
-    5)  Make sure that the migration files and the Aigaion files are readbale for the web user...
-    6)  fill in the appropriate MYSQL info in the file <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
-        (both for the old installation, and for the new installation)
-    7)  define password for installing in <WEBROOT>/<aigaion2_rootdir>/migration/migrate_config.php
-    8)  go to http://<server>/<aigaion2_rootdir>/migration/migrate.php
-      OR, IF YOUR SERVER RUNS A MYSQL VERSION < 4.1
-           go to http://<server>/<aigaion2_rootdir>/migration/migrate_oldmysql.php
-    9)  ensure through some spot checks that special characters in your database (non ascii, accented, diacritics, 
-        chinese, arabic, etc) are not broken in the new Aigaion 2.0 database. If they are, please contact the 
-        *developers* to help fix this problem.
-    10) if no errors occurred, the database has been initialized correctly. You can now proceed to 
-        configure your Aigaion 2 installation in the following steps.
-    11) Rename <WEBROOT>/<aigaion2_rootdir>/sample_index.php to <WEBROOT>/<aigaion2_rootdir>/index.php
-    12) Fill in the user configurable settings in index.php (note the 'END OF USER CONFIGURABLE SETTINGS' comment)
-    13) Login to Aigaion 2 from http://<server>/<aigaion2_rootdir>/ using username:admin and password:admin
-    14) Change the admin login
-    15) RUN A SERIES OF MAINTENANCE CHECKS on the site maintenance page. Especially, don't forget to 
-        run 'Check searchable names and titles'
-    
-    last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/install
-    last) if migration was successfull, remove the directory <WEBROOT>/<aigaion2_rootdir>/migration
-    last) if migration was successfull, deactivate old Aigaion 1.x installation by renaming index.php.
-    
+    2)  Create a new MySQL database '<db_aigaion2>', with an appropriate user. The database is empty.
+    3)  Unpack <WEBROOT>/<aigaion2_rootdir>/install/install.zip into the directory 
+        <WEBROOT>/<aigaion2_rootdir>/install/
+    4)  Point your browser to http://<server>/<aigaion2_rootdir>/install/install.php
+
+From there on, follow the instructions on the screen.
+
+After installing, please run the maintenance checks (under Site Maintenance)
