@@ -302,7 +302,7 @@ for ($i = 0; $i < $importCount; $i++)
 
 } //end for each publication
 
-echo form_submit('publication_submit', 'Submit')."\n";
+echo form_submit('publication_submit', 'Import')."\n";
 echo form_close()."\n";
 ?>
 </div>

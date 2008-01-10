@@ -21,7 +21,7 @@
   </table>
 <?php
 
-  echo form_submit('publication_submit', 'Submit').'&nbsp;'.form_checkbox('markasread','markasread',False).' Mark imported entries as read.'."\n";
+  echo form_submit('publication_submit', 'Import').'&nbsp;'.form_checkbox('markasread','markasread',False).' Mark imported entries as read.'."\n";
   echo form_close()."\n";
 ?>
 </div>
