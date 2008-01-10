@@ -545,6 +545,8 @@ class UserLogin {
               ");
 
             #SO. Here, if login was successful, we will check the database structure once.
+            $this->initPreferences();
+            $CI->latesession->set('USERLOGIN', $this);
             if (!checkSchema()) { //checkSchema will also attempt to login...
                 $this->logout();
                 $this->sNotice = "You have been logged out because the Aigaion Engine is in the 
@@ -553,8 +555,6 @@ class UserLogin {
                                   <br/>";
                 return 2;
             }
-            $this->initPreferences();
-            $CI->latesession->set('USERLOGIN', $this);
             return 0;
         } 
     }
