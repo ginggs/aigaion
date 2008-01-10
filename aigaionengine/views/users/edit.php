@@ -103,7 +103,14 @@ if ($userlogin->hasRights('user_edit_all')) {
         <td>"
         .form_checkbox('isAnonymous','isAnonymous',$user->isAnonymous)."
         </td>
-        </tr>";
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Note: when you set this account to be anonymous, you should not forget to enable 
+	        anonymous access to this database on the site configuration page!
+	        </td>
+	    </tr>";
+        
 }
 
 echo "        
