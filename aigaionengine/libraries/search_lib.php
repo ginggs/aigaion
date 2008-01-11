@@ -225,9 +225,13 @@ class Search_lib {
       $arrayOfPubs = array();
       foreach ($pubQ->result() as $R) {
         $note = $CI->note_db->getByID($R->note_id);
-        $next = $CI->publication_db->getByID($note->pub_id);
-        if ($next != null)
-        $arrayOfPubs[] = $next;
+        //the user may not have access to the note, so check if null is returned
+        if ($note != null)
+        {
+          $next = $CI->publication_db->getByID($note->pub_id);
+          if ($next != null)
+          $arrayOfPubs[] = $next;
+        }
       }
       return $arrayOfPubs;
     }
