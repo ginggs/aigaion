@@ -250,10 +250,13 @@ for ($i = 0; $i < $importCount; $i++)
     if ($reviews[$i]['keywords'] != null)
     {
       $keywords = $publications[$i]->keywords;
+      $keyword_string = "";
       if (is_array($keywords))
-      $keywords = implode($keywords, ', ');
-      else
-      $keywords = "";
+      foreach ($keywords as $keyword)
+      {
+        $keyword_string .= $keyword->keyword.", ";
+      }
+      $keywords = $keyword_string;
 
       ?>
       <tr>
