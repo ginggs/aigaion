@@ -80,7 +80,7 @@ function checkVersion($v, $bSilent=false) {
 	}
 	if (!$bSilent)
 	{
-		appendMessage("Checking version ".$v."... update needed.<br/>");
+		appendMessage("Checking database schema version ".$v."... update needed.<br/>");
 	}
 	return false;
 }
@@ -95,7 +95,7 @@ function setVersion($v, $bSilent=false) {
 	}
 	if (!$bSilent)
 	{
-		appendMessage("Update version ".$v." Succeeded<br/>");
+		appendMessage("Update database schema version ".$v." Succeeded<br/>");
 	}
 	return true;
 }
