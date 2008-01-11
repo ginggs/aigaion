@@ -319,7 +319,7 @@ class Prototype extends JavaScript {
 
 				if (is_string($arg))
         {
-					$arg_str.="'$arg'";
+					$arg_str.="'".$arg."'";
 				}
         else
         {
@@ -329,13 +329,13 @@ class Prototype extends JavaScript {
 		}
     else
     {
-			if (is_string($arg))
+			if (is_string($args))
       {
-				$arg_str.="'$arg'";
+				$arg_str.="'".$args."'";
 			}
       else
       {
-				$arg_str.=$arg;
+				$arg_str.=$args;
 			}
 		}
 
