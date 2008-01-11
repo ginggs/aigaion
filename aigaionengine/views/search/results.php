@@ -98,7 +98,7 @@ foreach ($searchresults as $title=>$content)
 
 if (count($types) > 0)
 {
-  echo '<div class="header">Publication matches</div>';
+  echo "<div class='header'>Publication matches</div>\n";
   $cells = "";
   $divs  = "";
   $hideall = "";
@@ -114,7 +114,7 @@ if (count($types) > 0)
     }
     
     $cells .= "\">".$resultHeaders[$type]."</a></div></td>\n";
-    $divs .= "<div id='".$result_div_ids[$type]."'>".$result_views[$type]."</div>\n";
+    $divs .= "<div id='".$result_div_ids[$type]."'>\n".$result_views[$type]."\n</div>\n\n";
     $hideall .= $this->ajax->hide($result_div_ids[$type])."; ";
     
   }
