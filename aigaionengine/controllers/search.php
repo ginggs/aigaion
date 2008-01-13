@@ -41,7 +41,7 @@ class Search extends Controller {
 
         
         $output .= $this->load->view('search/results',
-                                      array('searchresults'=>$searchresults),  
+                                      array('searchresults'=>$searchresults, 'query'=>$query),  
                                       true);
         
         $output .= $this->load->view('footer','', true);

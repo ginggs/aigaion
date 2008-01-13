@@ -171,7 +171,7 @@ class Search_lib {
     .$this->keywordsToLikeQuery($keywordArray,'cleantitle')
     .' OR '
     .$this->keywordsToLikeQuery($keywordArray,'cleanjournal')
-    ." ORDER BY cleantitle, actualyear;");
+    ." ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
       foreach ($pubQ->result() as $R) {
@@ -196,7 +196,7 @@ class Search_lib {
 
     $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
     .$this->keywordsToLikeQuery($keywordArray,'bibtex_id')
-    ." ORDER BY cleantitle, actualyear;");
+    ." ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
       foreach ($pubQ->result() as $R) {
@@ -250,7 +250,7 @@ class Search_lib {
 
     $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
     .$this->keywordsToLikeQuery($keywordArray,'abstract')
-    ." ORDER BY cleantitle, actualyear;");
+    ." ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
       foreach ($pubQ->result() as $R) {

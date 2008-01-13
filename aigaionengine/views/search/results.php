@@ -72,9 +72,14 @@ foreach ($searchresults as $type=>$resultList) {
 }
 
 
-if (count($resulttabs)==0){
-    echo 'no results for query<br/>';
+if (count($resulttabs)==0)
+{
+  echo "<div class='message'>No search results found for query: <b>".htmlentities($query)."</b></div>\n";
 }
+else
+{
+  echo "<div class='message'>Search results for query: <b>".htmlentities($query)."</b></div>\n";
+} 
 //show all relevant result tabs
 foreach ($resulttabs as $title=>$tabdisplay) {
     echo '<div class="header">'.$title.' matches</div>';
