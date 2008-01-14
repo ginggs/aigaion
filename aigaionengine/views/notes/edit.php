@@ -51,7 +51,7 @@ echo $this->validation->error_string;
     <table>
         <tr><td><label for='text'>Text</label></td>
             <td>
-<?php echo form_textarea(array('name'=>'text','cols'=>'70','rows'=>'7','value'=>$note->text)); ?>
+<?php echo form_textarea(array('name' => 'text','cols' => '70','rows' => '7','value' => $note->text)); ?>
             </td>
         </tr>
 

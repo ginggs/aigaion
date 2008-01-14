@@ -127,6 +127,7 @@ class Notes extends Controller {
 	/** Entrypoint for editing a note. Shows the necessary form. */
 	function edit()
 	{
+	  $this->load->helper('publication_helper');
         $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
 
@@ -149,6 +150,9 @@ class Notes extends Controller {
 	        appendErrorMessage('Edit note: insufficient rights.<br/>');
 	        redirect('');
         }
+        
+        $publication = $this->publication_db->getByID($note->pub_id);
+        
                 	    
         //get output
         $headerdata = array();
@@ -157,7 +161,8 @@ class Notes extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $output  .= $this->load->view('notes/edit' , array('note'=>$note),  true);
+        $output  .= $this->load->view('notes/edit' , array('note' => $note),  true);
+        $output  .= $this->load->view('publications/list', array('publications' => array($publication), 'header' => 'Publication belonging to note:', 'noNotes' => true, 'noBookmarkList' => true, 'order' => 'none'), true);
         
         $output .= $this->load->view('footer','', true);
 

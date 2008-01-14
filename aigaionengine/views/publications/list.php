@@ -1,56 +1,76 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<div class='publication_list'>
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
+//required parameters:
+//$publications[] - array with publication objects
+//
+//optional parameters
+//$order - Element for sub header content, defaults to 'year'
+//$noBookmarkList - bool, show no bookmarking icons
+//$noNotes - bool, show no notes
+//
+
+
+//first we get all necessary values required for displaying
   $userlogin  = getUserLogin();
 
-  //note: you can switch off the bookmarklist buttons by passing the parameter $noBookmarkList=True to this view
-  $useBookmarkList = $userlogin->hasRights('bookmarklist');
-  if ($useBookmarkList) {
-    if (isset($noBookmarkList)&&$noBookmarkList) {
-        $useBookmarkList = false;
-    }
-  }
-  //note that when 'order' is set, this view supposes that the data is actually ordered in that way! Otherwise the headers won't work :)
-  if (!isset($order))$order='year';
+  //Switch off the bookmarklist buttons by passing the parameter $noBookmarkList=True to this view, else default from rights
+  if (isset($noBookmarkList) && ($noBookmarkList == true))
+    $useBookmarkList = false;
+  else
+    $useBookmarkList = $userlogin->hasRights('bookmarklist');
+    
+  //note that when 'order' is set, this view supposes that the data is actually ordered in that way!
+  //use 'none' or other nonexisting fieldname for no headers.
+  if (!isset($order))
+    $order = 'year';
   
-  if (isset($header) && ($header != '')) {
-?>
-  <div class='header'><?php echo $header ?></div>
-<?php
-  }
+  //retrieve the publication summary and list stype preferences (author first or title first etc)
+  $summarystyle = $userlogin->getPreference('summarystyle');  
+  $liststyle    = $userlogin->getPreference('liststyle');
+
+  
+  //this block of code is used to generate the multi-page-links. See the publications/showlist controller for how to use this - and make sure you set all parameters used there!
   $multipagelinks='';
-  //this block of code is used to display the multi-page-links. See the publications/showlist controller for how to use this - and make sure you set all parameters used there!
-  if (isset($multipage) && ($multipage == True)) {
-    $page=0;
+  if (isset($multipage) && ($multipage == True))
+  {
+    $page = 0;
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle>0) {
+    if ($liststyle > 0) 
+    {
+      if (count($publications) > 0)
+      {
         $multipagelinks.= '<center><div>';
-        while ($page*$liststyle<count($publications)) {
-            $multipagelinks.= ' | ';
-            $linktext = ($page*$liststyle+1).'-';
-            if (($page+1)*$liststyle>count($publications)) {
-                $linktext .= count($publications);
-            } else {
-                $linktext .= (($page+1)*$liststyle);
-            }
-            if ($page!=$currentpage) {
-                $multipagelinks.= anchor($multipageprefix.$page,$linktext);
-            } else {
-                $multipagelinks.= '<b>'.$linktext.'</b>';
-            }
-            $page++;
+        while ($page*$liststyle<count($publications)) 
+        {
+          $multipagelinks.= ' | ';
+          $linktext = ($page*$liststyle+1).'-';
+          if (($page+1)*$liststyle>count($publications)) {
+              $linktext .= count($publications);
+          } else {
+              $linktext .= (($page+1)*$liststyle);
+          }
+          if ($page!=$currentpage) {
+              $multipagelinks.= anchor($multipageprefix.$page,$linktext);
+          } else {
+              $multipagelinks.= '<b>'.$linktext.'</b>';
+          }
+          $page++;
         }
-        $multipagelinks.= ' |</div></center><br/>';
+        $multipagelinks.= " |</div></center>\n<br/>\n";
+      }
     }
+  }
+  
+  //here the output starts
+  echo "<div class='publication_list'>\n";
+  if (isset($header) && ($header != '')) {
+    echo "  <div class='header'>".$header."</div>\n";
   }
   echo $multipagelinks;
-  $b_even = true;
   
+  $b_even = true;
   $subheader = '';
   $subsubheader = '';
-  
   $pubno = 0;
-  $liststyle = $userlogin->getPreference('liststyle');
   foreach ($publications as $publication)
   {
     $pubno++;
@@ -115,11 +135,14 @@
         break;
       case 'recent':
         break;
+      default:
+        break;
     }
     
     $summaryfields = getPublicationSummaryFieldArray($publication->pub_type);
 
-echo "<div class='publication_summary ".$even."' id='publicationsummary".$publication->pub_id."'>
+echo "
+<div class='publication_summary ".$even."' id='publicationsummary".$publication->pub_id."'>
 <table width='100%'>
   <tr>
     <td>";
@@ -130,7 +153,7 @@ if (strpos($displayTitle,'$')===false) {
 }
 
 $num_authors    = count($publication->authors);
-$summarystyle = $userlogin->getPreference('summarystyle');
+
 if ($summarystyle == 'title') {
     echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
 }
@@ -185,25 +208,26 @@ foreach ($summaryfields as $key => $prefix) {
     echo $prefix.$val.$postfix;
   }
 }
-$notes = $publication->getNotes();
-if ($notes != null) {
-//  <tr>
-//    <td colspan=2>
-echo "<br/>
-      <ul class='notelist'>";
-  foreach ($notes as $note) {
+
+if (!(isset($noNotes) && ($noNotes == true)))
+{
+  $notes = $publication->getNotes();
+  if ($notes != null) {
+  echo "<br/>
+        <ul class='notelist'>";
+    foreach ($notes as $note) {
+      echo "
+          <li>".$this->load->view('notes/summary', array('note' => $note), true)."</li>";
+    }
     echo "
-        <li>".$this->load->view('notes/summary', array('note' => $note), true)."</li>";
+        </ul>";
   }
-  echo "
-      </ul>";
-//    </td>
-//  </tr>";
 }
 echo "
     </td>
     <td width='8%' align='right' valign='top'>
       <span id='bookmark_pub_".$publication->pub_id."'>";
+      
 if ($useBookmarkList) {
   if ($publication->isBookmarked) {
     echo '<span title="Click to UnBookmark publication">'
