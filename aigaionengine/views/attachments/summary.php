@@ -53,6 +53,23 @@ $user       = $this->user_db->getByID($userlogin->userID());
         } else {
             echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[set main]",array('title'=>'Set as main attachment'));
         }
+        
+        $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($attachment);
+        $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($attachment);
+        
+        $readrights = $this->ajax->link_to_remote($read_icon,
+                      array('url'     => site_url('/accesslevels/toggle/attachment/'.$attachment->att_id.'/read'),
+                            'update'  => 'attachment_rights_'.$attachment->att_id
+                           )
+                      );
+        $editrights = $this->ajax->link_to_remote($edit_icon,
+                      array('url'     => site_url('/accesslevels/toggle/attachment/'.$attachment->att_id.'/edit'),
+                            'update'  => 'attachment_rights_'.$attachment->att_id
+                           )
+                      );
+        
+        echo "<span id='attachment_rights_".$attachment->att_id."'><span title='attachment read / edit rights'>".$readrights.$editrights."</span></span>";
+        
     }
     
     //always show note

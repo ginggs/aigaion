@@ -67,6 +67,23 @@ class Accesslevels_lib {
         return '<span title="effective access levels">'.$result.'</span>';
     }
     
+    //new function for migration to toggling access levels
+    function getReadAccessLevelIcon(&$object) {
+        if ($object->derived_read_access_level!='group')
+          return "<img class='al_icon' name='read access' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."'/> ";
+        else
+          return "";
+    }
+    
+    function getEditAccessLevelIcon(&$object) {
+        if ($object->derived_edit_access_level!='group')
+          return "<img class='al_icon' name='edit access' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."'/> ";
+        else
+          return "";
+    }
+    
+    
+    
     /** $type is topic, publication, attachment, or note
     Returns a span of html containing the appropriate access-level-edit panel for the given object,
     depending on the rights of the logged user, the current access levels of the object and the owner 
@@ -106,7 +123,7 @@ class Accesslevels_lib {
     /** set the new access level. set feedback in a message. all cascades are taken care of. 
     Read inline comments for explanations.
     */
-    function setReadAccessLevel($type,$object_id,$newlevel) {
+    function setReadAccessLevel($type,$object_id,$newlevel,$bSilent = false) {
         $CI = &get_instance();
         $userlogin=getUserLogin();
         $publication = null;
@@ -115,18 +132,21 @@ class Accesslevels_lib {
                 $config=array();
                 $topic = $CI->topic_db->getByID($object_id,$config);
                 if (!$this->canEditObject($topic)||!$userlogin->hasRights('topic_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 $CI->db->update("topics",array('read_access_level'=>$newlevel,'derived_read_access_level'=>$newlevel),array("topic_id"=>$object_id));
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='private') && ($topic->edit_access_level!='private')) {
                     $CI->db->update("topics",array('edit_access_level'=>'private','derived_edit_access_level'=>'private'),array("topic_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 if (($newlevel=='intern') && ($topic->edit_access_level=='public')) {
                     $CI->db->update("topics",array('edit_access_level'=>'intern','derived_edit_access_level'=>'intern'),array("topic_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //and fix all derived access levels 
                 $this->cascadeAccessLevelsForTopics();
@@ -134,18 +154,21 @@ class Accesslevels_lib {
             case 'publication':
                 $publication = $CI->publication_db->getByID($object_id);
                 if (!$this->canEditObject($publication)||!$userlogin->hasRights('publication_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 $CI->db->update("publication",array('read_access_level'=>$newlevel),array("pub_id"=>$object_id));
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='private') && ($publication->edit_access_level!='private')) {
                     $CI->db->update("publication",array('edit_access_level'=>'private'),array("pub_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 if (($newlevel=='intern') && ($publication->edit_access_level=='public')) {
                     $CI->db->update("publication",array('edit_access_level'=>'intern'),array("pub_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //and fix all derived access levels again
                 $this->cascadeAccessLevelsForPublication($publication->pub_id);
@@ -153,18 +176,21 @@ class Accesslevels_lib {
             case 'attachment':
                 $attachment = $CI->attachment_db->getByID($object_id);
                 if (!$this->canEditObject($attachment)||!$userlogin->hasRights('attachment_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 $CI->db->update("attachments",array('read_access_level'=>$newlevel),array("att_id"=>$object_id));
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='private') && ($attachment->edit_access_level!='private')) {
                     $CI->db->update("attachments",array('edit_access_level'=>'private'),array("att_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 if (($newlevel=='intern') && ($attachment->edit_access_level=='public')) {
                     $CI->db->update("attachments",array('edit_access_level'=>'intern'),array("att_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //find publication.
                 $publication = $CI->publication_db->getByID($attachment->pub_id);
@@ -172,14 +198,17 @@ class Accesslevels_lib {
                     //if attachment set to higher read access level than publication, publication must be updated as well
                     if (($newlevel=='public') && ($publication->read_access_level!='public')) {
                         $CI->db->update("publication",array('read_access_level'=>'public'),array("pub_id"=>$publication->pub_id));
-                        appendMessage('modify access level: increased read level for publication to match new read level for attachment<br/>');
+                        if (!$bSilent)
+                          appendMessage('modify access level: increased read level for publication to match new read level for attachment<br/>');
                     }
                     if (($newlevel=='intern') && ($publication->read_access_level=='private')) {
                         $CI->db->update("publication",array('read_access_level'=>'intern'),array("pub_id"=>$publication->pub_id));
-                        appendMessage('modify access level: increased read level for publication to match new read level for attachment<br/>');
+                        if (!$bSilent)
+                          appendMessage('modify access level: increased read level for publication to match new read level for attachment<br/>');
                     }
                 } else {
-                    appendMessage("Couldn't propagate new level all the way up<br/>");
+                    if (!$bSilent)
+                      appendMessage("Couldn't propagate new level all the way up<br/>");
                 }
                 //and fix all derived access levels again
                 $this->cascadeAccessLevelsForPublication($publication->pub_id);
@@ -187,18 +216,21 @@ class Accesslevels_lib {
             case 'note':
                 $note = $CI->note_db->getByID($object_id);
                 if (!$this->canEditObject($note)||!$userlogin->hasRights('note_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 $CI->db->update("notes",array('read_access_level'=>$newlevel),array("note_id"=>$object_id));
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='private') && ($note->edit_access_level!='private')) {
                     $CI->db->update("notes",array('edit_access_level'=>'private'),array("note_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 if (($newlevel=='intern') && ($note->edit_access_level=='public')) {
                     $CI->db->update("notes",array('edit_access_level'=>'intern'),array("note_id"=>$object_id));
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //find publication.
                 $publication = $CI->publication_db->getByID($note->pub_id);
@@ -206,14 +238,17 @@ class Accesslevels_lib {
                     //if note set to higher read access level than publication, publication must be updated as well
                     if (($newlevel=='public') && ($publication->read_access_level!='public')) {
                         $CI->db->update("publication",array('read_access_level'=>'public'),array("pub_id"=>$publication->pub_id));
-                        appendMessage('modify access level: increased read level for publication to match new read level for note<br/>');
+                        if (!$bSilent)
+                          appendMessage('modify access level: increased read level for publication to match new read level for note<br/>');
                     }
                     if (($newlevel=='intern') && ($publication->read_access_level=='private')) {
                         $CI->db->update("publication",array('read_access_level'=>'intern'),array("pub_id"=>$publication->pub_id));
-                        appendMessage('modify access level: increased read level for publication to match new read level for note<br/>');
+                        if (!$bSilent)
+                          appendMessage('modify access level: increased read level for publication to match new read level for note<br/>');
                     }
                 } else {
-                    appendMessage("Couldn't propagate new level all the way up<br/>");
+                    if (!$bSilent)
+                      appendMessage("Couldn't propagate new level all the way up<br/>");
                 }
                 //and fix all derived access levels again
                 $this->cascadeAccessLevelsForPublication($publication->pub_id);
@@ -226,7 +261,7 @@ class Accesslevels_lib {
     Read inline comments for explanations.
     Note assumption: the derived access levels make sure that you will not be able to read
     */
-    function setEditAccessLevel($type,$object_id,$newlevel) {
+    function setEditAccessLevel($type,$object_id,$newlevel,$bSilent = false) {
         //don't allow to set edit level higher than read level - user must set new read level first
         $CI = &get_instance();
         $userlogin=getUserLogin();
@@ -236,21 +271,25 @@ class Accesslevels_lib {
                 $config = array();
                 $topic = $CI->topic_db->getByID($object_id,$config);
                 if (!$this->canEditObject($topic)||!$userlogin->hasRights('topic_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 if ($object_id == 1) {
-                    appendErrorMessage('Edit access levels: you cannot change the access levels of the top topic');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: you cannot change the access levels of the top topic');
                     return;
                 }
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='public') && ($topic->read_access_level!='public')) {
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                     $newlevel = $topic->read_access_level;
                 }
                 if (($newlevel!='private') && ($topic->read_access_level=='private')) {
                     $newlevel = $topic->read_access_level;
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //set (possibly modified) edit access level
                 $CI->db->update("topics",array('edit_access_level'=>$newlevel,'derived_edit_access_level'=>$newlevel),array("topic_id"=>$object_id));
@@ -258,17 +297,20 @@ class Accesslevels_lib {
             case 'publication':
                 $publication = $CI->publication_db->getByID($object_id);
                 if (!$this->canEditObject($publication)||!$userlogin->hasRights('publication_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='public') && ($publication->read_access_level!='public')) {
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                     $newlevel = $publication->read_access_level;
                 }
                 if (($newlevel!='private') && ($publication->read_access_level=='private')) {
                     $newlevel = $publication->read_access_level;
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //set (possibly modified) edit access level
                 $CI->db->update("publication",array('edit_access_level'=>$newlevel),array("pub_id"=>$object_id));
@@ -278,17 +320,20 @@ class Accesslevels_lib {
             case 'attachment':
                 $attachment = $CI->attachment_db->getByID($object_id);
                 if (!$this->canEditObject($attachment)||!$userlogin->hasRights('attachment_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='public') && ($attachment->read_access_level!='public')) {
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                     $newlevel = $attachment->read_access_level;
                 }
                 if (($newlevel!='private') && ($attachment->read_access_level=='private')) {
                     $newlevel = $attachment->read_access_level;
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //set (possibly modified) edit access level
                 $CI->db->update("attachments",array('edit_access_level'=>$newlevel),array("att_id"=>$object_id));
@@ -301,17 +346,20 @@ class Accesslevels_lib {
             case 'note':
                 $note = $CI->note_db->getByID($object_id);
                 if (!$this->canEditObject($note)||!$userlogin->hasRights('note_edit')) {
-                    appendErrorMessage('Edit access levels: insufficient rights');
+                    if (!$bSilent)
+                      appendErrorMessage('Edit access levels: insufficient rights');
                     return;
                 }
                 //if edit access level too high compared to new read level, adapt edit level to new read level
                 if (($newlevel=='public') && ($note->read_access_level!='public')) {
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                     $newlevel = $note->read_access_level;
                 }
                 if (($newlevel!='private') && ($note->read_access_level=='private')) {
                     $newlevel = $note->read_access_level;
-                    appendMessage('modify access level: restricted edit level to match read level<br/>');
+                    if (!$bSilent)
+                      appendMessage('modify access level: restricted edit level to match read level<br/>');
                 }
                 //set (possibly modified) edit access level
                 $CI->db->update("notes",array('edit_access_level'=>$newlevel),array("note_id"=>$object_id));

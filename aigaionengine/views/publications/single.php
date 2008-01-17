@@ -18,7 +18,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         )
         echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
         echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
-        
+
         if ($userlogin->hasRights('bookmarklist')) {
           echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
           if ($publication->isBookmarked) {
@@ -47,6 +47,24 @@ $user       = $this->user_db->getByID($userlogin->userID());
 <?php
     $accesslevels = "&nbsp;&nbsp;r:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_edit_access_level.'.gif')."'/>";
     echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
+
+//TEST OF NEW READ/EDIT RIGHTS INTERFACE
+    $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($publication);
+    $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($publication);
+    
+    $readrights = $this->ajax->link_to_remote($read_icon,
+                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/read'),
+                        'update'  => 'publication_rights_'.$publication->pub_id
+                       )
+                  );
+    $editrights = $this->ajax->link_to_remote($edit_icon,
+                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/edit'),
+                        'update'  => 'publication_rights_'.$publication->pub_id
+                       )
+                  );
+    
+    echo "<span id='publication_rights_".$publication->pub_id."'><span title='publication read / edit rights'>".$readrights.$editrights."</span></span>";
+        
     
 ?>    
   </div>

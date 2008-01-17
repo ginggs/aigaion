@@ -58,6 +58,24 @@ if (    ($userlogin->hasRights('note_edit'))
 {
     echo "<br/>[".anchor('notes/delete/'.$note->note_id,'delete');
     echo "]&nbsp;[".anchor('notes/edit/'.$note->note_id,'edit').']';
+    
+    $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($note);
+    $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($note);
+    
+    $readrights = $this->ajax->link_to_remote($read_icon,
+                  array('url'     => site_url('/accesslevels/toggle/note/'.$note->note_id.'/read'),
+                        'update'  => 'note_rights_'.$note->note_id
+                       )
+                  );
+    $editrights = $this->ajax->link_to_remote($edit_icon,
+                  array('url'     => site_url('/accesslevels/toggle/note/'.$note->note_id.'/edit'),
+                        'update'  => 'note_rights_'.$note->note_id
+                       )
+                  );
+    
+    echo "<span id='note_rights_".$note->note_id."'><span title='note read / edit rights'>".$readrights.$editrights."</span></span>";
+        
+
 }
 ?>
 </div>
