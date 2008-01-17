@@ -21,7 +21,7 @@
   <table class='publication_edit_form' width='100%'>
     <tr>
       <td>Type of publication:</td>
-      <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value=\'type_change\'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?>
+      <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value='type_change'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?>
     </tr>
     <tr>
       <td>Title:</td>
