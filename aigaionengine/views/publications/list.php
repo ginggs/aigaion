@@ -188,7 +188,7 @@ foreach ($summaryfields as $key => $prefix) {
       if ($publication->firstpage != "0") {
         $pages = $publication->firstpage;
       }
-      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0")) {
+      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0") && ($publication->lastpage != "")) {
         if ($pages != "") {
             $pages .= "-";
         }
