@@ -442,6 +442,40 @@ class Bookmarklist extends Controller {
         redirect('topics/edit/'.$topic->topic_id);
     }
 
+    /** 
+    bookmarklist/removefromtopic
+    
+    Entry point for removing all publications in the bookmark list from a certain topic.
+    
+	Fails with error message when one of:
+	    insufficient rights
+	    nonexisting topic
+	    
+	Parameters passed via POST:
+	    topic_id
+	         
+    Redirects to the bookmarklist/view controller
+        
+    */
+    function removefromtopic() {
+	    //check rights is done in the $this->bookmarklist_db->removePublication function, no need to do it twice
+
+	      $topic_id = $this->input->post('topic_id');
+        $userlogin  = getUserLogin();
+        $user       = $this->user_db->getByID($userlogin->userID());
+        $config = array('onlyIfUserSubscribed'=>True,
+                         'user'=>$user,
+                         'includeGroupSubscriptions'=>True
+                        );
+        $topic = $this->topic_db->getByID($topic_id, $config);
+        if ($topic == null) {
+            appendErrorMessage( "Remove bookmarked publications from topic: no valid topic ID provided.<br/>");
+            redirect('bookmarklist/viewlist');
+        } 
+        $this->bookmarklist_db->removeFromTopic($topic);
+        $this->viewlist();
+    }
+
 	/** 
 	bookmarklist/deleteall
 	

@@ -35,6 +35,25 @@ if ($userlogin->hasRights('publication_edit')) {
     echo form_submit(array('name'=>'addtotopic','title'=>'Add all bookmarked publications to the selected topic'),'Add all to topic');
     echo form_close();
     echo "<br/>";
+    
+    echo form_open('bookmarklist/removefromtopic');
+    $user = $this->user_db->getByID($userlogin->userId());
+    $config = array('onlyIfUserSubscribed'=>True,
+                    'includeGroupSubscriptions'=>True,
+                    'user'=>$user);
+    echo $this->load->view('topics/optiontree',
+                       array('topics'   => $this->topic_db->getByID(1,$config),
+                            'showroot'  => False,
+                            'depth'     => -1,
+                            'selected'  => -1,
+                            'dropdownname' => 'topic_id',
+                            'header'    => 'Remove bookmarked from topic...'
+                            ),  
+                       true)."\n";
+    echo form_submit(array('name'=>'removefromtopic','title'=>'Remove all bookmarked publications from the selected topic'),'Remove all from topic');
+    echo form_close();
+    echo "<br/>";
+    
     if ($userlogin->hasRights('topic_edit')) {
         echo form_open('bookmarklist/maketopic');
         echo form_submit(array('name'=>'maketopic','title'=>'Make a new topic from the bookmarked publications'),'Make into new topic');

@@ -159,5 +159,19 @@ class Bookmarklist_db {
         appendMessage("Bookmarked publications added to topic<br/>");
     }
 
+    function removeFromTopic($topic) {
+        $CI = &get_instance();
+        $userlogin = getUserLogin();
+        if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
+            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            return;
+        }
+        $pub_ids = array();
+        foreach ($CI->publication_db->getForBookmarkList() as $publication) {
+            $topic->configuration['publicationId'] = $publication->pub_id;
+            $topic->unsubscribePublication();
+        }
+        appendMessage("Bookmarked publications removed from topic<br/>");
+    }
 }
 ?>
