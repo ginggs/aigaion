@@ -325,7 +325,34 @@ class Search_lib {
     $result = "";
     foreach ($keywords as $keyword) {
       if ($result != "") $result .= ' OR ';
-      $result .= $fieldname." LIKE '%".mysql_real_escape_string($keyword)."%' ";
+      {
+        $prefix_wildcard = $suffix_wildcard = "";
+/*      //explicit anchoring to match word beginning with ^ and word en also with ^
+        if (strlen($keyword) > 2)
+        {
+          if (substr($keyword, 0, 1) == "^")
+          {
+            $prefix_wildcard = '[[:<:]]';
+            $keyword = substr($keyword, 1);
+          }
+          if (substr($keyword, -1) == "^")
+          {
+            $suffix_wildcard = '[[:>:]]';
+            $keyword = substr($keyword, 0, -1);
+          }
+*/
+        //nonexplicit anchoring: match only word beginnings, * for open ends
+        if (strlen($keyword) > 2)
+        {
+          $prefix_wildcard = '[[:<:]]';
+          
+          if (substr($keyword, -1) != "*")
+            $suffix_wildcard = '[[:>:]]';
+          else
+            $keyword = substr($keyword, 0, -1);
+        }
+        $result .= $fieldname." REGEXP '".$prefix_wildcard.mysql_real_escape_string($keyword).$suffix_wildcard."' ";
+      }
     }
     return '('.$result.')';
   }
