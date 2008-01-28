@@ -31,13 +31,13 @@ function getRemoteFile($url)
    $response = '';
 
    // connect to the remote server
-   $fp = fsockopen($host, $port, $errno, $errstr, $timeout );
+   $fp = @fsockopen($host, $port, $errno, $errstr, $timeout );
 
    if( !$fp ) {
       appendErrorMessage( "Cannot retrieve $url");
    } else {
       // send the necessary headers to get the file
-      fputs($fp, "GET $path HTTP/1.0\r\n" .
+      @fputs($fp, "GET $path HTTP/1.0\r\n" .
                  "Host: $host\r\n" .
                  "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.3) Gecko/20060426 Firefox/1.5.0.3\r\n" .
                  "Accept: */*\r\n" .
@@ -47,8 +47,8 @@ function getRemoteFile($url)
                  "Connection: keep-alive\r\n" .
                  "Referer: http://$host\r\n\r\n");
 //$count = 0;
-      while (!feof($fp)) {
-        $response .= fread( $fp, 8192);
+      while (!@feof($fp)) {
+        $response .= @fread( $fp, 8192);
 //        $count++;
         
       }
