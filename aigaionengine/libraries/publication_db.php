@@ -141,6 +141,13 @@ class Publication_db {
         $publication->$key = $value;
       }
     }
+    
+    //change report_type in type
+    if (isset($publication->report_type))
+    {
+      $publication->type = $publication->report_type;
+      unset($publication->report_type);
+    }
 
     //TODO: PERFORMANCE EVALUATION. HOW MUCH FASTER IS THE CODE WITH ONE QUERY FOR
     //AUTHORS IN THE PUBLICATION MODEL, COMPARED TO THE QUERIES IN AUTHOR_LIST_MODEL?
@@ -197,7 +204,7 @@ class Publication_db {
     'organization',
     'school',
     'address',
-    'report_type',
+    'type', //former report_type
     'howpublished',
     'note',
     'abstract',
@@ -418,7 +425,14 @@ class Publication_db {
                     'mark', //always 0 by default; mark value will only be changed in a separate method so it doesn't need to get a value ehre or in the update method
                     'specialchars'
     );
-  
+
+    //change type in report_type
+    if (isset($publication->type))
+    {
+      $publication->report_type = $publication->type;
+    }
+
+      
     $specialfields = array(
                     'title',
                     'journal',
@@ -539,8 +553,16 @@ class Publication_db {
     $CI->db->insert('topicpublicationlink', $data);
 
     //also fix bibtex_id mappings
-	refreshBibtexIdLinks();
+	  refreshBibtexIdLinks();
     $CI->accesslevels_lib->initPublicationAccessLevels($publication);
+    
+    //change report_type in type
+    if (isset($publication->report_type))
+    {
+      $publication->type = $publication->report_type;
+      unset($publication->report_type);
+    }
+
     return $publication;
   }
   
@@ -617,7 +639,12 @@ class Publication_db {
                     'abstract'
     );
   
-  
+    //change type in report_type
+    if (isset($publication->type))
+    {
+      $publication->report_type = $publication->type;
+    }
+
   
     //check for specialchars
     foreach ($specialfields as $field)
@@ -729,6 +756,13 @@ class Publication_db {
         //fix all crossreffing pubs
         $this->changeAllCrossrefs($publication->pub_id, $oldpublication->bibtex_id, $publication->bibtex_id);
 		refreshBibtexIdLinks();
+    }
+
+    //change report_type in type
+    if (isset($publication->report_type))
+    {
+      $publication->type = $publication->report_type;
+      unset($publication->report_type);
     }
     
     

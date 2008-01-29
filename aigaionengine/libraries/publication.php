@@ -47,7 +47,7 @@ class Publication {
   var $organization = '';
   var $school       = '';
   var $address      = '';
-  var $report_type	= '';
+  var $type	        = ''; //note: report_type in DB
   var $howpublished = '';
   var $note         = '';
   var $abstract     = '';

@@ -13,8 +13,8 @@ xref: map of [id=>publication] for crossreffed-publications
 if (!isset($header)||($header==null))$header='';
 
 $result = "
-Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."
-".date('l d F Y h:i:s A')."
+%Aigaion2 BiBTeX export from ".getConfigurationSetting("WINDOW_TITLE")."
+%".date('l d F Y h:i:s A')."
 ".$header."
 ";
 

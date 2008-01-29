@@ -26,7 +26,7 @@ This helper provides functions for selecting publicationtype dependent fields.
 function getFullFieldArray() {
     return array(
                   'title'          ,
-                  'report_type'	   ,
+                  'type'	         ,
                   'journal'        ,
                   'booktitle'      ,
                   'edition'        ,
@@ -38,7 +38,7 @@ function getFullFieldArray() {
                   'month'          ,
                   'firstpage'      ,
                   'lastpage'       ,
-                  'pages'		   ,
+                  'pages'		       ,
                   'publisher'      ,
                   'location'       ,
                   'institution'    ,
@@ -86,7 +86,7 @@ function getPublicationFieldArray($type)
 	switch ($type) {
 		case "Article":
 		return array( 
-		              'report_type'	    => 'hidden',
+		              'type'	          => 'hidden',
                   'journal'         => 'required',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -117,7 +117,7 @@ function getPublicationFieldArray($type)
 		break;
 		case "Book":
 		return array( 
-		              'report_type'	    => 'hidden',
+		              'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional',
                   'edition'         => 'optional',
@@ -148,7 +148,7 @@ function getPublicationFieldArray($type)
 		break;
 		case "Booklet":
 		return array( 
-				          'report_type'	    => 'hidden',
+				          'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -178,7 +178,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Inbook":
-		return array( 'report_type'	    => 'hidden',
+		return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'optional',
@@ -208,7 +208,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Incollection":
-		return array( 'report_type'	    => 'optional',
+		return array( 'type'	    => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'required',
                   'edition'         => 'hidden',
@@ -238,7 +238,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Inproceedings":
-		return array( 'report_type'	    => 'hidden',
+		return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional', //cannot be required, since it may have been stored in a crossref entry! (and then this field stays empty)
                   'edition'         => 'hidden',
@@ -268,7 +268,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Manual":
-		return array( 'report_type'	    => 'hidden',
+		return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'optional',
@@ -298,7 +298,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Mastersthesis":
-		return array( 'report_type'	    => 'optional',
+		return array( 'type'	    => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -328,7 +328,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Misc":
-  	return array( 'report_type'	    => 'hidden',
+  	return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -358,7 +358,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Phdthesis":
-		return array( 'report_type'	    => 'optional',
+		return array( 'type'	    => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -388,7 +388,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Proceedings":
-		return array( 'report_type'	    => 'hidden',
+		return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional',
                   'edition'         => 'hidden',
@@ -418,7 +418,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Techreport":
-		return array( 'report_type'	    => 'optional',
+		return array( 'type'	    => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -448,7 +448,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Unpublished":
-		return array( 'report_type'	    => 'hidden',
+		return array( 'type'	    => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -483,7 +483,6 @@ function getPublicationFieldArray($type)
 	}
 }
 
-//REMINDER: TECHREPORT CASE -> 'report_type' FIELD IS TO BE RENAMED
 //note: the prefix may be an array instead of a string, in that case its (prefix,postfix)
 function getPublicationSummaryFieldArray($type)
 {
@@ -492,7 +491,7 @@ function getPublicationSummaryFieldArray($type)
 		case "Article":
 			return array( 
 	                  'actualyear'    => array(' (',')'),
-			          'journal'       => ', in: ',
+			              'journal'       => ', in: ',
 	                  'volume'        => ', ', 
 	                  'number'        => ':',
 	                  'pages'         => array('(',')')
@@ -566,7 +565,7 @@ function getPublicationSummaryFieldArray($type)
 		case "Techreport":
 			return array( 'institution'   => ', ',
 	                  'number'        => ', number ', 
-	                  'report_type'          => ', ',         //REMINDER: THIS FIELD IS TO BE RENAMED!!
+	                  'type'          => ', ',
 	                  'actualyear'    => ', '
                   );
 		break;

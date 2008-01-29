@@ -55,8 +55,8 @@ class Parser_Import
   
     //retrieve parsed entries from parser
   	list($preamble, $strings, $entries) = $this->cEntryParser->returnArrays();
-  
-  	//now, $entries contains the parsed data, Bibliophile style.
+    
+    //now, $entries contains the parsed data, Bibliophile style.
   	//we have to convert to our publication objects
   	$pubs = array();
   	$bibtex_ids = array();
@@ -76,7 +76,8 @@ class Parser_Import
   	            //appendMessage('entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref.' actualyear:'.$publication->actualyear);
   	        }
   	    }
-  	    $this->publications[] = $publication;
+ 
+        $this->publications[] = $publication;
   	    //appendMessage('entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref.' actualyear:'.$publication->actualyear);
   	}
   }
@@ -125,7 +126,7 @@ class Parser_Import
     'organization',
     'school',
     'address',
-    'report_type',
+    'type',
     'howpublished',
     'note',
     'abstract',
