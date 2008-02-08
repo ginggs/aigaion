@@ -340,7 +340,7 @@ require_once(APPPATH."include/utf8/trim.php");
         foreach ($publication->getKeywords() as $keyword) {
             if (!$first) $keywords .= ",";
             $first = false;
-            $keywords .= $keyword;
+            $keywords .= $keyword->keyword;
         }
         $fields['keywords']=$keywords;
         //parse fstpage - lastpage into pages
