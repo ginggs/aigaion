@@ -117,7 +117,7 @@ function getPublicationFieldArray($type)
 		break;
 		case "Book":
 		return array( 
-		              'type'	    => 'hidden',
+		              'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional',
                   'edition'         => 'optional',
@@ -148,7 +148,7 @@ function getPublicationFieldArray($type)
 		break;
 		case "Booklet":
 		return array( 
-				          'type'	    => 'hidden',
+				          'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -166,7 +166,7 @@ function getPublicationFieldArray($type)
                   'school'          => 'hidden',
                   'address'         => 'optional',
                   'howpublished'    => 'optional',
-                  'note'            => 'hidden',
+                  'note'            => 'optional',
                   'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
@@ -178,9 +178,9 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Inbook":
-		return array( 'type'	    => 'hidden',
+		return array( 'type'	          => 'hidden',
                   'journal'         => 'hidden',
-                  'booktitle'       => 'hidden',
+                  'booktitle'       => 'optional',
                   'edition'         => 'optional',
                   'series'          => 'optional',
                   'volume'          => 'optional',
@@ -208,11 +208,11 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Incollection":
-		return array( 'type'	    => 'optional',
+		return array( 'type'	          => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'required',
-                  'edition'         => 'hidden',
-                  'series'          => 'hidden',
+                  'edition'         => 'optional',
+                  'series'          => 'optional',
                   'volume'          => 'optional',
                   'number'          => 'optional',
                   'chapter'         => 'optional',
@@ -238,7 +238,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Inproceedings":
-		return array( 'type'	    => 'hidden',
+		return array( 'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional', //cannot be required, since it may have been stored in a crossref entry! (and then this field stays empty)
                   'edition'         => 'hidden',
@@ -258,8 +258,8 @@ function getPublicationFieldArray($type)
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
                   'abstract'        => 'optional',
-                  'issn'            => 'hidden',
-                  'isbn'            => 'hidden',
+                  'issn'            => 'optional',
+                  'isbn'            => 'optional',
                   'url'             => 'optional',
                   'doi'             => 'optional',
                   'crossref'        => 'optional',
@@ -268,7 +268,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Manual":
-		return array( 'type'	    => 'hidden',
+		return array( 'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'optional',
@@ -298,7 +298,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Mastersthesis":
-		return array( 'type'	    => 'optional',
+		return array( 'type'	          => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -328,7 +328,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Misc":
-  	return array( 'type'	    => 'hidden',
+  	return array( 'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -358,7 +358,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Phdthesis":
-		return array( 'type'	    => 'optional',
+		return array( 'type'	          => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
@@ -374,7 +374,7 @@ function getPublicationFieldArray($type)
                   'institution'     => 'hidden',
                   'organization'    => 'hidden',
                   'school'          => 'required',
-                  'address'         => 'hidden',
+                  'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
                   'abstract'        => 'optional',
@@ -388,7 +388,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Proceedings":
-		return array( 'type'	    => 'hidden',
+		return array( 'type'	          => 'hidden',
                   'journal'         => 'hidden',
                   'booktitle'       => 'optional',
                   'edition'         => 'hidden',
@@ -418,7 +418,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Techreport":
-		return array( 'type'	    => 'optional',
+		return array( 'type'	          => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',
