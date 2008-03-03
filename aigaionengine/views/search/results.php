@@ -72,14 +72,6 @@ foreach ($searchresults as $type=>$resultList) {
 }
 
 
-if (count($resulttabs)==0)
-{
-  echo "<div class='message'>No search results found for query: <b>".htmlentities($query)."</b></div>\n";
-}
-else
-{
-  echo "<div class='message'>Search results for query: <b>".htmlentities($query)."</b></div>\n";
-} 
 //show all relevant result tabs
 foreach ($resulttabs as $title=>$tabdisplay) {
     echo '<div class="header">'.$title.' matches</div>';
@@ -135,6 +127,15 @@ if (count($types) > 0)
 <?php
   echo $divs;
   echo "<script>".$hideall.$showfirst."</script>";
+} else { //no publication results
+    if (count($resulttabs)==0)
+    {
+        echo "<div class='message'>No search results found for query: <b>".htmlentities($query)."</b></div>\n";
+    }
+    else
+    {
+        echo "<div class='message'>Search results for query: <b>".htmlentities($query)."</b></div>\n";
+    } 
 }
 /*
 $content['publications']    = $this->publication_db->getForTopic('1',$order);

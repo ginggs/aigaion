@@ -17,6 +17,16 @@ class User_db {
         }  
     }
    
+    function getByLogin($login)
+    {
+        $CI = &get_instance();
+        $Q = $CI->db->query("SELECT * from ".AIGAION_DB_PREFIX."users where login=".$CI->db->escape($login)." AND type<>'group'");
+        if ($Q->num_rows() > 0)
+        {
+            return $this->getFromRow($Q->row());
+        }  
+    }
+   
     function getFromRow($R)
     {
         $CI = &get_instance();
@@ -193,6 +203,13 @@ class User_db {
         if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
             foreach ($user->assignedrights as $right) {
+                if ($user->isAnonymous) {
+                    if ($right='bookmarklist') {
+                        appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
+                        continue;
+                    }
+                }
+                    
                 $CI->db->insert('userrights',array('user_id'=>$new_id,'right_name'=>$right));
             }
         }
@@ -213,6 +230,7 @@ class User_db {
         $user->user_id = $new_id;
         
         $CI->topic_db->subscribeUser( $user,1);
+        appendMessage("User added.\n");
         return $new_id;
     }
 
@@ -289,6 +307,12 @@ class User_db {
             $CI->db->delete('userrights',array('user_id'=>$user->user_id));
             //add rights
             foreach ($user->assignedrights as $right) {
+                if ($user->isAnonymous) {
+                    if ($right='bookmarklist') {
+                        appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
+                        continue;
+                    }
+                }
                 $CI->db->insert('userrights',array('user_id'=>$user->user_id,'right_name'=>$right));
             }
         }
@@ -333,6 +357,7 @@ class User_db {
     	        appendMessage("Profile updated, changes to rights of users are applied after the user has logged in again.<br/>");
     	    }
         }
+        appendMessage("User data changed. Changed access rights will be valid upon next login.\n");
         return True;
     }
 

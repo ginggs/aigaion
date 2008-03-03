@@ -65,6 +65,58 @@ class Publications extends Controller {
     $this->output->set_output($output);
   }
   
+
+  /** 
+    publications/showcite
+    
+    Calls single publication view for bibtex cite_id rather than pub_id
+    No other parameters besides bibtex_id are possible (such as e.g. 'categorize')
+    because bibtex_id may contain slashes so we need to take all of the URI-remainder
+    For such, use 'show' controller.
+    
+    
+	  Fails with error message when one of:
+	    insufficient user rights
+	    publication does not exist
+	    
+	  Parameters passed via URL segments:
+	    bibtex_id
+	         
+    Returns:
+        A single publication overview
+  */
+  function showcite()
+  {
+    $segments = $this->uri->segment_array();
+    //remove first two elements
+    array_shift($segments);
+    array_shift($segments);
+
+    $bibtex_id   = implode('/',$segments);
+    
+    
+    //load publication
+    $publication = $this->publication_db->getByBibtexID($bibtex_id);
+    if ($publication == null)
+    {
+      appendErrorMessage("View publication: non-existing bibtex id \"".$bibtex_id."\" was passed");
+      redirect('');
+    }
+    
+    //set header data
+    $header ['title']       = $publication->title;
+    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    $content['publication'] = $publication;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('publications/single', $content, true);
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+  
   /** 
   publications/showlist
   
@@ -363,8 +415,13 @@ class Publications extends Controller {
     {
       $this->edit($publication);
     }
-    else if ($this->publication_db->validate($publication))
+    else 
     {
+      if (!$this->publication_db->validate($publication)) 
+      {
+        //there were validation errors
+        appendErrorMessage("There are validation errors with this entry. You may want to correct them.\n"."");
+      }
       $edit_type = $this->input->post('edit_type');
       $bReview = false;
       if ($submit_type != 'review')
@@ -412,11 +469,6 @@ class Publications extends Controller {
         //show publication
         redirect('publications/show/'.$publication->pub_id);
       }
-    }
-    else //there were validation errors
-    {
-      //edit the publication once again
-      $this->edit($publication);
     }
   }
   

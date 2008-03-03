@@ -25,14 +25,14 @@ function toggleSubscription(user_id,topic_id,subscriptionCallback) {
     if(Element.hasClassName(el,'subscribedtopic')) {
         //was subscribed 
         new Ajax.Updater('',subscriptionCallback+'/unsubscribe/'+topic_id+'/'+user_id,{evalScripts:true});
-        Element.removeClassName(el,'subscribedtopic');
-        Element.addClassName(el,'unsubscribedtopic');
+        el.removeClassName(el,'subscribedtopic');
+        el.addClassName(el,'unsubscribedtopic');
         MarkUnSub(topic_id);
     } else {
         //was unsubscribed 
         new Ajax.Updater('',subscriptionCallback+'/subscribe/'+topic_id+'/'+user_id,{evalScripts:true});
-        Element.removeClassName(el,'unsubscribedtopic');
-        Element.addClassName(el,'subscribedtopic');
+        el.removeClassName(el,'unsubscribedtopic');
+        el.addClassName(el,'subscribedtopic');
         MarkSub(topic_id);
     }
 }

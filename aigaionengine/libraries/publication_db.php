@@ -899,7 +899,7 @@ class Publication_db {
     
     if ($validation_message != '' && (trim($publication->crossref)=='')) //when crossref set, nothing is required :)
     {
-      appendErrorMessage("Changes not committed:<br/>\n".$validation_message);
+      appendErrorMessage("Validation error:<br/>\n".$validation_message);
       return false;
     }
     else

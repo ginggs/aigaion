@@ -112,7 +112,7 @@ class Topic {
     This method subscribes the ancestors and children as well.
     Pre: $this->configuration['publicationId'] must be set. */  
     function subscribePublication() {
-        $this->subscribePublicationDownRecursive();
+        //$this->subscribePublicationDownRecursive();
         $this->subscribePublicationUpRecursive();
     }    
     function subscribePublicationDownRecursive() {

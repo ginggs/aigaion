@@ -209,12 +209,12 @@ class UserLogin {
             if ($result == 1) {
                 //report error and return
                 $this->sNotice = "Unknown user or wrong password from external login module";
-                return;
+                //return; don't return, but rather attempt to do the anonymous login later on
             }
             if ($result == 2) {
                 //report error and return
                 $this->sNotice = "No login info available...";
-                return;
+                //return; don't return, but rather attempt to do the anonymous login later on
             }
         } else {
             //Else if login vars have been posted: login from POST vars
@@ -509,22 +509,6 @@ class UserLogin {
             #init rights and preferences
             $this->initRights();
             
-            #once every day (i.e. depending on when last up-to-date-check was performed), for
-            #database_manage users, an up-to-date-check is performed
-            if (!$this->bIsAnonymous && $this->hasRights('database_manage') && ($this->theUser->lastupdatecheck+48*60*60 < time())) {
-                $CI->load->helper('checkupdates');
-	            $checkresult = "Checking for updates... ";
-	            $updateinfo = checkUpdates();
-	            if ($updateinfo == '') {
-    		        $checkresult .= '<b>OK</b><br/>';
-        			$checkresult .= 'This installation of Aigaion is up-to-date';
-	            } else {
-        			$checkresult .= '<span class="errortext">ALERT</span><br/>';
-        			$checkresult .= $updateinfo;
-    	        }
-    	        appendMessage($checkresult);
-                $CI->db->update('users',array('lastupdatecheck'=>time()),array('user_id'=>$this->iUserId));
-            }
 
             #set a welcome message/advertisement after login
             appendMessage("
@@ -554,6 +538,24 @@ class UserLogin {
                                   database_manage rights, please login to complete the update. 
                                   <br/>";
                 return 2;
+            }
+            
+            #once every day (i.e. depending on when last up-to-date-check was performed), for
+            #database_manage users, an up-to-date-check is performed
+            #do this AFTER possible updating of the database ;-)
+            if (!$this->bIsAnonymous && $this->hasRights('database_manage') && ($this->theUser->lastupdatecheck+48*60*60 < time())) {
+                $CI->load->helper('checkupdates');
+	            $checkresult = "Checking for updates... ";
+	            $updateinfo = checkUpdates();
+	            if ($updateinfo == '') {
+    		        $checkresult .= '<b>OK</b><br/>';
+        			$checkresult .= 'This installation of Aigaion is up-to-date';
+	            } else {
+        			$checkresult .= '<span class="errortext">ALERT</span><br/>';
+        			$checkresult .= $updateinfo;
+    	        }
+    	        appendMessage($checkresult);
+                $CI->db->update('users',array('lastupdatecheck'=>time()),array('user_id'=>$this->iUserId));
             }
             return 0;
         } 

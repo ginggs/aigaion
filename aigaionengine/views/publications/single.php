@@ -35,8 +35,8 @@ $user       = $this->user_db->getByID($userlogin->userID());
                         )
                   ).']';
           }
+          echo "</span>";        
         }
-        echo "</span>";        
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/bibtex','BiBTeX',array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['

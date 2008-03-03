@@ -25,7 +25,10 @@
     </tr>
     <tr>
       <td>Title:</td>
-      <td><?php echo form_input(array('name' => 'title', 'id' => 'title', 'size' => '90'), $publication->title); ?></td>
+      <td><?php echo form_input(array('name' => 'title', 
+                                      'id'   => 'title', 
+                                      'size' => '90',
+                                      'class'=> 'required'), $publication->title); ?></td>
     </tr>
     <tr>
       <td>Citation:</td>
