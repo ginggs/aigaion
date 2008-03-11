@@ -24,8 +24,25 @@
     /** 
     Note: THIS SCHEMA UPDATE IS NOT ACTIVATED YET, AS WE HAVE NO DATABASE SCHEMA UPDATES BEYOND THE 1.X=>2.0 MIGRATION
     */
+    function updateSchemaV2_2() {
+        if (checkVersion('V2.2', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_1()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        //ATTEMPT TO RUN DATABASE UPDATING CODE FOR THIS VERSION... if fail, rollback?
+        if (!setReleaseVersion('2.0.2.beta','bugfix','Many bug fixes.')) 
+            return False;
+        
+        return setVersion('V2.2');
+    }
+    
+    /** 
+    Initial schema update, bugfixes and install scripts
+    */
     function updateSchemaV2_1() {
-        if (checkVersion('V2.1')) {
+        if (checkVersion('V2.1', true)) {
             return True;
         }
         if (!updateSchemaV2_0()) { //FIRST CHECK OLDER VERSION
