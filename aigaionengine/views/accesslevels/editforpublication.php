@@ -42,10 +42,10 @@ echo '['.anchor('publications/show/'.$publication->pub_id,'back to publication')
         if ($type=='publication')echo 'style="background:#dfdfff;" ';
         ?>>
         <td>
-            r:<img class='al_icon' src='<?php echo getIconurl('al_'.$publication->derived_read_access_level.'_grey.gif'); ?>'/>
+            r:<img class='al_icon' src='<?php echo getIconurl('rights_'.$publication->derived_read_access_level.'_grey.gif'); ?>'/>
         </td>
         <td>
-            e:<img class='al_icon' src='<?php echo getIconurl('al_'.$publication->derived_edit_access_level.'_grey.gif'); ?>'/>
+            e:<img class='al_icon' src='<?php echo getIconurl('rights_'.$publication->derived_edit_access_level.'_grey.gif'); ?>'/>
         </td>
         <td style='padding-left:0.5em;' class='header2'>
             <?php echo $publication->title; ?>
@@ -83,10 +83,10 @@ foreach ($publication->getAttachments() as $attachment) {
         if (($type=='attachment')&&($object_id==$attachment->att_id))echo 'style="background:#dfdfff;" ';
         ?>>
         <td>
-            r:<img class='al_icon' src='<?php echo getIconurl('al_'.$attachment->derived_read_access_level.'_grey.gif'); ?>'/>
+            r:<img class='al_icon' src='<?php echo getIconurl('rights_'.$attachment->derived_read_access_level.'_grey.gif'); ?>'/>
         </td>
         <td>
-            e:<img class='al_icon' src='<?php echo getIconurl('al_'.$attachment->derived_edit_access_level.'_grey.gif'); ?>'/>
+            e:<img class='al_icon' src='<?php echo getIconurl('rights_'.$attachment->derived_edit_access_level.'_grey.gif'); ?>'/>
         </td>
         <td style='padding-left:2em;' class='header2'>
             <?php echo $attachment->name; ?>
@@ -127,10 +127,10 @@ foreach ($publication->getNotes() as $note) {
         if (($type=='note')&&($object_id==$note->note_id))echo 'style="background:#dfdfff;" ';
         ?>>
         <td>
-            r:<img class='al_icon' src='<?php echo getIconurl('al_'.$note->derived_read_access_level.'_grey.gif'); ?>'/>
+            r:<img class='rights_icon' src='<?php echo getIconurl('rights_'.$note->derived_read_access_level.'_grey.gif'); ?>'/>
         </td>
         <td>
-            e:<img class='al_icon' src='<?php echo getIconurl('al_'.$note->derived_edit_access_level.'_grey.gif'); ?>'/>
+            e:<img class='rights_icon' src='<?php echo getIconurl('rights_'.$note->derived_edit_access_level.'_grey.gif'); ?>'/>
         </td>
         <td style='padding-left:2em;' class='header2'>
             <?php echo $note->text; ?>
@@ -165,12 +165,12 @@ foreach ($publication->getNotes() as $note) {
     </div>
     <?php
     echo "
-    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
+    r:<img class='rights_icon' src='".getIconurl('rights_public.gif')."'/> read public<br/> 
+    r:<img class='rights_icon' src='".getIconurl('rights_intern.gif')."'/> read intern<br/> 
+    r:<img class='rights_icon' src='".getIconurl('rights_private.gif')."'/> read private<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_public.gif')."'/> edit public<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_intern.gif')."'/> edit intern<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_private.gif')."'/> edit private<br/> 
     - If nothing is shown, access level is 'intern'.<br/>
     ";
     ?>

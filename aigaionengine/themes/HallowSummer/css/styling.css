@@ -31,11 +31,14 @@ a:hover {
     width   : 1.3em;
     border  : 0px;
 }
-.al_icon {
+.al_icon { /*old, to be removed */
     border  : 0px;
     width   : 1em;
 }
-
+.rights_icon {
+    border  : 0px;
+    width   : 1em;
+}
 
 /* Main layout box colors */
 body {

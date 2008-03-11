@@ -61,9 +61,9 @@ class Accesslevels_lib {
     function getAccessLevelSummary($object) {
         $result = " ";
         if ($object->derived_read_access_level!='intern')
-            $result .= "r:<img class='al_icon' src='".getIconurl('al_'.$object->derived_read_access_level.'.gif')."'/> ";
+            $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."'/> ";
         if ($object->derived_edit_access_level!='intern')
-            $result .= "e:<img class='al_icon' src='".getIconurl('al_'.$object->derived_edit_access_level.'.gif')."'/> ";
+            $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."'/> ";
         return '<span title="effective access levels">'.$result.'</span>';
     }
     
@@ -107,14 +107,14 @@ class Accesslevels_lib {
         $result = '<span title="'.$title.'">';
         if ($object->derived_read_access_level!=$object->read_access_level)
             $result .= '<span title="effective access level is different" style="color:red;font-weight:bold;">!</span>';
-        $result .= "r:<img class='al_icon' src='".getIconurl('al_'.$object->read_access_level.$grey.'.gif')."'/> ";
+        $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->read_access_level.$grey.'.gif')."'/> ";
         $result .= $editR;
         $result .='</span>';
         $result .= '</td><td>';
         $result .= '<span title="'.$title.'">';
         if ($object->derived_edit_access_level!=$object->edit_access_level)
             $result .= '<span title="effective access level is different" style="color:red;font-weight:bold;">!</span>';
-        $result .= "e:<img class='al_icon' src='".getIconurl('al_'.$object->edit_access_level.$grey.'.gif')."'/> ";
+        $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->edit_access_level.$grey.'.gif')."'/> ";
         $result .= $editE;
         $result .='</span>';
         return $result;

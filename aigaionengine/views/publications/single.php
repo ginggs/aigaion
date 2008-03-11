@@ -45,9 +45,10 @@ $user       = $this->user_db->getByID($userlogin->userID());
   </div>
   <div class='header'><?php echo $publication->title; ?>
 <?php
-    $accesslevels = "&nbsp;&nbsp;r:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='al_icon' src='".getIconurl('al_'.$publication->derived_edit_access_level.'.gif')."'/>";
+    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_edit_access_level.'.gif')."'/>";
     echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
 
+/*
 //TEST OF NEW READ/EDIT RIGHTS INTERFACE
     $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($publication);
     $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($publication);
@@ -65,7 +66,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     
     echo "<span id='publication_rights_".$publication->pub_id."'><span title='publication read / edit rights'>".$readrights.$editrights."</span></span>";
         
-    
+*/    
 ?>    
   </div>
   <table class='publication_details' width='100%'>
