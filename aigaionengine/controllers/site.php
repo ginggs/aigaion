@@ -230,11 +230,11 @@ class Site extends Controller {
         }
         // Backup your entire database and assign it to a variable
         //note: we could make a site setting for whether a gz, zip or txt is returned. But gz is OK, I guess.
-        $backup =$this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'gzip'));
+        $backup =$this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'txt'));
         
         // Load the download helper and send the file to your desktop
         $this->load->helper('download');
-        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql.gz', $backup);
+        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $backup);
         
     }
 
