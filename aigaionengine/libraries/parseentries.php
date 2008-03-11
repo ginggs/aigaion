@@ -138,7 +138,7 @@ class Parseentries
 		$this->count = 0;
 		$this->fieldExtract = TRUE;
 		$this->removeDelimit = TRUE;
-		$this->expandMacro = FALSE;
+		$this->expandMacro = TRUE;
 		$this->parseFile = TRUE;
 		$this->outsideEntry = TRUE;
 	}
