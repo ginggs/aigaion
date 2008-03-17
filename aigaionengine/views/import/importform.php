@@ -7,6 +7,7 @@
   $formAttributes     = array('ID' => 'import_form');
   echo form_open('import/commit', $formAttributes)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
+  echo form_hidden('formname','import');
 ?>
 
   <table class='publication_edit_form' width='100%'>

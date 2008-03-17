@@ -48,6 +48,7 @@
         <div id='quicksearch'>
           <?php
           echo form_open('search/quicksearch')."\n";
+          echo form_hidden('formname','simplesearch');
           echo form_input(array('name' => 'searchstring', 'size' => '25'));
           echo form_submit('submit_search', 'search');
           echo form_close();

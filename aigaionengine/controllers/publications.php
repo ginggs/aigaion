@@ -52,7 +52,7 @@ class Publications extends Controller {
     
     //set header data
     $header ['title']       = $publication->title;
-    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     $content['publication'] = $publication;
     $content['categorize']  = $categorize=='categorize';
     
@@ -105,7 +105,7 @@ class Publications extends Controller {
     
     //set header data
     $header ['title']       = $publication->title;
-    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     $content['publication'] = $publication;
     
     //get output
@@ -143,7 +143,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         $headerdata['sortPrefix']        = 'publications/showlist/';
         
         $userlogin = getUserLogin();
@@ -210,7 +210,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         $headerdata['sortPrefix']        = 'publications/unassigned/';
         
         $userlogin = getUserLogin();
@@ -387,7 +387,7 @@ class Publications extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Delete publication';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     

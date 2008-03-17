@@ -9,6 +9,7 @@
   echo form_open('authors/commit', $formAttributes)."\n";
   echo form_hidden('edit_type',   $edit_type)."\n";
   echo form_hidden('author_id',   $author->author_id)."\n";
+  echo form_hidden('formname','author');
   if (isset($review))
     echo form_hidden('submit_type', 'review');
   else

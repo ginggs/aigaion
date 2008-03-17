@@ -67,7 +67,7 @@ class Notes extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Delete note';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -112,7 +112,7 @@ class Notes extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Add note';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -157,7 +157,7 @@ class Notes extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Edit note';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -215,7 +215,7 @@ class Notes extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Note';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     

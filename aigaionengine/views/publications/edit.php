@@ -15,6 +15,7 @@
   echo form_hidden('pub_id',      $publication->pub_id)."\n";
   echo form_hidden('user_id',     $publication->user_id)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
+  echo form_hidden('formname','publication')."\n";
   echo "<input type='hidden' name='pubform_authors' id='pubform_authors' value=''/>\n";//into this field, the selectedauthors box will be parsed upon commit
   echo "<input type='hidden' name='pubform_editors' id='pubform_editors' value=''/>\n";//into this field, the selectededitors box will be parsed upon commit
 ?>
@@ -35,33 +36,34 @@
       <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '90'), $publication->bibtex_id); ?></td>
     </tr>
 <?php 
-    //show all publication fields that are not hidden
-    //at the end of this table, we show all hidden fields as hidden form elements
-    foreach ($publicationfields as $key => $class):
-      
-      if ($class != 'hidden'): 
-        
-?>
-    <tr>
-      <td valign='top'><?php
-        if ($key=='namekey') {
-          echo 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
-        } else { 
-          echo ucfirst($key); 
-        }
-      ?>:</td>
-      <td valign='top'><?php 
+    //collect show data for all publication fields 
+    //the HIDDEN fields are shown at the end of the form; the NOT HIDDEN ones are shown here.
+    $hiddenFields = "";
+    foreach ($publicationfields as $key => $fieldtype):
+      $fieldCol = "";
+      if ($key=='namekey') {
+        $fieldCol = 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
+      } else { 
+        $fieldCol = ucfirst($key); 
+      }
+      $class = $fieldtype;
+      if ($class=='hidden') {
+        $class = 'nonstandard'; //:( the stylesheet class is not hidden but dispreferred :)
+        $fieldCol .= ' <span title="This field is not used in BiBTeX for this publication type">(*)</span>';
+      }
+      $fieldCol .= ':';
+      $valCol = "";
         if ($key == "month")
         {
           $month = $publication->month;
           if ($month == "" || $month < 0 || $month > 12 )
             $month = 0;
             
-          echo form_dropdown('month', getMonthsArray(), $month);
+          $valCol .= form_dropdown('month', getMonthsArray(), $month);
 
         }
         else if ($key == "pages")
-          echo "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
+          $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
                                                                   'id' => 'firstpage', 
                                                                   'size' => '3', 
                                                                   'alt' => $class, 
@@ -75,28 +77,42 @@
                                                                   'alt' => $class, 
                                                                   'autocomplete' => 'off', 
                                                                   'class' => $class), 
-                                                            $publication->lastpage)."</span></td>\n";
+                                                            $publication->lastpage)."</span>\n";
         elseif ($key == "abstract")
-          echo "<span title='".$class." field'>".form_textarea(array('name' => $key, 
+          $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'cols' => '90', 
                                                                      'rows' => '20', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
-                                                               $publication->$key)."</span></td>\n";
+                                                               $publication->$key)."</span>\n";
         else
-          echo "<span title='".$class." field'>".form_input(array('name' => $key, 
+          $valCol .= "<span title='".$class." field'>".form_input(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'size' => '90', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
-                                                               $publication->$key)."</span></td>\n";
-?>
-    </tr>
-<?php
-      endif; //class != hidden
+                                                               $publication->$key)."</span>\n";      
+    
+    //at this point, $valcol and $fieldcol give the elements for the form. Now to decide:
+    //show directly (non-hidden) or postpone to the dispreferred section?
+    $showdata = "
+      <tr>
+        <td valign='top'>
+        ".$fieldCol."
+        </td>
+        <td valign='top'>
+        ".$valCol."
+        </td>
+      </tr>";
+
+      if ($fieldtype=='hidden') {
+        $hiddenFields .= $showdata;
+      } else {
+        echo $showdata;
+      }   
     endforeach;
 
     $keywords = $publication->keywords;
@@ -124,6 +140,9 @@
       </td>
     </tr>
 <?php
+    //show dispreferred fields at the end
+    echo $hiddenFields;
+
 	include_once(APPPATH."/javascript/authorselection.js");
 	include_once(APPPATH."/javascript/publications.js");
 	/*a short note: the following long piece of code creates the author and editor boxes which can be 
@@ -214,12 +233,7 @@
 
   </table>
 <?php
-  foreach ($publicationfields as $key => $class):
-    if ($class == 'hidden'): 
-      echo form_hidden($key, $publication->$key)."\n";
-    endif;
-  endforeach;
-      
+     
 
 if ($edit_type=='edit') {
   echo $this->ajax->button_to_function('Change',"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";

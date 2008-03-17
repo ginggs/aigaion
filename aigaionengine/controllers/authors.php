@@ -40,7 +40,7 @@ class Authors extends Controller {
     
     //set header data
     $header ['title']       = $author->getName();
-    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     $header ['sortPrefix']       = 'authors/show/'.$author->author_id.'/';
     $header ['exportCommand']    = 'export/author/'.$author->author_id.'/';
     $header ['exportName']    = 'Export author';
@@ -130,7 +130,7 @@ class Authors extends Controller {
     
     //set header data
     //$header ['title']       = $author->getName();
-    //$header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    //$header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     
     //set data
     $authorContent['author']            = $author;

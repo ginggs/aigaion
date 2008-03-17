@@ -27,7 +27,7 @@ class Login extends Controller {
   
         //set header data
         $header ['title']       = 'Please login';
-        $header ['javascripts']       = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $header ['javascripts']       = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         //get output
         $output  = $this->load->view('header_clean',        $header,  true);
@@ -58,6 +58,13 @@ class Login extends Controller {
             //if success: redirect
             $this->latesession->set('USERLOGIN', $userlogin);
             $segments = $this->uri->segment_array();
+            //attempt to repost submitted form, if neccesary
+            if ($this->latesession->get('FORMREPOST')==True) {
+                $this->load->helper('formrepost');
+                resubmitForm(); 
+                //the resubmit also does a redirect.... so the following return is never reached:
+                return;
+            }
             //remove first two elements
             array_shift($segments);
             array_shift($segments);
@@ -72,6 +79,7 @@ class Login extends Controller {
             //because otherwise we get eternal redirects
             $userlogin->logout(); //it SHOULD be the case that an error message has been set already.
             redirect('/login/index/'.implode('/',$segments));
+            //note: the 'remembered form', if any was present, is not forgotten; the session info is still there.
         }
     }
     

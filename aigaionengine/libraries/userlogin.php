@@ -65,7 +65,7 @@ class UserLogin {
     function isLoggedIn() {
         if ($this->bIsLoggedIn) {
             //check schema
-            if (checkSchema()) {
+            if (checkSchema()) { 
                 return True; //OK? return true;
             } else {
                 $this->logout();

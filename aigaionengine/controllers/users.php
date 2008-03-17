@@ -41,7 +41,7 @@ class Users extends Controller {
 	    //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
         
@@ -130,7 +130,7 @@ class Users extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -176,7 +176,7 @@ class Users extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js','rightsprofiles.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','rightsprofiles.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -232,7 +232,7 @@ class Users extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'User';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js','rightsprofiles.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','rightsprofiles.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -294,7 +294,7 @@ class Users extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'User';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -372,7 +372,7 @@ class Users extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'User';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -451,7 +451,7 @@ class Users extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Topic subscription';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 

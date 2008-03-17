@@ -69,7 +69,7 @@ class Keywords extends Controller {
     
     //set header data
     $header ['title']       = 'Keyword: "'.$keyword->keyword.'"';
-    $header ['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     $header ['sortPrefix']       = 'publications/keyword/'.$keyword->keyword_id.'/';
     $header ['exportCommand']    = '';//'export/keyword/'.$keyword_id.'/';
     $header ['exportName']    = 'Export for keyword';

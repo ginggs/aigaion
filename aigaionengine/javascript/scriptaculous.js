@@ -34,8 +34,10 @@ var Scriptaculous = {
        (typeof Element == 'undefined') || 
        (typeof Element.Methods=='undefined') ||
        parseFloat(Prototype.Version.split(".")[0] + "." +
-                  Prototype.Version.split(".")[1]) < 1.5)
+                  Prototype.Version.split(".")[1]) < 1.5) 
+    {
        throw("script.aculo.us requires the Prototype JavaScript framework >= 1.5.0");
+    }
     
     $A(document.getElementsByTagName("script")).findAll( function(s) {
       return (s.src && s.src.match(/scriptaculous\.js(\?.*)?$/))

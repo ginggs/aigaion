@@ -88,7 +88,7 @@ class Groups extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Group';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -142,7 +142,7 @@ class Groups extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Group';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -204,7 +204,7 @@ class Groups extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Group';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -274,7 +274,7 @@ class Groups extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Group';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -348,7 +348,7 @@ class Groups extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Topic subscription for groups';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 

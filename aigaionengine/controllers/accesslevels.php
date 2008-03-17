@@ -62,7 +62,7 @@ class Accesslevels extends Controller {
 
     $headerdata = array();
     $headerdata['title'] = 'Accesslevels: edit';
-    $headerdata['javascripts'] = array('accesslevels.js','scriptaculous.js','builder.js','prototype.js');
+    $headerdata['javascripts'] = array('accesslevels.js','prototype.js','scriptaculous.js','builder.js');
 
     $output = $this->load->view('header', $headerdata, true);
 
@@ -230,7 +230,7 @@ class Accesslevels extends Controller {
 
     $headerdata = array();
     $headerdata['title'] = 'Accesslevels: edit';
-    $headerdata['javascripts'] = array('accesslevels.js','scriptaculous.js','builder.js','prototype.js');
+    $headerdata['javascripts'] = array('accesslevels.js','prototype.js','scriptaculous.js','builder.js');
 
     $output = $this->load->view('header', $headerdata, true);
 

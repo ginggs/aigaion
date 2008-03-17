@@ -4,6 +4,7 @@ $importCount        = count($publications);
 $formAttributes     = array('ID' => 'import_review');
 echo form_open('import/commit',   $formAttributes)."\n";
 echo form_hidden('import_count',  $importCount)."\n";
+echo form_hidden('formname','import');
 $mark = '';
 if ($markasread) $mark = 'markasread'; //commit controller expects not a boolean, but the value 'markasread'
 echo form_hidden('markasread',  $mark)."\n";

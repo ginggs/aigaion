@@ -5,12 +5,25 @@
     $userlogin=getUserLogin();
     $notice = $userlogin->notice();
     if ($notice!="") {
-      echo "    <table width='40em'><tr><td><div class='errormessage'>".$notice."</div></td></tr></table>\n";
+      echo "    
+      <table width='100%'>
+        <tr>
+            <td><div class='errormessage'>".$notice."</div></td>
+        </tr>
+      </table>\n";
     }
     $err = getErrorMessage();
     if ($err != "") {
-        echo "<div class='errormessage' width='40em'>".$err."</div>";
+        echo "<div class='errormessage' width='100%'>".$err."</div>";
         clearErrorMessage();
+    }
+    $formtitle = "Welcome to the Aigaion bibliography system, please login";
+    if ($this->latesession->get('FORMREPOST')==True) {
+        echo "<div class='errormessage' width='100%'>You just submitted a form
+               named '".$this->latesession->get('FORMREPOST_formname')."', but it seems that you have 
+               been logged out. To proceed with submitting the information, please 
+               log in again, then confirm that you want to re-submit the data. </div>";
+        $formtitle = "Login to proceed with form submission";
     }
 
     //the login form is NOT shown if 'external login module' is activated
@@ -18,9 +31,9 @@
         $formAttributes = array('id' => 'loginForm');
         echo form_open_multipart('login/dologin/'.implode('/',$segments),$formAttributes);
     ?>
-        <table cellspacing="3" cellpadding="3" width="40em">
+        <table cellspacing="3" cellpadding="3" width="100%">
           <tr>
-            <td colspan='2'><div class='header'>Welcome to the Aigaion bibliography system, please login</div></td>
+            <td colspan='2'><div class='header'><?php echo $formtitle; ?></div></td>
           </tr>
           <tr>
             <td>Name:</td>

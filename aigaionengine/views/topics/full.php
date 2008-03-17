@@ -73,7 +73,7 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
     <td>
 <?php 
 //echo '&nbsp;&nbsp;&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"/>';
-echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
+echo '<div class="topicstats">';
 	//get number of authors
     $authorCount = $this->topic_db->getAuthorCountForTopic($topic->topic_id);
     

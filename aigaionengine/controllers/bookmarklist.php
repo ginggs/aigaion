@@ -48,7 +48,7 @@ class Bookmarklist extends Controller {
 
         $headerdata = array();
         $headerdata['title'] = 'Bookmark list';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         $headerdata['sortPrefix'] = '/bookmarklist/viewlist/';
         $headerdata['exportCommand']    = 'export/bookmarklist/';
         $headerdata['exportName']    = 'Export bookmarklist';
@@ -531,7 +531,7 @@ class Bookmarklist extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Delete all from bookmarklist';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -606,7 +606,7 @@ class Bookmarklist extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Set access level to '.$accesslevel.' for all from bookmarklist';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -683,7 +683,7 @@ class Bookmarklist extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Set access level to '.$accesslevel.' for all attachments of publications on bookmarklist';
-            $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
     

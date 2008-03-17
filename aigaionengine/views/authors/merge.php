@@ -11,6 +11,7 @@
     echo form_open('authors/mergecommit', $formAttributes)."\n";
     echo form_hidden('author_id',   $author->author_id)."\n";
     echo form_hidden('simauthor_id',   $simauthor->author_id)."\n";
+    echo form_hidden('formname','author');
 ?>
   <table>
     <tr><td>

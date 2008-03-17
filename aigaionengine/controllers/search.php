@@ -35,7 +35,7 @@ class Search extends Controller {
         //get output: search result page
         $headerdata = array();
         $headerdata['title'] = 'Search results';
-        $headerdata['javascripts'] = array('tree.js','scriptaculous.js','builder.js','prototype.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
