@@ -19,6 +19,7 @@
          - the name of the form */
     function storeForm() {
         $CI = &get_instance();
+        $userlogin = getUserLogin();
         $CI->latesession->set('FORMREPOST', True);
         $CI->latesession->set('FORMREPOST_formname', $CI->input->post('formname'));
         $CI->latesession->set('FORMREPOST_uri', implode('/',$CI->uri->segment_array()));
