@@ -86,27 +86,15 @@ class Login extends Controller {
     /** This controller will log the currently logged-in user out, then redirect 
         to the dologin controller to allow the system to login an anon account
         (if allowed and posssible). */
-//    function dologout()
-//    {
-//        //get login object
-//        $userlogin = getUserLogin();
-//        //logout
-//        $userlogin->logout();
-//        $this->latesession->set('USERLOGIN', $userlogin);
-//        //redirect
-//        redirect('');
-//
-//    }
-
-    /** This controller will log the currently logged-in user out, then NOT redirect anywhere
-    so: tehre is no anon login afterwards */
-    function dologout() //dopermanentlogout()
+    function dologout()
     {
         //get login object
         $userlogin = getUserLogin();
         //logout
         $userlogin->logout();
         $this->latesession->set('USERLOGIN', $userlogin);
+        //redirect
+        redirect('');
 
     }
     
