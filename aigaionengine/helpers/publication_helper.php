@@ -48,13 +48,13 @@ function getFullFieldArray() {
                   'howpublished'   ,
                   'note'           ,
                   'keywords'       ,
-                  'abstract'       ,
                   'issn'           ,
                   'isbn'           ,
                   'url'            ,
                   'doi'            ,
                   'crossref'       ,
                   'namekey'        ,
+                  'abstract'       ,
                   'userfields'     
     );
 }
@@ -112,13 +112,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'hidden',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'optional',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -143,13 +143,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'optional',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -174,13 +174,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'optional',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -204,13 +204,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'optional',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -234,13 +234,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'optional',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -264,13 +264,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'optional',
                   'isbn'            => 'optional',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -294,13 +294,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -324,13 +324,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -354,13 +354,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'hidden',
                   'howpublished'    => 'optional',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -384,13 +384,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -414,13 +414,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'optional',
                   'isbn'            => 'optional',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -444,13 +444,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'optional',
                   'howpublished'    => 'hidden',
                   'note'            => 'optional',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;
@@ -474,13 +474,13 @@ function getPublicationFieldArray($type)
                   'address'         => 'hidden',
                   'howpublished'    => 'hidden',
                   'note'            => 'required',
-                  'abstract'        => 'optional',
                   'issn'            => 'hidden',
                   'isbn'            => 'hidden',
-                  'url'             => 'optional',
-                  'doi'             => 'optional',
                   'crossref'        => 'optional',
                   'namekey'         => 'optional',
+                  'url'             => 'optional',
+                  'doi'             => 'optional',
+                  'abstract'        => 'optional',
                   'userfields'      => 'optional'
 								);
 		break;

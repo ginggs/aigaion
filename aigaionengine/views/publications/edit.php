@@ -89,7 +89,7 @@
           $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'cols' => '87', 
-                                                                     'rows' => '5', 
+                                                                     'rows' => '3', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
