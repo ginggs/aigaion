@@ -78,11 +78,11 @@
                                                                   'autocomplete' => 'off', 
                                                                   'class' => $class), 
                                                             $publication->lastpage)."</span>\n";
-        elseif ($key == "abstract")
+        elseif (($key == "abstract") || ($key == "userfields" ))
           $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
-                                                                     'cols' => '90', 
-                                                                     'rows' => '20', 
+                                                                     'cols' => '87', 
+                                                                     'rows' => '5', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
@@ -162,7 +162,7 @@
 						<tr><td width='80%' align='left'>Authors</td>
 							<td width='20%'></td></tr>
 						<tr><td align='right'>
-							<select name='selectedauthors' id='selectedauthors' style='width:100%;' size='10'>
+							<select name='selectedauthors' id='selectedauthors' style='width:100%;' size='5'>
 <?php
                                 if (is_array($publication->authors))
                                 {
@@ -190,7 +190,7 @@
 						<tr><td align='left'>Editors</td><td></td></tr>
 						<tr>
 						<td align='right'>
-							<select name='selectededitors' id='selectededitors' style='width: 100%;' size='10'>
+							<select name='selectededitors' id='selectededitors' style='width: 100%;' size='5'>
 <?php
                                 if (is_array($publication->editors))
                                 {
@@ -218,9 +218,9 @@
 				</td>
 				<td width='45%' valign='top'>
 					<table width='100%'>
-						<tr><td>Search: <input title='Type in name to quick search. Note: use unaccented letters!' type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='30'></td></tr>
 						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;">Create as new name</a>]</div></td></tr>
-						<tr><td><select style='width:22em;' size='23' name='authorinputselect' id='authorinputselect'></select></td></tr>
+						<tr><td>Search: <input title='Type in name to quick search. Note: use unaccented letters!' type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
+						<tr><td><select style='width:22em;' size='12' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>
 				</td>
