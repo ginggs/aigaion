@@ -22,7 +22,25 @@
 
 
     /** 
-    Note: THIS SCHEMA UPDATE IS NOT ACTIVATED YET, AS WE HAVE NO DATABASE SCHEMA UPDATES BEYOND THE 1.X=>2.0 MIGRATION
+    Note: add language preference
+    */
+    function updateSchemaV2_3() {
+        if (checkVersion('V2.3', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_2()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        //ATTEMPT TO RUN DATABASE UPDATING CODE FOR THIS VERSION... if fail, rollback?
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` ADD COLUMN `language` VARCHAR(20) NOT NULL DEFAULT 'english';");
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.3');
+    }
+    
+    /** 
+    Note: set release to 2.0.2.beta
     */
     function updateSchemaV2_2() {
         if (checkVersion('V2.2', true)) { // silent check

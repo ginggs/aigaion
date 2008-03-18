@@ -177,6 +177,12 @@ foreach ($availableThemes as $theme)
 {
   $theme_array[$theme] = $theme;
 }
+$lang_array = array();
+$availableLanguages = array('nederlands','english');
+foreach ($availableLanguages as $lang)
+{
+  $lang_array[$lang] = $lang;
+}
 echo "
         
         <tr><td colspan='2'>
@@ -191,6 +197,15 @@ echo "
                         $user->preferences["theme"])."
         </td>
         </tr>
+
+        <td>Language</td>
+        <td>
+        ".form_dropdown('language',
+                        $lang_array,
+                        $user->preferences["language"])."
+        </td>
+        </tr>
+
         <tr>
         <td>Publication summary style</td>
         <td>

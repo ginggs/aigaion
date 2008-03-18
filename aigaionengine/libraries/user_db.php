@@ -104,6 +104,7 @@ class User_db {
         $user->preferences['newwindowforatt']    = $CI->input->post('newwindowforatt')=='newwindowforatt';
         $user->preferences['exportinbrowser']    = $CI->input->post('exportinbrowser')=='exportinbrowser';
         $user->preferences['utf8bibtex']         = $CI->input->post('utf8bibtex')=='utf8bibtex';
+        $user->preferences['language']           = $CI->input->post('language');
 
         $user->assignedrights = array();
         foreach (getAvailableRights() as $right=>$description) {
@@ -191,6 +192,7 @@ class User_db {
                                                'password'           => $user->password,
                                                'type'               => $type,
                                                'theme'              => $user->preferences['theme'],
+                                               'language'           => $user->preferences['language'],
                                                'summarystyle'       => $user->preferences['summarystyle'],
                                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                                'liststyle'          => $user->preferences['liststyle'],
@@ -278,6 +280,7 @@ class User_db {
                                'login'              => $user->login,
                                'type'               => $type,
                                'theme'              => $user->preferences['theme'],
+                               'language'           => $user->preferences['language'],
                                'summarystyle'       => $user->preferences['summarystyle'],
                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                'liststyle'          => $user->preferences['liststyle'],

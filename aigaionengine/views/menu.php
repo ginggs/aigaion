@@ -6,31 +6,32 @@
   //view parameter: if $exportName is set, this determines the text for the exportCommand menu option
   
   $userlogin = getUserLogin();
+  $this->lang->load('menu',$userlogin->getPreference('language'));
 ?>
 <div id="menu_holder">
   <ul class="mainmenu">
-    <li class="mainmenu-header">BROWSE</li>
-    <li class="mainmenu"><?php echo anchor('topics', 'My Topics'); ?></li>
+    <li class="mainmenu-header"><?php echo $this->lang->line('menu_show_header'); ?></li>
+    <li class="mainmenu"><?php echo anchor('topics', $this->lang->line('menu_show_mytopics')); ?></li>
     <?php
     if ($userlogin->hasRights('bookmarklist')) 
     {
       ?>
-      <li class="mainmenu"><?php echo anchor('bookmarklist', 'My Bookmarks'); ?></li>
+      <li class="mainmenu"><?php echo anchor('bookmarklist', $this->lang->line('menu_show_bookmarklist')); ?></li>
       <?php
     }
     ?>
-    <li class="mainmenu"><?php echo anchor('topics/all', 'All Topics'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications', 'All Publications'); ?></li>
-    <li class="mainmenu"><?php echo anchor('authors', 'All Authors'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/unassigned', 'Unassigned'); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', 'Recent'); ?></li>
+    <li class="mainmenu"><?php echo anchor('topics/all', $this->lang->line('menu_show_alltopics')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications', $this->lang->line('menu_show_pubs')); ?></li>
+    <li class="mainmenu"><?php echo anchor('authors', $this->lang->line('menu_show_authors')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/unassigned', $this->lang->line('menu_show_unassigned')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', $this->lang->line('menu_show_recent')); ?></li>
 
     <?php
     //the export option is slightly dependent on the view parameter 'exportCommand'
     //
     ?>
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">EXPORT</li>
+    <li class="mainmenu-header"><?php echo $this->lang->line('menu_export_header'); ?></li>
     <li class="mainmenu"><?php echo anchor('export', 'Export all publications'); ?></li>
     <?php
     if (isset($exportCommand)&&($exportCommand!=''))
@@ -52,12 +53,12 @@
     } else {
       ?>
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header">SORT BY</li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', 'Author'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  'Title'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   'Type/journal'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   'Year'); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', 'Recently added'); ?></li>
+      <li class="mainmenu-header"><?php echo $this->lang->line('menu_sort_header'); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', $this->lang->line('menu_sort_author')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  $this->lang->line('menu_sort_title')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   $this->lang->line('menu_sort_type')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   $this->lang->line('menu_sort_year')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', $this->lang->line('menu_sort_recent')); ?></li>
       <?php
     }
     ?>
@@ -68,39 +69,39 @@
     {
       ?>  
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header">NEW DATA</li>
-      <li class='mainmenu'><?php echo anchor('publications/add', 'New Publication'); ?></li>
-      <li class='mainmenu'><?php echo anchor('authors/add', 'New Author'); ?></li>
+      <li class="mainmenu-header"><?php echo $this->lang->line('menu_create_header'); ?></li>
+      <li class='mainmenu'><?php echo anchor('publications/add', $this->lang->line('menu_create_pub')); ?></li>
+      <li class='mainmenu'><?php echo anchor('authors/add', $this->lang->line('menu_create_author')); ?></li>
       <?php
     } //New publication / author menu
     if ($userlogin->hasRights('topic_edit'))
     {
       ?>
-      <li class='mainmenu'><?php echo anchor('topics/add', 'New Topic'); ?></li>
+      <li class='mainmenu'><?php echo anchor('topics/add', $this->lang->line('menu_create_topic')); ?></li>
       <?php
     } 
     if ($userlogin->hasRights('publication_edit'))
     {
       ?>
-      <li class='mainmenu'><?php echo anchor('import', 'Import'); ?></li>
+      <li class='mainmenu'><?php echo anchor('import', $this->lang->line('menu_create_import')); ?></li>
       <?php
     }
 
 ?>
 
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">SITE</li>
-    <li class="mainmenu"><?php echo anchor('help/', 'Help'); ?></li>
-    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', 'About this site'); ?></li>
+    <li class="mainmenu-header"><?php echo $this->lang->line('menu_system_header'); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/', $this->lang->line('menu_system_help')); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', $this->lang->line('menu_system_about')); ?></li>
 <?php
 if ($userlogin->hasRights('database_manage')) {
 ?>
-    <li class="mainmenu"><?php echo anchor('site/configure', 'Site Configuration'); ?></li>
-    <li class="mainmenu"><?php echo anchor('site/maintenance', 'Site Maintenance'); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/configure', $this->lang->line('menu_system_config')); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/maintenance', $this->lang->line('menu_system_maintenance')); ?></li>
 <?php
 }
 if ($userlogin->hasRights('user_edit_all')) {
-    echo "    <li class='mainmenu'>".anchor('users/manage', 'Manage All Accounts')."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/manage', $this->lang->line('menu_system_usermanage'))."</li>\n";
 }
 
 ?>
@@ -111,7 +112,7 @@ if ($userlogin->hasRights('user_edit_all')) {
     $anonusers = $this->user_db->getAllAnonUsers();
 ?>	    
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header">GUEST USER</li>
+      <li class="mainmenu-header"><?php echo $this->lang->line('menu_guest_header'); ?></li>
 <?php
     if (count($anonusers)>1) {
       //more than one anonymous user: show a dropdown where you can choose between the different guest users
@@ -131,15 +132,15 @@ if ($userlogin->hasRights('user_edit_all')) {
 
 //probably no-one would ever assign these two rights to the anon user, but nevertheless....:
 if ($userlogin->hasRights('user_edit_self')) {
-    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), $this->lang->line('menu_logged_profile'))."</li>\n";
 }
 if ($userlogin->hasRights('topic_subscription')) {
-    echo "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Subscribe')."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', $this->lang->line('menu_logged_subscribe'))."</li>\n";
 }
         
 ?>	    
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header">LOGIN</li>
+    <li class="mainmenu-header"><?php echo $this->lang->line('menu_login_header'); ?></li>
 <?php
     $this->load->helper('form');
     echo '<li>';
@@ -167,20 +168,28 @@ if ($userlogin->hasRights('topic_subscription')) {
         echo '</li>';
   } else {
 ?>
-    <li class="mainmenu-header">LOGGED IN:</li>
+    <li class="mainmenu-header"><?php echo $this->lang->line('menu_logged_header'); ?></li>
     <li class="mainmenu"><?php echo $userlogin->loginName(); ?></li>
 <?php
 if ($userlogin->hasRights('user_edit_self')) {
-    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), 'My Profile')."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), $this->lang->line('menu_logged_profile'))."</li>\n";
 }
 if ($userlogin->hasRights('topic_subscription')) {
-    echo "    <li class='mainmenu'>".anchor('users/topicreview/', 'Topic Subscribe')."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', $this->lang->line('menu_logged_subscribe'))."</li>\n";
 }
 ?>
-    <li class="mainmenu"><?php echo anchor('login/dologout', 'Logout'); ?></li>
+    <li class="mainmenu"><?php echo anchor('login/dologout', $this->lang->line('menu_logged_logout')); ?></li>
 <?php
   }
 ?>
   </ul>
+<br/><br/>
+<div style='float:bottom;font-size:90%;'>
+<?php 
+    echo anchor('userlanguage/set/english/'.implode('/',$this->uri->segment_array()),'english').'<br/>';
+    echo anchor('userlanguage/set/nederlands/'.implode('/',$this->uri->segment_array()),'nederlands').'<br/>';
+?>
 </div>
+</div>
+
 <!-- End of menu -->

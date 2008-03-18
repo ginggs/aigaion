@@ -19,6 +19,10 @@
 $filter['login'][] = array(
 	'exclude', array('login/*','version/*'), array('action'=>'redirect')
 );
+/** load the default language stuff.. */
+$filter['lang'][] = array(
+	'exclude', array(), array()
+);
 /** For some controllers, failure of the login check should simply result in the
     display of a div with an error message defined in the login/fail view.
     Add controllers for which this should happen to the include array below. */
