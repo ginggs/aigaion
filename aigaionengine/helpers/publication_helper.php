@@ -185,7 +185,7 @@ function getPublicationFieldArray($type)
 								);
 		break;
 		case "Inbook":
-		return array( 'type'	          => 'hidden',
+		return array( 'type'	          => 'optional',
                   'journal'         => 'hidden',
                   'booktitle'       => 'hidden',
                   'edition'         => 'optional',
