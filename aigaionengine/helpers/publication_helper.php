@@ -26,7 +26,7 @@ This helper provides functions for selecting publicationtype dependent fields.
 function getFullFieldArray() {
     return array(
                   'title'          ,
-                  'type'	         ,
+                  'type'	       ,
                   'journal'        ,
                   'booktitle'      ,
                   'edition'        ,
@@ -38,7 +38,7 @@ function getFullFieldArray() {
                   'month'          ,
                   'firstpage'      ,
                   'lastpage'       ,
-                  'pages'		       ,
+                  'pages'		   ,
                   'publisher'      ,
                   'location'       ,
                   'institution'    ,
@@ -58,7 +58,14 @@ function getFullFieldArray() {
                   'userfields'     
     );
 }
-
+function getCapitalFieldArray() {
+    return array(
+                  'issn'           ,
+                  'isbn'           ,
+                  'url'            ,
+                  'doi'            
+    );
+}
 //move to somewhere else?
 function getMonthsEng() {
     return array("","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
@@ -86,7 +93,7 @@ function getPublicationFieldArray($type)
 	switch ($type) {
 		case "Article":
 		return array( 
-		              'type'	          => 'hidden',
+		          'type'	          => 'hidden',
                   'journal'         => 'required',
                   'booktitle'       => 'hidden',
                   'edition'         => 'hidden',

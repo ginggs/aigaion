@@ -280,6 +280,8 @@ input.conditional, textarea.conditional, select.conditional {
 
 tr.hidden {
  visibility       : hidden;
+ display: none;
+ height: 0px;
 }
 
 /* ==== TOPIC VIEWS ==== */

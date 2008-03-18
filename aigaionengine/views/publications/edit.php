@@ -39,17 +39,24 @@
     //collect show data for all publication fields 
     //the HIDDEN fields are shown at the end of the form; the NOT HIDDEN ones are shown here.
     $hiddenFields = "";
-    foreach ($publicationfields as $key => $fieldtype):
+    $capitalfields = getCapitalFieldArray();
+    foreach ($publicationfields as $key => $class):
+      //fields that are hidden but non empty are shown nevertheless
+      if (($class == 'hidden') && ($publication->$key != '')) {
+        $class = 'nonstandard';
+      }
       $fieldCol = "";
       if ($key=='namekey') {
         $fieldCol = 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
       } else { 
-        $fieldCol = ucfirst($key); 
+        if (in_array($key,$capitalfields)) {
+            $fieldCol = strtoupper($key); 
+        } else  {
+            $fieldCol = ucfirst($key); 
+        }
       }
-      $class = $fieldtype;
-      if ($class=='hidden') {
-        $class = 'nonstandard'; //:( the stylesheet class is not hidden but dispreferred :)
-        $fieldCol .= ' <span title="This field is not used in BiBTeX for this publication type">(*)</span>';
+      if ($class=='nonstandard') {
+        $fieldCol .= ' <span title="This field might not be used by BiBTeX for this publication type">(*)</span>';
       }
       $fieldCol .= ':';
       $valCol = "";
@@ -87,19 +94,26 @@
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
                                                                $publication->$key)."</span>\n";
-        else
+        else {
+          $onelineval = $publication->$key;
           $valCol .= "<span title='".$class." field'>".form_input(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'size' => '90', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
-                                                               $publication->$key)."</span>\n";      
+                                                               $onelineval)."</span>\n";      
+        }
     
     //at this point, $valcol and $fieldcol give the elements for the form. Now to decide:
     //show directly (non-hidden) or postpone to the dispreferred section?
-    $showdata = "
-      <tr>
+        
+      if ($class=='hidden') {
+        $showdata = "<tr class='hidden'>";
+      } else {
+        $showdata = "<tr>";
+      }   
+      $showdata .= "
         <td valign='top'>
         ".$fieldCol."
         </td>
@@ -108,7 +122,7 @@
         </td>
       </tr>";
 
-      if ($fieldtype=='hidden') {
+      if ($class=='hidden') {
         $hiddenFields .= $showdata;
       } else {
         echo $showdata;
@@ -142,9 +156,10 @@
 <?php
     //show dispreferred fields at the end
     echo $hiddenFields;
-
+    echo "<tr class='hidden'><td colspan=2>"; //otherwise we sometimes see the javascript code displayed in the browser window :/
 	include_once(APPPATH."/javascript/authorselection.js");
 	include_once(APPPATH."/javascript/publications.js");
+	echo "</td></tr>";
 	/*a short note: the following long piece of code creates the author and editor boxes which can be 
 	filled, emptied and reordered. When the main form is committed, these boxes should be processed into 
 	two form fields using the 'getAUthors' and 'getEditors' javascript functions*/
@@ -152,10 +167,6 @@
     <tr>
         <td colspan='2'>
     	<table width='100%'>
-			<!--tr><td colspan='2' align='center'>
-				<span class='islink' onclick=\"javascript:window.open('indexlight.php?page=author&kind=new','author_window',
-					'resizable, scrollbars, width=800, height=480, dependent, left=0, top=0');\">[Add new author]</span>
-			</td></tr-->
 			<tr>
 				<td  width='55%' valign='top'>
 					<table width='100%'>
