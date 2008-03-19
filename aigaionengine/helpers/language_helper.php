@@ -14,7 +14,8 @@
                     'english' => 'english',
                     'nederlands' => 'nederlands',
                     'francais' => 'français',
-                    'deutsch' => 'deutsch'
+                    'deutsch' => 'deutsch',
+                    'polski' => 'polski'
                );
     }
 
