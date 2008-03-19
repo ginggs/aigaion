@@ -13,7 +13,8 @@
         return array( 
                     'english' => 'english',
                     'nederlands' => 'nederlands',
-                    'francais' => 'français'
+                    'francais' => 'français',
+                    'deutsch' => 'deutsch'
                );
     }
 

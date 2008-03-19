@@ -6,12 +6,12 @@ Language file global common strings
 //objects
 $lang['main_attachment']    = 'attachment';
 $lang['main_author']        = 'auteur';
-$lang['main_topic']         = 'topic';
+$lang['main_topic']         = 'onderwerp';
 $lang['main_publication']   = 'publicatie';
 
 $lang['main_attachments']    = 'attachments';
 $lang['main_authors']        = 'auteurs';
-$lang['main_topics']         = 'topics';
+$lang['main_topics']         = 'onderwerpen';
 $lang['main_publications']   = 'publicaties';
 
 //actions
@@ -34,5 +34,4 @@ $lang['main_title']         = 'titel';
 $lang['main_description']   = 'beschrijving';
 
 $lang['main_admin']         = 'site admin';
-
 ?>
