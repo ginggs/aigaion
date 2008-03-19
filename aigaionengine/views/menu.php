@@ -186,8 +186,10 @@ if ($userlogin->hasRights('topic_subscription')) {
 <br/><br/>
 <div style='float:bottom;font-size:90%;'>
 <?php 
-    echo anchor('userlanguage/set/english/'.implode('/',$this->uri->segment_array()),'english').'<br/>';
-    echo anchor('userlanguage/set/nederlands/'.implode('/',$this->uri->segment_array()),'nederlands').'<br/>';
+$this->load->helper('language');
+foreach (getLanguages() as $lang=>$display) {
+    echo anchor('userlanguage/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$display).'<br/>';
+}
 ?>
 </div>
 </div>

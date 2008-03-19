@@ -178,10 +178,10 @@ foreach ($availableThemes as $theme)
   $theme_array[$theme] = $theme;
 }
 $lang_array = array();
-$availableLanguages = array('nederlands','english');
-foreach ($availableLanguages as $lang)
+$this->load->helper('language');
+foreach (getLanguages() as $lang=>$display)
 {
-  $lang_array[$lang] = $lang;
+  $lang_array[$lang] = $display;
 }
 echo "
         
