@@ -917,7 +917,7 @@ class Publication_db {
         $orderby='actualyear DESC, cleantitle';
         break;
       case 'type':
-        $orderby='pub_type ASC, cleanjournal, actualyear, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        $orderby='pub_type ASC, cleanjournal, actualyear DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
         break;
       case 'recent':
         $orderby='pub_id DESC';
