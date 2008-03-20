@@ -156,10 +156,6 @@
 <?php
     //show dispreferred fields at the end
     echo $hiddenFields;
-    echo "<tr class='hidden'><td colspan=2>"; //otherwise we sometimes see the javascript code displayed in the browser window :/
-	include_once(APPPATH."/javascript/authorselection.js");
-	include_once(APPPATH."/javascript/publications.js");
-	echo "</td></tr>";
 	/*a short note: the following long piece of code creates the author and editor boxes which can be 
 	filled, emptied and reordered. When the main form is committed, these boxes should be processed into 
 	two form fields using the 'getAUthors' and 'getEditors' javascript functions*/
