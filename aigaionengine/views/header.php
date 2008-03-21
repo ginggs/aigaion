@@ -30,7 +30,7 @@
       $javascripts = array($javascripts);
     foreach ($javascripts as $jsName):
 ?>
-    <script src="<?php echo APPURL."javascript/".$jsName; ?>" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo APPURL."javascript/".$jsName; ?>"></script>
 <?php
     endforeach;
 ?>
@@ -48,9 +48,11 @@
         <div id='quicksearch'>
           <?php
           echo form_open('search/quicksearch')."\n";
+          echo "<div>\n";
           echo form_hidden('formname','simplesearch');
           echo form_input(array('name' => 'searchstring', 'size' => '25'));
           echo form_submit('submit_search', 'search');
+          echo "</div>\n";
           echo form_close();
           ?>
         </div>  

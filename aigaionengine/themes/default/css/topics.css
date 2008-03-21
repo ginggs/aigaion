@@ -2,23 +2,26 @@ ul.topictree-list {
     list-style-type : none;
     padding: 0;
     margin-left: 1.5em;
-   
 }
-ul.topictree-sublist {
-    list-style-type : none;
-    padding: 0;
-    margin-left: 2em;
-}
+
 li.topictree-node {
-    /*margin-top    : 1em;
-    margin-bottom : 0.2em;
-    font-weight   : bold; */
+    margin-top    : 0em;
+    margin-bottom : 0em;
 }
+
 li.topictree-leaf {
-    /*margin : 0;
-    font-style   : italic;
-    font-weight   : normal;*/
+    margin-bottom: 0em;
 }
+
+/* IE hack 
+problem: empty <li> has a height of 1 em in IE 5 and IE7.
+*/
+li.topictree-children {
+  margin-top: 0em;
+  #margin-top: -1em; /* Works on all IE browsers up to version 7 */
+  _margin-top: 0em;  /* Works on all IE browsers prior to version 7 */
+}
+
 .subscriptionlink {
 }
 

@@ -52,7 +52,7 @@ class Publications extends Controller {
     
     //set header data
     $header ['title']       = $publication->title;
-    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
     $content['publication'] = $publication;
     $content['categorize']  = $categorize=='categorize';
     
@@ -105,7 +105,7 @@ class Publications extends Controller {
     
     //set header data
     $header ['title']       = $publication->title;
-    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+    $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
     $content['publication'] = $publication;
     
     //get output
@@ -143,7 +143,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         $headerdata['sortPrefix']        = 'publications/showlist/';
         
         $userlogin = getUserLogin();
@@ -210,7 +210,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         $headerdata['sortPrefix']        = 'publications/unassigned/';
         
         $userlogin = getUserLogin();
@@ -294,7 +294,7 @@ class Publications extends Controller {
     }
     
     $header ['title']       = $edit_type." publication";
-    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js' , 'publications.js', 'authorselection.js');
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js' , 'publications.js', 'authorselection.js','externallinks.js');
     $content['edit_type']   = $edit_type;
     $content['publication'] = $publication;
     
@@ -387,7 +387,7 @@ class Publications extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Delete publication';
-            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
     

@@ -37,7 +37,7 @@ if ($userlogin->hasRights('publication_edit'))
         if (utf8_strlen($urlname)>21) {
             $urlname = utf8_substr($urlname,0,30)."...";
         }
-        echo "<tr><td>URL:</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' target='_blank'>".$urlname."</a></td></tr>\n";
+        echo "<tr><td>URL:</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' class='open_extern'>".$urlname."</a></td></tr>\n";
       }
 ?>
       </table>

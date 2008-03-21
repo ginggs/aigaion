@@ -27,17 +27,19 @@ Parameters:
     if (sizeof($topic->getChildren())>0) {
         echo "<img id      = 'min_topic_".$topic->topic_id."' 
                    onclick = 'collapse(\"".$topic->topic_id."\",\"".$collapseCallback."\");' 
-                   class   = icon
-                   src     = '".getIconUrl('tree_min.gif')."'/>\n";
+                   class   = 'icon'
+                   src     = '".getIconUrl('tree_min.gif')."'
+                   alt     = 'collapse'/>\n";
         echo "<img id      = 'plus_topic_".$topic->topic_id."' 
                    onclick = 'expand(\"".$topic->topic_id."\",\"".$expandCallback."\");' 
-                   class   = icon
-                   src     = '".getIconUrl('tree_plus.gif')."'/>\n";
-        echo "<script>".$hide1.$hide2."</script>"; 
+                   class   = 'icon'
+                   src     = '".getIconUrl('tree_plus.gif')."'
+                   alt     = 'expand'/>\n";
+        echo "<script type='text/javascript'>".$hide1.$hide2."</script>"; 
     } else {
-        echo "<img  class   = icon
-                    src     = '".getIconUrl('tree_blank.gif')."'/>\n";
+        echo "<img  class   = 'icon'
+                    src     = '".getIconUrl('tree_blank.gif')."'
+                    alt     = 'blank'/>\n";
     }
     echo anchor('topics/single/'.$topic->topic_id,$topic->name)."\n";
-
 ?>

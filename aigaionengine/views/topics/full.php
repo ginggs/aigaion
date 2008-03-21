@@ -64,7 +64,7 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
         if (utf8_strlen($urlname)>21) {
             $urlname = utf8_substr($urlname,0,30)."...";
         }
-        echo "URL: <a  title='".prep_url($topic->url)."' href='".prep_url($topic->url)."' target='_blank'>".$urlname."</a><br/><br/>\n";
+        echo "URL: <a  title='".prep_url($topic->url)."' href='".prep_url($topic->url)."' class='open_extern'>".$urlname."</a><br/><br/>\n";
     }
     if ($description)
         echo "<p>".$description."</p>\n";

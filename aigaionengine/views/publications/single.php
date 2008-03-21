@@ -98,14 +98,14 @@ $user       = $this->user_db->getByID($userlogin->userID());
       ?>:</td>
       <td valign='top'><?php 
         if ($key=='doi') {
-            echo '<a target=_blank href="http://dx.doi.org/'.$publication->$key.'">'.$publication->$key.'</a>'; 
+            echo '<a href="http://dx.doi.org/'.$publication->$key.'" class="open_extern">'.$publication->$key.'</a>'; 
         } else if ($key=='url') {
             $this->load->helper('utf8');
             $urlname = prep_url($publication->url);
             if (utf8_strlen($urlname)>21) {
                 $urlname = utf8_substr($urlname,0,30)."...";
             }
-            echo "<a title='".prep_url($publication->url)."' href='".prep_url($publication->url)."' target='_blank'>".$urlname."</a>\n";
+            echo "<a title='".prep_url($publication->url)."' href='".prep_url($publication->url)."' class='open_extern'>".$urlname."</a>\n";
         } else if ($key == 'month') {
           if ($publication->month != "" && $publication->month > 0 && $publication->month <= 12 ) {
             $months = getMonthsEng();

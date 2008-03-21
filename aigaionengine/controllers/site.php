@@ -56,7 +56,7 @@ class Site extends Controller {
         //get output: always return to configuration page
         $headerdata = array();
         $headerdata['title'] = 'Site configuration';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -161,7 +161,7 @@ class Site extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Site maintenance';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
         

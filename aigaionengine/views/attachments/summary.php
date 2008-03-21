@@ -16,7 +16,7 @@ $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
         
     if ($attachment->isremote) {
-        echo "<a href='".prep_url($attachment->location)."' target='_blank'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachment->location)."' class='open_extern'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -27,7 +27,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         }
         $params = array('title'=>'Download '.$attachment->name);
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
-            $params['target'] = '_blank';
+            $params['class'] = 'open_extern';
         echo anchor('attachments/single/'.$attachment->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
     $name = $attachment->name;

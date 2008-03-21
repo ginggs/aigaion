@@ -251,7 +251,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -262,15 +262,15 @@ if (count($attachments) != 0)
         }
         $params = array('title'=>'Download '.$attachments[0]->name);
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
-            $params['target'] = '_blank';
+            $params['class'] = 'open_extern';
         echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }  
 if (utf8_trim($publication->doi)!='') {
-    echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' target='_blank' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+    echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' class='open_extern' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
 }
 if (utf8_trim($publication->url)!='') {
-    echo "<br/>[<a title='".prep_url($publication->url)."' target='_blank' href='".prep_url($publication->url)."'>URL</a>]";
+    echo "<br/>[<a title='".prep_url($publication->url)."' class='open_extern' href='".prep_url($publication->url)."'>URL</a>]";
 }
 
 echo "

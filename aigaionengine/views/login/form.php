@@ -70,7 +70,7 @@
               );
               echo form_checkbox($data);
               echo '&nbsp;Remember me.';
-              echo '<p align="right">';
+              echo '<p class="alignright">';
               echo form_submit('submitlogin', 'Login');
               echo '</p>';
             ?></td>
@@ -85,7 +85,7 @@
           <tr>
             <td colspan='2'>
               For more information about the Aigaion bibliography system visit
-              <a href="http://aigaion.nl/" target="_blank"> Aigaion.nl</a>.
+              <a href="http://aigaion.nl/" class="external"> Aigaion.nl</a>.
             </td>
           </tr>
         </table>
@@ -192,7 +192,7 @@
   <tr>
   <td colspan=2>
   For more information about the Aigaion bibliography system visit
-  <a href="http://aigaion.nl/" target="_blank"> Aigaion.nl</a>.
+  <a href="http://aigaion.nl/" class='open_extern'> Aigaion.nl</a>.
   </td>
   </tr>
   </TABLE>

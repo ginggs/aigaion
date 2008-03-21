@@ -24,7 +24,7 @@ class Topics extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Browse topic tree';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
         
@@ -70,7 +70,7 @@ class Topics extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Browse topic tree (include all topics)';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
         
@@ -158,7 +158,7 @@ class Topics extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Delete topic';
-            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -193,7 +193,7 @@ class Topics extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Add topic';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output  = $this->load->view('header', $headerdata, true);
         $output .= $this->load->view('topics/edit' , array('parent'=>$parent),  true);
@@ -239,7 +239,7 @@ class Topics extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Edit topic';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -283,7 +283,7 @@ class Topics extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'View topic';
-        $headerdata['javascripts']  = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts']  = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         $headerdata['sortPrefix']        = 'topics/single/'.$topic->topic_id.'/';
         $headerdata['exportCommand']        = 'export/topic/'.$topic->topic_id.'/';
         $headerdata['exportName']    = 'Export topic';
@@ -374,7 +374,7 @@ class Topics extends Controller {
             //get output
             $headerdata = array();
             $headerdata['title'] = 'Topic';
-            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
     

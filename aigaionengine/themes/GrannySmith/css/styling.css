@@ -317,6 +317,9 @@ div.autocomplete ul li {
     cursor          : pointer;
 }
 
+.alignright {
+    text-align: right;
+}
 
 .loginbox {
     padding : 3px;

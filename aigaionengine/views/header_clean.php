@@ -14,7 +14,7 @@
       $javascripts = array($javascripts);
     foreach ($javascripts as $jsName):
 ?>
-    <script src="<?php echo APPURL."javascript/".$jsName; ?>" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo APPURL."javascript/".$jsName; ?>"></script>
 <?php
     endforeach;
 ?>

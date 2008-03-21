@@ -346,7 +346,7 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
             <td colspan='2'>
                 <b>Note:</b> If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server 
             activated. Explaining how to install that is well outside the scope of Aigaion documentation.
-            See the LDAP documentation at <a href='http://www.php.net/' target='_blank'>www.php.net</a> for more information.
+            See the LDAP documentation at <a href='http://www.php.net/' class='open_extern'>www.php.net</a> for more information.
             Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll
             to be available somewhere....
             </td>

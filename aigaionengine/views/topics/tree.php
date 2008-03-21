@@ -43,9 +43,10 @@
         unset($todo[0]);
         if (!is_a($next,'Topic') && ($next=="end")) {
             //if next is an end marker:
-            echo "</div>\n</ul>\n";
+            echo "</ul>\n</div>\n";
             //should we collapse?
             echo $todo[1];
+            echo "</li>\n";
             //remove collapse status from todo list
             unset($todo[1]);
             $todo = array_values($todo); //reindex
@@ -66,17 +67,18 @@
                                           $args,
                                           True);
                 }
+                echo "</li>\n";
             }
             if ((sizeof($children)>0) && (($depth<0) || ($currentdepth<$depth))) {
                 $currentdepth++;
-                echo "<ul class='topictree-list'>\n<div id='topic_children_".$next->topic_id."' class='topictree-children'>\n";
+                echo "<li class='topictree-children'>\n<div id='topic_children_".$next->topic_id."' class='topictree-children'>\n<ul class='topictree-list'>\n";
                 //has children: open node and add all children + end marker in front of todo list; print this node
                 
                 //here we would store the collapse command in the todolist as well: hide this element if we had decided that this node is collapsed 
                 //(calling Element.hide() directly from a piece of javascript)
                 $collapse='';
                 if ($collapseAll||array_key_exists('flagCollapsed',$next->configuration)&&$next->flags['userIsCollapsed']) {
-                    $collapse = "<script>Element.hide('topic_children_".$next->topic_id."')</script>";
+                    $collapse = "<script type='text/javascript'>Element.hide('topic_children_".$next->topic_id."')</script>";
                 }
                 $todo = array_merge($children,array('end',$collapse),array(),$todo); //merge and reindex
             } else {

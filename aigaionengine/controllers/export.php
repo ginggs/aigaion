@@ -32,7 +32,7 @@ class Export extends Controller {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Select export format";
-            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
@@ -107,7 +107,7 @@ class Export extends Controller {
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Select export format";
-            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
@@ -181,7 +181,7 @@ class Export extends Controller {
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Select export format";
-            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
@@ -249,7 +249,7 @@ class Export extends Controller {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Select export format";
-            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
@@ -348,7 +348,7 @@ class Export extends Controller {
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
             $header ['title']       = "Select export format";
-            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+            $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
