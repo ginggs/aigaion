@@ -1,4 +1,3 @@
-<script>
 function submitPublicationForm(formname)
 {
   $('pubform_authors').value=getAuthors();
@@ -74,4 +73,3 @@ function clearEditors()
     //document.publicationform.editorsbox.options[i] = null;
   }
 }
-</script>

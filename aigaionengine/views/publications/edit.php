@@ -1,6 +1,6 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
   $publicationfields  = getPublicationFieldArray($publication->pub_type);
-  $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_edit');
+  $formAttributes = array('ID' => "publication_{$publication->pub_id}_edit", 'onsubmit' => "submitPublicationForm('publication_{$publication->pub_id}_edit');");
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
   

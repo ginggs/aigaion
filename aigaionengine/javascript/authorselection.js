@@ -1,4 +1,3 @@
-<script language="JavaScript">
 <?php
 	$count = 0;
 	echo "var AUTHORIDS = new Array();\n";
@@ -146,5 +145,3 @@ function ShowNewAuthor (ID, CleanName)
 	AUTHORIDS.unshift(ID);
 	AUTHORS[ID] = CleanName;
 }
-
-</script>
