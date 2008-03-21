@@ -20,7 +20,7 @@
 
 $parent = $topic->getParent();
 echo anchor('topics/single/'.$parent->topic_id,$parent->name);
-echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"/><br/>';
+echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'" alt="icon"/><br/>';
 ?>
 <div class='optionbox'>
     <?php 
@@ -36,7 +36,7 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
 <div class='header'>Topic:
 <?php 
     echo $name;
-    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_read_access_level.'.gif')."'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_edit_access_level.'.gif')."'/>";
+    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_read_access_level.'.gif')."' alt='rights icon'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_edit_access_level.'.gif')."' alt='rights_icon'/>";
     if (($userlogin->hasRights('topic_edit')) && $this->accesslevels_lib->canEditObject($topic)) 
     {
     echo anchor('accesslevels/edit/topic/'.$topic->topic_id,$accesslevels,array('title'=>'click to modify access levels'));
@@ -45,9 +45,9 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
 ?>
 </div>
 
-<table width='100%'>
+<table class='fullwidth'>
 <tr>
-    <td  width='100%'>
+    <td class='fullwidth'>
 <?php
 $this->load->vars(array('subviews'  => array('topics/simpletreerow'=>array())));
 echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
@@ -71,38 +71,28 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 ?>
     </td>
     <td>
+      <div class="topicstats">
 <?php 
-//echo '&nbsp;&nbsp;&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"/>';
-echo '<div class="topicstats">';
-	//get number of authors
-    $authorCount = $this->topic_db->getAuthorCountForTopic($topic->topic_id);
-    
-	//get number of maintopics
-    $topicCount = count($topic->getChildren());
 
-	$publicationCount = $this->topic_db->getPublicationCountForTopic($topic->topic_id);
+	//Get statistics for this topic
+  $authorCount          = $this->topic_db->getAuthorCountForTopic($topic->topic_id);
+  $topicCount           = count($topic->getChildren());
+	$publicationCount     = $this->topic_db->getPublicationCountForTopic($topic->topic_id);
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
-	echo "
-<ul>
-<li><nobr>{$publicationCount} Publications ({$publicationReadCount} read)</nobr></li>
-<li><nobr>{$authorCount} Authors </nobr><br/><nobr>[".anchor('authors/fortopic/'.$topic->topic_id,'view authors on this topic')."]</nobr></li>
-<li><nobr>{$topicCount} Subtopics </nobr><br/><nobr>[".anchor('topics/add/'.$topic->topic_id,'create new subtopic')."]</nobr></li>";
-    if ($userlogin->hasRights('bookmarklist')) {
-      echo  '<li><nobr>['
-           .anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')
-           .']</nobr></li><li><nobr>['
-           .anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll').']</nobr></li>';
-    }
-//echo  "<li><nobr>["
-//      .anchor('export/topic/'.$topic->topic_id,'Export')."]</nobr></li>
-echo  "
-</ul>
-";
+	echo "<ul>
+<li class='nobr'>{$publicationCount} Publications ({$publicationReadCount} read)</li>
+<li class='nobr'>{$authorCount} Authors [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
+<li class='nobr'>{$topicCount} Subtopics [".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]</li>\n";
 
-echo '</div>';
+  if ($userlogin->hasRights('bookmarklist')) {
+    echo "<li class='nobr'>[".anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')."]</li>\n";
+    echo "<li class='nobr'>[".anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll')."]</li>\n";
+  }
+  echo "</ul>\n";
 ?>
-    </td>
+      </div>
+   </td>
 </tr>
 </table>
 

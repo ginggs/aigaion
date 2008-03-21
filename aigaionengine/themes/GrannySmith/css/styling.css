@@ -109,7 +109,7 @@ a:hover, a:active {
 /* Headers */
 .header {
   padding         : 0.1em 4em .1em 0.5em;
-  margin          : 0 0 1em 0;
+  margin          : 1em 0 1em 0;
   background      : #ABC41F;
   
   font-weight     : bold;
@@ -118,7 +118,7 @@ a:hover, a:active {
 
 /* optionbox: the edit links in a header, e.g. at a topic page*/
 div.optionbox {
-  margin-top      : 0.1em;
+  margin-top      : 1.1em;
   padding-right   : 0.2em;
   float           : right;
   clear           : right;
@@ -126,7 +126,7 @@ div.optionbox {
   text-align      : right;
 }
 
-/* a simple table style */
+/* a simple table style 
 .tablewithborder td, table {
     border          : 1px solid black;
     border-spacing  : 0px;
@@ -135,6 +135,7 @@ div.optionbox {
     padding         : 1px;
     vertical-align  : top;
 }   
+*/
 /* ==== COLORS AND BASIC DEFINITIONS FOR MAIN LAYOUT ELEMENTS ====*/
 
 /* Main layout box colors */
@@ -260,6 +261,14 @@ tr.hidden {
  visibility       : hidden;
 }
 
+/* ==== TOPIC VIEWS ==== */
+.topicstats {
+    border:1px solid black;
+    padding:0.2em;
+    margin:0.2em;
+    margin-bottom:1em;
+}
+
 /* ==== PUBLICATION VIEWS  ==== */
 
 div.publication_summary {
@@ -275,6 +284,10 @@ div.publication_summary.odd {
   /*border-right    : 1px solid #493E0B;*/
 }
 
+/* small hack since otherwise the publication title header had wrong margin */
+div.publication {
+  border: 1px solid #D0E854;
+}
 
 span.author {
   font-style      : italic;
@@ -321,7 +334,27 @@ div.autocomplete ul li {
     text-align: right;
 }
 
-.loginbox {
+.aligncenter {
+  text-align: center;
+}
+
+.aligntop {
+  vertical-align: top;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.fivepercentwidth {
+  width: 5%;
+}
+
+.nobr {
+  white-space: nowrap;
+ }
+ 
+ .loginbox {
     padding : 3px;
     border  : 1px solid #493E0B;
 }

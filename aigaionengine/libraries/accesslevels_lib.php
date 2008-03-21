@@ -60,24 +60,24 @@ class Accesslevels_lib {
     /** Returns a piece of html showing the derived access levels of the given object */
     function getAccessLevelSummary($object) {
         $result = " ";
-        if ($object->derived_read_access_level!='intern')
-            $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."'/> ";
-        if ($object->derived_edit_access_level!='intern')
-            $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."'/> ";
+        //if ($object->derived_read_access_level!='intern')
+            $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='read level'/> ";
+        //if ($object->derived_edit_access_level!='intern')
+            $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='edit level'/> ";
         return '<span title="effective access levels">'.$result.'</span>';
     }
     
     //new function for migration to toggling access levels
     function getReadAccessLevelIcon(&$object) {
         if ($object->derived_read_access_level!='group')
-          return "<img class='al_icon' name='read access' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."'/> ";
+          return "<img class='al_icon' title='read access' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='read access level' /> ";
         else
           return "";
     }
     
     function getEditAccessLevelIcon(&$object) {
         if ($object->derived_edit_access_level!='group')
-          return "<img class='al_icon' name='edit access' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."'/> ";
+          return "<img class='al_icon' title='edit access' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='edit acces level' /> ";
         else
           return "";
     }

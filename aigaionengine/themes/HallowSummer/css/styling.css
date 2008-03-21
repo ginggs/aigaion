@@ -155,7 +155,7 @@ input:hover, textarea:hover, select:hover {
 
 .header {
   padding         : 0.1em 4em .1em 0.5em;
-  margin          : 0 0 1em 0;
+  margin          : 1em 0 1em 0;
   background      : #9D9582;
   
   font-weight     : bold;
@@ -164,7 +164,7 @@ input:hover, textarea:hover, select:hover {
 }
 
 div.optionbox {
-  margin-top      : 0.1em;
+  margin-top      : 1.1em;
   padding-right   : 0.2em;
   float           : right;
   /*width           : 4em;*/
@@ -172,7 +172,7 @@ div.optionbox {
   text-align      : right;
 }
 
-/* a simple table style */
+/* a simple table style 
 .tablewithborder td, table {
     border          : 1px solid black;
     border-spacing  : 0px;
@@ -181,6 +181,7 @@ div.optionbox {
     padding         : 1px;
     vertical-align  : top;
 }   
+*/
 div.publication_summary {
   padding         : 0.1em 0.1em 1em 0.5em;
   background      : #9D9582;
@@ -190,6 +191,10 @@ div.publication_summary.odd {
   background      : #D4D3AA;
 }
 
+/* small hack since otherwise the publication title header had wrong margin */
+div.publication {
+  border: 1px solid #9D9582;
+}
 
 span.author {
   font-style      : italic;
@@ -236,7 +241,27 @@ div.autocomplete ul li {
     text-align: right;
 }
 
-.loginbox {
+.aligncenter {
+  text-align: center;
+}
+
+.aligntop {
+  vertical-align: top;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.fivepercentwidth {
+  width: 5%;
+}
+
+.nobr {
+  white-space: nowrap;
+ }
+ 
+ .loginbox {
     padding : 3px;
     border  : 1px solid black;
 }

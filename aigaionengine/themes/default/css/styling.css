@@ -32,6 +32,7 @@ div {
     padding     : 0px;
     position    : relative;
 }
+
 td, table, tr, tbody {
     border          : 0px;
     border-spacing  : 0px;
@@ -109,7 +110,7 @@ a:hover, a:active {
 /* Headers */
 .header {
   padding         : 0.1em 4em .1em 0.5em;
-  margin          : 0 0 1em 0;
+  margin          : 1em 0 1em 0;
   background      : #E0E0E0;
   
   font-weight     : bold;
@@ -118,7 +119,7 @@ a:hover, a:active {
 
 /* optionbox: the edit links in a header, e.g. at a topic page*/
 div.optionbox {
-  margin-top      : 0.1em;
+  margin-top      : 1.1em;
   padding-right   : 0.2em;
   float           : right;
   clear           : right;
@@ -289,6 +290,7 @@ tr.hidden {
     border:1px solid black;
     padding:0.2em;
     margin:0.2em;
+    margin-bottom:1em;
 }
 /* ==== PUBLICATION VIEWS  ==== */
 
@@ -310,6 +312,10 @@ div.publication_summary.odd {
   /*border-right    : 1px solid #0F0F10;*/
 }
 
+/* small hack since otherwise the publication title header had wrong margin */
+div.publication {
+  border: 1px solid #EEEEEE;
+}
 
 span.author {
   font-style      : italic;
@@ -357,7 +363,27 @@ div.autocomplete ul li {
     text-align: right;
 }
 
-.loginbox {
+.aligncenter {
+  text-align: center;
+}
+
+.aligntop {
+  vertical-align: top;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.fivepercentwidth {
+  width: 5%;
+}
+
+ .nobr {
+  white-space: nowrap;
+ }
+ 
+ .loginbox {
     padding : 3px;
     border  : 1px solid #000000;
 }

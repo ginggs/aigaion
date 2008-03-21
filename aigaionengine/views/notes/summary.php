@@ -73,7 +73,7 @@ if (    ($userlogin->hasRights('note_edit'))
                        )
                   );
     
-    echo "<span id='note_rights_".$note->note_id."'><span title='note read / edit rights'>".$readrights.$editrights."</span></span>";
+    echo "<span id='note_rights_".$note->note_id."' title='note read / edit rights'>".$readrights.$editrights."</span>";
         
 
 }

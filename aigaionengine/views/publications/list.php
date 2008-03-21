@@ -38,7 +38,7 @@
     {
       if (count($publications) > 0)
       {
-        $multipagelinks.= '<center><div>';
+        $multipagelinks.= '<div class="aligncenter">';
         while ($page*$liststyle<count($publications)) 
         {
           $multipagelinks.= ' | ';
@@ -55,7 +55,7 @@
           }
           $page++;
         }
-        $multipagelinks.= " |</div></center>\n<br/>\n";
+        $multipagelinks.= " |</div>\n<br/>\n";
       }
     }
   }
@@ -91,7 +91,7 @@
         $newsubheader = $publication->actualyear;
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
-          echo '<div><br/></div><div class="header">'.$subheader.'</div><div><br/></div>';
+          echo '<div class="header">'.$subheader.'</div>';
         }
         break;
       case 'title':
@@ -225,13 +225,13 @@ if (!(isset($noNotes) && ($noNotes == true)))
 }
 echo "
     </td>
-    <td width='8%' align='right' valign='top'>
+    <td class='alignright aligntop fivepercentwidth'>
       <span id='bookmark_pub_".$publication->pub_id."'>";
       
 if ($useBookmarkList) {
   if ($publication->isBookmarked) {
     echo '<span title="Click to UnBookmark publication">'
-         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('bookmarked.gif')."'>",
+         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('bookmarked.gif')." ' alt='bookmarked' />",
           array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
                 )
@@ -239,7 +239,7 @@ if ($useBookmarkList) {
   } 
   else {
     echo '<span title="Click to Bookmark publication">'
-         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('nonbookmarked.gif')."'>",
+         .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('nonbookmarked.gif')."' alt='nonbookmarked' />",
           array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
                 )
@@ -251,7 +251,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."' alt='download' /></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -263,7 +263,7 @@ if (count($attachments) != 0)
         $params = array('title'=>'Download '.$attachments[0]->name);
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['class'] = 'open_extern';
-        echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
+        echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."' alt='attachment' />" ,$params)."\n";
     }
 }  
 if (utf8_trim($publication->doi)!='') {

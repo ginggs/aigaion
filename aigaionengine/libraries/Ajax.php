@@ -48,7 +48,7 @@ class JavaScript {
 
 	function link_to_function($name,$function,$html_options=null)
 	{
-		return '<a href="'.((isset($html_options['href']))?$html_options['href']:'#').'" onclick="'.((isset($html_options['onclick']))?$html_options['onclick'].';':'').$function.'; return false;" />'.$name.'</a>';
+		return '<a href="'.((isset($html_options['href']))?$html_options['href']:'#').'" onclick="'.((isset($html_options['onclick']))?$html_options['onclick'].';':'').$function.'; return false;" >'.$name.'</a>';
 	}
 
 	function _array_or_string_for_javascript($option)
