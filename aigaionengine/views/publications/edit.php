@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
   $publicationfields  = getPublicationFieldArray($publication->pub_type);
-  $formAttributes = array('ID' => "publication_{$publication->pub_id}_edit", 'onsubmit' => "submitPublicationForm('publication_{$publication->pub_id}_edit');");
+  $formAttributes = array('id' => "publication_{$publication->pub_id}_edit", 'onsubmit' => "submitPublicationForm('publication_{$publication->pub_id}_edit');");
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
   
@@ -11,18 +11,21 @@
   $isAddForm = $edit_type=='new';
   //open the edit form
   echo form_open('publications/commit', $formAttributes)."\n";
+  echo "<div>\n";
   echo form_hidden('edit_type',   $edit_type)."\n";
   echo form_hidden('pub_id',      $publication->pub_id)."\n";
   echo form_hidden('user_id',     $publication->user_id)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
   echo form_hidden('formname','publication')."\n";
+  //form helper does not support ids, therefore by hand:
   echo "<input type='hidden' name='pubform_authors' id='pubform_authors' value=''/>\n";//into this field, the selectedauthors box will be parsed upon commit
   echo "<input type='hidden' name='pubform_editors' id='pubform_editors' value=''/>\n";//into this field, the selectededitors box will be parsed upon commit
+  echo "</div>\n";
 ?>
   <table class='publication_edit_form' width='100%'>
     <tr>
       <td>Type of publication:</td>
-      <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value='type_change'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?>
+      <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value='type_change'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?></td>
     </tr>
     <tr>
       <td>Title:</td>

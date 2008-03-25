@@ -50,13 +50,14 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
     <td class='fullwidth'>
 <?php
 $this->load->vars(array('subviews'  => array('topics/simpletreerow'=>array())));
+
 echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
             .$this->load->view('topics/tree',
                               array('topics'   => $topic,
                                     'showroot'  => False,
                                     'depth'     => 2
                                     ),  
-                              true)."</ul>\n</div>\n";
+                              true)."<li></li></ul>\n</div>\n";
 
     if ($topic->url != '') {
         $this->load->helper('utf8');

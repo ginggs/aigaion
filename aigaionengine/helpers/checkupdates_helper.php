@@ -6,7 +6,7 @@
 | -------------------------------------------------------------------
 |
 |   Provides information whether the version of Aigaion is up-to-date by checking
-|   version information on http://aigaion.nl
+|   version information on http://www.aigaion.nl
 |   Used by the login module: once every 2 days, when a dbadmin logs in, a check is done whether 
 |   the current version is up-to-date. A very short time-out is used, to make it least intrusive.
 |   If an update is available, a warning is returned and the up-to-date-check is not performed for 
@@ -23,7 +23,7 @@
         $CI = &get_instance();
         $CI->load->helper('readremote');
         //return '<div class="message">no info on updates available</div>';
-        #try with short timeout, to get version info from aigaion.nl
+        #try with short timeout, to get version info from www.aigaion.nl
         $remoterelease = getRemoteFile ('http://demo2.aigaion.nl/index.php/version');
         if ($remoterelease == '') {
             return "<div class='message'>Couldn't connect to demo2.aigaion.nl to check for updates</div>";

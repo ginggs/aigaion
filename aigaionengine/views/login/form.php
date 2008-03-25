@@ -84,8 +84,7 @@
           </tr>
           <tr>
             <td colspan='2'>
-              For more information about the Aigaion bibliography system visit
-              <a href="http://aigaion.nl/" class="external"> Aigaion.nl</a>.
+              For more information about the Aigaion bibliography system visit <a href="http://www.aigaion.nl/" class="external">Aigaion.nl</a>.
             </td>
           </tr>
         </table>
@@ -192,7 +191,7 @@
   <tr>
   <td colspan=2>
   For more information about the Aigaion bibliography system visit
-  <a href="http://aigaion.nl/" class='open_extern'> Aigaion.nl</a>.
+  <a href="http://www.aigaion.nl/" class='open_extern'> www.aigaion.nl</a>.
   </td>
   </tr>
   </TABLE>

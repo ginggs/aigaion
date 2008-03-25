@@ -515,7 +515,7 @@ class UserLogin {
                 <table>\n<tr><td>
                 This site is powered by Aigaion 
                 - A PHP/Web based management system for shared and annotated bibliographies.
-                For more information visit <a href='http://www.aigaion.nl/' class='open_extern'>Aigaion.nl</a>.
+                For more information visit <a href='http://www.aigaion.nl/' class='open_extern'>www.aigaion.nl</a>.
                 </td><td>
                 <a href='http://aigaion.sourceforge.net' class='open_extern'>
                    <img src='http://sourceforge.net/sflogo.php?group_id=109910&type=1' 
