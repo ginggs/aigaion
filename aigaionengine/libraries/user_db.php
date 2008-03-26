@@ -206,7 +206,7 @@ class User_db {
             //add rights
             foreach ($user->assignedrights as $right) {
                 if ($user->isAnonymous) {
-                    if ($right='bookmarklist') {
+                    if ($right=='bookmarklist') {
                         appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
                         continue;
                     }
@@ -311,7 +311,7 @@ class User_db {
             //add rights
             foreach ($user->assignedrights as $right) {
                 if ($user->isAnonymous) {
-                    if ($right='bookmarklist') {
+                    if ($right=='bookmarklist') {
                         appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
                         continue;
                     }
