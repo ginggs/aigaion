@@ -27,13 +27,13 @@ class User {
     #system variables, not to be changed *directly* by user
     //preferences. Directly filled with default values, but that will change in the future
     var $preferences        = array('theme'=>'default',
-                                    'summarystyle'=>'author',
-                                    'authordisplaystyle'=>'fvl',
-                                    'liststyle'=>'0',
+                                    'language'=>'default',
+                                    'summarystyle'=>'default',
+                                    'authordisplaystyle'=>'default',
+                                    'liststyle'=>'default',
                                     'newwindowforatt'=>'FALSE',
-                                    'exportinbrowser'=>'TRUE',
-                                    'utf8bibtex'=>'FALSE',
-                                    'language'=>'english'
+                                    'exportinbrowser'=>'FALSE',
+                                    'utf8bibtex'=>'FALSE'
                                     ); //an array of ($preferencename=>preferencevalue)
     //assigned rights
     var $assignedrights     = array(); //an array of ($assignedright)

@@ -240,13 +240,116 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
         </tr>
 
 -->
+<!-- USER PREFERENCE DEFAULTS -->
+	    <tr>
+	        <td colspan='2'><hr><p class='header2'>Defaults for user preferences:</p></td>
+	    </tr>
+        <tr><td align=left colspan=2><img class='icon' border=0 src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+        Several user preferences can be given a default value here, to be overridden as wished by 
+        users who can change their profile.</td>
+        </tr>
+<?php
+$theme_array = array();
+$availableThemes = getThemes();
+foreach ($availableThemes as $theme)
+{
+  $theme_array[$theme] = $theme;
+}
+$lang_array = array();
+$this->load->helper('language');
+foreach (getLanguages() as $lang=>$display)
+{
+  $lang_array[$lang] = $display;
+}
+echo "
+        <tr>
+        <td>Default theme</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_THEME',
+                        $theme_array,
+                        $siteconfig->getConfigSetting("DEFAULTPREF_THEME"))."
+        </td>
+        </tr>
 
-<!-- default access levels -->
+        <td>Default language</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_LANGUAGE',
+                        $lang_array,
+                        $siteconfig->getConfigSetting("DEFAULTPREF_LANGUAGE"))."
+        </td>
+        </tr>
+
+        <tr>
+        <td>Default publication summary style</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_SUMMARYSTYLE',
+                        array('author'=>'author first','title'=>'title first'),
+                        $siteconfig->getConfigSetting("DEFAULTPREF_SUMMARYSTYLE"))."
+        </td>
+        </tr>
+        <tr>
+        <td>Default author display style</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_AUTHORDISPLAYSTYLE',
+                        array('fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
+                        $siteconfig->getConfigSetting("DEFAULTPREF_AUTHORDISPLAYSTYLE"))."
+        </td>
+        </tr>
+        <tr>
+        <td>Default number of publications per page</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_LISTSTYLE',
+                        array('0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
+                        $siteconfig->getConfigSetting("DEFAULTPREF_LISTSTYLE"))."
+        </td>
+        </tr>
+        ";
+        
+/**        
+//        <tr>
+//        <td>Default: Open attachments in new browser window?</td>
+//        <td>
+//        ".form_checkbox('DEFAULTPREF_NEWWINDOWFORATT','DEFAULTPREF_NEWWINDOWFORATT',$siteconfig->getConfigSetting("DEFAULTPREF_NEWWINDOWFORATT")=="TRUE")."
+//        </td>
+//        </tr>
+//
+//
+//        <tr>
+//        <td>Default: Open export data in browser?</td>
+//        <td>
+//        ".form_checkbox('DEFAULTPREF_EXPORTINBROWSER','DEFAULTPREF_EXPORTINBROWSER',$siteconfig->getConfigSetting("DEFAULTPREF_EXPORTINBROWSER")=="TRUE")."
+//        </td>
+//        </tr>
+//	    <tr>
+//	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+//	        Check this box to force the system to show export data such as BiBTeX or RIS by default directly in a browser window 
+//	        instead of downloading it as a file.
+//	        </td>
+//	    </tr>
+//
+//        <tr>
+//        <td>Default: Export BiBTeX as UTF8?</td>
+//        <td>
+//        ".form_checkbox('DEFAULTPREF_UTF8BIBTEX','DEFAULTPREF_UTF8BIBTEX',$siteconfig->getConfigSetting("DEFAULTPREF_UTF8BIBTEX")=="TRUE")."
+//        </td>
+//        </tr>
+//	    <tr>
+//	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+//	        Check this box if you want all BiBTeX output to be in UTF8 by default, i.e. when you do NOT want
+//	        Aigaion to convert special characters to BiBTeX codes such as {\\'e}
+//	        </td>
+//	    </tr>
+*/
+
+?>
+
+<!-- DEFAULT ACCESS LEVELS -->
         <TR><TD colspan=2>
         <hr><p class=header2>Default access levels:</p>
         </TD></TR>
         <tr><td align=left colspan=2><img border=0 src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-        Specify here the default access levels for different types of objects.</td>
+        Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly 
+        accessible by default</td>
         </tr>
         <tr>
             <td>Type:</td>

@@ -45,6 +45,8 @@ class UserLogin {
     var $sNotice = "";
     /** A list of some preference settings. */
     var $preferences = array();
+    /** the preferences as they are actually used, i.e. taking site defaults into account */
+    var $effectivePreferences = array();
     /** A list of the assigned rights for this user. */
     var $rights = array();
     /** The configured menu for this user. */
@@ -175,6 +177,12 @@ class UserLogin {
                     }
                     //store preference in object
                     $this->preferences[$key]=$val;
+                    //if set to default, look up site default...
+                    if ($val=='default') {
+                        $val = getConfigurationSetting('DEFAULTPREF_'.strtoupper($key));
+                    }
+                    //and finally, store preference in effectivePreferences
+                    $this->effectivePreferences[$key]=$val;
                 }
             }
         }        
@@ -182,8 +190,8 @@ class UserLogin {
     
     /** Return the value of a certain User Preference for the currently logged in user. */
     function getPreference($preferenceName) {
-        if (array_key_exists($preferenceName,$this->preferences)) {
-            return $this->preferences[$preferenceName]; 
+        if (array_key_exists($preferenceName,$this->effectivePreferences)) {
+            return $this->effectivePreferences[$preferenceName]; 
         } else {
             return "";
         }

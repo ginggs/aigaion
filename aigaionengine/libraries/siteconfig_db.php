@@ -86,6 +86,26 @@ class Siteconfig_db {
         } else {
             $result->configSettings['PUBLICATION_XREF_MERGE']       = 'FALSE';
         }
+        $result->configSettings['DEFAULTPREF_THEME']              = $CI->input->post('DEFAULTPREF_THEME');
+        $result->configSettings['DEFAULTPREF_LANGUAGE']           = $CI->input->post('DEFAULTPREF_LANGUAGE');
+        $result->configSettings['DEFAULTPREF_SUMMARYSTYLE']       = $CI->input->post('DEFAULTPREF_SUMMARYSTYLE');
+        $result->configSettings['DEFAULTPREF_AUTHORDISPLAYSTYLE'] = $CI->input->post('DEFAULTPREF_AUTHORDISPLAYSTYLE');
+        $result->configSettings['DEFAULTPREF_LISTSTYLE']          = $CI->input->post('DEFAULTPREF_LISTSTYLE');
+        if ($CI->input->post('DEFAULTPREF_NEWWINDOWFORATT')=='DEFAULTPREF_NEWWINDOWFORATT') {
+            $result->configSettings['DEFAULTPREF_NEWWINDOWFORATT']       = 'TRUE';
+        } else {
+            $result->configSettings['DEFAULTPREF_NEWWINDOWFORATT']       = 'FALSE';
+        }
+        if ($CI->input->post('DEFAULTPREF_EXPORTINBROWSER')=='DEFAULTPREF_EXPORTINBROWSER') {
+            $result->configSettings['DEFAULTPREF_EXPORTINBROWSER']       = 'TRUE';
+        } else {
+            $result->configSettings['DEFAULTPREF_EXPORTINBROWSER']       = 'FALSE';
+        }
+        if ($CI->input->post('DEFAULTPREF_UTF8BIBTEX')=='DEFAULTPREF_UTF8BIBTEX') {
+            $result->configSettings['DEFAULTPREF_UTF8BIBTEX']       = 'TRUE';
+        } else {
+            $result->configSettings['DEFAULTPREF_UTF8BIBTEX']       = 'FALSE';
+        }
         //if ($CI->input->post('CONVERT_LATINCHARS_IN')=='CONVERT_LATINCHARS_IN') {
         //    $result->configSettings['CONVERT_LATINCHARS_IN']='TRUE';
         //} else {
@@ -190,6 +210,8 @@ class Siteconfig_db {
         #reset cached config settings
         $CI = &get_instance();
         $CI->latesession->set('SITECONFIG',null);
+        #reset profile settings (to account for possibly changed preference defaults)
+        $userlogin->initPreferences();
     }
 }
 ?>

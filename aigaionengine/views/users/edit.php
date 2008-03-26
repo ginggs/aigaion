@@ -179,6 +179,7 @@ foreach ($availableThemes as $theme)
 }
 $lang_array = array();
 $this->load->helper('language');
+$lang_array['default'] = 'default ('.getConfigurationSetting('DEFAULTPREF_LANGUAGE').')';
 foreach (getLanguages() as $lang=>$display)
 {
   $lang_array[$lang] = $display;
@@ -210,7 +211,7 @@ echo "
         <td>Publication summary style</td>
         <td>
         ".form_dropdown('summarystyle',
-                        array('author'=>'author first','title'=>'title first'),
+                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_SUMMARYSTYLE').')','author'=>'author first','title'=>'title first'),
                         $user->preferences["summarystyle"])."
         </td>
         </tr>
@@ -218,7 +219,7 @@ echo "
         <td>Author display style</td>
         <td>
         ".form_dropdown('authordisplaystyle',
-                        array('fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
+                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_AUTHORDISPLAYSTYLE').')','fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
                         $user->preferences["authordisplaystyle"])."
         </td>
         </tr>
@@ -226,14 +227,15 @@ echo "
         <td>Number of publications per page</td>
         <td>
         ".form_dropdown('liststyle',
-                        array('0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
+                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_LISTSTYLE').')','0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
                         $user->preferences["liststyle"])."
         </td>
         </tr>
         <tr>
         <td>Open attachments in new browser window</td>
         <td>
-        ".form_checkbox('newwindowforatt','newwindowforatt',$user->preferences['newwindowforatt']=="TRUE")."
+        ". //to do this, we need to rewrite many things, among which: the database should allow for 'default' beside TRUE and FALSE; the getfrompost, add and update in user_db should allow for a dropdown valued 'TRUE', 'FALSE' or 'default', ...
+        form_checkbox('newwindowforatt','newwindowforatt',$user->preferences['newwindowforatt']=="TRUE")."
         </td>
         </tr>
 
