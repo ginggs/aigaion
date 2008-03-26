@@ -22,6 +22,28 @@
 
 
     /** 
+    Note: add default preferences
+    */
+    function updateSchemaV2_4() {
+        $CI = &get_instance();
+        if (checkVersion('V2.4', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_3()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_THEME','value'=>'default'));
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_LANGUAGE','value'=>'english'));
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_SUMMARYSTYLE','value'=>'author'));
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_AUTHORDISPLAYSTYLE','value'=>'fvl'));
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_LISTSTYLE','value'=>'50'));
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.4');
+    }
+
+    /** 
     Note: add language preference
     */
     function updateSchemaV2_3() {
