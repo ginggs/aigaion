@@ -9,7 +9,7 @@ $accessLevelEdit = $this->accesslevels_lib->canEditObject($publication);
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
 
-
+    
 ?>
 <div class='publication'>
   <div class='optionbox'><?php 
@@ -79,6 +79,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
       <td><?php echo $publication->bibtex_id; ?></td>
     </tr>
 <?php 
+    $capitalfields = getCapitalFieldArray();
     foreach ($publicationfields as $key => $class):
       $pages = false;
       if ($key == "pages")
@@ -93,7 +94,11 @@ $user       = $this->user_db->getByID($userlogin->userID());
         if ($key=='namekey') {
             echo 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
         } else { 
-            echo ucfirst($key); 
+            if (in_array($key,$capitalfields)) {
+                echo strtoupper($key); 
+            } else  {
+                echo ucfirst($key); 
+            }
         }
       ?>:</td>
       <td valign='top'><?php 
