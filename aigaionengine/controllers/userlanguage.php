@@ -33,7 +33,7 @@ class Userlanguage extends Controller {
     function set() {
         $language = $this->uri->segment(3); 
         $userlogin = getUserLogin();
-        $userlogin->preferences['language'] = $language;
+        $userlogin->effectivePreferences['language'] = $language;
         $this->latesession->set('USERLOGIN',$userlogin);
 		$segments = $this->uri->segment_array();
 		//remove first three elements

@@ -19,7 +19,6 @@
 		$count++;
 	}
 ?>
-
 function Init ()
 {
 	AuthorSearch ();

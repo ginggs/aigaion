@@ -3,6 +3,10 @@
   $formAttributes = array('id' => "publication_{$publication->pub_id}_edit", 'onsubmit' => "submitPublicationForm('publication_{$publication->pub_id}_edit');");
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
+
+echo "<script language='javascript'>";
+include_once(APPPATH.'javascript/authorselection.js');
+echo "</script>";
   
 ?>
 <div class='publication'>
@@ -259,5 +263,6 @@ if ($edit_type=='edit') {
 }
   echo form_submit('Cancel', 'Cancel');
   echo form_close()."\n";
+
 ?>
 </div>

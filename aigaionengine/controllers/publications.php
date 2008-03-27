@@ -294,7 +294,7 @@ class Publications extends Controller {
     }
     
     $header ['title']       = $edit_type." publication";
-    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js' , 'publications.js', 'authorselection.js','externallinks.js');
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js' , 'publications.js','externallinks.js');
     $content['edit_type']   = $edit_type;
     $content['publication'] = $publication;
     
