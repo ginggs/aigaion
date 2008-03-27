@@ -118,7 +118,7 @@ class Login extends Controller {
             appendErrorMessage('Anonymous accounts are not enabled<br/>');
             redirect('');
         }
-        
+        $segments = $this->uri->segment_array();
         $user_id = $this->uri->segment(3,getConfigurationSetting('ANONYMOUS_USER'));
         $user = $this->user_db->getByID($user_id);
         if (($user==null)||(!$user->isAnonymous)) {
@@ -139,7 +139,10 @@ class Login extends Controller {
         if (($result==1)||($result==2)) {
             appendErrorMessage('Error logging in anonymous account<br/>');
         }
-        redirect('');
+        array_shift($segments);
+        array_shift($segments);
+        array_shift($segments);
+        redirect(implode('/',$segments));
     }
     /** This controller function displays a failure message in a div. no surrounding 
         HTML is included. This can be used for controllers that in themselves do not
