@@ -28,13 +28,14 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
          && $this->accesslevels_lib->canEditObject($topic)      
         ) 
     {
-        echo '['.anchor('topics/edit/'.$topic->topic_id,'edit')."]&nbsp;[".anchor('topics/delete/'.$topic->topic_id,'delete').']'; 
+        echo '['.anchor('topics/edit/'.$topic->topic_id,$this->lang->line('main_edit'))."]&nbsp;[".anchor('topics/delete/'.$topic->topic_id,$this->lang->line('main_delete')).']'; 
     }
     echo "\n";
     ?>
 </div>
-<div class='header'>Topic:
+<div class='header'>
 <?php 
+    echo $this->lang->line('main_topic').": ";
     echo $name;
     $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_read_access_level.'.gif')."' alt='rights icon'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_edit_access_level.'.gif')."' alt='rights_icon'/>";
     if (($userlogin->hasRights('topic_edit')) && $this->accesslevels_lib->canEditObject($topic)) 
@@ -82,8 +83,8 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
 	echo "<ul>
-<li class='nobr'>{$publicationCount} Publications ({$publicationReadCount} read)</li>
-<li class='nobr'>{$authorCount} Authors [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
+<li class='nobr'>{$publicationCount} {$this->lang->line('main_publications')} ({$publicationReadCount} read)</li>
+<li class='nobr'>{$authorCount} {$this->lang->line('main_authors')} [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
 <li class='nobr'>{$topicCount} Subtopics [".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]</li>\n";
 
   if ($userlogin->hasRights('bookmarklist')) {

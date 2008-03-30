@@ -3,6 +3,7 @@
 Language file global common strings
 */
 
+
 //objects
 $lang['main_attachment']    = 'Anlage';
 $lang['main_author']        = 'Autor';
