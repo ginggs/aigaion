@@ -27,6 +27,10 @@ $lang['main_confirm']       = 'potwierdz';
 $lang['main_view']          = 'zobacz';
 $lang['main_browse']        = 'przegladnij';
 $lang['main_search']        = 'wyszukaj';
+$lang['main_bookmark']      = 'bookmark';
+$lang['main_bookmarkall']   = 'bookmark all';
+$lang['main_unbookmark']    = 'unbookmark';
+$lang['main_unbookmarkall'] = 'unbookmark all';
 
 //properties: some globally used properties
 $lang['main_name']          = 'nazwa';

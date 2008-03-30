@@ -3,6 +3,7 @@
 Language file global common strings
 */
 
+
 //objects
 $lang['main_attachment']    = 'attachment';
 $lang['main_author']        = 'auteur';
@@ -27,6 +28,10 @@ $lang['main_confirm']       = 'bevestigen';
 $lang['main_view']          = 'bekijk';
 $lang['main_browse']        = 'browse';
 $lang['main_search']        = 'zoek';
+$lang['main_bookmark']      = 'bookmark';
+$lang['main_bookmarkall']   = 'bookmark all';
+$lang['main_unbookmark']    = 'unbookmark';
+$lang['main_unbookmarkall'] = 'unbookmark all';
 
 //properties: some globally used properties
 $lang['main_name']          = 'naam';
