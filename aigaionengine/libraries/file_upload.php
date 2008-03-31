@@ -134,9 +134,9 @@ class File_upload {
 			if ($this->check_dir()) {
 				if (move_uploaded_file($tmp_file, $newfile)) {
 					if ($this->replace == "y") {
-						system("chmod 0777 $newfile");
+						chmod($newfile, 0777);
 					} else {
-						system("chmod 0755 $newfile");
+						chmod($newfile, 0755);
 					}
 					return true;
 				} else {
