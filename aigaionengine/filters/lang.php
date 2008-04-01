@@ -10,7 +10,8 @@
 class Lang_filter extends Filter {
     function before() {
         $CI = &get_instance();
-        $CI->lang->load('main',getUserLogin()->getPreference('language'));
+        $userlogin = getUserLogin();
+        $CI->lang->load('main',$userlogin->getPreference('language'));
     }
     
 }
