@@ -83,8 +83,8 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
 	echo "<ul>
-<li class='nobr'>{$publicationCount} {$this->lang->line('main_publications')} ({$publicationReadCount} read)</li>
-<li class='nobr'>{$authorCount} {$this->lang->line('main_authors')} [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
+<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>
+<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
 <li class='nobr'>{$topicCount} Subtopics [".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]</li>\n";
 
   if ($userlogin->hasRights('bookmarklist')) {
