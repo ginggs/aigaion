@@ -234,7 +234,7 @@ class Site extends Controller {
         
         // Load the download helper and send the file to your desktop
         $this->load->helper('download');
-        force_download(AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $backup);
+        force_download(AIGAION_DB_PREFIX.AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $backup);
         
     }
 
