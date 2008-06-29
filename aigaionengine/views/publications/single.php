@@ -9,15 +9,16 @@ $accessLevelEdit = $this->accesslevels_lib->canEditObject($publication);
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
 
-    
+
 ?>
 <div class='publication'>
-  <div class='optionbox'><?php 
-    if (    ($userlogin->hasRights('publication_edit'))
-         && ($accessLevelEdit)
-        )
-        echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
-        echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
+  <div class='optionbox'><?php
+	if (    ($userlogin->hasRights('publication_edit'))
+		&& ($accessLevelEdit)
+        ) {
+		echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
+		echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
+	}
 
         if ($userlogin->hasRights('bookmarklist')) {
           echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
@@ -27,7 +28,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                         'update'  => 'bookmark_pub_'.$publication->pub_id
                         )
                   ).']';
-          } 
+          }
           else {
             echo '['.$this->ajax->link_to_remote("Bookmark",
                   array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
@@ -35,7 +36,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                         )
                   ).']';
           }
-          echo "</span>";        
+          echo "</span>";
         }
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/bibtex','BiBTeX',array('target'=>'aigaion_export')).']';
@@ -52,7 +53,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
 //TEST OF NEW READ/EDIT RIGHTS INTERFACE
     $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($publication);
     $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($publication);
-    
+
     $readrights = $this->ajax->link_to_remote($read_icon,
                   array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/read'),
                         'update'  => 'publication_rights_'.$publication->pub_id
@@ -63,11 +64,11 @@ $user       = $this->user_db->getByID($userlogin->userID());
                         'update'  => 'publication_rights_'.$publication->pub_id
                        )
                   );
-    
+
     echo "<span id='publication_rights_".$publication->pub_id."'><span title='publication read / edit rights'>".$readrights.$editrights."</span></span>";
-        
-*/    
-?>    
+
+*/
+?>
   </div>
   <table class='publication_details' width='100%'>
     <tr>
@@ -78,7 +79,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
       <td>Citation:</td>
       <td><?php echo $publication->bibtex_id; ?></td>
     </tr>
-<?php 
+<?php
     $capitalfields = getCapitalFieldArray();
     foreach ($publicationfields as $key => $class):
       $pages = false;
@@ -86,24 +87,24 @@ $user       = $this->user_db->getByID($userlogin->userID());
       {
         if ($publication->firstpage || $publication->lastpage)
           $pages = true;
-      }   
+      }
       if ($publication->$key || $pages):
 ?>
     <tr>
       <td valign='top'><?php
         if ($key=='namekey') {
             echo 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
-        } else { 
+        } else {
             if (in_array($key,$capitalfields)) {
-                echo strtoupper($key); 
+                echo strtoupper($key);
             } else  {
-                echo ucfirst($key); 
+                echo ucfirst($key);
             }
         }
       ?>:</td>
-      <td valign='top'><?php 
+      <td valign='top'><?php
         if ($key=='doi') {
-            echo '<a href="http://dx.doi.org/'.$publication->$key.'" class="open_extern">'.$publication->$key.'</a>'; 
+            echo '<a href="http://dx.doi.org/'.$publication->$key.'" class="open_extern">'.$publication->$key.'</a>';
         } else if ($key=='url') {
             $this->load->helper('utf8');
             $urlname = prep_url($publication->url);
@@ -133,11 +134,11 @@ $user       = $this->user_db->getByID($userlogin->userID());
                 $summaryfields = getPublicationSummaryFieldArray($xref_pub->pub_type);
                 echo "<div class='message'>
                       <span class='title'>".anchor('publications/show/'.$xref_pub->pub_id, $xref_pub->title, array('title' => 'View publication details'))."</span>";
-                
+
                 //authors of crossref
                 $num_authors    = count($xref_pub->authors);
                 $current_author = 1;
-                
+
                 foreach ($xref_pub->authors as $author)
                 {
                   if (($current_author == $num_authors) & ($num_authors > 1)) {
@@ -146,15 +147,15 @@ $user       = $this->user_db->getByID($userlogin->userID());
                   else {
                     echo ", ";
                   }
-                
+
                   echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName('vlf'), array('title' => 'All information on '.$author->cleanname))."</span>";
                   $current_author++;
                 }
-                
+
                 //editors of crossref
                 $num_editors    = count($xref_pub->editors);
                 $current_editor= 1;
-                
+
                 foreach ($xref_pub->editors as $editor)
                 {
                   if (($current_editor == $num_editors) & ($num_editors > 1)) {
@@ -163,7 +164,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                   else {
                     echo ", ";
                   }
-                
+
                   echo  "<span class='author'>".anchor('authors/show/'.$editor->author_id, $editor->getName('vlf'), array('title' => 'All information on '.$editor->cleanname))."</span>";
                   $current_editor++;
                 }
@@ -171,7 +172,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                     echo ' (eds)';
                 } elseif ($num_editors>0) {
                     echo ' (ed)';
-                }     
+                }
                 foreach ($summaryfields as $key => $prefix) {
                   $val = trim($xref_pub->$key);
                   $postfix='';
@@ -189,7 +190,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
             }
         }
         else {
-            echo $publication->$key; 
+            echo $publication->$key;
         }
       ?></td>
     </tr>
@@ -206,7 +207,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         $keyword_string .= anchor('keywords/single/'.$keyword->keyword_id, $keyword->keyword).", ";
       }
       $keyword_string = substr($keyword_string, 0, -2);
-?>      
+?>
     <tr>
       <td valign='top'>Keywords:</td>
       <td valign='top'><?php echo $keyword_string ?></td>
@@ -228,7 +229,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         </span>
       </td>
     </tr>
-<?php 
+<?php
     endif;
     if (count($publication->editors) > 0):
 ?>
@@ -244,7 +245,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         </span>
       </td>
     </tr>
-<?php 
+<?php
     endif;
 
     $crossrefpubs = $this->publication_db->getXRefPublicationsForPublication($publication->bibtex_id);
@@ -275,7 +276,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
 ?>
       </td>
     </tr>
-    
+
     <tr>
       <td valign='top'>Total mark:</td>
       <td valign='top'>
@@ -303,7 +304,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
           echo '1';
           for ($i = 1; $i < 6; $i++)
           {
-            echo form_radio('mark',$i,$i==$mark); 
+            echo form_radio('mark',$i,$i==$mark);
           }
           echo '5&nbsp;';
           if ($mark==-1) {//not read
@@ -323,7 +324,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
-<?php 
+<?php
     if (    ($userlogin->hasRights('attachment_edit'))
          && ($accessLevelEdit)
         )
@@ -351,7 +352,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
     <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
-<?php 
+<?php
     if (    ($userlogin->hasRights('note_edit'))
          && ($accessLevelEdit)
         )
@@ -379,17 +380,17 @@ $user       = $this->user_db->getByID($userlogin->userID());
     <tr>
       <td colspan='2' valign='top'>
         <div class='optionbox'>
-<?php 
-    
+<?php
+
     if (    ($userlogin->hasRights('publication_edit'))
          && ($accessLevelEdit)
-        ) 
+        )
     {
         if ($categorize == True) {
             echo '['.anchor('publications/show/'.$publication->pub_id,'finish categorization').']';
         } else {
             echo '['.anchor('publications/show/'.$publication->pub_id.'/categorize','categorize publication').']';
-        } 
+        }
     }
 ?>
         </div>
@@ -398,13 +399,13 @@ $user       = $this->user_db->getByID($userlogin->userID());
     </tr>
     <tr>
       <td colspan='2' valign='top'>
-<?php     
+<?php
         if (    ($userlogin->hasRights('publication_edit'))
              && ($accessLevelEdit)
              && ($categorize == True)
-            ) 
+            )
         {
-        
+
             echo "<div class='message'>Click on a topic name to change its subscription status.</div>";
             $user = $this->user_db->getByID($userlogin->userId());
             $config = array('onlyIfUserSubscribed'=>True,
@@ -431,7 +432,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                                             'showroot'  => True,
                                             'collapseAll'  => $categorize,
                                             'depth'     => -1
-                                            ),  
+                                            ),
                                       true)."</ul>\n</div>\n";
 ?>
       </td>
