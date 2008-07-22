@@ -196,7 +196,7 @@ require_once(APPPATH."include/utf8/trim.php");
         if ($publication->year!='0000')
             $result .= getRISExportLine('Y1',$publication->year);
         $result .= getRISExportLine('VL',$publication->volume);
-        $result .= getRISExportLine('M1',$publication->report_type);
+        $result .= getRISExportLine('M1',$publication->type);
         $result .= getRISExportLine('IS',$publication->number);
     	if ($publication->firstpage != "0")
     		$result .= getRISExportLine("SP", $publication->firstpage);
