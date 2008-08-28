@@ -64,7 +64,8 @@ if ($isAddForm) {
                    'value'=>$user->login,
                    'AUTOCOMPLETE'=>'off'));
 } else {
-    echo form_input(array('name'=>'login',
+    echo form_hidden('login',$user->login);
+    echo form_input(array('name'=>'login_disabled',
                    'size'=>'10',
                    'value'=>$user->login,
                    'disabled' => 'disabled',
