@@ -55,14 +55,30 @@ echo "
         
         <tr>
         <td>Login </td>
-        <td>"
-        .form_input(array('name'=>'login',
-                          'size'=>'10',
-                          'value'=>$user->login,
-                          'class'=>'required',
-                          'AUTOCOMPLETE'=>'off'))."
-        </td>
+        <td>";
+
+// DR 2008.08.29: no-one can change login names anymore in edit forms......
+if ($isAddForm) {
+    echo form_input(array('name'=>'login',
+                   'size'=>'10',
+                   'value'=>$user->login,
+                   'AUTOCOMPLETE'=>'off'));
+} else {
+    echo form_input(array('name'=>'login',
+                   'size'=>'10',
+                   'value'=>$user->login,
+                   'disabled' => 'disabled',
+                   'AUTOCOMPLETE'=>'off'));
+}
+        
+        
+echo "  </td>
         </tr>
+        <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Note: Login names, once assigned, cannot be changed.
+	        </td>
+	    </tr>      
         <tr>
         <td>Password (leave blank for no change)</td>
         <td>"

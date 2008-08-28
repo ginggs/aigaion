@@ -253,6 +253,11 @@ class User_db {
         if ($user_test == null) {
             return False;
         }
+        // DR 2008.08.29: no-one can change login names anymore in edit forms......        
+        if ($user_test->login != $user->login) {
+            appendErrorMessage("Login names cannot be changed. Login name has been reset to old value. Other changes have been saved.");
+            $user->login = $user_test->login;
+        }
         //determine value for type field
         $type = 'normal';
         if ($user->isAnonymous) {
