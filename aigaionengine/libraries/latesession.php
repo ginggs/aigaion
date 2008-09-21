@@ -33,6 +33,7 @@ class LateSession {
     /** Init the session. This is postponed till the first get
         or set is called, to make sure that as many as possible 
         libraries and classes have been loaded. 
+        This is for the following reason:
         If you have saved an object in session, you must define 
         the class of the object before the session_start().
         If you don't do that, php will not know the class of the 
