@@ -2,6 +2,7 @@
 
 /** Login management from LDAP. */
 class Login_ldap {
+    appendErrorMessage("Loaded deprecated login_ldap module. LDAP login now uses delegated password checking!");
     /** Returns an associative array containing the login name of the user and all groups that this user 
     belongs to... (the same names that are stored in aigaion in the abbreviation). Expects user and password
     to be stored in the POST */
