@@ -25,6 +25,15 @@ class Siteconfig_db {
             }
             $result->configSettings[$R->setting]=$value;
         }
+        if (   ($result->configSettings['USE_EXTERNAL_LOGIN'] == 'TRUE')
+            &&
+               ($result->configSettings['EXTERNAL_LOGIN_MODULE'] == 'Httpauth')
+            )
+            {
+            $result->configSettings['LOGIN_HTTPAUTH_ENABLE'] = 'TRUE';
+                
+        }
+
         return $result;
     }
     
@@ -110,10 +119,20 @@ class Siteconfig_db {
         
         //DISABLED DISABLED DISABLED 
         //please see comments in userlogin class, external login function
+        if ($CI->input->post('LOGIN_HTTPAUTH_ENABLE')=='LOGIN_HTTPAUTH_ENABLE') {
+            $result->configSettings['LOGIN_HTTPAUTH_ENABLE']           = 'TRUE';
+            $result->configSettings['USE_EXTERNAL_LOGIN']              = 'TRUE';
+            $result->configSettings['EXTERNAL_LOGIN_MODULE']           = 'Httpauth';
+        } else {
+            $result->configSettings['LOGIN_HTTPAUTH_ENABLE']           = 'FALSE';
+            $result->configSettings['USE_EXTERNAL_LOGIN']              = 'FALSE';
+            $result->configSettings['EXTERNAL_LOGIN_MODULE']           = 'Aigaion';
+        }
+        $result->configSettings['LOGIN_HTTPAUTH_GROUP']					= $CI->input->post('LOGIN_HTTPAUTH_GROUP');
 //        if ($result->configSettings['EXTERNAL_LOGIN_MODULE']=='Aigaion') {
 //            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'FALSE';
 //        } else {
-//            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'TRUE';
+//            
 //        }
         $result->configSettings['LDAP_SERVER']                     = $CI->input->post('LDAP_SERVER');
         $result->configSettings['LDAP_BASE_DN']                    = $CI->input->post('LDAP_BASE_DN');

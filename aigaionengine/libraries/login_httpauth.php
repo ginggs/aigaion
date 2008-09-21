@@ -6,16 +6,23 @@ class Login_httpauth {
     /** Returns an associative array containing the login name of the user and all groups that this user 
     belongs to... (the same names that are stored in aigaion in the abbreviation) */
     function getLoginInfo() {
+		$CI = &get_instance();
+		$siteconfig = $CI->siteconfig_db->getSiteConfig();
+		$group = $siteconfig->getConfigSetting('LOGIN_HTTPAUTH_GROUP');
+		$groups = array();
+		if ($group)
+			$groups[] = $group;
+
         //return the proper name
         if(isset($_SERVER['PHP_AUTH_USER'])) {
             // Basic authentication information can be retrieved from these server variables
-            return array('login'=>$_SERVER['PHP_AUTH_USER'],'groups'=>array());
+            return array('login'=>$_SERVER['PHP_AUTH_USER'],'groups'=>$groups);
         }
         //requires PHP > 4.1.0
         if(isset($_SERVER['PHP_AUTH_DIGEST'])) {
             //Digest authentification
             $data = $this->http_digest_parse($_SERVER['PHP_AUTH_DIGEST']);
-            return array('login'=>$data['username'], 'groups'=>array());
+            return array('login'=>$data['username'], 'groups'=>$groups);
         }
         
         //fail

@@ -208,6 +208,45 @@ echo $this->validation->error_string;
             <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        The domain for logging in to the LDAP server (like: dev.aigaion.nl).</td>
 	    </tr>
+
+        <tr>
+            <td colspan='2'><p class='header2'>Login settings (HTTP Authentication):</p>'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
+	        the name of the logged user, instead of a login form.
+	        <br/><br/><b>Note:</b> If you select this, be sure to have that 
+	        you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also 
+	        not turn the httpauth login module off without directly accessing the Aigaion database :)</td>
+        </tr>
+        
+        <tr>
+	        <td><label>Use HTTPAUTH login modules:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('LOGIN_HTTPAUTH_ENABLE','LOGIN_HTTPAUTH_ENABLE',$siteconfig->getConfigSetting("LOGIN_HTTPAUTH_ENABLE")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box to enable anonymous (guest) access.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+
+        <tr>
+	        <td><label>Add autocreated users to group:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_input(array('name'=>'LOGIN_HTTPAUTH_GROUP','id'=>'LOGIN_HTTPAUTH_GROUP','value'=>$siteconfig->getConfigSetting("LOGIN_HTTPAUTH_GROUP")));
+?>
+            </td>
+        </tr>
+
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+			If "Create missing users" is enabled, new users will automatically be added to this group. Use the group name!
+	        </td>
+	    </tr>
 	    
 <!-- ATTACHMENT SETTINGS -->
         <tr>

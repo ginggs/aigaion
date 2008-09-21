@@ -217,25 +217,24 @@ class UserLogin {
         $this->iUserId = "";                
         $CI->latesession->set('USERLOGIN', $this);
         
-        //[DR 2008.09.3] these external logins have been disabled for now. They gave too much trouble. Only the LDAP is remaining for now, but as password-checking delegate instead of mode-3 login
-//            //Maybe we can login from external module?
-//            if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
-//                //this part will change in a major way when mode 3 login is implemented
-//                $result = $this->loginFromExternalSystem();
-//                if ($this->bIsLoggedIn) {
-//                    return;
-//                }
-//                if ($result == 1) {
-//                    //report error and return
-//                    $this->sNotice = "Unknown user or wrong password from external login module";
-//                    //return; don't return, but rather attempt to do the anonymous login later on
-//                }
-//                if ($result == 2) {
-//                    //report error and return
-//                    $this->sNotice = "No login info available...";
-//                    //return; don't return, but rather attempt to do the anonymous login later on
-//                }
-//            }
+            //Maybe we can login from external module?
+            if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
+                //this part will change in a major way when mode 3 login is implemented
+                $result = $this->loginFromExternalSystem();
+                if ($this->bIsLoggedIn) {
+                    return;
+                }
+                if ($result == 1) {
+                    //report error and return
+                    $this->sNotice = "Unknown user or wrong password from external login module";
+                    //return; don't return, but rather attempt to do the anonymous login later on
+                }
+                if ($result == 2) {
+                    //report error and return
+                    $this->sNotice = "No login info available...";
+                    //return; don't return, but rather attempt to do the anonymous login later on
+                }
+            }
         $result = 0;
         //try to find login info from post vars (form) or from cookies
         $loginInfoAvailable = false;
@@ -250,7 +249,12 @@ class UserLogin {
             $loginPwd = $_POST['loginPass'];
             $remember=False;
             if (isset($_POST['remember']))$remember=True;
+            
             $loginInfoAvailable = true;
+            if ($loginPwd=='') {
+                $this->sNotice='No Password Submitted';
+                $loginInfoAvailable = false;
+            }
         } else {
             //if none found, try to determine uname/pwd from COOKIE
             if ($this->bJustLoggedOut) { //not if we just logged out, because cookie needs to be completely destroyed
@@ -311,15 +315,14 @@ class UserLogin {
         return;
     }
 
-    /** THIS FUNCTION IS BEING REPLACED! ASK DENNIS!
+    /** THIS FUNCTION IS BEING REPLACED! ASK DENNIS FOR MORE INFO!
      *  Attempts to login as user specified by some external module (e.g. provided by a CMS)
      *  returns one of following:
      *      0 - success
      *      1 - unknown user or wrong password
      *      2 - no relevant login info available */
     function loginFromExternalSystem() {
-        if(True)return 2;
-        //DISABLED DISABLED DISABLED DISABLED DISABLED 
+        
         if (getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') {
             return 2;
         }
