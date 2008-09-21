@@ -67,7 +67,10 @@ $config['base_url']	= AIGAION_ROOT_URL;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = "index.php";
+if (defined('CLEAN_URLS') && CLEAN_URLS)
+	$config['index_page'] = "";
+else
+	$config['index_page'] = "index.php";
 
 /*
 |--------------------------------------------------------------------------

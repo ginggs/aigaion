@@ -33,6 +33,14 @@ define('AIGAION_DB_NAME', 'aigaion');
 #By default this is http://localhost/aigaion2root/aigaionengine/
 define('APPURL','http://localhost/aigaion2root/aigaionengine/');
 
+# Enable/disable clean URLs. 
+# If set to true, you can use URLS like http://<server>/aigaion2root/topics instead of http://<server>/aigaion2root/index.php/topics
+#
+#This requires the webserver to rewrite URLs to /index.php
+#see sample.htaccess for what you need to put in the .htaccess file to achieve these rewrite rules
+# addition by Michael Gorven
+define('CLEAN_URLS', FALSE);
+
 /*
 |---------------------------------------------------------------
 | PHP ERROR REPORTING LEVEL
