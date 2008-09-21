@@ -44,5 +44,5 @@ Parameters:
    	$publicationCount     = $this->topic_db->getPublicationCountForTopic($topic->topic_id);
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
-    echo anchor('topics/single/'.$topic->topic_id,$topic->name)." <span title='read: ".$publicationReadCount.' of '.$publicationCount."'><i>(".$publicationReadCount.'/'.$publicationCount.")</i></span>\n";
+    echo anchor('topics/single/'.$topic->topic_id,$topic->name)." <span title='read: ".$publicationReadCount.' of '.$publicationCount."'><i> ".$publicationReadCount.'/'.$publicationCount."</i></span>\n";
 ?>
