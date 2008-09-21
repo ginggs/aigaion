@@ -22,6 +22,59 @@
 
 
     /** 
+    
+    */
+    function updateSchemaV2_5() {
+        $CI = &get_instance();
+        if (checkVersion('V2.5', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_4()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        //authordisplaystyle gets extra option 'default' 
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  CHANGE `authordisplaystyle` `authordisplaystyle`  varchar(255) NOT NULL default 'vlf'");
+                                  //note: can it be that MODIFY COLUMN needs to be CHANGE for some MYSQL versions? :(
+
+        //account types is extended with 'external'
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  CHANGE `type` `type` enum('group','anon','normal','external') NOT NULL default 'normal'");
+                                  //note: can it be that MODIFY COLUMN needs to be CHANGE for some MYSQL versions? :(
+
+        //password_invalidated (TRUE|FALSE) column for user table
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  ADD `password_invalidated` enum('TRUE','FALSE') 
+                                  NOT NULL 
+                                  default 'FALSE' 
+                                  AFTER `theme`");
+       
+        
+        //all anonymous accounts are 'password_invalidated'
+        $CI->db->update('users', array('password_invalidated'=>'TRUE'),array('type'=>'anon'));
+        
+        //change names of some config settings. Set setting name to X where setting name was Y
+        //$CI->db->update('config', array('setting'=>'X'),array('setting'=>'Y'));
+        $CI->db->update('config', array('setting'=>'LOGIN_ENABLE_ANON'),array('setting'=>'ENABLE_ANON_ACCESS'));
+        $CI->db->update('config', array('setting'=>'LOGIN_DEFAULT_ANON'),array('setting'=>'ANONYMOUS_USER'));
+        $CI->db->update('config', array('setting'=>'LOGIN_CREATE_MISSING_USER'),array('setting'=>'CREATE_MISSING_USERS'));
+
+        //new config settings introduced 
+        $CI->db->insert('config',array('setting'=>'LOGIN_ENABLE_DELEGATED_LOGIN','value'=>'FALSE'));
+        $CI->db->insert('config',array('setting'=>'LOGIN_DELEGATES','value'=>''));
+        $CI->db->insert('config',array('setting'=>'LOGIN_DISABLE_INTERNAL_LOGIN','value'=>'FALSE'));
+        $CI->db->insert('config',array('setting'=>'LOGIN_MANAGE_GROUPS_THROUGH_EXTERNAL_MODULE','value'=>'FALSE'));
+
+        
+        
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.5');
+    }
+
+
+    /** 
     Note: add default preferences
     */
     function updateSchemaV2_4() {

@@ -44,7 +44,9 @@ class User_db {
         $user->abbreviation       = $R->abbreviation;
         $user->login              = $R->login;
         $user->password           = $R->password;
-        $user->isAnonymous        = $R->type=='anon';
+        $user->type               = $R->type;
+        if (isset($R->password_invalidated)) //doesn't exist in earlier versions before 2.0.xx 
+            $user->password_invalidated = $R->password_invalidated;
         //preferences: all other columns are preferences
         $user->preferences        = array();
         foreach ($R as $key => $value)
@@ -95,7 +97,9 @@ class User_db {
         } else {
             $user->password       = md5($CI->input->post('password'));
         }
-        $user->isAnonymous        = $CI->input->post('isAnonymous')=='isAnonymous';
+        $user->type        = $CI->input->post('type');
+        $user->password_invalidated    = $CI->input->post('password_invalidated');
+        $user->toBeDisabled     = $CI->input->post('disableaccount')=='disableaccount';
 
         $user->preferences['theme']              = $CI->input->post('theme');
         $user->preferences['summarystyle']       = $CI->input->post('summarystyle');
@@ -153,7 +157,16 @@ class User_db {
         }
         return $result;
     }
-
+    /** Return all external Users from the database. */
+    function getAllExternalUsers() {
+        $CI = &get_instance();
+        $result = array();
+        $Q = $CI->db->getwhere('users',array('type'=>'external'));
+        foreach ($Q->result() as $R) {
+            $result[] = $this->getFromRow($R);
+        }
+        return $result;
+    }
 
     /** Add a new user with the given data. Returns the new user_id, or -1 on failure. */
     function add($user) {
@@ -163,10 +176,9 @@ class User_db {
         if (!$userlogin->hasRights('user_edit_all')) {
             return -1;
         }
-        //add new user
-        $type = 'normal';
-        if ($user->isAnonymous) {
-            $type = 'anon';
+        //anon and external accounts have disabled password (always)
+        if (($user->type=='anon') || ($user->type=='external')) {
+            $user->password_invalidated = 'TRUE';
         }
         $newwindowforatt ='FALSE';
         if ($user->preferences['newwindowforatt']) {
@@ -190,7 +202,8 @@ class User_db {
                                                'abbreviation'       => $user->abbreviation,
                                                'login'              => $user->login,
                                                'password'           => $user->password,
-                                               'type'               => $type,
+                                               'password_invalidated' => $user->password_invalidated,
+                                               'type'               => $user->type,
                                                'theme'              => $user->preferences['theme'],
                                                'language'           => $user->preferences['language'],
                                                'summarystyle'       => $user->preferences['summarystyle'],
@@ -205,7 +218,7 @@ class User_db {
         if ($userlogin->hasRights('user_assign_rights')) {
             //add rights
             foreach ($user->assignedrights as $right) {
-                if ($user->isAnonymous) {
+                if ($user->type=='anon') {
                     if ($right=='bookmarklist') {
                         appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
                         continue;
@@ -240,6 +253,7 @@ class User_db {
     whether the operation was successfull. */
     function update($user) {
         $CI = &get_instance();
+        appendErrorMessage("change");
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('user_edit_all')
@@ -248,6 +262,7 @@ class User_db {
             ) {
                 return False;
         }
+        appendErrorMessage("change3");
         //check whether this is the correct user...
         $user_test = $CI->user_db->getByID($user->user_id);
         if ($user_test == null) {
@@ -258,11 +273,21 @@ class User_db {
             appendErrorMessage("Login names cannot be changed. Login name has been reset to old value. Other changes have been saved.");
             $user->login = $user_test->login;
         }
-        //determine value for type field
-        $type = 'normal';
-        if ($user->isAnonymous) {
-            $type = 'anon';
+        
+        //disable account?
+        if (($user->type=='normal') && ($user->toBeDisabled == True))  {
+            $user->password_invalidated = 'TRUE';
         }
+        if (($user->type=='anon') || ($user->type=='external')) {
+            //always invalidate password for anon and external accounts
+            $user->password_invalidated = 'TRUE';
+            // DR 2008.08.29: cannot change password for anon or external account
+            $user->password!="";
+        } else if ($user->password_invalidated == 'TRUE') {
+            appendMessage('The account does not have a valid password. It has been disabled. If please get an admin to re-enable it, if you wish.<br/>');
+        }
+            
+
         $newwindowforatt ='FALSE';
         if ($user->preferences['newwindowforatt']) {
             $newwindowforatt ='TRUE';
@@ -283,7 +308,8 @@ class User_db {
                                'lastreviewedtopic'  => $user->lastreviewedtopic,
                                'abbreviation'       => $user->abbreviation,
                                'login'              => $user->login,
-                               'type'               => $type,
+                               'password_invalidated' => $user->password_invalidated,
+                               'type'               => $user->type,
                                'theme'              => $user->preferences['theme'],
                                'language'           => $user->preferences['language'],
                                'summarystyle'       => $user->preferences['summarystyle'],
@@ -301,10 +327,10 @@ class User_db {
         $CI->db->update('users', $updatefields,array('user_id'=>$user->user_id));
         //if the user is NOT anonymous, but it is the 'DEFAULT ANONYMOUS ACCOUNT from the site config settings, 
         //turn off the anonymous access and give a message warning
-        if (!$user->isAnonymous) {
-            if ($user->user_id==getConfigurationSetting("ANONYMOUS_USER")) {
+        if ($user->type!='anon') {
+            if ($user->user_id==getConfigurationSetting("LOGIN_DEFAULT_ANON")) {
                 $siteconfig = $CI->siteconfig_db->getSiteConfig();
-                $siteconfig->configSettings['ANONYMOUS_USER'] = '';
+                $siteconfig->configSettings['LOGIN_DEFAULT_ANON'] = '';
                 $siteconfig->update();
                 appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br/>");
             }
@@ -315,7 +341,7 @@ class User_db {
             $CI->db->delete('userrights',array('user_id'=>$user->user_id));
             //add rights
             foreach ($user->assignedrights as $right) {
-                if ($user->isAnonymous) {
+                if ($user->type=='anon') {
                     if ($right=='bookmarklist') {
                         appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
                         continue;

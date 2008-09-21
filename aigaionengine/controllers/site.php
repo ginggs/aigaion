@@ -150,6 +150,10 @@ class Site extends Controller {
     	        }
 	            //if ($maintenance != 'all') 
 	            break;
+	        //AND NO THOSE THAT SHOULD NOT BE INCLUDED IN 'ALL'
+	        case 'deletenonpublishingauthors':
+	            $checkresult .= deleteNonPublishingAuthors();
+                break;
 	        case '':
 	            break;
 	        default:

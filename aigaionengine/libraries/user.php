@@ -21,9 +21,10 @@ class User {
     var $lastupdatecheck    = 0;
     //login info
     var $abbreviation       = '';
+    var $type               = 'normal';
     var $login              = '';
     var $password           = '';
-    var $isAnonymous        = False;
+    var $password_invalidated = 'FALSE';
     #system variables, not to be changed *directly* by user
     //preferences. Directly filled with default values, but that will change in the future
     var $preferences        = array('theme'=>'default',
@@ -35,6 +36,7 @@ class User {
                                     'exportinbrowser'=>'FALSE',
                                     'utf8bibtex'=>'FALSE'
                                     ); //an array of ($preferencename=>preferencevalue)
+                              
     //assigned rights
     var $assignedrights     = array(); //an array of ($assignedright)
     //the ids of all groups that the user is a part of
@@ -42,7 +44,8 @@ class User {
     //the cached subscription tree (including group subscriptions!)
     //only has a value for the logged user!
     var $fullSubscriptionTree = null;
-
+    var $toBeDisabled = false;
+    
     /** The class-tree (Category object) of  only those classes to which the user is subscribed */
     //var $personal_subscribed_tree    = null; //this is the tree as it is only filled with the topics for this individual user, i.e. the 'extra' subscribed topics
     //var $full_subscribed_tree    = null; //this is the tree as it is also filled with the topics from the group!

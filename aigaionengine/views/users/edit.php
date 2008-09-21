@@ -79,54 +79,132 @@ echo "  </td>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
 	        Note: Login names, once assigned, cannot be changed.
 	        </td>
-	    </tr>      
-        <tr>
-        <td>Password (leave blank for no change)</td>
-        <td>"
-        .form_password(array('name'=>'password', /////
-                                                 //one VERY annoying firefox feature is to 
-                                                 //always autocomplete password fields. Even 
-                                                 //ignoring the autocomplete=off attribute. So now
-                                                 //we need to find another way to clean the field...
-                                                 //see e.g.:
-                                                 //http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
-                             'id'=>'password',                       
-                             'size'=>'10',
-                             'value'=>'',
-                             'autocomplete'=>'off'))."
-        </td>
-        </tr>
-        <tr>
-        <td>Re-type new password</td>
-        <td>"
-        .form_password(array('name'=>'password_check',
-                          'size'=>'10',
-                          'value'=>'',
-                          'AUTOCOMPLETE'=>'off'))."
-            <script language='JavaScript' type='text/javascript'>
-            // this *brutally* clears a password field in firefox
-            // compliments of verysimple.com, adapted to use the prototype framework
-            // http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
-            window.setTimeout('$(\"password\").value = \"\";', 100);
-            window.setTimeout('$(\"password_check\").value = \"\";', 100);
-            </script>                          
-        </td>
-        </tr>";
+	    </tr>";
+
+
+echo form_hidden('password_invalidated',$user->password_invalidated);
+if ($user->password_invalidated != 'TRUE') {
+    
+    //checkbox to disable account, with many warnings?
+    if ($user->user_id != $userlogin->userId()) {
+        //never disable own account
+        echo "
+            <tr>
+            <td>Disable account</td>
+            <td>
+         "
+         .form_checkbox('disableaccount','disableaccount',false).
+         "
+            </td>
+            </tr>
+            <tr>
+    	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+    	        Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.
+    	        You can re-enable the account in the future.
+    	        </td>
+    	    </tr>";
+    }    
+    echo "
+            <tr>
+            <td>Password (leave blank for no change)</td>
+            <td>"
+            .form_password(array('name'=>'password', /////
+                                                     //one VERY annoying firefox feature is to 
+                                                     //always autocomplete password fields. Even 
+                                                     //ignoring the autocomplete=off attribute. So now
+                                                     //we need to find another way to clean the field...
+                                                     //see e.g.:
+                                                     //http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
+                                 'id'=>'password',                       
+                                 'size'=>'10',
+                                 'value'=>'',
+                                 'autocomplete'=>'off'))."
+            </td>
+            </tr>
+            <tr>
+            <td>Re-type new password</td>
+            <td>"
+            .form_password(array('name'=>'password_check',
+                              'size'=>'10',
+                              'value'=>'',
+                              'AUTOCOMPLETE'=>'off'))."
+                <script language='JavaScript' type='text/javascript'>
+                // this *brutally* clears a password field in firefox
+                // compliments of verysimple.com, adapted to use the prototype framework
+                // http://www.verysimple.com/blog/2007/03/07/forcing-firefox-to-obey-autocompleteoff-for-password-fields/
+                window.setTimeout('$(\"password\").value = \"\";', 100);
+                window.setTimeout('$(\"password_check\").value = \"\";', 100);
+                </script>                          
+            </td>
+            </tr>";
+} else {
+    
+    //anon or external: give remark on pwd changing
+    echo form_hidden('password','');
+    echo form_hidden('password_check','');
+    if ($user->type=='anon') {
+        echo "
+            <tr>
+            <td>Password:</td>
+            <td class='message'>
+            Cannot change password on anonymous accounts; they do not have a password.
+            </td>
+            </tr>
+            <tr>";
+        
+    } else if ($user->type=='external'){
+        echo "
+            <tr>
+            <td>Password:</td>
+            <td class='message'>
+            Cannot change password on this account. It has a password which is externally managed by some other system.
+            </td>
+            </tr>
+            <tr>";
+    }  else {
+        echo "
+            <tr>
+            <td>Password:</td>
+            <td class='message'>
+            Cannot change password on this account. The account has been disabled and cannot be used to login. 
+            Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password?
+            Ask an admin to re-enable it and assign a password.
+            </td>
+            </tr>
+            <tr>";
+    }
+}
 
 if ($userlogin->hasRights('user_edit_all')) {
-    echo "        
-        <tr>
-        <td>Anonymous account (check if this account is an anonymous (guest) account)</td>
-        <td>"
-        .form_checkbox('isAnonymous','isAnonymous',$user->isAnonymous)."
-        </td>
-        </tr>
+    if ($user->user_id == $userlogin->userId()) {
+        echo "
 	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Note: when you set this account to be anonymous, you should not forget to enable 
-	        anonymous access to this database on the site configuration page!
+	        <td align='left' colspan='2' class='message'>
+	        It is, for now, impossible to change the type of your own account (normal, anon or external). This would only lead to problems
+	        if you accidentally disable it. Because who would then repair it for you?
 	        </td>
 	    </tr>";
+    } else {
+        echo "        
+            <tr>
+            <td>Account type:</td>
+            <td>"
+            .form_dropdown('type',
+                            array('normal'=>'Normal','anon'=>'Anonymous','external'=>'Managed by external module'),
+                            $user->type)."
+            </td>
+            </tr>
+    	    <tr>
+    	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+    	        Note: when you set this account to be anonymous, you should not forget to enable 
+    	        anonymous access to this database on the site configuration page!<br/>
+    	        Note2: when you set this account to be externally managed, you must be certain that 
+    	        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules.
+    	        </td>
+    	    </tr>";
+    }
+
+    
         
 }
 
@@ -244,7 +322,7 @@ echo "
         <td>Number of publications per page</td>
         <td>
         ".form_dropdown('liststyle',
-                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_LISTSTYLE').')','0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
+                        array(/* 'default'=>'default ('.getConfigurationSetting('DEFAULTPREF_LISTSTYLE').')',*/'0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
                         $user->preferences["liststyle"])."
         </td>
         </tr>

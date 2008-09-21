@@ -36,16 +36,20 @@ echo $this->validation->error_string;
 	        <td align='left'><input type='text' cols='60' size=50 name='CFG_ADMINMAIL' value='<?php echo $siteconfig->getConfigSetting("CFG_ADMINMAIL"); ?>'></td>
 	    </tr>
 
-<!-- ANONYMOUS ACCESS SETTINGS -->
+<!-- ALL LOGIN SETTINGS -->
+<?php 
+//[DR 2008.09.02] working on transforming the login modules to the new structure
+?>
         <tr>
-            <td colspan='2'><hr><p class='header2'>Anonymous access:</p></td>
+            <td colspan='2'><hr><p class='header2'>Login settings (Anonymous access):</p><p>These login settings determine how anonymous (guest) access to Aigaion is configured.</p></td>
         </tr>
+
 
         <tr>
 	        <td><label>Enable anonymous access:</label></td>
 	        <td align='left'>
 <?php	            
-    echo form_checkbox('ENABLE_ANON_ACCESS','ENABLE_ANON_ACCESS',$siteconfig->getConfigSetting("ENABLE_ANON_ACCESS")== "TRUE");
+    echo form_checkbox('LOGIN_ENABLE_ANON','LOGIN_ENABLE_ANON',$siteconfig->getConfigSetting("LOGIN_ENABLE_ANON")== "TRUE");
 ?>
             </td>
         </tr>
@@ -65,7 +69,7 @@ echo $this->validation->error_string;
             foreach ($this->user_db->getAllAnonUsers() as $anonUser) {
                 $options[$anonUser->user_id] = $anonUser->login;
             }
-            echo form_dropdown('ANONYMOUS_USER', $options,$siteconfig->getConfigSetting("ANONYMOUS_USER"));
+            echo form_dropdown('LOGIN_DEFAULT_ANON', $options,$siteconfig->getConfigSetting("LOGIN_DEFAULT_ANON"));
 ?>
             </td>                
         </tr>
@@ -80,6 +84,131 @@ echo $this->validation->error_string;
 	        <td align='left' colspan='2'></td>
 	    </tr>
 
+        <tr>
+            <td colspan='2'><p class='header2'>Login settings (Delegation of password checking to external module):</p><p>These login settings determine whether the login password checking is delegated to some external module, and if so, how this is configured.</p></td>
+        </tr>
+
+        <tr>
+	        <td><label>Delegate password checking:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('LOGIN_ENABLE_DELEGATED_LOGIN','LOGIN_ENABLE_DELEGATED_LOGIN',$siteconfig->getConfigSetting("LOGIN_ENABLE_DELEGATED_LOGIN")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box to delegate password checking to external modules.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+        <tr>
+            <td>Password checking module</td>
+            <td>
+<?php              
+            //[DR 2008.09.03] While I'm writing this, everything that's needed to allow more than one delegate at a time is in place, except for this piece of interface in which you can only select one delegate at a time... "LOGIN_DELEGATES" can be a comma separate list of module names
+            $options = array(''=>'','hardcoded'=>'Test delegate','ldap'=>'LDAP Password checking');
+            echo form_dropdown('LOGIN_DELEGATES', $options,$siteconfig->getConfigSetting("LOGIN_DELEGATES"));
+?>
+            </td>                
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'>
+	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Select the module to which the password checking is to be delegated. Be sure to also configure that login module properly, before you turn off the internal login modules!
+	        <p>Note: check 'Disable internal login' to disallow access to any account not verified using the above module.</td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>
+
+        <tr>
+            <td colspan='2'><p class='header2'>Login settings (Special settings):</p><p></p></td>
+        </tr>
+
+        <tr>
+	        <td><label>Create missing users:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('LOGIN_CREATE_MISSING_USER','LOGIN_CREATE_MISSING_USER',$siteconfig->getConfigSetting("LOGIN_CREATE_MISSING_USER")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box to force the system to create users that are logged in using an external account/password, but do not have an internal Aigaion user account yet. Note that this setting only has an effect when 'delegated password checking' or one of the external login modules have been enabled.
+	        </td>
+	    </tr>
+	    
+        <tr>
+	        <td><label>Disable internal login:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('LOGIN_DISABLE_INTERNAL_LOGIN','LOGIN_DISABLE_INTERNAL_LOGIN',$siteconfig->getConfigSetting("LOGIN_DISABLE_INTERNAL_LOGIN")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box to disable internal login facilities. If internal login is disabled, users can only login using one of the delegated password checking modules such as IMAP or LDAP or one of the external login modules such as the httpauth login. 
+	        </td>
+	    </tr>
+
+        <tr>
+            <td colspan='2'><p class='header2'>Login settings (LDAP):</p>If you use LDAP authentication, 
+                you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl)
+                (That's just an example! We don't really have an LDAP server at Aigaion.nl!).
+            </td>
+        </tr>
+	    
+        <tr>
+            <td colspan='2'>
+                <b>Note:</b> If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server 
+            activated. Explaining how to install that is well outside the scope of Aigaion documentation.
+            See the LDAP documentation at <a href='http://www.php.net/' class='open_extern'>www.php.net</a> for more information.
+            Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll
+            to be available somewhere....
+            </td>
+        </tr>
+	    <tr>    
+	        <td><label>LDAP server:</label></td>
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_SERVER'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_SERVER")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The LDAP server (like: ldap.aigaion.nl).</td>
+	    </tr>
+	    <tr>    
+	        <td><label>LDAP base DN:</label></td>
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_BASE_DN'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_BASE_DN")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The base DN for loggin in to the LDAP server (like: dc=dev,dc=aigaion,dc=nl).</td>
+	    </tr>
+
+	    <tr>    
+	        <td><label>Login domain:</label></td>
+	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_DOMAIN'	
+<?php
+             echo "value='".$siteconfig->getConfigSetting("LDAP_DOMAIN")."'>";
+?>
+	        </td>
+        </tr>
+        <tr>
+            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        The domain for logging in to the LDAP server (like: dev.aigaion.nl).</td>
+	    </tr>
+	    
 <!-- ATTACHMENT SETTINGS -->
         <tr>
             <td colspan='2'><hr><p class='header2'>Attachment settings:</p></td>
@@ -387,6 +516,10 @@ echo "
     }
 ?>
 <!-- EXTERNAL LOGIN MODULES -->
+
+<!--
+external login modules are disabled. The password checker of LDAP is moved to the delegate section, and httauth is too much trouble. It is not secure, doesn't work well, and if it is ever re-enabled it will be as mode-3 login module
+
         <tr>
             <td colspan='2'><hr><p class='header2'>Login modules:</p></td>
         </tr>
@@ -422,78 +555,11 @@ echo "
 	        <td align='left' colspan='2'></td>
 	    </tr>
 
-        <tr>
-	        <td><label>Create missing users:</label></td>
-	        <td align='left'>
-<?php	            
-    echo form_checkbox('CREATE_MISSING_USERS','CREATE_MISSING_USERS',$siteconfig->getConfigSetting("CREATE_MISSING_USERS")== "TRUE");
-?>
-            </td>
-        </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Check this box to force the system to create users that are logged in in the external login module,
-	        but do not have an Aigaion user account yet. Note that this setting only has an effect when a login
-	        module different from 'Aigaion' has been selected.
-	        </td>
-	    </tr>
-	    
-        <tr>
-            <td colspan='2'><p class='header2'>LDAP configuration:</p>If you use LDAP authentication, 
-                you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl)
-                (That's just an example! We don't really have an LDAP server at Aigaion.nl!).
-            </td>
-        </tr>
-	    
-        <tr>
-            <td colspan='2'>
-                <b>Note:</b> If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server 
-            activated. Explaining how to install that is well outside the scope of Aigaion documentation.
-            See the LDAP documentation at <a href='http://www.php.net/' class='open_extern'>www.php.net</a> for more information.
-            Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll
-            to be available somewhere....
-            </td>
-        </tr>
-	    <tr>    
-	        <td><label>LDAP server:</label></td>
-	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_SERVER'	
-<?php
-             echo "value='".$siteconfig->getConfigSetting("LDAP_SERVER")."'>";
-?>
-	        </td>
-        </tr>
-        <tr>
-            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        The LDAP server (like: ldap.aigaion.nl).</td>
-	    </tr>
-	    <tr>    
-	        <td><label>LDAP base DN:</label></td>
-	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_BASE_DN'	
-<?php
-             echo "value='".$siteconfig->getConfigSetting("LDAP_BASE_DN")."'>";
-?>
-	        </td>
-        </tr>
-        <tr>
-            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        The base DN for loggin in to the LDAP server (like: dc=dev,dc=aigaion,dc=nl).</td>
-	    </tr>
+-->
 
-	    <tr>    
-	        <td><label>Login domain:</label></td>
-	        <td align='left'><input type='text' cols='100' size=50 name='LDAP_DOMAIN'	
-<?php
-             echo "value='".$siteconfig->getConfigSetting("LDAP_DOMAIN")."'>";
-?>
-	        </td>
-        </tr>
-        <tr>
-            <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        The domain for logging in to the LDAP server (like: dev.aigaion.nl).</td>
-	    </tr>
 	    
 	    <tr>
-	        <td align='left' colspan='2'></td>
+	        <td align='left' colspan='2'><hr></td>
 	    </tr>
         <tr><td>
 <?php

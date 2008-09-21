@@ -9,8 +9,9 @@ methods to log in or out (user or anonymous account) given the right info.
 Note: Creating, changing and deleting ACCOUNTS (as opposed to a 'current login session') is NOT done in this class! 
 
 The UserLogin class uses some external information from the site config settings: 
-    -whether anonymous login is allowed, and
-    -the id of anonymous user
+    -whether anonymous login is allowed, the id of anonymous user
+    -settings about password checking delegates
+    -settings about external login modules
     
 A note on the anonymous access:
     - To use the anonymous access facilities, you must enable it in the Site configuration page, and choose
@@ -18,8 +19,7 @@ A note on the anonymous access:
     - If anonymous access is enabled, and you are not logged in as a 'normal' user, you will automatically
       be logged in as the anonymous user with all rights assigned to that anonymous user. A button will
       appear in the menu that allows you to login as a 'normal' user through the login screen.
-    - If anonymous access is enabled, and you login with the anonymous user account _through the login screen_, 
-      it is still considered to be an anonymous login (!)
+    - If anonymous access is enabled, you cannot login with the anonymous user account _through the login screen_
 
 The UserLogin class assumes that the connection to the database has already been made 
 
@@ -202,51 +202,106 @@ class UserLogin {
     /** This is the method that you call to perform the login
      *  If already logged in as non-anonymous, do nothing
      *  Else if external login in use: try to login from external module
-     *  Else if external login not in use and login vars have been posted: login from POST vars
-     *  Else if external login not in use and cookies are available: login from cookies
+     *  Else if password checking delegate in use: try to login from password checking delegate
+     *  Else if login vars have been posted and internal login enabled: login from POST vars
+     *  Else if cookies are available: login from cookies (delegate login needs be enabled if cookie is external account)
      *  Else if anonymous login allowed: login anonymously */
     function login() {
+        $CI = &get_instance();
         //If already logged in as non-anonymous, do nothing
         if ($this->bIsLoggedIn && !$this->bIsAnonymous) return;
-        //Else maybe we can login from external module?
-        if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
-            $result = $this->loginFromExternalSystem();
-            if ($this->bIsLoggedIn) {
-                return;
-            }
-            if ($result == 1) {
-                //report error and return
-                $this->sNotice = "Unknown user or wrong password from external login module";
-                //return; don't return, but rather attempt to do the anonymous login later on
-            }
-            if ($result == 2) {
-                //report error and return
-                $this->sNotice = "No login info available...";
-                //return; don't return, but rather attempt to do the anonymous login later on
-            }
+        //if logged in as anonymous: kill it, to be certain; it will be reestablished.
+        $this->bIsLoggedIn = false;
+        $this->bIsAnonymous = False;
+        $this->sLoginName = "";
+        $this->iUserId = "";                
+        $CI->latesession->set('USERLOGIN', $this);
+        
+        //[DR 2008.09.3] these external logins have been disabled for now. They gave too much trouble. Only the LDAP is remaining for now, but as password-checking delegate instead of mode-3 login
+//            //Maybe we can login from external module?
+//            if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
+//                //this part will change in a major way when mode 3 login is implemented
+//                $result = $this->loginFromExternalSystem();
+//                if ($this->bIsLoggedIn) {
+//                    return;
+//                }
+//                if ($result == 1) {
+//                    //report error and return
+//                    $this->sNotice = "Unknown user or wrong password from external login module";
+//                    //return; don't return, but rather attempt to do the anonymous login later on
+//                }
+//                if ($result == 2) {
+//                    //report error and return
+//                    $this->sNotice = "No login info available...";
+//                    //return; don't return, but rather attempt to do the anonymous login later on
+//                }
+//            }
+        $result = 0;
+        //try to find login info from post vars (form) or from cookies
+        $loginInfoAvailable = false;
+        $loginName = '';
+        $loginPwd = '';
+        $remember=False;
+        $pwdInMd5 = false;
+        if (((isset($_POST["loginName"]))) && (isset($_POST['loginPass'])))    {
+            //user tries to log in via login screen; get username & pwd
+            //determine uname/pwd from POST vars
+            $loginName = $_POST["loginName"];
+            $loginPwd = $_POST['loginPass'];
+            $remember=False;
+            if (isset($_POST['remember']))$remember=True;
+            $loginInfoAvailable = true;
         } else {
-            //Else if login vars have been posted: login from POST vars
-            $result = $this->loginFromPost();
-            if ($this->bIsLoggedIn) {
-                return;
+            //if none found, try to determine uname/pwd from COOKIE
+            if ($this->bJustLoggedOut) { //not if we just logged out, because cookie needs to be completely destroyed
+                $this->bJustLoggedOut = False; 
+            } else if (isset($_COOKIE["loginname"])) {
+                //user logs in via cookie
+                $loginName = $_COOKIE["loginname"];
+                $loginPwd = $_COOKIE["password"];
+                $remember=True;
+                $pwdInMd5 = true;
+                $loginInfoAvailable = true;
+            } 
+        }
+            
+        //if no login info is available, delegates password checking and internal password checking make no sense and can be skipped;
+        if ($loginInfoAvailable) {
+            if (getConfigurationSetting("LOGIN_ENABLE_DELEGATED_LOGIN") == 'TRUE') {
+                
+                // if password checking delegate in use: try to login from password checking delegate
+                $result = $this->loginFromPasswordDelegate($loginName,$loginPwd,$remember, $pwdInMd5);
+                if ($this->bIsLoggedIn) {
+                    return;
+                }
+                if ($result == 1) {
+                    //report error 
+                    $this->sNotice = "Unknown user or wrong password (code b3.4).";
+                    //don't return, but rather attempt to do the internal and anonymous login later on
+                }
+                if ($result == 3) { //3 signifies a critical fail after which continued login checking cannot proceed
+                    return 1;
+                }
+            } 
+            if (getConfigurationSetting("LOGIN_DISABLE_INTERNAL_LOGIN") != 'TRUE') {
+                //Else if login vars available and internal login enabled: login internally from available vars
+                $result = $this->internalLogin($loginName,$loginPwd,$remember, $pwdInMd5);
+                if ($this->bIsLoggedIn) {
+                    return;
+                }
+                if ($result == 1) {
+                    //report error and return
+                    $this->sNotice = "Unknown user or wrong password";
+                }
             }
-            if ($result == 1) {
-                //report error and return
-                $this->sNotice = "Unknown user or wrong password";
-                return;
-            }
-            //Else if cookies are available: login from cookies
-            $result = $this->loginFromCookie();
-            if ($this->bIsLoggedIn) {
-                return;
-            }
-            if ($result == 1) {
-                //report error and return
-                $this->sNotice = "Unknown user or wrong password in cookie";
+            if ($result == 1) { 
+                //apparently user tried to login, and failed both on password checking delegate and internal password checking.
+                //fail and return, don't try anon login
+                $this->sNotice = "Unknown user or wrong password (code b4.15)";
                 return;
             }
         }
-        //Else if anonymous login allowed: login anonymously 
+        //If anonymous login allowed: login anonymously 
         $result = $this->loginAnonymous();
         if ($this->bIsLoggedIn) {
             return;
@@ -256,12 +311,15 @@ class UserLogin {
         return;
     }
 
-    /** Attempts to login as user specified by some external module (e.g. provided by a CMS)
+    /** THIS FUNCTION IS BEING REPLACED! ASK DENNIS!
+     *  Attempts to login as user specified by some external module (e.g. provided by a CMS)
      *  returns one of following:
      *      0 - success
      *      1 - unknown user or wrong password
      *      2 - no relevant login info available */
     function loginFromExternalSystem() {
+        if(True)return 2;
+        //DISABLED DISABLED DISABLED DISABLED DISABLED 
         if (getConfigurationSetting("USE_EXTERNAL_LOGIN") != 'TRUE') {
             return 2;
         }
@@ -277,16 +335,16 @@ class UserLogin {
                 $loginName = $loginInfo['login'];
                 $loginGroups = $loginInfo['groups'];
                 break;
-            case "LDAP":
-                appendErrorMessage('testing for ldap login...');
-                $CI->load->library('login_ldap');
-                $CI->load->library('authldap');
-                //attempt to get loginname from external system
-                $loginInfo = $CI->login_ldap->getLoginInfo();
-                $loginName = $loginInfo['login'];
-                $loginGroups = $loginInfo['groups'];
-                appendErrorMessage('<br/>LDAP login says: '.$loginName.'<br/>');
-                break;
+//            case "LDAP":
+//                appendErrorMessage('testing for ldap login...');
+//                $CI->load->library('login_ldap');
+//                $CI->load->library('authldap');
+//                //attempt to get loginname from external system
+//                $loginInfo = $CI->login_ldap->getLoginInfo();
+//                $loginName = $loginInfo['login'];
+//                $loginGroups = $loginInfo['groups'];
+//                appendErrorMessage('<br/>LDAP login says: '.$loginName.'<br/>');
+//                break;
             //case "drupal":
                 //$CI->load->library('login_drupal');
                 //attempt to get loginname from external system.
@@ -306,14 +364,14 @@ class UserLogin {
         if ($Q->num_rows()>0) { //user found
             $row = $Q->row();
             $loginPwd = $row->password;
-            if ($this->_login($loginName,$loginPwd,False)==0) { //never remember external login; that's a task for the external module
+            if ($this->_login($loginName,$loginPwd,False,True,False)==0) { //never remember external login; that's a task for the external module
                 //$this->sNotice = 'logged from httpauth';
                 //appendErrorMessage('<br/>LDAP login says: known user, logged in');
                 return 0; // success
             }
         } 
         //appendErrorMessage('<br/>LDAP login says: unknown user, make?');
-        if (getConfigurationSetting("CREATE_MISSING_USERS") == 'TRUE') {
+        if (getConfigurationSetting("LOGIN_CREATE_MISSING_USER") == 'TRUE') {
             //appendErrorMessage('<br/>LDAP login says: unknown user, make!');
             //no such user found. Make user on the fly. Don't use the user_db class for this, as 
             // we would run into problems with the checkrights performed in user_db->add(...)
@@ -353,6 +411,7 @@ class UserLogin {
                                                'abbreviation'       => '',
                                                'login'              => $loginName,
                                                'password'           => md5($pass),
+                                               'password_invalidated'           => 'TRUE',
                                                'type'               => 'normal',
                                                'theme'              => 'default',
                                                'summarystyle'       => 'author',
@@ -380,7 +439,7 @@ class UserLogin {
             //subscribe new user to top topic
             $CI->db->insert('usertopiclink', array('user_id' => $new_id, 'topic_id' => 1)); 
             //after adding the new user, log in as that new user
-            if ($this->_login($loginName,md5($pass),False)==0) { //never remember external login; that's a task for the external module
+            if ($this->_login($loginName,md5($pass),False, True, False)==0) { //never remember external login; that's a task for the external module
                 //$this->sNotice = 'logged from httpauth';
                 appendMessage('Created missing user: '.$loginName.' as member of groups: '.implode(',',$loginGroups));
                 return 0; // success
@@ -393,45 +452,133 @@ class UserLogin {
         return 2;
     }
         
-    /** Attempts to login as user in POST variables
+    /** Attempts to login as user using a password checking delegate
      *  returns one of following:
      *      0 - success
-     *      1 - unknown user or wrong password
-     *      2 - no relevant POST vars available */
-    function loginFromPost() {
-        if (((isset($_POST["loginName"]))) && (isset($_POST['loginPass'])))    {
-            #user logs in via login screen.
-            //get username & pwd
-            $loginName = $_POST["loginName"];
-            $loginPwd = md5($_POST['loginPass']);
-            $remember=False;
-            if (isset($_POST['remember']))$remember=True;
-            return $this->_login($loginName,$loginPwd,$remember);
-        } else {
-            return 2;
+     *      1 - unknown user or wrong password 
+     *      3 - critical fail, no other login should be attempted    */
+    function loginFromPasswordDelegate($loginName,$loginPwd,$remember,$pwdInMd5) {
+        $CI = &get_instance();
+        $CI->load->library('Passwordchecker');
+        $delegates = explode (',',getConfigurationSetting("LOGIN_DELEGATES"));
+        foreach ($delegates as $delegate) {
+            //determine next delegate
+            $delegateLibrary = 'passwordchecker_'.$delegate;
+            $CI->load->library($delegateLibrary);
+            //check password
+            $loginInfo = $CI->$delegateLibrary->checkPassword($loginName, $loginPwd,$pwdInMd5);
+            //OK: possibly create account; login; return 0
+            if (isset($loginInfo['uname']) && ($loginInfo['uname'] != null) && ($loginInfo['uname']!= '')) {
+                //password was OK
+                $Q = $CI->db->getwhere('users',array('login'=>$loginInfo['uname']));
+                if ($Q->num_rows()==0) {
+                    //pwd was OK but account did not exist. Create and try again?
+                    if (getConfigurationSetting("LOGIN_CREATE_MISSING_USER")=='TRUE') {
+                        //create user
+                        //no such user found. Make user on the fly. Don't use the user_db class for this, as 
+                        // we would run into problems with the checkrights performed in user_db->add(...)
+                        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+                        srand((double)microtime()*1000000);
+                        $i = 0;
+                        $pass = '' ;
+                        while ($i <= 7) {
+                            $num = rand() % 33;
+                            $tmp = substr($chars, $num, 1);
+                            $pass = $pass . $tmp;
+                            $i++;
+                        }
+                        
+                        //add user.... to database
+                        $CI->db->insert("users",     array('initials'           => '',
+                                                           'firstname'          => '',
+                                                           'betweenname'        => '',
+                                                           'surname'            => $loginName,
+                                                           'email'              => '',
+                                                           'lastreviewedtopic'  => 1,
+                                                           'abbreviation'       => '',
+                                                           'login'              => $loginName,
+                                                           'password'           => md5($pass),
+                                                           'password_invalidated'           => 'TRUE',
+                                                           'type'               => 'external',
+                                                           'theme'              => 'default',
+                                                           'summarystyle'       => 'author',
+                                                           'authordisplaystyle' => 'fvl',
+                                                           'liststyle'          => '0',
+                                                           'newwindowforatt'    => 'FALSE',
+                                                           'exportinbrowser'    => 'TRUE',
+                                                           'utf8bibtex'         => 'FALSE'
+                                                           )
+                                          );
+                        $new_id = $CI->db->insert_id();
+                        //subscribe new user to top topic
+                        $CI->db->insert('usertopiclink', array('user_id' => $new_id, 'topic_id' => 1)); 
+                        //after adding the new user, log in as that new user                        
+                        //get user again, so we can continue loggin in
+                        $Q = $CI->db->getwhere('users',array('login'=>$loginInfo['uname']));
+                        //login
+                        if ($Q->num_rows()>0) {
+                            $row = $Q->row();
+                            $loginName = $row->login;
+                            $loginPwd = $row->password;
+                            if ($this->_login($loginName,$loginPwd,$remember,True,False)==0) { 
+                                //set some message 'new Aigaion account created, please feel welcome'
+                                appendMessage("<p>A new Aigaion account has been created for you, user '".$loginInfo['uname']."'. Please enjoy your stay here.<br/>");
+                                return 0; // success
+                            }
+                        } 
+                        //At this point,  we should have been logged in
+                        //if we end up here, apparently something went major wrong (pwd was ok, accou nt did not exist, it should have been created and logged in)
+                        //this really should not happen :(
+                        $this->sNotice= 'Serious error in login tables';
+                        return 3;
+                    }
+                }
+                //password was OK, try to find Aigaion account. Must be external.
+                if ($Q->num_rows()>0) {
+                    $row = $Q->row();
+                    //internal account?
+                    if ($row->type=='normal') {
+                        $this->sNotice = 'The username / password combination is valid according to '.$delegateLibrary.', but the corresponding Aigaion account is an <i>internal</i> account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                        return 3; //critical fail, no other login should be attempted
+                    }
+                    //anonymous account?
+                    if ($row->type=='anon') {
+                        $this->sNotice = 'The username / password combination is valid according to '.$delegateLibrary.', but the corresponding Aigaion account is an <i>anonymous</i> account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                        return 3; //critical fail, no other login should be attempted
+                    }
+                    //group account?
+                    if ($row->type=='group') {
+                        $this->sNotice = 'The username / password combination is valid according to '.$delegateLibrary.', but the corresponding Aigaion account is a <i>group</i> rather than a user account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                        return 3; //critical fail, no other login should be attempted
+                    }
+                    //yay! type is external! --> do the login, finally!
+                    $loginName = $row->login;
+                    $loginPwd = $row->password;
+                    if ($this->_login($loginName,$loginPwd,$remember,True,False)==0) { 
+                        return 0; // success
+                    }
+                } else {
+                    $this->sNotice = 'The username / password combination is valid, but has no Aigaion account associated with it yet. Please contact your database admin for assistance (Code b3.67 pwd ok / no account).<br/>';
+                    return 3; //critical fail, no other login should be attempted
+                }
+                //else $result was 1; try next delegate...
+            }
         }
+        //no delegate was successfull? return 1 for fail
+        return 1;
+        
+        
     }
     
-    /** Attempts to login as user given in cookies
+    /** Attempts to login as user using the internal password checking mechanism
      *  returns one of following:
      *      0 - success
-     *      1 - unknown user or wrong password
-     *      2 - no relevant cookies available */
-    function loginFromCookie() {
-        if ($this->bJustLoggedOut) {
-            $this->bJustLoggedOut = False;  
-            return 2;
-        }
-        if (isset($_COOKIE["loginname"])) {
-            //user logs in via cookie
-            $loginName = $_COOKIE["loginname"];
-            $loginPwd = $_COOKIE["password"];
-            return $this->_login($loginName,$loginPwd,True);
-        } else {
-            return 2;
-        }
+     *      1 - unknown user or wrong password     */
+    function internalLogin($loginName,$loginPwd,$remember, $pwdInMd5) {
+        //check whether that login is internal or not...
+        return $this->_login($loginName,$loginPwd,$remember, $pwdInMd5,True);
     }
-        
+    
     /** Attempts to login as the given anonymous user
      *  returns one of following:
      *      0 - success
@@ -439,19 +586,23 @@ class UserLogin {
      *      2 - no login info available */
     function loginAnonymous($user_id = -1) {
         $CI = &get_instance();
-        if (getConfigurationSetting("ENABLE_ANON_ACCESS")!="TRUE") return 1; //no anon accounts allowed
+        if (getConfigurationSetting("LOGIN_ENABLE_ANON")!="TRUE") {
+            return 1; //no anon accounts allowed
+        }
         if ($user_id==-1) {
-            $user_id = getConfigurationSetting("ANONYMOUS_USER");
+            $user_id = getConfigurationSetting("LOGIN_DEFAULT_ANON");
         }
         $Q = $CI->db->getwhere('users',array('user_id'=>$user_id,'type'=>'anon'));
         if ($Q->num_rows()>0) {
             $row = $Q->row();
             $loginName = $row->login;
             $loginPwd = $row->password;
-            if ($this->_login($loginName,$loginPwd,False)==0) { //never remember anon login :)
+            if ($this->_login($loginName,$loginPwd,False,True,False)==0) { //never remember anon login :)
                 $this->bIsAnonymous=True;
                 return 0; // success
             }
+        } else {
+            $this->sNotice = 'Anonymous (guest) access to this database has been enabled. However, no default anonymous account has been assigned, so anonymous access is unfortunately not yet possible.<br/>';
         }
         return 1; //no or incorrect anonymous account defined
     }
@@ -459,25 +610,37 @@ class UserLogin {
     /** Attempts to login as the given user. Called by the other login methods.
      *  returns one of following:
      *      0 - success
-     *      1 - unknown user or wrong password */
-    function _login($userName, $pwdHash, $remember) {
+     *      1 - unknown user or wrong password 
+     $internal is true iff this account is an attempt to log in as a 'normal' internal account. These accounts can not login if it has password_invalidated set, because it was anon or external*/
+    function _login($userName, $pwdHash, $remember, $pwdInMd5 = False, $internal = False) {
         $CI = &get_instance();
+        //md5 pwd if it was not already done
+        if (!$pwdInMd5) $pwdHash = md5($pwdHash);
         //check username / password in user-table
         $Q = $CI->db->getwhere('users',array('login'=>$userName));
         if ($Q->num_rows()<=0) {
             return 1; //no such user error
         }
         $R = $Q->row();
-        if ($pwdHash != $R->password) {
-            //not a successful login: reset all class vars, return error
+        $pwdInvalidated = 'FALSE'; 
+        if (isset($R->password_invalidated)) $pwdInvalidated = $R->password_invalidated; //necessary because older versions of database do not have this column
+        if (($pwdHash != $R->password) || ($internal && ($pwdInvalidated=='TRUE'))) {
+            //($internal && ($R->password_invalidated=='TRUE')) but password OK?
+            //Then someone tried to login through the internal login mechanism using an account 
+            //that is anon or external or internal_disabled.
+            //There is a strong reason why we don't give an error message when a password_invalidated
+            //account is logged in here as internal: 
+            //it would give someone the opportunity to fish for login names!
+
+            //So, anyhow, this was not a successful login: reset all class vars, return error
             //reset class vars
             $this->bIsLoggedIn = False; 
             $this->bIsAnonymous = False;
             $this->sLoginName = "";
             $this->iUserId = "";                
             $CI->latesession->set('USERLOGIN', $this);
-            return 1; //password error
-        } else { 
+            return 1; //user/password error
+        } else {
             clearErrorMessage();
             clearMessage();
             //successful login: perform login, store cookies, etc
@@ -496,13 +659,14 @@ class UserLogin {
             $this->bIsAnonymous = False;
             $this->bJustLoggedOut = False;  
             
+            
             //create the User object for this logged user
             $CI = &get_instance();
             $this->theUser = $CI->user_db->getByID($this->iUserId);
 
             //make sure that the anonymous user is ALWAYS logged in as anonymous user
-            if (   (getConfigurationSetting("ENABLE_ANON_ACCESS")=="TRUE")
-                && ($this->theUser->isAnonymous)
+            if (   (getConfigurationSetting("LOGIN_ENABLE_ANON")=="TRUE")
+                && ($this->theUser->type=='anon')
                 ) {
                 $this->bIsAnonymous=True;
             }
@@ -564,6 +728,7 @@ class UserLogin {
     	        appendMessage($checkresult);
                 $CI->db->update('users',array('lastupdatecheck'=>time()),array('user_id'=>$this->iUserId));
             }
+            $this->sNotice = ''; //clean up irrelevant notices; login was successfull
             return 0;
         } 
     }

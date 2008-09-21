@@ -169,7 +169,8 @@
             $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
             $result .= "The following authors have no publications listed:<br/>\n";
-            $result .= $checkResult."</div>\n";
+            $result .= $checkResult;
+            $result .= '<br/>'.anchor('site/maintenance/deletenonpublishingauthors','Delete all non-publishing authors')."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
@@ -718,6 +719,27 @@ function checkNonPublishingAuthors()
 	}
 
 	return $result;
+}
+
+/** Delete all authors without publications. No other checks, no feedback other than the number of deleted authors. */
+function deleteNonPublishingAuthors() {
+    $CI = &get_instance();
+    $Q = mysql_query(
+		"SELECT ".AIGAION_DB_PREFIX."author.*
+		FROM ".AIGAION_DB_PREFIX."author
+		LEFT JOIN ".AIGAION_DB_PREFIX."publicationauthorlink 
+		       ON (".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id)
+		WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id IS NULL
+		ORDER BY cleanname");
+    $num = 0;
+	if (mysql_num_rows($Q) > 0) {
+		while ($R = mysql_fetch_array($Q)) {
+		    $author = $CI->author_db->getByID($R['author_id']);
+			$author->delete();
+			$num++;
+		}
+	}
+    return "Deleted ".$num." authors who do not have any publications.<br/>";
 }
 
 

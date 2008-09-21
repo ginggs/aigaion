@@ -38,27 +38,6 @@ class Siteconfig_db {
         $result = new Siteconfig();
         $result->configSettings['CFG_ADMIN']                        = $CI->input->post('CFG_ADMIN');
         $result->configSettings['CFG_ADMINMAIL']                    = $CI->input->post('CFG_ADMINMAIL');
-        $result->configSettings['EXTERNAL_LOGIN_MODULE']            = $CI->input->post('EXTERNAL_LOGIN_MODULE');
-        if ($CI->input->post('CREATE_MISSING_USERS')=='CREATE_MISSING_USERS') {
-            $result->configSettings['CREATE_MISSING_USERS']           = 'TRUE';
-        } else {
-            $result->configSettings['CREATE_MISSING_USERS']           = 'FALSE';
-        }
-        if ($result->configSettings['EXTERNAL_LOGIN_MODULE']=='Aigaion') {
-            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'FALSE';
-            $result->configSettings['CREATE_MISSING_USERS']         = 'FALSE';
-        } else {
-            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'TRUE';
-        }
-        $result->configSettings['LDAP_SERVER']                     = $CI->input->post('LDAP_SERVER');
-        $result->configSettings['LDAP_BASE_DN']                     = $CI->input->post('LDAP_BASE_DN');
-        $result->configSettings['LDAP_DOMAIN']                     = $CI->input->post('LDAP_DOMAIN');
-        if ($CI->input->post('ENABLE_ANON_ACCESS')=='ENABLE_ANON_ACCESS') {
-            $result->configSettings['ENABLE_ANON_ACCESS']           = 'TRUE';
-        } else {
-            $result->configSettings['ENABLE_ANON_ACCESS']           = 'FALSE';
-        }
-        $result->configSettings['ANONYMOUS_USER']                   = $CI->input->post('ANONYMOUS_USER');
         $result->configSettings['ALLOWED_ATTACHMENT_EXTENSIONS']    = split(',',$CI->input->post('ALLOWED_ATTACHMENT_EXTENSIONS'));
         if ($CI->input->post('ALLOW_ALL_EXTERNAL_ATTACHMENTS')=='ALLOW_ALL_EXTERNAL_ATTACHMENTS') {
             $result->configSettings['ALLOW_ALL_EXTERNAL_ATTACHMENTS'] = 'TRUE';
@@ -120,6 +99,43 @@ class Siteconfig_db {
         $result->configSettings['NOTE_DEFAULT_EDIT']               = $CI->input->post('NOTE_DEFAULT_EDIT');
         $result->configSettings['TOPIC_DEFAULT_READ']                = $CI->input->post('TOPIC_DEFAULT_READ');
         $result->configSettings['TOPIC_DEFAULT_EDIT']                = $CI->input->post('TOPIC_DEFAULT_EDIT');
+
+        //====LOGIN SETTINGS
+        //$result->configSettings['EXTERNAL_LOGIN_MODULE']            = $CI->input->post('EXTERNAL_LOGIN_MODULE');
+        if ($CI->input->post('LOGIN_CREATE_MISSING_USER')=='LOGIN_CREATE_MISSING_USER') {
+            $result->configSettings['LOGIN_CREATE_MISSING_USER']           = 'TRUE';
+        } else {
+            $result->configSettings['LOGIN_CREATE_MISSING_USER']           = 'FALSE';
+        }
+        
+        //DISABLED DISABLED DISABLED 
+        //please see comments in userlogin class, external login function
+//        if ($result->configSettings['EXTERNAL_LOGIN_MODULE']=='Aigaion') {
+//            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'FALSE';
+//        } else {
+//            $result->configSettings['USE_EXTERNAL_LOGIN']           = 'TRUE';
+//        }
+        $result->configSettings['LDAP_SERVER']                     = $CI->input->post('LDAP_SERVER');
+        $result->configSettings['LDAP_BASE_DN']                    = $CI->input->post('LDAP_BASE_DN');
+        $result->configSettings['LDAP_DOMAIN']                     = $CI->input->post('LDAP_DOMAIN');
+        if ($CI->input->post('LOGIN_ENABLE_ANON')=='LOGIN_ENABLE_ANON') {
+            $result->configSettings['LOGIN_ENABLE_ANON']           = 'TRUE';
+        } else {
+            $result->configSettings['LOGIN_ENABLE_ANON']           = 'FALSE';
+        }
+        $result->configSettings['LOGIN_DEFAULT_ANON']              = $CI->input->post('LOGIN_DEFAULT_ANON');
+
+        if ($CI->input->post('LOGIN_ENABLE_DELEGATED_LOGIN')=='LOGIN_ENABLE_DELEGATED_LOGIN') {
+            $result->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']           = 'TRUE';
+        } else {
+            $result->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']           = 'FALSE';
+        }
+        $result->configSettings['LOGIN_DELEGATES']                 = $CI->input->post('LOGIN_DELEGATES');
+        if ($CI->input->post('LOGIN_DISABLE_INTERNAL_LOGIN')=='LOGIN_DISABLE_INTERNAL_LOGIN') {
+            $result->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']           = 'TRUE';
+        } else {
+            $result->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']           = 'FALSE';
+        }
         
         return $result;
     }
@@ -134,8 +150,34 @@ class Siteconfig_db {
             ) {
                 return;
         }
+        //check some of the settings on impossible combinations
+        //-delegate password checking can only be enabled if some delegates are specified. Otherwise, disable again.
+        if (   $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']=='TRUE' 
+            && $siteconfig->configSettings['LOGIN_DELEGATES']==''
+           ) {
+            appendErrorMessage('Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled.<br/>');
+            $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']='FALSE';
+        }
+        //-at least one of internal or external login must be enabled. If not, enable internal login again
+        if (   $siteconfig->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']=='TRUE' //no internal login
+            && 
+               $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']!='TRUE' //no delegate login or no delegates
+           ) {
+            appendErrorMessage('At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled.<br/>');
+            $siteconfig->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']='FALSE';
+        }
+        //-Anon access enabled, but no default anon account specified? give warning, but do not bother changing the settings
+        if ($siteconfig->configSettings['LOGIN_ENABLE_ANON']=='TRUE') { //anon access enabled?
+            $anonAcc = $siteconfig->configSettings['LOGIN_DEFAULT_ANON'];
+            $anonUser = $CI->user_db->getByID($anonAcc);
+            if ($anonUser == NULL || $anonUser->type!='anon') {//no valid default anon account
+                appendMessage('Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account.<br/>');
+            }
+           
+        }
+        //start to update
         foreach ($siteconfig->configSettings as $setting=>$value) {
-            $CI = &get_instance();
+            
             if ($setting == 'ALLOWED_ATTACHMENT_EXTENSIONS') {
             	#check allowed extensions: all extensions should be prefixed with a . and should be trimmed of spaces
             	$templist = array();

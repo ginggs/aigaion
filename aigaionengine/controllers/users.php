@@ -51,7 +51,15 @@ class Users extends Controller {
             <ul>
             ";
         $users = $this->user_db->getAllNormalUsers();
-        
+         
+        foreach ($users as $user) {
+            $output .= "<li>".$this->load->view('users/summary',
+                                          array('user'   => $user),  
+                                          true)."</li>";
+        }
+ 
+        $users = $this->user_db->getAllExternalUsers();
+         
         foreach ($users as $user) {
             $output .= "<li>".$this->load->view('users/summary',
                                           array('user'   => $user),  

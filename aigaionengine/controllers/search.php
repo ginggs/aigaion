@@ -55,7 +55,23 @@ class Search extends Controller {
     */
 	function advanced()
 	{
-	    echo 'advanced search not implemented yet';
+	    
+        //get output: advanced earch interface
+        $headerdata = array();
+        $headerdata['title'] = 'Advanced search';
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        
+        $output .= $this->load->view('search/advanced',
+                                      array(),  
+                                      true);
+        
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);
 	}
 }
 ?>

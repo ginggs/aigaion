@@ -46,8 +46,19 @@ class Publications extends Controller {
     $publication = $this->publication_db->getByID($pub_id);
     if ($publication == null)
     {
-      appendErrorMessage("View publication: non-existing publication id passed");
-      redirect('');
+      //attempt to retrieve by bibtex_id
+      if ($pub_id == 'bibtex_id') {
+        $bibtex_id = $this->uri->segment(4,'');
+        $categorize = $this->uri->segment(5,'');
+        if ($bibtex_id!='')
+            $publication = $this->publication_db->getByBibtexID($bibtex_id);
+        
+      }
+      if ($publication == null)
+      {
+        appendErrorMessage("View publication: non-existing publication id passed");
+        redirect('');
+      }
     }
     
     //set header data

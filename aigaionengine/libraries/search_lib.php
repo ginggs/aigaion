@@ -17,57 +17,81 @@ class Search_lib {
   ('authors'=>$arrayOfAuthors,
   'topics'=>$arrayOfTopics,
   'keywords'=>$arrayOfKeywords,
-  'publications_content'=>$arrayOfPubs,
-  'publications_note'=>$arrayOfPubs,
+  'publications_titles'=>$arrayOfPubs,
+  'publications_notes'=>$arrayOfPubs,
   'publications_bibtex_id'=>$arrayOfPubs,
   ) */
-  function simpleSearch($query) {
+  function simpleSearch($query, $searchtypes = array()) {
     $result = array();
+    
+    if (count($searchtypes)==0) {
+        $searchtypes = array('authors',
+                             'topics',
+                             'keywords',
+                             'publications_titles',
+                             'publications_notes',
+                             'publications_bibtex_id',
+                             'publications_abstracts'); //default searches fot simplesearch
+    }
     
     $keywordArray = $this->queryToKeywords($query);
     if (count($keywordArray)==0) {
       return $result;
     }
 
-    $authorResult = $this->findAuthorsLike($keywordArray);
-    if ($authorResult != null)
-      $result['authors'] = $authorResult;
-    unset($authorResult);
+    if (in_array('authors',$searchtypes)) {
+        $authorResult = $this->findAuthorsLike($keywordArray);
+        if ($authorResult != null)
+          $result['authors'] = $authorResult;
+        unset($authorResult);
+    }
     
-    $topicResult = $this->findTopicsLike($keywordArray);
-    if ($topicResult != null)
-      $result['topics'] = $topicResult;
-    unset($topicResult);
-    
-    
-    $keywordResult = $this->findKeywordsLike($keywordArray);
-    if ($keywordResult != null)
-      $result['keywords'] = $keywordResult;
-    unset($keywordResult);
+    if (in_array('topics',$searchtypes)) {
+        $topicResult = $this->findTopicsLike($keywordArray);
+        if ($topicResult != null)
+          $result['topics'] = $topicResult;
+        unset($topicResult);
+    }
     
     
-    $publicationResult = $this->findPublicationsLike($keywordArray);
-    if ($publicationResult != null)
-      $result['publications_titles'] = $publicationResult;
-    unset($publicationResult);
+    if (in_array('keywords',$searchtypes)) {
+        $keywordResult = $this->findKeywordsLike($keywordArray);
+        if ($keywordResult != null)
+          $result['keywords'] = $keywordResult;
+        unset($keywordResult);
+    }
+        
+    
+    if (in_array('publications_titles',$searchtypes)) {
+        $publicationResult = $this->findPublicationsLike($keywordArray);
+        if ($publicationResult != null)
+          $result['publications_titles'] = $publicationResult;
+        unset($publicationResult);
+    }
     
     
-    $publicationResult = $this->findPublicationsCiteIDLike($keywordArray);
-    if ($publicationResult != null)
-      $result['publications_bibtex'] = $publicationResult;
-    unset($publicationResult);
+    if (in_array('publications_bibtex',$searchtypes)) {
+        $publicationResult = $this->findPublicationsCiteIDLike($keywordArray);
+        if ($publicationResult != null)
+          $result['publications_bibtex'] = $publicationResult;
+        unset($publicationResult);
+    }
     
     
-    $publicationResult = $this->findPublicationsNotesLike($keywordArray);
-    if ($publicationResult != null)
-      $result['publications_notes'] = $publicationResult;
-    unset($publicationResult);
+    if (in_array('publications_notes',$searchtypes)) {
+        $publicationResult = $this->findPublicationsNotesLike($keywordArray);
+        if ($publicationResult != null)
+          $result['publications_notes'] = $publicationResult;
+        unset($publicationResult);
+    }
     
     
-    $publicationResult = $this->findPublicationsAbstractsLike($keywordArray);
-    if ($publicationResult != null)
-      $result['publications_abstracts'] = $publicationResult;
-    unset($publicationResult);
+    if (in_array('publications_abstracts',$searchtypes)) {
+        $publicationResult = $this->findPublicationsAbstractsLike($keywordArray);
+        if ($publicationResult != null)
+          $result['publications_abstracts'] = $publicationResult;
+        unset($publicationResult);
+    }
     
     //return result
     return $result;

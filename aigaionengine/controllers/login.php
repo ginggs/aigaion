@@ -114,17 +114,17 @@ class Login extends Controller {
     Redirects to the front page
     */
     function anonymous() {
-        if (getConfigurationSetting('ENABLE_ANON_ACCESS')!='TRUE') {
+        if (getConfigurationSetting('LOGIN_ENABLE_ANON')!='TRUE') {
             appendErrorMessage('Anonymous accounts are not enabled<br/>');
             redirect('');
         }
         $segments = $this->uri->segment_array();
-        $user_id = $this->uri->segment(3,getConfigurationSetting('ANONYMOUS_USER'));
+        $user_id = $this->uri->segment(3,getConfigurationSetting('LOGIN_DEFAULT_ANON'));
         $user = $this->user_db->getByID($user_id);
-        if (($user==null)||(!$user->isAnonymous)) {
+        if (($user==null)||($user->type!='anon')) {
             $user = $this->user_db->getByLogin($user_id);
         }
-        if (($user==null)||(!$user->isAnonymous)) {
+        if (($user==null)||($user->type='anon')) {
             appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br/>');
             redirect('');
         }

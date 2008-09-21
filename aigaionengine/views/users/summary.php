@@ -23,9 +23,14 @@ $userlogin  = getUserLogin();
         }
     }
     echo $user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")";
-    if ($user->isAnonymous) {
+    if ($user->type=='anon') {
         echo ' (guest user)';
+    } else if ($user->type=='external') {
+        echo ' (externally managed account)';
+    } else if ($user->password_invalidated=='TRUE') {
+        echo ' (disabled account)';
     }
+
 
 ?>
 </div>

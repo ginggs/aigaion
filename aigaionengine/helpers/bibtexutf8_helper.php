@@ -214,7 +214,7 @@ function getUtf8CharsReplaceArray()
             "{\\'Y}",
             "{\\l}",
             "{\\L}",
-            "{\\o}",
+            "{\\o}", 
             "{\\O}",
             "{\\~n}",
             "{\\~N}",

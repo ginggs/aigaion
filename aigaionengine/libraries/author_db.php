@@ -4,9 +4,9 @@ array of Authors. */
 class Author_db {
   
   
-    function Author_db()
-    {
-    }
+  function Author_db()
+  {
+  }
 
   function getByID($author_id)
   {
@@ -248,7 +248,7 @@ class Author_db {
         //no delete for authors with publications. check through tables, not through object
         $Q = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$author->author_id));
         if ($Q->num_rows()>0) {
-            appendErrorMessage('Cannot delete author: still has publications (possibly invisible...)<br/>');
+            appendErrorMessage('Cannot delete author: still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there...<br/>');
             return false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
@@ -257,7 +257,8 @@ class Author_db {
         $CI->db->delete('publicationauthorlink',array('author_id'=>$author->author_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
     }    
-      
+     
+    
   function validate($author)
   {
         $CI = &get_instance();
@@ -523,8 +524,35 @@ TODO:
   //this function steals the publications and kills the similar author
   function merge($author, $simauthor_id) {
     $CI = &get_instance();
-    $CI->db->update('publicationauthorlink',array('author_id'=>$author->author_id),array('author_id'=>$simauthor_id));
-    $CI->db->delete('author',array('author_id'=>$simauthor_id));
+    //1) get all publications of old, similar author, one by one.
+    $pubs = $CI->publication_db->getForAuthor($simauthor_id);
+    //2) reassign the publication, if appropriate rights 
+    foreach ($pubs as $pub) {
+        if ($CI->accesslevels_lib->canEditObject($pub)) { //reasign this publication, directly in database tables
+            $transfer = true;
+            //was the new author not already an author for this publications?
+            foreach($pub->authors as $a) {
+                if ($a->author_id == $author->author_id) {
+                    $transfer = false;
+                }
+            }
+            if (!$transfer) {
+                //remove link for similarauthor
+                $CI->db->delete('publicationauthorlink',array('author_id'=>$simauthor_id,'pub_id'=>$pub->pub_id));
+            } else {
+                //transfer link for similarauthor
+                $CI->db->update('publicationauthorlink',array('author_id'=>$author->author_id),array('author_id'=>$simauthor_id,'pub_id'=>$pub->pub_id));
+            }
+        }
+    }
+    //3) look if table contains any publication for old author (might have been inaccessible for you!)
+    //   if all publications successfully reassigned, kill old similar author, else give warning
+    $remainingPubsQ = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$simauthor_id));
+    if ($remainingPubsQ->num_rows() > 0) {
+        appendErrorMessage('There are some publications that could not be reassigned due to access rights');
+    } else {
+        $CI->db->delete('author',array('author_id'=>$simauthor_id));
+    }
   }
 }
 ?>
