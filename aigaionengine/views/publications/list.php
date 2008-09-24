@@ -148,7 +148,10 @@ echo "
     <td>";
 $displayTitle = $publication->title;
 //remove braces in list display
-if (strpos($displayTitle,'$')===false) {
+if ( (strpos($displayTitle,'$')===false) 
+    &&
+     (strpos($displayTitle,"\\")===false)     //insert here condition that says 'no replacing if latex code' (i.e. any remaining backslash)
+     ) {
   $displayTitle = str_replace(array('{','}'),'',$displayTitle);
 }
 
