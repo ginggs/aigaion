@@ -154,6 +154,7 @@ class Parseentries_ris
     {    
  
       $sLine = $this->getLine();
+      $elementName = ''; // NEW LINE
       $matchArray = explode(" -", $sLine); // split the line and store in array $matchArray
 
       if (count($matchArray) > 1) // there was a " - ", so there seems to be an item. Check if it really is
