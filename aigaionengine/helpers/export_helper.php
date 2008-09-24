@@ -268,7 +268,7 @@ require_once(APPPATH."include/utf8/trim.php");
     			$return = "CHAP";
     		break;
     		case "Incollection":
-    			$return = "MGZN";
+    			$return = "CHAP";
     		break;
     		case "Inproceedings":
     			$return = "CONF";
