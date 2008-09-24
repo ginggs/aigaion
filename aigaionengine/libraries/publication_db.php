@@ -129,7 +129,8 @@ class Publication_db {
         }
         else
         {
-          $publication->$key = $merge_row->$key;
+          if($key != 'bibtex_id') //don't copy the bibtex key
+            $publication->$key = $merge_row->$key;
         }
       }
     }
