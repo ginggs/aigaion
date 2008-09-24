@@ -625,9 +625,9 @@ class UserLogin {
             return 1; //no such user error
         }
         $R = $Q->row();
-        $pwdInvalidated = 'FALSE'; 
-        if (isset($R->password_invalidated)) $pwdInvalidated = $R->password_invalidated; //necessary because older versions of database do not have this column
-        if (($pwdHash != $R->password) || ($internal && ($pwdInvalidated=='TRUE'))) {
+        $failForPwdInvalidated = 'FALSE'; 
+        if (isset($R->password_invalidated)) $failForPwdInvalidated  = $internal && ($R->password_invalidated=='TRUE'); //necessary because older versions of database do not have this column
+        if (($pwdHash != $R->password) || ( ($failForPwdInvalidated )) {
             //($internal && ($R->password_invalidated=='TRUE')) but password OK?
             //Then someone tried to login through the internal login mechanism using an account 
             //that is anon or external or internal_disabled.
