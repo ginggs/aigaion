@@ -435,7 +435,7 @@ class UserLogin {
                                                'login'              => $loginName,
                                                'password'           => md5($pass),
                                                'password_invalidated'           => 'TRUE',
-                                               'type'               => 'normal',
+                                               'type'               => 'external',
                                                'theme'              => 'default',
                                                'summarystyle'       => 'author',
                                                'authordisplaystyle' => 'fvl',
