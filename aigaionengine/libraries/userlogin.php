@@ -234,6 +234,10 @@ class UserLogin {
                     $this->sNotice = "No login info available...";
                     //return; don't return, but rather attempt to do the anonymous login later on
                 }
+                if ($result == 3) { //critical fail
+                    return 1;
+                }
+
             }
         $result = 0;
         //try to find login info from post vars (form) or from cookies
@@ -366,6 +370,22 @@ class UserLogin {
         $Q = $CI->db->getwhere('users',array('login'=>$loginName));
         if ($Q->num_rows()>0) { //user found
             $row = $Q->row();
+            //internal account?
+            if ($row->type=='normal') {
+                $this->sNotice = 'The username / password combination is valid according to the login module, but the corresponding Aigaion account is an <i>internal</i> account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                return 3; //critical fail, no other login should be attempted
+            }
+            //anonymous account?
+            if ($row->type=='anon') {
+                $this->sNotice = 'The username / password combination is valid according to the login module, but the corresponding Aigaion account is an <i>anonymous</i> account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                return 3; //critical fail, no other login should be attempted
+            }
+            //group account?
+            if ($row->type=='group') {
+                $this->sNotice = 'The username / password combination is valid according to the login module, but the corresponding Aigaion account is a <i>group</i> rather than a user account and cannot be logged in by the '.$delegateLibrary.' module. Please contact your database admin for assistance (Code b3.52 pwd ok / wrong account).<br/>';
+                return 3; //critical fail, no other login should be attempted
+            }
+            
             $loginPwd = $row->password;
             if ($this->_login($loginName,$loginPwd,False,True,False)==0) { //never remember external login; that's a task for the external module
                 //$this->sNotice = 'logged from httpauth';
@@ -626,7 +646,10 @@ class UserLogin {
         }
         $R = $Q->row();
         $failForPwdInvalidated = 'FALSE'; 
-        if (isset($R->password_invalidated)) $failForPwdInvalidated  = $internal && ($R->password_invalidated=='TRUE'); //necessary because older versions of database do not have this column
+        
+        if (isset($R->password_invalidated)) {
+            $failForPwdInvalidated  = $internal && ($R->password_invalidated=='TRUE'); //necessary because older versions of database do not have this column
+        }
         if (($pwdHash != $R->password) || ($failForPwdInvalidated )) {
             //($internal && ($R->password_invalidated=='TRUE')) but password OK?
             //Then someone tried to login through the internal login mechanism using an account 
