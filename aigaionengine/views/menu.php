@@ -150,7 +150,7 @@ if ($userlogin->hasRights('topic_subscription')) {
 <?php
     $this->load->helper('form');
     echo '<li>';
-    echo form_open('login/dologin/'.$this->uri->uri_string());
+    echo form_open('login/dologin'.$this->uri->uri_string());
 ?>
       <table class='loginbox'>
         <tr>
