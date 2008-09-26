@@ -31,9 +31,9 @@ if ($attachment->isremote) {
         //$this->output->set_header("Content-Length: ".strlen($data)); ?
         $this->output->set_header("Pragma: public");
         //force_download($name, $data);
-        $data = file_get_contents(AIGAION_ATTACHMENT_DIR."/".$attachment->location); // Read the file's contents
+        echo file_get_contents(AIGAION_ATTACHMENT_DIR."/".$attachment->location); // Read the file's contents
         //$name = $attachment->name;
-        echo $data;
+        
     }
 }
 ?>
