@@ -20,6 +20,33 @@
 |       
 */
 
+
+    /** 
+    
+    */
+    function updateSchemaV2_7() {
+        $CI = &get_instance();
+        if (checkVersion('V2.7', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_6()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+       
+        //add 'pages' column.
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  CHANGE `firstname` `firstname`  varchar(255);");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  CHANGE `surname` `surname`  varchar(255);");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                                  CHANGE `email` `email`  varchar(255);");
+                                  
+       
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.7');
+    }
  
     /** 
     

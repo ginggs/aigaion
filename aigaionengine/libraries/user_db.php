@@ -253,7 +253,6 @@ class User_db {
     whether the operation was successfull. */
     function update($user) {
         $CI = &get_instance();
-        appendErrorMessage("change");
         //check rights
         $userlogin = getUserLogin();
         if (     !$userlogin->hasRights('user_edit_all')
@@ -262,7 +261,6 @@ class User_db {
             ) {
                 return False;
         }
-        appendErrorMessage("change3");
         //check whether this is the correct user...
         $user_test = $CI->user_db->getByID($user->user_id);
         if ($user_test == null) {
