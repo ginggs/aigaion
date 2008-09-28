@@ -70,10 +70,10 @@ class Search_lib {
     }
     
     
-    if (in_array('publications_bibtex',$searchtypes)) {
+    if (in_array('publications_bibtex_id',$searchtypes)) {
         $publicationResult = $this->findPublicationsCiteIDLike($keywordArray);
         if ($publicationResult != null)
-          $result['publications_bibtex'] = $publicationResult;
+          $result['publications_bibtex_id'] = $publicationResult;
         unset($publicationResult);
     }
     

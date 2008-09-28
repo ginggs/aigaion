@@ -17,6 +17,7 @@ Mark Grimshaw 2006
 http://bibliophile.sourceforge.net
 
 (Amendments to file reading Daniel Pozzi for v1.1)
+27-09-2008 DR: @string expansion should not attempt to expand @String entries. It goes wrong if the macro is also in the string...
 
 11/June/2005 - v1.53 Mark Grimshaw:  Stopped expansion of @string when entry is enclosed in {...} or "..."
 21/08/2004 v1.4 Guillaume Gardey, Added PHP string parsing and expand macro features.

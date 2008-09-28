@@ -81,6 +81,7 @@ function bibCharsToUtf8FromArray($array) {
 
 //        converts bibtex to utf8 chars special chars from a string
 function bibCharsToUtf8FromString($string) {
+    //DR: if string contains math, don't convert at all? Only leads to problems...
     $specialBibtexChars = getBibtexCharsArray();
     $replaceChars        = getBibtexCharsReplaceArray();
 
