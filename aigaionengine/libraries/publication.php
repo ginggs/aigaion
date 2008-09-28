@@ -33,7 +33,7 @@ class Publication {
   var $month        = '';
   var $firstpage    = '';
   var $lastpage     = '';
-  var $pages		    = ''; //note:not in DB
+  var $pages		    = ''; 
   var $journal      = '';
   var $booktitle    = '';
   var $edition      = '';

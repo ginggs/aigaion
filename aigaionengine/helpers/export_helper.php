@@ -59,20 +59,6 @@ require_once(APPPATH."include/utf8/trim.php");
             $keywords .= $keyword->keyword;
         }
         $fields['keywords']=$keywords;
-        //parse fstpage - lastpage into pages
-        $pages = "";
-        if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
-        	if ($publication->firstpage != "0") {
-        		$pages = $publication->firstpage;
-        	}
-        	if (($publication->firstpage != $publication->lastpage)&& (trim($publication->lastpage) != "0")&& (trim($publication->lastpage) != "")) {
-        		if ($pages != "") {
-        			$pages .= "--";
-        		}
-        		$pages .= $publication->lastpage;
-        	}
-        }
-        $fields['pages']=$pages;
         //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
         //month is a number in the database...
@@ -87,11 +73,11 @@ require_once(APPPATH."include/utf8/trim.php");
         $done = array('author',
                       'editor',
                       'keywords',
+                      'firstpage',
+                      'lastpage',
                       'pub_type',
                       'bibtex_id',
                       'userfields',
-                      'firstpage',
-                      'lastpage',
                       'namekey',
                       'month');
         //a list of all fields that can be converted to bibtex codes...
@@ -108,8 +94,7 @@ require_once(APPPATH."include/utf8/trim.php");
                   'chapter'        ,
                   'year'           ,
                   'month'          ,
-                  'firstpage'      ,
-                  'lastpage'       ,
+                  'pages'      ,
                   'pages'		   ,
                   'publisher'      ,
                   'location'       ,
@@ -198,10 +183,12 @@ require_once(APPPATH."include/utf8/trim.php");
         $result .= getRISExportLine('VL',$publication->volume);
         $result .= getRISExportLine('M1',$publication->type);
         $result .= getRISExportLine('IS',$publication->number);
-    	if ($publication->firstpage != "0")
-    		$result .= getRISExportLine("SP", $publication->firstpage);
-    	if ($publication->lastpage != "0")
-    		$result .= getRISExportLine("EP", $publication->lastpage);
+        $CI->load->library('parsepage');
+        list($start, $end) = $CI->parsepage->init($publication->pages);
+        if (isset($start)&&($start!=''))
+    		$result .= getRISExportLine("SP", $start);
+        if (isset($end)&&($end!=''))
+    		$result .= getRISExportLine("EP", $end);
         $result .= getRISExportLine('U1',$publication->edition);
         if ($publication->chapter != 0)
             $result .= getRISExportLine('U2',$publication->chapter);
@@ -343,20 +330,7 @@ require_once(APPPATH."include/utf8/trim.php");
             $keywords .= $keyword->keyword;
         }
         $fields['keywords']=$keywords;
-        //parse fstpage - lastpage into pages
-        $pages = "";
-        if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
-        	if ($publication->firstpage != "0") {
-        		$pages = $publication->firstpage;
-        	}
-        	if (($publication->firstpage != $publication->lastpage)&& (trim($publication->lastpage) != "0")&& (trim($publication->lastpage) != "")) {
-        		if ($pages != "") {
-        			$pages .= "--";
-        		}
-        		$pages .= $publication->lastpage;
-        	}
-        }
-        $fields['pages']=$pages;
+
         //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
         //month is a number in the database...

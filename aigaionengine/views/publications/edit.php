@@ -77,21 +77,28 @@ echo "</script>";
 
         }
         else if ($key == "pages")
-          $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
-                                                                  'id' => 'firstpage', 
-                                                                  'size' => '3', 
+        $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'pages', 
+                                                                  'id' => 'pages', 
+                                                                  'size' => '90', 
                                                                   'alt' => $class, 
                                                                   'autocomplete' => 'off', 
                                                                   'class' => $class), 
-                                                            $publication->firstpage)
-                                                ." - "
-                                                .form_input(array('name' => 'lastpage', 
-                                                                  'id' => 'lastpage', 
-                                                                  'size' => '3', 
-                                                                  'alt' => $class, 
-                                                                  'autocomplete' => 'off', 
-                                                                  'class' => $class), 
-                                                            $publication->lastpage)."</span>\n";
+                                                            $publication->pages)."</span>\n";
+//          $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
+//                                                                  'id' => 'firstpage', 
+//                                                                  'size' => '3', 
+//                                                                  'alt' => $class, 
+//                                                                  'autocomplete' => 'off', 
+//                                                                  'class' => $class), 
+//                                                            $publication->firstpage)
+//                                                ." - "
+//                                                .form_input(array('name' => 'lastpage', 
+//                                                                  'id' => 'lastpage', 
+//                                                                  'size' => '3', 
+//                                                                  'alt' => $class, 
+//                                                                  'autocomplete' => 'off', 
+//                                                                  'class' => $class), 
+//                                                            $publication->lastpage)."</span>\n";
         elseif (($key == "abstract") || ($key == "userfields" ))
           $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 

@@ -24,6 +24,51 @@
     /** 
     
     */
+    function updateSchemaV2_6() {
+        $CI = &get_instance();
+        if (checkVersion('V2.6', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_5()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+       
+        //add 'pages' column.
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  ADD `pages` VARCHAR(255)
+                                  NOT NULL 
+                                  default '';");
+                                  
+        $Q = $CI->db->get('publication');
+        
+        foreach ($Q->result() as $R) {
+            $pages = "";
+            if (($R->firstpage != "0") || ($R->lastpage != "0")) {
+            	if ($R->firstpage != "0") {
+            		$pages = $R->firstpage;
+            	}
+            	if (($R->firstpage != $R->lastpage)&& (trim($R->lastpage) != "0")&& (trim($R->lastpage) != "")) {
+            		if ($pages != "") {
+            			$pages .= "--";
+            		}
+            		$pages .= $R->lastpage;
+            	}
+            }
+            $R->pages = $pages;
+            $CI->db->update('publication',$R,array('pub_id'=>$R->pub_id));
+            
+        }
+        
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.6');
+    }
+
+ 
+    /** 
+    
+    */
     function updateSchemaV2_5() {
         $CI = &get_instance();
         if (checkVersion('V2.5', true)) { // silent check

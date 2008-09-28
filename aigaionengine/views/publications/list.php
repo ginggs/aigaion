@@ -185,23 +185,25 @@ if ($summarystyle == 'author') {
 
 
 foreach ($summaryfields as $key => $prefix) {
-  if ($key == 'pages') {
-    $pages = "";
-    if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
-      if ($publication->firstpage != "0") {
-        $pages = $publication->firstpage;
-      }
-      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0") && ($publication->lastpage != "")) {
-        if ($pages != "") {
-            $pages .= "-";
-        }
-        $pages .= $publication->lastpage;
-      }
-    }
-    $val = $pages;
-  } else {
-    $val = utf8_trim($publication->$key);
-  }
+//DR 29-09-2008: we no longer store firstpage and lastpage separately
+//  if ($key == 'pages') {
+//    $pages = "";
+//    if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
+//      if ($publication->firstpage != "0") {
+//        $pages = $publication->firstpage;
+//      }
+//      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0") && ($publication->lastpage != "")) {
+//        if ($pages != "") {
+//            $pages .= "-";
+//        }
+//        $pages .= $publication->lastpage;
+//      }
+//    }
+//    $val = $pages;
+//  } else {
+//    $val = utf8_trim($publication->$key);
+//  }
+  $val = utf8_trim($publication->$key);
   $postfix='';
   if (is_array($prefix)) {
     $postfix = $prefix[1];

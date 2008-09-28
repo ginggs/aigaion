@@ -197,8 +197,11 @@ class Parser_Bibtex
     }
   	
   	if (isset($bibliophileEntry['pages']) && ($bibliophileEntry['pages'] != '')) {
-  	  list($publication->firstpage, $publication->lastpage) = $this->cPageParser->init($bibliophileEntry['pages']);
-		  unset($bibliophileEntry['pages']);
+
+      //DR 29-09-2008: we no longer store firstpage and lastpage separately
+      //list($publication->firstpage, $publication->lastpage) = $this->cPageParser->init($bibliophileEntry['pages']);
+      $publication->pages = $bibliophileEntry['pages'];
+      unset($bibliophileEntry['pages']);
     }
     
     if (!isset($bibliophileEntry['month']) || ($bibliophileEntry['month'] == '')) {

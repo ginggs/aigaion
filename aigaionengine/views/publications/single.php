@@ -82,13 +82,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
 <?php
     $capitalfields = getCapitalFieldArray();
     foreach ($publicationfields as $key => $class):
-      $pages = false;
-      if ($key == "pages")
-      {
-        if ($publication->firstpage || $publication->lastpage)
-          $pages = true;
-      }
-      if ($publication->$key || $pages):
+      if ($publication->$key):
 ?>
     <tr>
       <td valign='top'><?php
@@ -118,14 +112,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
             echo $months[$publication->month];
           }
         } else if ($key == 'pages') {
-          $pages = $publication->firstpage;
-          if ($publication->lastpage) {
-            if ($pages)
-              $pages .= " - ".$publication->lastpage;
-            else
-              $pages = $publication->lastpage;
-          }
-          echo $pages;
+          echo $publication->pages;
         } elseif ($key == 'crossref') {
             $xref_pub = $this->publication_db->getByBibtexID($publication->$key);
             if ($xref_pub != null) {
