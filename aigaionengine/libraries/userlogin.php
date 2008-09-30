@@ -645,10 +645,10 @@ class UserLogin {
             return 1; //no such user error
         }
         $R = $Q->row();
-        $failForPwdInvalidated = 'FALSE'; 
+        $failForPwdInvalidated = False; 
         
-        if (isset($R->password_invalidated)) {
-            $failForPwdInvalidated  = $internal && ($R->password_invalidated=='TRUE'); //necessary because older versions of database do not have this column
+        if (isset($R->password_invalidated)) {//necessary because older versions of database do not have this column
+            $failForPwdInvalidated  = $internal && ($R->password_invalidated==True); 
         }
         if (($pwdHash != $R->password) || ($failForPwdInvalidated )) {
             //($internal && ($R->password_invalidated=='TRUE')) but password OK?
