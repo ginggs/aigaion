@@ -6,6 +6,7 @@ class Passwordchecker_hardcoded extends Passwordchecker {
     Hard coded password check: only uname/pwd combinations listed below are valid. Uncomment to activate.
     */
     function checkPassword($uname, $password,$pwdInMd5) {
+        return array('uname'=>'','notice'=>'Not a valid login!'); //remove this line to enable this testing-password-checker
         $accounts = array ('testu'=>'testp');
         foreach ($accounts as $u=>$p) {
             if ($pwdInMd5) {
