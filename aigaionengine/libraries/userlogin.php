@@ -648,7 +648,7 @@ class UserLogin {
         $failForPwdInvalidated = False; 
         
         if (isset($R->password_invalidated)) {//necessary because older versions of database do not have this column
-            $failForPwdInvalidated  = $internal && ($R->password_invalidated==True); 
+            $failForPwdInvalidated  = $internal && ($R->password_invalidated=='TRUE'); 
         }
         if (($pwdHash != $R->password) || ($failForPwdInvalidated )) {
             //($internal && ($R->password_invalidated=='TRUE')) but password OK?
