@@ -700,8 +700,8 @@ class UserLogin {
             //store cookies after login was checked
             if ($remember)
             {
-                setcookie("loginname", $R->login   ,(3*24*60*60)+time());
-                setcookie("password",  $R->password,(3*24*60*60)+time());
+                setcookie("loginname", $R->login   ,(3*24*60*60)+time(), '/');
+                setcookie("password",  $R->password,(3*24*60*60)+time(), '/');
             }
 
             #init rights and preferences
@@ -772,8 +772,8 @@ class UserLogin {
         $this->bJustLoggedOut = True;
         
         //Delete cookie values
-        setcookie("loginname",FALSE);
-        setcookie("password",FALSE);
+        setcookie("loginname",FALSE,0,'/');
+        setcookie("password",FALSE,0,'/');
         $CI = &get_instance();
         $CI->latesession->set('USERLOGIN', $this);
     }
