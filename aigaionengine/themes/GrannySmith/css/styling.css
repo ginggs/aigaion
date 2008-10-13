@@ -33,34 +33,11 @@
     #ABC41F : background odd publication summaries
 */
 
-/* ==== PAGE FLOW BEHAVIOUR  ==== */
-/* collapse for all table and div borders / margins / paddings 
-   this is default, because otherwise different browsers will show different styles.
-   if you want margins and paddings you have to specify them */
 
-div {
-    border      : 0px;
-    margin      : 0px;
-    padding     : 0px;
-    position    : relative;
-}
-/*
-td, table, tr, tbody {
-    border          : 0px;
-    border-spacing  : 0px;
-    border-spacing  : 0px;
-    border-collapse : collapse;
-    margin          : 2px;
-    padding         : 0px;
-    vertical-align  : top;
-}   
-*/
 /* ==== BASIC FONT DEFINITIONS ==== */
 
 /* fonts */
 html, body, p, td, input, textarea, select {
-    font-family     : Verdana, Arial, Helvetica, Sans-serif;
-    font-size       : 10px;    
 	color      : #493E0B;
 }
 
@@ -72,172 +49,99 @@ body {
 /* default link coloring */
 a, a:link, a:visited  {
   color             : #493E0B;
-  text-decoration   : none;
 }
 a:hover, a:active {
   color             : #493E0B;
-  text-decoration   : underline;
 }
 /* coloring for lightlinks, not necessarily <a> elements  */
 .lightlink, .lightlink:link, .lightlink:visited {
     color           : #493E0B;
-    text-decoration : none;
 }
 .lightlink:hover, .lightlink:active {
     color           : #493E0B;
-    text-decoration : none;
 }
 
 /* Icons */
-.icon {
-    width   : 1em;
-    border  : 0px;
-}
+
 .large_icon {
     width   : 1.3em;
-    border  : 0px;
 }
-.al_icon { /* old, to be removed */
-    border  : 0px;
-    width   : 1em;
-}
-.rights_icon {
-    border  : 0px;
-    width   : 1em;
-}
+
 
 /* Headers */
 .header {
-  padding         : 0.1em 4em .1em 0.5em;
-  margin          : 1em 0 1em 0;
   background      : #ABC41F;
-  
-  font-weight     : bold;
-  font-size       : 1.1em;
 }
 
-/* optionbox: the edit links in a header, e.g. at a topic page*/
-div.optionbox {
-  margin-top      : 1.1em;
-  padding-right   : 0.2em;
-  float           : right;
-  clear           : right;
-  z-index         : 999;
-  text-align      : right;
-}
 
-/* a simple table style 
-.tablewithborder td, table {
-    border          : 1px solid black;
-    border-spacing  : 0px;
-    border-collapse : collapse;
-    margin          : 1px;
-    padding         : 1px;
-    vertical-align  : top;
-}   
-*/
+
 /* ==== COLORS AND BASIC DEFINITIONS FOR MAIN LAYOUT ELEMENTS ====*/
 
 /* Main layout box colors */
 body {
-  background-color: #493E0B;
+    background-color: #493E0B;
 }
 
 #page_title {
   color           : #493E0B;
-  font-size       : 3em;
-  font-weight     : 400;
-  font-style      : italic;
 }
 
 #main_holder {
-  background-color: #FFFFFF;
-  border-style    : solid;
-  border-width    : 1px;
-  border-color    : #493E0B;
+    border-color    : #493E0B;
 }
 
 #header_holder {
   background-color: #D0E854;
-  border-style    : solid;
-  border-width    : 0px 0px 1px 0px;
   border-color    : #ABC41F;
+  color           : #493E0B;
 }
 
 #menu_holder, #content_holder, #footer_holder, #login_holder {
   background-color: #D0E854;
-  border-style    : solid;
-  border-width    : 1px;
   border-color    : #ABC41F;
 }
 
 /* ==== MENU COLORS AND EFFECTS ==== */
-ul.mainmenu {
-  list-style-type : none;
-  padding         : 0;
-  margin          : 0;
-}
+
 li.mainmenu {
   background      : #ABC41F;
-  margin          : 0 0 0.5em 0;
-  padding         : 0.2em;
 }
 li.mainmenu:hover {
   background      : #D0E854;
 }
-li.mainmenu-header {
-  margin-top      : 1em;
-  margin-bottom   : 0.2em;
-}
-li.mainmenu-spacer {
-  margin          : 0em;
-}
+
 
 /* ==== MESSAGES AND ERRORS ==== */
 
 .message {
-    font-size       : 90%;
-    margin          : 1em;
-    padding         : 1em;
+
     background-color: #ABC41F;
-    border    : solid 1px #ABC41F;
+    border          : solid 1px #ABC41F;
 }
 .errormessage {
-    font-size       : 90%;
-    margin          : 1em;
-    padding         : 1em;
+
     background-color: #CC0300;
-    border    : solid 1px #ABC41F;
+    border          : solid 1px #ABC41F;
+    
     color           : #000000;
-}
-.errortext {
-	color: #ee6666;
-	font-weight: bold;
 }
 
 /* ==== FORMS ==== */
 
 /* general form element styling */
 
+
 .editform {
-    margin          : 1em;
-    padding         : 1em;
     background-color: #ABC41F;
     border          : solid 1px #493E0B;
 }
 .confirmform {
-    margin          : 1em;
-    padding         : 1em;
     background-color: #CC0300;
     border          : solid 1px #493E0B;
 }
 
 input, textarea, select {
-  border-style    : solid;
-  border-width    : 1px;
   border-color    : #ABC41F;
-  padding         : 0.2em;
-  font-size       : 1em;
 }
 input:focus, textarea:focus, select:focus {
   background-color: #F6F5D4;
@@ -253,35 +157,36 @@ input.required, textarea.required, select.required {
   border-color    : #CC0300;
 }
 
+input.nonstandard, textarea.nonstandard, select.nonstandard {
+  border-color    : #493E0B;
+}
+
 input.conditional, textarea.conditional, select.conditional {
   border-color    : #493E0B;
 }
 
-tr.hidden {
- visibility       : hidden;
+
+
+/* ==== TOPIC TREE ==== */
+ul.topictree-sublist {
+    list-style-type : none;
+    padding: 0;
+    margin-left: 2em;
 }
 
-/* ==== TOPIC VIEWS ==== */
-.topicstats {
-    border:1px solid black;
-    padding:0.2em;
-    margin:0.2em;
-    margin-bottom:1em;
-}
 
 /* ==== PUBLICATION VIEWS  ==== */
 
+
+
 div.publication_summary {
-  padding         : 0.1em 0.1em 1em 0.5em;
   /*border-bottom   : 1px solid #493E0B;*/
   /*border-left     : 1px solid #493E0B;*/
 }
 
 div.publication_summary.odd {
-  /*background      : #ABC41F; */
   background      : #ABC41F; 
   border-left     : none;
-  /*border-right    : 1px solid #493E0B;*/
 }
 
 /* small hack since otherwise the publication title header had wrong margin */
@@ -289,73 +194,30 @@ div.publication {
   border: 1px solid #D0E854;
 }
 
-span.author {
-  font-style      : italic;
-}
-span.authorlist {
-  font-style      : italic;
-}
-span.title {
-  font-weight     : bold;
-}
 
-ul.nosymbol {
-  list-style-type : none;
-}
 
 div.autocomplete {
-  position        : absolute;
-  width           : 250px;
-  background-color: #FFFFFF;
-  border          : 1px solid;
   border-color    : #ABC41F;
-  margin          : 0px;
-  padding         : 0px;
-}
-div.autocomplete ul {
-    list-style      : none!important;
-    list-style-image: none!important;
-    margin          : 0px;
-    padding         : 0px;
 }
 div.autocomplete ul li.selected {
     background-color: #F6F5D4;
 }
-div.autocomplete ul li {
-    font-size       : 1em;
-    list-style-type : none;
-    display         : block;
-    margin          : 0;
-    padding         : 2px;
-    cursor          : pointer;
-}
 
-.alignright {
-    text-align: right;
-}
 
-.aligncenter {
-  text-align: center;
-}
-
-.aligntop {
-  vertical-align: top;
-}
-
-.fullwidth {
-  width: 100%;
-}
-
-.fivepercentwidth {
-  width: 5%;
-}
-
-.nobr {
-  white-space: nowrap;
- }
- 
  .loginbox {
     padding : 3px;
     border  : 1px solid #493E0B;
 }
+
+/* ==== HELP VIEWS  ==== */
+
+#helpheader-holder {
+  background-color: #ABC41F;
+  border          : 1px solid #493E0B;
+}
+
+li.help:hover {
+  background     : #ABC41F; /* D0E854; */
+}
+
 

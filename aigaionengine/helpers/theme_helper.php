@@ -62,14 +62,22 @@
         }
     }
     
-    /* Return true iff icon exists in current theme */
+    /* Return true iff icon exists at all */
     function iconExists($iconName) {
+        return file_exists(APPPATH."/themes/".getThemeName()."/icons/".$iconName) || file_exists(APPPATH."/themes/default/icons/".$iconName);
+    }
+    /* Return true iff icon exists in current theme */
+    function iconExistsInTheme($iconName) {
         return file_exists(APPPATH."/themes/".getThemeName()."/icons/".$iconName);
     }
     /** Return the Url of the requested icon (full file name!), taking current theme
         into account. */
     function getIconUrl($iconName) {
-        return APPURL."themes/".getThemeName()."/icons/".$iconName;
+        if (iconExistsInTheme($iconName)) {
+            return APPURL."themes/".getThemeName()."/icons/".$iconName;
+        } else {
+            return APPURL."themes/default/icons/".$iconName;
+        }
     }
     /** Return the Url of the requested css file (full file name!), taking current 
         theme into account. */

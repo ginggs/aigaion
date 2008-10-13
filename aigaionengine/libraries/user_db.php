@@ -271,7 +271,10 @@ class User_db {
             appendErrorMessage("Login names cannot be changed. Login name has been reset to old value. Other changes have been saved.");
             $user->login = $user_test->login;
         }
-        
+        //DR 2008.10.10: if this is the current user, set 'type' back to what it was
+        if ($user->user_id == $userlogin->userId()) {
+          $user->type = $user_test->type;
+        }
         //disable account?
         if (($user->type=='normal') && ($user->toBeDisabled == True))  {
             $user->password_invalidated = 'TRUE';

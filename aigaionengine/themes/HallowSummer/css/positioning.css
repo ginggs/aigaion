@@ -6,9 +6,9 @@ body {
   margin          : 10px auto 10px auto;
   text-align      : left;
   
-  width           : 80em;
+  width           : 90em;
   min-width       : 40em;
-  max-width       : 100em;
+  max-width       : 120em;
 
   min-height      : 60em;
 }
@@ -45,9 +45,10 @@ body {
 
 #login_holder {
   margin          : 10px auto 10px auto;
-  text-align      : center;
+  text-align      : left;
   
   width           : 40em;
-  min-width       : 200px;
-  max-width       : 600px;
+  min-width       : 40em;
+  max-width       : 80em;
+  
 }

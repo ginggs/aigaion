@@ -9,11 +9,10 @@
             echo getConfigurationSetting('WINDOW_TITLE').' - '; 
         echo $title; 
     ?></title>
+    <link href="<?php echo APPURL; ?>themes/default/css/positioning.css" rel="stylesheet" type="text/css" media="screen,projection,tv" />
+    <link href="<?php echo APPURL; ?>themes/default/css/styling.css"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("positioning.css"); ?>" rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
-    <link href="<?php echo getCssUrl("topics.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
-    <link href="<?php echo getCssUrl("accesslevels.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
-    <link href="<?php echo getCssUrl("help.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
 <?php
     //view parameter to be passed to menu: a prefix for the sort options. See views/menu.php for more info
     if (!isset($sortPrefix))

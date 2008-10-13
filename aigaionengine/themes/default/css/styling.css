@@ -285,6 +285,17 @@ tr.hidden {
  height: 0px;
 }
 
+
+/* ==== ACCESS LEVELS RELATED THINGS ==== */
+.owner_self {
+    font-weight : bold;
+    color  : green;
+}
+.owner_other {
+    font-weight : bold;
+    color  : red;
+}
+
 /* ==== TOPIC VIEWS ==== */
 .topicstats {
     border:1px solid black;
@@ -292,6 +303,42 @@ tr.hidden {
     margin:0.2em;
     margin-bottom:1em;
 }
+
+/* ==== TOPIC TREE ==== */
+ul.topictree-list {
+    list-style-type : none;
+    padding: 0;
+    margin-left: 1.5em;
+}
+
+li.topictree-node {
+    margin-top    : 0em;
+    margin-bottom : 0em;
+}
+
+li.topictree-leaf {
+    margin-bottom: 0em;
+}
+
+/* IE hack 
+problem: empty <li> has a height of 1 em in IE 5 and IE7.
+*/
+li.topictree-children {
+  margin-top: 0em;
+  #margin-top: -1em; /* Works on all IE browsers up to version 7 */
+  _margin-top: 0em;  /* Works on all IE browsers prior to version 7 */
+}
+
+.subscriptionlink {
+}
+
+.subscribedtopic {
+    font-weight : bold;
+}
+.unsubscribedtopic {
+    font-weight : normal;
+}
+
 /* ==== PUBLICATION VIEWS  ==== */
 
 .notelist {
@@ -387,3 +434,39 @@ div.autocomplete ul li {
     padding : 3px;
     border  : 1px solid #000000;
 }
+
+/* ==== HELP VIEWS  ==== */
+
+#helpheader-holder {
+    text-align:center;
+    font-size:    100%;
+    margin: 1em ;
+    padding : 1em ;
+    background-color: #DDDDDD;
+    border:1px solid #0F0F10;
+}
+ul.help {
+  list-style-type : none;
+  padding: 0;
+  margin: 0;
+  display:inline; 
+}
+li.help {
+  display:inline; 
+  padding-left:0.2em;
+  padding-right:0.2em;
+}
+li.help:hover {
+   background:#EEEEFF;
+}
+li.help-header {
+  display       : block; 
+  margin-bottom : 0.2em;
+  font-weight: bold;   
+  font-family: verdana; 
+  font-size: 140%; 
+}
+
+.header1  {  font-weight: bold;   font-family: arial; font-size: 140%; margin-top: 0.2em;} 
+.header2 {  font-weight: bold;   font-family: arial; font-size: 120%; margin-top: 0.2em;} 
+.header3 {  font-style:  italic; font-family: arial; font-size: 120%; margin-top: 0.2em;}
