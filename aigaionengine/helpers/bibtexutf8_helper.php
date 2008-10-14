@@ -81,7 +81,12 @@ function bibCharsToUtf8FromArray($array) {
 
 //        converts bibtex to utf8 chars special chars from a string
 function bibCharsToUtf8FromString($string) {
-    //DR: if string contains math, don't convert at all? Only leads to problems... 
+    //DR: if string contains math, don't convert at all, as it only leads to problems... 
+    if (preg_match("/(^\\$|[^\\\\]\\$)/i", $string) ==1) return $string;
+    if (preg_match("/\\\\ensuremath(\\s)*\\{/i", $string) ==1) return $string;
+    if (preg_match("/\\\\\\(/i", $string) ==1) return $string;
+    if (preg_match("/\\\\begin(\\s)*\\{math\\}/i", $string) ==1) return $string;
+    
     $specialBibtexChars = getBibtexCharsArray();
     $replaceChars        = getBibtexCharsReplaceArray();
 
