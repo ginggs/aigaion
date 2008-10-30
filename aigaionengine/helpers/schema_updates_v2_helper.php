@@ -121,6 +121,10 @@
                                   default 'FALSE' 
                                   AFTER `theme`");
        
+        //if aigaion was configured to use external login, set all 'normal' accounts to be 'external'
+        if (getConfigurationSetting('USE_EXTERNAL_LOGIN')=='TRUE') {
+          $CI->db->update('users', array('type'=>'external'),array('type'=>'normal'));
+        }
         
         //all anonymous accounts are 'password_invalidated'
         $CI->db->update('users', array('password_invalidated'=>'TRUE'),array('type'=>'anon'));
