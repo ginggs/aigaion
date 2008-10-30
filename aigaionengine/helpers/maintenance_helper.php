@@ -31,6 +31,7 @@
         $CI = &get_instance();
         #for every user:
         foreach ($CI->user_db->getAllUsers() as $user) {
+          if (($user->type!='external') && ($user->password_invalidated!= 'TRUE'))
             #check empty passwords
             if ($user->password==md5('')) {
                 $checkResult .= 'User '.$user->login.' has an empty password!<br>';
@@ -39,6 +40,7 @@
             if ($user->password==md5($user->login)) {
                 $checkResult .= 'User '.$user->login.' has the user name for password!<br>';
             }
+          }
         }
         if ($checkResult != "")
         {
