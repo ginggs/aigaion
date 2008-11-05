@@ -711,25 +711,6 @@ class UserLogin {
             #set a welcome message/advertisement after login
             appendMessage("
                 <table>\n<tr><td>
-                Hoi Dennis,
-
-tijdens een security-workshop hebben we Aigaion onder de loep gehouden en ik vond de volgende, nogal nare, bug:
-
-  1 Arbitrary command execution:
-  2 aigaionengine/libraries/file_upload.php (use of system call withtout
-     proper encoding)
-  3
-  4 Possible exploit:
-  5 Upload attachment and enter as name:
-  6     poem; cp index.php readme.txt; #
-  7 Then visit site/readme.txt for nice passwords
-  8
-  9 Solution:
- 10     encode the filename with escape_shell_arg()
-
-groeten,
-
-Marijn van Vliet
                 This site is powered by Aigaion 
                 - A PHP/Web based management system for shared and annotated bibliographies.
                 For more information visit <a href='http://www.aigaion.nl/' class='open_extern'>www.aigaion.nl</a>.
