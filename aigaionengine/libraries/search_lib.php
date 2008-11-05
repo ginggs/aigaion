@@ -326,8 +326,13 @@ class Search_lib {
           $bGroup = false;
           $keyword = substr($keyword, 0, strlen($keyword) - 1);
           $groupKeyword .= $keyword;
-          if (trim($groupKeyword)!="")
-          $keywordArray[] = utf8_to_ascii(bibCharsToUtf8FromString($groupKeyword));
+          if (trim($groupKeyword)!="") {
+            if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+              $keywordArray[] = utf8_to_ascii(bibCharsToUtf8FromString($groupKeyword));
+            } else {
+              $keywordArray[] = utf8_to_ascii($groupKeyword);
+            }
+          }
           $groupKeyword = "";
         }
         else {

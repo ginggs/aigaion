@@ -329,6 +329,23 @@ echo $this->validation->error_string;
 	        BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.
 	        The correct syntax for strings is: @string {AIG = "Aigaion bibliography System"}<br/><br/></td>
 	    </tr>
+	    <tr>
+	        <td><label>Convert bibtex to UTF8 upon input</label></td>
+	        <td align='left'>
+	        <?php
+            echo form_checkbox('CONVERT_BIBTEX_TO_UTF8','CONVERT_BIBTEX_TO_UTF8',$siteconfig->getConfigSetting("CONVERT_BIBTEX_TO_UTF8")!= "FALSE");
+          ?>
+        </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Turn this off if you want bibtex code to be stored as such in the database, without converting it
+          into utf8. </td>
+	    </tr>
+	    <tr>
+	        <td align='left' colspan='2'></td>
+	    </tr>	    
+	    
 <!-- DISPLAY SETTINGS -->
 	    <tr>
 	        <td colspan='2'><hr><p class='header2'>Some display settings:</p></td>

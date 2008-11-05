@@ -453,10 +453,12 @@ class Publication_db {
   
   
     //check for specialchars
-    foreach ($specialfields as $field)
-    {
-      //remove bibchars
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
+        //remove bibchars
         $publication->$field = bibCharsToUtf8FromString($publication->$field);
+      }
     }
 
     //create cleantitle and cleanjournal
@@ -651,10 +653,12 @@ class Publication_db {
 
   
     //check for specialchars
-    foreach ($specialfields as $field)
-    {
-      //remove bibchars
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
+        //remove bibchars
         $publication->$field = bibCharsToUtf8FromString($publication->$field);
+      }
     }
     
     //create cleantitle and cleanjournal
@@ -1275,7 +1279,10 @@ class Publication_db {
       $CI->load->helper('bibtexutf8');
       $CI->load->helper('cleanname');
       
-      $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
+      $publication->cleantitle = $publication->title;
+      if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+        $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
+      }
       $publication->cleantitle = cleanTitle($publication->cleantitle);
 
       $Q = $CI->db->query("SELECT DISTINCT cleantitle FROM ".AIGAION_DB_PREFIX."publication

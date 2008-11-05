@@ -139,10 +139,12 @@ class Parser_Bibtex
     }
     
     //check for specialchars
-    foreach ($specialfields as $field)
-    {
-      //remove bibchars
-      $publication->$field = bibCharsToUtf8FromString($publication->$field);
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
+        //remove bibchars
+        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+      }
     }
     
     //create cleantitle and cleanjournal

@@ -94,6 +94,11 @@ class Siteconfig_db {
         } else {
             $result->configSettings['DEFAULTPREF_UTF8BIBTEX']       = 'FALSE';
         }
+        if ($CI->input->post('CONVERT_BIBTEX_TO_UTF8')=='CONVERT_BIBTEX_TO_UTF8') {
+            $result->configSettings['CONVERT_BIBTEX_TO_UTF8']       = 'TRUE';
+        } else {
+            $result->configSettings['CONVERT_BIBTEX_TO_UTF8']       = 'FALSE';
+        }
         //if ($CI->input->post('CONVERT_LATINCHARS_IN')=='CONVERT_LATINCHARS_IN') {
         //    $result->configSettings['CONVERT_LATINCHARS_IN']='TRUE';
         //} else {

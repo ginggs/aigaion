@@ -33,10 +33,15 @@ class Author_db {
       return false;
       
     //do the query
-    $Q = $CI->db->getwhere('author',array('firstname' => bibCharsToUtf8FromString($firstname)
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      $Q = $CI->db->getwhere('author',array('firstname' => bibCharsToUtf8FromString($firstname)
                                          ,'von' => bibCharsToUtf8FromString($von)
                                          ,'surname' => bibCharsToUtf8FromString($surname)));
-  
+    } else {
+      $Q = $CI->db->getwhere('author',array('firstname' =>$firstname
+                                         ,'von' => $von
+                                         ,'surname' => $surname));
+    }
     //only when a single result is found, load the result. Else fail
     if ($Q->num_rows() == 1)
       return $this->getFromRow($Q->row());
@@ -53,7 +58,11 @@ class Author_db {
       return null;
     
     //pack into array
-    $authorArray = array("firstname" => bibCharsToUtf8FromString($firstname), "von" => bibCharsToUtf8FromString($von), "surname" => bibCharsToUtf8FromString($surname));
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      $authorArray = array("firstname" => bibCharsToUtf8FromString($firstname), "von" => bibCharsToUtf8FromString($von), "surname" => bibCharsToUtf8FromString($surname));
+    } else {
+      $authorArray = array("firstname" => $firstname, "von" => $von, "surname" => $surname);
+    }
     
     //load from array
     return $this->getFromArray($authorArray);
@@ -101,10 +110,12 @@ class Author_db {
     
     //check for specialchars
     $specialfields = array('firstname', 'von', 'surname', 'institute');
-    foreach ($specialfields as $field)
-    {
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
         //remove bibchars
         $author->$field = bibCharsToUtf8FromString($author->$field);
+      }
     }
     $author->cleanname = authorCleanName($author);
     return $author;
@@ -136,10 +147,12 @@ class Author_db {
     
     //check for specialchars
     $specialfields = array('firstname', 'von', 'surname', 'institute');
-    foreach ($specialfields as $field)
-    {
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
         //remove bibchars
         $author->$field = bibCharsToUtf8FromString($author->$field);
+      }
     }
     
     //create cleanname
@@ -176,11 +189,13 @@ class Author_db {
     
     //check for specialchars
     $specialfields = array('firstname', 'von', 'surname', 'institute');
-    foreach ($specialfields as $field)
-    {
+    if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
+      foreach ($specialfields as $field)
+      {
         $author->$field = bibCharsToUtf8FromString($author->$field);
         
-    }
+      }
+  }
     
     //create cleanname
     $author->cleanname = authorCleanName($author);
