@@ -244,18 +244,30 @@ class Parseentries
 		// $oldString = rtrim($oldString, "}),");
 		$split = preg_split("/=/", $oldString, 2);
 		//appendErrorMessage('k: '.$split[0]);
+		$valuelessoldstring = '';
+    $remainder2 = $oldString;
+		$remainder = $split[1];
+		//appendErrorMessage($valuelessoldstring.'<br>');  
 		$string = $split[1];
 		while($string)
 		{
 			list($entry, $string) = $this->fieldSplit($string);
+			$valuelessoldstring .= substr($remainder2,0,strlen($remainder2)-strlen($remainder));
+			$remainder2 = substr($remainder,strlen($entry));
+			$remainder = $string;
+			//appendErrorMessage($valuelessoldstring.'<br>'); 
 			$values[] = $entry;
 		}
-		//DR nov 2008: this piece of code removes all _values_ from the string, so only the keys remain. But if one of the values also exists somewhere in the keys, we have a problem...
-		foreach($values as $value)
-		{
-			$pos = strpos($oldString, $value);
-			$oldString = substr_replace($oldString, '', $pos, strlen($value));
-		}
+		//DR nov 2008: this piece of code removes all _values_ from the string, so only the keys remain, separated by = and , 
+    //     But if one of the values also exists somewhere in the same literal form in the keys, we have a problem...
+    //therefore I replaced this with the difficult stuf with two remainders and a valuelessoldstring
+		//foreach($values as $value)
+		//{
+		//	$pos = strpos($oldString, $value);
+		//	$oldString = substr_replace($oldString, '', $pos, strlen($value));
+		//}
+		$oldString = trim($valuelessoldstring);
+		//if ($oldString[0]==',')$oldString = substr($oldString,1);
 		$rev = strrev(trim($oldString));
 		if($rev{0} != ',')
 			$oldString .= ',';
