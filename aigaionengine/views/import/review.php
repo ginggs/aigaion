@@ -277,8 +277,10 @@ for ($i = 0; $i < $importCount; $i++)
     }
     foreach ($publicationFields as $field)
     {
-      if ($field != "keywords")
-      echo form_hidden($field."_".$i,     $publications[$i]->$field)."\n";
+      if ($field != "keywords") {
+        echo form_hidden($field."_".$i,     $publications[$i]->$field)."\n";
+        echo $field."_".$i.'___'.$publications[$i]->$field.'<br>';
+      }
       else if ($reviews[$i]['keywords'] == null)
       {
         if (is_array($publications[$i]->keywords))

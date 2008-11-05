@@ -276,6 +276,7 @@ class Parser_Import
   	$userFields = array_diff(array_keys($bibliophileEntry), getFullFieldArray());
   	$userFieldsText = "";
   	foreach ($userFields as $field) {
+  	
   		if (trim($bibliophileEntry[$field]) != "") {
   		    //this field should be checked to see if it contains an url or a doi (fieldname: pdf, ee, ...) 
   		    if (in_array(strtolower(trim($field)),array('pdf','ee'))) {

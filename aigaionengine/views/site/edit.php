@@ -339,8 +339,8 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Turn this off if you want bibtex code to be stored as such in the database, without converting it
-          into utf8. </td>
+	        Turn this off if you want special bibtex character codes to be stored as such in the database, without converting them
+          into utf8. This is useful if you find that you have a lot of bibtex that is converted wrongly.</td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>

@@ -142,6 +142,8 @@ class Parseentries
 		$this->expandMacro = TRUE;
 		$this->parseFile = TRUE;
 		$this->outsideEntry = TRUE;
+		
+		
 	}
 // Open bib file
 	function openBib($file)
@@ -228,6 +230,7 @@ class Parseentries
 		//$array = preg_split("/,\s*(\w+)\s*={1}\s*/U", $seg, PREG_SPLIT_DELIM_CAPTURE);
 		if(!array_key_exists(1, $array))
 			return array($array[0], FALSE);
+		
 		return array($array[0], $array[1]);
 	}
 // Extract and format fields
@@ -240,12 +243,14 @@ class Parseentries
 			$oldString = substr($oldString,0,$lg-1);
 		// $oldString = rtrim($oldString, "}),");
 		$split = preg_split("/=/", $oldString, 2);
+		//appendErrorMessage('k: '.$split[0]);
 		$string = $split[1];
 		while($string)
 		{
 			list($entry, $string) = $this->fieldSplit($string);
 			$values[] = $entry;
 		}
+		//DR nov 2008: this piece of code removes all _values_ from the string, so only the keys remain. But if one of the values also exists somewhere in the keys, we have a problem...
 		foreach($values as $value)
 		{
 			$pos = strpos($oldString, $value);
@@ -405,10 +410,11 @@ class Parseentries
 				$str = trim($str); 
 				// replace the string if macro is already defined
 				// strtolower is used since macros are case insensitive
-				if (isset($this->strings[strtolower($str)]))
+				if (isset($this->strings[strtolower($str)])) {
 					$string .= $this->strings[strtolower($str)];
-				else 
+				} else {
 					$string .= $this->removeDelimiters(trim($str));
+			}
 			}
 		}
 		return $string;
