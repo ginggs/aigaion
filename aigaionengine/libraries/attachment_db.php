@@ -220,7 +220,7 @@ class Attachment_db {
         	if ($ext == ".doc") {
         		$attachment->mime = "application/msword";
         	}
-        
+         //$storename = escapeshellarg($storename);
         	# execute the actual upload
         	if ($CI->file_upload->upload($storename)) {  
         	    // storename is an additional filename information, use this to rename the uploaded file
