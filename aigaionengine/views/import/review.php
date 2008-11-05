@@ -279,7 +279,7 @@ for ($i = 0; $i < $importCount; $i++)
     {
       if ($field != "keywords") {
         echo form_hidden($field."_".$i,     $publications[$i]->$field)."\n";
-        echo $field."_".$i.'___'.$publications[$i]->$field.'<br>';
+        //echo $field."_".$i.'___'.$publications[$i]->$field.'<br>';
       }
       else if ($reviews[$i]['keywords'] == null)
       {
