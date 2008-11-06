@@ -150,7 +150,9 @@ if ($userlogin->hasRights('topic_subscription')) {
 <?php
     $this->load->helper('form');
     echo '<li>';
-    echo form_open('login/dologin'.$this->uri->uri_string());
+    $postfix = $this->uri->uri_string();
+    if ((strlen($postfix)>0) && ($postfix[0]!='/')) $postfix = '/'.$postfix;
+    echo form_open('login/dologin'.$postfix);
 ?>
       <table class='loginbox'>
         <tr>
