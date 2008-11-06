@@ -13,9 +13,13 @@ class Passwordchecker_ldap {
         $CI = &get_instance();
         $CI->load->library('authldap');
         //now try to login from LDAP 
+        $serverType = "";
+        if (getConfigurationSetting('LDAP_IS_ACTIVE_DIRECTORY') != 'FALSE') {
+                $serverType = "ActiveDirectory";
+        }
         $ldap = new Authldap(getConfigurationSetting('LDAP_SERVER'),
                              getConfigurationSetting('LDAP_BASE_DN'),
-                             "ActiveDirectory", 
+                             $serverType, 
                              getConfigurationSetting('LDAP_DOMAIN'),
                              "", "");
         //$ldap->dn = getConfigurationSetting('LDAP_BASE_DN');

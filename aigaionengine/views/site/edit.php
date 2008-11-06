@@ -208,6 +208,20 @@ echo $this->validation->error_string;
             <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        The domain for logging in to the LDAP server (like: dev.aigaion.nl).</td>
 	    </tr>
+         <tr>
+	        <td><label>Server type is &quot;ActiveDirectory&quot;:</label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('LDAP_IS_ACTIVE_DIRECTORY','LDAP_IS_ACTIVE_DIRECTORY',$siteconfig->getConfigSetting("LDAP_IS_ACTIVE_DIRECTORY")!= "FALSE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        Check this box if your LDAP server is an Active Directory server.
+	        </td>
+	    </tr>
+
 
         <tr>
             <td colspan='2'><p class='header2'>Login settings (HTTP Authentication):</p>'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 

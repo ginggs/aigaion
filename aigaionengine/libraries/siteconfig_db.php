@@ -142,6 +142,11 @@ class Siteconfig_db {
         $result->configSettings['LDAP_SERVER']                     = $CI->input->post('LDAP_SERVER');
         $result->configSettings['LDAP_BASE_DN']                    = $CI->input->post('LDAP_BASE_DN');
         $result->configSettings['LDAP_DOMAIN']                     = $CI->input->post('LDAP_DOMAIN');
+        if ($CI->input->post('LDAP_IS_ACTIVE_DIRECTORY')=='LDAP_IS_ACTIVE_DIRECTORY') {
+            $result->configSettings['LDAP_IS_ACTIVE_DIRECTORY']    = 'TRUE';
+        } else {
+            $result->configSettings['LDAP_IS_ACTIVE_DIRECTORY']    = 'FALSE';
+        }
         if ($CI->input->post('LOGIN_ENABLE_ANON')=='LOGIN_ENABLE_ANON') {
             $result->configSettings['LOGIN_ENABLE_ANON']           = 'TRUE';
         } else {
