@@ -85,8 +85,11 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 	echo "<ul>
 <li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>
 <li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
-<li class='nobr'>{$topicCount} Subtopics [".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]</li>\n";
-
+<li class='nobr'>{$topicCount} Subtopics ";
+if ($userlogin->hasRights('topic_edit')) {
+  echo "[".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]";
+}
+echo "</li>\n";
   if ($userlogin->hasRights('bookmarklist')) {
     echo "<li class='nobr'>[".anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')."]</li>\n";
     echo "<li class='nobr'>[".anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll')."]</li>\n";
