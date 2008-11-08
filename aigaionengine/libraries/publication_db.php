@@ -925,7 +925,7 @@ class Publication_db {
         $orderby='actualyear DESC, cleantitle';
         break;
       case 'type':
-        $orderby='pub_type ASC, cleanjournal, actualyear DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        $orderby='pub_type ASC, cleanjournal ASC, actualyear DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
         break;
       case 'recent':
         $orderby='pub_id DESC';
@@ -966,7 +966,7 @@ class Publication_db {
         $orderby='actualyear DESC, cleantitle';
         break;
       case 'type':
-        $orderby='pub_type, actualyear  DESC, cleanjournal, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        $orderby='pub_type, cleanjournal ASC, actualyear  DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
         break;
       case 'recent':
         $orderby='pub_id DESC';
@@ -1011,7 +1011,7 @@ class Publication_db {
         $orderby='actualyear DESC, cleantitle';
         break;
       case 'type':
-        $orderby='pub_type, actualyear DESC, cleanjournal, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        $orderby='pub_type, cleanjournal ASC, actualyear DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
         break;
       case 'recent':
         $orderby='pub_id DESC';
@@ -1053,7 +1053,7 @@ class Publication_db {
         $orderby='actualyear DESC, cleantitle';
         break;
       case 'type':
-        $orderby='pub_type, actualyear DESC, cleanjournal, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
+        $orderby='pub_type, cleanjournal ASC, actualyear DESC, cleantitle'; //funny thing: article is lowest in alphabetical order, so this ordering is enough...
         break;
       case 'recent':
         $orderby='pub_id DESC';
