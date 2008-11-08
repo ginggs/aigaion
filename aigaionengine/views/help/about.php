@@ -10,7 +10,7 @@
         } else {
             $version = '0.0';
         }
-        echo "Administrator of this installation: <a href='mailto: "<?php echo getConfigurationSetting("CFG_ADMIN"); ?>" <?php echo '<'.getConfigurationSetting("CFG_ADMINMAIL").'>'; ?>?subject=About for <?php echo getConfigurationSetting("WINDOW_TITLE")?> Aigaion database'><?php echo getConfigurationSetting("CFG_ADMIN"); ?></a><br/>";
+        echo "Administrator of this installation: <a href='mailto: \"".getConfigurationSetting("CFG_ADMIN")."\" ".'<'.getConfigurationSetting("CFG_ADMINMAIL").'>'."?subject=About ".getConfigurationSetting("WINDOW_TITLE")." Aigaion database'>".getConfigurationSetting("CFG_ADMIN")."</a><br/>";
         echo "URL of this installation: ".AIGAION_ROOT_URL."<br/>";
         echo "PHP version: ".phpversion()."<br/>";
         echo "Aigaion Database Version: ".$version."<br/>";
