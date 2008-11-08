@@ -24,7 +24,7 @@ require_once(APPPATH."include/utf8/trim.php");
     /** returns formatted bibtex for this publication object. Does not do any crossref merging. */
     function getBibtexForPublication($publication) {
         $CI = &get_instance();
-        $CI->load->helper('bibtexutf8');
+        $CI->load->library('bibtex2utf8');
         $CI->load->helper('string');
         $CI->load->helper('publication');
         $userlogin = getUserLogin();
@@ -137,7 +137,7 @@ require_once(APPPATH."include/utf8/trim.php");
                 if (($userlogin->getPreference('utf8bibtex')=='TRUE')||!in_array($name,$utf8ConvertFields)) {
                     $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."}";
                 } else {
-                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".utf8ToBibCharsFromString($value)."}";
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$CI->bibtex2utf8->utf8ToBibCharsFromString($value)."}";
                 }
             }
         }
@@ -150,7 +150,7 @@ require_once(APPPATH."include/utf8/trim.php");
             if ($userlogin->getPreference('utf8bibtex')=='TRUE') {
                 $result .= $publication->userfields;
             } else {
-                $result .= utf8ToBibCharsFromString($publication->userfields);
+                $result .= $CI->bibtex2utf8->utf8ToBibCharsFromString($publication->userfields);
             }
         }
         
@@ -289,7 +289,7 @@ require_once(APPPATH."include/utf8/trim.php");
     
     function getOSBibFormattingForPublication($publication,$bibformat,$style = "apa",  $format = "html") {
         $CI = &get_instance();
-        $CI->load->helper('bibtexutf8');
+        $CI->load->library('bibtex2utf8');
         $CI->load->helper('string');
         $CI->load->helper('publication');
     	$bibformat->output=$format;

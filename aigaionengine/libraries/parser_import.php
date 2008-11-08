@@ -92,7 +92,7 @@ class Parser_Import
   function bibliophileToPublication($bibliophileEntry)
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('utf8_to_ascii');
     $CI->load->helper('attachments');
     $publication = new Publication(); 
@@ -177,7 +177,7 @@ class Parser_Import
       foreach ($specialfields as $field)
       {
         //remove bibchars
-        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+        $publication->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->$field);
       }
     }
     //create cleantitle and cleanjournal

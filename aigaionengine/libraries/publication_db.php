@@ -376,7 +376,7 @@ class Publication_db {
   function add($publication)
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('cleanname');
     //check access rights (!)
     $userlogin = getUserLogin();
@@ -457,7 +457,7 @@ class Publication_db {
       foreach ($specialfields as $field)
       {
         //remove bibchars
-        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+        $publication->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->$field);
       }
     }
 
@@ -574,7 +574,7 @@ class Publication_db {
   function update($publication)
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('cleanname');
     //check access rights (by looking at the original publication in the database, as the POST
     //data might have been rigged!)
@@ -657,7 +657,7 @@ class Publication_db {
       foreach ($specialfields as $field)
       {
         //remove bibchars
-        $publication->$field = bibCharsToUtf8FromString($publication->$field);
+        $publication->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->$field);
       }
     }
     
@@ -1276,12 +1276,12 @@ class Publication_db {
     */
     function reviewTitle($publication) {
       $CI = &get_instance();
-      $CI->load->helper('bibtexutf8');
+      $CI->load->library('bibtex2utf8');
       $CI->load->helper('cleanname');
       
       $publication->cleantitle = $publication->title;
       if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-        $publication->cleantitle = bibCharsToUtf8FromString($publication->title);
+        $publication->cleantitle = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->title);
       }
       $publication->cleantitle = cleanTitle($publication->cleantitle);
 

@@ -26,7 +26,7 @@ class Author_db {
   {
     //this function cannot operate on the cleanname; because then we can never have two different authors that just differn in e.g. diacritics.
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('utf8_to_ascii');
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
@@ -34,9 +34,9 @@ class Author_db {
       
     //do the query
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-      $Q = $CI->db->getwhere('author',array('firstname' => bibCharsToUtf8FromString($firstname)
-                                         ,'von' => bibCharsToUtf8FromString($von)
-                                         ,'surname' => bibCharsToUtf8FromString($surname)));
+      $Q = $CI->db->getwhere('author',array('firstname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname)
+                                         ,'von' => $CI->bibtex2utf8->bibCharsToUtf8FromString($von)
+                                         ,'surname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($surname)));
     } else {
       $Q = $CI->db->getwhere('author',array('firstname' =>$firstname
                                          ,'von' => $von
@@ -52,14 +52,14 @@ class Author_db {
   function setByName($firstname = "", $von = "", $surname = "")
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     //check if there is input, if not fail
     if (!($firstname || $von || $surname))
       return null;
     
     //pack into array
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-      $authorArray = array("firstname" => bibCharsToUtf8FromString($firstname), "von" => bibCharsToUtf8FromString($von), "surname" => bibCharsToUtf8FromString($surname));
+      $authorArray = array("firstname" => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname), "von" => $CI->bibtex2utf8->bibCharsToUtf8FromString($von), "surname" =>$CI->bibtex2utf8->bibCharsToUtf8FromString($surname));
     } else {
       $authorArray = array("firstname" => $firstname, "von" => $von, "surname" => $surname);
     }
@@ -87,7 +87,7 @@ class Author_db {
   {
     $CI = &get_instance();
     $CI->load->helper('cleanname');
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     //create the array with variables to retrieve
     $fields = array('author_id',
                     //'specialchars', no! specialchars var is not set in edit form.
@@ -114,7 +114,7 @@ class Author_db {
       foreach ($specialfields as $field)
       {
         //remove bibchars
-        $author->$field = bibCharsToUtf8FromString($author->$field);
+        $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
     }
     $author->cleanname = authorCleanName($author);
@@ -132,7 +132,7 @@ class Author_db {
   function add($author)
   {
         $CI = &get_instance();
-        $CI ->load->helper('bibtexutf8');
+        $CI ->load->library('bibtex2utf8');
         $CI ->load->helper('cleanname');
     //fields that are to be submitted
     $fields = array('specialchars',
@@ -151,7 +151,7 @@ class Author_db {
       foreach ($specialfields as $field)
       {
         //remove bibchars
-        $author->$field = bibCharsToUtf8FromString($author->$field);
+        $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
     }
     
@@ -174,7 +174,7 @@ class Author_db {
   function update($author)
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('cleanname');
     //fields that are to be updated
     $fields = array('specialchars',
@@ -192,7 +192,7 @@ class Author_db {
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       foreach ($specialfields as $field)
       {
-        $author->$field = bibCharsToUtf8FromString($author->$field);
+        $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
         
       }
   }

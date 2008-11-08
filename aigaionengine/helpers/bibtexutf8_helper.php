@@ -50,6 +50,8 @@
 
 */
 
+appendErrorMessage('You just loaded the bibtexutf8 helper. This is not good; it should be replaced by a combination of the bibtex2utf8 library (for converting bibtex codes to utf) helper and the utf8_to_ascii library (for transliteration, generating clean ascii for cleanname and cleantitle rows) available in include/...)');
+
 function utf8ToBibCharsFromArray($array)
 {
     $keys = array_keys($array);
@@ -245,7 +247,7 @@ function getBibtexCharsArray()
             "/{(\\\.(I|{I}))}/",
             "/\\\\`(A|{A})/",  //and the remaining entries: convert to the right utf8 char
             "/\\\\'(A|{A})/",
-            "/\\\\\^(A|{A})/",
+            "/\\\\\\^(A|{A})/",
             "/\\\\AE/",
             "/\\\\`(E|{E})/",
             "/\\\\'(E|{E})/",

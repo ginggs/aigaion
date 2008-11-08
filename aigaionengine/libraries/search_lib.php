@@ -295,7 +295,7 @@ class Search_lib {
   function queryToKeywords($query)
   {
     $CI = &get_instance();
-    $CI->load->helper('bibtexutf8');
+    $CI->load->library('bibtex2utf8');
     $CI->load->helper('utf8_to_ascii');
 
     //DR: current implementation uses substr, not entirely UTF8-safe!
@@ -328,7 +328,7 @@ class Search_lib {
           $groupKeyword .= $keyword;
           if (trim($groupKeyword)!="") {
             if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-              $keywordArray[] = utf8_to_ascii(bibCharsToUtf8FromString($groupKeyword));
+              $keywordArray[] = utf8_to_ascii($CI->bibtex2utf8->bibCharsToUtf8FromString($groupKeyword));
             } else {
               $keywordArray[] = utf8_to_ascii($groupKeyword);
             }
@@ -341,7 +341,7 @@ class Search_lib {
       }
       else {
         if (trim($keyword) != "")
-        $keywordArray[] = utf8_to_ascii(bibCharsToUtf8FromString($keyword));
+        $keywordArray[] = utf8_to_ascii($CI->bibtex2utf8->bibCharsToUtf8FromString($keyword));
       }
     }
     return $keywordArray;
