@@ -78,9 +78,9 @@
           </tr>
           <tr>
             <td colspan='2'>
-              If you want a password, please mail to
-              <?php echo getConfigurationSetting("CFG_ADMIN"); ?><br/>
-              <?php echo getConfigurationSetting("CFG_ADMINMAIL"); ?>
+              If you want a password, please mail to <a href='mailto: "<?php echo getConfigurationSetting("CFG_ADMIN"); ?>" <?php echo '<'.getConfigurationSetting("CFG_ADMINMAIL").'>'; ?>?subject=Registration request for <?php echo getConfigurationSetting("WINDOW_TITLE")?> Aigaion database'><?php echo getConfigurationSetting("CFG_ADMIN"); ?></a>
+              <br/>
+              
             </td>
           </tr>
           <tr>

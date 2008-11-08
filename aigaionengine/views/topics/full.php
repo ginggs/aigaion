@@ -50,15 +50,6 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
 <tr>
     <td class='fullwidth'>
 <?php
-$this->load->vars(array('subviews'  => array('topics/simpletreerow'=>array())));
-
-echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
-            .$this->load->view('topics/tree',
-                              array('topics'   => $topic,
-                                    'showroot'  => False,
-                                    'depth'     => 2
-                                    ),  
-                              true)."<li></li></ul>\n</div>\n";
 
     if ($topic->url != '') {
         $this->load->helper('utf8');
@@ -70,6 +61,17 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
     }
     if ($description)
         echo "<p>".$description."</p>\n";
+        
+echo "<p class=header2>Subtopics:</p>\n";        
+$this->load->vars(array('subviews'  => array('topics/simpletreerow'=>array())));
+
+echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
+            .$this->load->view('topics/tree',
+                              array('topics'   => $topic,
+                                    'showroot'  => False,
+                                    'depth'     => 2
+                                    ),  
+                              true)."<li></li></ul>\n</div>\n";
 ?>
     </td>
     <td>
