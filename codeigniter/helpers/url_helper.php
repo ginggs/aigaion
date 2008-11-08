@@ -380,7 +380,8 @@ function prep_url($str = '')
 		return '';
 	}
 	
-	if (substr($str, 0, 7) != 'http://' && substr($str, 0, 8) != 'https://')
+	//mod by PDM, for Aigaion 2.0
+	if (eregi('^[a-z]+://', $str) == FALSE)
 	{
 		$str = 'http://'.$str;
 	}
