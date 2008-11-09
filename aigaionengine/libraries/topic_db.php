@@ -424,8 +424,9 @@ class Topic_db {
     /** Collapse given topic for the given user, if that user is susbcribed to it */
     function collapse($topic, $user_id) {
         $CI = &get_instance();
+        $userlogin = getUserLogin();
         $user = $CI->user_db->getByID($user_id);
-        if ($user->type=='anon') return;
+        if (($user->type=='anon') && ($user_id == $userlogin->userId())) return;
         $CI->db->where('topic_id', $topic->topic_id);
         $CI->db->where('user_id', $user_id);
         $CI->db->update('usertopiclink', array('collapsed'=>'1'));
@@ -434,8 +435,9 @@ class Topic_db {
     /** Expand given topic for the given user, if that user is susbcribed to it */
     function expand($topic, $user_id) {
         $CI = &get_instance();
+        $userlogin = getUserLogin();
         $user = $CI->user_db->getByID($user_id);
-        if ($user->type=='anon') return;
+        if (($user->type=='anon') && ($user_id == $userlogin->userId())) return;
         $CI->db->where('topic_id', $topic->topic_id);
         $CI->db->where('user_id', $user_id);
         $CI->db->update('usertopiclink', array('collapsed'=>'0'));
