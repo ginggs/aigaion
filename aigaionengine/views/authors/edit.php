@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
-  $authorfields   = array('firstname', 'von', 'surname', 'email', 'url', 'institute');
+  $authorfields   = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'url'=>'URL', 'institute'=>'Institute');
   $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
@@ -26,10 +26,10 @@
     </tr>
 <?php
     endif;
-    foreach ($authorfields as $field):
+    foreach ($authorfields as $field=>$display):
 ?>
     <tr>
-      <td valign='top'><?php echo ucfirst($field); ?>:</td>
+      <td valign='top'><?php echo $display; ?>:</td>
       <td valign='top'><?php echo form_input(array('name' => $field, 'id' => $field, 'size' => '45', 'alt' => $field), $author->$field);?></td>
     </tr>
 <?php

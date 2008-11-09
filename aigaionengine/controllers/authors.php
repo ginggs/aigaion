@@ -379,7 +379,7 @@ class Authors extends Controller {
         if ($edit_type == 'new') {
           //note: the author_db review method will not give an error if ONE EXACT MATCH EXISTS
           //so we should still check that here
-          if ($this->author_db->getByExactName($author->firstname,$author->von,$author->surname) != null) {
+          if ($this->author_db->getByExactName($author->firstname,$author->von,$author->surname,$author->jr) != null) {
             appendMessage('Author "'.$author->getName('lvf').'" already exists in the database.<br/>');
             redirect('authors/add');
           } else {
@@ -526,9 +526,9 @@ class Authors extends Controller {
     }
     $authors_array    = $this->parsecreators->parse($name);
     if (count($authors_array)>0) {
-      $existingauthor = $this->author_db->getByExactName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname']);
+      $existingauthor = $this->author_db->getByExactName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname'], $authors_array[0]['jr']);
       if ($existingauthor==null) {
-        $newauthor = $this->author_db->setByName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname']);
+        $newauthor = $this->author_db->setByName($authors_array[0]['firstname'], $authors_array[0]['von'], $authors_array[0]['surname'], $authors_array[0]['jr']);
         $result = $this->author_db->add($newauthor);
         echo $result->author_id;
       } else {

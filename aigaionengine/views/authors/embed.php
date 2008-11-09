@@ -12,14 +12,14 @@ $userlogin = getUserLogin();
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname', 'von', 'surname', 'email', 'url', 'institute');
-      foreach ($authorfields as $field)
+      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'institute'=>'Institute');
+      foreach ($authorfields as $field=>$display)
       {
         if (trim($author->$field) != '')
         {
 ?>
           <tr>
-            <td valign='top'><?php echo ucfirst($field); ?>:</td>
+            <td valign='top'><?php echo $display; ?>:</td>
             <td valign='top'><?php echo $author->$field; ?></td>
           </tr>
 <?php

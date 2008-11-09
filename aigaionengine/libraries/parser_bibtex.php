@@ -159,7 +159,7 @@ class Parser_Bibtex
       foreach ($bibtex_authors as $author)
       {
         //getByExactName will return data where bibtexchars are already stripped
-        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+        $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname'], $author['jr']);
         if ($author_db  != null)
         {
           $authors[]    = $author_db;
@@ -167,7 +167,7 @@ class Parser_Bibtex
         else
         {
           //setByName will return data where bibtexchars are already stripped
-          $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+          $author_db    = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname'], $author['jr']);
           $authors[]    = $author_db;
         }
       }
@@ -182,14 +182,14 @@ class Parser_Bibtex
       
       foreach ($bibtex_editors as $editor)
       {
-        $editor_db      = $CI->author_db->getByExactName($editor['firstname'], $editor['von'], $editor['surname']);
+        $editor_db      = $CI->author_db->getByExactName($editor['firstname'], $editor['von'], $editor['surname'], $editor['jr']);
         if ($editor_db  != null)
         {
           $editors[]    = $editor_db;
         }
         else
         {
-          $editor_db    = $CI->author_db->setByName($editor['firstname'], $editor['von'], $editor['surname']);
+          $editor_db    = $CI->author_db->setByName($editor['firstname'], $editor['von'], $editor['surname'], $editor['jr']);
           $editors[]    = $editor_db;
         }
       }

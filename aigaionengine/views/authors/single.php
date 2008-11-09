@@ -18,7 +18,7 @@ if ($userlogin->hasRights('publication_edit'))
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'email'=>'Email', 'institute'=>'Institute');
+      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'institute'=>'Institute');
       foreach ($authorfields as $field=>$display)
       {
         if (trim($author->$field) != '')

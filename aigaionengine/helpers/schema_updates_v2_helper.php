@@ -24,6 +24,29 @@
     /** 
     
     */
+    function updateSchemaV2_8() {
+        $CI = &get_instance();
+        if (checkVersion('V2.8', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_7()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+       
+        //add 'jr' column for authors
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."author` 
+                                  ADD `jr` varchar(255) default '';");
+                                  
+       
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.8');
+    }
+    
+    /** 
+    
+    */
     function updateSchemaV2_7() {
         $CI = &get_instance();
         if (checkVersion('V2.7', true)) { // silent check
@@ -33,7 +56,7 @@
             return False;
         }
        
-        //add 'pages' column.
+        //extend fields in user table
         $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
                                   CHANGE `firstname` `firstname`  varchar(255);");
         $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 

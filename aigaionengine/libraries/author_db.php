@@ -22,25 +22,27 @@ class Author_db {
       return false;
   }
   
-  function getByExactName($firstname = "", $von = "", $surname = "")
+  function getByExactName($firstname = "", $von = "", $surname = "", $jr = '')
   {
     //this function cannot operate on the cleanname; because then we can never have two different authors that just differn in e.g. diacritics.
     $CI = &get_instance();
     $CI->load->library('bibtex2utf8');
     $CI->load->helper('utf8_to_ascii');
     //check if there is input, if not fail
-    if (!($firstname || $von || $surname))
+    if (!($firstname || $von || $surname || $jr))
       return false;
       
     //do the query
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       $Q = $CI->db->getwhere('author',array('firstname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname)
                                          ,'von' => $CI->bibtex2utf8->bibCharsToUtf8FromString($von)
-                                         ,'surname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($surname)));
+                                         ,'surname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($surname)
+                                         ,'jr' => $CI->bibtex2utf8->bibCharsToUtf8FromString($jr)));
     } else {
       $Q = $CI->db->getwhere('author',array('firstname' =>$firstname
                                          ,'von' => $von
-                                         ,'surname' => $surname));
+                                         ,'surname' => $surname
+                                         ,'jr' => $jr));
     }
     //only when a single result is found, load the result. Else fail
     if ($Q->num_rows() == 1)
@@ -49,19 +51,19 @@ class Author_db {
       return null;
   }
   
-  function setByName($firstname = "", $von = "", $surname = "")
+  function setByName($firstname = "", $von = "", $surname = "", $jr = '')
   {
     $CI = &get_instance();
     $CI->load->library('bibtex2utf8');
     //check if there is input, if not fail
-    if (!($firstname || $von || $surname))
+    if (!($firstname || $von || $surname || $jr))
       return null;
     
     //pack into array
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-      $authorArray = array("firstname" => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname), "von" => $CI->bibtex2utf8->bibCharsToUtf8FromString($von), "surname" =>$CI->bibtex2utf8->bibCharsToUtf8FromString($surname));
+      $authorArray = array("firstname" => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname), "von" => $CI->bibtex2utf8->bibCharsToUtf8FromString($von), "surname" =>$CI->bibtex2utf8->bibCharsToUtf8FromString($surname), "jr" =>$CI->bibtex2utf8->bibCharsToUtf8FromString($jr));
     } else {
-      $authorArray = array("firstname" => $firstname, "von" => $von, "surname" => $surname);
+      $authorArray = array("firstname" => $firstname, "von" => $von, "surname" => $surname, "jr" => $jr);
     }
     
     //load from array
@@ -95,6 +97,7 @@ class Author_db {
                     'firstname',
                     'von',
                     'surname',
+                    'jr',
                     'email',
                     'url',
                     'institute'
@@ -109,7 +112,7 @@ class Author_db {
     }
     
     //check for specialchars
-    $specialfields = array('firstname', 'von', 'surname', 'institute');
+    $specialfields = array('firstname', 'von', 'surname', 'jr', 'institute');
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       foreach ($specialfields as $field)
       {
@@ -140,13 +143,14 @@ class Author_db {
                     'firstname',
                     'von',
                     'surname',
+                    'jr',
                     'email',
                     'url',
                     'institute'
                    );
     
     //check for specialchars
-    $specialfields = array('firstname', 'von', 'surname', 'institute');
+    $specialfields = array('firstname', 'von', 'surname', 'jr', 'institute');
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       foreach ($specialfields as $field)
       {
@@ -182,13 +186,14 @@ class Author_db {
                     'firstname',
                     'von',
                     'surname',
+                    'jr',
                     'email',
                     'url',
                     'institute'
                    );
     
     //check for specialchars
-    $specialfields = array('firstname', 'von', 'surname', 'institute');
+    $specialfields = array('firstname', 'von', 'surname', 'jr', 'institute');
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       foreach ($specialfields as $field)
       {
@@ -413,7 +418,7 @@ TODO:
     $result = array();
     foreach ($authors as $author)
     {
-      $current      = $this->getByExactName($author->firstname, $author->von, $author->surname);
+      $current      = $this->getByExactName($author->firstname, $author->von, $author->surname, $author->jr);
       if ($current == null)
         $current    = $this->add($author);
       
@@ -454,7 +459,7 @@ TODO:
     foreach ($authors as $author)
     {
       $similar_authors = array();
-      if ($this->getByExactName($author->firstname, $author->von, $author->surname) == null)
+      if ($this->getByExactName($author->firstname, $author->von, $author->surname, $author->jr) == null)
       {
         //no exact match, or more than one authors exist in the database
         

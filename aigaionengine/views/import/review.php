@@ -85,6 +85,7 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('author_'.$i.'_'.$j.'_inputfirst',$author->firstname);
             echo form_hidden('author_'.$i.'_'.$j.'_inputvon',$author->von);
             echo form_hidden('author_'.$i.'_'.$j.'_inputlast',$author->surname);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputjr',$author->jr);
             $similar_authors = $reviews[$i]['authors'][1][$j];
             if (count($similar_authors)!=0 ) {
                 echo '<br/>Options for import-author '.$author->getName('lvf').':<br/>';
@@ -116,7 +117,7 @@ for ($i = 0; $i < $importCount; $i++)
                 echo $alternatives;
             } else {
                 //no similar authors. Either we have ONE exact match, OR we have NO macth at all
-                $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname);
+                $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname, $author->jr);
                 if ($exactMatchingAuthor == null) {
                     echo form_hidden('author_'.$i.'_'.$j.'_alternative',-1);
                 } else {
@@ -141,8 +142,9 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('author_'.$i.'_'.$j.'_inputfirst',$author->firstname);
             echo form_hidden('author_'.$i.'_'.$j.'_inputvon',$author->von);
             echo form_hidden('author_'.$i.'_'.$j.'_inputlast',$author->surname);
+            echo form_hidden('author_'.$i.'_'.$j.'_inputjr',$author->jr);
             //no similar authors. Either we have ONE exact match, OR we have NO macth at all
-            $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname);
+            $exactMatchingAuthor = $this->author_db->getByExactName($author->firstname, $author->von, $author->surname, $author->jr);
             if ($exactMatchingAuthor == null) {
                 echo form_hidden('author_'.$i.'_'.$j.'_alternative',-1);
             } else {
@@ -179,6 +181,7 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('editor_'.$i.'_'.$j.'_inputfirst',$editor->firstname);
             echo form_hidden('editor_'.$i.'_'.$j.'_inputvon',$editor->von);
             echo form_hidden('editor_'.$i.'_'.$j.'_inputlast',$editor->surname);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputjr',$editor->jr);
             $similar_editors = $reviews[$i]['editors'][1][$j];
             if (count($similar_editors)!=0 ) {
                 echo '<br/>Options for import-editor '.$editor->getName('lvf').':<br/>';
@@ -210,7 +213,7 @@ for ($i = 0; $i < $importCount; $i++)
                 echo $alternatives;
             } else {
                 //no similar editors. Either we have ONE exact match, OR we have NO macth at all
-                $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname);
+                $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname, $editor->jr);
                 if ($exactMatchingEditor == null) {
                     echo form_hidden('editor_'.$i.'_'.$j.'_alternative',-1);
                 } else {
@@ -235,8 +238,9 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('editor_'.$i.'_'.$j.'_inputfirst',$editor->firstname);
             echo form_hidden('editor_'.$i.'_'.$j.'_inputvon',$editor->von);
             echo form_hidden('editor_'.$i.'_'.$j.'_inputlast',$editor->surname);
+            echo form_hidden('editor_'.$i.'_'.$j.'_inputjr',$editor->jr);
             //no similar editors. Either we have ONE exact match, OR we have NO macth at all
-            $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname);
+            $exactMatchingEditor = $this->author_db->getByExactName($editor->firstname, $editor->von, $editor->surname, $editor->jr);
             if ($exactMatchingEditor == null) {
                 echo form_hidden('editor_'.$i.'_'.$j.'_alternative',-1);
             } else {

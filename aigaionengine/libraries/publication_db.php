@@ -299,7 +299,8 @@ class Publication_db {
                 //c) create new from original input data
                 $authors[] = $CI->author_db->setByName($CI->input->post('author'.$suffix.'_'.$j.'_inputfirst'), 
                                                        $CI->input->post('author'.$suffix.'_'.$j.'_inputvon'),
-                                                       $CI->input->post('author'.$suffix.'_'.$j.'_inputlast'));
+                                                       $CI->input->post('author'.$suffix.'_'.$j.'_inputlast'),
+                                                       $CI->input->post('author'.$suffix.'_'.$j.'_inputjr'));
             } else {
                 //use existing
                 $authors[] = $CI->author_db->getByID($authorAlternativeRadio);
@@ -321,7 +322,8 @@ class Publication_db {
                 //c) create new from original input data
                 $editors[] = $CI->author_db->setByName($CI->input->post('editor'.$suffix.'_'.$j.'_inputfirst'), 
                                                        $CI->input->post('editor'.$suffix.'_'.$j.'_inputvon'),
-                                                       $CI->input->post('editor'.$suffix.'_'.$j.'_inputlast'));
+                                                       $CI->input->post('editor'.$suffix.'_'.$j.'_inputlast'),
+                                                       $CI->input->post('editor'.$suffix.'_'.$j.'_inputjr'));
             } else {
                 //use existing
                 $editors[] = $CI->author_db->getByID($editorAlternativeRadio);
@@ -337,14 +339,14 @@ class Publication_db {
           $authors          = array();
           foreach ($authors_array as $author)
           {
-            $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname']);
+            $author_db      = $CI->author_db->getByExactName($author['firstname'], $author['von'], $author['surname'], $author['jr']);
             if ($author_db != null)
             {
               $authors[]      = $author_db;
             }
             else
             {
-              $author_db     = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname']);
+              $author_db     = $CI->author_db->setByName($author['firstname'], $author['von'], $author['surname'], $author['jr']);
               $authors[]  = $author_db;
             }
           }
