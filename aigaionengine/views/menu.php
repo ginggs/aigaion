@@ -26,6 +26,7 @@
     <li class="mainmenu"><?php echo anchor('authors', $this->lang->line('menu_show_authors')); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/unassigned', $this->lang->line('menu_show_unassigned')); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/showlist/recent', $this->lang->line('menu_show_recent')); ?></li>
+    <li class="mainmenu"><?php echo anchor('search', $this->lang->line('main_search')); ?></li>
 
     <?php
     //the export option is slightly dependent on the view parameter 'exportCommand'

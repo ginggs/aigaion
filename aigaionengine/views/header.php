@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Aigaion 2.0 - <?php 
-        if (getConfigurationSetting('WINDOW_TITLE')!='')
-            echo getConfigurationSetting('WINDOW_TITLE').' - '; 
+    <title><?php 
         echo $title; 
-    ?></title>
+        if (getConfigurationSetting('WINDOW_TITLE')!='')
+            echo ' - '.getConfigurationSetting('WINDOW_TITLE'); 
+    ?> - Aigaion 2.0</title>
     <link href="<?php echo APPURL; ?>themes/default/css/positioning.css" rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo APPURL; ?>themes/default/css/styling.css"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("positioning.css"); ?>" rel="stylesheet" type="text/css" media="screen,projection,tv" />

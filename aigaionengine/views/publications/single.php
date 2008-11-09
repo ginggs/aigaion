@@ -417,7 +417,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
                                             'showroot'  => True,
-                                            'collapseAll'  => $categorize,
+                                            /*'collapseAll'  => $categorize,*/
                                             'depth'     => -1
                                             ),
                                       true)."</ul>\n</div>\n";

@@ -39,7 +39,7 @@ class Search extends Controller {
         
         $output = $this->load->view('header', $headerdata, true);
 
-        
+        $output .= "<div class=optionbox>[".anchor('search/advanced','Advanced search')."]</div><div class=header>Quicksearch results</div>";
         $output .= $this->load->view('search/results',
                                       array('searchresults'=>$searchresults, 'query'=>$query),  
                                       true);
@@ -55,7 +55,7 @@ class Search extends Controller {
     */
 	function advanced()
 	{
-	    
+	    $this->quicksearch();
         //get output: advanced earch interface
         $headerdata = array();
         $headerdata['title'] = 'Advanced search';
@@ -68,6 +68,46 @@ class Search extends Controller {
                                       array(),  
                                       true);
         
+        $output .= $this->load->view('footer','', true);
+
+        //set output
+        $this->output->set_output($output);
+	}
+	
+    /** 
+    search/advancedresults
+        
+    Fails not
+    
+    Parameters:
+        search query through form values
+    
+    Returns a full html page with a search result. */
+	function advancedresults()
+	{
+      //process query
+      $query = "reidsma";
+      $this->load->library('search_lib');
+	    $searchresults = $this->search_lib->simpleSearch($query);
+	    
+        //get output: search result page
+        $headerdata = array();
+        $headerdata['title'] = 'Advanced search results';
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        
+        $output .= "<div class=optionbox>(Search form below)</div><div class=header>Advanced search results</div>";
+
+        $output .= $this->load->view('search/results',
+                                      array('searchresults'=>$searchresults, 'query'=>$query),  
+                                      true);
+                                      
+        $output .= $this->load->view('search/advanced',
+                                      array(),  
+                                      true);
+                                      
         $output .= $this->load->view('footer','', true);
 
         //set output
