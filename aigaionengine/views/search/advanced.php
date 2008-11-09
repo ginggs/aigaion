@@ -44,6 +44,22 @@ echo "
 .form_checkbox('search_publications_abstracts','search_publications_abstracts',in_array('publications_abstracts',$options))." Search publication abstract<br/>\n"
 ."
     </div>
+<p/>
+    Choose the topic restrictions that apply: return only publications that... 
+    <div>
+    <script language='javascript'>
+    var n = 0;
+    function more() {
+        n++;
+        var newCondition = 'Condition '+n;
+        Element.replace('moreconditions',newCondition+'<br/><div id=\"moreconditions\" name=\"moreconditions\"><input type=\"hidden\" name=\"numberoftopicconditions\" value=\"'+n+'\"/>".$this->ajax->button_to_function('More...', "more();" )."</div>');
+    }
+    </script>
+    \n"
+    
+."<div id='moreconditions' name='moreconditions'><input type=\"hidden\" name=\"numberoftopicconditions\" value=\"0\"/>".$this->ajax->button_to_function('More...', "more();" )."</div>"
+."
+    </div>
 ";
 
 echo form_submit('submit_search',  $this->lang->line('main_search'));

@@ -90,7 +90,13 @@ class Search extends Controller {
         }
       //process query
       $query = $this->input->post('searchstring');
-      if ($query == '') $query = '*';
+      if (($query == '')&& ($this->input->post('numberoftopicconditions')>0)) {
+        appendMessage("No query, but some topic restrictions: interpret as a search for ALL publications within topics; don't query for all authors, topics or keywords");
+      } else if ($query == '') {
+        appendMessage("No query at all: please give at least a search term or a topic condition");
+        $this->advanced();
+        return;
+      }
       $searchoptions = array('advanced');
       if ($this->input->post('return_authors')=='return_authors') 
         $searchoptions[] = 'authors';
