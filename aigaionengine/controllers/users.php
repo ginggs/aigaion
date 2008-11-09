@@ -365,7 +365,9 @@ class Users extends Controller {
                         'password' => 'matches[password_check]',
                         'password_check' => 'matches[password]'
                        );
-        if ($this->input->post('action')=='add') {
+        if (    ($this->input->post('action')=='add') 
+             && ($this->input->post('type')=='normal') 
+             && ($this->input->post('disableaccount') != 'disableaccount')) {
             $rules['password'] = 'required';
         }
     	$this->validation->set_rules($rules);

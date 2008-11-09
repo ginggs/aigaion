@@ -709,6 +709,14 @@ class UserLogin {
             
 
             #set a welcome message/advertisement after login
+            if ($this->bIsAnonymous) {
+              appendMessage("Dear guest, welcome to this publication database. 
+              As an anonymous user, you will probably not have edit rights. 
+              Also, the collapse status of the topic tree will not be persistent.
+              If you like to have these and other options enabled, you might ask
+              <a href='mailto: \"".getConfigurationSetting("CFG_ADMIN")."\" ".'<'.getConfigurationSetting("CFG_ADMINMAIL").'>'."?subject=Access account for ".getConfigurationSetting("WINDOW_TITLE")." Aigaion database'>".getConfigurationSetting("CFG_ADMIN")."</a>
+              for a login account.");
+            }
             appendMessage("
                 <table>\n<tr><td>
                 This site is powered by Aigaion 
@@ -724,6 +732,7 @@ class UserLogin {
                 </a>
                 </td></tr>\n</table>
               ");
+            
 
             #SO. Here, if login was successful, we will check the database structure once.
             $this->initPreferences();

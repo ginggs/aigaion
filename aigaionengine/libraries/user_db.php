@@ -176,6 +176,10 @@ class User_db {
         if (!$userlogin->hasRights('user_edit_all')) {
             return -1;
         }
+        //disable account?
+        if (($user->type=='normal') && ($user->toBeDisabled == True))  {
+            $user->password_invalidated = 'TRUE';
+        }
         //anon and external accounts have disabled password (always)
         if (($user->type=='anon') || ($user->type=='external')) {
             $user->password_invalidated = 'TRUE';
@@ -283,7 +287,7 @@ class User_db {
             //always invalidate password for anon and external accounts
             $user->password_invalidated = 'TRUE';
             // DR 2008.08.29: cannot change password for anon or external account
-            $user->password!="";
+            $user->password = "";
         } else if ($user->password_invalidated == 'TRUE') {
             appendMessage('The account does not have a valid password. It has been disabled. If please get an admin to re-enable it, if you wish.<br/>');
         }
