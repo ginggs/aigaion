@@ -21,10 +21,10 @@ class Search_lib {
   'publications_notes'=>$arrayOfPubs,
   'publications_bibtex_id'=>$arrayOfPubs,
   ) */
-  function simpleSearch($query, $searchtypes = array()) {
+  function simpleSearch($query, $searchtypes = null) {
     $result = array();
     
-    if (count($searchtypes)==0) {
+    if ($searchtypes == null) {
         $searchtypes = array('authors',
                              'topics',
                              'keywords',

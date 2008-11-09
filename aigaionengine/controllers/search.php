@@ -30,7 +30,7 @@ class Search extends Controller {
 	        redirect('');
 	    }
 	    $this->load->library('search_lib');
-	    $searchresults = $this->search_lib->simpleSearch($query);
+	    $searchresults = $this->search_lib->simpleSearch($query,null);
 	    
         //get output: search result page
         $headerdata = array();
@@ -55,7 +55,6 @@ class Search extends Controller {
     */
 	function advanced()
 	{
-	    $this->quicksearch();
         //get output: advanced earch interface
         $headerdata = array();
         $headerdata['title'] = 'Advanced search';
@@ -85,10 +84,35 @@ class Search extends Controller {
     Returns a full html page with a search result. */
 	function advancedresults()
 	{
+        if ($this->input->post('formname')!='advancedsearch') {
+            $this->advanced();
+            return;
+        }
       //process query
-      $query = "reidsma";
+      $query = $this->input->post('searchstring');
+      if ($query == '') $query = '*';
+      $searchoptions = array('advanced');
+      if ($this->input->post('return_authors')=='return_authors') 
+        $searchoptions[] = 'authors';
+      if ($this->input->post('return_topics')=='return_topics') 
+        $searchoptions[] = 'topics';
+      if ($this->input->post('return_keywords')=='return_keywords') 
+        $searchoptions[] = 'keywords';
+      if ($this->input->post('return_publications')=='return_publications') {
+        $searchoptions[] = 'publications';
+        if ($this->input->post('search_publications_titles')=='search_publications_titles') 
+          $searchoptions[] = 'publications_titles';
+        if ($this->input->post('search_publications_notes')=='search_publications_notes') 
+          $searchoptions[] = 'publications_notes';
+        if ($this->input->post('search_publications_bibtex_id')=='search_publications_bibtex_id') 
+          $searchoptions[] = 'publications_bibtex_id';
+        if ($this->input->post('search_publications_abstracts')=='search_publications_abstracts') 
+          $searchoptions[] = 'publications_abstracts';
+      }
+      
+      
       $this->load->library('search_lib');
-	    $searchresults = $this->search_lib->simpleSearch($query);
+	    $searchresults = $this->search_lib->simpleSearch($query,$searchoptions);
 	    
         //get output: search result page
         $headerdata = array();
@@ -105,7 +129,7 @@ class Search extends Controller {
                                       true);
                                       
         $output .= $this->load->view('search/advanced',
-                                      array(),  
+                                      array('query'=>$query,'options'=>$searchoptions),  
                                       true);
                                       
         $output .= $this->load->view('footer','', true);
