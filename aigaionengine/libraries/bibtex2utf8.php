@@ -48,7 +48,7 @@ TODO:
  make a test file to test as many conversions up and down as possible, including weird and slightly erroneous brace usage (such as that of DBLP)
  add polish charset
  add some often used symbols such as the copyright, trademark, etc?
-   
+ handle empty suffix (e.g. \l{}ambda )
 
 If you want to add extra character conversions:
   check which group it belongs to (one of the four below)
@@ -130,7 +130,7 @@ class Bibtex2utf8 {
         {
           $command = $sc[0];
           $utf8char = $sc[1];
-          $string = preg_replace("/".$utf8char."/", "{".$command."}", $string);
+          $string = preg_replace("/".$utf8char."/", $command, $string);
         }
         return $string;
     }
@@ -229,7 +229,7 @@ class Bibtex2utf8 {
         array("~",'i',"ĩ"),
         array("=",'i',"ī"),
         array("\"",'i',"ï"), 
-        
+                
         array("`",'o',"ò"),
         array("'",'o',"ó"),
         array("\\^",'o',"ô"),
@@ -299,8 +299,10 @@ class Bibtex2utf8 {
  	          array("aa", "å"),
  	          array("AA", "Å"), 
  	          array("ss", "ß"), 
+ 	          array("SS", "ß"), 
             array("o", "ø"),
             array("O", "Ø"),
+            array("i", "ı"),
 
  	                //{"\\\\gal" ,"α"}, ??? never new that encoding? was in the file from variothingy... 
 
@@ -319,10 +321,10 @@ class Bibtex2utf8 {
       $this->specialChars = array(
             array("#","#"),
             array("\\?", "?"),
- 	          array("\\\\", "\\"),
+            array("\\&", "&"),
  	          array("\\$", "$"),
- 	          array("\\{", "{"),
- 	          array("\\}", "}"), 
+ 	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
+ 	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
  	          array("_", "_")
             
@@ -332,15 +334,15 @@ class Bibtex2utf8 {
  	          
  	    ); //did you put the comma's right? the last entry without comma!
 
-/* for utf82bibtyex conversino! */
+/* for utf82bibtyex conversion! */
 
       $this->specialCharsBack = array(
             array("\\#","#"),
-            array("\\?", "\\?"),
- 	          //array("\\\\", "\\\\"), //these three play havoc with all other expressions :( but the old A|igaion converters didn't have it either
+            array("\\&","&"),
+            //array("\\?", "\\?"), //not neccesary, according to PDM
  	          array("\\$", "\\$"),
- 	          //array("\\{", "\\{"), //these three play havoc with all other expressions :( but the old A|igaion converters didn't have it either
- 	          //array("\\}", "\\}"),  //these three play havoc with all other expressions :( but the old A|igaion converters didn't have it either
+ 	          //array("\\{", "\\{"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
+ 	          //array("\\}", "\\}"),  //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("\\%", "%"), 
  	          array("\\_", "_")
             
