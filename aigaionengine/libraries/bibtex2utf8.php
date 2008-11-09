@@ -352,4 +352,3 @@ class Bibtex2utf8 {
     }
 }
 ?>
- 	
