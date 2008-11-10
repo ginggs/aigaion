@@ -178,7 +178,9 @@ class Bibtex2utf8 {
         {
           $command = $sac[0];
           $utf8char = $sac[1];
-          $regexp = "/\\{\\\\".$command."\\}/";
+          $regexp = "/\\{\\\\".$command."(\\{\\})?\\}/";
+          $string = preg_replace($regexp, $utf8char, $string);
+          $regexp = "/\\\\".$command."(\\{\\})/";
           $string = preg_replace($regexp, $utf8char, $string);
           $regexp = "/\\\\".$command."(\\W)/";
           $string = preg_replace($regexp, $utf8char."$1", $string);
