@@ -112,6 +112,7 @@ class Search extends Controller {
       }
       if (($query == '')&& ((count($doConditions)>0)||(count($dontConditions)>0))) {
         appendMessage("No query, but some topic restrictions: interpret as a search for ALL publications within topics; don't query for all authors, topics or keywords");
+        $query="*";
       } else if ($query == '') {
         appendMessage("No query at all: please give at least a search term or a topic condition");
         $this->advanced();
@@ -138,7 +139,11 @@ class Search extends Controller {
       
       
       $this->load->library('search_lib');
-	    $searchresults = $this->search_lib->simpleSearch($query,$searchoptions);
+      if ((count($doConditions>0))||(count($dontConditions>0))) {
+        $searchresults = $this->search_lib->topicConditionSearch($query,$searchoptions,$doConditions,$dontConditions);
+      } else {
+	      $searchresults = $this->search_lib->simpleSearch($query,$searchoptions,"");
+	    }
 	    
         //get output: search result page
         $headerdata = array();

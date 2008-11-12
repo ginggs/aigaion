@@ -44,8 +44,43 @@ echo "
 .form_checkbox('search_publications_abstracts','search_publications_abstracts',in_array('publications_abstracts',$options))." Search publication abstract<br/>\n"
 ."
     </div>
-<p/>";
+<p/>
+";
 
+echo form_submit('submit_search',  $this->lang->line('main_search'));
+echo form_close();
+
+echo "
+  </div>
+";
+
+echo "
+  <div class=editform>    
+    <p class=header>Advanced Search: Publications on topic restriction</p>
+".form_open('search/advancedresults')
+ .form_hidden('formname','advancedsearch')."\n
+
+    <p class=header2>Keywords</p>
+    Leave empty if you want to search all publications
+    <div>\n";
+echo form_input(array('name' => 'searchstring', 'size' => '50','value'=>$query));
+
+echo "
+    </div>
+"
+.form_hidden('return_publications','return_publications')."\n"
+."
+<p/>
+    <p class=header2>Publication search</p>
+    Choose, if you are searching for publications (see above!), which fields are searched
+    <div>\n"
+.form_checkbox('search_publications_titles','search_publications_titles',in_array('publications_titles',$options))." Search publication titles<br/>\n"
+.form_checkbox('search_publications_notes','search_publications_notes',in_array('publications_notes',$options))." Search publication notes<br/>\n"
+.form_checkbox('search_publications_bibtex_id','search_publications_bibtex_id',in_array('publications_bibtex_id',$options))." Search publication bibtex id<br/>\n"
+.form_checkbox('search_publications_abstracts','search_publications_abstracts',in_array('publications_abstracts',$options))." Search publication abstract<br/>\n"
+."
+    </div>
+<p/>";
 //the encoding of the topic conditions with encodeURIcomponent is a messy business. We need it because there may be all sorts of stuff in the option tree that we cannot just show in javascript here without breaking the boundaries of the relevant javascript string ;-)
 $config = array('onlyIfUserSubscribed'=>True,
                 'includeGroupSubscriptions'=>True,

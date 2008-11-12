@@ -21,7 +21,7 @@ class Search_lib {
   'publications_notes'=>$arrayOfPubs,
   'publications_bibtex_id'=>$arrayOfPubs,
   ) */
-  function simpleSearch($query, $searchtypes = null) {
+  function simpleSearch($query, $searchtypes = null, $topicCondition = "") {
     $result = array();
     
     if ($searchtypes == null) {
@@ -63,7 +63,7 @@ class Search_lib {
         
     
     if (in_array('publications_titles',$searchtypes)) {
-        $publicationResult = $this->findPublicationsLike($keywordArray);
+        $publicationResult = $this->findPublicationsLike($keywordArray, $topicCondition);
         if ($publicationResult != null)
           $result['publications_titles'] = $publicationResult;
         unset($publicationResult);
@@ -71,7 +71,7 @@ class Search_lib {
     
     
     if (in_array('publications_bibtex_id',$searchtypes)) {
-        $publicationResult = $this->findPublicationsCiteIDLike($keywordArray);
+        $publicationResult = $this->findPublicationsCiteIDLike($keywordArray, $topicCondition);
         if ($publicationResult != null)
           $result['publications_bibtex_id'] = $publicationResult;
         unset($publicationResult);
@@ -79,7 +79,7 @@ class Search_lib {
     
     
     if (in_array('publications_notes',$searchtypes)) {
-        $publicationResult = $this->findPublicationsNotesLike($keywordArray);
+        $publicationResult = $this->findPublicationsNotesLike($keywordArray, $topicCondition);
         if ($publicationResult != null)
           $result['publications_notes'] = $publicationResult;
         unset($publicationResult);
@@ -87,7 +87,7 @@ class Search_lib {
     
     
     if (in_array('publications_abstracts',$searchtypes)) {
-        $publicationResult = $this->findPublicationsAbstractsLike($keywordArray);
+        $publicationResult = $this->findPublicationsAbstractsLike($keywordArray, $topicCondition);
         if ($publicationResult != null)
           $result['publications_abstracts'] = $publicationResult;
         unset($publicationResult);
@@ -97,6 +97,34 @@ class Search_lib {
     return $result;
   }
 
+  /** A search on all types of data using a single string of query plus a number of topic conditions
+  Returns an array map ('type'=>$resultArray) like this:
+  ('authors'=>$arrayOfAuthors,
+  'topics'=>$arrayOfTopics,
+  'keywords'=>$arrayOfKeywords,
+  'publications_titles'=>$arrayOfPubs,
+  'publications_notes'=>$arrayOfPubs,
+  'publications_bibtex_id'=>$arrayOfPubs,
+  ) */
+  function topicConditionSearch($query, $searchtypes,$doConditions,$dontConditions) {
+      $topicCondition = ""; 
+      if (count($doConditions)>0) {
+        $in = "";
+        foreach ($doConditions as $topic) {
+          if ($in !='')$in.=',';
+          $in .= $topic->topic_id;
+        }
+        $topicCondition = "AND EXISTS     (
+                               SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                               WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                 AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IN (".$in.")
+                           ) ";
+        
+      }
+                          
+      $result = $this->simpleSearch($query, $searchtypes,$topicCondition);
+      return $result;
+  }
   //find author hits on 'like' clause for cleanname
   //DR note: here we could also enforce that the author should publish on a subscribed topic. Would make things a lot slower,
   //but I think people will want this.
@@ -182,7 +210,7 @@ class Search_lib {
   //find publication hits on 'like' clause for cleantitle, bibtex_id, cleanjournal
   //DR note: here we could also enforce that the publicaiton should be in a subscribed topic. Would make things a lot slower,
   //but I think people will want this.
-  function findPublicationsLike($query)
+  function findPublicationsLike($query, $topicCondition= "")
   {
     $CI = &get_instance();
     
@@ -191,11 +219,13 @@ class Search_lib {
     else
       $keywordArray = $query;
 
-    $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
+    $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE ("
     .$this->keywordsToLikeQuery($keywordArray,'cleantitle')
-    .' OR '
+    .$topicCondition
+    .') OR ('
     .$this->keywordsToLikeQuery($keywordArray,'cleanjournal')
-    ." ORDER BY actualyear DESC, cleantitle;");
+    .$topicCondition
+    .") ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
       foreach ($pubQ->result() as $R) {
@@ -209,7 +239,7 @@ class Search_lib {
       return null;
   }
   
-  function findPublicationsCiteIDLike($query)
+  function findPublicationsCiteIDLike($query, $topicCondition= "")
   {
     $CI = &get_instance();
     
@@ -220,6 +250,7 @@ class Search_lib {
 
     $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
     .$this->keywordsToLikeQuery($keywordArray,'bibtex_id')
+    .$topicCondition
     ." ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
@@ -234,8 +265,9 @@ class Search_lib {
       return null;
   }
   
-  function findPublicationsNotesLike($query)
+  function findPublicationsNotesLike($query, $topicCondition= "")
   {
+    if ($topicCondition!='')return null;
     $CI = &get_instance();
     
     if (!is_array($query))
@@ -263,7 +295,7 @@ class Search_lib {
       return null;
   }
   
-  function findPublicationsAbstractsLike($query)
+  function findPublicationsAbstractsLike($query, $topicCondition= "")
   {
     $CI = &get_instance();
     
@@ -274,6 +306,7 @@ class Search_lib {
 
     $pubQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."publication WHERE "
     .$this->keywordsToLikeQuery($keywordArray,'abstract')
+    .$topicCondition
     ." ORDER BY actualyear DESC, cleantitle;");
     if ($pubQ->num_rows()>0) {
       $arrayOfPubs = array();
