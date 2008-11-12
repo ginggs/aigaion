@@ -87,13 +87,15 @@ $config = array('onlyIfUserSubscribed'=>True,
                 'user'=>$userlogin->user());
 $this->load->helper('encode');
 echo "
-    Choose the topic restrictions that apply: return only publications that... 
+    Choose the topic restrictions that apply: return only publications that...<br/>
+    are in one of the topics ...<br/>
+    and not in one of the topics... <br/>
     <div>
     <script language='javascript'>
     var n = 0;
     function more() {
         n++;
-        var newCondition = '<b>(or) Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
+        var newCondition = '<b>Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
                                              array('topics'   => $this->topic_db->getByID(1,$config),
                                                   'showroot'  => False,
                                                   'header'    => 'Select topic to include or exclude...',
