@@ -46,7 +46,7 @@ echo "
     </div>
 <p/>";
 
-//the encoding of the topic conditions is a messy business. We need it because there may be all sorts of stuff in the option tree that we cannot just show in javascript here without breaking the boundaries of the relevant javascript string ;-)
+//the encoding of the topic conditions with encodeURIcomponent is a messy business. We need it because there may be all sorts of stuff in the option tree that we cannot just show in javascript here without breaking the boundaries of the relevant javascript string ;-)
 $config = array('onlyIfUserSubscribed'=>True,
                 'includeGroupSubscriptions'=>True,
                 'user'=>$userlogin->user());

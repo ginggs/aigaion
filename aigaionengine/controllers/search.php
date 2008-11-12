@@ -90,7 +90,27 @@ class Search extends Controller {
         }
       //process query
       $query = $this->input->post('searchstring');
-      if (($query == '')&& ($this->input->post('numberoftopicconditions')>0)) {
+      $doConditions = array();
+      $dontConditions = array();
+      $config = array('onlyIfUserSubscribed'=>False,
+                'includeGroupSubscriptions'=>False);
+      for ($i = 1; $i <= $this->input->post('numberoftopicconditions'); $i++) {
+          //parse condition. they start with 1!
+          $do = $this->input->post('doOrNot'.$i);
+          $topic_id = $this->input->post('topicSelection'.$i);
+          if ($topic_id=='header')continue;
+          $topic = $this->topic_db->getById($topic_id,$config);
+          if ($topic==null) {
+            appendMessage('Nonexisting topic_id in advanced search condition');
+            continue;
+          }
+          if ($do) {
+            $doConditions[] = $topic; 
+          } else {
+            $dontConditions[] = $topic;
+          }
+      }
+      if (($query == '')&& ((count($doConditions)>0)||(count($dontConditions)>0))) {
         appendMessage("No query, but some topic restrictions: interpret as a search for ALL publications within topics; don't query for all authors, topics or keywords");
       } else if ($query == '') {
         appendMessage("No query at all: please give at least a search term or a topic condition");
