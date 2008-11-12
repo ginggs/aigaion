@@ -37,11 +37,43 @@ $user       = $this->user_db->getByID($userlogin->userID());
                   ).']';
           }
           echo "</span>";
+          echo "</span>";
+          echo  '&nbsp;['.anchor('publications/exportEmail/'.$publication->pub_id.'/','E-mail',array('title'=>'Export by e-mail')).']';
         }
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/bibtex','BiBTeX',array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/ris','RIS',array('target'=>'aigaion_export')).']';
+
+				$author_email = '';
+				if(count($publication->authors)>0)
+				{
+					foreach ($publication->authors as $author)
+					{
+						if($author->email != '')
+						{
+					  	$author_email = $author->email;
+							break;
+						}
+					}
+			 }
+			 if($author_email != '')
+			 {
+			 ?>
+			 	<script type="text/javascript">
+					var subject=encodeURI('Subject=Request for publication: <?php echo $publication->title;?>');
+					var bodytext=
+				 	encodeURI('Body=Publication: ')+'<?php echo $publication->title.' : '.AIGAION_ROOT_URL;?>index.php/publications/show/<?php echo $publication->pub_id;?>'+
+				 	encodeURI('\n\nI understand that the document referenced above is subject to copyright. ')+
+				 	encodeURI('I hereby request a copy strictly for my personal use.')+
+				 	encodeURI('\n\nName and contact details:\n');
+				 	document.write('<a href="mailto:<?php echo $author->email;?>?' + subject + '&amp;' + bodytext + '" title="Request publication by e-mail">[Request]</a>');
+				</script>
+			<?php
+			}
+			else{
+				echo '<span title="No e-mail address available for neither of the authors">[Request]</span>';
+			}
 ?>
   </div>
   <div class='header'><?php echo $publication->title; ?>

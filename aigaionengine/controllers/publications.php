@@ -696,5 +696,199 @@ class Publications extends Controller {
 //        //set output
 //        $this->output->set_output($output);	        
 //    }
+
+
+	/**
+	publications/exportEmail
+
+	Sends the selected publication to the spesified email address(es).
+
+	Fails with error message when one of:
+		no publication selected
+
+	Parameters passed via POST segments:
+		email_pdf
+		email_bibtex
+		email_ris
+		email_address
+		email_formatted
+
+		pub_id by url
+
+	*/
+
+	function exportEmail()
+	{
+    $this->load->library('email_export');
+			
+		$email_pdf = $this->input->post('email_pdf');
+		$email_bibtex = $this->input->post('email_bibtex');
+		$email_ris = $this->input->post('email_ris');
+		$email_address = $this->input->post('email_address');
+		$email_formatted = $this->input->post('email_formatted');
+		$order='year';
+		$recipientaddress   = $this->uri->segment(4,-1);
+		$pub_id   = $this->uri->segment(3,-1);
+		$publications = array($this->publication_db->getByID($pub_id));
+
+
+		if (!isset($pub_id) || $pub_id == -1)
+		{
+			appendErrorMessage("No Publication selected for export <br />");
+			redirect('');
+		}
+		if ($this->publication_db->getByID($pub_id)==null)
+		{
+			appendErrorMessage("Null Publication selected for export <br />");
+			redirect('');
+		}
+
+
+		/*
+			IF the recipient's address is missing or if none of the data formats are selected THEN show the format selection form.
+		*/
+		if(!(($email_pdf !='' || $email_bibtex !='' || $email_ris!='' || $email_formatted!='') && $email_address != ''))
+		{
+			$header ['title']       = "Select export format";
+			$header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
+
+
+			$content['attachmentsize']  = $this->email_export->attachmentSize($publications);
+			$content['controller']	='publications/exportEmail/'.$pub_id;
+			if(isset($recipientaddress))
+			{
+				$replace = array("AROBA", "KOMMA");
+				$with   = array("@", ",");
+				$content['recipientaddress'] = str_replace($replace, $with, $recipientaddress);;
+			}
+
+			//get output
+			$output = $this->load->view('header',        $header,  true);
+			$output .= $this->load->view('export/chooseformatEmail', $content, true);
+			$output .= $this->load->view('footer',        '',       true);
+
+			//set output
+			$this->output->set_output($output);
+			return;
+		}
+		/*
+			ELSE process the request and send the email.
+		*/
+		else
+		{
+		  
+			//get output
+			$this->load->helper('publication');
+
+			$headerdata = array();
+			$headerdata['title'] = 'Publication export';
+			$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+			$headerdata['exportCommand']    = 'publications/exportEmail';
+			$headerdata['exportName']    = 'Export publication';
+
+			$content['header']          = 'Export by email';
+			$output = $this->load->view('header', $headerdata, true);
+			$content['publications']    = $publications;
+
+			$content['order'] = $order;
+
+
+
+
+			$messageBody = 'Export from Aigaion';
+
+			if($email_formatted || $email_bibtex)
+			{
+				$this->publication_db->enforceMerge = True;
+				$publications = array($this->publication_db->getByID($pub_id));
+				$splitpubs = $this->publication_db->resolveXref($publications,false);
+				$pubs = $splitpubs[0];
+				$xrefpubs = $splitpubs[1];
+
+				$exportdata['nonxrefs'] = $pubs;
+				$exportdata['xrefs']    = $xrefpubs;
+				$exportdata['header']   = 'Exported publication';
+				$exportdata['exportEmail']   = true;
+			}
+
+
+			/*
+				FORMATTED text is added first. HTML format is selected because this gave nice readable text without having to change or make any views.
+			*/
+			if($email_formatted)
+			{
+				$messageBody .= "\n";
+				$messageBody .= 'Formatted';
+				$messageBody .= "\n";
+
+				$exportdata['format'] = 'html';
+				$exportdata['sort'] = $this->input->post('sort');
+				$exportdata['style'] = $this->input->post('style');
+				$messageBody .= strip_tags($this->load->view('export/'.'formattedEmail', $exportdata, True));
+			}
+
+			/*
+				BIBTEX added.
+			*/
+			if($email_bibtex)
+			{
+				$messageBody .= "\n";
+				$messageBody .= 'BiBTex';
+				$messageBody .= "\n";
+				$messageBody .= strip_tags($this->load->view('export/'.'bibtexEmail', $exportdata, True));
+			}
+			/*
+				RIS added.
+			*/
+			if($email_ris)
+			{
+				$messageBody .= "\n";
+				$messageBody .= 'RIS';
+				$messageBody .= "\n";
+
+				$this->publication_db->suppressMerge = False;
+				$publications = array($this->publication_db->getByID($pub_id));
+				$splitpubs = $this->publication_db->resolveXref($publications,false);
+				$pubs = $splitpubs[0];
+				$xrefpubs = $splitpubs[1];
+
+				#send to right export view
+				$exportdata['nonxrefs'] = $pubs;
+				$exportdata['xrefs']    = $xrefpubs;
+				$exportdata['header']   = 'Exported publicaiton';
+				$exportdata['exportEmail']   = true;
+
+				$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));
+
+			}
+
+
+			/*
+				If PDFs are not selected the publication array is removed and no attachments will be added.
+			*/
+			if(!$email_pdf)
+			{
+				$publications = array();
+			}
+
+			/*
+				Sending MAIL.
+			*/
+			if($this->email_export->sendEmail($email_address, $messageBody, $publications))
+			{
+				$output .= 'Mail sent successfully';
+			}
+			else
+			{
+				appendErrorMessage('Something went wrong when exporting the publications. Did you input a correct email address? <br />');
+				redirect('');
+			}
+
+			$output .= $this->load->view('footer','', true);
+
+			//set output
+			$this->output->set_output($output);
+		}
+	}
 }
 ?>

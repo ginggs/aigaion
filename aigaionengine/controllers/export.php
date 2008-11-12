@@ -23,14 +23,14 @@ class Export extends Controller {
 	    never
 	    
 	Parameters passed via URL segments:
-	    3rd: type (bibtex|ris)
+	    3rd: type (bibtex|ris|email)
 	         
     Returns:
         A clean text page with exported publications
     */
     function all() {
 	    $type = $this->uri->segment(3,'');
-	    if (!in_array($type,array('bibtex','ris','formatted'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
             $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
@@ -59,6 +59,8 @@ class Export extends Controller {
                 $exportdata['sort'] = $this->input->post('sort');
                 $exportdata['style'] = $this->input->post('style');
                 break;
+            case 'email':
+            		redirect ('topics/exportEmail/1/');
             default:
                 break;
                 
@@ -91,7 +93,7 @@ class Export extends Controller {
 	    
 	Parameters passed via URL segments:
 	    3rd: topic_id
-	    4rth: type (bibtex|ris)
+	    4rth: type (bibtex|ris|email)
 	         
     Returns:
         A clean text page with exported publications
@@ -105,7 +107,7 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing topic<br/>');
 	        redirect ('');
 	    }
-	    if (!in_array($type,array('bibtex','ris','formatted'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
             $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
@@ -134,6 +136,9 @@ class Export extends Controller {
                 $exportdata['sort'] = $this->input->post('sort');
                 $exportdata['style'] = $this->input->post('style');
                 break;
+            case 'email':
+            		redirect ('topics/exportEmail/'.$topic_id.'/');
+            		break;
             default:
                 break;
                 
@@ -166,7 +171,7 @@ class Export extends Controller {
 	    
 	Parameters passed via URL segments:
 	    3rd: author_id
-	    4rth: type (bibtex|ris)
+	    4rth: type (bibtex|ris|email)
 	         
     Returns:
         A clean text page with exported publications
@@ -179,7 +184,7 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing author<br/>');
 	        redirect ('');
 	    }
-	    if (!in_array($type,array('bibtex','ris','formatted'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
             $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
@@ -208,6 +213,9 @@ class Export extends Controller {
                 $exportdata['sort'] = $this->input->post('sort');
                 $exportdata['style'] = $this->input->post('style');
                 break;
+            case 'email':
+            		redirect ('authors/exportEmail/'.$author_id);
+            		break;
             default:
                 break;
                 
@@ -240,14 +248,14 @@ class Export extends Controller {
 	    insufficient rights
 	    
 	Parameters passed via URL segments:
-	    3rth: type (bibtex|ris)
+	    3rth: type (bibtex|ris|email)
 	         
     Returns:
         A clean text page with exported publications
     */
     function bookmarklist() {
 	    $type = $this->uri->segment(3,'');
-	    if (!in_array($type,array('bibtex','ris','formatted'))) {
+	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
             $header ['title']       = "Select export format";
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
@@ -280,6 +288,9 @@ class Export extends Controller {
                 $exportdata['sort'] = $this->input->post('sort');
                 $exportdata['style'] = $this->input->post('style');
                 break;
+            case 'email':
+            		redirect ('bookmarklist/exportEmail/');
+            		break;
             default:
                 break;
                 
@@ -314,7 +325,7 @@ class Export extends Controller {
 	    
 	Parameters passed via URL segments:
 	    3rd: pub_id
-	    4rth: type (bibtex|ris)
+	    4rth: type (bibtex|ris|email)
 	         
     Returns:
         A clean text page with exported publications

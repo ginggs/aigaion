@@ -43,6 +43,22 @@ define('CLEAN_URLS', FALSE);
 
 /*
 |---------------------------------------------------------------
+| EMAIL EXPORT
+|---------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+
+# Name of the default email address which is used when publications are exported by email
+define('EXPORT_REPLAY_ADDRESS', '...@........');
+
+# Defines the maximum size of email attachments
+define('MAXIMUM_ATTACHMENT_SIZE', '10000');
+/*
+|---------------------------------------------------------------
 | PHP ERROR REPORTING LEVEL
 |---------------------------------------------------------------
 |

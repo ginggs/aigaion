@@ -25,6 +25,12 @@ echo form_open($exportCommand.'ris');
 echo "<div>".form_submit(array('name'=>'RIS','title'=>'Export to RIS'),'RIS');
 echo "</div>\n";
 echo form_close();
+echo '<br/>';
+echo form_open($exportCommand.'email');
+echo "<div>".form_submit(array('name'=>'E-mail','title'=>'Export by E-mail'),'E-mail');
+echo "</div>\n";
+echo form_close();
+
 echo "<br/><hr/>";
 
 $this->load->helper('osbib');
