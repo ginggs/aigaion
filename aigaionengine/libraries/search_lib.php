@@ -121,7 +121,19 @@ class Search_lib {
                            ) ";
         
       }
-                          
+      if (count($dontConditions)>0) {
+        $in = "";
+        foreach ($dontConditions as $topic) {
+          if ($in !='')$in.=',';
+          $in .= $topic->topic_id;
+        }
+        $topicCondition = "AND NOT EXISTS     (
+                               SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                               WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                 AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IN (".$in.")
+                           ) ";
+        
+      }                  
       $result = $this->simpleSearch($query, $searchtypes,$topicCondition);
       return $result;
   }

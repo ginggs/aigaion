@@ -18,7 +18,7 @@ echo "
  .form_hidden('formname','advancedsearch')."\n
 
     <p class=header2>Keywords</p>
-    Leave empty if you want to search all publications
+    
     <div>\n";
 echo form_input(array('name' => 'searchstring', 'size' => '50','value'=>$query));
 
@@ -93,7 +93,7 @@ echo "
     var n = 0;
     function more() {
         n++;
-        var newCondition = '<b>Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
+        var newCondition = '<b>(or) Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
                                              array('topics'   => $this->topic_db->getByID(1,$config),
                                                   'showroot'  => False,
                                                   'header'    => 'Select topic to include or exclude...',
