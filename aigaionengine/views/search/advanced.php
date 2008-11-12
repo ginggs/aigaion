@@ -44,14 +44,30 @@ echo "
 .form_checkbox('search_publications_abstracts','search_publications_abstracts',in_array('publications_abstracts',$options))." Search publication abstract<br/>\n"
 ."
     </div>
-<p/>
+<p/>";
+
+//the encoding of the topic conditions is a messy business. We need it because there may be all sorts of stuff in the option tree that we cannot just show in javascript here without breaking the boundaries of the relevant javascript string ;-)
+$config = array('onlyIfUserSubscribed'=>True,
+                'includeGroupSubscriptions'=>True,
+                'user'=>$userlogin->user());
+$this->load->helper('encode');
+echo "
     Choose the topic restrictions that apply: return only publications that... 
     <div>
     <script language='javascript'>
     var n = 0;
     function more() {
         n++;
-        var newCondition = 'Condition '+n;
+        var newCondition = '<b>Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
+                                             array('topics'   => $this->topic_db->getByID(1,$config),
+                                                  'showroot'  => False,
+                                                  'header'    => 'Select topic to include or exclude...',
+                                                  'dropdownname' => 'dropdownname',
+                                                  'depth'     => -1,
+                                                  'selected'  => 1
+                                                  ),  
+                                             true))."');
+        newCondition = newCondition.replace('dropdownname','topicSelection'+n);
         Element.replace('moreconditions',newCondition+'<br/><div id=\"moreconditions\" name=\"moreconditions\"><input type=\"hidden\" name=\"numberoftopicconditions\" value=\"'+n+'\"/>".$this->ajax->button_to_function('More...', "more();" )."</div>');
     }
     </script>

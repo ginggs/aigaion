@@ -94,7 +94,7 @@ class UserLogin {
         return $result;
     }
     function user() {
-        return theUser;
+        return $this->theUser;
     }
     function getMenu() {
         return $this->theMenu;
