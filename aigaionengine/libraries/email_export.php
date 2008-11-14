@@ -18,7 +18,7 @@ class Email_Export {
 
 		$userMail = $user->email;
 		if($userMail == '')
-			$userMail = EXPORT_REPLAY_ADDRESS;
+			$userMail = EXPORT_REPLY_ADDRESS;
 
 		$userFirst = $user->firstname;
 		if($userFirst == '')

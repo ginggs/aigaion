@@ -53,7 +53,7 @@ define('CLEAN_URLS', FALSE);
 */
 
 # Name of the default email address which is used when publications are exported by email
-define('EXPORT_REPLAY_ADDRESS', '...@........');
+define('EXPORT_REPLY_ADDRESS', '...@........');
 
 # Defines the maximum size of email attachments
 define('MAXIMUM_ATTACHMENT_SIZE', '10000');

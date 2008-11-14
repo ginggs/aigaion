@@ -37,13 +37,13 @@ if (!defined('APPURL') || (APPURL=='')) {
 if (!defined('AIGAION_DB_PREFIX')) {
     define ('AIGAION_DB_PREFIX','');
 }
-#EXPORT_REPLAY_ADDRESS: table prefix, default ""
-if (!defined('EXPORT_REPLAY_ADDRESS')) {
-    define ('EXPORT_REPLAY_ADDRESS','');
+#EXPORT_REPLY_ADDRESS: table prefix, default ""
+if (!defined('EXPORT_REPLY_ADDRESS')) {
+    define ('EXPORT_REPLY_ADDRESS','');
 }
 #MAXIMUM_ATTACHMENT_SIZE: table prefix, default 10000
 if (!defined('MAXIMUM_ATTACHMENT_SIZE')) {
-    define('MAXIMUM_ATTACHMENT_SIZE', '10000')
+    define('MAXIMUM_ATTACHMENT_SIZE', '10000');
 }
 /*
 |--------------------------------------------------------------------------
