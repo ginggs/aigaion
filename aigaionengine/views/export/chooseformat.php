@@ -7,6 +7,7 @@ header              Default: "Export all publications"
 exportCommand       Default: "export/all/"; will be suffixed with type. May also be, e.g., "export/topic/12/"
 */
 $this->load->helper('form');
+$userlogin  = getUserLogin();
 
 if (!isset($header))$header="Export all publications";
 if (!isset($exportCommand))$exportCommand="export/all/";
@@ -26,10 +27,12 @@ echo "<div>".form_submit(array('name'=>'RIS','title'=>'Export to RIS'),'RIS');
 echo "</div>\n";
 echo form_close();
 echo '<br/>';
-echo form_open($exportCommand.'email');
-echo "<div>".form_submit(array('name'=>'E-mail','title'=>'Export by E-mail'),'E-mail');
-echo "</div>\n";
-echo form_close();
+if ($userlogin->hasRights('export_email')) {
+  echo form_open($exportCommand.'email');
+  echo "<div>".form_submit(array('name'=>'E-mail','title'=>'Export by E-mail'),'E-mail');
+  echo "</div>\n";
+  echo form_close();
+}
 
 echo "<br/><hr/>";
 

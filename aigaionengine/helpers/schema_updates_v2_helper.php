@@ -22,7 +22,32 @@
 
 
     /** 
+    Add some userrights for email export and for requesting copies of a paper from the authors
+    */
+    function updateSchemaV2_9() {
+        $CI = &get_instance();
+        if (checkVersion('V2.9', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_8()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+       
+        //add 'jr' column for authors
+        $res = mysql_query("INSERT INTO `".AIGAION_DB_PREFIX."availablerights` 
+                                        (`name`,`description`) 
+                                 VALUES ('export_email','export publications through email'),
+                                        ('request_copies','request copies of a publication from the author');");
+                                  
+       
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.9');
+    }
     
+    /** 
+    Add jr-part for authors
     */
     function updateSchemaV2_8() {
         $CI = &get_instance();
@@ -45,7 +70,7 @@
     }
     
     /** 
-    
+    Extend size of fields in user table
     */
     function updateSchemaV2_7() {
         $CI = &get_instance();
@@ -72,7 +97,8 @@
     }
  
     /** 
-    
+    CHange 'pages' field -- instead of first and last page we now simply have a string field allowing all formats
+    (e.g., multiple ranges)
     */
     function updateSchemaV2_6() {
         $CI = &get_instance();
@@ -117,7 +143,8 @@
 
  
     /** 
-    
+    add account capabilities: external accounts, disabled accounts, and several new or transformed config settings related to login.
+    Mostly, see userlogin.php for how this is used.
     */
     function updateSchemaV2_5() {
         $CI = &get_instance();

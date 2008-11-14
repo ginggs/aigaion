@@ -561,6 +561,11 @@ class Authors extends Controller {
 		*/
 		function exportEmail()
 		{
+  	  $userlogin = getUserLogin();
+			if (!$userlogin->hasRights('export_email')) {
+  	    appendErrorMessage('You are not allowed to export publications through email<br/>');
+  	    redirect('');
+      }
       $this->load->library('email_export');
 			$email_pdf = $this->input->post('email_pdf');
 			$email_bibtex = $this->input->post('email_bibtex');
