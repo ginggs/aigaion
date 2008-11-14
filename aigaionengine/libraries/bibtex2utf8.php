@@ -182,8 +182,8 @@ class Bibtex2utf8 {
           $string = preg_replace($regexp, $utf8char, $string);
           $regexp = "/\\\\".$command."(\\{\\})/";
           $string = preg_replace($regexp, $utf8char, $string);
-          $regexp = "/\\\\".$command."(\\W)/";
-          $string = preg_replace($regexp, $utf8char."$1", $string);
+          $regexp = "/\\\\".$command."(\\W)/"; //remove that whitespace!
+          $string = preg_replace($regexp, $utf8char, $string);
         }
         foreach ($this->specialChars as $sc) 
         {
@@ -225,12 +225,19 @@ class Bibtex2utf8 {
         array("=",'e',"ē"),
         array("\"",'e',"ë"),
         
+        array("`","\\\\i","ì"),
+        array("'","\\\\i","í"),
+        array("\\^","\\\\i","î"),
+        array("~","\\\\i","ĩ"),
+        array("=","\\\\i","ī"),
+        array("\"","\\\\i","ï"), 
+
         array("`",'i',"ì"),
         array("'",'i',"í"),
         array("\\^",'i',"î"),
         array("~",'i',"ĩ"),
         array("=",'i',"ī"),
-        array("\"",'i',"ï"), 
+        array("\"",'i',"ï"),         
                 
         array("`",'o',"ò"),
         array("'",'o',"ó"),
@@ -322,7 +329,7 @@ class Bibtex2utf8 {
 
       $this->specialChars = array(
             array("#","#"),
-            array("\\?", "?"),
+            //array("\\?", "?"), //not neccesary, according to PDM
             array("\\&", "&"),
  	          array("\\$", "$"),
  	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
