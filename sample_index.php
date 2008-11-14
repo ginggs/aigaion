@@ -52,7 +52,8 @@ define('CLEAN_URLS', FALSE);
 |
 */
 
-# Name of the default email address which is used when publications are exported by email
+# set this to the name of the email address you want to use as 'sender' when publications are exported by email
+# 
 define('EXPORT_REPLY_ADDRESS', '...@........');
 
 # Defines the maximum size of email attachments
