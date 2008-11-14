@@ -102,6 +102,13 @@ class Bibtex2utf8 {
     function utf8ToBibCharsFromString($string)
     {
    
+        foreach ($this->combinedLetters as $cl) 
+        {
+          $char1 = $cl[0];
+          $char2 = $cl[1];
+          $utf8char = $cl[2];
+          $string = preg_replace("/".$utf8char."/", "{\\".$char1." ".$char2."}", $string);
+        }
         foreach ($this->accentedLetters as $al) 
         {
           $accent = $al[0];
@@ -113,13 +120,8 @@ class Bibtex2utf8 {
           $utf8char = utf8_strtoupper($al[2]);
           $string = preg_replace("/".$utf8char."/", "{\\".$accent."{".$char."}}", $string);
         }
-        foreach ($this->combinedLetters as $cl) 
-        {
-          $char1 = $cl[0];
-          $char2 = $cl[1];
-          $utf8char = $cl[2];
-          $string = preg_replace("/".$utf8char."/", "{\\".$char1." ".$char2."}", $string);
-        }
+        //restore {\I}
+        $string = preg_replace("/\\{\\\\I\\}/", "{I}", $string);
         foreach ($this->stringsAndCommands as $sac) 
         {
           $command = $sac[0];
