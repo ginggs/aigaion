@@ -104,7 +104,7 @@ class Search extends Controller {
             appendMessage('Nonexisting topic_id in advanced search condition');
             continue;
           }
-          if ($do) {
+          if ($do=='True') {
             $doConditions[] = $topic; 
           } else {
             $dontConditions[] = $topic;
