@@ -87,15 +87,15 @@ $this->load->helper('encode');
 echo "
     <p class=header2>Choose the topic restrictions that apply. </p>
     Return all publications that satisfy <br/>
-    <input type=radio name=\"anyAll\" value=\"Any\"/>Any<br/>
-    <input type=radio name=\"anyAll\" value=\"All\" CHECKED/>All
+    <input type=radio name=\"anyAll\" value=\"All\" CHECKED/>All<br/>
+    <input type=radio name=\"anyAll\" value=\"Any\"/>Any
     <br/>of the following conditions:<br/><br/>
     <div>
     <script language='javascript'>
     var n = 0;
     function more() {
         n++;
-        var newCondition = '<b>Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do Not&nbsp;&nbsp;&nbsp;Appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
+        var newCondition = '<b>Condition '+n+'</b>:<br/><input type=radio name=\"doOrNot'+n+'\" value=\"True\" CHECKED/>Do<br/><input type=radio name=\"doOrNot'+n+'\" value=\"False\"/>Do not&nbsp;&nbsp;&nbsp;appear in '+decodeURIComponent('".encodeURIComponent($this->load->view('topics/optiontree',
                                              array('topics'   => $this->topic_db->getByID(1,$config),
                                                   'showroot'  => False,
                                                   'header'    => 'Select topic to include or exclude...',
