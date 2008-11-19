@@ -90,6 +90,7 @@ class Search extends Controller {
         }
       //process query
       $query = $this->input->post('searchstring');
+      $anyAll = $this->input->post('anyAll');
       $doConditions = array();
       $dontConditions = array();
       $config = array('onlyIfUserSubscribed'=>False,
@@ -140,7 +141,7 @@ class Search extends Controller {
       
       $this->load->library('search_lib');
       if ((count($doConditions>0))||(count($dontConditions>0))) {
-        $searchresults = $this->search_lib->topicConditionSearch($query,$searchoptions,$doConditions,$dontConditions);
+        $searchresults = $this->search_lib->topicConditionSearch($query,$searchoptions,$doConditions,$dontConditions,$anyAll);
       } else {
 	      $searchresults = $this->search_lib->simpleSearch($query,$searchoptions,"");
 	    }

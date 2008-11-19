@@ -17,8 +17,7 @@ echo "
 ".form_open('search/advancedresults')
  .form_hidden('formname','advancedsearch')."\n
 
-    <p class=header2>Keywords</p>
-    
+    <p class=header2>Search terms</p>
     <div>\n";
 echo form_input(array('name' => 'searchstring', 'size' => '50','value'=>$query));
 
@@ -60,7 +59,7 @@ echo "
 ".form_open('search/advancedresults')
  .form_hidden('formname','advancedsearch')."\n
 
-    <p class=header2>Keywords</p>
+    <p class=header2>Search terms</p>
     Leave empty if you want to search all publications
     <div>\n";
 echo form_input(array('name' => 'searchstring', 'size' => '50','value'=>$query));
@@ -87,9 +86,12 @@ $config = array('onlyIfUserSubscribed'=>True,
                 'user'=>$userlogin->user());
 $this->load->helper('encode');
 echo "
-    Choose the topic restrictions that apply: return only publications that...<br/>
-    are in one of the topics ...<br/>
-    and not in one of the topics... <br/>
+    Choose the topic restrictions that apply. <br/>
+    <br/>
+    Return all publications that satisfy <br/>
+    <input type=radio name=\"anyAll\" value=\"Any\"/>Any<br/>
+    <input type=radio name=\"anyAll\" value=\"All\" CHECKED/>All
+    <br/>of the following conditions:<br/>
     <div>
     <script language='javascript'>
     var n = 0;
@@ -112,7 +114,7 @@ echo "
     
 ."<div id='moreconditions' name='moreconditions'><input type=\"hidden\" name=\"numberoftopicconditions\" value=\"0\"/>".$this->ajax->button_to_function('More...', "more();" )."</div>"
 ."
-    </div>
+    <script language='javascript'>more();</script></div>
 ";
 
 echo form_submit('submit_search',  $this->lang->line('main_search'));

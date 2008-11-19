@@ -106,34 +106,59 @@ class Search_lib {
   'publications_notes'=>$arrayOfPubs,
   'publications_bibtex_id'=>$arrayOfPubs,
   ) */
-  function topicConditionSearch($query, $searchtypes,$doConditions,$dontConditions) {
+  function topicConditionSearch($query, $searchtypes,$doConditions,$dontConditions,$anyAll) {
+  
       $topicCondition = ""; 
-      if (count($doConditions)>0) {
-        $in = "";
-        foreach ($doConditions as $topic) {
-          if ($in !='')$in.=',';
-          $in .= $topic->topic_id;
-        }
-        $topicCondition = "AND EXISTS     (
-                               SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
-                               WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
-                                 AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IN (".$in.")
-                           ) ";
+      if ($anyAll=="Any") {
         
+        if (count($doConditions)>0) {
+          foreach ($doConditions as $topic) {
+            if ($topicCondition !='')$topicCondition.='OR ';
+            $topicCondition .= "EXISTS     (
+                                 SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                                 WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                   AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$topic->topic_id."
+                             ) ";
+          }
+        }
+        if (count($dontConditions)>0) {
+          foreach ($dontConditions as $topic) {
+            if ($topicCondition !='')$topicCondition.='OR ';
+            $topicCondition .= " NOT EXISTS     (
+                                 SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                                 WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                   AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$topic->topic_id."
+                             ) ";
+          }
+        }         
+        if ($topicCondition != "") {
+          $topicCondition = "AND (".$topicCondition.") ";
+        }         
+      } else {
+        if (count($doConditions)>0) {
+          foreach ($doConditions as $topic) {
+            if ($topicCondition !='')$topicCondition.='AND ';
+            $topicCondition .= "EXISTS     (
+                                 SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                                 WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                   AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$topic->topic_id."
+                             ) ";
+          }
+        }
+        if (count($dontConditions)>0) {
+          foreach ($dontConditions as $topic) {
+            if ($topicCondition !='')$topicCondition.='AND ';
+            $topicCondition .= " NOT EXISTS     (
+                                 SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
+                                 WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
+                                   AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$topic->topic_id."
+                             ) ";
+          }
+        }         
+        if ($topicCondition != "") {
+          $topicCondition = "AND (".$topicCondition.")";
+        }
       }
-      if (count($dontConditions)>0) {
-        $in = "";
-        foreach ($dontConditions as $topic) {
-          if ($in !='')$in.=',';
-          $in .= $topic->topic_id;
-        }
-        $topicCondition = "AND NOT EXISTS     (
-                               SELECT * FROM ".AIGAION_DB_PREFIX."topicpublicationlink 
-                               WHERE ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id   
-                                 AND ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IN (".$in.")
-                           ) ";
-        
-      }                  
       $result = $this->simpleSearch($query, $searchtypes,$topicCondition);
       return $result;
   }
