@@ -70,8 +70,7 @@ echo "
 .form_hidden('return_publications','return_publications')."\n"
 ."
 <p/>
-    <p class=header2>Publication search</p>
-    Choose, if you are searching for publications (see above!), which fields are searched
+    Search publications with these terms in the following fields:
     <div>\n"
 .form_checkbox('search_publications_titles','search_publications_titles',in_array('publications_titles',$options))." Search publication titles<br/>\n"
 .form_checkbox('search_publications_notes','search_publications_notes',in_array('publications_notes',$options))." Search publication notes<br/>\n"
@@ -86,12 +85,11 @@ $config = array('onlyIfUserSubscribed'=>True,
                 'user'=>$userlogin->user());
 $this->load->helper('encode');
 echo "
-    Choose the topic restrictions that apply. <br/>
-    <br/>
+    <p class=header2>Choose the topic restrictions that apply. </p>
     Return all publications that satisfy <br/>
     <input type=radio name=\"anyAll\" value=\"Any\"/>Any<br/>
     <input type=radio name=\"anyAll\" value=\"All\" CHECKED/>All
-    <br/>of the following conditions:<br/>
+    <br/>of the following conditions:<br/><br/>
     <div>
     <script language='javascript'>
     var n = 0;
@@ -114,7 +112,7 @@ echo "
     
 ."<div id='moreconditions' name='moreconditions'><input type=\"hidden\" name=\"numberoftopicconditions\" value=\"0\"/>".$this->ajax->button_to_function('More...', "more();" )."</div>"
 ."
-    <script language='javascript'>more();</script></div>
+    <script language='javascript'>more();</script></div><br/>
 ";
 
 echo form_submit('submit_search',  $this->lang->line('main_search'));
