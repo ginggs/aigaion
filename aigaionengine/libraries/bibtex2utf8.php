@@ -101,7 +101,12 @@ class Bibtex2utf8 {
     
     function utf8ToBibCharsFromString($string)
     {
-   
+        //DR: if string contains math, don't convert at all, as it only leads to problems... 
+        if (preg_match("/(^\\$|[^\\\\]\\$)/i", $string) ==1) return $string;
+        if (preg_match("/\\\\ensuremath(\\s)*\\{/i", $string) ==1) return $string;
+        if (preg_match("/\\\\\\(/i", $string) ==1) return $string;
+        if (preg_match("/\\\\begin(\\s)*\\{math\\}/i", $string) ==1) return $string;
+        
         foreach ($this->combinedLetters as $cl) 
         {
           $char1 = $cl[0];
