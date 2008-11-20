@@ -36,8 +36,8 @@ $user       = $this->user_db->getByID($userlogin->userID());
         $name = utf8_substr($name,0,30)."...";
     }
     echo $name;
-    $accesslevels = $this->accesslevels_lib->getAccessLevelSummary($attachment);
-    echo anchor('accesslevels/edit/attachment/'.$attachment->att_id,$accesslevels,array('title'=>'click to modify access levels'));
+    //$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($attachment);
+    //echo anchor('accesslevels/edit/attachment/'.$attachment->att_id,$accesslevels,array('title'=>'click to modify access levels'));
         
     //the block of edit actions: dependent on user rights
     $userlogin = getUserLogin();
@@ -68,7 +68,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                            )
                       );
         
-        echo "<span id='attachment_rights_".$attachment->att_id."'><span title='attachment read / edit rights'>".$readrights.$editrights."</span></span>";
+        echo "[<span title='attachment read / edit rights'><span id='attachment_rights_".$attachment->att_id."'>r:".$readrights."e:".$editrights."</span></span>]";
         
     }
     

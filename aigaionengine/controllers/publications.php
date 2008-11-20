@@ -154,7 +154,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js', 'publicationlists.js');
         $headerdata['sortPrefix']        = 'publications/showlist/';
         
         $userlogin = getUserLogin();
@@ -221,7 +221,7 @@ class Publications extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'Publication list';
-        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+        $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js', 'publicationlists.js');
         $headerdata['sortPrefix']        = 'publications/unassigned/';
         
         $userlogin = getUserLogin();

@@ -119,7 +119,7 @@ class Accesslevels extends Controller {
         {
           //determine current and new access level
           $currentLevel = $publication->$rw;
-          $newlevel     = "";
+          $newlevel     = $currentLevel;
           if ($currentLevel == 'public')
           $newlevel = "intern";
           if ($currentLevel == 'intern')
@@ -154,7 +154,7 @@ class Accesslevels extends Controller {
         {
           //determine current and new access level
           $currentLevel = $attachment->$rw;
-          $newlevel     = "";
+          $newlevel     = $currentLevel;
           if ($currentLevel == 'public')
           $newlevel = "intern";
           if ($currentLevel == 'intern')
@@ -189,7 +189,7 @@ class Accesslevels extends Controller {
         {
           //determine current and new access level
           $currentLevel = $note->$rw;
-          $newlevel     = "";
+          $newlevel     = $currentLevel;
           if ($currentLevel == 'public')
           $newlevel = "intern";
           if ($currentLevel == 'intern')
@@ -222,7 +222,7 @@ class Accesslevels extends Controller {
                   );
 
 
-    $this->output->set_output("<span title='".$type." read / edit rights'>".$readrights.$editrights."</span>");
+    $this->output->set_output("<span title='".$type." read / edit rights'>r:".$readrights."e:".$editrights."</span>");
   }
 
   function _edittopic() {

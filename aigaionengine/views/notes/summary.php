@@ -43,8 +43,8 @@ foreach ($note->xref_ids as $xref_id) {
 
 echo "<div class='readernote'>
   <b>[".getAbbrevForUser($note->user_id)."]</b>: ";
-  $accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
-  echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
+  //$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
+  //echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
   echo $text;
 
 //the block of edit actions: dependent on user rights
@@ -72,10 +72,7 @@ if (    ($userlogin->hasRights('note_edit'))
                         'update'  => 'note_rights_'.$note->note_id
                        )
                   );
-    
-    echo "<span id='note_rights_".$note->note_id."' title='note read / edit rights'>".$readrights.$editrights."</span>";
-        
-
+    echo"[<span id='note_rights_".$note->note_id."' title='note read / edit rights'>r:".$readrights."e:".$editrights."</span>]";
 }
 ?>
 </div>

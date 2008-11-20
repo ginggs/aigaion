@@ -81,28 +81,11 @@ $user       = $this->user_db->getByID($userlogin->userID());
   </div>
   <div class='header'><?php echo $publication->title; ?>
 <?php
-    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_edit_access_level.'.gif')."'/>";
-    echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
+//    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_edit_access_level.'.gif')."'/>";
+//    echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
 
-/*
-//TEST OF NEW READ/EDIT RIGHTS INTERFACE
-    $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($publication);
-    $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($publication);
 
-    $readrights = $this->ajax->link_to_remote($read_icon,
-                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/read'),
-                        'update'  => 'publication_rights_'.$publication->pub_id
-                       )
-                  );
-    $editrights = $this->ajax->link_to_remote($edit_icon,
-                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/edit'),
-                        'update'  => 'publication_rights_'.$publication->pub_id
-                       )
-                  );
 
-    echo "<span id='publication_rights_".$publication->pub_id."'><span title='publication read / edit rights'>".$readrights.$editrights."</span></span>";
-
-*/
 ?>
   </div>
   <table class='publication_details' width='100%'>
@@ -298,6 +281,33 @@ $user       = $this->user_db->getByID($userlogin->userID());
 ?>
       </td>
     </tr>
+<?php
+    if ($accessLevelEdit)
+    {    
+      $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($publication);
+      $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($publication);
+
+      $readrights = $this->ajax->link_to_remote($read_icon,
+                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/read'),
+                        'update'  => 'publication_rights_'.$publication->pub_id
+                       )
+                  );
+      $editrights = $this->ajax->link_to_remote($edit_icon,
+                  array('url'     => site_url('/accesslevels/toggle/publication/'.$publication->pub_id.'/edit'),
+                        'update'  => 'publication_rights_'.$publication->pub_id
+                       )
+                  );
+?>
+    <tr>
+      <td valign='top'>Access rights:</td>
+      <td valign='top'><?php echo "<span id='publication_rights_".$publication->pub_id."'><span title='publication read / edit rights'>r:".$readrights."e:".$editrights."</span></span>";
+    echo "(".anchor('accesslevels/edit/publication/'.$publication->pub_id,'edit all rights',array('title'=>'click to modify access levels')).")";
+    ?>
+</td>
+    </tr>
+<?php
+    }
+?>
 
     <tr>
       <td valign='top'>Total mark:</td>

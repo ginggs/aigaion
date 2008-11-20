@@ -84,6 +84,7 @@ class Accesslevels_lib {
     
     
     
+    
     /** $type is topic, publication, attachment, or note
     Returns a span of html containing the appropriate access-level-edit panel for the given object,
     depending on the rights of the logged user, the current access levels of the object and the owner 

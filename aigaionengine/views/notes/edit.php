@@ -49,11 +49,39 @@ if ($isAddForm) {
 echo $this->validation->error_string;
 ?>
     <table>
-        <tr><td><label for='text'>Text</label></td>
-            <td>
-<?php echo form_textarea(array('name' => 'text','cols' => '70','rows' => '7','value' => $note->text)); ?>
+        <tr><td colspan='2'><label for='text'>Text:</label><br/>
+<?php echo form_textarea(array('name' => 'text','cols' => '70','rows' => '7','value' => $note->text)); ?><br/><br/>
             </td>
         </tr>
+<?php
+  if (!$isAddForm)
+  {
+    $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($note);
+    $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($note);
+    
+    $readrights = $this->ajax->link_to_remote($read_icon,
+                  array('url'     => site_url('/accesslevels/toggle/note/'.$note->note_id.'/read'),
+                        'update'  => 'note_rights_'.$note->note_id
+                       )
+                  );
+    $editrights = $this->ajax->link_to_remote($edit_icon,
+                  array('url'     => site_url('/accesslevels/toggle/note/'.$note->note_id.'/edit'),
+                        'update'  => 'note_rights_'.$note->note_id
+                       )
+                  );
+
+?>
+        <tr>
+          <td>Access rights: <?php echo"<span id='note_rights_".$note->note_id."' title='note read / edit rights'>r:".$readrights."e:".$editrights."</span>";?><br/><br/></td>
+        </tr>
+        
+<?php
+  //$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
+  //echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
+  //echo "<span id='note_rights_".$note->note_id."' title='note read / edit rights'>".$readrights.$editrights."</span>]";
+  }
+  
+?>
 
         <tr><td>
 <?php
