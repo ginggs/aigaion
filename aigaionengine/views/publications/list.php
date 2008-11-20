@@ -65,11 +65,14 @@
   if (isset($header) && ($header != '')) {
     echo "  <div class='header'>".$header."</div>\n";
   }
-  ?>
+  if ($useBookmarkList)
+  {
+?>
   <input type='submit' value='Select all' onClick='javascript:selectAll(true);'>
-<input type='submit' value='Unselect all' onClick='javascript:selectAll(false);'>
-<input type='submit' value='Invert selection' onClick='javascript:invertSelection();'><br/>
+  <input type='submit' value='Unselect all' onClick='javascript:selectAll(false);'>
+  <input type='submit' value='Invert selection' onClick='javascript:invertSelection();'><br/>
 <?php
+  }
   echo $multipagelinks;
   
   $b_even = true;
