@@ -310,8 +310,7 @@ class Bibtex2utf8 {
  	          array("aa", "å"),
  	          array("AA", "Å"), 
  	          array("ss", "ß"), 
- 	          array("SS", "ß"), 
-            array("o", "ø"),
+ 	          array("o", "ø"),
             array("O", "Ø"),
             array("i", "ı"),
 
@@ -337,7 +336,8 @@ class Bibtex2utf8 {
  	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
- 	          array("_", "_")
+ 	          array("_", "_"),
+            array("SS", "SS") //one waY ONLY, dont convert back! 
             
             
         //{"\\\\~?", "¡"},
