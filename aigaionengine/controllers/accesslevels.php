@@ -92,6 +92,7 @@ class Accesslevels extends Controller {
   */
   function toggle()
   {
+    $userlogin=getUserLogin();
     $type             = $this->uri->segment(3);  //type of object
     $object_id        = $this->uri->segment(4);  //ID of object
     $rights_type      = $this->uri->segment(5);  //read or edit rights, can either be 'read' or 'edit'
@@ -123,7 +124,16 @@ class Accesslevels extends Controller {
           if ($currentLevel == 'public')
           $newlevel = "intern";
           if ($currentLevel == 'intern')
-          $newlevel = "private";
+          {
+            if ($userlogin->userid()==$publication->user_id)
+            {
+              $newlevel = "private";
+            } 
+            else 
+            {
+              $newlevel = "public";
+            }
+          }
           if ($currentLevel == 'private')
           $newlevel = "public";
         }
@@ -158,7 +168,16 @@ class Accesslevels extends Controller {
           if ($currentLevel == 'public')
           $newlevel = "intern";
           if ($currentLevel == 'intern')
-          $newlevel = "private";
+          {
+            if ($userlogin->userid()==$attachment->user_id)
+            {
+              $newlevel = "private";
+            } 
+            else 
+            {
+              $newlevel = "public";
+            }
+          }
           if ($currentLevel == 'private')
           $newlevel = "public";
         }
@@ -192,8 +211,17 @@ class Accesslevels extends Controller {
           $newlevel     = $currentLevel;
           if ($currentLevel == 'public')
           $newlevel = "intern";
-          if ($currentLevel == 'intern')
-          $newlevel = "private";
+          if ($currentLevel == 'intern') 
+          {
+            if ($userlogin->userid()==$note->user_id)
+            {
+              $newlevel = "private";
+            } 
+            else 
+            {
+              $newlevel = "public";
+            }
+          }
           if ($currentLevel == 'private')
           $newlevel = "public";
         }
