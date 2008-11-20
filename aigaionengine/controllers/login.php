@@ -124,7 +124,7 @@ class Login extends Controller {
         if (($user==null)||($user->type!='anon')) {
             $user = $this->user_db->getByLogin($user_id);
         }
-        if (($user==null)||($user->type='anon')) {
+        if (($user==null)||($user->type!='anon')) {
             appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br/>');
             redirect('');
         }
