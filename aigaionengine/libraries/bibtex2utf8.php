@@ -351,7 +351,7 @@ class Bibtex2utf8 {
             array("\\#","#"),
             array("\\&","&"),
             //array("\\?", "\\?"), //not neccesary, according to PDM
- 	          array("\\$", "\\$"),
+ 	          array("\\\\$", "\\$"), //why do we need the extra slashes here to e4xport $ as \$ ?
  	          //array("\\{", "\\{"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "\\}"),  //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("\\%", "%"), 
