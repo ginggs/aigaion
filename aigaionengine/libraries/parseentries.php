@@ -1,5 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /*
+AIGAION VERSION MODIFIED FROM BIBLIOPHILE VERSION 
+
 v21
 
 Inspired by an awk BibTeX parser written by Nelson H. F. Beebe over 20 years ago although 

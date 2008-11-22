@@ -103,7 +103,7 @@ class Parser_Import
     //this would later on be exported as 
     //field={} 
     foreach ($bibliophileEntry as $k=>$v) {
-        if ($v=='') {
+        if (($v=='') && ($k!='bibtexCitation')) {
             //appendMessage('Explicitly empty field: '.$k.','.$v.'<br/>');
             $bibliophileEntry[$k] = '""';
         }

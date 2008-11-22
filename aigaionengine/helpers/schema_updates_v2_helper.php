@@ -19,7 +19,38 @@
 |       
 |       
 */
+        
 
+
+    /** 
+    Extend length of a few more fields in the publication table
+    */
+    function updateSchemaV2_11() {
+        $CI = &get_instance();
+        if (checkVersion('V2.11', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_10()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  CHANGE `year` `year`  varchar(127) NOT NULL DEFAULT '';");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  CHANGE `actualyear` `actualyear`  varchar(127) NOT NULL DEFAULT '';");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  CHANGE `series` `series`  varchar(127) NOT NULL DEFAULT '';");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  CHANGE `volume` `volume`  varchar(127) NOT NULL DEFAULT '';");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                                  CHANGE `chapter` `chapter`  varchar(127) NOT NULL DEFAULT '';");
+        
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.11');
+    }
+    
     /** 
     Add preference for how to calculate similar author distances
     */
