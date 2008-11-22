@@ -20,6 +20,29 @@
 |       
 */
 
+    /** 
+    Add preference for how to calculate similar author distances
+    */
+    function updateSchemaV2_10() {
+        $CI = &get_instance();
+        if (checkVersion('V2.10', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_9()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."users` 
+                      ADD COLUMN `similar_author_test` 
+                                 VARCHAR(20) NOT NULL DEFAULT 'default';");
+        $CI->db->insert('config',array('setting'=>'DEFAULTPREF_SIMILAR_AUTHOR_TEST','value'=>'c'));
+        
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.10');
+    }
+       
 
     /** 
     Add some userrights for email export and for requesting copies of a paper from the authors

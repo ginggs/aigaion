@@ -502,6 +502,19 @@ echo "
                         $siteconfig->getConfigSetting("DEFAULTPREF_LISTSTYLE"))."
         </td>
         </tr>
+        <tr>
+        <td>'Similar author' check</td>
+        <td>
+        ".form_dropdown('DEFAULTPREF_SIMILAR_AUTHOR_TEST',
+                        array('il'=>"Last names, then initials", "c"=>"Full name"),
+                        $siteconfig->getConfigSetting("DEFAULTPREF_SIMILAR_AUTHOR_TEST"))."
+        </td>
+        </tr>
+        <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Select the method for checking whether two author names are counted as 'similar'.
+	        </td>
+	      </tr>
         ";
         
 /**        

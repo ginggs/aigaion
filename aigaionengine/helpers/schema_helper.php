@@ -35,7 +35,7 @@
 
     	$bSilent = false;
 
-        if (!checkVersion('V2.9')) {
+        if (!checkVersion('V2.10')) {
             $userlogin = getUserLogin(); //note: a not logged in user has no rights :)
             if ($userlogin->hasRights("database_manage")) {
                 //sufficient rights: attempt to update schema
@@ -46,7 +46,7 @@
                                         //safe place on the server before performing the actual update code.<br/>");
                 }
                 $CI->load->helper('schema_updates_v2');
-                if (updateSchemaV2_9()) {
+                if (updateSchemaV2_10()) {
                     //clear config settings cache, because settings may have been changed by the schema update
                     $siteconfig = $CI->siteconfig_db->getSiteConfig();
                     $CI->latesession->set('SITECONFIG',$siteconfig);

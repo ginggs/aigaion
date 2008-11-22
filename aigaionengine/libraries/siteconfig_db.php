@@ -79,6 +79,7 @@ class Siteconfig_db {
         $result->configSettings['DEFAULTPREF_SUMMARYSTYLE']       = $CI->input->post('DEFAULTPREF_SUMMARYSTYLE');
         $result->configSettings['DEFAULTPREF_AUTHORDISPLAYSTYLE'] = $CI->input->post('DEFAULTPREF_AUTHORDISPLAYSTYLE');
         $result->configSettings['DEFAULTPREF_LISTSTYLE']          = $CI->input->post('DEFAULTPREF_LISTSTYLE');
+        $result->configSettings['DEFAULTPREF_SIMILAR_AUTHOR_TEST']          = $CI->input->post('DEFAULTPREF_SIMILAR_AUTHOR_TEST');
         if ($CI->input->post('DEFAULTPREF_NEWWINDOWFORATT')=='DEFAULTPREF_NEWWINDOWFORATT') {
             $result->configSettings['DEFAULTPREF_NEWWINDOWFORATT']       = 'TRUE';
         } else {

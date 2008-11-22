@@ -32,6 +32,7 @@ class User {
                                     'summarystyle'=>'default',
                                     'authordisplaystyle'=>'default',
                                     'liststyle'=>'default',
+                                    'similar_author_test'=>'default',
                                     'newwindowforatt'=>'FALSE',
                                     'exportinbrowser'=>'FALSE',
                                     'utf8bibtex'=>'FALSE'

@@ -341,8 +341,8 @@ class Bibtex2utf8 {
  	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
- 	          array("_", "_"),
-            array("SS", "SS") //one waY ONLY, dont convert back! 
+ 	          array("_", "_")
+            //array("SS", "SS") //one waY ONLY, dont convert back! TUrned off for now. THey almost never occur, and because we cannot symmetrycally export all SS as \SS, better to leave them unconverted  
             
             
         //{"\\\\~?", "¡"},

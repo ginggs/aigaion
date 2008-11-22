@@ -327,6 +327,19 @@ echo "
         </td>
         </tr>
         <tr>
+        <td>'Similar author' check</td>
+        <td>
+        ".form_dropdown('similar_author_test',
+                        array('default'=>'Site default','il'=>"Last names, then initials", "c"=>"Full name"),
+                        $user->preferences["similar_author_test"])."
+        </td>
+        </tr>
+        <tr>
+	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
+	        Select the method for checking whether two author names are counted as 'similar'.
+	        </td>
+	      </tr>
+        <tr>
         <td>Open attachments in new browser window</td>
         <td>
         ". //to do this, we need to rewrite many things, among which: the database should allow for 'default' beside TRUE and FALSE; the getfrompost, add and update in user_db should allow for a dropdown valued 'TRUE', 'FALSE' or 'default', ...

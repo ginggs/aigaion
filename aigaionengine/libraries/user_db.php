@@ -53,6 +53,7 @@ class User_db {
         {
             if (!isset($user->$key)) {
                 $user->preferences[$key] = $value;
+                //appendMessage($key.','.$value.'<br>');
             }
         }
         //assigned rights
@@ -105,6 +106,7 @@ class User_db {
         $user->preferences['summarystyle']       = $CI->input->post('summarystyle');
         $user->preferences['authordisplaystyle'] = $CI->input->post('authordisplaystyle');
         $user->preferences['liststyle']          = $CI->input->post('liststyle');
+        $user->preferences['similar_author_test']= $CI->input->post('similar_author_test');
         $user->preferences['newwindowforatt']    = $CI->input->post('newwindowforatt')=='newwindowforatt';
         $user->preferences['exportinbrowser']    = $CI->input->post('exportinbrowser')=='exportinbrowser';
         $user->preferences['utf8bibtex']         = $CI->input->post('utf8bibtex')=='utf8bibtex';
@@ -213,6 +215,7 @@ class User_db {
                                                'summarystyle'       => $user->preferences['summarystyle'],
                                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                                'liststyle'          => $user->preferences['liststyle'],
+                                               'similar_author_test'=> $user->preferences['similar_author_test'],
                                                'newwindowforatt'    => $newwindowforatt,
                                                'exportinbrowser'    => $exportinbrowser,
                                                'utf8bibtex'         => $utf8bibtex
@@ -320,6 +323,7 @@ class User_db {
                                'summarystyle'       => $user->preferences['summarystyle'],
                                'authordisplaystyle' => $user->preferences['authordisplaystyle'],
                                'liststyle'          => $user->preferences['liststyle'],
+                               'similar_author_test'=> $user->preferences['similar_author_test'],
                                'newwindowforatt'    => $newwindowforatt,
                                'exportinbrowser'    => $exportinbrowser,
                                'utf8bibtex'         => $utf8bibtex

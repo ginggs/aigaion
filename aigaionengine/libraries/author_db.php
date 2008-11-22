@@ -504,8 +504,23 @@ TODO:
       return null;
   }
 
-  /** returns a list of similar authors (possibly empty) */
+  /** returns a list of similar authors (possibly empty), method depends on site setting */
   function getSimilarAuthors($author) {
+    $userlogin = getUserLogin();
+    if ($userlogin->getPreference('similar_author_test')=='il') 
+    {
+    //appendMessage('il');
+      return $this->getSimilarAuthors2($author); //on initial lastname "il" 
+    }
+    else
+    {
+    //appendMessage('c');
+      return $this->getSimilarAuthors1($author); //on cleanname "c"
+    }
+    
+  }
+  /** returns a list of similar authors (possibly empty), on cleanname */
+  function getSimilarAuthors1($author) {
     $result = array();
     $CI = &get_instance();
     $CI->load->helper('utf8_to_ascii');
@@ -535,6 +550,49 @@ TODO:
     //sort while keeping key relationship
     asort($db_distances, SORT_NUMERIC);
     
+    foreach($db_distances as $key => $value)
+    {
+      $result[]= $this->getByID($key);
+    }
+    return $result;
+  }
+  /** returns a list of similar authors (possibly empty), on first initial */
+  function getSimilarAuthors2($author) {
+    $result = array();
+    $CI = &get_instance();
+    $CI->load->helper('utf8_to_ascii');
+
+
+
+    //get database author array
+    $CI->db->select('author_id, cleanname, surname, firstname');
+    $CI->db->orderby('surname');
+    $Q = $CI->db->get('author');
+
+    $db_cleanauthors = array();
+    //retrieve results or fail
+    foreach ($Q->result() as $R)
+    {
+      $db_cleanauthors[$R->author_id] = array();
+      $db_cleanauthors[$R->author_id][] = strtolower($R->surname); //why strtolower? because we want to check case insensitive.
+      $db_cleanauthors[$R->author_id][] = strtolower($R->firstname);
+    }
+    //check on cleanname
+    //create cleanname
+
+    $db_distances = array();
+    foreach ($db_cleanauthors as $author_id => $db_author)
+    {
+      $distance = levenshtein($db_author[0], strtolower($author->surname));
+      if (($distance < 2) && ($author_id != $author->author_id) && substr($db_author[1],0,1) == strtolower(substr($author->firstname,0,1)))
+      {
+				$db_distances[$author_id] = $distance;
+      }
+    }
+
+    //sort while keeping key relationship
+    asort($db_distances, SORT_NUMERIC);
+
     foreach($db_distances as $key => $value)
     {
       $result[]= $this->getByID($key);

@@ -84,10 +84,31 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 	$publicationCount     = $this->topic_db->getPublicationCountForTopic($topic->topic_id);
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
-	echo "<ul>
-<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>
-<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>
-<li class='nobr'>{$topicCount} Subtopics ";
+if ($publicationCount ==1) 
+	echo "
+<ul>
+<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publication')." ({$publicationReadCount} read)</li>";
+else 
+	echo "
+<ul>
+<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>";
+if ($authorCount ==1)
+echo"
+<li class='nobr'>{$authorCount} ".$this->lang->line('main_author')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view author for topic"')."]</li>";
+else 
+echo"<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
+if ($topicCount>0)
+{
+  if ($topicCount==1)
+  echo
+  "
+  <li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topic')." ";
+  else
+  echo "<li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topics')." ";
+} else
+{
+  echo "<li class='nobr'>No sub".$this->lang->line('main_topics')." ";
+}
 if ($userlogin->hasRights('topic_edit')) {
   echo "[".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]";
 }
