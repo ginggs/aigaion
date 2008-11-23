@@ -25,7 +25,11 @@ class Siteconfig_db {
             }
             $result->configSettings[$R->setting]=$value;
         }
-        if (   ($result->configSettings['USE_EXTERNAL_LOGIN'] == 'TRUE')
+        if (   (isset($result->configSettings['USE_EXTERNAL_LOGIN']))
+            &&
+               ($result->configSettings['USE_EXTERNAL_LOGIN'] == 'TRUE')
+            &&
+               (isset($result->configSettings['EXTERNAL_LOGIN_MODULE']))
             &&
                ($result->configSettings['EXTERNAL_LOGIN_MODULE'] == 'Httpauth')
             )
