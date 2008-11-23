@@ -10,6 +10,18 @@ echo "</script>";
   
 ?>
 <div class='publication'>
+<script language="javascript">
+    function monthFieldSwitch(simpleMonth) {
+        if (simpleMonth)
+        {
+          Element.replace('monthbox','<div id="monthbox" name="monthbox"><?php echo str_replace("\"","\\\"",str_replace("\n","",form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($publication->month))));?></div>');
+        }
+        else 
+        {
+          Element.replace('monthbox',"<div id='monthbox' name='monthbox'>In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings. <br/> Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul> <br/><span title='optional field'><?php echo str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => 'optional','autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))));?></span></div>");
+        }
+    }
+    </script>
   <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
 <?php
   $isAddForm = $edit_type=='new';
@@ -42,6 +54,7 @@ echo "</script>";
       <td>Citation:</td>
       <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '90'), $publication->bibtex_id); ?></td>
     </tr>
+    
 <?php 
     //collect show data for all publication fields 
     //the HIDDEN fields are shown at the end of the form; the NOT HIDDEN ones are shown here.
@@ -69,25 +82,15 @@ echo "</script>";
       $valCol = "";
         if ($key == "month")
         {
+          
           $month = $publication->month;          
           if (array_key_exists($month,getMonthsInternal())) 
           {
-            $valCol .= form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($month));
+            $valCol .= "<div id='monthbox' name='monthbox'><script language='javascript'>monthFieldSwitch(true);</script></div>\n";
           } 
           else 
           {
-          $valCol .= "
-                      In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Don't forget to use outer braces or quotes for literal strings.  
-                      <br/>
-                      Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul>
-                      <br/><span title='".$class." field'>".form_input(array('name' => $key, 
-                                                                     'id' => $key, 
-                                                                     'size' => '90', 
-                                                                     'alt' => $class, 
-                                                                     'autocomplete' => 'off', 
-                                                                     'class' => $class), 
-                                                              //formatMonthBibtexForEdit($month))."</span>\n";    
-                                                              formatMonthBibtexForEdit($month))."</span>\n";     
+            $valCol .= "<div id='monthbox' name='monthbox'><script language='javascript'>monthFieldSwitch(false);</script></div>\n";     
           }
         }
         else if ($key == "pages")
