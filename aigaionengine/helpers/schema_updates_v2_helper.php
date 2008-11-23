@@ -21,6 +21,37 @@
 */
         
 
+    
+    /** 
+    Initial schema update, bugfixes and install scripts
+    */
+    function updateSchemaV2_13() {
+        if (checkVersion('V2.13', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_12()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        if (!setReleaseVersion('2.1.0','bugfix,features,layout,security',"
+        Aigaion 2.1 is the first non-beta version of Aigaion.
+        
+        Besides solving a few security issues, it contains a multitude of new features and existing features have been improved in many ways.
+        Some examples are:
+        - export via email
+        - major improvements in the bibtex import facilities
+        - new handling of bibtex special characters, allowing many new characters and making it very simple to add new characters in the future
+        - an improved and more stable login module
+        - advanced search capabilities
+        
+        But there are also countless other improvements both small and large!
+         
+        Many thanks to our users who contributed ideas, code and extensive testing sessions!
+        ")) 
+            return False;
+        
+        return setVersion('V2.13');
+    }
+    
 
     /** 
     Reshape the month field into a free string, by replacing the numbers (now 0..12) with bibtex abbrevs in the new format -- 3letter abbrev enclosed in double quotes
