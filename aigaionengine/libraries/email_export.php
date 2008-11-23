@@ -38,7 +38,7 @@ class Email_Export {
 		/*
 			Adds the attachments
 		*/
-		foreach ($publications as &$publication)
+		foreach ($publications as $publication)
 		{
 			$aigaion_attachments = $publication->getAttachments();
 			if(count($aigaion_attachments) > 0 && file_exists(AIGAION_ATTACHMENT_DIR."/".$aigaion_attachments[0]->location))
@@ -58,7 +58,7 @@ class Email_Export {
 	function attachmentSize($publications)
 	{
 		$attachmentSize = 0;
-		foreach ($publications as &$publication) {
+		foreach ($publications as $publication) {
 			$aigaion_attachments = $publication->getAttachments();
 			if(count($aigaion_attachments) > 0 && file_exists(AIGAION_ATTACHMENT_DIR."/".$aigaion_attachments[0]->location))
 			{
