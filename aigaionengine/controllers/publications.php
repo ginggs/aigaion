@@ -455,6 +455,8 @@ class Publications extends Controller {
         {
           $bReview = true;
           $review['edit_type'] = $edit_type;
+          //month: the field has been parsed to internal format, but the review form neds to contain the month in bibtex format
+          $publication->month = formatMonthBibtexForEdit($publication->month);
           $this->review($publication, $review);
         }
       }

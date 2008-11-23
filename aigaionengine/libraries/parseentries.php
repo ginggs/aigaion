@@ -432,13 +432,13 @@ class Parseentries
 				 //unknown macro: special case
 				 	if($str  && ($str{0} != "\"") && ($str{0} != "{"))
 				 	{ 
-				 	//appendMessage("macro ".AIGSTR.trim(strtolower($str)).strrev(AIGSTR));
-            $string .= AIGSTR.trim(strtolower($str)).strrev(AIGSTR); //temporarily enclose unknown macro, may be restored when actual entry is constructed
-				  }
+				     $string .= AIGSTR.trim(strtolower($str)).strrev(AIGSTR); //temporarily enclose unknown macro, may be restored when actual entry is constructed
+				 	//appendMessage("macro ".AIGSTR.trim(strtolower($str)).strrev(AIGSTR)."<br>".$string."<br>");
+          }
 				  else
 				  {
-				  //appendMessage('no macro');
 				    $string .= $this->removeDelimiters(trim($str));
+				  //echo('no macro<br>'.$string."<br/>");
           }
 		  	}
 			}
@@ -546,9 +546,11 @@ class Parseentries
               if (preg_match("/".AIGSTR."/",$value)>0) 
               {
                 //MATCH AS short AS POSSIBLE!
-                $this->entries[$i][$key] = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","$1",$value);
+                $value = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","$1",$value);
                 appendErrorMessage("Import: unknown abbreviation encountered in ".$key.". Interpreted as ".$key."={".$this->entries[$i][$key]."}<br/>"); 
-              }
+              } 
+              $this->entries[$i][$key] = $value;
+              //echo($value."<br>");
             }
             else
             {
@@ -558,7 +560,7 @@ class Parseentries
               //replace the AIGSTRs by quotes
               $value = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","\"$1\"",$value);
               $this->entries[$i][$key] = $value;
-              //appendMessage($value);
+              //echo($value."<br>");
             }
 
 					
