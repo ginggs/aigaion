@@ -14,11 +14,11 @@ echo "</script>";
     function monthFieldSwitch(simpleMonth) {
         if (simpleMonth)
         {
-          Element.replace('monthbox','<div id="monthbox" name="monthbox"><?php echo str_replace("\"","\\\"",str_replace("\n","",form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($publication->month))));?></div>');
+          Element.replace('monthbox','<div id="monthbox" name="monthbox"><?php echo str_replace("\"","\\\"",str_replace("\n","",form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Special","monthFieldSwitch(false);")));?></div>');
         }
         else 
         {
-          Element.replace('monthbox',"<div id='monthbox' name='monthbox'>In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings. <br/> Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul> <br/><span title='optional field'><?php echo str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => 'optional','autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))));?></span></div>");
+          Element.replace('monthbox',"<div id='monthbox' name='monthbox'>In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings. <br/> Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul> <br/><span title='optional field'><?php echo str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => 'optional','autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Simple","monthFieldSwitch(true);")));?></span></div>");
         }
     }
     </script>
