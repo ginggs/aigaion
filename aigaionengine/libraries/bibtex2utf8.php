@@ -334,16 +334,16 @@ class Bibtex2utf8 {
       */
 
       $this->specialChars = array(
-           /* array("#","#"),
+            array("#","#"),
             //array("\\?", "?"), //not neccesary, according to PDM
             array("\\&", "&"),
- 	          array("\\$", "$"),
+ 	        //  array("\\$", "$"),
  	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
  	          array("_", "_")
             //array("SS", "SS") //one waY ONLY, dont convert back! TUrned off for now. THey almost never occur, and because we cannot symmetrycally export all SS as \SS, better to leave them unconverted  
-            */
+            
             
         //{"\\\\~?", "¡"},
  	      //{"\\\\?? ", "¿"},   
@@ -353,15 +353,15 @@ class Bibtex2utf8 {
 /* for utf82bibtex conversion! */
 
       $this->specialCharsBack = array(
-       /*     array("\\#","#"),
+            array("\\#","#"),
             array("\\&","&"),
             //array("\\?", "\\?"), //not neccesary, according to PDM
- 	          array("\\\\$", "\\$"), //why do we need the extra slashes here to e4xport $ as \$ ?
+ 	         // array("\\\\$", "\\$"), //why do we need the extra slashes here to e4xport $ as \$ ?
  	          //array("\\{", "\\{"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "\\}"),  //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("\\%", "%"), 
  	          array("\\_", "_")
-            */
+            
             
         //{"\\\\~?", "¡"},
  	      //{"\\\\?? ", "¿"},   
