@@ -21,11 +21,11 @@ function formatMonthBibtex($month)
 out: month field in bibtex format, assuming that it will be shown in an edit form */
 function formatMonthBibtexForEdit($month)
 {
-    $output = formatMonthBibtex($month);
+    $output = formatMonthBibtex("{".$month."}");
     //remove intial }# if any
-    $output = preg_replace("/^\\}\\#/","",$output);
+    $output = preg_replace("/^\\{\\}\\#/","",$output);
     //remove sufgfix #{ if any
-    $output = preg_replace("/\\#\\{\z/","",$output);
+    $output = preg_replace("/\\#\\{\\}\z/","",$output);
     return $output;
 }
 /* In: month field from database.
@@ -56,7 +56,7 @@ function getMonthsInternal()
 {
     return array(""=>"","\"jan\""=>"January", "\"feb\""=>"Februari", "\"mar\""=>"March", "\"apr\""=>"April", "\"may\""=>"May", "\"jun\""=>"June", "\"jul\""=>"July", "\"aug\""=>"Augustus", "\"sep\""=>"September", "\"oct\""=>"October", "\"nov\""=>"November", "\"dec\""=>"December");
 }
-function getMonthsInternalOptions() 
+function getMonthsInternalHtmlQuotes() 
 {
     return array(""=>"","&quot;jan&quot;"=>"January", "&quot;feb&quot;"=>"Februari", "&quot;mar&quot;"=>"March", "&quot;apr&quot;"=>"April", "&quot;may&quot;"=>"May", "&quot;jun&quot;"=>"June", "&quot;jul&quot;"=>"July", "&quot;aug&quot;"=>"Augustus", "&quot;sep&quot;"=>"September", "&quot;oct&quot;"=>"October", "&quot;nov&quot;"=>"November", "&quot;dec&quot;"=>"December");
 }

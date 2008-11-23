@@ -254,7 +254,24 @@ class Publication_db {
       }
       $publication->keywords = $keyword_array;
     }
+    if (isset($publication->month)) 
+    {
     
+      //parse month from bibtex
+      $CI->load->library('parser_import');
+      $CI->load->library('parseentries');
+      //appendMessage("@article{,month=".$publication->month."}");
+      $CI->parser_import->loadData("@article{,month=".$publication->month."}");
+      $CI->parseentries->expandMacro = TRUE;
+      $CI->parseentries->removeDelimit = TRUE;
+      
+      $CI->parser_import->parse($CI->parseentries);
+      $pubs = $CI->parser_import->getPublications();
+      if (isset($pubs[0])) 
+      {
+        $publication->month= $pubs[0]->month;
+      }
+    }    
     if (!$fromImport) {
         //parse the authors
         $selectedauthors = $CI->input->post('pubform_authors');
@@ -437,7 +454,7 @@ class Publication_db {
       $publication->report_type = $publication->type;
     }
 
-      
+
     $specialfields = array(
                     'title',
                     'journal',

@@ -281,7 +281,10 @@ for ($i = 0; $i < $importCount; $i++)
     }
     foreach ($publicationFields as $field)
     {
-      if ($field != "keywords") {
+      if ($field =="month")
+      {
+        echo form_hidden($field."_".$i,     formatMonthBibtexForEdit($publications[$i]->$field))."\n";
+      } else if ($field != "keywords") {
         echo form_hidden($field."_".$i,     $publications[$i]->$field)."\n";
         //echo $field."_".$i.'___'.$publications[$i]->$field.'<br>';
       }

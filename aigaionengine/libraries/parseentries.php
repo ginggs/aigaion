@@ -413,7 +413,7 @@ class Parseentries
 	function removeDelimitersAndExpand($string, $inpreamble = FALSE)
 	{
 		// only expand the macro if flag set, if strings defined and not in preamble
-		if(!$this->expandMacro || empty($this->strings) || $inpreamble)
+		if(!$this->expandMacro || $inpreamble)
 			$string = $this->removeDelimiters($string);
 		else
 		{
@@ -432,13 +432,15 @@ class Parseentries
 				 //unknown macro: special case
 				 	if($str  && ($str{0} != "\"") && ($str{0} != "{"))
 				 	{ 
+				 	//appendMessage("macro ".AIGSTR.trim(strtolower($str)).strrev(AIGSTR));
             $string .= AIGSTR.trim(strtolower($str)).strrev(AIGSTR); //temporarily enclose unknown macro, may be restored when actual entry is constructed
 				  }
 				  else
 				  {
+				  //appendMessage('no macro');
 				    $string .= $this->removeDelimiters(trim($str));
           }
-			}
+		  	}
 			}
 		}
 		return $string;
@@ -556,6 +558,7 @@ class Parseentries
               //replace the AIGSTRs by quotes
               $value = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","\"$1\"",$value);
               $this->entries[$i][$key] = $value;
+              //appendMessage($value);
             }
 
 					

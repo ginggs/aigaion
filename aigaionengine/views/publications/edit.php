@@ -72,14 +72,14 @@ echo "</script>";
           $month = $publication->month;          
           if (array_key_exists($month,getMonthsInternal())) 
           {
-            $valCol .= form_dropdown('month', getMonthsInternalOptions(), htmlentities($month));
+            $valCol .= form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($month));
           } 
           else 
           {
           $valCol .= "
-                      In the input field below, you can enter a month using the default month abbreviations. Those abbreviatinos must be enclosed in double quotes; if you needf double quotes in the month value, enclose them in braces.
+                      In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Don't forget to use outer braces or quotes for literal strings.  
                       <br/>
-                      Examples: <ul><li>\"aug\"</li><li>\"nov\"~1st</li><li>Between January and May</li></ul>
+                      Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul>
                       <br/><span title='".$class." field'>".form_input(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'size' => '90', 
@@ -87,7 +87,7 @@ echo "</script>";
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
                                                               //formatMonthBibtexForEdit($month))."</span>\n";    
-                                                              $month)."</span>\n";     
+                                                              formatMonthBibtexForEdit($month))."</span>\n";     
           }
         }
         else if ($key == "pages")
