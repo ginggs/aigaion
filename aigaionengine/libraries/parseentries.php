@@ -280,7 +280,7 @@ class Parseentries
 		array_pop($keys);
 		foreach($keys as $key)
 		{
-			$value = trim(array_shift($values));
+		  $value = trim(array_shift($values));
 			$rev = strrev($value);
 			// remove any dangling ',' left on final field of entry
 			if($rev{0} == ',')
@@ -351,6 +351,7 @@ class Parseentries
 			$string = substr($string, 1);
 			$string = substr($string, 0, -1);
 			}
+			
 		}
 		return $string;
 	}
@@ -427,7 +428,16 @@ class Parseentries
 				if (isset($this->strings[strtolower($str)])) {
 					$string .= $this->strings[strtolower($str)];
 				} else {
-					$string .= $this->removeDelimiters(trim($str));
+				  //normal text (has delimiters) or undefined macro (needs special handling)
+				 //unknown macro: special case
+				 	if($str  && ($str{0} != "\"") && ($str{0} != "{"))
+				 	{ 
+            $string .= AIGSTR.trim(strtolower($str)).strrev(AIGSTR); //temporarily enclose unknown macro, may be restored when actual entry is constructed
+				  }
+				  else
+				  {
+				    $string .= $this->removeDelimiters(trim($str));
+          }
 			}
 			}
 		}
@@ -525,8 +535,31 @@ class Parseentries
 				foreach($this->entries[$i] as $key => $value)
 				// 02/05/2005 G. Gardey don't expand macro for bibtexCitation 
 				// and bibtexEntryType
-				if($key != 'bibtexCitation' && $key != 'bibtexEntryType')
-					$this->entries[$i][$key] = trim($this->removeDelimitersAndExpand($this->entries[$i][$key])); 
+				if($key != 'bibtexCitation' && $key != 'bibtexEntryType') {
+					//note: the values may contain one or more undefined mazcros enclosed by AIGSTR
+            $value=  trim($this->removeDelimitersAndExpand($this->entries[$i][$key]));
+            if ($key !="month") 
+            {
+              //If they are not for a month, simply throw the AIGSTR and issue a warning
+              if (preg_match("/".AIGSTR."/",$value)>0) 
+              {
+                //MATCH AS short AS POSSIBLE!
+                $this->entries[$i][$key] = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","$1",$value);
+                appendErrorMessage("Import: unknown abbreviation encountered in ".$key.". Interpreted as ".$key."={".$this->entries[$i][$key]."}<br/>"); 
+              }
+            }
+            else
+            {
+              //Else, parse for month into internal format
+              //protect braces by quotes
+              $value = preg_replace("/\\\"/","{\"}",$value);
+              //replace the AIGSTRs by quotes
+              $value = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","\"$1\"",$value);
+              $this->entries[$i][$key] = $value;
+            }
+
+					
+				}
 			}
 		}
 // EZ: Remove this to be able to use the same instance for parsing several files, 

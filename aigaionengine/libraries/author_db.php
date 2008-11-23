@@ -556,7 +556,8 @@ TODO:
     }
     return $result;
   }
-  /** returns a list of similar authors (possibly empty), on first initial */
+  /** returns a list of similar authors (possibly empty), on first initial.
+   * By Øyvind.   */
   function getSimilarAuthors2($author) {
     $result = array();
     $CI = &get_instance();

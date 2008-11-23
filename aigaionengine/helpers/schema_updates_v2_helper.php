@@ -23,6 +23,39 @@
 
 
     /** 
+    Reshape the month field into a free string, by replacing the numbers (now 0..12) with bibtex abbrevs in the new format -- 3letter abbrev enclosed in double quotes
+    */
+    function updateSchemaV2_12() {
+        $CI = &get_instance();
+        if (checkVersion('V2.12', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_11()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+         
+        $CI->db->update('publication',array('month'=>''),array('month'=>'0'));
+        $CI->db->update('publication',array('month'=>'"jan"'),array('month'=>'1'));
+        $CI->db->update('publication',array('month'=>'"feb"'),array('month'=>'2'));
+        $CI->db->update('publication',array('month'=>'"mar"'),array('month'=>'3'));
+        $CI->db->update('publication',array('month'=>'"apr"'),array('month'=>'4'));
+        $CI->db->update('publication',array('month'=>'"may"'),array('month'=>'5'));
+        $CI->db->update('publication',array('month'=>'"jun"'),array('month'=>'6'));
+        $CI->db->update('publication',array('month'=>'"jul"'),array('month'=>'7'));
+        $CI->db->update('publication',array('month'=>'"aug"'),array('month'=>'8'));
+        $CI->db->update('publication',array('month'=>'"sep"'),array('month'=>'9'));
+        $CI->db->update('publication',array('month'=>'"oct"'),array('month'=>'10'));
+        $CI->db->update('publication',array('month'=>'"nov"'),array('month'=>'11'));
+        $CI->db->update('publication',array('month'=>'"dec"'),array('month'=>'12'));
+            
+            
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.12');
+    }
+    
+    /** 
     Extend length of a few more fields in the publication table
     */
     function updateSchemaV2_11() {

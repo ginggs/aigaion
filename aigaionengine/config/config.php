@@ -45,6 +45,9 @@ if (!defined('EXPORT_REPLY_ADDRESS')) {
 if (!defined('MAXIMUM_ATTACHMENT_SIZE')) {
     define('MAXIMUM_ATTACHMENT_SIZE', '10000');
 }
+
+define('AIGSTR','A1I2G3A4I5O6N7');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

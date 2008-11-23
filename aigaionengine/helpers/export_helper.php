@@ -61,11 +61,7 @@ require_once(APPPATH."include/utf8/trim.php");
         $fields['keywords']=$keywords;
         //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
-        //month is a number in the database...
-        $months = getMonthsEng();
-        if (array_key_exists($publication->month,$months)) {
-            $fields['month'] = $months[$publication->month];
-        }
+        $fields['month'] = $publication->month;
         //initial maxfieldname: the longest of the above collected fields
         $maxfieldname = 8;
         //process user fields
@@ -135,9 +131,29 @@ require_once(APPPATH."include/utf8/trim.php");
                 //note: fields containing "" are exported as explicitly empty fields....
                 if (utf8_trim($value)=='""') $value='';
                 if (($userlogin->getPreference('utf8bibtex')=='TRUE')||!in_array($name,$utf8ConvertFields)) {
-                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."}";
+                    if($name=="month")
+                    {
+                      $printval = "{".formatMonthBibtex($value)."}";
+                      $printval = preg_replace("/^\\{\\}\\#/","",$printval);
+                      $printval = preg_replace("/\\#\\{\\}\z/","",$printval);
+                      $result .= "  ".substr($spaces.$name,-$maxfieldname)." = ".$printval;
+                    } 
+                    else 
+                    {
+                      $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$value."}";
+                    }
                 } else {
+                  if($name=="month")
+                  {
+                    $printval = "{".formatMonthBibtex($CI->bibtex2utf8->utf8ToBibCharsFromString($value))."}";
+                    $printval = preg_replace("/^\\{\\}\\#/","",$printval);
+                    $printval = preg_replace("/\\#\\{\\}\z/","",$printval);
+                    $result .= "  ".substr($spaces.$name,-$maxfieldname)." = ".$printval;
+                  } 
+                  else 
+                  { 
                     $result .= "  ".substr($spaces.$name,-$maxfieldname)." = {".$CI->bibtex2utf8->utf8ToBibCharsFromString($value)."}";
+                  }
                 }
             }
         }
@@ -334,10 +350,7 @@ require_once(APPPATH."include/utf8/trim.php");
         //key is named 'namekey' in the database, because key can be a reserved word
         $fields['key'] = $publication->namekey;
         //month is a number in the database...
-        $months = getMonthsEng();
-        if (array_key_exists($publication->month,$months)) {
-            $fields['month'] = $months[$publication->month];
-        }
+        $fields['month'] = formatMonthText($publication->month);
         //process user fields?
         $done = array('author',
                       'editor',

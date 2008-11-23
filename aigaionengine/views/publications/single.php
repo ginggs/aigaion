@@ -125,10 +125,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
             }
             echo "<a title='".prep_url($publication->url)."' href='".prep_url($publication->url)."' class='open_extern'>".$urlname."</a>\n";
         } else if ($key == 'month') {
-          if ($publication->month != "" && $publication->month > 0 && $publication->month <= 12 ) {
-            $months = getMonthsEng();
-            echo $months[$publication->month];
-          }
+          echo formatMonthText($publication->month);
         } else if ($key == 'pages') {
           echo $publication->pages;
         } elseif ($key == 'crossref') {
