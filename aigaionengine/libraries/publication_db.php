@@ -260,8 +260,10 @@ class Publication_db {
       //parse month from bibtex
       $CI->load->library('parser_import');
       $CI->load->library('parseentries');
+      $CI->parseentries->reset();//autsj... the parseentries remebered the old data, so when importing a long list of pubs it kept importing the month of the first one all the time!! :(
       //appendMessage("@article{,month=".$publication->month."}");
       $CI->parser_import->loadData("@article{,month=".$publication->month."}");
+      //appendMessage($publication->month."_");
       $CI->parseentries->expandMacro = TRUE;
       $CI->parseentries->removeDelimit = TRUE;
       
@@ -271,6 +273,8 @@ class Publication_db {
       {
         $publication->month= $pubs[0]->month;
       }
+      //appendMessage($publication->month."<br>");
+
     }    
     if (!$fromImport) {
         //parse the authors

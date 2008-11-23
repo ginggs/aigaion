@@ -147,6 +147,16 @@ class Parseentries
 		
 		
 	}
+	function reset() {
+		$this->preamble = $this->strings = $this->undefinedStrings = $this->entries = array();
+		$this->count = 0;
+		$this->fieldExtract = TRUE;
+		$this->removeDelimit = TRUE;
+		$this->expandMacro = TRUE;
+		$this->parseFile = TRUE;
+		$this->outsideEntry = TRUE;
+  
+  }
 // Open bib file
 	function openBib($file)
 	{
