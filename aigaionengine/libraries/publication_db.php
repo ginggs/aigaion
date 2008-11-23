@@ -254,7 +254,7 @@ class Publication_db {
       }
       $publication->keywords = $keyword_array;
     }
-    if (isset($publication->month)) 
+    if (isset($publication->month) && ($publication->month!="")) 
     {
     
       //parse month from bibtex
