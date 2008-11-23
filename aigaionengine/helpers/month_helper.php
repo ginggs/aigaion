@@ -58,15 +58,15 @@ function getMonthsEng()
 }
 function getMonthsInternal() 
 {
-    return array(""=>"","\"jan\""=>"January", "\"feb\""=>"Februari", "\"mar\""=>"March", "\"apr\""=>"April", "\"may\""=>"May", "\"jun\""=>"June", "\"jul\""=>"July", "\"aug\""=>"August", "\"sep\""=>"September", "\"oct\""=>"October", "\"nov\""=>"November", "\"dec\""=>"December");
+    return array(""=>"","\"jan\""=>"January", "\"feb\""=>"February", "\"mar\""=>"March", "\"apr\""=>"April", "\"may\""=>"May", "\"jun\""=>"June", "\"jul\""=>"July", "\"aug\""=>"August", "\"sep\""=>"September", "\"oct\""=>"October", "\"nov\""=>"November", "\"dec\""=>"December");
 }
 function getMonthsInternalHtmlQuotes() 
 {
-    return array(""=>"","&quot;jan&quot;"=>"January", "&quot;feb&quot;"=>"Februari", "&quot;mar&quot;"=>"March", "&quot;apr&quot;"=>"April", "&quot;may&quot;"=>"May", "&quot;jun&quot;"=>"June", "&quot;jul&quot;"=>"July", "&quot;aug&quot;"=>"August", "&quot;sep&quot;"=>"September", "&quot;oct&quot;"=>"October", "&quot;nov&quot;"=>"November", "&quot;dec&quot;"=>"December");
+    return array(""=>"","&quot;jan&quot;"=>"January", "&quot;feb&quot;"=>"February", "&quot;mar&quot;"=>"March", "&quot;apr&quot;"=>"April", "&quot;may&quot;"=>"May", "&quot;jun&quot;"=>"June", "&quot;jul&quot;"=>"July", "&quot;aug&quot;"=>"August", "&quot;sep&quot;"=>"September", "&quot;oct&quot;"=>"October", "&quot;nov&quot;"=>"November", "&quot;dec&quot;"=>"December");
 }
 function getMonthsInternalNoQuotes() 
 {
-    return array(""=>"","jan"=>"January", "feb"=>"Februari", "mar"=>"March", "apr"=>"April", "may"=>"May", "jun"=>"June", "jul"=>"July", "aug"=>"August", "sep"=>"September", "oct"=>"October", "nov"=>"November", "dec"=>"December");
+    return array(""=>"","jan"=>"January", "feb"=>"February", "mar"=>"March", "apr"=>"April", "may"=>"May", "jun"=>"June", "jul"=>"July", "aug"=>"August", "sep"=>"September", "oct"=>"October", "nov"=>"November", "dec"=>"December");
 }
 function getMonthsArray() {
   return array( '0'  => '',
