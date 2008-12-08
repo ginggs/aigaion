@@ -189,8 +189,10 @@ class Bibtex2utf8 {
           $string = preg_replace($regexp, $utf8char, $string);
           $regexp = "/\\\\".$command."(\\{\\})/";
           $string = preg_replace($regexp, $utf8char, $string);
-          $regexp = "/\\\\".$command."(\\W)/"; //remove that whitespace!
+          $regexp = "/\\\\".$command."((\\s)|$)/"; //remove that whitespace!
           $string = preg_replace($regexp, $utf8char, $string);
+          $regexp = "/\\\\".$command."~/"; //keep the space command!
+          $string = preg_replace($regexp, $utf8char.'~', $string);
         }
         foreach ($this->specialChars as $sc) 
         {
@@ -318,6 +320,9 @@ class Bibtex2utf8 {
  	          array("o", "ø"),
             array("O", "Ø"),
             array("i", "ı"),
+            array("TH", "Þ"),
+            array("th", "þ"),
+            
 
  	                //{"\\\\gal" ,"α"}, ??? never new that encoding? was in the file from variothingy... 
 
