@@ -23,12 +23,7 @@ class Test extends Controller {
 	/** A test controller. */
 	function index()
 	{
-	   $this->testbibtex(true);
-	}
-	
-	function testbibtex($debug = false) 
-	{
-    header("Content-Type: text/html; charset=UTF-8");
+	  header("Content-Type: text/html; charset=UTF-8");
     $content = " 
 <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html xmlns=\"http://www.w3.org/1999/xhtml\">
@@ -38,21 +33,29 @@ class Test extends Controller {
     </head>
     <body>
     <h1>Unit Testing Output</h1>
-    See the controller \"test.php\" for the unit testing functions. Call each test method ... iets over debug
+    See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with \$debug parameter = true to get more output.
     ";    
-    $content .= $this->testbibtex_singleimport($debug);
-	  $content .= $this->testbibtex_charconversion($debug);
-    //todo: tests for the conversions between internal and external format of months and unknown macros and stuff
-    //todo: tests for bibtex export in many ways; tests for crossref support; and whichever class of test we find we need because of recurring bugs!
+    
+    $content .= $this->_testbibtex(true);
+    
     $content .= "</body></html>";
     
     //set output
     $this->output->set_output($content);
-    	  
+	}
+	
+	function _testbibtex($debug = false) 
+	{
+	  $result = "";
+    $result .= $this->_testbibtex_singleimport($debug);
+	  $result .= $this->_testbibtex_charconversion($debug);
+    //todo: tests for the conversions between internal and external format of months and unknown macros and stuff
+    //todo: tests for bibtex export in many ways; tests for crossref support; and whichever class of test we find we need because of recurring bugs!
+    return $result;
 	  
   }
   
-  function testbibtex_charconversion($debug = false) 
+  function _testbibtex_charconversion($debug = false) 
   {
     $result = "";
     $result .= "<h2>Bibtex character conversions</h2>";
@@ -139,7 +142,7 @@ class Test extends Controller {
     return $result;
   }
   
-  function testbibtex_singleimport($debug = false)
+  function _testbibtex_singleimport($debug = false)
   {
     $result = "";
     $result .= "<h2>Bibtex single entry imports</h2>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.<br><br>";
