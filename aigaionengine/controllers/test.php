@@ -1,5 +1,18 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/** This controller contains a number of unit test like methods. Generally, 
+ * you'll just access the test controller. Its main method will call a number of 
+ * different tests, such as the test for the simple character conversions, the 
+ * test for correct import of full bibtex entries, etc.
+ * 
+ * The controller has more or less been designed to only give output on FAILED 
+ * tests.
+ * 
+ * You can extend the tests in many ways. Most of the test methods contain some 
+ * indications of how to extend them with new cases. For example, with the bibtex
+ * character conversions one can quite simply add some conversions that have gone
+ * wrong in the past by adding them to the well structured list of 'correct conversions'.  
+ */      
 class Test extends Controller {
 
 	function Test()
@@ -19,7 +32,7 @@ class Test extends Controller {
 	  $this->load->library('bibtex2utf8');
 
 	  $content = $this->testbibtex_charconversion();
-	  //later, also test on import and export level through publication objects...
+    $content .= $this->testbibtex_singleimport();
     
     $output = $content;
     
@@ -33,11 +46,16 @@ class Test extends Controller {
   {
     $result = "";
     $result .= "<h1>Bibtex character conversions</h1>";
-    //bibtex characters - expected conversion
+    //bibtex characters - expected conversion vs actual conversion
     $bibtextests = array(
-      array ('thoseThatCurrentlyGoWrong', //IF  you find conversions that go wrong, please add them here at the beginning of the list. This will remoind us to fix them. Also, it's kind of a 'prevent this error recurring after it was solved check', so DO NOT REMOVE THOSE CONVERSIONS FROM HERE WHEN YOU FIXED THEM! Rather, start a new array :)
-             "Polish: \\c{a} \\c{e} \\'{c} \\l{} \\'{n} \\'{s} \\.{z} \\'{z} \\c{A} \\c{E} \\'{C} \\L{} \\'{N} \\'{S} \\.{Z} \\'{Z} French: {\\oe} {\\OE} Other: {\\TH} {\\th} {\\v{s}}",
-             "Polish: (some missing chars) ć ł (more missing chars) Ć Ł (yet more missing chars) French: œ Œ Other: Þ þ š"
+      array ('thoseThatCurrentlyGoWrong', /* IF  you find conversions that go 
+      wrong, please add them here at this point. This will remind us to fix 
+      them. Also, it's kind of a 'prevent this error recurring after it was 
+      solved check', so DO NOT REMOVE THOSE CONVERSION CHECKS FROM HERE WHEN YOU 
+      FIXED THEM! Rather, start a new array in which people can again add their 
+      found conversion errors :) */
+             "Polish: \\c{a} \\c{e} \\'{c} \\l{} \\'{n} \\'{s} \\.{z} \\'{z} \\c{A} \\c{E} \\'{C} \\L{} \\'{N} \\'{S} \\.{Z} \\'{Z} French: {\\oe} {\\OE} Other: {\\TH} {\\th} {\\v{s}}", //input on this line...
+             "Polish: (some missing chars) ć ł (more missing chars) Ć Ł (yet more missing chars) French: œ Œ Other: Þ þ š" //expected output on conversion from bibtex to utf8 characters on this line...
       ),
       array ('test-Latin-1-misc',
              "\\pounds \\S \\textcopyright \\textordfeminine \\- \\textregistered \\P \\textperiodcentered \\textordmasculine !` \\c{} ?`",
@@ -111,6 +129,59 @@ class Test extends Controller {
     return $result;
   }
   
+  function testbibtex_singleimport($debug = false)
+  {
+    $result = "";
+    $result .= "<h1>Bibtex single entry imports</h1>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing...<br>";
+    //bibtex single entry imports: bibtex code, and a list of expected attributes of the resulting publication 
+    $bibtexsingleentrytests = array(
+      array ('example', /* IF  you find imports that go 
+      wrong, please add them here at this point. This will remind us to fix 
+      them. Also, it's kind of a 'prevent this error recurring after it was 
+      solved check', so DO NOT REMOVE THOSE IMPORT RESULT CHECKS FROM HERE WHEN YOU 
+      FIXED THEM! Rather, start a new array in which people can again add their 
+      found errors :) */
+             //input:
+             "@article{some-bibtex-id,title={The title},month=apr#{~1st},author={Fst von Last and Last2, Fst2}}",
+             //an array of pairs for all fields except author and editor: what are the expected values of the fields? 
+             array(
+               "pub_type"=>"article",
+               "bibtex_id"=>"some-bibtex-id",
+               "title"=>"The title",
+               "month"=>"\"apr\"~1st"
+             ),
+             //the expected author result:
+             array(
+                 array(
+                   "firstname" => "Fst",
+                   "von"=>"von",
+                   "surname"=>"Last",
+                   "jr"=>"" 
+                 ),
+                 array(
+                   "firstname" => "Fst2",
+                   "von"=>"",
+                   "surname"=>"Last2",
+                   "jr"=>""
+                 )
+             ),
+             //the expected editor result:
+             array(
+             
+             )
+      )
+      //next test case:
+    );
+    foreach ($bibtexsingleentrytests as $test) {
+      $debugout ="&nbsp;&nbsp;<pre>".$test[1]."</pre><br>";
+      //parse the $test[1]
+      //inspect the resulting publication object
+      //report result (if debug, or if test failed)
+      $result .= $debugout;
+    }
+    return $result;
+        
+  }
   /*
 @UNPUBLISHED{},
 note = {All printable ASCII text chars not requiring \text... commands.}
