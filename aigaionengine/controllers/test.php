@@ -183,6 +183,44 @@ class Test extends Controller {
              array(
              
              )
+      ),
+      array('macroBug54',
+            "
+            @String{chap = \"Chap.\"}
+            
+            @InCollection{Mosses2000CCU,
+            author = \"Peter D. Mosses\",
+            title = \"{CASL} for {CafeOBJ} Users\",
+            chapter = \"6\",
+            type = chap,
+            pages = \"121--144\",
+            booktitle = \"{CAFE}: An Industrial-Strength Algebraic Formal
+            Method\",
+            publisher = \"Elsevier\",
+            year = \"2000\",
+            }",
+             array(
+               "pub_type"=>"Incollection",
+               "bibtex_id"=>"Mosses2000CCU",
+               "title"=>"{CASL} for {CafeOBJ} Users",
+               "chapter"=>"6",
+               "type"=>"Chap.",
+               "pages"=>"121--144",
+               "booktitle" => "{CAFE}: An Industrial-Strength Algebraic Formal Method",
+               "publisher" => "Elsevier",
+               "year" =>"2000"
+             ),
+             array(
+                 array(
+                   "firstname" => "Peter D.",
+                   "von"=>"",
+                   "surname"=>"Mosses",
+                   "jr"=>"" 
+                 )
+             ),
+             array(
+             
+             )             
       )
       //next test case:
     );
