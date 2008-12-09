@@ -33,6 +33,8 @@ class Test extends Controller {
 
 	  $content = $this->testbibtex_charconversion();
     $content .= $this->testbibtex_singleimport();
+    //todo: tests for the conversions between internal and external format of months and unknown macros and stuff
+    //todo: tests for bibtex export in many ways; tests for crossref support; and whichever class of test we find we need because of recurring bugs!
     
     $output = $content;
     
@@ -182,15 +184,6 @@ class Test extends Controller {
     return $result;
         
   }
-  /*
-@UNPUBLISHED{},
-note = {All printable ASCII text chars not requiring \text... commands.}
-}
 
-
-@UNPUBLISHED{,
-note = {Some of these might be needed.}
-}
-*/
 }
 ?>
