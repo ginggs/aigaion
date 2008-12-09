@@ -126,7 +126,8 @@ class Test extends Controller {
       if ($this->bibtex2utf8->bibCharsToUtf8FromString($test[1])!=$test[2]) 
       {
           $result .= "Test: ".$test[0]."<br>";
-          $result .= " FAILED: <br>".$debugout."<br>";
+          $result .= " FAILED: <br>";
+          if ($debug) $result .= $debugout."<br>";
       } 
       else 
       {
