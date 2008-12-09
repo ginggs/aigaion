@@ -23,21 +23,31 @@ class Test extends Controller {
 	/** A test controller. */
 	function index()
 	{
-	   $this->testbibtex();
+	   $this->testbibtex(true);
 	}
 	
-	function testbibtex() 
+	function testbibtex($debug = false) 
 	{
-
-    $content = $this->testbibtex_singleimport(true);
-	  $content .= $this->testbibtex_charconversion(true);
+    header("Content-Type: text/html; charset=UTF-8");
+    $content = " 
+<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
+  <head>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
+    <title>Aigaion Unit Testing Output</title>
+    </head>
+    <body>
+    <h1>Unit Testing Output</h1>
+    See the controller \"test.php\" for the unit testing functions. Call each test method ... iets over debug
+    ";    
+    $content .= $this->testbibtex_singleimport($debug);
+	  $content .= $this->testbibtex_charconversion($debug);
     //todo: tests for the conversions between internal and external format of months and unknown macros and stuff
     //todo: tests for bibtex export in many ways; tests for crossref support; and whichever class of test we find we need because of recurring bugs!
-    
-    $output = $content;
+    $content .= "</body></html>";
     
     //set output
-    $this->output->set_output($output);
+    $this->output->set_output($content);
     	  
 	  
   }
@@ -45,7 +55,7 @@ class Test extends Controller {
   function testbibtex_charconversion($debug = false) 
   {
     $result = "";
-    $result .= "<h1>Bibtex character conversions</h1>";
+    $result .= "<h2>Bibtex character conversions</h2>";
     //bibtex characters - expected conversion vs actual conversion
     $bibtextests = array(
       array ('thoseThatCurrentlyGoWrong', /* IF  you find conversions that go 
@@ -132,7 +142,7 @@ class Test extends Controller {
   function testbibtex_singleimport($debug = false)
   {
     $result = "";
-    $result .= "<h1>Bibtex single entry imports</h1>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.<br><br>";
+    $result .= "<h2>Bibtex single entry imports</h2>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.<br><br>";
     //bibtex single entry imports: bibtex code, and a list of expected attributes of the resulting publication 
     $bibtexsingleentrytests = array(
       array ('example', /* IF  you find imports that go 
