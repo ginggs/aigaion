@@ -28,11 +28,9 @@ class Test extends Controller {
 	
 	function testbibtex() 
 	{
-  	$this->load->library('unit_test');
-	  $this->load->library('bibtex2utf8');
 
-	  $content = $this->testbibtex_charconversion(true);
-    $content .= $this->testbibtex_singleimport();
+    $content = $this->testbibtex_singleimport(true);
+	  $content .= $this->testbibtex_charconversion(true);
     //todo: tests for the conversions between internal and external format of months and unknown macros and stuff
     //todo: tests for bibtex export in many ways; tests for crossref support; and whichever class of test we find we need because of recurring bugs!
     
@@ -107,9 +105,9 @@ class Test extends Controller {
              "\\`{A} \\'{A} \\^{A} \\~{A} \\\"{A} \\c{C} \\`{E} \\'{E} \\^{E} \\\"{E} \\`{\\I} \\'{\\I} \\^{\\I} \\\"{\\I} \\`{I} \\'{I} \\^{I} \\\"{I} \\~{N} \\`{O} \\'{O} \\^{O} \\~{O} \\\"{O} \\`{U} \\'{U} \\^{U} \\\"{U} \\'{Y} \\\"{Y}",
              "À Á Â Ã Ä Ç È É Ê Ë Ì Í Î Ï Ì Í Î Ï Ñ Ò Ó Ô Õ Ö Ù Ú Û Ü Ý Ÿ"
       )
-
-            
     );
+    //perform all these tests above
+	  $this->load->library('bibtex2utf8');
     foreach ($bibtextests as $test) {
       $debugout ="&nbsp;&nbsp;".$test[1]."<br>should be<br>&nbsp;&nbsp;".$test[2]."<br>but rather becomes<br>&nbsp;&nbsp;".$this->bibtex2utf8->bibCharsToUtf8FromString($test[1])."<br>";
       if ($this->bibtex2utf8->bibCharsToUtf8FromString($test[1])!=$test[2]) 
@@ -134,7 +132,7 @@ class Test extends Controller {
   function testbibtex_singleimport($debug = false)
   {
     $result = "";
-    $result .= "<h1>Bibtex single entry imports</h1>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing...<br>";
+    $result .= "<h1>Bibtex single entry imports</h1>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.<br><br>";
     //bibtex single entry imports: bibtex code, and a list of expected attributes of the resulting publication 
     $bibtexsingleentrytests = array(
       array ('example', /* IF  you find imports that go 
@@ -147,12 +145,12 @@ class Test extends Controller {
              "@article{some-bibtex-id,title={The title},month=apr#{~1st},author={Fst von Last and Last2, Fst2}}",
              //an array of pairs for all fields except author and editor: what are the expected values of the fields? 
              array(
-               "pub_type"=>"article",
+               "pub_type"=>"Article",
                "bibtex_id"=>"some-bibtex-id",
                "title"=>"The title",
                "month"=>"\"apr\"~1st"
              ),
-             //the expected author result:
+             //the expected author result: enter, for each expected author, all values for all four name-parts
              array(
                  array(
                    "firstname" => "Fst",
@@ -167,19 +165,136 @@ class Test extends Controller {
                    "jr"=>""
                  )
              ),
-             //the expected editor result:
+             //the expected editor result: enter, for each expected editor, all values for all four name-parts
              array(
              
              )
       )
       //next test case:
     );
+    $this->load->library('parser_import');
+    $this->load->library('parseentries');
     foreach ($bibtexsingleentrytests as $test) {
+    $success = true;
       $debugout ="&nbsp;&nbsp;<pre>".$test[1]."</pre><br>";
+      //reset parser for next test
+      $this->parseentries->reset();
       //parse the $test[1]
+      $this->parser_import->loadData($test[1]);
+      $this->parser_import->parse($this->parseentries);
+      $publications = $this->parser_import->getPublications();
       //inspect the resulting publication object
+      //- should be one pub long
+      if (count($publications)!=1) 
+      {
+        $success = false;
+        $debugout .= "&nbsp;&nbsp;Import should return 1 publication, but returned ".count($publications)." publications<br>";
+      }
+      else 
+      {
+        $pub = $publications[0];
+        //test fields
+        foreach ($test[2] as $field=>$value) 
+        {
+          if ($pub->$field!=$value) 
+          {
+            $success = false;
+            $debugout .= "&nbsp;&nbsp;\"".$field."\" should have been \"".$value."\" but is \"".$pub->$field."\"<br>";
+          }
+        }
+        //test authors
+        $iAuth = 0;
+        if (count($pub->authors)!=count($test[3])) 
+        {
+          $success = false;
+          $debugout .= "Import should contain ".count($test[3])." authors, but does contain ".count($pub->authors)." authors<br>";
+        } 
+        else foreach ($pub->authors as $author) 
+        {
+          $authOk = true;
+          $debugout .= "Author ".$iAuth.":<br>";
+          if ($author->firstname != $test[3][$iAuth]["firstname"])
+          {
+            $success = false;
+            $authOk = false;
+            $debugout .= "&nbsp;&nbsp;First name(s) should have been \"".$test[3][$iAuth]["firstname"]."\" but is \"".$author->firstname."\"<br>";
+          }
+          if ($author->von != $test[3][$iAuth]["von"])
+          {
+            $success = false;
+            $authOk = false;
+            $debugout .= "&nbsp;&nbsp;von-part should have been \"".$test[3][$iAuth]["von"]."\" but is \"".$author->von."\"<br>";
+          }
+          if ($author->surname != $test[3][$iAuth]["surname"])
+          {
+            $success = false;
+            $authOk = false;
+            $debugout .= "&nbsp;&nbsp;Last name(s) should have been \"".$test[3][$iAuth]["surname"]."\" but is \"".$author->surname."\"<br>";
+          }
+          if ($author->jr != $test[3][$iAuth]["jr"])
+          {
+            $success = false;
+            $authOk = false;
+            $debugout .= "&nbsp;&nbsp;jr-part should have been \"".$test[3][$iAuth]["jr"]."\" but is \"".$author->jr."\"<br>";
+          }
+          if ($authOk) $debugout .= "&nbsp;&nbsp;OK<br>";
+          $iAuth++;
+        }
+        //test editors
+        $iEd = 0;
+        if (count($pub->editors)!=count($test[4])) 
+        {
+          $success = false;
+          $debugout .= "Import should contain ".count($test[4])." editors, but does contain ".count($pub->editors)." editors<br>";
+        } 
+        else foreach ($pub->editors as $editor) 
+        {
+          $edOk = true;
+          $debugout .= "Editor ".$iEd.":<br>";
+          if ($editor->firstname != $test[4][$iEd]["firstname"])
+          {
+            $success = false;
+            $edOk = false;
+            $debugout .= "&nbsp;&nbsp;First name(s) should have been \"".$test[4][$iEd]["firstname"]."\" but is \"".$editor->firstname."\"<br>";
+          }
+          if ($editor->von != $test[4][$iEd]["von"])
+          {
+            $success = false;
+            $edOk = false;
+            $debugout .= "&nbsp;&nbsp;von-part should have been \"".$test[4][$iEd]["von"]."\" but is \"".$editor->von."\"<br>";
+          }
+          if ($editor->surname != $test[4][$iEd]["surname"])
+          {
+            $success = false;
+            $edOk = false;
+            $debugout .= "&nbsp;&nbsp;Last name(s) should have been \"".$test[4][$iEd]["surname"]."\" but is \"".$editor->surname."\"<br>";
+          }
+          if ($editor->jr != $test[4][$iEd]["jr"])
+          {
+            $success = false;
+            $edOk = false;
+            $debugout .= "&nbsp;&nbsp;jr-part should have been \"".$test[4][$iEd]["jr"]."\" but is \"".$editor->jr."\"<br>";
+          }
+          if ($edOk) $debugout .= "&nbsp;&nbsp;OK<br>";
+          $iEd++;
+        }
+      }
       //report result (if debug, or if test failed)
-      $result .= $debugout;
+      if ($success==false) 
+      {
+          $result .= "Test: ".$test[0]."<br>";
+          $result .= " FAILED: <br>".$debugout."<br>";
+      } 
+      else 
+      {
+        if ($debug) 
+        {
+          $result .= "Test: ".$test[0]."<br>";
+          $result .= " PASSED<br>";
+        } 
+          
+      }
+      $result .= "<br>";
     }
     return $result;
         
