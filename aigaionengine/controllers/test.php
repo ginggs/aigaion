@@ -36,7 +36,7 @@ class Test extends Controller {
     See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with \$debug parameter = true to get more output.
     ";    
     
-    $content .= $this->_testbibtex(true);
+    $content .= $this->_testbibtex();
     
     $content .= "</body></html>";
     
