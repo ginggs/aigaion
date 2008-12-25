@@ -30,11 +30,23 @@ example.
 </head>
 <body>
 <h1>Example of embedding a page from the Aigaion demo installation in another php web page</h1>
-This example specifies a page from the Aigaion 2 demo installation and embeds it in this larger example page.
-Note how the Aigaion output is enclosed in a div with a fat border. Also note that al links in the embedded output lead directly to the Aigaion page itself. This is because the author/embed controller has been designed in that way.
+This example specifies a page from the Aigaion 2 demo installation and embeds it in this larger example page, using the demo login to get access to the database server side. The example can be modified so that it does not use a login account, but displays publications using the anonymous guest login instead.
 <p>
-<p>If you do not see publications of A. Klapuri at the ISMIR 2006 in the box below, your server might not support the httpclient used in this example. You could try to find out whether, for example, the curl libraries are supported on your system -- that might help.
+Note the Aigaion output below, enclosed in a div with a fat border. Also note that all links in the embedded output lead directly to the Aigaion page itself. This is because the output of the author/embed controller, the contents of which are retrieved in this example, has been designed in that way.
+<p>
+
 <p><p>
+Finally, note that in these embedded views, the headers are lost. This means that embedded views should link to their javascrips not in the header, but in the body.
+<p><p>
+Some remarks that need to be processed into the documentation:
+<ul>
+<li>Login to Aigaion is done server side. This means that you can embed Aigaion content to which the visitor of your web page would not have had access rights if he were to login to Aigaion using his own account.
+<li>This additionally means that if the embedded page contains links (e.g. to publications, or pdf downloads, or bibtex downloads, ...), and the visitor to your web site follows the link, he may find that the link is actually not accessible to him. This would result is error messages such as 'non existing attachment id' or 'access denied'.
+<li>The above problem would, for obvious reasons, not occur if you are embedding public content only (i.e. specifying <i>$doLogin=false</i> in the script)
+<li>In contrast to the other embedding examples in this directory, this example works from any combination of embedding page domain / aigaion domain. That is, you can have this embedding script reside at www.domain1.com and embed Aigaion output from aigaion.domain2.com without problems.
+</ul>
+<h2>Does it work on this server?</h2>
+If you do not see publications of A. Klapuri at the ISMIR 2006 in the box below, your server might not support the httpclient used in this example. You could try to find out whether, for example, the curl libraries are supported on your system -- that might help.
 <div style="border:5px black solid;width:50em;">
 <?php
 //====== BEGIN EMBEDDING CODE ======  
