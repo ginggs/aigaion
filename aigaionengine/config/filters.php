@@ -13,11 +13,15 @@
 | $filter['cache'] = array('include', array('login/index', 'about/*', 'register/form,rules,privacy'));
 |
 */
+/*
+Note for the embedding controllers the example of the authors/embed: no redirect, but rather a fail, as we don't want to embed login screens!
+*/
+
 
 /** By default, when no user is logged in, control is passed to the login form.
     Add controllers for which this should not happen to the exclude array. */
 $filter['login'][] = array(
-	'exclude', array('login/*','version/*'), array('action'=>'redirect')
+	'exclude', array('login/*','version/*','authors/embed'), array('action'=>'redirect')
 );
 /** load the default language stuff.. */
 $filter['lang'][] = array(
@@ -27,6 +31,6 @@ $filter['lang'][] = array(
     display of a div with an error message defined in the login/fail view.
     Add controllers for which this should happen to the include array below. */
 $filter['login'][] = array(
-	'include', array(), array('action'=>'fail')
+	'include', array('authors/embed'), array('action'=>'fail')
 );
 ?>
