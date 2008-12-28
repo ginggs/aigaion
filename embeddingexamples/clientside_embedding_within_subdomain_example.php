@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Client side embedding example</title>
+    <title>Client side embedding example -- within subdomain only</title>
 
   </head>
   <body>
@@ -41,18 +41,19 @@ Each researcher in the group wants to embed his own list of publications on his 
 // ------------------------------------------------------------------------
 
 /**
+
  0) 
  1) The embedding page should reside in the same subdomain as the Aigaion database
  2) Several anti virus programs, such as norton security, don't like Ajax calls. They may block this script from functioning. If they do, you can circumvent the problem by using an https connection rather than an http connection 
  3) Note that in embedded views, the headers are lost. This means that embedded views should link to their javascrips in the body rather than in the header.
  */	
 ?>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/prototype.js"></script>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/scriptaculous.js"></script>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/builder.js"></script>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/externallinks.js"></script>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/yahoo/YAHOO.js"></script>
-    <script type="text/javascript" src="aigaion_clientsideembeddingwithinsubdomain/yahoo/connection.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/prototype.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/scriptaculous.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/builder.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/externallinks.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/yahoo/YAHOO.js"></script>
+    <script type="text/javascript" src="aigaion_clientsideembedding/yahoo/connection.js"></script>
 <div id='a' name='a'>
 This content should be replaced by embedded Aigaion content
 <script language="javascript">
