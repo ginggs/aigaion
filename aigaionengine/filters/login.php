@@ -40,7 +40,14 @@ class Login_filter extends Filter {
         storeForm();
         //and then continue logging in again...
       }
-      redirect('/login/dologin/'.implode('/',$segments));
+      if ($this->config['action']=='redirect') 
+      {
+        redirect('/login/dologin/'.implode('/',$segments));
+      } 
+      else //action = redirectnoform
+      {
+        redirect('/login/dologinnoform/'.implode('/',$segments));
+      }
     } else {
         if ($CI->latesession->get('FORMREPOST')==True) {
             if ($CI->input->post('form_reposted')!==false) {

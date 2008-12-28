@@ -13,6 +13,8 @@
     <link href="<?php echo APPURL; ?>themes/default/css/styling.css"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("positioning.css"); ?>" rel="stylesheet" type="text/css" media="screen,projection,tv" />
     <link href="<?php echo getCssUrl("styling.css"); ?>"     rel="stylesheet" type="text/css" media="screen,projection,tv" />
+  </head>
+  <body>
 <?php
     //view parameter to be passed to menu: a prefix for the sort options. See views/menu.php for more info
     if (!isset($sortPrefix))
@@ -39,8 +41,6 @@
       //]]>
     </script>
 
-  </head>
-  <body>
     <div id="main_holder">
       <!-- Aigaion header: Logo, simple search form -->
       <div id="header_holder">

@@ -69,7 +69,7 @@ This content should be replaced by embedded Aigaion content
       }
     }
     //change this to retrieve a page from your own Aigaion database!
-    YAHOO.util.Connect.asyncRequest('AJAX','http://demo2.aigaion.nl/index.php/authors/embed/1054',callback);
+    YAHOO.util.Connect.asyncRequest('GET','http://demo2.aigaion.nl/index.php/authors/embed/1054',callback);
 </script>
 </div>
 </body>

@@ -27,7 +27,7 @@ class Login extends Controller {
   
         //set header data
         $header ['title']       = 'Please login';
-        $header ['javascripts'] = array('externallinks.js');
+        $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         //get output
         $output  = $this->load->view('header_clean',        $header,  true);
@@ -38,16 +38,25 @@ class Login extends Controller {
         $this->output->set_output($output);
     }
 
+    // Same as dologin, but if login fails, show login/fail view instead of login form
+    function dologinnoform()
+    {
+      $this->dologin(false);
+    }
+
     /** This controller will perform the login. The login may be submitted 
         from the login form, or the login may be attempted in one of the numerous 
         other ways (public access, external login, etc). This controller is also
         called when a page is requested that is protected by login while the user 
         is not yet logged in.
-        When login fails, the user is directed back to the login form 
-        (main login controller). When login succeeds, the user is redirected 
+        
+        When login succeeds, the user is redirected 
         to the front page, or, if specified, the page passed with the original
-        request for the login form. */
-    function dologin()
+        request for the login form. 
+        
+        When login fails, the user is directed back to the login form if showForm==true, and to the login/fail view, otherwise 
+        */
+    function dologin($showForm = true)
     {
         //get login object
         $userlogin = getUserLogin();
@@ -78,8 +87,15 @@ class Login extends Controller {
             //note: if cookies are enabled, and we still could not log in here for some reason, we must log out
             //because otherwise we get eternal redirects
             $userlogin->logout(); //it SHOULD be the case that an error message has been set already.
-            redirect('/login/index/'.implode('/',$segments));
-            //note: the 'remembered form', if any was present, is not forgotten; the session info is still there.
+            if ($showForm)
+            {
+              redirect('/login/index/'.implode('/',$segments));
+              //note: the 'remembered form', if any was present, is not forgotten; the session info is still there.
+            }
+            else
+            {
+              redirect('/login/fail/');
+            }
         }
     }
     
