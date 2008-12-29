@@ -33,7 +33,7 @@ class Version extends Controller {
         if ($fromversion=='') {
             $Q = $this->db->get('changehistory');
         } else {
-            $Q = $this->db->getwhere('changehistory','version>'.$this->db->escape($fromversion));
+            $Q = $this->db->get_where('changehistory','version>'.$this->db->escape($fromversion));
         }
         $output = '<changehistory>';
         foreach ($Q->result() as $R) {

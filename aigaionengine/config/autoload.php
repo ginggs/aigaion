@@ -23,6 +23,7 @@
 | 3. Plugins
 | 4. Custom config files
 | 5. Language files
+| 6. Models
 |
 */
 
@@ -88,7 +89,42 @@ $autoload['plugin'] = array();
 
 $autoload['config'] = array();
 
+/*
+| -------------------------------------------------------------------
+|  Auto-load Language files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['language'] = array('lang1', 'lang2');
+|
+| NOTE: Do not include the "_lang" part of your file.  For example 
+| "codeigniter_lang.php" would be referenced as array('codeigniter');
+|
+*/
 
 $autoload['language'] = array();
 
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Models
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['model'] = array('model1', 'model2');
+|
+*/
+
+$autoload['model'] = array();
+
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Core Libraries
+| -------------------------------------------------------------------
+|
+| DEPRECATED:  Use $autoload['libraries'] above instead.
+|
+*/
+// $autoload['core'] = array();
 ?>

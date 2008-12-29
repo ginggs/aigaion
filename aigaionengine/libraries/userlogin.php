@@ -113,7 +113,7 @@ class UserLogin {
     function initRights() {
         $CI = &get_instance();
         $this->rights = array();
-        $Q = $CI->db->getwhere('userrights',array('user_id'=>$this->iUserId));
+        $Q = $CI->db->get_where('userrights',array('user_id'=>$this->iUserId));
         foreach ($Q->result() as $R) {
             $this->rights[] = $R->right_name;
         }
@@ -162,7 +162,7 @@ class UserLogin {
         //right now, I just enumerate all relevant preferences from the user-table
         $nonprefs=array("password");
         $this->preferences = array();
-        $Q = $CI->db->getwhere('users',array('user_id'=>$this->iUserId));
+        $Q = $CI->db->get_where('users',array('user_id'=>$this->iUserId));
         if ($Q->num_rows()>0) {
             $R = $Q->row_array();
             //where needed, interpret setting as other than string
@@ -367,7 +367,7 @@ class UserLogin {
         }
         
         //login name was found. Now try to login that person
-        $Q = $CI->db->getwhere('users',array('login'=>$loginName));
+        $Q = $CI->db->get_where('users',array('login'=>$loginName));
         if ($Q->num_rows()>0) { //user found
             $row = $Q->row();
             //internal account?
@@ -410,7 +410,7 @@ class UserLogin {
             }            
             $group_ids = array();
             foreach ($loginGroups as $groupname) {
-                $groupQ = $CI->db->getwhere('users',array('type'=>'group','abbreviation'=>$groupname));
+                $groupQ = $CI->db->get_where('users',array('type'=>'group','abbreviation'=>$groupname));
                 if ($groupQ->num_rows()>0) {
                     $R = $groupQ->row();
                     $group_ids[] = $R->user_id;
@@ -493,7 +493,7 @@ class UserLogin {
             //OK: possibly create account; login; return 0
             if (isset($loginInfo['uname']) && ($loginInfo['uname'] != null) && ($loginInfo['uname']!= '')) {
                 //password was OK
-                $Q = $CI->db->getwhere('users',array('login'=>$loginInfo['uname']));
+                $Q = $CI->db->get_where('users',array('login'=>$loginInfo['uname']));
                 if ($Q->num_rows()==0) {
                     //pwd was OK but account did not exist. Create and try again?
                     if (getConfigurationSetting("LOGIN_CREATE_MISSING_USER")=='TRUE') {
@@ -537,7 +537,7 @@ class UserLogin {
                         $CI->db->insert('usertopiclink', array('user_id' => $new_id, 'topic_id' => 1)); 
                         //after adding the new user, log in as that new user                        
                         //get user again, so we can continue loggin in
-                        $Q = $CI->db->getwhere('users',array('login'=>$loginInfo['uname']));
+                        $Q = $CI->db->get_where('users',array('login'=>$loginInfo['uname']));
                         //login
                         if ($Q->num_rows()>0) {
                             $row = $Q->row();
@@ -615,7 +615,7 @@ class UserLogin {
         if ($user_id==-1) {
             $user_id = getConfigurationSetting("LOGIN_DEFAULT_ANON");
         }
-        $Q = $CI->db->getwhere('users',array('user_id'=>$user_id,'type'=>'anon'));
+        $Q = $CI->db->get_where('users',array('user_id'=>$user_id,'type'=>'anon'));
         if ($Q->num_rows()>0) {
             $row = $Q->row();
             $loginName = $row->login;
@@ -640,7 +640,7 @@ class UserLogin {
         //md5 pwd if it was not already done
         if (!$pwdInMd5) $pwdHash = md5($pwdHash);
         //check username / password in user-table
-        $Q = $CI->db->getwhere('users',array('login'=>$userName));
+        $Q = $CI->db->get_where('users',array('login'=>$userName));
         if ($Q->num_rows()<=0) {
             return 1; //no such user error
         }
