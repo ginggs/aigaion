@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/cookie_helper.html
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/helpers/cookie_helper.html
  */
 
 // ------------------------------------------------------------------------
@@ -42,55 +42,52 @@
  * @param	string	the cookie prefix
  * @return	void
  */
-if ( ! function_exists('set_cookie'))
+function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '')
 {
-	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '')
-	{
-		if (is_array($name))
-		{		
-			foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'name') as $item)
+	if (is_array($name))
+	{		
+		foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'name') as $item)
+		{
+			if (isset($name[$item]))
 			{
-				if (isset($name[$item]))
-				{
-					$$item = $name[$item];
-				}
+				$$item = $name[$item];
 			}
 		}
+	}
 	
-		// Set the config file options
-		$CI =& get_instance();
+	// Set the config file options
+	$CI =& get_instance();
 	
-		if ($prefix == '' AND $CI->config->item('cookie_prefix') != '')
-		{
-			$prefix = $CI->config->item('cookie_prefix');
-		}
-		if ($domain == '' AND $CI->config->item('cookie_domain') != '')
-		{
-			$domain = $CI->config->item('cookie_domain');
-		}
-		if ($path == '/' AND $CI->config->item('cookie_path') != '/')
-		{
-			$path = $CI->config->item('cookie_path');
-		}
+	if ($prefix == '' AND $CI->config->item('cookie_prefix') != '')
+	{
+		$CI->config->item('cookie_prefix');
+	}
+	if ($domain == '' AND $CI->config->item('cookie_domain') != '')
+	{
+		$CI->config->item('cookie_domain');
+	}
+	if ($prefix == '/' AND $CI->config->item('cookie_path') != '/')
+	{
+		$CI->config->item('cookie_path');
+	}
 		
-		if ( ! is_numeric($expire))
+	if ( ! is_numeric($expire))
+	{
+		$expire = time() - 86500;
+	}
+	else
+	{
+		if ($expire > 0)
 		{
-			$expire = time() - 86500;
+			$expire = time() + $expire;
 		}
 		else
 		{
-			if ($expire > 0)
-			{
-				$expire = time() + $expire;
-			}
-			else
-			{
-				$expire = 0;
-			}
+			$expire = 0;
 		}
-	
-		setcookie($prefix.$name, $value, $expire, $path, $domain, 0);
 	}
+	
+	setcookie($prefix.$name, $value, $expire, $path, $domain, 0);
 }
 	
 // --------------------------------------------------------------------
@@ -103,13 +100,10 @@ if ( ! function_exists('set_cookie'))
  * @param	bool
  * @return	mixed
  */
-if ( ! function_exists('get_cookie'))
+function get_cookie($index = '', $xss_clean = FALSE)
 {
-	function get_cookie($index = '', $xss_clean = FALSE)
-	{
-		$CI =& get_instance();
-		return $CI->input->cookie($index, $xss_clean);
-	}
+	$CI =& get_instance();
+	return $CI->input->cookie($index, $xss_clean);
 }
 
 // --------------------------------------------------------------------
@@ -123,14 +117,10 @@ if ( ! function_exists('get_cookie'))
  * @param	string	the cookie prefix
  * @return	void
  */
-if ( ! function_exists('delete_cookie'))
+function delete_cookie($name = '', $domain = '', $path = '/', $prefix = '')
 {
-	function delete_cookie($name = '', $domain = '', $path = '/', $prefix = '')
-	{
-		set_cookie($name, '', '', $domain, $path, $prefix);
-	}
+	set_cookie($name, '', '', $domain, $path, $prefix);
 }
 
 
-/* End of file cookie_helper.php */
-/* Location: ./system/helpers/cookie_helper.php */
+?>

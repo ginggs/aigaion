@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/config.html
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/libraries/config.html
  */
 class Model {
 
@@ -65,7 +65,8 @@ class Model {
 				// problems so we'll conditionally use them
 				if ($use_reference == TRUE)
 				{
-					$this->$key = NULL; // Needed to prevent reference errors with some configurations
+					// Needed to prevent reference errors with some configurations
+					$this->$key = '';
 					$this->$key =& $CI->$key;
 				}
 				else
@@ -78,6 +79,4 @@ class Model {
 
 }
 // END Model Class
-
-/* End of file Model.php */
-/* Location: ./system/libraries/Model.php */
+?>

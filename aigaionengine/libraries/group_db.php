@@ -10,7 +10,7 @@ class Group_db {
     function getByID($group_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->get_where('users',array('user_id'=>$group_id,'type'=>'group'));
+        $Q = $CI->db->getwhere('users',array('user_id'=>$group_id,'type'=>'group'));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -29,7 +29,7 @@ class Group_db {
         $group->abbreviation       = $R->abbreviation;
 
         //get rights profiles
-        $Q = $CI->db->get_where('grouprightsprofilelink',array('group_id'=>$group->group_id));
+        $Q = $CI->db->getwhere('grouprightsprofilelink',array('group_id'=>$group->group_id));
         foreach ($Q->result() as $row) {
             $group->rightsprofile_ids[] = $row->rightsprofile_id;
         }
@@ -66,7 +66,7 @@ class Group_db {
     function getAllGroups() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('users',array('type'=>'group'));
+        $Q = $CI->db->getwhere('users',array('type'=>'group'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }

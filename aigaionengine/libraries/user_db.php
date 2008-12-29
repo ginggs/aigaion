@@ -58,13 +58,13 @@ class User_db {
         }
         //assigned rights
         $user->assignedrights     = array();
-        $query = $CI->db->get_where('userrights',array('user_id'=>$R->user_id));
+        $query = $CI->db->getwhere('userrights',array('user_id'=>$R->user_id));
         foreach ($query->result() as $row) {
             $user->assignedrights[] = $row->right_name;
         }
         //the ids of all groups that the user is a part of
         $user->group_ids            = array();
-        $query = $CI->db->get_where('usergrouplink',array('user_id'=>$R->user_id));
+        $query = $CI->db->getwhere('usergrouplink',array('user_id'=>$R->user_id));
         foreach ($query->result() as $row) {
             $user->group_ids[] = $row->group_id;
         }
@@ -133,7 +133,7 @@ class User_db {
     function getAllUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('users',array('type !='=>'group'));
+        $Q = $CI->db->getwhere('users',array('type<>'=>'group'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -143,7 +143,7 @@ class User_db {
     function getAllAnonUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('users',array('type'=>'anon'));
+        $Q = $CI->db->getwhere('users',array('type'=>'anon'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -153,7 +153,7 @@ class User_db {
     function getAllNormalUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('users',array('type'=>'normal'));
+        $Q = $CI->db->getwhere('users',array('type'=>'normal'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -163,7 +163,7 @@ class User_db {
     function getAllExternalUsers() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('users',array('type'=>'external'));
+        $Q = $CI->db->getwhere('users',array('type'=>'external'));
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }
@@ -365,7 +365,7 @@ class User_db {
             //add group links, and rightsprofiles for these groups, to the user
             //BUT ONLY FOR GROUPS THAT WERE NOT YET LINKED TO THIS USER
             $oldgroups = array();
-            $oldgrQ = $CI->db->get_where('usergrouplink',array('user_id'=>$user->user_id));
+            $oldgrQ = $CI->db->getwhere('usergrouplink',array('user_id'=>$user->user_id));
             foreach($oldgrQ->result() as $row) {
                 $oldgroups[] = $row->group_id;
             }

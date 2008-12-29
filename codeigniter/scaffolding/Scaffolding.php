@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -22,8 +22,8 @@
  *
  * @package		CodeIgniter
  * @subpackage	Scaffolding
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/general/scaffolding.html
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/general/scaffolding.html
  */
 class Scaffolding {
 
@@ -204,7 +204,7 @@ class Scaffolding {
 		$primary = $this->CI->db->primary($this->current_table);				
 
 		// Run the query
-		$query = $this->CI->db->get_where($this->current_table, array($primary => $id));
+		$query = $this->CI->db->getwhere($this->current_table, array($primary => $id));
 
 		$data = array(
 						'title'	=>  ( ! isset($this->lang['scaff_edit'])) ? 'Edit Data' : $this->lang['scaff_edit'],
@@ -286,6 +286,4 @@ class Scaffolding {
 	}
 
 }
-
-/* End of file Scaffolding.php */
-/* Location: ./system/scaffolding/Scaffolding.php */
+?>

@@ -4,6 +4,4 @@
 
 <p><?php echo $no; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $yes; ?>
 
-<?php $this->load->view('footer'); 
-/* End of file delete.php */
-/* Location: ./system/scaffolding/views/delete.php */
+<?php $this->load->view('footer'); ?>

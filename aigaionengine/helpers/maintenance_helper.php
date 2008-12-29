@@ -364,7 +364,7 @@ function checkMissingFiles()
 {
     $CI = &get_instance();
     //check for each entry the file
-    $Q = $CI->db->get_where("attachments",array('isremote'=>'FALSE'));
+    $Q = $CI->db->getwhere("attachments",array('isremote'=>'FALSE'));
     $found = FALSE;
     $report = "";
     $result = "";
@@ -408,7 +408,7 @@ function checkUnknownFiles()
         {
             if ($file=='CVS'||$file=='.svn'||$file=='.'||$file=='..'||$file=='_README.txt'||$file=='index.php'||$file=='custom_logo.jpg'||$file=='aisearch.src'||$file=='export.bib')
                 continue;
-            $Q = $CI->db->get_where('attachments',array('location'=>$file));
+            $Q = $CI->db->getwhere('attachments',array('location'=>$file));
             if ($Q->num_rows() <= 0)
             {
                 $bFound = TRUE;
@@ -464,19 +464,19 @@ function checkTopicTopicLinks()
     $topic_ids = array();
     $count = 0;
     $CI->db->select('DISTINCT source_topic_id');
-    $Q = $CI->db->get_where('topictopiclink',array('source_topic_id != "1"'));
+    $Q = $CI->db->getwhere('topictopiclink',array('source_topic_id != "1"'));
     foreach ($Q->result() as $row) {
         if (!in_array($row->source_topic_id, $topic_ids))
             $topic_ids[] = $row->source_topic_id;
     }
     $CI->db->select('DISTINCT target_topic_id');
-    $Q = $CI->db->get_where('topictopiclink',array('target_topic_id != "1"'));
+    $Q = $CI->db->getwhere('topictopiclink',array('target_topic_id != "1"'));
     foreach ($Q->result() as $row) {
         if (!in_array($row->target_topic_id, $topic_ids))
             $topic_ids[] = $row->target_topic_id;
     }
     foreach ($topic_ids as $topic_id) {
-        $Q = $CI->db->get_where('topics',array('topic_id'=>$topic_id));
+        $Q = $CI->db->getwhere('topics',array('topic_id'=>$topic_id));
         if ($Q->num_rows()==0) {
             $CI->db->delete('topictopiclink',array('source_topic_id'=>$topic_id));
             $CI->db->delete('topictopiclink',array('target_topic_id'=>$topic_id));
@@ -517,9 +517,9 @@ function checkTopicParents()
     $result = "";
     $report = "";
     $CI->db->select('topic_id,name');
-    $Q = $CI->db->get_where('topics','topic_id<>1');
+    $Q = $CI->db->getwhere('topics','topic_id<>1');
     foreach ($Q->result() as $R) {
-        $Q2 = $CI->db->get_where('topictopiclink',array('source_topic_id'=>$R->topic_id));
+        $Q2 = $CI->db->getwhere('topictopiclink',array('source_topic_id'=>$R->topic_id));
         if ($Q2->num_rows() == 0) { //we found a parentless topic
             $Q3 = $CI->db->insert('topictopiclink',array('source_topic_id'=>$R->topic_id,'target_topic_id'=>'1'));
             $config = array();

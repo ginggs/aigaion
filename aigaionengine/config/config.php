@@ -62,8 +62,8 @@ define('AIGSTR','A1I2G3A4I5O6N7');
 | NOTE FOR AIGAION:
 | -------------------------------------------------------------------
 | 
-| This setting is determined by the mandatory define of AIGAION_ROOT_URL
-| in the main index.php of the instance of the site.
+| This setting is determined by the mandatory define of MUSIC_ROOT_URL
+| in the main index.php of the instance of the music site.
 */
 $config['base_url']	= AIGAION_ROOT_URL;
 
@@ -180,7 +180,7 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_-';
 
 
 /*
@@ -206,7 +206,6 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 |
 */
 $config['enable_query_strings'] = FALSE;
-$config['directory_trigger'] = 'd';	 // experimental not currently in use
 $config['controller_trigger'] = 'c';
 $config['function_trigger'] = 'm';
 
@@ -220,7 +219,8 @@ $config['function_trigger'] = 'm';
 | You can enable error logging by setting a threshold over zero. The
 | threshold determines what gets logged. Threshold options are:
 |
-|	0 = Disables logging, Error logging TURNED OFF
+|	0 = Disables logging
+| 	0 = Error logging TURNED OFF
 |	1 = Error Messages (including PHP errors)
 |	2 = Debug Messages
 |	3 = Informational Messages
@@ -285,7 +285,6 @@ $config['encryption_key'] = "";
 | 'encrypt_sess_cookie' = TRUE/FALSE (boolean).  Whether to encrypt the cookie
 | 'session_expiration'  = the number of SECONDS you want the session to last.
 |  by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
-|  'time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
 $config['sess_cookie_name']		= 'ci_session';
@@ -295,7 +294,6 @@ $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update'] 		= 300;
 
 /*
 |--------------------------------------------------------------------------

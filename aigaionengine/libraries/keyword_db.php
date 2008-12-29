@@ -11,7 +11,7 @@ class Keyword_db {
   {
         $CI = &get_instance();
     //retrieve one keyword row
-    $Q = $CI->db->get_where('keywords',array('keyword_id'=>$keyword_id));
+    $Q = $CI->db->getwhere('keywords',array('keyword_id'=>$keyword_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -28,7 +28,7 @@ class Keyword_db {
   function getByKeyword($keyword)
   {
     $CI = &get_instance();
-    $Q = $CI->db->get_where('keywords',array('keyword'=>$keyword));
+    $Q = $CI->db->getwhere('keywords',array('keyword'=>$keyword));
 
     if ($Q->num_rows() > 0)
     {

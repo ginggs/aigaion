@@ -23,7 +23,7 @@ foreach ($note->xref_ids as $xref_id) {
 	//check whether the xref is present in the session var (should be). If not, try to correct the issue.
 	if ($link == "") {
 	    $this->db->select('bibtex_id');
-		$Q = $this->db->get_where('publication',array('pub_id'=>$xref_id));
+		$Q = $this->db->getwhere('publication',array('pub_id'=>$xref_id));
 		if ($Q->num_rows() > 0) {
 			$R = $Q->row();
 			if (trim($R->bibtex_id) != "") {

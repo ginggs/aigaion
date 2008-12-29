@@ -11,7 +11,7 @@ class Rightsprofile_db {
     {
         $CI = &get_instance();
         //no access rights check
-        $Q = $CI->db->get_where('rightsprofiles',array('rightsprofile_id'=>$rightsprofile_id));
+        $Q = $CI->db->getwhere('rightsprofiles',array('rightsprofile_id'=>$rightsprofile_id));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -27,7 +27,7 @@ class Rightsprofile_db {
         {
             $rightsprofile->$key = $value;
         }
-        $Q = $CI->db->get_where('rightsprofilerightlink',array('rightsprofile_id'=>$rightsprofile->rightsprofile_id));
+        $Q = $CI->db->getwhere('rightsprofilerightlink',array('rightsprofile_id'=>$rightsprofile->rightsprofile_id));
         foreach ($Q->result() as $R)
         {
             $rightsprofile->rights[] = $R->right_name;
@@ -73,7 +73,7 @@ class Rightsprofile_db {
     function getAllRightsprofiles() {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('rightsprofiles',array());
+        $Q = $CI->db->getwhere('rightsprofiles',array());
         foreach ($Q->result() as $R) {
             $result[] = $this->getFromRow($R);
         }

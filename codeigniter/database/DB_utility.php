@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Code Igniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, pMachine, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -19,13 +19,13 @@
  * Database Utility Class
  *
  * @category	Database
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/database/
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/database/
  */
-class CI_DB_utility extends CI_DB_forge {
+class CI_DB_utility {
 
 	var $db;
-	var $data_cache 	= array();
+	var $data_cache = array();
 
 	/**
 	 * Constructor
@@ -40,6 +40,48 @@ class CI_DB_utility extends CI_DB_forge {
 		$this->db =& $CI->db;
 		
 		log_message('debug', "Database Utility Class Initialized");
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Create database
+	 *
+	 * @access	public
+	 * @param	string	the database name
+	 * @return	bool
+	 */
+	function create_database($db_name)
+	{
+		$sql = $this->_create_database($db_name);
+		
+		if (is_bool($sql))
+		{
+			return $sql;
+		}
+	
+		return $this->db->query($sql);
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Drop database
+	 *
+	 * @access	public
+	 * @param	string	the database name
+	 * @return	bool
+	 */
+	function drop_database($db_name)
+	{
+		$sql = $this->_drop_database($db_name);
+		
+		if (is_bool($sql))
+		{
+			return $sql;
+		}
+	
+		return $this->db->query($sql);
 	}
 
 	// --------------------------------------------------------------------
@@ -87,7 +129,7 @@ class CI_DB_utility extends CI_DB_forge {
 		
 		if (is_bool($sql))
 		{
-				show_error('db_must_use_set');
+			return $sql;
 		}
 	
 		$query = $this->db->query($sql);
@@ -138,12 +180,13 @@ class CI_DB_utility extends CI_DB_forge {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Repair Table
+	 * Optimize Table
 	 *
 	 * @access	public
 	 * @param	string	the table name
 	 * @return	bool
 	 */
+
 	function repair_table($table_name)
 	{
 		$sql = $this->_repair_table($table_name);
@@ -160,7 +203,28 @@ class CI_DB_utility extends CI_DB_forge {
 		$res = $query->result_array();
 		return current($res);
 	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Drop Table
+	 *
+	 * @access	public
+	 * @param	string	the table name
+	 * @return	bool
+	 */
+	function drop_table($table_name)
+	{
+		$sql = $this->_drop_table($table_name);
+		
+		if (is_bool($sql))
+		{
+			return $sql;
+		}
 	
+		return $this->db->query($sql);
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -168,12 +232,11 @@ class CI_DB_utility extends CI_DB_forge {
 	 *
 	 * @access	public
 	 * @param	object	The query result object
-	 * @param	string	The delimiter - comma by default
+	 * @param	string	The delimiter - tab by default
 	 * @param	string	The newline character - \n by default
-	 * @param	string	The enclosure - double quote by default
 	 * @return	string
 	 */
-	function csv_from_result($query, $delim = ",", $newline = "\n", $enclosure = '"')
+	function csv_from_result($query, $delim = "\t", $newline = "\n")
 	{
 		if ( ! is_object($query) OR ! method_exists($query, 'field_names'))
 		{
@@ -185,7 +248,7 @@ class CI_DB_utility extends CI_DB_forge {
 		// First generate the headings from the table column names
 		foreach ($query->list_fields() as $name)
 		{
-			$out .= $enclosure.str_replace($enclosure, $enclosure.$enclosure, $name).$enclosure.$delim;
+			$out .= $name.$delim;
 		}
 		
 		$out = rtrim($out);
@@ -196,7 +259,7 @@ class CI_DB_utility extends CI_DB_forge {
 		{
 			foreach ($row as $item)
 			{
-				$out .= $enclosure.str_replace($enclosure, $enclosure.$enclosure, $item).$enclosure.$delim;			
+				$out .= $item.$delim;			
 			}
 			$out = rtrim($out);
 			$out .= $newline;
@@ -382,8 +445,11 @@ class CI_DB_utility extends CI_DB_forge {
 		
 	}
 
+
+
+
+
+
 }
 
-
-/* End of file DB_utility.php */
-/* Location: ./system/database/DB_utility.php */
+?>

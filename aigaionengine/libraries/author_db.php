@@ -12,7 +12,7 @@ class Author_db {
   {
         $CI = &get_instance();
     //retrieve one author row	  
-    $Q = $CI->db->get_where('author',array('author_id' =>$author_id));
+    $Q = $CI->db->getwhere('author',array('author_id' =>$author_id));
     if ($Q->num_rows() == 1) 
     {
       //load the author
@@ -34,12 +34,12 @@ class Author_db {
       
     //do the query
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
-      $Q = $CI->db->get_where('author',array('firstname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname)
+      $Q = $CI->db->getwhere('author',array('firstname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($firstname)
                                          ,'von' => $CI->bibtex2utf8->bibCharsToUtf8FromString($von)
                                          ,'surname' => $CI->bibtex2utf8->bibCharsToUtf8FromString($surname)
                                          ,'jr' => $CI->bibtex2utf8->bibCharsToUtf8FromString($jr)));
     } else {
-      $Q = $CI->db->get_where('author',array('firstname' =>$firstname
+      $Q = $CI->db->getwhere('author',array('firstname' =>$firstname
                                          ,'von' => $von
                                          ,'surname' => $surname
                                          ,'jr' => $jr));
@@ -126,7 +126,10 @@ class Author_db {
   
   function getAuthorCount() {
   	$CI = &get_instance();
-  	return $CI->db->count_all("author");
+  	$CI->db->select("COUNT(*)");
+    $Q = $CI->db->get("author");
+    $R = $Q->row_array();
+    return $R['COUNT(*)'];
 
   }
   function add($author)
@@ -212,14 +215,14 @@ class Author_db {
     $CI->db->update('author', $data);
 
     //update 'cleanauthor' for all publications where this author is author
-    $relevantPubsQ = $CI->db->get_where('publicationauthorlink',array('author_id'=>$author->author_id));
+    $relevantPubsQ = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$author->author_id));
     foreach ($relevantPubsQ->result() as $relevantPubR)
     {
       //start building up clean author value
       $pubcleanauthor = "";
 
       $CI->db->orderby('rank');
-      $authorsQ = $CI->db->get_where('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'N'));
+      $authorsQ = $CI->db->getwhere('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'N'));
     
       //add authors
       foreach ($authorsQ->result() as $authorsR) 
@@ -229,7 +232,7 @@ class Author_db {
       }
 
       $CI->db->orderby('rank');
-      $editorsQ = $CI->db->get_where('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'Y'));
+      $editorsQ = $CI->db->getwhere('publicationauthorlink',array('pub_id'=>$relevantPubR->pub_id,'is_editor'=>'Y'));
     
       //add editors
       foreach ($editorsQ->result() as $editorsR) 
@@ -263,7 +266,7 @@ class Author_db {
             return;
         }
         //no delete for authors with publications. check through tables, not through object
-        $Q = $CI->db->get_where('publicationauthorlink',array('author_id'=>$author->author_id));
+        $Q = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$author->author_id));
         if ($Q->num_rows()>0) {
             appendErrorMessage('Cannot delete author: still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there...<br/>');
             return false;
@@ -623,7 +626,7 @@ TODO:
     }
     //3) look if table contains any publication for old author (might have been inaccessible for you!)
     //   if all publications successfully reassigned, kill old similar author, else give warning
-    $remainingPubsQ = $CI->db->get_where('publicationauthorlink',array('author_id'=>$simauthor_id));
+    $remainingPubsQ = $CI->db->getwhere('publicationauthorlink',array('author_id'=>$simauthor_id));
     if ($remainingPubsQ->num_rows() > 0) {
         appendErrorMessage('There are some publications that could not be reassigned due to access rights');
     } else {

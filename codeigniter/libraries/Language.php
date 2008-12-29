@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Language
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/language.html
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/libraries/language.html
  */
 class CI_Language {
 
@@ -108,17 +108,14 @@ class CI_Language {
 	 * Fetch a single line of text from the language array
 	 *
 	 * @access	public
-	 * @param	string	$line 	the language line
+	 * @param	string	the language line
 	 * @return	string
 	 */
 	function line($line = '')
 	{
-		$line = ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
-		return $line;
+		return ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
 	}
 
 }
 // END Language Class
-
-/* End of file Language.php */
-/* Location: ./system/libraries/Language.php */
+?>

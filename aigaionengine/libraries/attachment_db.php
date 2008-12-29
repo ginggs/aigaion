@@ -12,7 +12,7 @@ class Attachment_db {
     function getByID($att_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->get_where('attachments', array('att_id' => $att_id));
+        $Q = $CI->db->getwhere('attachments', array('att_id' => $att_id));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -72,7 +72,7 @@ class Attachment_db {
         $CI = &get_instance();
         $result = array();
         $CI->db->orderby('ismain');
-        $Q = $CI->db->get_where('attachments', array('pub_id' => $pub_id));
+        $Q = $CI->db->getwhere('attachments', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->att_id);
             if ($next != null) {
@@ -139,7 +139,7 @@ class Attachment_db {
             }
         
             //the first attachment is always a main attachment
-            $Q = $CI->db->get_where('attachments',array('pub_id'=>$attachment->pub_id));
+            $Q = $CI->db->getwhere('attachments',array('pub_id'=>$attachment->pub_id));
             if ($Q->num_rows() == 0) {
                 $attachment->ismain = True;
             }
@@ -236,7 +236,7 @@ class Attachment_db {
         			}
         		}
                 //the first attachment is always a main attachment
-                $Q = $CI->db->get_where('attachments',array('pub_id'=>$attachment->pub_id));
+                $Q = $CI->db->getwhere('attachments',array('pub_id'=>$attachment->pub_id));
                 if ($Q->num_rows() == 0) {
                     $attachment->ismain = True;
                 }

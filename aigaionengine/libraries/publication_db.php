@@ -19,7 +19,7 @@ class Publication_db {
   {
         $CI = &get_instance();
     //retrieve one publication row
-    $Q = $CI->db->get_where('publication',array('pub_id'=>$pub_id));
+    $Q = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -35,7 +35,7 @@ class Publication_db {
   {
         $CI = &get_instance();
     //retrieve one publication row
-    $Q = $CI->db->get_where('publication',array('bibtex_id'=>$bibtex_id));
+    $Q = $CI->db->getwhere('publication',array('bibtex_id'=>$bibtex_id));
 
     if ($Q->num_rows() > 0)
     {
@@ -92,7 +92,7 @@ class Publication_db {
       //check if we found the publication in the cache, if not, retrieve from db.
       if (!isset($merge_row))
       {
-        $Q = $CI->db->get_where('publication',array('bibtex_id'=>$R->crossref));
+        $Q = $CI->db->getwhere('publication',array('bibtex_id'=>$R->crossref));
 
         //if we retrieved one single row, we retrieve it and set the $do_merge flag
         if ($Q->num_rows() == 1)
@@ -170,7 +170,7 @@ class Publication_db {
         
         
     //check if this publication was bookmarked by the logged user
-    $Q = $CI->db->get_where('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
+    $Q = $CI->db->getwhere('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
     if ($Q->num_rows()>0) {
         $publication->isBookmarked = True;
     }
@@ -385,7 +385,7 @@ class Publication_db {
         $CI = &get_instance();
         $result = array();
         if (trim($bibtex_id)=='')return $result;
-        $Q = $CI->db->get_where('publication', array('crossref' => $bibtex_id));
+        $Q = $CI->db->getwhere('publication', array('crossref' => $bibtex_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->pub_id);
             if ($next != null) {
@@ -823,7 +823,7 @@ class Publication_db {
         //no delete for object with children. check through tables, not through object
         #NOTE: if we want to allow delete of publications with notes and attachments, we should make sure
         #that current user can edit/delete all those notes and attachments!
-        $Q = $CI->db->get_where('attachments',array('pub_id'=>$publication->pub_id));
+        $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
             //check if you can delete attachments 
             foreach ($Q->result() as $row) {
@@ -838,7 +838,7 @@ class Publication_db {
                 }
             }
         }
-        $Q = $CI->db->get_where('notes',array('pub_id'=>$publication->pub_id));
+        $Q = $CI->db->getwhere('notes',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
             //check if you can delete notes
             foreach ($Q->result() as $row) {
@@ -853,7 +853,7 @@ class Publication_db {
                 }
             }
         }
-        $Q = $CI->db->get_where('attachments',array('pub_id'=>$publication->pub_id));
+        $Q = $CI->db->getwhere('attachments',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
             //do actual delete of attachments, AFTER you know it is OK to proceed with delete
             foreach ($Q->result() as $row) {
@@ -861,7 +861,7 @@ class Publication_db {
                 $attachment->delete();
             }
         }
-        $Q = $CI->db->get_where('notes',array('pub_id'=>$publication->pub_id));
+        $Q = $CI->db->getwhere('notes',array('pub_id'=>$publication->pub_id));
         if ($Q->num_rows()>0) {
             //do actual delete of notes, AFTER you know it is OK to proceed with delete
             foreach ($Q->result() as $row) {
@@ -1200,7 +1200,7 @@ class Publication_db {
     {
         $CI = &get_instance();
         if (trim($old_bibtex_id) == '')return;
-        $Q = $CI->db->get_where('publication',array('crossref'=>$old_bibtex_id));
+        $Q = $CI->db->getwhere('publication',array('crossref'=>$old_bibtex_id));
         //update is done here, instead of using the update function, as some of the affected publications
         // may not be accessible for this user
         foreach ($Q->result() as $R) {
@@ -1407,7 +1407,7 @@ class Publication_db {
     function getUserMark($pub_id,$user_id) {
         $CI = &get_instance();
         if (trim($pub_id)=='') return;
-        $Q = $CI->db->get_where('userpublicationmark',array('pub_id'=>$pub_id,'user_id'=>$user_id));
+        $Q = $CI->db->getwhere('userpublicationmark',array('pub_id'=>$pub_id,'user_id'=>$user_id));
         if ($Q->num_rows()==0) {
             return -1;
         }
@@ -1444,7 +1444,7 @@ class Publication_db {
     function recalcTotalMark($pub_id) {
         $CI = &get_instance();
         if (trim($pub_id)=='') return;
-        $Q = $CI->db->get_where('userpublicationmark',array('pub_id'=>$pub_id));
+        $Q = $CI->db->getwhere('userpublicationmark',array('pub_id'=>$pub_id));
         $totalmark = 0;
         $count = 0;
         foreach ($Q->result() as $R) {
@@ -1468,10 +1468,10 @@ class Publication_db {
 //        $userlogin  = getUserLogin();
 //        
 //        $CI->db->select('MAX(rank)');
-//        $Q = $CI->db->get_where('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
+//        $Q = $CI->db->getwhere('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
 //        $R = $Q->row_array();
 //        $maxrank = $R['MAX(rank)'];
-//        $Q = $CI->db->get_where('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
+//        $Q = $CI->db->getwhere('publicationauthorlink', array('is_editor'=>$editors,'pub_id'=>$pub_id));
 //        foreach ($Q->result() as $row) {
 //            $CI->db->query('UPDATE '.AIGAION_DB_PREFIX.'publicationauthorlink SET rank='.($row->rank+$maxrank).' WHERE pub_id='.$pub_id.' AND rank='.$row->rank." AND is_editor='".$editors."'");
 //        }

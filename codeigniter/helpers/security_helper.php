@@ -1,14 +1,14 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
+ * @author		Rick Ellis
+ * @copyright	Copyright (c) 2006, EllisLab, Inc.
+ * @license		http://www.codeignitor.com/user_guide/license.html
+ * @link		http://www.codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/security_helper.html
+ * @author		Rick Ellis
+ * @link		http://www.codeigniter.com/user_guide/helpers/security_helper.html
  */
 
 // ------------------------------------------------------------------------
@@ -35,13 +35,10 @@
  * @param	string	the character set of your data
  * @return	string
  */	
-if ( ! function_exists('xss_clean'))
+function xss_clean($str, $charset = 'ISO-8859-1')
 {
-	function xss_clean($str, $charset = 'ISO-8859-1')
-	{
-		$CI =& get_instance();
-		return $CI->input->xss_clean($str, $charset);
-	}
+	$CI =& get_instance();
+	return $CI->input->xss_clean($str, $charset);
 }
 
 // --------------------------------------------------------------------
@@ -52,35 +49,32 @@ if ( ! function_exists('xss_clean'))
  * @access	public
  * @param	string
  * @return	string
- */	
-if ( ! function_exists('dohash'))
-{	
-	function dohash($str, $type = 'sha1')
+ */		
+function dohash($str, $type = 'sha1')
+{
+	if ($type == 'sha1')
 	{
-		if ($type == 'sha1')
+		if ( ! function_exists('sha1'))
 		{
-			if ( ! function_exists('sha1'))
-			{
-				if ( ! function_exists('mhash'))
-				{	
-					require_once(BASEPATH.'libraries/Sha1'.EXT);
-					$SH = new CI_SHA;
-					return $SH->generate($str);
-				}
-				else
-				{
-					return bin2hex(mhash(MHASH_SHA1, $str));
-				}
+			if ( ! function_exists('mhash'))
+			{	
+				require_once(BASEPATH.'libraries/Sha1'.EXT);
+				$SH = new CI_SHA;
+				return $SH->generate($str);
 			}
 			else
 			{
-				return sha1($str);
-			}	
+				return bin2hex(mhash(MHASH_SHA1, $str));
+			}
 		}
 		else
 		{
-			return md5($str);
-		}
+			return sha1($str);
+		}	
+	}
+	else
+	{
+		return md5($str);
 	}
 }
 	
@@ -93,15 +87,12 @@ if ( ! function_exists('dohash'))
  * @param	string
  * @return	string
  */	
-if ( ! function_exists('strip_image_tags'))
+function strip_image_tags($str)
 {
-	function strip_image_tags($str)
-	{
-		$str = preg_replace("#<img\s+.*?src\s*=\s*[\"'](.+?)[\"'].*?\>#", "\\1", $str);
-		$str = preg_replace("#<img\s+.*?src\s*=\s*(.+?).*?\>#", "\\1", $str);
+	$str = preg_replace("#<img\s+.*?src\s*=\s*[\"'](.+?)[\"'].*?\>#", "\\1", $str);
+	$str = preg_replace("#<img\s+.*?src\s*=\s*(.+?).*?\>#", "\\1", $str);
 			
-		return $str;
-	}
+	return $str;
 }
 	
 // ------------------------------------------------------------------------
@@ -113,14 +104,9 @@ if ( ! function_exists('strip_image_tags'))
  * @param	string
  * @return	string
  */	
-if ( ! function_exists('encode_php_tags'))
+function encode_php_tags($str)
 {
-	function encode_php_tags($str)
-	{
-		return str_replace(array('<?php', '<?PHP', '<?', '?>'),  array('&lt;?php', '&lt;?PHP', '&lt;?', '?&gt;'), $str);
-	}
+	return str_replace(array('<?php', '<?PHP', '<?', '?>'),  array('&lt;?php', '&lt;?PHP', '&lt;?', '?&gt;'), $str);
 }
 
-
-/* End of file security_helper.php */
-/* Location: ./system/helpers/security_helper.php */
+?>

@@ -28,6 +28,4 @@
 
 </form>
 
-<?php $this->load->view('footer'); 
-/* End of file edit.php */
-/* Location: ./system/scaffolding/views/edit.php */
+<?php $this->load->view('footer'); ?>

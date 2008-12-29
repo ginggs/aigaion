@@ -12,7 +12,7 @@ class Note_db {
     function getByID($note_id)
     {
         $CI = &get_instance();
-        $Q = $CI->db->get_where('notes', array('note_id' => $note_id));
+        $Q = $CI->db->getwhere('notes', array('note_id' => $note_id));
         if ($Q->num_rows() > 0)
         {
             return $this->getFromRow($Q->row());
@@ -37,7 +37,7 @@ class Note_db {
         
         //read the crossref_ids as they were cached in the database
         $CI->db->select('xref_id');
-        $Q = $CI->db->get_where('notecrossrefid',array('note_id'=>$note->note_id));
+        $Q = $CI->db->getwhere('notecrossrefid',array('note_id'=>$note->note_id));
     	foreach ($Q->result() as $R) {
             $note->xref_ids[] = $R->xref_id;
     	}        
@@ -67,7 +67,7 @@ class Note_db {
     function getNotesForPublication($pub_id) {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('notes', array('pub_id' => $pub_id));
+        $Q = $CI->db->getwhere('notes', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->note_id);
             if ($next != null) {
@@ -83,7 +83,7 @@ class Note_db {
     function getXRefNotesForPublication($pub_id) {
         $CI = &get_instance();
         $result = array();
-        $Q = $CI->db->get_where('notecrossrefid', array('xref_id' => $pub_id));
+        $Q = $CI->db->getwhere('notecrossrefid', array('xref_id' => $pub_id));
         foreach ($Q->result() as $row) {
             $next  =$this->getByID($row->note_id);
             if ($next != null) {
@@ -198,9 +198,9 @@ class Note_db {
     {
         $CI = &get_instance();
 		$bibtexidlinks = getBibtexIdLinks();
-        $Q = $CI->db->get_where('notecrossrefid',array('xref_id'=>$pub_id));
+        $Q = $CI->db->getwhere('notecrossrefid',array('xref_id'=>$pub_id));
         foreach ($Q->result() as $R) {
-            $noteQ = $CI->db->get_where('notes',array('note_id'=>$R->note_id));
+            $noteQ = $CI->db->getwhere('notes',array('note_id'=>$R->note_id));
             if ($noteQ->num_rows()>0) {
               $R = $noteQ->row();
         		  $text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $R->text);
