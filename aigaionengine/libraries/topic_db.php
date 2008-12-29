@@ -57,7 +57,7 @@ class Topic_db {
     function getByID($topic_id, &$configuration)
     {
         $CI = &get_instance();
-        $Q = $CI->db->getwhere('topics', array('topic_id' => $topic_id));
+        $Q = $CI->db->get_where('topics', array('topic_id' => $topic_id));
         //configuration stuff will be handled by the getFromRow method...
         if ($Q->num_rows() > 0)
         {
@@ -102,7 +102,7 @@ class Topic_db {
                 userIsGroupSubscribed
         */
         if (array_key_exists('user',$configuration)) {
-            $userSubscribedQ = $CI->db->getwhere('usertopiclink', array('topic_id' => $topic->topic_id,  
+            $userSubscribedQ = $CI->db->get_where('usertopiclink', array('topic_id' => $topic->topic_id,  
                                                                               'user_id' => $configuration['user']->user_id));
             $groupIrrelevant = True;
             $groupSubscribed = False;
@@ -148,7 +148,7 @@ class Topic_db {
                 publicationIsSubscribed
                                                */
         if (array_key_exists('publicationId',$configuration)) {
-            $pubSubscribedQ = $CI->db->getwhere('topicpublicationlink', 
+            $pubSubscribedQ = $CI->db->get_where('topicpublicationlink', 
                                                        array('topic_id' => $topic->topic_id,  
                                                              'pub_id'=>$configuration['publicationId']));
             $topic->flags['publicationIsSubscribed'] = False;
@@ -216,7 +216,7 @@ class Topic_db {
     /** Returns the topic_id of the parent of the given Topic through database access. */
     function getParentId($topic_id) {
         $CI = &get_instance();
-        $query = $CI->db->getwhere('topictopiclink',array('source_topic_id'=>$topic_id));
+        $query = $CI->db->get_where('topictopiclink',array('source_topic_id'=>$topic_id));
         if ($query->num_rows() > 0) {
             $row = $query->row();
             return $row->target_topic_id;
@@ -349,7 +349,7 @@ class Topic_db {
     			return False;
     		}
     		$CI->db->select('target_topic_id');
-    		$Q = $CI->db->getwhere('topictopiclink',array('source_topic_id'=>$nexttopic_id));
+    		$Q = $CI->db->get_where('topictopiclink',array('source_topic_id'=>$nexttopic_id));
     		if ($Q->num_rows()>0) {
     		    $R = $Q->row();
     			$nexttopic_id = $R->target_topic_id;
@@ -374,7 +374,7 @@ class Topic_db {
         	#change membership of publications to reflect new tree structure (are there different strategies for this?)
         	//get all publications that are member of $topic_id
         	$CI->db->select('pub_id');
-        	$Q = $CI->db->getwhere('topicpublicationlink',array('topic_id' => $topic->topic_id));
+        	$Q = $CI->db->get_where('topicpublicationlink',array('topic_id' => $topic->topic_id));
         	if ($Q->num_rows()>0) {
         	    $pub_ids = array();
         		foreach ($Q->result() as $publication) {
@@ -408,7 +408,7 @@ class Topic_db {
         //no delete for object with children. check through tables, not through object
         #NOTE: if we want to change this, we should make sure that a user can only delete a topic
         #when (s)he has edit access to ALL descendants!
-        $Q = $CI->db->getwhere('topictopiclink',array('target_topic_id'=>$topic->topic_id));
+        $Q = $CI->db->get_where('topictopiclink',array('target_topic_id'=>$topic->topic_id));
         if ($Q->num_rows()>0) {
             appendErrorMessage('Cannot delete topic: still has children (possibly invisible)<br/>');
             return;
@@ -444,26 +444,24 @@ class Topic_db {
     }
   function getTopicCount() {
   	$CI = &get_instance();
-  	$CI->db->select("COUNT(*)");
-    $Q = $CI->db->get("topics");
-    $R = $Q->row_array();
-    return $R['COUNT(*)'];
+  	return $CI->db->count_all("topics");
 
   }
   function getMainTopicCount() {
   	$CI = &get_instance();
-  	$CI->db->select("COUNT(source_topic_id)");
-    $Q = $CI->db->getwhere("topictopiclink",array('target_topic_id'=>'1'));
-    $R = $Q->row_array();
-    return $R['COUNT(source_topic_id)'];
+  	$CI->db->select("source_topic_id");
+  	$CI->db->where(array('target_topic_id'=>'1'));
+	  $CI->db->from("topictopiclink");
+	  return $CI->db->count_all_results();
 
   }
   function getPublicationCountForTopic($topic_id) {
     $CI = &get_instance();
-    $CI->db->select("COUNT(DISTINCT pub_id)");
-    $Q = $CI->db->getwhere("topicpublicationlink",array('topic_id'=>$topic_id));
-    $R = $Q->row_array();
-    return $R["COUNT(DISTINCT pub_id)"];
+    $CI->db->select("pub_id");
+    $CI->db->distinct();
+    $CI->db->where(array('topic_id'=>$topic_id));
+    $CI->db->from("topicpublicationlink");
+    return $CI->db->count_all_results();
   } 
   function getReadPublicationCountForTopic($topic_id) {
     $CI = &get_instance();

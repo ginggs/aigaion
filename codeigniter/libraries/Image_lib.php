@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Image_lib
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/image_lib.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/image_lib.html
  */
 class CI_Image_lib {
 	
@@ -110,7 +110,10 @@ class CI_Image_lib {
 		foreach ($props as $val)
 		{
 			$this->$val = '';
-		}  		
+		}
+
+		// special consideration for master_dim
+		$this->master_dim = 'auto';
 	}
 	
 	// --------------------------------------------------------------------
@@ -223,7 +226,7 @@ class CI_Image_lib {
 				}
 				
 				// Is there a file name?
-				if ( ! preg_match("#[\.jpg|\.jpeg|\.gif|\.png]$#i", $full_dest_path))
+				if ( ! preg_match("#\.(jpg|jpeg|gif|png)$#i", $full_dest_path))
 				{
 					$this->dest_folder = $full_dest_path.'/';
 					$this->dest_image = $this->source_image;
@@ -445,18 +448,28 @@ class CI_Image_lib {
 	function image_process_gd($action = 'resize')
 	{	
 		$v2_override = FALSE;
-			
-		if ($action == 'crop')
+
+		// If the target width/height match the source, AND if the new file name is not equal to the old file name
+		// we'll simply make a copy of the original with the new name... assuming dynamic rendering is off.
+		if ($this->dynamic_output === FALSE)
 		{
-			// If the target width/height match the source then it's pointless to crop, right?
-			if ($this->width >= $this->orig_width AND $this->height >= $this->orig_height)
+			if ($this->orig_width == $this->width AND $this->orig_height == $this->height)			
 			{
-				// We'll return true so the user thinks the process succeeded.
-				// It'll be our little secret...
-	
+ 				if ($this->source_image != $this->new_image)
+ 				{
+					if (@copy($this->full_src_path, $this->full_dst_path))
+					{
+						@chmod($this->full_dst_path, DIR_WRITE_MODE);
+					}
+				}
+				
 				return TRUE;
 			}
-			
+		}
+		
+		// Let's set up our values based on the action
+		if ($action == 'crop')
+		{
 			//  Reassign the source width/height if cropping
 			$this->orig_width  = $this->width;
 			$this->orig_height = $this->height;	
@@ -469,22 +482,7 @@ class CI_Image_lib {
 			}
 		}
 		else
-		{
-			// If the target width/height match the source, AND if
-			// the new file name is not equal to the old file name
-			// we'll simply make a copy of the original with the new name		
-			if (($this->orig_width == $this->width AND $this->orig_height == $this->height) AND ($this->source_image != $this->dest_image))
-			{
-				if ( ! @copy($this->full_src_path, $this->full_dst_path))
-				{
-					$this->set_error('imglib_copy_failed');
-					return FALSE;
-				}
-			
-				@chmod($this->full_dst_path, 0777);
-				return TRUE;
-			}
-			
+		{			
 			// If resizing the x/y axis must be zero
 			$this->x_axis = 0;
 			$this->y_axis = 0;
@@ -496,8 +494,14 @@ class CI_Image_lib {
 			return FALSE;
 		}
 
-		//  Create The Image
-		if ($this->image_library == 'gd2' AND function_exists('imagecreatetruecolor') AND $v2_override == FALSE)
+ 		//  Create The Image
+		//
+		//  old conditional which users report cause problems with shared GD libs who report themselves as "2.0 or greater"
+		//  it appears that this is no longer the issue that it was in 2004, so we've removed it, retaining it in the comment
+		//  below should that ever prove inaccurate.
+		//
+		//  if ($this->image_library == 'gd2' AND function_exists('imagecreatetruecolor') AND $v2_override == FALSE)
+ 		if ($this->image_library == 'gd2' AND function_exists('imagecreatetruecolor'))		
 		{
 			$create	= 'imagecreatetruecolor';
 			$copy	= 'imagecopyresampled';
@@ -530,7 +534,7 @@ class CI_Image_lib {
 		imagedestroy($src_img);
 		
 		// Set the file to 777
-		@chmod($this->full_dst_path, 0777);
+		@chmod($this->full_dst_path, DIR_WRITE_MODE);
 		
 		return TRUE;
 	}
@@ -600,7 +604,7 @@ class CI_Image_lib {
 		}
 		
 		// Set the file to 777
-		@chmod($this->full_dst_path, 0777);
+		@chmod($this->full_dst_path, DIR_WRITE_MODE);
 		
 		return TRUE;
 	}
@@ -686,7 +690,7 @@ class CI_Image_lib {
 		// we have to rename the temp file.
 		copy ($this->dest_folder.'netpbm.tmp', $this->full_dst_path);
 		unlink ($this->dest_folder.'netpbm.tmp');
-		@chmod($dst_image, 0777);
+		@chmod($this->full_dst_path, DIR_WRITE_MODE);
 		
 		return TRUE;
 	}
@@ -745,7 +749,7 @@ class CI_Image_lib {
 		
 		// Set the file to 777
 		
-		@chmod($this->full_dst_path, 0777);
+		@chmod($this->full_dst_path, DIR_WRITE_MODE);
 		
 		return true;
 	}
@@ -829,7 +833,7 @@ class CI_Image_lib {
 		imagedestroy($src_img);
 		
 		// Set the file to 777
-		@chmod($this->full_dst_path, 0777);
+		@chmod($this->full_dst_path, DIR_WRITE_MODE);
 		
 		return TRUE;
 	}
@@ -935,9 +939,22 @@ class CI_Image_lib {
 			@imagealphablending($src_img, TRUE);
 		} 		
 
-		// Set RGB values for text and shadow		
-		imagecolortransparent($wm_img, imagecolorat($wm_img, $this->wm_x_transp, $this->wm_y_transp));
-		imagecopymerge($src_img, $wm_img, $x_axis, $y_axis, 0, 0, $wm_width, $wm_height, $this->wm_opacity);
+		// Set RGB values for text and shadow
+		$rgba = imagecolorat($wm_img, $this->wm_x_transp, $this->wm_y_transp);
+		$alpha = ($rgba & 0x7F000000) >> 24;
+		
+		// make a best guess as to whether we're dealing with an image with alpha transparency or no/binary transparency
+		if ($alpha > 0)
+		{
+			// copy the image directly, the image's alpha transparency being the sole determinant of blending
+			imagecopy($src_img, $wm_img, $x_axis, $y_axis, 0, 0, $wm_width, $wm_height);
+		}
+		else
+		{
+			// set our RGB value from above to be transparent and merge the images with the specified opacity
+			imagecolortransparent($wm_img, imagecolorat($wm_img, $this->wm_x_transp, $this->wm_y_transp));
+			imagecopymerge($src_img, $wm_img, $x_axis, $y_axis, 0, 0, $wm_width, $wm_height, $this->wm_opacity);			
+		}
 				
 		//  Output the image
 		if ($this->dynamic_output == TRUE)
@@ -1524,4 +1541,6 @@ class CI_Image_lib {
 
 }
 // END Image_lib Class
-?>
+
+/* End of file Image_lib.php */
+/* Location: ./system/libraries/Image_lib.php */

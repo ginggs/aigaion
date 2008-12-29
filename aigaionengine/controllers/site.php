@@ -208,7 +208,7 @@ class Site extends Controller {
 
 	    $type = $this->uri->segment(3,'win');
 	    if (!in_array($type,array('win','unix','mac'))) {
-	        $type = 'win';
+	        $type = 'unix';
 	    }
 		if ($type == "win")
 			$linebreak = "\r\n";
@@ -236,10 +236,31 @@ class Site extends Controller {
         //note: we could make a site setting for whether a gz, zip or txt is returned. But gz is OK, I guess.
         $backup =$this->dbutil->backup(array('tables'=>$tables,'newline'=>$linebreak,'format'=>'txt'));
         
-        // Load the download helper and send the file to your desktop
-        $this->load->helper('download');
-        force_download(AIGAION_DB_PREFIX.AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql', $backup);
         
+        header("Content-Type: charset=utf-8"); //we intentionally do not use the download helper, as we need to set some UTF* specific thingies here
+        header('Content-Disposition: attachment; filename="'.AIGAION_DB_PREFIX.AIGAION_DB_NAME."_backup_".date("Y_m_d").'.sql'.'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        //header("Content-Transfer-Encoding: binary");
+        header('Pragma: public,no-cache');
+        //header("Content-Length: ".strlen($backup));
+        //echo " <html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /></head><body>";
+        //we can send BOM, because otherwise not all editors will recognize this file as UTF8!!!
+        //echo Chr(239).Chr(187).Chr(191); //unfortunately, other editors will NOT b able to handle the BOM :( Also, on the web I find suggestions that BOM breaks IE (http://trac.seagullproject.org/wiki/Misc/CharsetEncoding
+        //so we choose another solution, see below
+        //http://mailman.rfc-editor.org/pipermail/rfc-interest/2008-October/000771.html
+        echo "#Iñtërnâtiônàlizætiøn
+        #Aigaion developers: 
+        #Don't remove the above commented sentence with some UTF8 characters in it, 
+        #as it is needed to make sure that editors recognize the downloaded file as UTF8. (note that we could have
+        # added a BOM instead, but many editors choke on BOM, so we chose not to do this.)
+        #Refer to the following link for a discussion about this problem with editors 'guessing'
+        # the encoding.
+        #http://mailman.rfc-editor.org/pipermail/rfc-interest/2008-October/000771.html";
+        
+        echo $backup;
+        //echo "</body></html>";
+        die();        
     }
 
 	/** 

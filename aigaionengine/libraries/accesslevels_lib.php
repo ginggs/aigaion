@@ -386,12 +386,12 @@ class Accesslevels_lib {
     function cascadeAccessLevelsForPublication($pub_id) {
         $CI = &get_instance();
         //1) set derived access levels for publication to same as normal access levels
-        $readPublicationQ = $CI->db->getwhere('publication',array('pub_id'=>$pub_id));
+        $readPublicationQ = $CI->db->get_where('publication',array('pub_id'=>$pub_id));
         $pubrow = $readPublicationQ->row();
         $CI->db->where('pub_id', $pub_id);
         $CI->db->update('publication', array('derived_read_access_level'=>$pubrow->read_access_level,'derived_edit_access_level'=>$pubrow->edit_access_level));
         //2) for attachments, maximize derived read at publication's read; maximize derived edit at attachment's derived read
-        $readAttQ = $CI->db->getwhere('attachments',array('pub_id'=>$pub_id));
+        $readAttQ = $CI->db->get_where('attachments',array('pub_id'=>$pub_id));
         foreach ($readAttQ->result() as $attrow) {
             $att_der_read = $this->minAccessLevel(array($pubrow->read_access_level,$attrow->read_access_level));
             $att_der_edit = $this->minAccessLevel(array($att_der_read,$attrow->edit_access_level));
@@ -399,7 +399,7 @@ class Accesslevels_lib {
             $CI->db->update('attachments', array('derived_read_access_level'=>$att_der_read,'derived_edit_access_level'=>$att_der_edit));
         }
         //3) for notes, maximize derived read at publication's read; maximize derived edit at note's derived read
-        $readNoteQ = $CI->db->getwhere('notes',array('pub_id'=>$pub_id));
+        $readNoteQ = $CI->db->get_where('notes',array('pub_id'=>$pub_id));
         foreach ($readNoteQ->result() as $noterow) {
             $note_der_read = $this->minAccessLevel(array($pubrow->read_access_level,$noterow->read_access_level));
             $note_der_edit = $this->minAccessLevel(array($note_der_read,$noterow->edit_access_level));

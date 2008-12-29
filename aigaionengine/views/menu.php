@@ -11,7 +11,7 @@
 <div id="menu_holder">
   <ul class="mainmenu">
     <li class="mainmenu-header"><?php echo $this->lang->line('menu_show_header'); ?></li>
-    <ul class="mainmenu">
+    <li><ul class="mainmenu">
     <li class="mainmenu"><?php echo anchor('topics', $this->lang->line('menu_show_mytopics')); ?></li>
     <?php
     if ($userlogin->hasRights('bookmarklist')) 
@@ -32,10 +32,10 @@
     //the export option is slightly dependent on the view parameter 'exportCommand'
     //
     ?>
-</ul>
+</ul></li>
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header"><?php echo $this->lang->line('menu_export_header'); ?></li>
-    <ul class="mainmenu">
+    <li><ul class="mainmenu">
     <li class="mainmenu"><?php echo anchor('export', 'Export all publications'); ?></li>
     <?php
     if (isset($exportCommand)&&($exportCommand!=''))
@@ -45,7 +45,7 @@
       <?php
     }
     ?>
-    </ul>
+    </ul></li>
 
     <?php
     //the sort options are only available if the view is called with a 'sortPrefix' option that is not ''
@@ -59,13 +59,13 @@
       ?>
       <li class="mainmenu-spacer"></li>
       <li class="mainmenu-header"><?php echo $this->lang->line('menu_sort_header'); ?></li>
-      <ul class="mainmenu">
+      <li><ul class="mainmenu">
       <li class="mainmenu"><?php echo anchor($sortPrefix.'author', $this->lang->line('menu_sort_author')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  $this->lang->line('menu_sort_title')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   $this->lang->line('menu_sort_type')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   $this->lang->line('menu_sort_year')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', $this->lang->line('menu_sort_recent')); ?></li>
-      </ul>
+      </ul></li>
       <?php
     }
     ?>
@@ -76,7 +76,7 @@
     {
       ?>  
       <li class="mainmenu-spacer"></li>
-      <ul class="mainmenu">
+      <li><ul class="mainmenu">
       <li class="mainmenu-header"><?php echo $this->lang->line('menu_create_header'); ?></li>
       <li class='mainmenu'><?php echo anchor('publications/add', $this->lang->line('menu_create_pub')); ?></li>
       <li class='mainmenu'><?php echo anchor('authors/add', $this->lang->line('menu_create_author')); ?></li>
@@ -89,7 +89,7 @@
         } 
       ?>
       <li class='mainmenu'><?php echo anchor('import', $this->lang->line('menu_create_import')); ?></li>
-      </ul>
+      </ul></li>
       <?php
     }
 
@@ -97,7 +97,7 @@
 
     <li class="mainmenu-spacer"></li>
     <li class="mainmenu-header"><?php echo $this->lang->line('menu_system_header'); ?></li>
-    <ul class="mainmenu">
+    <li><ul class="mainmenu">
     <li class="mainmenu"><?php echo anchor('help/', $this->lang->line('menu_system_help')); ?></li>
     <li class="mainmenu"><?php echo anchor('help/viewhelp/about', $this->lang->line('menu_system_about')); ?></li>
 <?php
@@ -111,7 +111,7 @@ if ($userlogin->hasRights('user_edit_all')) {
     echo "    <li class='mainmenu'>".anchor('users/manage', $this->lang->line('menu_system_usermanage'))."</li>\n";
 }
 ?>
-    </ul>
+    </ul></li>
 
     <li class="mainmenu-spacer"></li>
 <?php

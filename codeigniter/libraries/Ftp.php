@@ -1,14 +1,14 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 4.3.2 or newer
  *
  * @package		CodeIgniter
- * @author		Rick Ellis
- * @copyright	Copyright (c) 2006, EllisLab, Inc.
- * @license		http://www.codeignitor.com/user_guide/license.html
- * @link		http://www.codeigniter.com
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
@@ -21,8 +21,8 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		Rick Ellis
- * @link		http://www.codeigniter.com/user_guide/libraries/ftp.html
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/ftp.html
  */ 
 class CI_FTP {
 
@@ -302,7 +302,7 @@ class CI_FTP {
 		{
 			if ($this->debug == TRUE)
 			{
-				$msg = ($move = FALSE) ? 'ftp_unable_to_remame' : 'ftp_unable_to_move';
+				$msg = ($move == FALSE) ? 'ftp_unable_to_rename' : 'ftp_unable_to_move';
 				
 				$this->_error($msg);
 			}		
@@ -385,9 +385,9 @@ class CI_FTP {
 			{			
 				// If we can't delete the item it's probaly a folder so
 				// we'll recursively call delete_dir()
-				if ( ! @ftp_delete($this->conn_id, $filepath.$item))
+				if ( ! @ftp_delete($this->conn_id, $item))
 				{
-					$this->delete_dir($filepath.$item);
+					$this->delete_dir($item);
 				}
 			}
 		}
@@ -613,4 +613,6 @@ class CI_FTP {
 
 }
 // END FTP Class
-?>
+
+/* End of file Ftp.php */
+/* Location: ./system/libraries/Ftp.php */
