@@ -25,7 +25,9 @@ class Siteconfig_db {
             }
             $result->configSettings[$R->setting]=$value;
         }
-        if (   (isset($result->configSettings['USE_EXTERNAL_LOGIN']))
+        if (   (!isset($result->configSettings['LOGIN_HTTPAUTH_ENABLE']) || ($result->configSettings['LOGIN_HTTPAUTH_ENABLE']=='')) 
+            &&
+               (isset($result->configSettings['USE_EXTERNAL_LOGIN']))
             &&
                ($result->configSettings['USE_EXTERNAL_LOGIN'] == 'TRUE')
             &&
@@ -170,6 +172,8 @@ class Siteconfig_db {
         } else {
             $result->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']           = 'FALSE';
         }
+        
+        $result->configSettings['EMBEDDING_SHAREDDOMAIN']                     = $CI->input->post('EMBEDDING_SHAREDDOMAIN');
         
         return $result;
     }

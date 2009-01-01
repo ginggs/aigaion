@@ -13,7 +13,7 @@
 		$name = addslashes ($author->getName('vlf'));
 
 		echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
-		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
+		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}||".$author->getName('fvl')."';\n";
 		echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
 
 		$count++;

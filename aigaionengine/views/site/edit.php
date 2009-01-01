@@ -598,6 +598,16 @@ echo "
 <?php
     }
 ?>
+
+      <tr>
+            <td colspan='2'><hr><p class='header2'>Embedding options:</p></td>
+	    </tr>
+
+	    <tr>
+	        <td><label for='EMBEDDING_SHAREDDOMAIN'>Shared domain for embedding:</label></td>
+	        <td align='left'><input type='text' cols='60' size=50 name='EMBEDDING_SHAREDDOMAIN' value='<?php echo $siteconfig->getConfigSetting("EMBEDDING_SHAREDDOMAIN"); ?>'></td>
+	    </tr>
+
 <!-- EXTERNAL LOGIN MODULES -->
 
 <!--

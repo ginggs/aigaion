@@ -1,0 +1,183 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
+
+class Readapi extends Controller {
+
+	function Readapi()
+	{
+		parent::Controller();
+	}
+	
+	function index()
+	{
+	  exit('no command');
+	}
+
+  function link()
+  {
+    $type = $this->uri->segment(3,'');
+    if ($type == '') exit('no type');
+    switch ($type) {
+      case "publication":
+        $pub_id = $this->uri->segment(4,'');
+        if ($pub_id == '') exit('no id');
+        //load publication
+        $publication = $this->publication_db->getByID($pub_id);
+        if ($publication == null)
+        {
+          //attempt to retrieve by bibtex_id
+          $publication = $this->publication_db->getByBibtexID($pub_id);
+            
+          if ($publication == null)
+          {
+            exit("Unknown id or bibtex_id: ".$pub_id);
+          }
+        }
+        echo anchor('publications/show/'.$publication->pub_id,$publication->title,array('target'=>'_blank', 'title'=>'Go to this publication in the Aigaion database'));
+        break;
+      case "topic":
+        $topic_id = $this->uri->segment(4,'');
+        if ($topic_id == '') exit('no id');
+        //load topic
+        $config = array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
+        if ($topic == null)
+        {
+          //attempt to retrieve by path
+          //$topic = $this->topic_db->getByPath('');
+            
+          if ($topic == null)
+          {
+            exit("Unknown topic id or topic path: ".'');
+          }
+        }
+        echo anchor('topics/single/'.$topic->topic_id,$topic->name,array('target'=>'_blank', 'title'=>'Go to this topic in the Aigaion database'));
+        break;
+   case "author":
+        $author_id = $this->uri->segment(4,'');
+        if ($author_id == '') exit('no id');
+        //load author
+        $author = $this->author_db->getByID($author_id);
+        if ($author == null)
+        {
+         $firstname = "";
+         $von= "";
+         $surname = "";
+         $jr= "";
+          //attempt to retrieve by name
+          //$author = $this->author_db->getByExactName($firstname, $von, $surname, $jr);
+            
+          if ($author == null)
+          {
+            exit("Unknown author id or name: ".$author_id);
+          }
+        }
+        echo anchor('authors/show/'.$author->author_id,$author->getName(),array('target'=>'_blank', 'title'=>'Go to this author in the Aigaion database'));
+        break;
+    default:
+        exit('unknown type: '.$type);
+        break;    
+    }
+	}
+	
+	function embed()
+	{
+    $target = $this->uri->segment(3,'');
+    $type = $this->uri->segment(4,'');
+    if ($type == '') $this->_embed('no type',$target);
+    switch ($type) {
+      case "publication":
+        $pub_id = $this->uri->segment(5,'');
+        if ($pub_id == '') $this->_embed('no id',$target);
+        //load publication
+        $publication = $this->publication_db->getByID($pub_id);
+        if ($publication == null)
+        {
+          //attempt to retrieve by bibtex_id
+          $publication = $this->publication_db->getByBibtexID($pub_id);
+            
+          if ($publication == null)
+          {
+            $this->_embed("Unknown id or bibtex_id: ".$pub_id,$target);
+          }
+        }
+        $this->_embed( "Embedding for ".$publication->title ,$target);
+        break;
+      case "topic":
+        $topic_id = $this->uri->segment(5,'');
+        if ($topic_id == '') $this->_embed('no id',$target);
+        //load topic
+        $config = array();
+        $topic = $this->topic_db->getByID($topic_id,$config);
+        if ($topic == null)
+        {
+          //attempt to retrieve by path
+          //$topic = $this->topic_db->getByPath('');
+            
+          if ($topic == null)
+          {
+            $this->_embed("Unknown topic id or topic path: ".'',$target);
+          }
+        }
+        $this->_embed( "Embedding for ".$topic->name,$target); //use a view for this
+        break;
+   case "author":
+        $author_id = $this->uri->segment(5,'');
+        if ($author_id == '') $this->_embed('no id',$target);
+        //load author
+        $author = $this->author_db->getByID($author_id);
+        if ($author == null)
+        {
+         $firstname = "";
+         $von= "";
+         $surname = "";
+         $jr= "";
+          //attempt to retrieve by name
+          //$author = $this->author_db->getByExactName($firstname, $von, $surname, $jr);
+            
+          if ($author == null)
+          {
+            $this->_embed("Unknown author id or name: ".$author_id,$target);
+          }
+        }
+        $this->load->helper('publication');
+        $data['author']            = $author;
+        $data['publications'] = $this->publication_db->getForAuthor($author_id,'year');
+        $view = $this->load->view('readapi/author', $data, true);
+        if ($data['publications'] != null) {
+          $view .= $this->load->view('readapi/publist', $data, true);
+        }
+        $this->_embed(  "<div style='border:1px solid grey'>".$view."</div>",$target); 
+        break;
+    default:
+        $this->_embed('unknown type: '.$type,$target);
+        break;    
+    }
+  }
+  
+  function _embed($content,$target) 
+  {
+      $shareddomain = getConfigurationSetting('EMBEDDING_SHAREDDOMAIN');
+      if ($shareddomain == '') exit ("Aigaion error: no shared domain configured in the Aigaion database");
+      header("Content-Type: text/html; charset=UTF-8");
+    $output = "<html><head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    </head><body><div id='embeddingcontent' name='embeddingcontent'>";
+    $output .= $content;
+    $output .= "</div>
+<script type='text/javascript' src='".APPURL."javascript/prototype.js'></script>
+<script type='text/javascript' src='".APPURL."javascript/scriptaculous.js'></script>
+<script type='text/javascript' src='".APPURL."javascript/builder.js'></script>
+<script type='text/javascript' src='".APPURL."javascript/externallinks.js'></script>
+<script type='text/javascript' src='".APPURL."javascript/YAHOO.js'></script>
+<script type='text/javascript' src='".APPURL."javascript/connection.js'></script>
+<script language='javascript'>
+  //this needs to be changed to your own domain:
+  document.domain='".$shareddomain."';
+  window.parent.doEmbedding($('embeddingcontent').innerHTML,'".$target."');
+</script></body></html>
+";
+      exit ($output);
+      
+  }
+}
+?>

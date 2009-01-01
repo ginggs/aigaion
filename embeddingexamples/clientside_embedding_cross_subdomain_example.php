@@ -52,7 +52,7 @@ They adapt this example solution to be able to load embedding divs with info fro
   //i.e., not suitable for embedding Aigaion content from aigaion.domain.nl in another AJAX-app that resides in otherapp.domain.nl (but you *can* still do AJAX calls to the higher leven domain.nl, and you *can* use this for non-AJAX apps in otherapp.domain.nl)
    //this needs to be changed to your own domain:
   document.domain="aigaion.nl";
-  function doEmbedding(text) { //DR: change name of function
+  function doEmbedding(text) { 
     //alert('important drawback, should be noted in docs: after this domain setting call, you can on many systems no longer call AJAX scripts to the subdomain where this script itself resides :)');
     
     Element.replace('embeddingcontainer',text);
