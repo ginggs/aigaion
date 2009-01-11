@@ -174,6 +174,7 @@ class Siteconfig_db {
         }
         
         $result->configSettings['EMBEDDING_SHAREDDOMAIN']                     = $CI->input->post('EMBEDDING_SHAREDDOMAIN');
+        $result->configSettings['LOGINTEGRATION_SECRETWORD']                     = $CI->input->post('LOGINTEGRATION_SECRETWORD');
         
         return $result;
     }

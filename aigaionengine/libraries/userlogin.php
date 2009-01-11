@@ -51,6 +51,15 @@ class UserLogin {
     var $rights = array();
     /** The configured menu for this user. */
     var $theMenu = "";
+    /** If true, the user was logged in using the logintegration controller, 
+     *  and the status of the login token needs to be regularly checked in the 
+     *  logintegration table. */
+    var $checkToken = False;
+    /** The login token used to log this account in through the logintegration
+     *  controller. Only relevant if checkToken is True. See isLoggedIn 
+     *  function. */
+    var $loginToken = '';    
+    
     
     var $theUser = null;
 
@@ -66,6 +75,27 @@ class UserLogin {
     with a new version, every user will get logged out upon the next page access. */
     function isLoggedIn() {
         if ($this->bIsLoggedIn) {
+            //check login token?
+            if ($this->checkToken) 
+            {
+              $CI = &get_instance();
+              $res = $CI->db->get_where('logintegration',array('token'=>$this->loginToken));
+              if ($res->num_rows() ==0) 
+              {
+                $this->logout();
+                $this->sNotice = "You have been logged out because your login token disappeared. 
+                                  <br/>";
+              }
+              $row = $res->row();                
+              if ($row->status != 'active')
+              {
+                $this->logout();
+                $CI->db->delete('logintegration',array('token'=>$this->loginToken));
+                $this->sNotice = "You have been logged out because your login token expired. 
+                                  <br/>";
+              }
+            }
+            
             //check schema
             if (checkSchema()) { 
                 return True; //OK? return true;
@@ -779,7 +809,8 @@ class UserLogin {
         $this->rights = array();
         $this->preferences = array();
         $this->bJustLoggedOut = True;
-        
+        $this->checkToken = False;
+        $this->loginToken = '';
         //Delete cookie values
         setcookie("loginname",FALSE,0,'/');
         setcookie("password",FALSE,0,'/');

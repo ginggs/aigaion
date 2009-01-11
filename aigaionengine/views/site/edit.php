@@ -608,6 +608,15 @@ echo "
 	        <td align='left'><input type='text' cols='60' size=50 name='EMBEDDING_SHAREDDOMAIN' value='<?php echo $siteconfig->getConfigSetting("EMBEDDING_SHAREDDOMAIN"); ?>'></td>
 	    </tr>
 
+      <tr>
+            <td colspan='2'><hr><p class='header2'>Logintegration options:</p></td>
+	    </tr>
+
+	    <tr>
+	        <td><label for='LOGINTEGRATION_SECRETWORD'>Shared secret phrase for integrated login:</label></td>
+	        <td align='left'><input type='password' cols='60' size=50 name='LOGINTEGRATION_SECRETWORD' value='<?php echo $siteconfig->getConfigSetting("LOGINTEGRATION_SECRETWORD"); ?>'></td>
+	    </tr>
+	    
 <!-- EXTERNAL LOGIN MODULES -->
 
 <!--

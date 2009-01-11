@@ -21,6 +21,23 @@
 */
         
 
+    /** 
+    Introduce Logintegration table
+    */
+    function updateSchemaV2_14() {
+        if (checkVersion('V2.14', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_13()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        
+        $CI = &get_instance();
+        $CI->db->query("CREATE TABLE `".AIGAION_DB_PREFIX."logintegration` (  `token` varchar(30) NOT NULL default '',  `time` INT NOT NULL default 0,  `serial` INT NOT NULL default 0, `keepchecking` enum('TRUE','FALSE') NOT NULL default 'FALSE', `status` enum('active','loggedout') NOT NULL default 'active', `sitename` varchar(255) NOT NULL default '') ENGINE=MyISAM CHARACTER SET utf8;");
+        
+        
+        return setVersion('V2.14');
+    }
     
     /** 
     Initial schema update, bugfixes and install scripts
@@ -52,7 +69,6 @@
         return setVersion('V2.13');
     }
     
-
     /** 
     Reshape the month field into a free string, by replacing the numbers (now 0..12) with bibtex abbrevs in the new format -- 3letter abbrev enclosed in double quotes
     */

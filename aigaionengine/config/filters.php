@@ -32,7 +32,7 @@
 /** By default, when no user is logged in, control is passed to the login form.
     Add controllers for which this should not happen to the exclude array. */
 $filter['login'][] = array(
-	'exclude', array('login/*','version/*','authors/embed','embeddingtest/*'), array('action'=>'redirect')
+	'exclude', array('login/*','version/*','authors/embed','embeddingtest/*','logintegration/*'), array('action'=>'redirect')
 );
 /** Of the excluded controlles above, some should still attempt to login, but
  * should not redirect the user to the login form page if that fails
