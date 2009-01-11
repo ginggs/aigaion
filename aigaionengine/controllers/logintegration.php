@@ -75,7 +75,7 @@ class Logintegration extends Controller {
       exit('Aigaion not configured for this kind of access');
     }
     //this is a good moment to clean out the logintegration table
-    $this->db->delete('logintegration',array('time <'=>(time()-16)));
+    //$this->db->delete('logintegration',array('time <'=>(time()-16)));
     $sitename = trim($this->uri->segment(3,''));
     if ($sitename=='') {
       exit("");
