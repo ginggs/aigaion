@@ -87,13 +87,14 @@ class UserLogin {
                                   <br/>";
               }
               $row = $res->row();                
-              if ($row->status != 'active')
+              if ($row->status != 'loggedin')
               {
                 $this->logout();
                 $CI->db->delete('logintegration',array('token'=>$this->loginToken));
                 $this->sNotice = "You have been logged out because your login token expired. 
                                   <br/>";
               }
+              
             }
             
             //check schema

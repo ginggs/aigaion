@@ -33,7 +33,7 @@
         }
         
         $CI = &get_instance();
-        $CI->db->query("CREATE TABLE `".AIGAION_DB_PREFIX."logintegration` (  `token` varchar(30) NOT NULL default '',  `time` INT NOT NULL default 0,  `serial` INT NOT NULL default 0, `keepchecking` enum('TRUE','FALSE') NOT NULL default 'FALSE', `status` enum('active','loggedout') NOT NULL default 'active', `sitename` varchar(255) NOT NULL default '') ENGINE=MyISAM CHARACTER SET utf8;");
+        $CI->db->query("CREATE TABLE `".AIGAION_DB_PREFIX."logintegration` (  `token` varchar(30) NOT NULL default '',  `time` INT NOT NULL default 0,  `serial` INT NOT NULL default 0, `keepchecking` enum('TRUE','FALSE') NOT NULL default 'FALSE', `status` enum('active','loggedout','loggedin') NOT NULL default 'active', `sitename` varchar(255) NOT NULL default '',  PRIMARY KEY  (`token`)) ENGINE=MyISAM CHARACTER SET utf8;");
         
         
         return setVersion('V2.14');

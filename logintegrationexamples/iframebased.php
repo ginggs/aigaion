@@ -47,7 +47,10 @@
  *      - the serial Integer with which the token was associated
  *      - and a hashcode consiting among other things of the token and the 
  *        shared secret phrase (not the same hash code as was used for login!)
- *     
+ *     To test the logout procedure, configure the file 'iframebasedlogout', 
+ *     don't forget the token which you can find in the `logintegration` table
+ *     after running this iframebased login. 
+ *      
  *  To actually make this example file work, take the following steps.
  *  
  *  - in your Aigaion configuration screen, set the shared secret phrase for 
@@ -77,23 +80,17 @@ $serial = 1;
 
 /** GET TOKEN */
 require_once(dirname(__FILE__) . "/iframebased/gettoken.php");
-//if you call this with False as last parameter, the login session in Aigaion that will be started cannot be logged out using the trick below. Saves ona bit of checking.
-$token = getToken($aigaionRoot,$sitename,$serial,True);
+//if you call this with False as last parameter, the login session in Aigaion that will be started cannot be logged out using the trick below. Saves on a bit of checking.
+$token = trim(getToken($aigaionRoot,$sitename,$serial,True));
 
 /** GENERATE THE IFRAME THAT SHOULD BE INCLUDED IN THE HTML OUTPUT TO FORCE THE AIGAION LOGIN, USING THE TOKEN */
 $loginhashcode =  md5(md5($uname).md5($token).md5($secretphrase)); 
 echo "The following iframe takes care of loggin in as the specified user. Normally, you'd probably hide the iframe altogether.<br><iframe src='".$aigaionRoot."/logintegration/login/".$sitename."/".$loginhashcode."/".$serial."/".$uname."'></iframe><br>";
 
-/** ... AND IMMEDIATELY FORCE A LOGOUT OF THIS SAME USER. */
-/** This last point you'd probably do in the logout hook instead of immediately after successfully forcing the login. */
+echo "Token: ".$token."<br>";
+echo "To test the logout procedure, configure the file 'iframebasedlogout', 
+      don't forget the above token, which you also can find in the 
+      `logintegration` table after running this iframebased login.";
 
-#Note: we need to store the $serial, $sitename and $token in the session of 
-#this CMS because otherwise we couldn't logout the user like this.
-$logouthashcode = md5(md5($sitename).md5($serial).md5($token).md5($secretphrase));
-
-#force the logout and echo the results on screen
-require_once(dirname(__FILE__) . "/iframebased/tokenlogout.php");
-$logoutresult = tokenLogout($aigaionRoot,$sitename,$serial,$logouthashcode);
-echo "<br>".$logoutresult;
 ?>
 </body></html>

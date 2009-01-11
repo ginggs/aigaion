@@ -74,8 +74,8 @@ class Logintegration extends Controller {
     {
       exit('Aigaion not configured for this kind of access');
     }
-    //this is a good moment to clean out the logintegration table
-    //$this->db->delete('logintegration',array('time <'=>(time()-16)));
+    //this is a good moment to clean out the logintegration table. Remove all tokens that are expired and were not used.
+    $this->db->delete('logintegration',array('status'=>'active','time <'=>(time()-16)));
     $sitename = trim($this->uri->segment(3,''));
     if ($sitename=='') {
       exit("");
@@ -98,6 +98,7 @@ class Logintegration extends Controller {
     $tokenrow = $res->row();
     $correcttoken = $tokenrow->token;
     $time = $tokenrow->time;
+    if ($tokenrow->status=='loggedin') exit("token already logged in");
     if ($time + 15 < time()) exit ("token timed out");
     $this->load->helper('logintegration');
     if (logintegrationHash($username,$correcttoken) == $hash) {
@@ -106,6 +107,7 @@ class Logintegration extends Controller {
       if ($Q->num_rows()>0) {
           $userrow = $Q->row();
           $loginPwd = $userrow->password;
+          $userlogin->logout();
           if ($userlogin->_login($username,$loginPwd,False,True,True)==0) { 
               //store token in userlogin
               $userlogin->loginToken = $correcttoken; 
@@ -114,6 +116,8 @@ class Logintegration extends Controller {
               {
                 $userlogin->checkToken = True;
               }
+              $this->db->where('token',$correcttoken);
+              $this->db->update('logintegration',array('status'=>'loggedin'));
               exit("logged in as ".$username);
           }
       } else {
@@ -122,7 +126,7 @@ class Logintegration extends Controller {
     }
     else 
     {
-      exit ("fail");
+      exit ("fail token ");
     }
     exit("unknown fail");
   }
