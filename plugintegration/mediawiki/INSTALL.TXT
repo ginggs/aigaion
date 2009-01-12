@@ -1,0 +1,28 @@
+* copy the Aigaion directory to the extension directory of your mediawiki installation
+* add the settings below somewhere at the end of your mediawiki LocalSettings.php
+* set the shareddomain setting of Aigaion, via the configuration page
+
+
+#------------------------
+# Aigaion plugin settings
+#------------------------
+/* the root URL of the aigaion installation, including the index.php */
+$wgAigaion['root'] = "http://demo2.aigaion.nl/index.php";
+/* the lowest domain level that is shared between this wiki and the 
+   Aigaion installation. Must be at least two levels deep... 
+   Only necessary if you do the embedding, nbot if you only want to use the 
+   aigaionlink function */ 
+$wgAigaion['shareddomain'] = "aigaion.nl";
+/** If true, no data is retrieved from the Aigaion server and no login is
+ * performed, instead a simple link is shown */
+$wgAigaion['link']['simplelink'] = False;
+/* login info: if dologin set to false, the embedding will not 
+ * attempt to login, and therefore will only show public access 
+ * information. If anonymous access is not enabled on the aigaion 
+ * server, this will result in a loginscreen being shown
+ */ 
+$wgAigaion['link']['dologin'] = False;
+# $wgAigaion['link']['loginname'] = "demo";
+# $wgAigaion['link']['loginpass'] = "demo"; 
+# load the plugin
+require_once( "$IP/extensions/Aigaion/AigaionFunctions.setup.php" );
