@@ -31,7 +31,7 @@ for ($i = 0; $i < $importCount; $i++)
     ?>
     <tr>
       <td colspan = 2><?php
-        echo form_checkbox(array('name' => 'do_import_'.$i, 'id' => 'import_'.$i, 'value' => 'CHECKED'));
+        echo form_checkbox(array('name' => 'do_import_'.$i, 'id' => 'import_'.$i, 'checked' => TRUE));
         echo "Import: <b>".$publications[$i]->title."</b>\n"; 
         
         if ($reviews[$i]['title'] != null)
