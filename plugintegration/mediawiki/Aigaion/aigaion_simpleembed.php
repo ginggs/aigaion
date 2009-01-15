@@ -7,6 +7,7 @@ For parameters and use example, see the file ../simple_embedding_example.php
 
 function getSimpleEmbedding($pageToEmbed )
 {
+$pageToEmbed = str_replace(' ','%20',$pageToEmbed);
   require_once(dirname(__FILE__) . "/httpclient/http.php");
   global $wgAigaion;
   $result = "";
