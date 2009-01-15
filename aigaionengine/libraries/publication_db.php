@@ -1150,6 +1150,7 @@ class Publication_db {
     return $result;
   }
   
+  //contributed by Andreas Bulling
   function getForYear($year_id,$order='')
   {
     $orderby='actualyear DESC, cleantitle';

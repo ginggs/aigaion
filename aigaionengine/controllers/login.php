@@ -21,7 +21,7 @@ class Login extends Controller {
         //get login object
         $userlogin = getUserLogin();
         if ($userlogin->isLoggedIn()) {
-            redirect(implode('/',$segments));
+            redirect(str_replace(' ','%20',implode('/',$segments)));
         }
         $data = array('segments' => $segments);
   
@@ -77,7 +77,7 @@ class Login extends Controller {
             //remove first two elements
             array_shift($segments);
             array_shift($segments);
-            redirect(implode('/',$segments));
+            redirect(str_replace(' ','%20',implode('/',$segments))); //note: if we don't replace this %20 / space, we sometimes get truncated dfata after some redirects, so e.g. "readapi/link/topic/Emergent games" in the end (after some login redirects) tries to link to "Emergent" 
         } else {
             //if failure: redirect
             $segments = $this->uri->segment_array();
@@ -89,7 +89,7 @@ class Login extends Controller {
             $userlogin->logout(); //it SHOULD be the case that an error message has been set already.
             if ($showForm)
             {
-              redirect('/login/index/'.implode('/',$segments));
+              redirect('/login/index/'.str_replace(' ','%20',implode('/',$segments))); //note: if we don't replace this %20 / space, we sometimes get truncated dfata after some redirects, so e.g. "readapi/link/topic/Emergent games" in the end (after some login redirects) tries to link to "Emergent"
               //note: the 'remembered form', if any was present, is not forgotten; the session info is still there.
             }
             else

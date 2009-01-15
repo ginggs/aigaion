@@ -21,14 +21,21 @@ function validAigaionId($id,$type)
  */
 function validAigaionPubId($id)
 {
+  //number?
   if (is_numeric($id)) return true;
+  //bibtex id?
   if (preg_match("/[^\\w:\/\-]/i", $id) ==1) return false; //note that we allow the / as DBLP alqways includes it, but Agaion will think it s a segment separator!
   return true;
 }
 function validAigaionTopicId($id)
 {
+  //number?
   if (is_numeric($id)) return true;
-  return false;
+  //also, if it consists of a series of topic names, i.e. top/sub1 name/sub2 name
+  //what is not allowed?
+  //&
+  if (preg_match("/[&;]/i", $id) ==1) return false; 
+  return true;
 }
 /** Return true iff the given id can be a valid aigaion author_id (numbers, or possibly correct name with not too many weird characters)
  */

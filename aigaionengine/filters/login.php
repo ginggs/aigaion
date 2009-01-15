@@ -42,11 +42,11 @@ class Login_filter extends Filter {
       }
       if ($this->config['action']=='redirect') 
       {
-        redirect('/login/dologin/'.implode('/',$segments));
+        redirect('/login/dologin/'.str_replace(' ','%20',implode('/',$segments)));//note: if we don't replace this %20 / space, we sometimes get truncated dfata after some redirects, so e.g. "readapi/link/topic/Emergent games" in the end (after some login redirects) tries to link to "Emergent"
       } 
       else //action = redirectnoform
       {
-        redirect('/login/dologinnoform/'.implode('/',$segments));
+        redirect('/login/dologinnoform/'.str_replace(' ','%20',implode('/',$segments)));//note: if we don't replace this %20 / space, we sometimes get truncated dfata after some redirects, so e.g. "readapi/link/topic/Emergent games" in the end (after some login redirects) tries to link to "Emergent"
       }
     } else {
         if ($CI->latesession->get('FORMREPOST')==True) {

@@ -168,7 +168,109 @@ class Topic_db {
         return $topic;
     }
 
+	/*
+	Accepts an array with a topic structure.
 
+	Starts with the last item of the list and searches forward through the array to find unique topic.
+	Given that the two topic structures with the names and ids:
+	a(id2)/b(id3)/c(id4)
+	and
+	d(id5)/e(id6)/c(id7)
+	exist and the function is sent an array with a-b-c, the function first checks c, finds two topics with the same name,
+	then checks b-c and returns topic c with id4.
+
+	Given that Aigiona allows identical topic structures an array of matching topics is returned, if the structure is not unique. e.g.
+	if there are two structures a(id10)/b(id11)/c(id12) and a(id20)/b(id21)/c(id22) both id12 and id22 are returned.
+
+  Contribution by {\O}yvind
+	*/
+	function getTopicIDFromNames($topic_name, &$configuration)
+	{
+		$selected_topics = array();
+		$num_topics = count($topic_name);
+		$counter = $num_topics-1;
+		$CI = &get_instance();
+		$Q = $CI->db->getwhere('topics', array('name' => $topic_name[$counter]));
+
+		$numMatches = $Q->num_rows();
+		//NO topics match the last item in the $topic_name array
+		if($numMatches == 0)
+		{
+			return $selected_topics;
+		}
+		//One topic with the given name (the last one in the array) is found.
+		elseif($numMatches == 1)
+		{
+			$topic = $this->getFromRow($Q->row(), $configuration);
+      $topic_id = $topic->topic_id;
+			$selected_topics[] = $topic_id;
+			return $selected_topics;
+		}
+		//More than one topic is found
+		else
+		{
+		  
+			$currentRow = $Q->row();
+			$finished = false;
+			$nextRow = $Q->next_row();
+
+			//traverses all the topics with the given name (the last in the array)
+			while(!$finished){
+				$topic = $this->getFromRow($currentRow, $configuration);
+        $topic_id = $topic->topic_id;
+				$parent_id = $this->getParentId($topic_id);
+
+				/*
+					Compares the parent topics of the given topic with the items in the 'topic_name' array
+			    Uses a depth first search and requires the whole topic structure to be statet until
+			    the 'top' topic, for instance top/a/b/c and top/d/e/c.
+			    A width first search could allow input of only a unique part of the topic structure
+			    for instance b/c and e/c instead of the whole structure.
+			    However, a width first search would require maitaining several lists with the structures
+			    and I think it is easier to do it right with a depth first search.
+				*/
+				$counter = $num_topics-2;
+				if ($counter<0) 
+        {
+          //structure of only one deep...
+          $selected_topics[]  = $topic_id;
+        }
+        else
+				while($counter >= 0)
+				{
+					$parent = $this->getByID($parent_id, $configuration);
+					//top found...
+					if(($counter == 0)&&($parent_id == 1) && ($topic_name[$counter]=="top"))
+					{
+							$selected_topics[]  = $topic_id;
+							$counter--;
+					} else
+          if($topic_name[$counter] == $parent->name)
+					{
+						$counter--;
+						$parent_id = $this->getParentId($parent_id);
+						//we reached the last topic name , and we did not find any non-hit: select this topic, too
+						if ($counter < 0) 
+            {
+              $selected_topics[] = $topic_id;
+            }
+					}
+					else
+					{
+						$counter = -1;
+					}
+				}
+				if($currentRow == $nextRow)
+				{
+					$finished = true;
+				}
+				$currentRow = $nextRow;
+				$nextRow = $Q->next_row();
+			}
+			return $selected_topics;
+		}
+	}
+	
     /** Construct a topic from the POST data present in the topics/edit view. 
     Return null if the POST data was not present. */
     function getFromPost()

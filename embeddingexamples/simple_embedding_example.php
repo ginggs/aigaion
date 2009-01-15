@@ -20,6 +20,8 @@ In the example in this file, try this effect out:
 
 So. Take this into account when designing embedding pages following this simple 
 example.
+
+Basic ideas behind this type of embedding contributed by {\O}yvind Hauge
 */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

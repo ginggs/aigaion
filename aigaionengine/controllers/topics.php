@@ -255,15 +255,59 @@ class Topics extends Controller {
     /** Simple view page for single topic. 
         This controller returns a full web page.
         Third parameter selects topic_id (default:1)
+        or topic name path... for the latter, also see libraries/topic_db#getTopicIDFromNames()
         If topic 1 is chosen, user is redirected to browse/ controller */
 	function single()
 	{
-	    $topic_id = $this->uri->segment(3,1);
-        $order   = $this->uri->segment(4,'year');
-        if (!in_array($order,array('year','type','recent','title','author'))) {
-          $order='year';
-        }
-        $page   = $this->uri->segment(5,0);
+	    	$topic_structure = array();
+	    	$url_segment = 3;
+	    	$topic_name = $this->uri->segment($url_segment,1);
+
+	    	//Checks if the controller is given a topic_id or a topic structure
+	    	if(is_numeric($topic_name))
+	    	{
+	    		$topic_id = $topic_name;
+	    	}
+	    	else
+	    	{
+	    		//breaks down parts of the url into an array of topics and sub topics. STOPS when either the order (e.g. year, type etc) is reached or when the whole url is parsed.
+					while($topic_name != '' && $topic_name != 'year' && 
+                $topic_name != 'type' && $topic_name != 'recent' && 
+                $topic_name != 'title' && $topic_name != 'author') {
+							$topic_structure[] = $topic_name;
+							$url_segment++;
+							$topic_name = $this->uri->segment($url_segment,'');
+					}
+
+					//gets the topicID(s) and checks if it exists, is unique or is a duplicate.
+					//If it is a duplicate or if it does not exist, the method fails and outputs and error message.
+					$config = array();
+					$topic_ids = $this->topic_db->getTopicIDFromNames($topic_structure, $config);
+					if(count($topic_ids) == 1)
+					{
+						$topic_id = $topic_ids[0];
+					}
+					elseif(count($topic_ids) > 1)
+					{
+						appendErrorMessage("Topic structure is not unique in Aigaion. <br/>");
+						redirect('');
+					}
+					else
+					{
+						appendErrorMessage("Topic structure does not exist in Aigaion. <br/>");
+						redirect('');
+					}
+				}
+
+				//if ($topic_id==1) {
+					//redirect('topics/browse');
+				//}
+
+				$order   = $this->uri->segment($url_segment,'year');
+				if (!in_array($order,array('year','type','recent','title','author'))) {
+					$order='year';
+				}
+				$page   = $this->uri->segment($url_segment+1,0);
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
@@ -322,7 +366,101 @@ class Topics extends Controller {
         //set output
         $this->output->set_output($output);
 	}    
-    
+	/*
+		This controller takes the topic either (1) as url containing the names of the topics and subtopics
+		as for instance [aigion_root]/index.php/topics/embedClean/top/subtopic_1/.../subtopic_n
+		or (2) the topicID, for instance: [aigion_root]/index.php/topics/embedClean/18
+
+		Topics CANNOT be named: year, type, recent, title, author, msc or any number. The controller could fail if these topic names are present.
+
+		The method topic_db->getTopicID is used to translate this url into a unique topic ID.
+		
+		Contribution by {\O}yvind
+	*/
+	function embedClean()
+	{
+	    	$topic_structure = array();
+	    	$url_segment = 3;
+	    	$topic_name = $this->uri->segment($url_segment,1);
+
+	    	//Checks if the controller is given a topic_id or a topic structure
+	    	if(is_numeric($topic_name))
+	    	{
+	    		$topic_id = $topic_name;
+	    	}
+	    	else
+	    	{
+	    		//breaks down parts of the url into an array of topics and sub topics. STOPS when either the order (e.g. year, type etc) is reached or when the whole url is parsed.
+					while($topic_name != '' && $topic_name != 'year' && 
+                $topic_name != 'type' && $topic_name != 'recent' && 
+                $topic_name != 'title' && $topic_name != 'author') {
+							$topic_structure[] = $topic_name;
+							$url_segment++;
+							$topic_name = $this->uri->segment($url_segment,'');
+					}
+
+					//gets the topicID(s) and checks if it exists, is unique or is a duplicate.
+					//If it is a duplicate or if it does not exist, the method fails and outputs and error message.
+					$config = array();
+					$topic_ids = $this->topic_db->getTopicIDFromNames($topic_structure, $config);
+					if(count($topic_ids) == 1)
+					{
+						$topic_id = $topic_ids[0];
+					}
+					elseif(count($topic_ids) > 1)
+					{
+						exit("Topic structure is not unique in Aigaion. <br/>");
+					}
+					else
+					{
+						exit("Topic structure does not exist in Aigaion. <br/>");
+					}
+				}
+
+				//if ($topic_id==1) {
+					//redirect('topics/browse');
+				//}
+
+				$order   = $this->uri->segment($url_segment,'year');
+				if (!in_array($order,array('year','type','recent','title','author'))) {
+					$order='year';
+				}
+				$page   = $this->uri->segment($url_segment+1,0);
+				$config=array();
+				$topic = $this->topic_db->getByID($topic_id,$config);
+				$userlogin=getUserLogin();
+				if ($topic==null) {
+					exit("Topic does not exist in Aigaion.<br/>");
+				}
+
+				$this->load->helper('publication');
+
+				$topiccontent['topic']           = $topic;
+				$content['header']          = "Publications for topic: ".$topic->name;
+				switch ($order) {
+						case 'type':
+								$content['header']          = 'Publications for topic '.$topic->name.' sorted by journal and type';
+								break;
+						case 'recent':
+								$content['header']          = 'Publications for topic '.$topic->name.' sorted by recency';
+								break;
+						case 'title':
+								$content['header']          = 'Publications for topic '.$topic->name.' sorted by title';
+								break;
+						case 'author':
+								$content['header']          = 'Publications for topic '.$topic->name.' sorted by first author';
+								break;
+				}
+				$content['publications']    = $this->publication_db->getForTopic($topic_id,$order);
+				$content['order'] = $order;
+
+
+				$output = $this->load->view('topics/clean', $topiccontent, true);
+				$output .= $this->load->view('publications/listClean', $content, true);
+
+				$this->output->set_output($output);
+
+	}    
     
     /**
     topics/commit

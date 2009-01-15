@@ -35,8 +35,46 @@ class Readapi extends Controller {
         echo anchor('publications/show/'.$publication->pub_id,$publication->title,array('target'=>'_blank', 'title'=>'Go to this publication in the Aigaion database'));
         break;
       case "topic":
-        $topic_id = $this->uri->segment(4,'');
-        if ($topic_id == '') exit('no id');
+	    	$topic_structure = array();
+	    	$url_segment = 4;
+	    	$topic_name = $this->uri->segment($url_segment,1);
+
+	    	//Checks if the controller is given a topic_id or a topic structure
+	    	if(is_numeric($topic_name))
+	    	{
+	    	  $topic_structure[] = $topic_name;
+	    		$topic_id = $topic_name;
+	    	}
+	    	else
+	    	{
+	    		//breaks down parts of the url into an array of topics and sub topics. STOPS when either the order (e.g. year, type etc) is reached or when the whole url is parsed.
+					while($topic_name != '' && $topic_name != 'year' && 
+                $topic_name != 'type' && $topic_name != 'recent' && 
+                $topic_name != 'title' && $topic_name != 'author') {
+							$topic_structure[] = $topic_name;
+							$url_segment++;
+							$topic_name = $this->uri->segment($url_segment,'');
+					}
+
+					//gets the topicID(s) and checks if it exists, is unique or is a duplicate.
+					//If it is a duplicate or if it does not exist, the method fails and outputs and error message.
+					$config = array();
+					$topic_ids = $this->topic_db->getTopicIDFromNames($topic_structure, $config);
+					if(count($topic_ids) == 1)
+					{
+						$topic_id = $topic_ids[0];
+					}
+					elseif(count($topic_ids) > 1)
+					{
+						exit("Topic structure is not unique in Aigaion. ".implode('/',$topic_structure)."<br/>");
+					}
+					else
+					{
+						exit("Topic structure does not exist in Aigaion. ".implode('/',$topic_structure)."<br/>");
+					}
+				}
+        if ($topic_id == '') exit('No topic id');
+        
         //load topic
         $config = array();
         $topic = $this->topic_db->getByID($topic_id,$config);
@@ -47,7 +85,7 @@ class Readapi extends Controller {
             
           if ($topic == null)
           {
-            exit("Unknown topic id or topic path: ".'');
+            exit("Unknown topic id or topic path: ".implode('/',$topic_structure));
           }
         }
         echo anchor('topics/single/'.$topic->topic_id,$topic->name,array('target'=>'_blank', 'title'=>'Go to this topic in the Aigaion database'));
@@ -68,7 +106,7 @@ class Readapi extends Controller {
             
           if ($author == null)
           {
-            exit("Unknown author id or name: ".$author_id);
+            exit("CANNOT INTERPRET FULL AUTHOR NAMES YET. Unknown author id or name: ".$author_id);
           }
         }
         echo anchor('authors/show/'.$author->author_id,$author->getName(),array('target'=>'_blank', 'title'=>'Go to this author in the Aigaion database'));
@@ -103,8 +141,45 @@ class Readapi extends Controller {
         $this->_embed( "Embedding for ".$publication->title ,$target);
         break;
       case "topic":
-        $topic_id = $this->uri->segment(5,'');
-        if ($topic_id == '') $this->_embed('no id',$target);
+	    	$topic_structure = array();
+	    	$url_segment = 5;
+	    	$topic_name = $this->uri->segment($url_segment,1);
+
+	    	//Checks if the controller is given a topic_id or a topic structure
+	    	if(is_numeric($topic_name))
+	    	{
+	    	  $topic_structure[] = $topic_name;
+	    		$topic_id = $topic_name;
+	    	}
+	    	else
+	    	{
+	    		//breaks down parts of the url into an array of topics and sub topics. STOPS when either the order (e.g. year, type etc) is reached or when the whole url is parsed.
+					while($topic_name != '' && $topic_name != 'year' && 
+                $topic_name != 'type' && $topic_name != 'recent' && 
+                $topic_name != 'title' && $topic_name != 'author') {
+							$topic_structure[] = $topic_name;
+							$url_segment++;
+							$topic_name = $this->uri->segment($url_segment,'');
+					}
+
+					//gets the topicID(s) and checks if it exists, is unique or is a duplicate.
+					//If it is a duplicate or if it does not exist, the method fails and outputs and error message.
+					$config = array();
+					$topic_ids = $this->topic_db->getTopicIDFromNames($topic_structure, $config);
+					if(count($topic_ids) == 1)
+					{
+						$topic_id = $topic_ids[0];
+					}
+					elseif(count($topic_ids) > 1)
+					{
+						$this->_embed("Topic structure is not unique in Aigaion. <br/>");
+					}
+					else
+					{
+						$this->_embed("Topic structure does not exist in Aigaion. <br/>");
+					}
+				}
+        if ($topic_id == '') $this->_embed('No topic id',$target);
         //load topic
         $config = array();
         $topic = $this->topic_db->getByID($topic_id,$config);
@@ -115,7 +190,7 @@ class Readapi extends Controller {
             
           if ($topic == null)
           {
-            $this->_embed("Unknown topic id or topic path: ".'',$target);
+            $this->_embed("Unknown topic id or topic path: ".implode('/',$topic_structure),$target);
           }
         }
         $this->_embed( "Embedding for ".$topic->name,$target); //use a view for this
