@@ -3,30 +3,30 @@
 Language file global common strings
 */
 
-
+ 
 //objects
 $lang['main_attachment']    = 'Anlage';
 $lang['main_author']        = 'Autor';
 $lang['main_topic']         = 'Thema';
-$lang['main_publication']   = 'Veröffentlichung';
+$lang['main_publication']   = 'VerÃ¶ffentlichung';
 
 $lang['main_attachments']    = 'Anlagen';
 $lang['main_authors']        = 'Autoren';
 $lang['main_topics']         = 'Themen';
-$lang['main_publications']   = 'Veröffentlichungen';
+$lang['main_publications']   = 'VerÃ¶ffentlichungen';
 
 //actions
 $lang['main_edit']          = 'bearbeiten';
 $lang['main_delete']        = 'entfernen';
 $lang['main_print']         = 'drucken';
 $lang['main_create']        = 'erstellen';
-$lang['main_add']           = 'zufügen';
-$lang['main_addX']          = 'füge %s zu';
+$lang['main_add']           = 'zufÃ¼gen';
+$lang['main_addX']          = 'fÃ¼ge %s zu';
 $lang['main_update']        = 'anpassen';
 $lang['main_cancel']        = 'annulieren';
-$lang['main_confirm']       = 'bestätigen';
+$lang['main_confirm']       = 'bestÃ¤tigen';
 $lang['main_view']          = 'anzeigen';
-$lang['main_browse']        = 'blättern';
+$lang['main_browse']        = 'blÃ¤ttern';
 $lang['main_search']        = 'suche';
 $lang['main_bookmark']      = 'bookmark';
 $lang['main_bookmarkall']   = 'bookmark all';
