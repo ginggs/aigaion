@@ -526,10 +526,12 @@ class Publication_db {
     if (is_array($publication->keywords)) //we bypass the ->getKeywords() function here, it would try to retrieve from DB.
     {
       $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
-    
+      $inserted = array(); //to avoid duplicates
       foreach ($publication->keywords as $keyword)
       {
+        if (in_array($keyword->keyword_id,$inserted)) continue;
         $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword->keyword_id);
+        $inserted[] = $keyword->keyword_id;
         $CI->db->insert('publicationkeywordlink', $data);
       }
     }
@@ -726,10 +728,12 @@ class Publication_db {
     if (is_array($publication->keywords)) //we bypass the ->getKeywords() function here, it would try to retrieve from DB.
     {
       $publication->keywords  = $CI->keyword_db->ensureKeywordsInDatabase($publication->keywords);
-    
+      $inserted = array(); //to avoid duplicates
       foreach ($publication->keywords as $keyword)
       {
+        if (in_array($keyword->keyword_id,$inserted)) continue;
         $data = array('pub_id' => $publication->pub_id, 'keyword_id' => $keyword->keyword_id);
+        $inserted[] = $keyword->keyword_id;
         $CI->db->insert('publicationkeywordlink', $data);
       }
     }
