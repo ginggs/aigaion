@@ -122,6 +122,7 @@ class Import extends Controller {
       $count = 0;
       for ($i = 0; $i < $import_count; $i++)
       {
+
         if ($this->input->post('do_import_'.$i) == 'CHECKED')
         {
           $count++;
