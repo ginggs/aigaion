@@ -9,11 +9,11 @@
 	foreach ($Q->result() as $R)  {
 	    $author = $CI->author_db->getFromRow($R);
 	    
-		$cleanname = addslashes ($author->cleanname);
+		$cleanname = addslashes ($author->cleanname."||".$author->getName('fvl'));
 		$name = addslashes ($author->getName('vlf'));
 
 		echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
-		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}||".$author->getName('fvl')."';\n";
+		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
 		echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
 
 		$count++;
