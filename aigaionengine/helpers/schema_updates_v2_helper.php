@@ -22,6 +22,31 @@
         
 
     /** 
+    Extend size of topic name field
+    */
+    function updateSchemaV2_15() {
+        $CI = &get_instance();
+        if (checkVersion('V2.15', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_14()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+       
+        //extend fields in user table
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."topics` 
+                                  CHANGE `name` `name`  varchar(255);");
+        $res = mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."topics` 
+                                  CHANGE `cleanname` `cleanname`  varchar(255);");
+                                  
+       
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.15');
+    }
+    
+    /** 
     Introduce Logintegration table
     */
     function updateSchemaV2_14() {
