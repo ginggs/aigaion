@@ -103,4 +103,26 @@ if ($userlogin->hasRights('publication_edit')) {
     echo form_close();
 }
 ?>
+
+<br/>
+<?php
+
+if ($userlogin->hasRights('publication_edit')) {
+    echo 'Set edit access level for all bookmarked publications:';
+    echo form_open('bookmarklist/seteditpubaccesslevel');
+    echo form_dropdown('editaccesslevel',array('public'=>'public','intern'=>'intern','private'=>'private'),'intern');
+    echo form_submit(array('name'=>'seteditpubaccesslevel','title'=>'Set the edit  access levels for all publications on the bookmarklist'),'Set publication edit access level');
+    echo form_close();
+}
+?>
+<br/>
+<?php
+if ($userlogin->hasRights('publication_edit')) {
+    echo 'Set edit access level for all attachments of bookmarked publications:';
+    echo form_open('bookmarklist/seteditattaccesslevel');
+    echo form_dropdown('editaccesslevel',array('public'=>'public','intern'=>'intern','private'=>'private'),'intern');
+    echo form_submit(array('name'=>'seteditattaccesslevel','title'=>'Set the edit access levels for all attachments of publications on the bookmarklist'),'Set attachment edit access level');
+    echo form_close();
+}
+?>
 <br/>
