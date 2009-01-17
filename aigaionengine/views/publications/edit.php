@@ -54,7 +54,7 @@ echo "</script>";
       <td>Citation:</td>
       <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '90'), $publication->bibtex_id); ?></td>
     </tr>
-    
+<!-- insert text1 -->
 <?php 
     //collect show data for all publication fields 
     //the HIDDEN fields are shown at the end of the form; the NOT HIDDEN ones are shown here.
@@ -80,43 +80,39 @@ echo "</script>";
       }
       $fieldCol .= ':';
       $valCol = "";
-        if ($key == "month")
+      if ($key == "month")
+      {
+        
+        $month = $publication->month;          
+        if (array_key_exists($month,getMonthsInternal())) 
         {
-          
-          $month = $publication->month;          
-          if (array_key_exists($month,getMonthsInternal())) 
-          {
-            $valCol .= "<div id='monthbox' name='monthbox'><script language='javascript'>monthFieldSwitch(true);</script></div>\n";
-          } 
-          else 
-          {
-            $valCol .= "<div id='monthbox' name='monthbox'><script language='javascript'>monthFieldSwitch(false);</script></div>\n";     
-          }
+          $valCol .= "
+            <div id='monthbox' name='monthbox'>
+            </div>
+            <script language='javascript'>monthFieldSwitch(true);</script>
+            "; //note: the script must be placed outside the div. IE crashes on replacing the content of the div, when it includes the script, while the script is still running
+        } 
+        else 
+        {
+          $valCol .= "
+            <div id='monthbox' name='monthbox'>
+            </div>     
+            <script language='javascript'>monthFieldSwitch(false);</script>
+            "; //note: the script must be placed outside the div. IE crashes on replacing the content of the div, when it includes the script, while the script is still running
         }
-        else if ($key == "pages")
+      }
+      else if ($key == "pages")
+      {
         $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'pages', 
-                                                                  'id' => 'pages', 
-                                                                  'size' => '90', 
-                                                                  'alt' => $class, 
-                                                                  'autocomplete' => 'off', 
-                                                                  'class' => $class), 
-                                                            $publication->pages)."</span>\n";
-//          $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'firstpage', 
-//                                                                  'id' => 'firstpage', 
-//                                                                  'size' => '3', 
-//                                                                  'alt' => $class, 
-//                                                                  'autocomplete' => 'off', 
-//                                                                  'class' => $class), 
-//                                                            $publication->firstpage)
-//                                                ." - "
-//                                                .form_input(array('name' => 'lastpage', 
-//                                                                  'id' => 'lastpage', 
-//                                                                  'size' => '3', 
-//                                                                  'alt' => $class, 
-//                                                                  'autocomplete' => 'off', 
-//                                                                  'class' => $class), 
-//                                                            $publication->lastpage)."</span>\n";
-        elseif (($key == "abstract") || ($key == "userfields" ))
+                                                                'id' => 'pages', 
+                                                                'size' => '90', 
+                                                                'alt' => $class, 
+                                                                'autocomplete' => 'off', 
+                                                                'class' => $class), 
+                                                          $publication->pages)."</span>\n";
+      }
+      elseif (($key == "abstract") || ($key == "userfields" ))
+      {
           $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'cols' => '87', 
@@ -125,7 +121,9 @@ echo "</script>";
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
                                                                $publication->$key)."</span>\n";
-        else {
+      }
+      else 
+      {
           $onelineval = $publication->$key;
           $valCol .= "<span title='".$class." field'>".form_input(array('name' => $key, 
                                                                      'id' => $key, 
@@ -134,11 +132,10 @@ echo "</script>";
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
                                                                $onelineval)."</span>\n";      
-        }
+      }
     
-    //at this point, $valcol and $fieldcol give the elements for the form. Now to decide:
-    //show directly (non-hidden) or postpone to the dispreferred section?
-        
+      //at this point, $valcol and $fieldcol give the elements for the form. Now to decide:
+      //show directly (non-hidden) or postpone to the dispreferred section?
       if ($class=='hidden') {
         $showdata = "<tr class='hidden'>";
       } else {
@@ -151,8 +148,8 @@ echo "</script>";
         <td valign='top'>
         ".$valCol."
         </td>
-      </tr>";
-
+      </tr>
+      ";
       if ($class=='hidden') {
         $hiddenFields .= $showdata;
       } else {
@@ -175,6 +172,7 @@ echo "</script>";
       
       $key    = 'keywords';
       $class  = 'optional';
+
 ?>      
     <tr>
       <td valign='top'>Keywords:</td>
