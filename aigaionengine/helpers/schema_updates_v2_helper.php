@@ -19,6 +19,24 @@
 |       
 |       
 */
+
+    /** 
+    intermediate release with some bug fixes
+    */
+    function updateSchemaV2_16() {
+        if (checkVersion('V2.16', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_15()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        if (!setReleaseVersion('2.1.1','bugfix',"
+        Aigaion 2..11 is a bug fix release.
+        ")) 
+            return False;
+        
+        return setVersion('V2.16');
+    }
         
 
     /** 
@@ -65,7 +83,6 @@
     }
     
     /** 
-    Initial schema update, bugfixes and install scripts
     */
     function updateSchemaV2_13() {
         if (checkVersion('V2.13', true)) {
