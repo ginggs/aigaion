@@ -14,6 +14,7 @@
         echo "URL of this installation: ".AIGAION_ROOT_URL."<br/>";
         echo "PHP version: ".phpversion()."<br/>";
         echo "Aigaion Database Version: ".$version."<br/>";
+        echo "Based on the <a href='http://codeigniter.com/' target=_blank>CodeIgniter</a> framework<br/>";
         
 ?>
   </p>
