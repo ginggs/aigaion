@@ -31,7 +31,7 @@
             return False;
         }
         if (!setReleaseVersion('2.1.1','bugfix',"
-        Aigaion 2..11 is a bug fix release.
+        Aigaion 2.1.1 is a bug fix release.
         ")) 
             return False;
         
