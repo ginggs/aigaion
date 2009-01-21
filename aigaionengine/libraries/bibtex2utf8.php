@@ -323,7 +323,17 @@ class Bibtex2utf8 {
             array("TH", "Þ"),
             array("th", "þ"),
             
-
+            //a number of special latin-1 chars:
+            array("pounds", "£"),
+            array("S", "§"),
+            array("textcopyright", "©"),
+            array("textordfeminine", "ª"),
+            array("-", "-"),
+            array("textregistered", "®"),
+            array("P", "¶"),
+            array("textperiodcentered", "·"),
+            array("textordmasculine", "º"),
+            
  	                //{"\\\\gal" ,"α"}, ??? never new that encoding? was in the file from variothingy... 
 
  	          array("l", "ł"),   

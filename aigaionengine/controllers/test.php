@@ -20,8 +20,11 @@ class Test extends Controller {
 		parent::Controller();	
 	}
 	
+	function verbose() {
+	  $this->index(true);
+  }
 	/** A test controller. */
-	function index()
+	function index($debug=false)
 	{
 	  header("Content-Type: text/html; charset=UTF-8");
     $content = " 
@@ -36,7 +39,7 @@ class Test extends Controller {
     See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with \$debug parameter = true to get more output.
     ";    
     
-    $content .= $this->_testbibtex();
+    $content .= $this->_testbibtex($debug);
     
     $content .= "</body></html>";
     
@@ -70,15 +73,19 @@ class Test extends Controller {
              "Polish: \\c{a} \\c{e} \\'{c} \\l{} \\'{n} \\'{s} \\.{z} \\'{z} \\c{A} \\c{E} \\'{C} \\L{} \\'{N} \\'{S} \\.{Z} \\'{Z} French: {\\oe} {\\OE} Other: {\\TH} {\\th} {\\v{s}}", //input on this line...
              "Some missing -- not converted on import and not on export. Polish: (some missing chars) ć ł (more missing chars) Ć Ł (yet more missing chars) French: œ Œ Other: Þ þ š" //expected output on conversion from bibtex to utf8 characters on this line...
       ),
+      array ('test-Latin-1-misc-specialones',
+             "!` \\c{} ?`",
+             "¡¸¿"
+      ),
       array ('test-Latin-1-misc',
-             "\\pounds \\S \\textcopyright \\textordfeminine \\- \\textregistered \\P \\textperiodcentered \\textordmasculine !` \\c{} ?`",
-             "(All missing -- not converted on import and not on export)"
+             "\\pounds \\S \\textcopyright \\textordfeminine \\- \\textregistered \\P \\textperiodcentered \\textordmasculine",
+             "£§©ª-®¶·º"
       ),
       array ('test-ASCII-chars',
             "! \\# \\$ \\% \\& ' ( ) * + , - . / 0-9 : ; = ? @ A-Z [ ] \\_ ` a-z \\{ \\}",
             "(These still need some work)"
       ),
-      array ('test-Latin-1-lower-braces1', //this one is supposedly the most complete of thge brace and case variations-- the other variations of braces may miss one or two characters...
+      array ('test-Latin-1-lower-braces1', //this one is supposedly the most complete test of the brace and case variations (concerning number of letters tested) -- the other variations of braces may miss one or two characters...
              "{\\`a} {\\'a} {\\^a} {\\~a} {\\=a} {\\\"a} {\\aa} {\\ae} {\\c c} {\\`e} {\\'e} {\\^e} {\\~e} {\\=e} {\\\"e} {\\i} {\\`\\i} {\\'\\i} {\\^\\i} {\\~\\i} {\\=\\i} {\\\"\\i} {\\`i} {\\'i} {\\^i} {\\~i} {\\=i} {\\\"i} {\\~n} {\\`o} {\\'o} {\\^o} {\\~o} {\\=o} {\\\"o} {\\o} {\\`u} {\\'u} {\\^u} {\\~u} {\\=u} {\\\"u} {\\'y} {\\\"y} {\\ss}",
              "à á â ã ā ä å æ ç è é ê ẽ ē ë ı ì í î ĩ ī ï ì í î ĩ ī ï ñ ò ó ô õ ō ö ø ù ú û ũ ū ü ý ÿ ß"
       ),
