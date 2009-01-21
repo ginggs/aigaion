@@ -76,8 +76,8 @@
     {
       ?>  
       <li class="mainmenu-spacer"></li>
-      <li><ul class="mainmenu">
       <li class="mainmenu-header"><?php echo $this->lang->line('menu_create_header'); ?></li>
+      <li><ul class="mainmenu">
       <li class='mainmenu'><?php echo anchor('publications/add', $this->lang->line('menu_create_pub')); ?></li>
       <li class='mainmenu'><?php echo anchor('authors/add', $this->lang->line('menu_create_author')); ?></li>
       <?php
