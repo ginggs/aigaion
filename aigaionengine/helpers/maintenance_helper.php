@@ -463,16 +463,16 @@ function checkTopicTopicLinks()
     $CI = &get_instance();
     $topic_ids = array();
     $count = 0;
-    $this->db->distinct();
+    $CI->db->distinct();
     $CI->db->select('source_topic_id');
-    $Q = $CI->db->get_where('topictopiclink',array('source_topic_id != "1"'));
+    $Q = $CI->db->get_where('topictopiclink',array('source_topic_id != ' => '1'));
     foreach ($Q->result() as $row) {
         if (!in_array($row->source_topic_id, $topic_ids))
             $topic_ids[] = $row->source_topic_id;
     }
-    $this->db->distinct();
+    $CI->db->distinct();
     $CI->db->select('target_topic_id');
-    $Q = $CI->db->get_where('topictopiclink',array('target_topic_id != "1"'));
+    $Q = $CI->db->get_where('topictopiclink',array('target_topic_id != ' => '1'));
     foreach ($Q->result() as $row) {
         if (!in_array($row->target_topic_id, $topic_ids))
             $topic_ids[] = $row->target_topic_id;
@@ -519,7 +519,7 @@ function checkTopicParents()
     $result = "";
     $report = "";
     $CI->db->select('topic_id,name');
-    $Q = $CI->db->get_where('topics','topic_id<>1');
+    $Q = $CI->db->get_where('topics',array('topic_id !='=>'1'));
     foreach ($Q->result() as $R) {
         $Q2 = $CI->db->get_where('topictopiclink',array('source_topic_id'=>$R->topic_id));
         if ($Q2->num_rows() == 0) { //we found a parentless topic
