@@ -249,14 +249,18 @@ class Site extends Controller {
         //echo Chr(239).Chr(187).Chr(191); //unfortunately, other editors will NOT b able to handle the BOM :( Also, on the web I find suggestions that BOM breaks IE (http://trac.seagullproject.org/wiki/Misc/CharsetEncoding
         //so we choose another solution, see below
         //http://mailman.rfc-editor.org/pipermail/rfc-interest/2008-October/000771.html
-        echo "#Iñtërnâtiônàlizætiøn
-        #Aigaion developers: 
-        #Don't remove the above commented sentence with some UTF8 characters in it, 
-        #as it is needed to make sure that editors recognize the downloaded file as UTF8. (note that we could have
-        # added a BOM instead, but many editors choke on BOM, so we chose not to do this.)
-        #Refer to the following link for a discussion about this problem with editors 'guessing'
-        # the encoding.
-        #http://mailman.rfc-editor.org/pipermail/rfc-interest/2008-October/000771.html";
+        echo "-- Iñtërnâtiônàlizætiøn
+        -- Aigaion developers: 
+        -- Don't remove the above commented sentence with some UTF8 characters in it, 
+        -- as it is needed to make sure that editors recognize the downloaded file as UTF8. (note that we could have
+        --  added a BOM instead, but many editors choke on BOM, so we chose not to do this.)
+        -- Refer to the following link for a discussion about this problem with editors 'guessing'
+        --  the encoding.
+        -- http://mailman.rfc-editor.org/pipermail/rfc-interest/2008-October/000771.html
+        -- - Aigaion database: ".AIGAION_DB_NAME."
+        -- - Export date: ".date("Y_m_d")."
+
+        ";
         
         echo $backup;
         //echo "</body></html>";
@@ -271,14 +275,176 @@ class Site extends Controller {
 	Fails with error message when one of:
 	    insufficient user rights
 
-	Paramaters:
-	    uploaded sql file from earlier backup
+	Parameters:
+	   none
 	    
 	Returns:
-	    To the front page, with a message
+	    a view is shown for uploading the backup file, or a text area for pasting the SQL directly
+    
 	*/
 	function restore()
 	{
+    //check rights
+    $userlogin = getUserLogin();
+    if (    (!$userlogin->hasRights('database_manage'))
+        ) 
+    {
+      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      redirect('');
+    }
+    $headerdata = array();
+    $headerdata['title'] = 'Restore backup';
+    $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+    
+    $output = $this->load->view('header', $headerdata, true);
+    
+    $output .= $this->load->view('site/restore',
+                                  array(),
+                                  true);
+    
+    $output .= $this->load->view('footer','', true);
+
+    //set output
+    $this->output->set_output($output);	    
+    return;    
 	}
+	/** restore database from uploaded file
+	 * parameters:
+	 *   POST: the backup file
+	 */      	
+	function restorefromfile() 
+	{
+	  //check rights
+    $userlogin = getUserLogin();
+    if (    (!$userlogin->hasRights('database_manage'))
+        ) 
+    {
+      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      redirect('');
+    }
+
+  	$this->file_upload->the_file = $_FILES['backup_file']['name'];
+  	$this->file_upload->http_error = $_FILES['backup_file']['error'];
+  	$this->file_upload->extensions = array(".sql");
+  
+  	if (! $this->file_upload->validateExtension()) {
+  		appendErrorMessage("The file appears not to be an SQL file. Please select a valid Aigaion backup file.<br />");
+  		redirect('site/maintenance');
+  	}
+  	if ($this->file_upload->http_error > 0) {
+  		appendErrorMessage($this->file_upload->error_text($this->file_upload->http_error));
+  		redirect('site/maintenance');
+  	}
+  
+  	//load the file into an array. Each line in one array element.
+  	$sqlArray = array();
+    $sqlArray = file($_FILES['backup_file']['tmp_name']);
+    
+    //drop all...
+    $this->load->dbforge();
+    $tables = $this->db->list_tables();
+    foreach ($tables as $table)
+    {
+      //remopve bloody prefix, as listtables includes it, and drop_table includes it again...
+       $this->dbforge->drop_table(substr($table,strlen(AIGAION_DB_PREFIX)));
+    }     
+    //start loading backup data
+    $this->load->helper("utf8");
+  	$report = "";
+  	$query  = "";
+  	appendMessage("<b>Restored from:</b><br/>\n");
+  	foreach ($sqlArray as $part) 
+    {
+
+  		$complete = false;
+  		$part = trim(rtrim($part,'\r\n'));
+  		if ((utf8_substr($part, 0, 3) == "-- ")||(utf8_substr($part, 0, 1) == "#")) { # we have got a comment
+  			if (utf8_substr($part, 3, 2) == "- ") # ... which is meant to be displayed to the user
+  			{
+  				//appendMessage(utf8_substr($part, 5, uft8_strlen($part) - 5)."<br/>");
+  			}
+  		} elseif (strlen($part) > 0) { // we have sql
+  			$query .= $part." ";
+  			if (substr($part, -1, 1) == ";") {
+  				if (substr($part, -2, 1) != "\\")
+  					$complete = true;
+  			}
+  		}
+  
+  		if ($complete) {
+  			$this->db->query($query);
+  			//appendMessage($query.'<hr>');
+  			$err = mysql_error(); 
+  			if ($err != null) appendErrorMessage($err); 
+  			$query = "";
+  			$complete = false;
+  		}
+  	}
+    redirect('site/maintenance');
+  }
+	/** restore database from SQl in text area
+	 * parameters:
+	 *   POST: the backup data as a string
+	 */      	
+  function restorefromsql()
+  {
+    //check rights
+    $userlogin = getUserLogin();
+    if (    (!$userlogin->hasRights('database_manage'))
+        ) 
+    {
+      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      redirect('');
+    }
+    $this->load->helper("utf8");
+    $data= $this->input->post('backup_data');
+    if (trim($data) == '') 
+    {
+      appendErrorMessage("no data given to restore!");
+      redirect('site/maintenance');
+    }
+  	$sqlArray = explode("\n",$data);
+    
+    //drop all...
+    $this->load->dbforge();
+    $tables = $this->db->list_tables();
+    foreach ($tables as $table)
+    {
+      //remopve bloody prefix, as listtables includes it, and drop_table includes it again...
+       $this->dbforge->drop_table(substr($table,strlen(AIGAION_DB_PREFIX)));
+    }     
+    //start loading backup data
+  	$report = "";
+  	$query  = "";
+  	appendMessage("<b>Restored from:</b><br/>\n");
+  	foreach ($sqlArray as $part) 
+    {
+
+  		$complete = false;
+  		$part = trim(rtrim($part,"\r\n"));
+  		if ((utf8_substr($part, 0, 3) == "-- ")||(utf8_substr($part, 0, 1) == "#")) { # we have got a comment
+  			if (utf8_substr($part, 3, 2) == "- ") # ... which is meant to be displayed to the user
+  			{
+  				appendMessage(substr($part, 5)."<br/>");
+  			}
+  		} elseif (strlen($part) > 0) { // we have sql
+  			$query .= $part." ";
+  			if (substr($part, -1, 1) == ";") {
+  				if (substr($part, -2, 1) != "\\")
+  					$complete = true;
+  			}
+  		}
+  
+  		if ($complete) {
+  			$this->db->query($query);
+  			//appendMessage($query.'<hr>');
+  			$err = mysql_error(); 
+  			if ($err != null) appendErrorMessage($err); 
+  			$query = "";
+  			$complete = false;
+  		}
+  	}
+    redirect('site/maintenance');    
+  }
 }
 ?>
