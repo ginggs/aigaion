@@ -31,7 +31,12 @@ div {
     margin      : 0px;
     padding     : 0px;
     position    : relative;
+    min-width:0;
 }
+/*min-width was needed for the hasLayout bug, see:
+http://www.satzansatz.de/cssd/onhavinglayout.html
+http://www.cayenne.co.uk/ie7/disappearing-content.html
+*/
 
 td, table, tr, tbody {
     border          : 0px;
@@ -314,6 +319,7 @@ ul.topictree-list {
 li.topictree-node {
     margin-top    : 0em;
     margin-bottom : 0em;
+
 }
 
 li.topictree-leaf {
@@ -322,11 +328,17 @@ li.topictree-leaf {
 
 /* IE hack 
 problem: empty <li> has a height of 1 em in IE 5 and IE7.
+
+Originally, we used
+  #margin-top: -1em;  Works on all IE browsers up to version 7 
+  _margin-top: 0em;   Works on all IE browsers prior to version 7 
+  
+But it seems the display:inline does the trick here as well, and it sems to avoid one or two other display oddities
+http://www.positioniseverything.net/explorer/doubled-margin.html
 */
 li.topictree-children {
+  display: inline;
   margin-top: 0em;
-  #margin-top: -1em; /* Works on all IE browsers up to version 7 */
-  _margin-top: 0em;  /* Works on all IE browsers prior to version 7 */
 }
 
 .subscriptionlink {

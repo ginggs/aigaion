@@ -10,17 +10,17 @@
 |   Provides several functions for special character conversion (bibtex<->utf8)
 |
 |   Though based upon the old specialcharfunctions of aigaion 1.x,
-|   this helper ONLY considers itself with converting certain UTF-8 encoded
-|   characters to BiBTeX equivalents and vice versa. No more helper functions 
+|   this library ONLY concerns itself with converting certain UTF-8 encoded
+|   characters to BiBTeX equivalents and vice versa. No more library functions 
 |   are available for conversion to html entities and such - as we use utf-8
 |   this is no longer needed in most cases; and for the quote replacement, other 
 |   possibilities exist.
 |
-|   This helper is of course woefully incomplete - we can never capture ALL bibtex codes 
+|   This library is of course woefully incomplete - we can never capture ALL bibtex codes 
 |   and their utf8 equivalents. We use a number of codes hardcoded in this file.
 |   Do you find missing codes there? Just suggest the additions to the Aigaion developers.
 |
-|   We expect that this helper is only loaded on import and export of bibtex.
+|   We expect that this library is only loaded on import and export of bibtex.
 |
 | Note:
 | A string containing math code will not be converted from bibtex to utf8 -- the
@@ -51,9 +51,8 @@ TODO:
  handle empty suffix (e.g. \l{}ambda )
 
 If you want to add extra character conversions:
-  check which group it belongs to (one of the four below)
-  add its entry
-  add the reverse conversion in the reverse lists
+  check which group it belongs to 
+  add its entry for conversion and reverse conversion
   don't forget to take care of escapes needed for PHP as well as those needed for regexps!
 */
 
