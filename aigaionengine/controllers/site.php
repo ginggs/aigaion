@@ -404,7 +404,7 @@ class Site extends Controller {
       redirect('site/maintenance');
     }
   	$sqlArray = explode("\n",$data);
-    
+    //problem: $data now contains those \' in the wrong way somehow; they ended up being \\\' or something like that
     //drop all...
     $this->load->dbforge();
     $tables = $this->db->list_tables();
@@ -436,7 +436,7 @@ class Site extends Controller {
   		}
   
   		if ($complete) {
-  			$this->db->query($query);
+  			mysql_query($query);
   			//appendMessage($query.'<hr>');
   			$err = mysql_error(); 
   			if ($err != null) appendErrorMessage($err); 

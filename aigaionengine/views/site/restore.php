@@ -10,10 +10,6 @@ $this->load->helper('form');
 
 echo "<div class='editform'>";
 echo "<div class='errormessage'>UNSTABLE FUNCTION IN TESTING PHASE. DON'T USE THIS IF YOU DON'T HAVE A GOOD BACKUP OF YOUR LATEST DATA.<br><br>Most importantly, if you don't paste the full contents of an Aigaion 2 backup file here, the database will end up being corrupted.
-<br><br>
-Furthermore, THIS RESTORE FUNCTION DOES NOT YET DEAL PROPERLY WITH THE \\' AND \\n AND SUCH IN YOUR BACKUP DATA.
-<br><br>
-Still working on it...
 </div>";
 echo form_open_multipart('site/restorefromsql');
 //formname is used to check whether the POST data is coming from the right form.
