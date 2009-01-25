@@ -1,3 +1,13 @@
+==== UPGRADE FROM AIGAION 2.x ====
+
+		1) Take a backup of the database
+		2) Check that you have taken a backup of the database
+		3) (If you have modified files in the Aigaion system:
+		    Backup all the files of the Aigaion program
+		4) Extract all the new files from the new release into the same directory.
+		5) login as database admin to upgrade the database structure
+
+==== UPGRADE FROM AIGAION 1.x ====
     
 This documentation is for updating Aigaion 2.0 from an Aigaion 1.x installation
     
