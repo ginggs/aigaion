@@ -44,16 +44,16 @@
     $this->bibtex2utf8->bibCharsToUtf8FromString(&$string)
         converts bibtex to utf8 chars special chars from a string
 
-TODO:
- make a test file to test as many conversions up and down as possible, including weird and slightly erroneous brace usage (such as that of DBLP)
- add polish charset
- add some often used symbols such as the copyright, trademark, etc?
- handle empty suffix (e.g. \l{}ambda )
-
 If you want to add extra character conversions:
   check which group it belongs to 
   add its entry for conversion and reverse conversion
   don't forget to take care of escapes needed for PHP as well as those needed for regexps!
+  
+TODO:
+ extend the test controller with more bibtex2utf8 conversion testing, including weird and 
+    slightly erroneous brace usage (such as that of DBLP)
+ add some of the polish charset
+ add some often used symbols such as the copyright, trademark, etc?
 */
 
 class Bibtex2utf8 {
@@ -67,27 +67,8 @@ class Bibtex2utf8 {
     function Bibtex2utf8()
     {
       $this->init();
-      //$this->test();
     }
 
-    function test() 
-    {
-      appendMessage("Testing the character conversions......<br/><br>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\'eBLIEB{\\'e}\\'{e}{\\'{e}}")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\'eBLIEB{\\\"e}\\`{e}{\\^{e}}\\~e\\=e")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\'EBLIEB{\\'E}\\'{E}{\\'{E}}")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\l\\L\\lambda{\\l}ambda")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\c cBLIEB\\c{c}{\\c c}{\\c{c}}")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\c CBLIEB\\c{C}{\\c C}{\\c{C}}")."<br/>");
-      appendMessage("Convert to utf8: ".$this->bibCharsToUtf8FromString("\\#\\\\\\?\\$\\{\\}\\%\\_\\v s\\v S")."<br/>");
-      appendMessage("Convert to bibtex: ".$this->utf8ToBibCharsFromString("éëèêẽē")."<br/>");
-      appendMessage("Convert to bibtex: ".$this->utf8ToBibCharsFromString("ł\\lambda")."<br/>");
-      appendMessage("Convert to bibtex: ".$this->utf8ToBibCharsFromString("çÇšŠ")."<br/>");
-      appendMessage("Convert to bibtex: ".$this->utf8ToBibCharsFromString("#?\\\${}%_")."<br/>");
-      appendMessage("Testing the character conversions finished.<br/>");
-      
-    }
-    
     function utf8ToBibCharsFromArray($array)
     {
         $keys = array_keys($array);

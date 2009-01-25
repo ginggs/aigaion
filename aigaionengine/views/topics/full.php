@@ -75,9 +75,8 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 ?>
     </td>
     <td>
-      <div class="topicstats">
 <?php 
-
+  $topicstatBlock = "";
 	//Get statistics for this topic
   $authorCount          = $this->topic_db->getAuthorCountForTopic($topic->topic_id);
   $topicCount           = count($topic->getChildren());
@@ -85,41 +84,49 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
 if ($publicationCount ==1) 
-	echo "
+	$topicstatBlock .= "
 <ul>
 <li class='nobr'>{$publicationCount} ".$this->lang->line('main_publication')." ({$publicationReadCount} read)</li>";
 else 
-	echo "
+	$topicstatBlock .= "
 <ul>
 <li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>";
 if ($authorCount ==1)
-echo"
+$topicstatBlock .="
 <li class='nobr'>{$authorCount} ".$this->lang->line('main_author')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view author for topic"')."]</li>";
 else 
-echo"<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
+$topicstatBlock .="<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
 if ($topicCount>0)
 {
   if ($topicCount==1)
-  echo
+  $topicstatBlock .=
   "
   <li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topic')." ";
   else
-  echo "<li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topics')." ";
+  $topicstatBlock .= "<li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topics')." ";
 } else
 {
-  echo "<li class='nobr'>No sub".$this->lang->line('main_topics')." ";
+  $topicstatBlock .= "<li class='nobr'>No sub".$this->lang->line('main_topics')." ";
 }
 if ($userlogin->hasRights('topic_edit')) {
-  echo "[".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]";
+  $topicstatBlock .= "[".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]";
 }
-echo "</li>\n";
+$topicstatBlock .= "</li>\n";
   if ($userlogin->hasRights('bookmarklist')) {
-    echo "<li class='nobr'>[".anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')."]</li>\n";
-    echo "<li class='nobr'>[".anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll')."]</li>\n";
+    $topicstatBlock .= "<li class='nobr'>[".anchor('bookmarklist/addtopic/'.$topic->topic_id,'BookmarkAll')."]</li>\n";
+    $topicstatBlock .= "<li class='nobr'>[".anchor('bookmarklist/removetopic/'.$topic->topic_id,'UnBookmarkAll')."]</li>\n";
   }
-  echo "</ul>\n";
+  $topicstatBlock .= "</ul>\n";
+  
+if ($topicstatBlock != '') 
+{
+	echo "
+	<div class='topicstats'>
+	".$topicstatBlock."
+  </div>";
+}
 ?>
-      </div>
+      
    </td>
 </tr>
 </table>

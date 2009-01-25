@@ -29,7 +29,6 @@ class Help extends Controller {
         $output .= $this->load->view('help/'.$this->uri->segment(3,'front'),
                                       array(),  
                                       true);
-        
         $output .= $this->load->view('footer','', true);
 
         //set output

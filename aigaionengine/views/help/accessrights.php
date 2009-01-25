@@ -8,7 +8,7 @@
     <ul>
       <li>'public' (object can be read or edited by everyone including anonymous users), 
       <li>'intern' (object can be read or edited by all non-anonymous users), 
-      <li>'group'  (object can be read or edited by the users from one specific group), 
+      <!--<li>'group'  (object can be read or edited by the users from one specific group), -->
       <li>'private' (object can be read or edited by the owner only) 
     </ul>
   </p>

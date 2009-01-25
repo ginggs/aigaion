@@ -13,6 +13,9 @@
     <li class='help'>[<?php echo anchor('help/viewhelp/crossref','Crossref'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/goodpractices','Good practices'); ?>]</li>
     <li class='help'>[<?php echo anchor('help/viewhelp/themes','Themes'); ?>]</li>
-    <li class='help'>[<?php echo anchor('help/viewhelp/about','About'); ?>]</li>
+    <li class='help'>[<?php echo anchor('help/viewhelp/about','About'); ?>]<br/></li>
+
+    <li class='help'>[See also <a href='http://wiki.aigaion.nl' target=_blank>the documentation wiki</a> for more documentation.]</li>
   </ul>
+  
 </div>

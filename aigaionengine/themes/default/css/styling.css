@@ -333,7 +333,7 @@ Originally, we used
   #margin-top: -1em;  Works on all IE browsers up to version 7 
   _margin-top: 0em;   Works on all IE browsers prior to version 7 
   
-But it seems the display:inline does the trick here as well, and it sems to avoid one or two other display oddities
+But it seems the display:inline does the trick here as well, and it seems to avoid one or two other display oddities
 http://www.positioniseverything.net/explorer/doubled-margin.html
 */
 li.topictree-children {

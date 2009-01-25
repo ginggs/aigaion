@@ -14,7 +14,7 @@
                         [all other images]
 </pre>
       </li>
-      <li>You can then start modifying the icons and the styles. Make sure that all icons exist, Aigaion does not have anything like a fallback strategy for missing icons, nor is such a thing planned for the future.</li>
+      <li>You can then start modifying the icons and the styles. Styles go into the file "css/styling.css" and "css/positioning.css"; new icons into the icons directory. You only need to override those style elements and icons that must be changed: the styles and icons in the "default" theme will be used as fallback. </li>
     </ul>
   Note that the personal configuration forms will automatically pick up the new theme as an option.</p>
   <p>If you do not have access to the web server yourself, create the theme and kindly ask your system administrator (<a href="mailto:<?php echo getConfigurationSetting("CFG_ADMINMAIL"); ?>"><?php echo getConfigurationSetting("CFG_ADMIN") ?></a>) to place it in the directory mentioned above.</p>
