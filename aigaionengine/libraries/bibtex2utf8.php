@@ -28,9 +28,13 @@
 | extensive coding for that :)
 |
 |    Usage:
-|       //load this library:
+|       //load this library in COdeIgniter:
 |       $this->load->library('bibtex2utf8');
-|       
+|       //...or load this library in any other php context (this library is not dependent on CodeIgniter)
+|       require_once("aigaionengine/libraries/bibtex2utf8.php");
+|       $this->bibtex2utf8 = new Bibtex2utf8();
+|
+|    THen, to convert from bibtex to utf8 and vice versa, use these functions:
 
     $this->bibtex2utf8->utf8ToBibCharsFromArray(&$array)
         converts utf8 chars to bibtex special chars from an array
@@ -42,7 +46,7 @@
         converts bibtex special chars to utf8 chars from an array
 
     $this->bibtex2utf8->bibCharsToUtf8FromString(&$string)
-        converts bibtex to utf8 chars special chars from a string
+        converts bibtex special chars to utf8 chars from a string
 
 If you want to add extra character conversions:
   check which group it belongs to 
@@ -53,7 +57,6 @@ TODO:
  extend the test controller with more bibtex2utf8 conversion testing, including weird and 
     slightly erroneous brace usage (such as that of DBLP)
  add some of the polish charset
- add some often used symbols such as the copyright, trademark, etc?
 */
 
 class Bibtex2utf8 {
