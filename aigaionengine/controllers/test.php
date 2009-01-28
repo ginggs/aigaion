@@ -78,8 +78,8 @@ class Test extends Controller {
              "¡¸¿"
       ),
       array ('test-Latin-1-misc',
-             "\\pounds \\S \\textcopyright \\textordfeminine \\- \\textregistered \\P \\textperiodcentered \\textordmasculine",
-             "£§©ª-®¶·º"
+             "\\pounds \\S \\textcopyright \\textordfeminine \\textregistered \\P \\textperiodcentered \\textordmasculine",
+             "£§©ª®¶·º"
       ),
       array ('test-ASCII-chars',
             "! \\# \\$ \\% \\& ' ( ) * + , - . / 0-9 : ; = ? @ A-Z [ ] \\_ ` a-z \\{ \\}",
@@ -228,7 +228,20 @@ class Test extends Controller {
              array(
              
              )             
-      )
+      ),
+      array('extraBracesBugPDM', //reported through mail by PDM, 2008/11/23
+            "@ARTICLE{test-braces, title = {Test braces}, journal = {Test}, year = {2009} }",
+             array(
+               "pub_type"=>"Article",
+               "bibtex_id"=>"test-braces",
+               "title"=>"Test braces",
+               "journal"=>"Test",
+               "year"=>"2009",
+               "month"=>""
+             ),
+             array(),
+             array()
+      )      
       //next test case:
     );
     $this->load->library('parser_import');

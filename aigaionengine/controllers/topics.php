@@ -327,7 +327,7 @@ class Topics extends Controller {
         //get output
         $headerdata                 = array();
         $headerdata['title']        = 'View topic';
-        $headerdata['javascripts']  = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js', 'publicationlists.js');
+        $headerdata['javascripts']  = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');//, 'publicationlists.js');
         $headerdata['sortPrefix']        = 'topics/single/'.$topic->topic_id.'/';
         $headerdata['exportCommand']        = 'export/topic/'.$topic->topic_id.'/';
         $headerdata['exportName']    = 'Export topic';

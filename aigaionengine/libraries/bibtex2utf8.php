@@ -308,7 +308,6 @@ class Bibtex2utf8 {
             array("S", "§"),
             array("textcopyright", "©"),
             array("textordfeminine", "ª"),
-            array("-", "-"),
             array("textregistered", "®"),
             array("P", "¶"),
             array("textperiodcentered", "·"),
@@ -329,14 +328,19 @@ class Bibtex2utf8 {
       */
 
       $this->specialChars = array(
-            array("#","#"),
+      //The reason why most of these have now been switched off, is the following: 
+      //(see mail PDM on 2008/11/25
+      //upon import from bibtex, all \_ would be converted to _, and then all _ would on export be converted to \_
+      //But: the _ may also have occurred in the orginal imported bibtex without backslash, and then these 
+      //occurrences would be seriously mangled upon export... so, better to leave the bibtex imported intact.
+            //array("#","#"),
             //array("\\?", "?"), //not neccesary, according to PDM
-            array("\\&", "&"),
+            //array("\\&", "&"),
  	        //  array("\\$", "$"),
  	          //array("\\{", "{"),//these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
- 	          array("_", "_")
+ 	          //array("_", "_")
             //array("SS", "SS") //one waY ONLY, dont convert back! TUrned off for now. THey almost never occur, and because we cannot symmetrycally export all SS as \SS, better to leave them unconverted  
             
             
@@ -348,14 +352,14 @@ class Bibtex2utf8 {
 /* for utf82bibtex conversion! */
 
       $this->specialCharsBack = array(
-            array("\\#","#"),
-            array("\\&","&"),
+            //array("\\#","#"),
+            //array("\\&","&"),
             //array("\\?", "\\?"), //not neccesary, according to PDM
  	         // array("\\\\$", "\\$"), //why do we need the extra slashes here to e4xport $ as \$ ?
  	          //array("\\{", "\\{"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          //array("\\}", "\\}"),  //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("\\%", "%"), 
- 	          array("\\_", "_")
+ 	          //array("\\_", "_")
             
             
         //{"\\\\~?", "¡"},
