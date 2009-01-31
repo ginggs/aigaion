@@ -15,8 +15,10 @@ class Import extends Controller {
     $this->viewform();
     }
 
-  function viewform()
+  function viewform($import_data = '')
   {
+    $this->load->library('import_lib');
+    
     $userlogin  = getUserLogin();
     $user       = $this->user_db->getByID($userlogin->userID());
     if (!$userlogin->hasRights('publication_edit'))
@@ -28,10 +30,9 @@ class Import extends Controller {
     $header ['title']       = "import publications";
     $header ['javascripts'] = array();
     
-    $content = "";
     //get output
     $output  = $this->load->view('header',              $header,  true);
-    $output .= $this->load->view('import/importform', $content, true);
+    $output .= $this->load->view('import/importform', array('content'=>$import_data), true);
     $output .= $this->load->view('footer',              '',       true);
     
     //set output
@@ -39,25 +40,48 @@ class Import extends Controller {
   }
   
     
-  //commit() - Commit the posted publication to the database
+  /**
+   * import/commit - Commit the posted publication to the database
+   *
+   * POST['format']: Type of input data. If unspecified or unknown or "auto", Aigaion attempts
+   *                 to determine type automatically
+   *
+   * POST['import_data']: the import data as string
+   */
   function commit()
   {
     $this->load->library('parser_import');
-
+    $this->load->library('import_lib');
+    
     $import_data  = $this->input->post('import_data');    
-    $type = '';
-    //determine type of input
-    if (preg_match("/(@[A-Za-z]{4,}\s*[\r\n\t]*{)/", $import_data) == 1)
+    if ($import_data == '') 
     {
-      $type = "BibTeX";
-    } 
-    else if (preg_match("/(TY\s{1,2}-\s)/", $import_data) == 1)
-    {
-      $type = "ris";
+        appendErrorMessage("Import: no import data entered.<br/>");
+        $this->viewform();
+        return;
     }
-    else if (preg_match("/\%0/", $import_data) == 1)
+    $type = $this->input->post('format');
+    if (!isset($type)||($type==null))$type="auto";
+    //is the type known?
+    if (($type!="auto") && ($type!="") && !in_array($type,$this->import_lib->getAvailableImportTypes()))
     {
-      $type = "refer";
+      appendErrorMessage("Unknown import format specified (\"".$type."\"). Attempting to automatically identify proper format.<br/>");
+      $type = "auto";
+    }
+    //try to determine type automatically?
+    if ($type=="auto") 
+    {
+      $type = $this->import_lib->determineImportType($import_data);
+      if ($type == "unknown") 
+      {
+        appendErrorMessage("Import: can't automatically figure out import data format; please specify correct format.<br/>");
+        $this->viewform($import_data);
+        return;
+      }
+      else
+      {
+        appendMessage("Import: Data automatically identified as format \"".$type."\".<br/>");
+      }
     }
     
     $import_count = $this->input->post('import_count');
@@ -84,9 +108,6 @@ class Import extends Controller {
           $publications = $this->parser_import->getPublications();
           break;
         default:
-          appendErrorMessage("Import: can't figure out import data format; no parsing possible");
-          redirect('import/viewform');
-          break;
       }
       
       $reviewed_publications  = array();

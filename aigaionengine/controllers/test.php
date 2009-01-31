@@ -83,7 +83,7 @@ class Test extends Controller {
       ),
       array ('test-ASCII-chars',
             "! \\# \\$ \\% \\& ' ( ) * + , - . / 0-9 : ; = ? @ A-Z [ ] \\_ ` a-z \\{ \\}",
-            "(These still need some work)"
+            "! \\# \\$ % \\& ' ( ) * + , - . / 0-9 : ; = ? @ A-Z [ ] \\_ ` a-z \\{ \\}"
       ),
       array ('test-Latin-1-lower-braces1', //this one is supposedly the most complete test of the brace and case variations (concerning number of letters tested) -- the other variations of braces may miss one or two characters...
              "{\\`a} {\\'a} {\\^a} {\\~a} {\\=a} {\\\"a} {\\aa} {\\ae} {\\c c} {\\`e} {\\'e} {\\^e} {\\~e} {\\=e} {\\\"e} {\\i} {\\`\\i} {\\'\\i} {\\^\\i} {\\~\\i} {\\=\\i} {\\\"\\i} {\\`i} {\\'i} {\\^i} {\\~i} {\\=i} {\\\"i} {\\~n} {\\`o} {\\'o} {\\^o} {\\~o} {\\=o} {\\\"o} {\\o} {\\`u} {\\'u} {\\^u} {\\~u} {\\=u} {\\\"u} {\\'y} {\\\"y} {\\ss}",
