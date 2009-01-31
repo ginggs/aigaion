@@ -112,7 +112,13 @@ class Import extends Controller {
 
     if (count($publications)==0)
     {
-      appendErrorMessage("Import: Could not extract any valid publication entries from the import data. Please verify the input.<br/>");
+      appendErrorMessage("
+      <b>Import: Could not extract any valid publication entries from the import data.</b> 
+      <ul>
+       <li>Please verify the input. </li>
+       <li>If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen. </li>
+       <li>If that setting is correct, too, please submit a bug report at http://aigaion.nl/ </li>
+      </ul><br/>");
       $this->viewform($import_data);
       return;
     }

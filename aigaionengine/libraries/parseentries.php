@@ -321,7 +321,7 @@ class Parseentries
 	  //no comma?
 	  if (count($matches)<2) 
 	  {
-	    appendErrorMessage ("Warning: entry does not seem to have the proper format. Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry:<br/><pre>".$entry."</pre><br/>");
+	    appendErrorMessage ("<b>Warning: entry does not seem to have the proper format.</b> Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry:<br/><pre>".$entry."</pre><br/>");
 	    return;
 	  }
 		$this->entries[$this->count]['bibtexEntryType'] = strtolower(trim($matches[1]));
