@@ -20,7 +20,7 @@
 
 <div class='header'>
 <?php 
-    echo $this->lang->line('main_topic').": ";
+    echo __('Topic').": ";
     echo $name;
     
 

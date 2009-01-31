@@ -14,6 +14,13 @@
 # with a table prefix, uncomment the following line and fill in the prefix:
 //define('AIGAION_DB_PREFIX', '');
 
+#define supported languages
+//$AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'es', 'fr', 'it', 'nl', 'no', 'pl');
+#define short list of languages offered in, e.g., menu
+//$AIGAION_SHORTLIST_LANGUAGES = array ('de', 'en', 'fr', 'nl', 'pl');
+#define default fasll-back language
+//define('AIGAION_DEFAULT_LANGUAGE',  'en');
+
 /*==== MANDATORY SETTINGS */
 #Root URL of this instance Aigaion, WITH trailing slash
 define('AIGAION_ROOT_URL','http://localhost/aigaion2root/');

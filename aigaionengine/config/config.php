@@ -46,6 +46,24 @@ if (!defined('MAXIMUM_ATTACHMENT_SIZE')) {
     define('MAXIMUM_ATTACHMENT_SIZE', '10000');
 }
 
+#multilanguage support.
+#By default, we expect the following languages to be present: de, en, nl. Preferred is, by default, en.
+#you can override these settings in index.php
+global $AIGAION_SUPPORTED_LANGUAGES;
+if (!isset($AIGAION_SUPPORTED_LANGUAGES) || !is_array($AIGAION_SUPPORTED_LANGUAGES))
+{
+  $AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'fr', 'nl', 'pl'); //default is the original set of languages from the multiling Aigaion 2.0
+}
+global $AIGAION_SHORTLIST_LANGUAGES;
+if (!isset($AIGAION_SHORTLIST_LANGUAGES) || !is_array($AIGAION_SHORTLIST_LANGUAGES))
+{
+  $AIGAION_SHORTLIST_LANGUAGES = $AIGAION_SUPPORTED_LANGUAGES;
+}
+if (!defined('AIGAION_DEFAULT_LANGUAGE'))
+{
+  define('AIGAION_DEFAULT_LANGUAGE',  'en');
+}
+
 define('AIGSTR','A1I2G3A4I5O6N7');
 
 /*

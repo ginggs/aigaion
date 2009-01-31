@@ -20,6 +20,30 @@
 |       
 */
 
+
+    /** 
+    Conversion of userlanguage setting to the i18n codes
+    */
+    function updateSchemaV2_17() {
+        if (checkVersion('V2.17', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_16()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        
+        $CI = &get_instance();
+        $conversions = array("english"=>"en","nederlands"=>"nl","francais"=>"fr","deutsch"=>"de","polski"=>"pl");
+        foreach ($conversions as $from=>$to)
+        {
+          $CI->db->update('users',array('language'=>$to),array('language'=>$from));
+          $CI->db->update('config',array('value'=>$to),array('setting'=>'DEFAULTPREF_LANGUAGE','value'=>$from));
+        }
+        
+        return setVersion('V2.17');
+    }
+        
+
     /** 
     intermediate release with some bug fixes
     */

@@ -6,27 +6,26 @@
   //view parameter: if $exportName is set, this determines the text for the exportCommand menu option
   
   $userlogin = getUserLogin();
-  $this->lang->load('menu',$userlogin->getPreference('language'));
 ?>
 <div id="menu_holder">
   <ul class="mainmenu">
-    <li class="mainmenu-header"><?php echo $this->lang->line('menu_show_header'); ?></li>
+    <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Browse')); ?></li>
     <li><ul class="mainmenu">
-    <li class="mainmenu"><?php echo anchor('topics', $this->lang->line('menu_show_mytopics')); ?></li>
+    <li class="mainmenu"><?php echo anchor('topics', __('My Topics')); ?></li>
     <?php
     if ($userlogin->hasRights('bookmarklist')) 
     {
       ?>
-      <li class="mainmenu"><?php echo anchor('bookmarklist', $this->lang->line('menu_show_bookmarklist')); ?></li>
+      <li class="mainmenu"><?php echo anchor('bookmarklist', __('My Bookmarks')); ?></li>
       <?php
     }
     ?>
-    <li class="mainmenu"><?php echo anchor('topics/all', $this->lang->line('menu_show_alltopics')); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications', $this->lang->line('menu_show_pubs')); ?></li>
-    <li class="mainmenu"><?php echo anchor('authors', $this->lang->line('menu_show_authors')); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/unassigned', $this->lang->line('menu_show_unassigned')); ?></li>
-    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', $this->lang->line('menu_show_recent')); ?></li>
-    <li class="mainmenu"><?php echo anchor('search', $this->lang->line('main_search')); ?></li>
+    <li class="mainmenu"><?php echo anchor('topics/all', __('All Topics')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications', __('All Publications')); ?></li>
+    <li class="mainmenu"><?php echo anchor('authors', __('All Authors')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/unassigned', __('Unassigned')); ?></li>
+    <li class="mainmenu"><?php echo anchor('publications/showlist/recent', __('Recent')); ?></li>
+    <li class="mainmenu"><?php echo anchor('search', __('Search')); ?></li>
 
     <?php
     //the export option is slightly dependent on the view parameter 'exportCommand'
@@ -34,9 +33,9 @@
     ?>
 </ul></li>
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header"><?php echo $this->lang->line('menu_export_header'); ?></li>
+    <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Export')); ?></li>
     <li><ul class="mainmenu">
-    <li class="mainmenu"><?php echo anchor('export', 'Export all publications'); ?></li>
+    <li class="mainmenu"><?php echo anchor('export', __('Export all publications')); ?></li>
     <?php
     if (isset($exportCommand)&&($exportCommand!=''))
     {
@@ -58,13 +57,13 @@
     } else {
       ?>
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header"><?php echo $this->lang->line('menu_sort_header'); ?></li>
+      <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Sort by')); ?></li>
       <li><ul class="mainmenu">
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', $this->lang->line('menu_sort_author')); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  $this->lang->line('menu_sort_title')); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   $this->lang->line('menu_sort_type')); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   $this->lang->line('menu_sort_year')); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', $this->lang->line('menu_sort_recent')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'author', __('Author')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  __('Title')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   __('Type/journal')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   __('Year')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', __('Recently added')); ?></li>
       </ul></li>
       <?php
     }
@@ -76,19 +75,19 @@
     {
       ?>  
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header"><?php echo $this->lang->line('menu_create_header'); ?></li>
+      <li class="mainmenu-header"><?php echo utf8_strtoupper(__('New Data')); ?></li>
       <li><ul class="mainmenu">
-      <li class='mainmenu'><?php echo anchor('publications/add', $this->lang->line('menu_create_pub')); ?></li>
-      <li class='mainmenu'><?php echo anchor('authors/add', $this->lang->line('menu_create_author')); ?></li>
+      <li class='mainmenu'><?php echo anchor('publications/add', __('New Publication')); ?></li>
+      <li class='mainmenu'><?php echo anchor('authors/add', __('New Author')); ?></li>
       <?php
         if ($userlogin->hasRights('topic_edit'))
         {
           ?>
-          <li class='mainmenu'><?php echo anchor('topics/add', $this->lang->line('menu_create_topic')); ?></li>
+          <li class='mainmenu'><?php echo anchor('topics/add', __('New Topic')); ?></li>
           <?php
         } 
       ?>
-      <li class='mainmenu'><?php echo anchor('import', $this->lang->line('menu_create_import')); ?></li>
+      <li class='mainmenu'><?php echo anchor('import', __('Import')); ?></li>
       </ul></li>
       <?php
     }
@@ -96,19 +95,19 @@
 ?>
 
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header"><?php echo $this->lang->line('menu_system_header'); ?></li>
+    <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Site')); ?></li>
     <li><ul class="mainmenu">
-    <li class="mainmenu"><?php echo anchor('help/', $this->lang->line('menu_system_help')); ?></li>
-    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', $this->lang->line('menu_system_about')); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/', __('Help')); ?></li>
+    <li class="mainmenu"><?php echo anchor('help/viewhelp/about', __('About this site')); ?></li>
 <?php
 if ($userlogin->hasRights('database_manage')) {
 ?>
-    <li class="mainmenu"><?php echo anchor('site/configure', $this->lang->line('menu_system_config')); ?></li>
-    <li class="mainmenu"><?php echo anchor('site/maintenance', $this->lang->line('menu_system_maintenance')); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/configure', __('Site Configuration')); ?></li>
+    <li class="mainmenu"><?php echo anchor('site/maintenance', __('Site Maintenance')); ?></li>
 <?php
 }
 if ($userlogin->hasRights('user_edit_all')) {
-    echo "    <li class='mainmenu'>".anchor('users/manage', $this->lang->line('menu_system_usermanage'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/manage', __('Manage All Accounts'))."</li>\n";
 }
 ?>
     </ul></li>
@@ -119,7 +118,7 @@ if ($userlogin->hasRights('user_edit_all')) {
     $anonusers = $this->user_db->getAllAnonUsers();
 ?>	    
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header"><?php echo $this->lang->line('menu_guest_header'); ?></li>
+      <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Guest user')); ?></li>
 <?php
     if (count($anonusers)>1) {
       //more than one anonymous user: show a dropdown where you can choose between the different guest users
@@ -139,15 +138,15 @@ if ($userlogin->hasRights('user_edit_all')) {
 
 //probably no-one would ever assign these two rights to the anon user, but nevertheless....:
 if ($userlogin->hasRights('user_edit_self')) {
-    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), $this->lang->line('menu_logged_profile'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), utf8_strtoupper(__('My Profile')))."</li>\n";
 }
 if ($userlogin->hasRights('topic_subscription')) {
-    echo "    <li class='mainmenu'>".anchor('users/topicreview/', $this->lang->line('menu_logged_subscribe'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', __('Topic Subscribe'))."</li>\n";
 }
         
 ?>	    
     <li class="mainmenu-spacer"></li>
-    <li class="mainmenu-header"><?php echo $this->lang->line('menu_login_header'); ?></li>
+    <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Login')); ?></li>
 <?php
     $this->load->helper('form');
     echo '<li>';
@@ -157,19 +156,19 @@ if ($userlogin->hasRights('topic_subscription')) {
 ?>
       <table class='loginbox'>
         <tr>
-          <td>Name:</td>
+          <td><?php _e('Name'); ?>:</td>
         </tr>
         <tr>
           <td><input type=text name=loginName size=10></td>
         </tr>
         <tr>
-          <td>Password:</td>
+          <td><?php _e('Password'); ?>:</td>
         </tr>
         <tr>
           <td><input type=password name=loginPass size=10></td>
         </tr>
         <tr>
-          <td><input title='Remember me' name=remember type=checkbox><p align=right><input type=submit value='Login'></td>
+          <td><input title='<?php _e('Remember me'); ?>' name=remember type=checkbox><p align=right><input type=submit value='<?php _e('Login'); ?>'></td>
         </tr>
       </table>
 <?php
@@ -177,17 +176,17 @@ if ($userlogin->hasRights('topic_subscription')) {
         echo '</li>';
   } else {
 ?>
-    <li class="mainmenu-header"><?php echo $this->lang->line('menu_logged_header'); ?></li>
+    <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Logged In')).":"; ?></li>
     <li class="mainmenu"><?php echo $userlogin->loginName(); ?></li>
 <?php
 if ($userlogin->hasRights('user_edit_self')) {
-    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), $this->lang->line('menu_logged_profile'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), __('My Profile'))."</li>\n";
 }
 if ($userlogin->hasRights('topic_subscription')) {
-    echo "    <li class='mainmenu'>".anchor('users/topicreview/', $this->lang->line('menu_logged_subscribe'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/topicreview/', __('Topic Subscribe'))."</li>\n";
 }
 ?>
-    <li class="mainmenu"><?php echo anchor('login/dologout', $this->lang->line('menu_logged_logout')); ?></li>
+    <li class="mainmenu"><?php echo anchor('login/dologout', __('Logout')); ?></li>
 <?php
   }
 ?>
@@ -195,9 +194,10 @@ if ($userlogin->hasRights('topic_subscription')) {
 <br/><br/>
 <div style='float:bottom;font-size:90%;'>
 <?php 
-$this->load->helper('language');
-foreach (getLanguages() as $lang=>$display) {
-    echo anchor('userlanguage/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$display).'<br/>';
+global $AIGAION_SHORTLIST_LANGUAGES;
+foreach ($AIGAION_SHORTLIST_LANGUAGES as $lang)
+{
+  echo anchor('language/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$this->userlanguage->getLanguageName($lang)).'<br/>';
 }
 ?>
 </div>

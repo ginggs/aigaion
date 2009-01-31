@@ -28,14 +28,14 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
          && $this->accesslevels_lib->canEditObject($topic)      
         ) 
     {
-        echo '['.anchor('topics/edit/'.$topic->topic_id,$this->lang->line('main_edit'))."]&nbsp;[".anchor('topics/delete/'.$topic->topic_id,$this->lang->line('main_delete')).']'; 
+        echo '['.anchor('topics/edit/'.$topic->topic_id,__('edit'))."]&nbsp;[".anchor('topics/delete/'.$topic->topic_id,__('delete')).']'; 
     }
     echo "\n";
     ?>
 </div>
 <div class='header'>
 <?php 
-    echo $this->lang->line('main_topic').": ";
+    echo __('Topic').": ";
     echo $name;
     $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_read_access_level.'.gif')."' alt='rights icon'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$topic->derived_edit_access_level.'.gif')."' alt='rights_icon'/>";
     if (($userlogin->hasRights('topic_edit')) && $this->accesslevels_lib->canEditObject($topic)) 
@@ -86,27 +86,27 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
 if ($publicationCount ==1) 
 	$topicstatBlock .= "
 <ul>
-<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publication')." ({$publicationReadCount} read)</li>";
+<li class='nobr'>{$publicationCount} ".__('publication')." ({$publicationReadCount} read)</li>";
 else 
 	$topicstatBlock .= "
 <ul>
-<li class='nobr'>{$publicationCount} ".$this->lang->line('main_publications')." ({$publicationReadCount} read)</li>";
+<li class='nobr'>{$publicationCount} ".__('publications')." ({$publicationReadCount} read)</li>";
 if ($authorCount ==1)
 $topicstatBlock .="
-<li class='nobr'>{$authorCount} ".$this->lang->line('main_author')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view author for topic"')."]</li>";
+<li class='nobr'>{$authorCount} ".__('author')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view author for topic"')."]</li>";
 else 
-$topicstatBlock .="<li class='nobr'>{$authorCount} ".$this->lang->line('main_authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
+$topicstatBlock .="<li class='nobr'>{$authorCount} ".__('authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
 if ($topicCount>0)
 {
   if ($topicCount==1)
   $topicstatBlock .=
   "
-  <li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topic')." ";
+  <li class='nobr'>{$topicCount} Sub".__('Topic')." ";
   else
-  $topicstatBlock .= "<li class='nobr'>{$topicCount} Sub".$this->lang->line('main_topics')." ";
+  $topicstatBlock .= "<li class='nobr'>{$topicCount} Sub".__('topics')." ";
 } else
 {
-  $topicstatBlock .= "<li class='nobr'>No sub".$this->lang->line('main_topics')." ";
+  $topicstatBlock .= "<li class='nobr'>No sub".__('topics')." ";
 }
 if ($userlogin->hasRights('topic_edit')) {
   $topicstatBlock .= "[".anchor('topics/add/'.$topic->topic_id,'create new', 'title="create new subtopic"')."]";

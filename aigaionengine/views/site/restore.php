@@ -35,7 +35,7 @@ echo "<p class='header'>RESTORE DATABASE FROM SQL</p>";
 	    <tr>
 	        <td align='left' colspan='2'>
 	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        Paste backup sql here. Note: this will overwrite all data curently in this database! Don't do this if you do not have a backup file of the current status of the database!</p></td>
+	        Paste backup sql here. Note: this will overwrite all data currently in this database! Don't do this if you do not have a backup file of the current status of the database!</p></td>
 	    </tr>
 	    
 

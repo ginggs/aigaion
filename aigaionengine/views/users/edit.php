@@ -273,11 +273,11 @@ foreach ($availableThemes as $theme)
   $theme_array[$theme] = $theme;
 }
 $lang_array = array();
-$this->load->helper('language');
 $lang_array['default'] = 'default ('.getConfigurationSetting('DEFAULTPREF_LANGUAGE').')';
-foreach (getLanguages() as $lang=>$display)
+global $AIGAION_SUPPORTED_LANGUAGES;
+foreach ($AIGAION_SUPPORTED_LANGUAGES as $lang)
 {
-  $lang_array[$lang] = $display;
+  $lang_array[$lang] = $this->userlanguage->getLanguageName($lang);
 }
 echo "
         

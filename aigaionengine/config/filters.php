@@ -47,9 +47,5 @@ $filter['login'][] = array(
 	'include', array(), array('action'=>'fail')
 );
 
-/** LANGUAGE FILTER
- * This filter loads the main language file for the current language */
-$filter['lang'][] = array(
-	'exclude', array(), array()
-);
+
 ?>

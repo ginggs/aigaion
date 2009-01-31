@@ -206,6 +206,19 @@ class UserLogin {
                             $val = "default";
                         }
                     }
+                    if ($key=='language')
+                    {
+                      //check existence of language
+                      if ($val != 'default') 
+                      {
+                        global $AIGAION_SUPPORTED_LANGUAGES;
+                        if (!in_array($val,$AIGAION_SUPPORTED_LANGUAGES))
+                        {
+                          appendErrorMessage("Language '{$val}' no longer exists under that name. Please reset the relevant profile and site settings.<br/>");
+                          $val = AIGAION_DEFAULT_LANGUAGE;
+                        }
+                      }
+                    }
                     //store preference in object
                     $this->preferences[$key]=$val;
                     //if set to default, look up site default...

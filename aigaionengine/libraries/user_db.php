@@ -198,6 +198,16 @@ class User_db {
         if ($user->preferences['utf8bibtex']) {
             $utf8bibtex ='TRUE';
         }
+        //is language in supported list?
+        if ($user->preferences['language'] != 'default') 
+        {
+          global $AIGAION_SUPPORTED_LANGUAGES;
+          if (!in_array($user->preferences['language'],$AIGAION_SUPPORTED_LANGUAGES)) 
+          {
+            appendErrorMessage("Unknown language: ".$user->preferences['language']."<br/>");
+            $user->preferences['language'] = AIGAION_DEFAULT_LANGUAGE;
+          }
+        }
         $CI->db->insert("users",
                                          array('initials'           => $user->initials,
                                                'firstname'          => $user->firstname,
@@ -307,6 +317,16 @@ class User_db {
         $utf8bibtex ='FALSE';
         if ($user->preferences['utf8bibtex']) {
             $utf8bibtex ='TRUE';
+        }
+        //is language in supported list?
+        if ($user->preferences['language'] != 'default') 
+        {
+          global $AIGAION_SUPPORTED_LANGUAGES;
+          if (!in_array($user->preferences['language'],$AIGAION_SUPPORTED_LANGUAGES)) 
+          {
+            appendErrorMessage("Unknown language: ".$user->preferences['language']."<br/>");
+            $user->preferences['language'] = AIGAION_DEFAULT_LANGUAGE;
+          }
         }
         $updatefields =  array('initials'           => $user->initials,
                                'firstname'          => $user->firstname,

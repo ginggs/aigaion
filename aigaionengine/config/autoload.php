@@ -39,13 +39,13 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','latesession','userlogin', 'ajax',
-                               'accesslevels_lib',
-                               'topic','topic_db','user','user_db',
-                               'group','group_db','rightsprofile','rightsprofile_db',
-                               'siteconfig','siteconfig_db','attachment','attachment_db',
-                               'note','note_db','publication','publication_db','author','author_db',
-                               'keyword_db','bookmarklist_db','bibtex2utf8',
+$autoload['libraries'] = array('database','latesession','userlogin','ajax',
+                               'accesslevels_lib','bibtex2utf8',
+                               'user','user_db','group','group_db','rightsprofile','rightsprofile_db',
+                               'siteconfig','siteconfig_db','userlanguage','gettext',
+                               'topic','topic_db','attachment','attachment_db','note','note_db',
+                               'publication','publication_db','author','author_db',
+                               'keyword_db','bookmarklist_db',
                                'parsecreators','parsemonth','parsepage','file_upload');
 
 

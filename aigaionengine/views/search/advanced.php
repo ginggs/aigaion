@@ -46,7 +46,7 @@ echo "
 <p/>
 ";
 
-echo form_submit('submit_search',  $this->lang->line('main_search'));
+echo form_submit('submit_search',  __('Search'));
 echo form_close();
 
 echo "
@@ -115,7 +115,7 @@ echo "
     <script language='javascript'>more();</script></div><br/>
 ";
 
-echo form_submit('submit_search',  $this->lang->line('main_search'));
+echo form_submit('submit_search',  __('Search'));
 echo form_close();
 
 echo "

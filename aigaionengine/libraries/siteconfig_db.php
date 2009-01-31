@@ -20,9 +20,22 @@ class Siteconfig_db {
             //where needed, interpret setting as other than string
             if ($R->setting == "ALLOWED_ATTACHMENT_EXTENSIONS") {
                 $value = split(",",$R->value);
-            } else {
+            } 
+            else if ($R->setting=='language')
+            {
+              $value = $R->value;
+              //check existence of language
+              global $AIGAION_SUPPORTED_LANGUAGES;
+              if (!in_array($value,$AIGAION_SUPPORTED_LANGUAGES))
+              {
+                appendErrorMessage("Language '{$val}' no longer exists under that name. Please reset the relevant profile and site settings.<br/>");
+                $value = AIGAION_DEFAULT_LANGUAGE;
+              }
+            } 
+            else 
+            {
                 $value = $R->value;
-            }
+            }  
             $result->configSettings[$R->setting]=$value;
         }
         if (   (!isset($result->configSettings['LOGIN_HTTPAUTH_ENABLE']) || ($result->configSettings['LOGIN_HTTPAUTH_ENABLE']=='')) 

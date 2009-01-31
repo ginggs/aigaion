@@ -1,6 +1,6 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Userlanguage extends Controller {
+class Language extends Controller {
 
 	function Userlanguage()
 	{
@@ -31,17 +31,25 @@ class Userlanguage extends Controller {
             
     */    
     function set() {
-        $language = $this->uri->segment(3); 
-        $userlogin = getUserLogin();
+      $language = $this->uri->segment(3); 
+      $userlogin = getUserLogin();
+      //is language in supported list?
+      global $AIGAION_SUPPORTED_LANGUAGES;
+      if (!in_array($language,$AIGAION_SUPPORTED_LANGUAGES)) 
+      {
+        appendErrorMessage("Unknown language: \"".$language."\"<br/>");
+      }
+      else
+      {
         $userlogin->effectivePreferences['language'] = $language;
         $this->latesession->set('USERLOGIN',$userlogin);
-		$segments = $this->uri->segment_array();
-		//remove first three elements
-		array_shift($segments);
-		array_shift($segments);
-		array_shift($segments);
-		redirect(implode('/',$segments));
-        redirect('');
+      }
+      $segments = $this->uri->segment_array();
+      //remove first three elements
+      array_shift($segments);
+      array_shift($segments);
+      array_shift($segments);
+      redirect(implode('/',$segments));
     }  
 
 }
