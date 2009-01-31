@@ -15,7 +15,7 @@ if (!isset($content)||($content==null))
 <?php
   //open the edit form
   $formAttributes     = array('ID' => 'import_form');
-  echo form_open('import/commit', $formAttributes)."\n";
+  echo form_open('import/submit', $formAttributes)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
   echo form_hidden('formname','import');
 ?>

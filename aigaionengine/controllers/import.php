@@ -41,17 +41,21 @@ class Import extends Controller {
   
     
   /**
-   * import/commit - Commit the posted publication to the database
+   * import/submit - Submit a posted publication to the database
    *
    * POST['format']: Type of input data. If unspecified or unknown or "auto", Aigaion attempts
    *                 to determine type automatically
    *
    * POST['import_data']: the import data as string
+   *
+   * POST['markasread']: true iff all imported entries should be marked as 'read' for the user
    */
-  function commit()
+  function submit()
   {
     $this->load->library('parser_import');
     $this->load->library('import_lib');
+
+    $markasread   = $this->input->post('markasread')=='markasread'; // true iff all imported entries should be marked as 'read' for the user
     
     $import_data  = $this->input->post('import_data');    
     if ($import_data == '') 
@@ -84,97 +88,117 @@ class Import extends Controller {
       }
     }
     
-    $import_count = $this->input->post('import_count');
-    $markasread   = $this->input->post('markasread')=='markasread'; // true iff all imported entries should be marked as 'read' for the user
-    if ($import_data != null)
-    {
-      switch ($type) {
-        case 'BibTeX':
-          $this->load->library('parseentries');
-          $this->parser_import->loadData(getConfigurationSetting('BIBTEX_STRINGS_IN')."\n".$import_data);
-          $this->parser_import->parse($this->parseentries);
-          $publications = $this->parser_import->getPublications();
-          break;
-        case 'ris':
-          $this->load->library('parseentries_ris');
-          $this->parser_import->loadData($import_data);
-          $this->parser_import->parse($this->parseentries_ris);
-          $publications = $this->parser_import->getPublications();
-          break;
-        case 'refer':
-          $this->load->library('parseentries_refer');
-          $this->parser_import->loadData($import_data);
-          $this->parser_import->parse($this->parseentries_refer);
-          $publications = $this->parser_import->getPublications();
-          break;
-        default:
-      }
-      
-      $reviewed_publications  = array();
-      $review_messages        = array();
-      $count                  = 0;
-      foreach ($publications as $publication) {
-          //get review messages
-          
-          //review title
-          $review['title']     = $this->publication_db->reviewTitle($publication);
-          
-          //review bibtex_id
-          $review['bibtex_id'] = $this->publication_db->reviewBibtexID($publication);
-          
-          //review keywords
-          $review['keywords']  = $this->keyword_db->review($publication->keywords);
-          
-          //review authors and editors
-          $review['authors']   = $this->author_db->review($publication->authors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
-          $review['editors']   = $this->author_db->review($publication->editors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
-          
-          $reviewed_publications[$count] = $publication;
-          $review_messages[$count]       = $review;
-          $count++;
-          unset($review);
-        }
-        $this->review($reviewed_publications, $review_messages,$markasread);
+    switch ($type) {
+      case 'BibTeX':
+        $this->load->library('parseentries');
+        $this->parser_import->loadData(getConfigurationSetting('BIBTEX_STRINGS_IN')."\n".$import_data);
+        $this->parser_import->parse($this->parseentries);
+        $publications = $this->parser_import->getPublications();
+        break;
+      case 'ris':
+        $this->load->library('parseentries_ris');
+        $this->parser_import->loadData($import_data);
+        $this->parser_import->parse($this->parseentries_ris);
+        $publications = $this->parser_import->getPublications();
+        break;
+      case 'refer':
+        $this->load->library('parseentries_refer');
+        $this->parser_import->loadData($import_data);
+        $this->parser_import->parse($this->parseentries_refer);
+        $publications = $this->parser_import->getPublications();
+        break;
+      default:
     }
-    if ($import_count != null)
-    {
-      $to_import = array();
-      $old_bibtex_ids = array();
-      $count = 0;
-      for ($i = 0; $i < $import_count; $i++)
-      {
-
-        if ($this->input->post('do_import_'.$i) == 'CHECKED')
-        {
-          $count++;
-          $publication = $this->publication_db->getFromPost("_".$i,True);
-          $publication->actualyear = $this->input->post('actualyear_'.$i); //note that the actualyear is a field that normally is derived on update or add, but in the case of import, it has been set through the review form!
-          $to_import[] = $publication;
-          $old_bibtex_ids[$this->input->post('old_bibtex_id_'.$i)] = $count-1;
-        }
-      }
-      $last_id = -1;
-      foreach ($to_import as $pub_to_import) {
-        //if necessary, change crossref (if reffed pub has changed bibtex_id)
-        if (trim($pub_to_import->crossref)!= '') {
-  	        if (array_key_exists($pub_to_import->crossref,$old_bibtex_ids)) {
-  	            $pub_to_import->crossref = $to_import[$old_bibtex_ids[$pub_to_import->crossref]]->bibtex_id;
-  	            //appendMessage('changed crossref entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref);
-  	        }
-        }            
-        $pub_to_import = $this->publication_db->add($pub_to_import);
-        if ($markasread)$pub_to_import->read('');
-        $last_id = $pub_to_import->pub_id;
-      }
-      appendMessage('Succesfully imported '.$count.' publications.');
-      if ($count == 1) {
-        redirect('publications/show/'.$last_id);
-      } else {
-        redirect('publications/showlist/recent');
-      }
+    
+    $reviewed_publications  = array();
+    $review_messages        = array();
+    $count                  = 0;
+    foreach ($publications as $publication) {
+        //get review messages
         
+        //review title
+        $review['title']     = $this->publication_db->reviewTitle($publication);
+        
+        //review bibtex_id
+        $review['bibtex_id'] = $this->publication_db->reviewBibtexID($publication);
+        
+        //review keywords
+        $review['keywords']  = $this->keyword_db->review($publication->keywords);
+        
+        //review authors and editors
+        $review['authors']   = $this->author_db->review($publication->authors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
+        $review['editors']   = $this->author_db->review($publication->editors); //each item consists of an array A with A[0] a review message, and A[1] an array of arrays of the similar author IDs
+        
+        $reviewed_publications[$count] = $publication;
+        $review_messages[$count]       = $review;
+        $count++;
+        unset($review);
+      }
+      $this->review($reviewed_publications, $review_messages,$markasread);
+  }
+
+    
+  /**
+   * import/commit - Commit the (parsed & reviewed) publication(s) to the database
+   *
+   * POST['import_count']: number of publications that are posted
+   *
+   * POST['markasread']: true iff all imported entries should be marked as 'read' for the user
+   * 
+   * POST: all publication data
+   */
+  function commit()
+  {
+    $this->load->library('import_lib');
+
+    $import_count = $this->input->post('import_count');
+    if ($import_count===False)$import_count = 0;
+    
+    $markasread   = $this->input->post('markasread')=='markasread'; // true iff all imported entries should be marked as 'read' for the user
+
+    if ($import_count == 0) 
+    {
+      appendErrorMessage("Import/commit: no publications committed.<br/>");
+      $this->viewform();
+      return;
+    }
+
+    $to_import = array();
+    $old_bibtex_ids = array();
+    $count = 0;
+    for ($i = 0; $i < $import_count; $i++)
+    {
+
+      if ($this->input->post('do_import_'.$i) == 'CHECKED')
+      {
+        $count++;
+        $publication = $this->publication_db->getFromPost("_".$i,True);
+        $publication->actualyear = $this->input->post('actualyear_'.$i); //note that the actualyear is a field that normally is derived on update or add, but in the case of import, it has been set through the review form!
+        $to_import[] = $publication;
+        $old_bibtex_ids[$this->input->post('old_bibtex_id_'.$i)] = $count-1;
+      }
+    }
+    $last_id = -1;
+    foreach ($to_import as $pub_to_import) {
+      //if necessary, change crossref (if reffed pub has changed bibtex_id)
+      if (trim($pub_to_import->crossref)!= '') {
+	        if (array_key_exists($pub_to_import->crossref,$old_bibtex_ids)) {
+	            $pub_to_import->crossref = $to_import[$old_bibtex_ids[$pub_to_import->crossref]]->bibtex_id;
+	            //appendMessage('changed crossref entry:'.$publication->bibtex_id.' crossref:'.$publication->crossref);
+	        }
+      }            
+      $pub_to_import = $this->publication_db->add($pub_to_import);
+      if ($markasread)$pub_to_import->read('');
+      $last_id = $pub_to_import->pub_id;
+    }
+    appendMessage('Succesfully imported '.$count.' publications.');
+    if ($count == 1) {
+      redirect('publications/show/'.$last_id);
+    } else {
+      redirect('publications/showlist/recent');
     }
   }
+  
   
   function review($publications, $review_data,$markasread)
   {
