@@ -87,8 +87,10 @@ class Group_db {
                                                
         $new_id = $CI->db->insert_id();
         //add rights profiles
-        foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+        if ($userlogin->hasRights('user_assign_rights')) {
+          foreach ($group->rightsprofile_ids as $rightsprofile_id) {
             $CI->db->insert('grouprightsprofilelink',array('group_id'=>$new_id,'rightsprofile_id'=>$rightsprofile_id));
+          }
         }
         $group->user_id = $new_id;
         $group->group_id = $new_id;
@@ -116,11 +118,13 @@ class Group_db {
         $updatefields =  array('surname'=>$group->name,'abbreviation'=>$group->abbreviation);
 
         $CI->db->update('users', $updatefields, array('user_id'=>$group->group_id));
-        //remove all rights profiles, then add the right ones again
-        $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
-        //add rights profiles
-        foreach ($group->rightsprofile_ids as $rightsprofile_id) {
+        if ($userlogin->hasRights('user_assign_rights')) {
+          //remove all rights profiles, then add the right ones again
+          $CI->db->delete('grouprightsprofilelink',array('group_id'=>$group->group_id));
+          //add rights profiles
+          foreach ($group->rightsprofile_ids as $rightsprofile_id) {
             $CI->db->insert('grouprightsprofilelink',array('group_id'=>$group->group_id,'rightsprofile_id'=>$rightsprofile_id));
+          }
         }
         
         return True;
