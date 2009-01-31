@@ -2,6 +2,12 @@
 /*
 AIGAION VERSION MODIFIED FROM BIBLIOPHILE VERSION 
 
+This parser was based on the bibtex parser from the bibliophile project.
+
+It has been heavily modified to fit with the architecture of Aigaion, and also to
+provide better parsing of Bibtex.
+
+===Bibliophile documentation:===
 v21
 
 Inspired by an awk BibTeX parser written by Nelson H. F. Beebe over 20 years ago although 
@@ -251,6 +257,7 @@ class Parseentries
 		// 03/05/2005 G. Gardey. Do not remove all occurences, juste one
 		// * correctly parse an entry ended by: somefield = {aValue}}
 		$lg = strlen($oldString);
+		if ($lg == 0) return;
 		if($oldString[$lg-1] == "}" || $oldString[$lg-1] == ")" || $oldString[$lg-1] == ",")
 			$oldString = substr($oldString,0,$lg-1);
 		// $oldString = rtrim($oldString, "}),");
@@ -311,6 +318,12 @@ class Parseentries
 	function fullSplit($entry)
 	{        
 	  $matches = preg_split("/@(.*)[{(](.*),/U", $entry, 2, PREG_SPLIT_DELIM_CAPTURE); 
+	  //no comma?
+	  if (count($matches)<2) 
+	  {
+	    appendErrorMessage ("Warning: entry does not seem to have the proper format. Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry:<br/><pre>".$entry."</pre><br/>");
+	    return;
+	  }
 		$this->entries[$this->count]['bibtexEntryType'] = strtolower(trim($matches[1]));
 		// sometimes a bibtex entry will have no citation key
 		if(preg_match("/=/", $matches[2])) // this is a field

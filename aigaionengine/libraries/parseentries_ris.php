@@ -85,6 +85,7 @@ class Parseentries_ris
     'J2',
     'VL', //Volume number
     'IS', //Issue
+    'BP', //Startpage
     'SP', //Startpage
     'EP', //Endpage
     'CP', //City of publication
@@ -124,6 +125,7 @@ class Parseentries_ris
     'journal',
     'volume', //Volume number
     'number', //Issue
+    'startpage', //Startpage
     'startpage', //Startpage
     'endpage', //Endpage
     'address', //City of publication
@@ -316,6 +318,7 @@ class Parseentries_ris
             unset($currentEntry['ISSNISBN']);
           }
           //PAGES
+          $currentEntry['pages'] = '';
           if (!empty($currentEntry['startpage']))
           {
             $currentEntry['pages'] = $currentEntry['startpage'];

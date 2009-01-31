@@ -109,7 +109,14 @@ class Import extends Controller {
         break;
       default:
     }
-    
+
+    if (count($publications)==0)
+    {
+      appendErrorMessage("Import: Could not extract any valid publication entries from the import data. Please verify the input.<br/>");
+      $this->viewform($import_data);
+      return;
+    }
+          
     $reviewed_publications  = array();
     $review_messages        = array();
     $count                  = 0;
