@@ -51,6 +51,24 @@ class Language extends Controller {
       array_shift($segments);
       redirect(implode('/',$segments));
     }  
+    
+    function choose() {
+      //get output
+      $headerdata = array();
+      $headerdata['title'] = 'Select language';
+      $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+      
+      $output = $this->load->view('header', $headerdata, true);
+
+      $output .= $this->load->view('language/choose',
+                                    array(),  
+                                    true);
+      
+      $output .= $this->load->view('footer','', true);
+
+      //set output
+      $this->output->set_output($output);
+    }
 
 }
 

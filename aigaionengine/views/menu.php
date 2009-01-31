@@ -197,8 +197,9 @@ if ($userlogin->hasRights('topic_subscription')) {
 global $AIGAION_SHORTLIST_LANGUAGES;
 foreach ($AIGAION_SHORTLIST_LANGUAGES as $lang)
 {
-  echo anchor('language/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$this->userlanguage->getLanguageName($lang)).'<br/>';
+  echo anchor('language/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$this->userlanguage->getLanguageName($lang)).', ';
 }
+echo anchor('language/choose/',"&lt;more...&gt;");
 ?>
 </div>
 </div>
