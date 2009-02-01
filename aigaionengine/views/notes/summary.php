@@ -56,8 +56,8 @@ if (    ($userlogin->hasRights('note_edit'))
         $this->accesslevels_lib->canEditObject($note)      
     ) 
 {
-    echo "<br/>[".anchor('notes/delete/'.$note->note_id,'delete');
-    echo "]&nbsp;[".anchor('notes/edit/'.$note->note_id,'edit').']';
+    echo "<br/>[".anchor('notes/delete/'.$note->note_id,__('delete'));
+    echo "]&nbsp;[".anchor('notes/edit/'.$note->note_id,__('edit')).']';
     
     $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($note);
     $edit_icon = $this->accesslevels_lib->getEditAccessLevelIcon($note);

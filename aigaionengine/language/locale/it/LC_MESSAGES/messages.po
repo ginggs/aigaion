@@ -2680,7 +2680,7 @@ msgstr ""
 #: ../../views/rightsprofiles/summary.php:15 ../../views/topics/full.php:31
 #: ../../views/users/summary.php:20
 msgid "delete"
-msgstr ""
+msgstr "elimina"
 
 #: ../../views/authors/single.php:9
 msgid "Delete this author"
@@ -2691,7 +2691,7 @@ msgstr ""
 #: ../../views/rightsprofiles/summary.php:14 ../../views/search/manage.php:43
 #: ../../views/topics/full.php:31 ../../views/users/summary.php:19
 msgid "edit"
-msgstr ""
+msgstr "modifica"
 
 #: ../../views/authors/single.php:9
 msgid "Edit this author"

@@ -2152,7 +2152,7 @@ msgstr ""
 
 #: ../../views/menu.php:12
 msgid "Browse"
-msgstr "Przegladaj"
+msgstr "Przeglądaj"
 
 #: ../../views/menu.php:14
 msgid "My Topics"
@@ -2160,7 +2160,7 @@ msgstr "Moje Kategorie"
 
 #: ../../views/menu.php:17
 msgid "My Bookmarks"
-msgstr "Moje Zakladki"
+msgstr "Moje Zakładki"
 
 #: ../../views/menu.php:19
 msgid "All Topics"
@@ -2196,7 +2196,7 @@ msgstr "Autor"
 
 #: ../../views/menu.php:55
 msgid "Title"
-msgstr "Tytul"
+msgstr "Tytuł"
 
 #: ../../views/menu.php:56
 msgid "Type/journal"
@@ -2245,11 +2245,11 @@ msgstr "Konfiguracja"
 
 #: ../../views/menu.php:90
 msgid "Site Maintenance"
-msgstr "Zarzadzanie Systemem"
+msgstr "Zarządzanie Systemem"
 
 #: ../../views/menu.php:93
 msgid "Manage All Accounts"
-msgstr "Zarzadzanie Kontami"
+msgstr "Zarządzanie Kontami"
 
 #: ../../views/menu.php:94
 msgid "Manage External Search Engines"
@@ -2257,7 +2257,7 @@ msgstr ""
 
 #: ../../views/menu.php:104
 msgid "Guest User"
-msgstr "Gosc"
+msgstr "Gość"
 
 #: ../../views/menu.php:125 ../../views/menu.php:159
 msgid "My Profile"
@@ -2681,7 +2681,7 @@ msgstr ""
 #: ../../views/rightsprofiles/summary.php:15 ../../views/topics/full.php:31
 #: ../../views/users/summary.php:20
 msgid "delete"
-msgstr ""
+msgstr "usuń"
 
 #: ../../views/authors/single.php:9
 msgid "Delete this author"
@@ -2692,7 +2692,7 @@ msgstr ""
 #: ../../views/rightsprofiles/summary.php:14 ../../views/search/manage.php:43
 #: ../../views/topics/full.php:31 ../../views/users/summary.php:19
 msgid "edit"
-msgstr ""
+msgstr "edytuj"
 
 #: ../../views/authors/single.php:9
 msgid "Edit this author"

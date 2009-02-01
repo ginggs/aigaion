@@ -16,8 +16,8 @@ $user       = $this->user_db->getByID($userlogin->userID());
 	if (    ($userlogin->hasRights('publication_edit'))
 		&& ($accessLevelEdit)
         ) {
-		echo "[".anchor('publications/delete/'.$publication->pub_id, 'delete', array('title' => 'Delete this publication'))."]&nbsp;";
-		echo "[".anchor('publications/edit/'.$publication->pub_id, 'edit', array('title' => 'Edit this publication'))."]";
+		echo "[".anchor('publications/delete/'.$publication->pub_id, __('delete'), array('title' => 'Delete this publication'))."]&nbsp;";
+		echo "[".anchor('publications/edit/'.$publication->pub_id, __('edit'), array('title' => 'Edit this publication'))."]";
 	}
 
         if ($userlogin->hasRights('bookmarklist')) {

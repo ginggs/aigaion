@@ -4,7 +4,7 @@ $userlogin = getUserLogin();
 <div class='keyword'>
 <?php 
 // echo "<div class='optionbox'>";
-// echo "[".anchor('keywords/delete/'.$keyword->keyword_id, 'delete', array('title' => 'Delete this keyword'))."]&nbsp[".anchor('keywords/edit/'.$keyword->keyword_id, 'edit', array('title' => 'Edit this keyword'))."]";
+// echo "[".anchor('keywords/delete/'.$keyword->keyword_id, __('delete'), array('title' => 'Delete this keyword'))."]&nbsp[".anchor('keywords/edit/'.$keyword->keyword_id, __('edit'), array('title' => 'Edit this keyword'))."]";
 // echo "</div>";
   ?>
   <div class='header'><?php echo $keyword->keyword ?></div>

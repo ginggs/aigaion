@@ -6,7 +6,7 @@ $userlogin = getUserLogin();
 if ($userlogin->hasRights('publication_edit'))
 {
 ?>
-  <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, 'delete', array('title' => 'Delete this author'))."]&nbsp[".anchor('authors/edit/'.$author->author_id, 'edit', array('title' => 'Edit this author'))."]"; ?>
+  <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, __('delete'), array('title' => 'Delete this author'))."]&nbsp[".anchor('authors/edit/'.$author->author_id, __('edit'), array('title' => 'Edit this author'))."]"; ?>
   </div>
 <?php
 }   
