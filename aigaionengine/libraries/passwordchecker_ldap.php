@@ -8,7 +8,7 @@ class Passwordchecker_ldap {
     */
     function checkPassword($uname, $password,$pwdInMd5) {
         if ($pwdInMd5) {
-            return array('uname'=>'','notice'=>'The LDAP password checker cannot handle md5 passwords yet');
+            return array('uname'=>'','notice'=>__('The LDAP password checker cannot handle md5 passwords yet'));
         }
         $CI = &get_instance();
         $CI->load->library('authldap');
@@ -33,9 +33,9 @@ class Passwordchecker_ldap {
         */
     	$ds = $ldap->connect();
     	if (!$ds) {
-      		appendErrorMessage("LDAP auth: There was a problem.<br/>");
-      		appendErrorMessage( "Error code : " . $ldap->ldapErrorCode . "<br/>");
-      		appendErrorMessage( "Error text : " . $ldap->ldapErrorText . "<br/>");
+      		appendErrorMessage(__("LDAP auth: There was a problem.")."<br/>");
+      		appendErrorMessage( __("Error code")." : " . $ldap->ldapErrorCode . "<br/>");
+      		appendErrorMessage( __("Error text")." : " . $ldap->ldapErrorText . "<br/>");
     	} else {
    	    
     	    if ($ldap->checkPass($uname,$password)) {

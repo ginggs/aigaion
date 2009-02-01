@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 12:39+0100\n"
-"PO-Revision-Date: 2009-02-01 12:51+0100\n"
+"POT-Creation-Date: 2009-02-01 14:34+0100\n"
+"PO-Revision-Date: 2009-02-01 14:38+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,136 +20,402 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:15
 msgid "year"
-msgstr ""
+msgstr "jaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:16
 msgid "title"
-msgstr ""
+msgstr "titel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:17
 msgid "survey"
-msgstr ""
+msgstr "survey"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:18
 msgid "mark"
-msgstr ""
+msgstr "score"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:19
 msgid "series"
-msgstr ""
+msgstr "serie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:20
 msgid "volume"
-msgstr ""
+msgstr "deel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:21
 msgid "publisher"
-msgstr ""
+msgstr "uitgever"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:22
 msgid "location"
-msgstr ""
+msgstr "locatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:23
 msgid "issn"
-msgstr ""
+msgstr "issn"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:24
 msgid "isbn"
-msgstr ""
+msgstr "isbn"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:25
 msgid "firstpage"
-msgstr ""
+msgstr "eerste pagina"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:26
 msgid "lastpage"
-msgstr ""
+msgstr "laatste pagina"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:27
 msgid "journal"
-msgstr ""
+msgstr "tijdschrift"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:28
 msgid "booktitle"
-msgstr ""
+msgstr "boektitel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:29
 msgid "number"
-msgstr ""
+msgstr "nummer"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:30
 msgid "institution"
-msgstr ""
+msgstr "instituut"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:31
 msgid "address"
-msgstr ""
+msgstr "adres"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:32
 msgid "chapter"
-msgstr ""
+msgstr "hoofdstuk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:33
 msgid "edition"
-msgstr ""
+msgstr "editie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:34
 msgid "howpublished"
-msgstr ""
+msgstr "hoe_uitgegeven"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:35
 msgid "month"
-msgstr ""
+msgstr "maand"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:36
 msgid "organization"
-msgstr ""
+msgstr "organisatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:37
 msgid "school"
-msgstr ""
+msgstr "school"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:38
 msgid "note"
-msgstr ""
+msgstr "opmerking"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
 msgid "abstract"
-msgstr ""
+msgstr "samenvatting"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:49
 msgid "url"
-msgstr ""
+msgstr "url"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:41
 msgid "doi"
-msgstr ""
+msgstr "doi"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:42
 msgid "pages"
-msgstr ""
+msgstr "pagina's"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:45
 msgid "surname"
-msgstr ""
+msgstr "achternaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:46
 msgid "von"
-msgstr ""
+msgstr "voorvoegsel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:47
 msgid "firstname"
-msgstr ""
+msgstr "voornaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:48
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:50
 msgid "institute"
-msgstr ""
+msgstr "instituut"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:64
+msgid "read level"
+msgstr "lees-niveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:66
+msgid "edit level"
+msgstr "schrijf-niveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:67
+msgid "effective access levels"
+msgstr "effektief toegansniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:73
+msgid "read access"
+msgstr "leestoegang"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:73
+msgid "read access level"
+msgstr "leestoegangsniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
+msgid "edit access"
+msgstr "schrijftoegang"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
+msgid "edit acces level"
+msgstr "schrijftoegangsniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:95
+msgid "cannot edit access levels of this object"
+msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:102
+msgid "public"
+msgstr "publiek"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:102
+msgid "intern"
+msgstr "intern"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:104
+msgid "private"
+msgstr "privé"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+msgid "Add attachment"
+msgstr "Voeg attachment toe"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+msgid "insufficient rights"
+msgstr "onvoldoende rechten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:113
+#, php-format
+msgid "ERROR UPLOADING: %s is not an allowed extension for remote files."
+msgstr "FOUT BIJ UPLOADEN: %s is niet een toegestaan bestandstype."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:114
+msgid "Allowed types"
+msgstr "Toegestane bestandstypen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:115
+#, php-format
+msgid "Need other file types? Ask %s"
+msgstr "Meer bestandstypen nodig? Vraag %s"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:152
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:321
+msgid "Error un-'main'-ing other attachments"
+msgstr "Fout bij het als 'niet-hoofdbestand' zetten van de andere bestanden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:260
+msgid "Error adding attachment"
+msgstr "Fout bij toevoegen van bestand"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:182
+msgid "You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead."
+msgstr "Je kan geen bestanden naar deze server uploaden (de server is ingesteld als alleen-schrijven); gebruik svp in plaats hiervan 'bestandsverwijzingen'"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:278
+msgid "Error while uploading"
+msgstr "Fout bij uploaden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:267
+msgid "Error uploading. The file was not written to disk."
+msgstr "Fout bij uploaden. Het bestand is niet naar disk geschreven."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:269
+msgid "Is this error entirely unexpected? You might want to check whether the php settings 'upload_max_filesize', 'post_max_size' and 'max_execution_time' are all large enough for uploading your attachments... Please check this with your administrator."
+msgstr "Is deze fout totaal onverwachts? Dan wil je misschien even controleren of de php instellingen  'upload_max_filesize', 'post_max_size' en  'max_execution_time' allemaal groot genoeg zijn voor het uploaden van je bestanden... Controleer dit bij de beheerder van je server."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:278
+#, php-format
+msgid "Is the error due to allowed file types? Ask %s for more types."
+msgstr "Ligt de fout aan de toegestane bestandstypen? Vraag %s om meer bestandstypen toe te staan."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
+msgid "Update attachment"
+msgstr "Bijwerken bestand"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:356
+msgid "Cannot delete attachment"
+msgstr "Bestand kan niet verwijderd worden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:356
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
+msgid "erroneous ID"
+msgstr "foutief ID"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:268
+msgid "Cannot delete author"
+msgstr "Auteur kan niet verwijderd worden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:268
+msgid "still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there..."
+msgstr "heeft nog publicaties (mogelijkerwijs onzichtbaar...). Heb je en snelle manier nodig om alle publicaties van een auteur te verwijderen? Voeg ze toe aan je bladwijzers, en verwijder ze van daar uit..."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:301
+#, php-format
+msgid "One of the fields %s is required"
+msgstr "Eén van de velden %s is verplicht"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:306
+msgid "Changes not committed"
+msgstr "Veranderingen niet doorgevoerd"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:480
+msgid "Found similar authors for"
+msgstr "Soortgelijke auteurs gevonden voor"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:497
+msgid "Please review the entered authors"
+msgstr "Controleer svp de ingevoerde auteurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:628
+msgid "There are some publications that could not be reassigned due to access rights"
+msgstr "Sommige publicaties konden niet worden verplaatst vanwege toegangsrechten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
+msgid "Changing bookmarklist"
+msgstr "Veranderen van bladwijzers"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:34
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:143
+msgid "Error changing bookmarklist"
+msgstr "Fout bij veranderen van bladwijzers"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:159
+msgid "Bookmarked publications added to topic"
+msgstr "Publicaties op bladwijzerlijst toegevoeged aan onderwerp"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:174
+msgid "Bookmarked publications removed from topic"
+msgstr "Publicaties op bladwijzerlijst verwijderd uit onderwerp"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\email_export.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
+msgid "Export"
+msgstr "Exporteer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
+msgid "Cannot delete group"
+msgstr "Groep kan niet verwijderd worden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:175
+msgid "Found similar keywords for"
+msgstr "Soortgelijke trefwoorden gevonden voor"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:192
+msgid "Please review the entered keywords."
+msgstr "Controleer alsjeblieft de ingevoerde trefwoorden."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\login_ldap.php:5
+msgid "Loaded deprecated login_ldap module. LDAP login now uses delegated password checking!"
+msgstr "Achterhaalde login_ldap module geladen. LDAP login gebruikt nu de 'delegated password checking'!"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
+msgid "Add note"
+msgstr "Voeg aantekening toe"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
+msgid "Edit note"
+msgstr "Bewerk aantekening"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
+msgid "Cannot delete note"
+msgstr "Kan aantekening niet verwijderen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:211
+#, php-format
+msgid "Failed to update the bibtex-id in note %s."
+msgstr "Corrigeren van de bibtex-id in aantekening %s is niet gelukt."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
+msgid "Warning: entry does not seem to have the proper format."
+msgstr "Waarschuwing: de publicatie lijkt niet het goede formaat te hebben."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
+msgid "Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry."
+msgstr "De komma die na de 'citation key' moet komen is niet gevonden. Als de 'citation key' niet aanwezig is, moet de komma er nog steeds wel zijn. Als de 'citation key' er is, maar er komen geen bibliografische achteraan, is de publicatie leeg en kan deze niet worden geimporteerd. Het importeren van de volgende entry is overgeslagen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:573
+#, php-format
+msgid "Import: unknown abbreviation encountered in \"%s\"."
+msgstr "Importeren: onbekende afkorting tegengekomen in \"%s\"."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:573
+#, php-format
+msgid "Interpreted as %s={%s}"
+msgstr "Geïnterpreteerd als %s={%s}"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
+msgid "The LDAP password checker cannot handle md5 passwords yet"
+msgstr "De LDAP controle voor wachtwoorden kan nog niet met MD5 wachtwoorden omgaan."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:36
+msgid "LDAP auth: There was a problem."
+msgstr "LDAP authorisatie: er was een probleem."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:37
+msgid "Error code"
+msgstr "Foutcode"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:38
+msgid "Error text"
+msgstr "Fouttekst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
 msgid "Browse"
@@ -186,22 +452,16 @@ msgstr "Nieuwe publicaties"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:28
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:49
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:118
-#, fuzzy
 msgid "Search"
-msgstr "Jaar"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
-msgid "Export"
-msgstr "Exporteer"
+msgstr "Zoek"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
 msgid "Export all publications"
 msgstr "Exporteer alle publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:60
-#, fuzzy
 msgid "Sort by"
-msgstr "Sorteer Op"
+msgstr "Sorteer op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:62
 msgid "Author"
@@ -268,7 +528,6 @@ msgid "Manage All Accounts"
 msgstr "Gebruikersbeheer"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:121
-#, fuzzy
 msgid "Guest user"
 msgstr "Gast"
 
@@ -289,12 +548,11 @@ msgstr "Inloggen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:159
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:165
-#, fuzzy
 msgid "Password"
-msgstr "Wachtwoord"
+msgstr "wachtwoord"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:171
 msgid "Remember me"
@@ -308,6 +566,7 @@ msgstr "Ingelogd"
 msgid "Logout"
 msgstr "Log uit"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:49
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:59
@@ -318,6 +577,7 @@ msgstr "Log uit"
 msgid "delete"
 msgstr "verwijder"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:50
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:60
@@ -328,43 +588,48 @@ msgstr "verwijder"
 msgid "edit"
 msgstr "bewerk"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:52
+msgid "unset main"
+msgstr "zet als niet-hoofdbestand"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:54
+msgid "set main"
+msgstr "zet als hoofdbestand"
+
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:23
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:38
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
 msgid "Topic"
-msgstr ""
+msgstr "Onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
-#, fuzzy
 msgid "publication"
-msgstr "Nieuwe Publicatie"
+msgstr "publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:93
-#, fuzzy
 msgid "publications"
-msgstr "Alle Publicaties"
+msgstr "publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
-#, fuzzy
 msgid "author"
-msgstr "Auteur"
+msgstr "auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
 msgid "view"
-msgstr ""
+msgstr "bekijk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
-#, fuzzy
 msgid "authors"
-msgstr "Auteur"
+msgstr "auteurs"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
-#, fuzzy
 msgid "topics"
-msgstr "Mijn Onderwerpen"
+msgstr "onderwerpen"
 
+#~ msgid "Error uploading"
+#~ msgstr "Fout bij uploaden"
 #~ msgid "Name:"
 #~ msgstr "Naam"
 

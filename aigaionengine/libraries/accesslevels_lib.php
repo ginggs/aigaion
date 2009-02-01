@@ -61,23 +61,23 @@ class Accesslevels_lib {
     function getAccessLevelSummary($object) {
         $result = " ";
         //if ($object->derived_read_access_level!='intern')
-            $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='read level'/> ";
+            $result .= "r:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='".__("read level")."'/> ";
         //if ($object->derived_edit_access_level!='intern')
-            $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='edit level'/> ";
-        return '<span title="effective access levels">'.$result.'</span>';
+            $result .= "e:<img class='al_icon' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='".__("edit level")."'/> ";
+        return '<span title="'.__('effective access levels').'">'.$result.'</span>';
     }
     
     //new function for migration to toggling access levels
     function getReadAccessLevelIcon(&$object) {
         if ($object->derived_read_access_level!='group')
-          return "<img class='al_icon' title='read access' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='read access level' /> ";
+          return "<img class='al_icon' title='".__("read access")."' src='".getIconurl('rights_'.$object->derived_read_access_level.'.gif')."' alt='".__("read access level")."' /> ";
         else
           return "";
     }
     
     function getEditAccessLevelIcon(&$object) {
         if ($object->derived_edit_access_level!='group')
-          return "<img class='al_icon' title='edit access' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='edit acces level' /> ";
+          return "<img class='al_icon' title='".__("edit access")."' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='".__("edit acces level")."' /> ";
         else
           return "";
     }
@@ -92,16 +92,16 @@ class Accesslevels_lib {
     function getAccessLevelEditPanel($object,$type,$object_id) {
         $CI = &get_instance();
         $grey='_grey';
-        $title='cannot edit access levels of this object';
+        $title=__('cannot edit access levels of this object');
         $editR = '';
         $editE = '';
         $userlogin = getUserLogin();
         if ($CI->accesslevels_lib->canEditObject($object)) {
             $grey='';
             $title='';
-            $options = array('public'=>'public','intern'=>'intern');
+            $options = array('public'=>__('public'),'intern'=>__('intern'));
             if ($userlogin->userid()==$object->user_id)
-                $options['private'] = 'private';
+                $options['private'] = __('private');
             $editR = form_dropdown('r_al_'.$type.'_'.$object_id, $options, $object->read_access_level, "onChange='submitAccessLevel(\"".site_url('accesslevels/set')."\", \"r\",\"".$type."\",\"".$object_id."\");' id='r_al_".$type."_".$object_id."'");
             $editE = form_dropdown('e_al_'.$type.'_'.$object_id, $options, $object->edit_access_level, "onChange='submitAccessLevel(\"".site_url('accesslevels/set')."\", \"e\",\"".$type."\",\"".$object_id."\");' id='e_al_".$type."_".$object_id."'");
         }

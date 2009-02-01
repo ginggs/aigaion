@@ -46,12 +46,12 @@ $user       = $this->user_db->getByID($userlogin->userID());
             $this->accesslevels_lib->canEditObject($attachment)         
         ) 
     {
-        echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[delete]",array('title'=>'Delete '.$attachment->name));
-        echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[edit]",array('title'=>'Edit information for '.$attachment->name));
+        echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[".__('delete')."]",array('title'=>'Delete '.$attachment->name));
+        echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[".__('edit')."]",array('title'=>'Edit information for '.$attachment->name));
         if ($attachment->ismain) {
-            echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[unset main]",array('title'=>'Unset as main attachment'));
+            echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[".__('unset main')."]",array('title'=>'Unset as main attachment'));
         } else {
-            echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[set main]",array('title'=>'Set as main attachment'));
+            echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[".__('set main')."]",array('title'=>'Set as main attachment'));
         }
         
         $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($attachment);

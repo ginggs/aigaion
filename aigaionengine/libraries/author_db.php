@@ -255,17 +255,17 @@ class Author_db {
         //check, all through the cascade, whether you can read AND edit that object
         if (!$userlogin->hasRights('publication_edit')) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete author: insufficient rights');
+            appendErrorMessage(__('Cannot delete author').': '.__('insufficient rights').'.<br/>');
             return;
         }
         if (empty($author->author_id)) {
-            appendErrorMessage('Cannot delete author: erroneous ID');
+            appendErrorMessage(__('Cannot delete author').': '.__('erroneous ID').'.<br/>');
             return;
         }
         //no delete for authors with publications. check through tables, not through object
         $Q = $CI->db->get_where('publicationauthorlink',array('author_id'=>$author->author_id));
         if ($Q->num_rows()>0) {
-            appendErrorMessage('Cannot delete author: still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there...<br/>');
+            appendErrorMessage(__('Cannot delete author').': '.__('still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there...').'.<br/>');
             return false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
@@ -298,12 +298,12 @@ class Author_db {
     }
     if (!$conditional_validation)
     {
-      $validation_message .= "One of the fields ".$conditional_field_text." is required.<br/>\n";
+      $validation_message .= sprintf(__("One of the fields %s is required"),$conditional_field_text).".<br/>\n";
     }
   
     if ($validation_message != '')
     {
-      appendErrorMessage("Changes not committed:<br/>\n".$validation_message);
+      appendErrorMessage(__("Changes not committed").":<br/>\n".$validation_message);
       return false;
     }
     else
@@ -477,7 +477,7 @@ TODO:
         //are there similar authors?
         if (count($db_distances) > 0)
         {
-          $result_message .= "Found similar authors for <b>&quot;".$author->getName('lvf')."&quot;</b>:<br/>\n";
+          $result_message .= __("Found similar authors for")." <b>&quot;".$author->getName('lvf')."&quot;</b>:<br/>\n";
           $result_message .= "<ul>\n";
           foreach($db_distances as $key => $value)
           {
@@ -494,7 +494,7 @@ TODO:
     }
     if ($result_message != "")
     {
-      $result_message .= "Please review the entered authors.<br/>\n";
+      $result_message .= __("Please review the entered authors").".<br/>\n";
       return array($result_message,$all_similar_authors);
     }
     else
@@ -625,7 +625,7 @@ TODO:
     //   if all publications successfully reassigned, kill old similar author, else give warning
     $remainingPubsQ = $CI->db->get_where('publicationauthorlink',array('author_id'=>$simauthor_id));
     if ($remainingPubsQ->num_rows() > 0) {
-        appendErrorMessage('There are some publications that could not be reassigned due to access rights');
+        appendErrorMessage(__('There are some publications that could not be reassigned due to access rights'));
     } else {
         $CI->db->delete('author',array('author_id'=>$simauthor_id));
     }

@@ -321,7 +321,7 @@ class Parseentries
 	  //no comma?
 	  if (count($matches)<2) 
 	  {
-	    appendErrorMessage ("<b>Warning: entry does not seem to have the proper format.</b> Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry:<br/><pre>".$entry."</pre><br/>");
+	    appendErrorMessage ("<b>".__("Warning: entry does not seem to have the proper format.")."</b>".__("Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry.")."<br/><pre>".$entry."</pre><br/>");
 	    return;
 	  }
 		$this->entries[$this->count]['bibtexEntryType'] = strtolower(trim($matches[1]));
@@ -570,7 +570,7 @@ class Parseentries
               {
                 //MATCH AS short AS POSSIBLE!
                 $value = preg_replace("/".AIGSTR."(.*)".strrev(AIGSTR)."/U","$1",$value);
-                appendErrorMessage("Import: unknown abbreviation encountered in ".$key.". Interpreted as ".$key."={".$this->entries[$i][$key]."}<br/>"); 
+                appendErrorMessage(sprintf(__("Import: unknown abbreviation encountered in \"%s\"."),$key)."<br>".sprintf(__("Interpreted as %s={%s}"),$key,$this->entries[$i][$key])."<br/>"); 
               } 
               $this->entries[$i][$key] = $value;
               //echo($value."<br>");

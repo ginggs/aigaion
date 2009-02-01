@@ -107,7 +107,7 @@ class Note_db {
                 (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
-	        appendErrorMessage('Add note: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add note').': '.__('insufficient rights').'.<br/>');
 	        return;
         }        
         //add new note
@@ -142,7 +142,7 @@ class Note_db {
                 (!$CI->accesslevels_lib->canEditObject($note_testrights))
             )
         {
-	        appendErrorMessage('Edit note: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit note').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         
@@ -175,11 +175,11 @@ class Note_db {
             !$CI->accesslevels_lib->canEditObject($note)
             ) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete note: insufficient rights');
+            appendErrorMessage(__('Cannot delete note').': '.__('insufficient rights').'.<br/>');
             return false;
         }
         if (empty($note->note_id)) {
-            appendErrorMessage('Cannot delete note: erroneous ID');
+            appendErrorMessage(__('Cannot delete note').': '.__('erroneous ID').'.<br/>');
             return false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
@@ -204,12 +204,12 @@ class Note_db {
             if ($noteQ->num_rows()>0) {
               $R = $noteQ->row();
         		  $text = preg_replace($bibtexidlinks[$pub_id][1], $new_bibtex_id, $R->text);
-                //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
-                $updatefields =  array('text'=>$text);
-                $CI->db->update('notes',$updatefields,array('note_id'=>$R->note_id));
-        		if (mysql_error()) {
-        		    appendErrorMessage("Failed to update the bibtex-id in note ".$R->note_id.": <br/>");
-            	}
+              //update is done here, instead of using the update function, as some of the affected notes may not be accessible for this user
+              $updatefields =  array('text'=>$text);
+              $CI->db->update('notes',$updatefields,array('note_id'=>$R->note_id));
+      		    if (mysql_error()) {
+      		      appendErrorMessage(sprintf(__("Failed to update the bibtex-id in note %s."),$R->note_id)."<br/>");
+          	  }
             }
         }
     }

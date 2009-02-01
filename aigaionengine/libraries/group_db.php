@@ -139,11 +139,11 @@ class Group_db {
         //check, all through the cascade, whether you can read AND edit that object
         if (!$userlogin->hasRights('user_edit_all')) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete group: insufficient rights');
+            appendErrorMessage(__('Cannot delete group').': '.__('insufficient rights').'.<br/>');
             return;
         }
         if (empty($group->group_id)) {
-            appendErrorMessage('Cannot delete group: erroneous ID');
+            appendErrorMessage(__('Cannot delete group').': '.__('erroneous ID').'.<br/>');
             return;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 

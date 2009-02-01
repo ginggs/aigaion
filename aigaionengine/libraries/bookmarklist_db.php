@@ -11,12 +11,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         $CI->db->query("INSERT IGNORE INTO ".AIGAION_DB_PREFIX."userbookmarklists (user_id,pub_id) VALUES (".$CI->db->escape($userlogin->userId()).",".$CI->db->escape($pub_id).")");
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br/>");
+    		appendErrorMessage(__("Error changing bookmarklist").".<br/>");
     	}
 
     }
@@ -26,12 +26,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         $CI->db->delete('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$pub_id));
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br/>");
+    		appendErrorMessage(__("Error changing bookmarklist").".<br/>");
     	}
 
     }
@@ -41,7 +41,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this topic
@@ -57,7 +57,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this topic
@@ -72,7 +72,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this author
@@ -88,7 +88,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this author
@@ -104,7 +104,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this author
@@ -120,7 +120,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         //get all accessible publications for this author
@@ -135,12 +135,12 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         $CI->db->delete('userbookmarklists',array('user_id'=>$userlogin->userId()));
     	if (mysql_error()) {
-    		appendErrorMessage("Error changing bookmarklist<br/>");
+    		appendErrorMessage(__("Error changing bookmarklist").".<br/>");
     	}
     }
     
@@ -148,7 +148,7 @@ class Bookmarklist_db {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         $pub_ids = array();
@@ -156,14 +156,14 @@ class Bookmarklist_db {
             $pub_ids[] = $publication->pub_id;
         }
         $topic->subscribePublicationSetUpRecursive($pub_ids);
-        appendMessage("Bookmarked publications added to topic<br/>");
+        appendMessage(__("Bookmarked publications added to topic").".<br/>");
     }
 
     function removeFromTopic($topic) {
         $CI = &get_instance();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-            appendErrorMessage("Changing bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("Changing bookmarklist").": ".__("insufficient rights").".<br/>");
             return;
         }
         $pub_ids = array();
@@ -171,7 +171,7 @@ class Bookmarklist_db {
             $topic->configuration['publicationId'] = $publication->pub_id;
             $topic->unsubscribePublication();
         }
-        appendMessage("Bookmarked publications removed from topic<br/>");
+        appendMessage(__("Bookmarked publications removed from topic").".<br/>");
     }
 }
 ?>

@@ -26,7 +26,7 @@ class Email_Export {
 
 		$userSur = $user->surname;
 		if($userSur == '')
-			$userFirst = 'Export';
+			$userFirst = __('Export');
 
 		$CI->load->library('email');
 

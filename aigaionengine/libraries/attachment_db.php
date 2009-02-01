@@ -98,7 +98,7 @@ class Attachment_db {
                 (!$CI->accesslevels_lib->canEditObject($publication))
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add attachment').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
 
@@ -110,11 +110,11 @@ class Attachment_db {
         	$ext=$CI->file_upload->get_extension($realname);
         	if (getConfigurationSetting('ALLOW_ALL_EXTERNAL_ATTACHMENTS')!='TRUE') {
         		if (!in_array($ext, getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))) {
-        			appendErrorMessage("ERROR UPLOADING: ".$ext." is not an allowed extension for remote files.<br/>"
-        			."Allowed types: <b>".implode(',',getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))."</b>"
-        			."Need other file types? Ask <a href='mailto:"
+        			appendErrorMessage(sprintf(__("ERROR UPLOADING: %s is not an allowed extension for remote files."),$ext)."<br/>"
+        			.__("Allowed types").": <b>".implode(',',getConfigurationSetting('ALLOWED_ATTACHMENT_EXTENSIONS'))."</b>"
+        			.sprintf(__("Need other file types? Ask %s"),"<a href='mailto:"
         			.getConfigurationSetting("CFG_ADMINMAIL")."'>"
-        			.getConfigurationSetting("CFG_ADMIN")."</a><br/>");
+        			.getConfigurationSetting("CFG_ADMIN")."</a>").".<br/>");
         		    return -1;
         		}
         	}
@@ -149,7 +149,7 @@ class Attachment_db {
                 $CI->db->where('pub_id', $attachment->pub_id);
                 $CI->db->update('attachments', array('ismain'=>'FALSE'));
     			if (mysql_error()) {
-    				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
+    				appendErrorMessage(__("Error un-'main'-ing other attachments").": ".mysql_error());
     				return -1;
     			}
     		}
@@ -169,7 +169,7 @@ class Attachment_db {
     		                      'user_id'=>$userlogin->userId())
     		                ); 
     		if (mysql_error()) {
-    			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
+    			appendErrorMessage(__("Error adding attachment").": ".mysql_error()."<br/>");
     			return -1;
     		}        	
             $new_id = mysql_insert_id();
@@ -179,14 +179,14 @@ class Attachment_db {
 	    } else {
         	# upload not possible: return with error
         	if (getConfigurationSetting("SERVER_NOT_WRITABLE") == "TRUE") {
-        		appendErrorMessage("You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead.<br/>");
+        		appendErrorMessage(__("You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead.")."<br/>");
         		return -1;
         	}
         
         	$CI->file_upload->http_error = $_FILES['upload']['error'];
         
         	if ($CI->file_upload->http_error > 0) {
-        		appendErrorMessage("Error while uploading: ".$CI->file_upload->error_text($CI->file_upload->http_error));
+        		appendErrorMessage(__("Error while uploading").": ".$CI->file_upload->error_text($CI->file_upload->http_error).'<br/>');
         		return -1;
         	}
         
@@ -231,7 +231,7 @@ class Attachment_db {
                     $CI->db->where('pub_id', $attachment->pub_id);
                     $CI->db->update('attachments', array('ismain'=>'FALSE'));
         			if (mysql_error()) {
-        				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
+        				appendErrorMessage(__("Error un-'main'-ing other attachments").": ".mysql_error());
         				return -1;
         			}
         		}
@@ -257,18 +257,17 @@ class Attachment_db {
         		                      'user_id'=>$userlogin->userId())
     		                   ); 
         		if (mysql_error()) {
-        			appendErrorMessage("Error adding attachment: ".mysql_error()."<br/>");
+        			appendErrorMessage(__("Error adding attachment").": ".mysql_error()."<br/>");
         			return -1;
         		}
         		
         		# check if file is really there
         		if (!is_file(AIGAION_ATTACHMENT_DIR."/".$storename.$ext))
         		{
-        	        appendErrorMessage("Error uploading. The file was not written to disk.<br/>
-                    Is this error entirely unexpected? You might want to check whether 
-                    the php settings 'upload_max_filesize', 'post_max_size' and 
-                    'max_execution_time' are all large enough for uploading
-                    your attachments... Please check this with your administrator.<br/>");
+        	        appendErrorMessage(__("Error uploading. The file was not written to disk.")
+        	          ."<br/>"
+                    .__("Is this error entirely unexpected? You might want to check whether the php settings 'upload_max_filesize', 'post_max_size' and 'max_execution_time' are all large enough for uploading your attachments... Please check this with your administrator.")
+                    ."<br/>");
         		}
         		
                 $new_id = mysql_insert_id();
@@ -276,10 +275,7 @@ class Attachment_db {
                 $CI->accesslevels_lib->initAttachmentAccessLevels($attachment);
             	return $attachment->att_id;
         	} else {
-        		appendErrorMessage("ERROR UPLOADING: ".$CI->file_upload->show_error_string()
-        		  ."<br/>Is the error due to allowed file types? Ask <a href='mailto:"
-        		  .getConfigurationSetting("CFG_ADMINMAIL")."'>"
-        		  .getConfigurationSetting("CFG_ADMIN")."</a> for more types.<br/>");
+        		appendErrorMessage(utf8_strtoupper(__("Error while uploading")).": ".$CI->file_upload->show_error_string()."<br/>".sprintf(__("Is the error due to allowed file types? Ask %s for more types."),"<a href='mailto:".getConfigurationSetting("CFG_ADMINMAIL")."'>".getConfigurationSetting("CFG_ADMIN")."</a>")."<br/>");
         		return -1;
         	}
         }
@@ -306,7 +302,7 @@ class Attachment_db {
                  (!$CI->accesslevels_lib->canEditObject($attachment_testrights))
             ) 
         {
-	        appendErrorMessage('Update attachment: insufficient rights.<br/>');
+	        appendErrorMessage(__('Update attachment').": ".__('insufficient rights').'.<br/>');
 	        return;
         }
  
@@ -322,7 +318,7 @@ class Attachment_db {
             $CI->db->where('pub_id', $attachment->pub_id);
             $CI->db->update('attachments', array('ismain'=>'FALSE'));
 			if (mysql_error()) {
-				appendErrorMessage("Error un-'main'-ing other attachments: ".mysql_error());
+				appendErrorMessage(__("Error un-'main'-ing other attachments").": ".mysql_error());
 				return -1;
 			}
 		}
@@ -353,11 +349,11 @@ class Attachment_db {
             !$CI->accesslevels_lib->canEditObject($attachment)
             ) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete attachment: insufficient rights');
+            appendErrorMessage(__('Cannot delete attachment').': '.__('insufficient rights').'.<br/>');
             return false;
         }
         if (empty($attachment->att_id)) {
-            appendErrorMessage('Cannot delete attachment: erroneous ID');
+            appendErrorMessage(__('Cannot delete attachment').': '.__('erroneous ID').'.<br/>');
             return  false;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 

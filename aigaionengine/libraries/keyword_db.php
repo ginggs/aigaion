@@ -172,7 +172,7 @@ class Keyword_db {
         //are there similar keywords?
         if (count($db_distances) > 0)
         {
-          $result_message .= "Found similar keywords for <b>&quot;".$keyword->keyword."&quot;</b>:<br/>\n";
+          $result_message .= __("Found similar keywords for")." <b>&quot;".$keyword->keyword."&quot;</b>:<br/>\n";
           $result_message .= "<ul>\n";
           foreach($db_distances as $key => $value)
           {
@@ -189,7 +189,7 @@ class Keyword_db {
     }
     if ($result_message != "")
     {
-      $result_message .= "Please review the entered keywords.<br/>\n";
+      $result_message .= __("Please review the entered keywords.")."<br/>\n";
       return $result_message;
     }
     else
