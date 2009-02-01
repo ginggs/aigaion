@@ -50,7 +50,20 @@ echo $this->validation->error_string;
 ?>
     <table>
         <tr><td colspan='2'><label for='text'>Text:</label><br/>
-<?php echo form_textarea(array('name' => 'text','cols' => '70','rows' => '7','value' => $note->text)); ?><br/><br/>
+        <script type="text/javascript">
+        tinyMCE.init({
+          mode : "textareas",
+          language : "<?php echo $this->config->item ("language");?>",
+          theme : "advanced",
+          theme_advanced_toolbar_location : "top",
+          plugins : "table,contextmenu,paste",
+          theme_advanced_buttons1 : "bold,italic,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,outdent,indent,|,undo,redo,|,link,unlink,|,image,hr",
+          theme_advanced_buttons2 : "sub,sup,|,charmap,blockquote,|,tablecontrols,table,row_props,cell_props,delete_col,delete_row,col_after,col_before,row_after,row_before,|,removeformat",
+          theme_advanced_buttons3 : "",
+          editor_selector : "richeditor"
+        });
+      </script>
+<?php echo form_textarea(array('name' => 'text','id' => 'text','cols' => '70','rows' => '7','value' => $note->text,'class'=>"richeditor")); ?><br/><br/>
             </td>
         </tr>
 <?php

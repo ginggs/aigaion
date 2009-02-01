@@ -157,7 +157,7 @@ class Notes extends Controller {
         //get output
         $headerdata = array();
         $headerdata['title'] = 'Edit note';
-        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+        $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','tinymce/tiny_mce.js');
         
         $output = $this->load->view('header', $headerdata, true);
 

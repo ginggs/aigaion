@@ -93,9 +93,9 @@ else
 <li class='nobr'>{$publicationCount} ".__('publications')." ({$publicationReadCount} read)</li>";
 if ($authorCount ==1)
 $topicstatBlock .="
-<li class='nobr'>{$authorCount} ".__('author')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view author for topic"')."]</li>";
+<li class='nobr'>{$authorCount} ".__('author')." [".anchor('authors/fortopic/'.$topic->topic_id,__('view'), 'title="view author for topic"')."]</li>";
 else 
-$topicstatBlock .="<li class='nobr'>{$authorCount} ".__('authors')." [".anchor('authors/fortopic/'.$topic->topic_id,'view', 'title="view authors for topic"')."]</li>";
+$topicstatBlock .="<li class='nobr'>{$authorCount} ".__('authors')." [".anchor('authors/fortopic/'.$topic->topic_id,__('view'), 'title="view authors for topic"')."]</li>";
 if ($topicCount>0)
 {
   if ($topicCount==1)
