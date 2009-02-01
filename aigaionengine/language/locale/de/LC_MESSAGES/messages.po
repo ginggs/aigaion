@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 17:13+0100\n"
-"PO-Revision-Date: 2009-02-01 17:39+0100\n"
+"POT-Creation-Date: 2009-02-01 20:21+0100\n"
+"PO-Revision-Date: 2009-02-01 20:25+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: Manuel Strehl <manuel.strehl@physik.uni-r.de>\n"
 "MIME-Version: 1.0\n"
@@ -250,6 +250,17 @@ msgstr "Zugriffsebenen bearbeiten"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
 #, fuzzy
 msgid "insufficient rights"
 msgstr "Import: unzureichende Rechte."
@@ -396,6 +407,10 @@ msgstr "Kann Anhang nicht löschen: fehlerhafte ID"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:824
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
 msgid "erroneous ID"
 msgstr ""
 
@@ -411,6 +426,7 @@ msgid "still has publications (possibly invisible...). Do you need a quick way t
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:301
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:931
 #, fuzzy, php-format
 msgid "One of the fields %s is required"
 msgstr "Eines der Felder %s ist verpflichtend."
@@ -524,6 +540,15 @@ msgstr ""
 msgid "Interpreted as %s={%s}"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:19
+msgid "Not a valid login!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:16
+msgid "Last Name of user"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
 msgid "The LDAP password checker cannot handle md5 passwords yet"
 msgstr ""
@@ -540,6 +565,153 @@ msgstr ""
 #, fuzzy
 msgid "Error text"
 msgstr "Notiztext:"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
+#, fuzzy
+msgid "Add publication"
+msgstr "Veröffentlichung:"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:824
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:840
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:855
+#, fuzzy
+msgid "Cannot delete publication"
+msgstr "Veröffentlichung löschen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:840
+#, fuzzy
+msgid "publication contains some attachments that you do not have permission to delete."
+msgstr "Kann veröffentlichung nicht löschen: Sie enthält Anhänge, bei denen Ihnen die Löschrechte fehlen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:855
+#, fuzzy
+msgid "publication contains some notes that you do not have permission to delete."
+msgstr "Kann Veröffentlichung nicht löschen: Sie enthält Notizen, bei denen Ihnen die Löschrechte fehlen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:912
+#, fuzzy, php-format
+msgid "The %s field is required"
+msgstr "Das %s-Feld ist verpflichtend."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:937
+#, fuzzy
+msgid "Validation error"
+msgstr "Überprüfungsfehler: "
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1215
+#, php-format
+msgid "Failed to update the bibtex-id in publication %s"
+msgstr "Aktualisieren der BiBTeX-ID in Veröffentlichung %s fehlgeschlagen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1328
+msgid "resolveXref: merge xref into publication!"
+msgstr "resolveXref: führe Querverweis mit Veröffentlichung zusammen!"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1364
+msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
+msgstr "Eine Veröffentlichung mit dem selben Titel existiert bereits. Bitte versichern Sie sich, dass die Veröffentlichung, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1385
+#, fuzzy
+msgid "The cite id is not unique, please choose another cite id."
+msgstr "Die Zitat-ID ist nicht eindeutig, bitte wählen Sie eine andere Zitat-ID. <br/>Veröffentlichung mit der gleichen Zitat-ID: \"%s\"."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1387
+#, fuzzy
+msgid "Publication with same cite id"
+msgstr "Veröffentlichungsliste"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1403
+#, fuzzy
+msgid "Similar cite ids"
+msgstr "Ähnliche Zitat-IDs:"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
+#, fuzzy
+msgid "Cannot delete rightsprofile"
+msgstr "Kann Rechteprofil nicht löschen: fehlerhafte ID"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:221
+#, php-format
+msgid "Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:210
+msgid "Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:218
+msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:226
+msgid "Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:248
+#, fuzzy, php-format
+msgid "The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."
+msgstr "Die Erweiterung '%s' ist niemals für Aigaion-Anhänge erlaubt und wurde von der Liste erlaubter Anhänge entfernt."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:294
+msgid "Failed to upload custom logo."
+msgstr "Hochladen eines eigenen Logos fehlgeschlagen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:297
+msgid "New logo uploaded"
+msgstr "Neues Logo hochgeladen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
+#, fuzzy
+msgid "Categorize publication"
+msgstr "Veröffentlichung einordnen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
+#, fuzzy
+msgid "Change subscription"
+msgstr "Themenabo"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
+msgid "Add topic"
+msgstr "Thema hinzufügen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:424
+#, fuzzy
+msgid "You cannot edit the top level topic."
+msgstr "Sie können das Wurzelthema nicht bearbeiten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
+msgid "Edit topic"
+msgstr "Thema bearbeiten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:450
+msgid "You cannot set a topic to be its own ancestor."
+msgstr "Sie können einem Thema nicht sich selbst als Vorfahr zuordnen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:459
+msgid "Error in the tree structure: the intended new parent is not connected to the top level topic."
+msgstr "Fehler in der Baumstruktur: das beabsichtigte neue Elternthema ist nicht mit dem Wurzelthema verbunden."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:515
+#, fuzzy
+msgid "Cannot delete topic"
+msgstr "Kann Gruppe nicht löschen: fehlerhafte ID"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:515
+#, fuzzy
+msgid "still has children (possibly invisible)"
+msgstr "Kann Thema nicht löschen: hat noch Kinder (eventuell unsichtbar)"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:86
 msgid "You have been logged out because your login token disappeared."
@@ -573,11 +745,6 @@ msgstr ""
 #, fuzzy, php-format
 msgid "Theme '%s' no longer exists"
 msgstr "Design '%s' existiert nicht mehr."
-
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:221
-#, php-format
-msgid "Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."
-msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:277
 msgid "Unknown user or wrong password from external login module"
@@ -691,6 +858,54 @@ msgstr "Diese Aigaion-Installation ist auf dem aktuellen Stand"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
 msgid "Alert"
 msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
+msgid "Unknown language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:240
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:375
+#, fuzzy
+msgid "Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously."
+msgstr "Recht 'Merkliste' des anonymen Nutzers gelöscht: Es ist sinnlos, es zuzuweisen, da mit diesem Konto viele Leute gleichzeitig angemeldet sein werden.\n"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:265
+#, fuzzy
+msgid "User added"
+msgstr "Nutzer hinzugefügt.\n"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:288
+msgid "Login names cannot be changed. Login name has been reset to old value. Other changes have been saved."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:305
+msgid "The account does not have a valid password. It has been disabled. You can ask an admin to re-enable it."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:364
+msgid "You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared."
+msgstr "Sie haben den anonymen Vorgabenutzer als nicht-anonym gekennzeichnet. Deshalb wurden die Konfigurationseinstellungen des anonymen Vorgabenutzers geleert."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:418
+#, fuzzy
+msgid "You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!"
+msgstr "<b>Sie haben gerade Ihr eigenes Recht auf die Vergabe von Nutzerrechten gelöscht! Sind Sie sicher, dass das korrekt ist? Falls nicht, weisen Sie sich dieses Recht vor dem Abmelden wieder zu!</b>"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:420
+msgid "Profile updated, changes to rights of users are applied after the user has logged in again."
+msgstr "Profil aktualisiert, Änderungen der Nutzerrechte werden ausgeführt, sobald sich ein Nutzer das nächste Mal anmeldet."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:423
+#, fuzzy
+msgid "User data changed. Changed access rights will be valid upon next login."
+msgstr "Nutzerdaten geändert. Geänderte Zugriffsrechte gelten ab der nächsten Anmeldung. \n"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
+#, fuzzy
+msgid "Cannot delete user"
+msgstr "Kann Autor nicht löschen: fehlerhafte ID"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
 msgid "Browse"
@@ -1268,8 +1483,6 @@ msgstr "Themen"
 #~ msgstr ""
 #~ "Veröffentlichung betrachten: nicht existierende BiBTeX-ID \"%s\" wurde "
 #~ "übermittelt"
-#~ msgid "Publication list"
-#~ msgstr "Veröffentlichungsliste"
 #~ msgid "All publications sorted by journal and type"
 #~ msgstr "Alle Veröffentlichungen sortiert nach Journal und Typ"
 #~ msgid "All recent publications"
@@ -1305,8 +1518,6 @@ msgstr "Themen"
 #~ "Veröffentlichung löschen: nicht existierende Veröffentlichung gewählt."
 #~ msgid "Delete publication: insufficient rights."
 #~ msgstr "Veröffentlichung löschen: unzureichende Rechte."
-#~ msgid "Delete publication"
-#~ msgstr "Veröffentlichung löschen"
 #~ msgid ""
 #~ "There are validation errors with this entry. You may want to correct them."
 #~ msgstr ""
@@ -1411,14 +1622,10 @@ msgstr "Themen"
 #~ msgstr "Thema löschen"
 #~ msgid "Add topic: insufficient rights."
 #~ msgstr "Thema hinzufügen: unzureichende Rechte."
-#~ msgid "Add topic"
-#~ msgstr "Thema hinzufügen"
 #~ msgid "Topic does not exist."
 #~ msgstr "Thema existiert nicht."
 #~ msgid "Edit topic: insufficient rights."
 #~ msgstr "Thema bearbeiten: unzureichende Rechte."
-#~ msgid "Edit topic"
-#~ msgstr "Thema bearbeiten"
 #~ msgid "View topic"
 #~ msgstr "Thema ansehen"
 #~ msgid "Export topic"
@@ -1489,8 +1696,6 @@ msgstr "Themen"
 #~ "kontaktieren Sie Ihren Aigaion-Administrator."
 #~ msgid "Topic review: invalid user_id specified."
 #~ msgstr "Themenüberprüfung: ungültige Nutzer-ID gewählt."
-#~ msgid "Topic subscription"
-#~ msgstr "Themenabo"
 #~ msgid "Topic subscription for "
 #~ msgstr "Themenabo für"
 #~ msgid "Subscribe topic: no valid user ID provided"
@@ -1752,114 +1957,18 @@ msgstr "Themen"
 #~ msgstr "Kann Veröffentlichung nicht löschen: unzureichende Rechte."
 #~ msgid "Cannot delete publication: erroneous ID"
 #~ msgstr "Kann Veröffentlichung nicht löschen: fehlerhafte ID"
-#~ msgid ""
-#~ "Cannot delete publication: it contains some attachments that you do not "
-#~ "have permission to delete"
-#~ msgstr ""
-#~ "Kann veröffentlichung nicht löschen: Sie enthält Anhänge, bei denen Ihnen "
-#~ "die Löschrechte fehlen."
-#~ msgid ""
-#~ "Cannot delete publication: it contains some notes that you do not have "
-#~ "permission to delete"
-#~ msgstr ""
-#~ "Kann Veröffentlichung nicht löschen: Sie enthält Notizen, bei denen Ihnen "
-#~ "die Löschrechte fehlen."
-#~ msgid "The %s field is required."
-#~ msgstr "Das %s-Feld ist verpflichtend."
-#~ msgid "Validation error:"
-#~ msgstr "Überprüfungsfehler: "
-#~ msgid "Failed to update the bibtex-id in publication %s"
-#~ msgstr "Aktualisieren der BiBTeX-ID in Veröffentlichung %s fehlgeschlagen."
-#~ msgid "resolveXref: merge xref into publication!"
-#~ msgstr "resolveXref: führe Querverweis mit Veröffentlichung zusammen!"
-#~ msgid ""
-#~ "A publication with the same title exists. Please make sure that the "
-#~ "publication you are importing is not already in the database."
-#~ msgstr ""
-#~ "Eine Veröffentlichung mit dem selben Titel existiert bereits. Bitte "
-#~ "versichern Sie sich, dass die Veröffentlichung, die Sie importieren "
-#~ "möchten, nicht bereits in der Datenbank vorhanden ist."
-#~ msgid ""
-#~ "The cite id is not unique, please choose another cite id. <br/"
-#~ ">Publication with same cite id: \"%s\""
-#~ msgstr ""
-#~ "Die Zitat-ID ist nicht eindeutig, bitte wählen Sie eine andere Zitat-ID. "
-#~ "<br/>Veröffentlichung mit der gleichen Zitat-ID: \"%s\"."
-#~ msgid "Similar cite ids:"
-#~ msgstr "Ähnliche Zitat-IDs:"
 #~ msgid "Cannot delete rightsprofile: insufficient rights"
 #~ msgstr "Kann Rechteprofil nicht löschen: unzureichende Rechte."
-#~ msgid "Cannot delete rightsprofile: erroneous ID"
-#~ msgstr "Kann Rechteprofil nicht löschen: fehlerhafte ID"
-#~ msgid ""
-#~ "The extension '%s' is never allowed for Aigaion attachments, and has "
-#~ "been \n"
-#~ "            \t\t                        removed from the list of allowed "
-#~ "attachments."
-#~ msgstr ""
-#~ "Die Erweiterung '%s' ist niemals für Aigaion-Anhänge erlaubt und wurde "
-#~ "von der Liste erlaubter Anhänge entfernt."
 #~ msgid "Error updating config:"
 #~ msgstr "Fehler beim Aktualisieren der Konfiguration:"
-#~ msgid "Failed to upload custom logo."
-#~ msgstr "Hochladen eines eigenen Logos fehlgeschlagen."
-#~ msgid "New logo uploaded"
-#~ msgstr "Neues Logo hochgeladen"
 #~ msgid "Categorize publication: insufficient rights."
 #~ msgstr "Veröffentlichung kategorisieren: unzureichende Rechte."
 #~ msgid "Change subscription: insufficient rights."
 #~ msgstr "Abo ändern: unzureichende Rechte."
-#~ msgid "You cannot edit the top level topic"
-#~ msgstr "Sie können das Wurzelthema nicht bearbeiten"
-#~ msgid "You cannot set a topic to be its own ancestor."
-#~ msgstr "Sie können einem Thema nicht sich selbst als Vorfahr zuordnen."
-#~ msgid ""
-#~ "Error in the tree structure: the intended new parent is not connected to "
-#~ "the top level topic."
-#~ msgstr ""
-#~ "Fehler in der Baumstruktur: das beabsichtigte neue Elternthema ist nicht "
-#~ "mit dem Wurzelthema verbunden."
 #~ msgid "Cannot delete topic: insufficient rights"
 #~ msgstr "Kann Thema nicht löschen: unzureichende Rechte."
 #~ msgid "Cannot delete topic: erroneous ID"
 #~ msgstr "Kann Thema nicht löschen: fehlerhafte ID"
-#~ msgid "Cannot delete topic: still has children (possibly invisible)"
-#~ msgstr "Kann Thema nicht löschen: hat noch Kinder (eventuell unsichtbar)"
-#~ msgid ""
-#~ "Removed 'bookmarklist' right from anonymous user: it makes no sense to "
-#~ "assign it since many people will be loggin on with that account "
-#~ "simultaneously.\n"
-#~ msgstr ""
-#~ "Recht 'Merkliste' des anonymen Nutzers gelöscht: Es ist sinnlos, es "
-#~ "zuzuweisen, da mit diesem Konto viele Leute gleichzeitig angemeldet sein "
-#~ "werden.\n"
-#~ msgid "User added.\n"
-#~ msgstr "Nutzer hinzugefügt.\n"
-#~ msgid ""
-#~ "You just set the default anonymous user to non-anonymous. Therefore the "
-#~ "default anonymous user configuration setting has been cleared."
-#~ msgstr ""
-#~ "Sie haben den anonymen Vorgabenutzer als nicht-anonym gekennzeichnet. "
-#~ "Deshalb wurden die Konfigurationseinstellungen des anonymen "
-#~ "Vorgabenutzers geleert."
-#~ msgid ""
-#~ "<b>You just removed your own right to assign user rights! Are you sure "
-#~ "that this is correct? If not, re-assign this right before logging out!</b>"
-#~ msgstr ""
-#~ "<b>Sie haben gerade Ihr eigenes Recht auf die Vergabe von Nutzerrechten "
-#~ "gelöscht! Sind Sie sicher, dass das korrekt ist? Falls nicht, weisen Sie "
-#~ "sich dieses Recht vor dem Abmelden wieder zu!</b>"
-#~ msgid ""
-#~ "Profile updated, changes to rights of users are applied after the user "
-#~ "has logged in again."
-#~ msgstr ""
-#~ "Profil aktualisiert, Änderungen der Nutzerrechte werden ausgeführt, "
-#~ "sobald sich ein Nutzer das nächste Mal anmeldet."
-#~ msgid ""
-#~ "User data changed. Changed access rights will be valid upon next login.\n"
-#~ msgstr ""
-#~ "Nutzerdaten geändert. Geänderte Zugriffsrechte gelten ab der nächsten "
-#~ "Anmeldung. \n"
 #~ msgid "Cannot delete user: insufficient rights"
 #~ msgstr "Kann Nutzer nicht löschen: unzureichende Rechte."
 #~ msgid "Cannot delete user: erroneous ID"
@@ -3062,8 +3171,6 @@ msgstr "Themen"
 #~ msgstr "Notizen"
 #~ msgid "finish categorization"
 #~ msgstr "Kategorisierung abschließen"
-#~ msgid "categorize publication"
-#~ msgstr "Veröffentlichung einordnen"
 #~ msgid "Click on a topic name to change its subscription status."
 #~ msgstr ""
 #~ "Klicken Sie auf einen Themennamen, um den zugewiesenen Status zu ändern."
