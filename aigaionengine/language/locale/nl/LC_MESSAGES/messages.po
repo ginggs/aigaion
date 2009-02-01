@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 20:21+0100\n"
-"PO-Revision-Date: 2009-02-01 20:27+0100\n"
+"POT-Creation-Date: 2009-02-01 20:32+0100\n"
+"PO-Revision-Date: 2009-02-01 20:56+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -454,6 +454,79 @@ msgstr "Publicaties op bladwijzerlijst verwijderd uit onderwerp"
 msgid "Export"
 msgstr "Exporteer"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+msgid "File"
+msgstr "Bestand"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+msgid "successfully uploaded!"
+msgstr "succesvol naar server gestuurd!"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:230
+msgid "The uploaded file exceeds the maximal upload filesize defined in the server configuration."
+msgstr "De bestandsgrootte van de opgestuurde file is groter dan het maximum vastgelegd voor de server."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:231
+msgid "Please ask your site administrator to fix the UPLOAD_MAX_FILESIZE directive in php.ini."
+msgstr "Vraag de beheerder van je server om de UPLOAD_MAX_FILESIZE instelling in php.ini aan te passen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:232
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form."
+msgstr "De opgestuurde file is groter dan de MAX_FILE_SIZE die was gespecificeerd in het html formulier."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:233
+msgid "The uploaded file was only partially uploaded"
+msgstr "De opgestuurde file is slechts voor een gedeelte aangekomen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:234
+msgid "No file was uploaded"
+msgstr "Er was geen bestand opgestuurd"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:241
+msgid "Please select a file for upload."
+msgstr "Kies alsjeblieft een file om op te sturen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:242
+msgid "Only files with the following extensions are allowed"
+msgstr "Enkel bestanden van de volgende typen zijn toegestaan"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore."
+msgstr "Sorry, de bestandsnaam bevat ongeldige tekens. Gebruik alleen alfanumerieke tekens en scheidt de delen van de naam van elkaar met een underscore (_) waar nodig."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "A valid filename ends with one dot followed by the extension."
+msgstr "Een correcte bestandsnaam eindigt met één punt gevolgd door de extensie (bestandstype)."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:244
+#, php-format
+msgid "The filename exceeds the maximum length of %s characters."
+msgstr "De bestandsnaam is langer dan de toegestane %s tekens."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:245
+msgid "Sorry, the upload directory doesn't exist!"
+msgstr "Sorry, de uploaddirectory bestaat niet!"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Uploading"
+msgstr "Uploaden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Error!"
+msgstr "Fout!"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Sorry, a file with this name already exists."
+msgstr "Sorry, er bestaat al een bestand met deze naam."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:247
+msgid "The uploaded file is renamed to"
+msgstr "Het opgestuurde bestand is hernoemd tot"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:248
+msgid "Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory."
+msgstr "De opgestuurde file kon niet van de PHP tmp folder verplaatst worden naar de correcte opslagdirectory."
+
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
 msgid "Cannot delete group"
@@ -548,12 +621,12 @@ msgstr "Publicatie kan niet verwijderd worden"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:840
 msgid "publication contains some attachments that you do not have permission to delete."
-msgstr ""
+msgstr "publicatie bevat bestanden die je niet mag verwijderen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:855
 msgid "publication contains some notes that you do not have permission to delete."
-msgstr ""
+msgstr "publicatie bevat aantekeningen die je niet mag verwijderen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:912
 #, php-format
@@ -571,23 +644,23 @@ msgstr "Corrigeren van de bibtex-id in publicatie %s is niet gelukt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1328
 msgid "resolveXref: merge xref into publication!"
-msgstr ""
+msgstr "resolveXref: voeg xref samen met publicatie!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1364
 msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
-msgstr ""
+msgstr "Er bestaat een andere publicatie met dezelfde titel. Zorg dat je zeker weet dat de publicatie die importeert niet al in de database staat."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1385
 msgid "The cite id is not unique, please choose another cite id."
-msgstr ""
+msgstr "Het citatie id is niet uniek, kies alsjblieft een ander citatie id."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1387
 msgid "Publication with same cite id"
-msgstr ""
+msgstr "Publicatie met het zelfde citatie id"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1403
 msgid "Similar cite ids"
-msgstr ""
+msgstr "Gelijkende 'cite ids'"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
@@ -602,28 +675,28 @@ msgstr "Vertaling \"%s' bestaat niet langer onder die naam. Pas de instellingen 
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:210
 msgid "Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled."
-msgstr ""
+msgstr "\"Gedelegeed wachtwoorden controleren\" kan alleen aangezet worden als er een wachtwoordcontrolemodule gespecificeerd is! Aangezien dit niet het geval is, is het \"gedelegeed wachtwoorden controleren\" weer uitgeschakeld."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:218
 msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
-msgstr ""
+msgstr "In elk geval één van de twee moet worden ingeschakeld: interne wachtwoordcontrole, of \"gedelegeed wachtwoorden controleren\"! Aangezien dit niet het geval was, is de interne wachtwoordcontrole weer ingeschakeld."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:226
 msgid "Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account."
-msgstr ""
+msgstr "Anonieme toegang is ingeschakeld, maar er is geen geldige anonieme account aangewezen. Denk erom dat anonieme login pas werkt als er zo'n account aangemaakt is en is aangewezen als de standaard anonieme account."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:248
 #, php-format
 msgid "The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."
-msgstr ""
+msgstr "Bestandstype '%s' is nooit toegestaan voor Aigaion bestanden, en is daarom verwijderd uit de lijst van toegestane bestandstypen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:294
 msgid "Failed to upload custom logo."
-msgstr ""
+msgstr "Opsturen van aangepast logo is mislukt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:297
 msgid "New logo uploaded"
-msgstr ""
+msgstr "New logo naar server gestuurd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
@@ -633,7 +706,7 @@ msgstr "Categoriseer publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
 msgid "Change subscription"
-msgstr ""
+msgstr "Verander abbonnement"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
 msgid "Add topic"
@@ -649,11 +722,11 @@ msgstr "Bewerk onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:450
 msgid "You cannot set a topic to be its own ancestor."
-msgstr ""
+msgstr "Een onderwerp kan niet in de hierarchie onder zichzelf toegevoegd worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:459
 msgid "Error in the tree structure: the intended new parent is not connected to the top level topic."
-msgstr ""
+msgstr "Fout in de hierarchie: de gekozen ouder is niet verbonden met het 'top' onderwerp."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
@@ -663,7 +736,7 @@ msgstr "Onderwerp  kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:515
 msgid "still has children (possibly invisible)"
-msgstr ""
+msgstr "heeft nog kinderen (misschien onzichtbaar)"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:86
 msgid "You have been logged out because your login token disappeared."
@@ -807,12 +880,12 @@ msgstr "Waarschuwing"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
 msgid "Unknown language"
-msgstr ""
+msgstr "Onbekende taal"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:240
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:375
 msgid "Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously."
-msgstr ""
+msgstr "Het 'bladwijzerlijst' recht is verwijderd voor de anonieme gebruiker. Het heeft geen zin die toe te wijzen omdat deze account door veel mensen tegelijk gebruikt gaat worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:265
 msgid "User added"
@@ -820,27 +893,27 @@ msgstr "Gebruiker toegevoegd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:288
 msgid "Login names cannot be changed. Login name has been reset to old value. Other changes have been saved."
-msgstr ""
+msgstr "Login-namen kunnen niet worden aangepast. Login naam hersteld naar oude waarde. Andere veranderingen zijn wel opgeslagen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:305
 msgid "The account does not have a valid password. It has been disabled. You can ask an admin to re-enable it."
-msgstr ""
+msgstr "Dit account heeft geen geldig wachtwoord. Het is daarom uitgeschakeld. Je kan aan een admin vragen het weer in te schakelen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:364
 msgid "You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared."
-msgstr ""
+msgstr "Je hebt zojuist de \"standaard anonieme gebruiker\" niet-anoniem gemaakt. Daarom is de \"standaard anonieme gebruiker\" instelling leeggemaakt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:418
 msgid "You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!"
-msgstr ""
+msgstr "Je hebt zojuist je eigen recht om gebruikersrechten te wijzigen verwijderd! Weet je zeker dat dat klopt? Zo nee, corrigeer de fout vóór je weer uitlogt!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:420
 msgid "Profile updated, changes to rights of users are applied after the user has logged in again."
-msgstr ""
+msgstr "Profiel aangepast, veranderingen aan gebruikersrechten worden doogevoerd als de gebruiker weer inlogt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:423
 msgid "User data changed. Changed access rights will be valid upon next login."
-msgstr ""
+msgstr "Gebruikersgegevens zijn aangepast. Nieuwe toegangsrechten worden actief bij de volgende login."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
@@ -1058,8 +1131,6 @@ msgstr "auteurs"
 msgid "topics"
 msgstr "onderwerpen"
 
-#~ msgid "Error uploading"
-#~ msgstr "Fout bij uploaden"
 #~ msgid "Name:"
 #~ msgstr "Naam"
 
