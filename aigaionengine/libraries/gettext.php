@@ -41,6 +41,10 @@ class Gettext {
       //this is still needed, because we are not *quite* sure that the language exists. Better to init the right locale :)
       $lang = $CI->userlanguage->get();
       
+      #uncomment this line if you have all languages installed for CodeIgniter under their correct short name
+      #to make CodeIgniter follow the same language switches:
+      //$CI->config->set_item ("language", $lang);
+      
     // do the gettext stuff here
     !defined ('LC_MESSAGES') ? define ('LC_MESSAGES', 5) : false;
     _setlocale (LC_MESSAGES, $lang);
