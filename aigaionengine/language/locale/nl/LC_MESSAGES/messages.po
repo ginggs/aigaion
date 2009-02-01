@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 14:34+0100\n"
-"PO-Revision-Date: 2009-02-01 14:38+0100\n"
+"POT-Creation-Date: 2009-02-01 17:13+0100\n"
+"PO-Revision-Date: 2009-02-01 17:14+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -195,10 +195,31 @@ msgstr "intern"
 msgid "private"
 msgstr "privé"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
-msgid "Add attachment"
-msgstr "Voeg attachment toe"
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:117
+msgid "effective access level is different"
+msgstr "effektief toegansniveau wijkt af"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
+msgid "Edit access level"
+msgstr "Schrijftoegangsniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
@@ -220,6 +241,75 @@ msgstr "Voeg attachment toe"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
 msgid "insufficient rights"
 msgstr "onvoldoende rechten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Modify access level"
+msgstr "Aanpassen toegangsniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Restricted edit level to match read level"
+msgstr "Schrijfrechtenniveau aangepast aan leesrechtenniveau"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+msgid "Increased read level for publication to match new read level for attachment"
+msgstr "Leesrechtenniveau van publicatie aangepast om bij de nieuwe leesrechten van het bestand te passen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:212
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:252
+msgid "Couldn't propagate new level all the way up"
+msgstr "Toegangsrechten konden niet tot bovenaan doorgevoerd worden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+msgid "Increased read level for publication to match new read level for note"
+msgstr "Leesrechtenniveau van publicatie aangepast om bij de nieuwe leesrechten van de aantekening te passen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+msgid "You cannot change the access levels of the top topic"
+msgstr "De toegangsrechten van het 'top' onderwerp kunnen niet aangepast"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:379
+msgid "Cascade of access levels not yet implemented"
+msgstr "Cascade van toegangsniveaus nog niet geïmplementeerd"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+msgid "Add attachment"
+msgstr "Voeg attachment toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:113
 #, php-format
@@ -416,6 +506,150 @@ msgstr "Foutcode"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:38
 msgid "Error text"
 msgstr "Fouttekst"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:86
+msgid "You have been logged out because your login token disappeared."
+msgstr "Je bent uitgelogd omdat je login token verdwenen is."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:93
+msgid "You have been logged out because your login token expired."
+msgstr "Je bent uitgelogd omdat je login token niet meer geldig  is."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:103
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:785
+msgid "You have been logged out because the Aigaion Engine is in the process of being updated."
+msgstr "Je bent uitgelogd omdat de Aigaion Engine op dit moment wordt opgewaardeerd."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:105
+msgid "If you are a user with database_manage rights, please login to complete the update."
+msgstr "Als je een gebruiker met database_manage rechten bent, log dan in op de site update te voltooien."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:158
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:172
+msgid "You do not have sufficient rights for the requested operation or page."
+msgstr "Je hebt niet voldoende rechten voor het uitvoeren van de gevraagde operatie of pagina."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:160
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:174
+msgid "Sorry for the inconvenience."
+msgstr "Sorry voor het ongemak."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:209
+#, php-format
+msgid "Theme '%s' no longer exists"
+msgstr "Thema '%s' bestaat niet meer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:221
+#, php-format
+msgid "Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."
+msgstr "Vertaling \"%s' bestaat niet langer onder die naam. Pas de instellingen van je profile en van de site hier op aan."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:277
+msgid "Unknown user or wrong password from external login module"
+msgstr "Onbekende gebruiker of verkeerd wachtwoord volgens externe login module"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:282
+msgid "No login info available"
+msgstr "Geen login informatie beschikbaar"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:307
+msgid "No password submitted"
+msgstr "Geen wachtwoord opgegeven"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:335
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:350
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:356
+msgid "Unknown user or wrong password"
+msgstr "Onbekende gebruiker of verkeerd wachtwoord"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#, php-format
+msgid "The username / password combination is valid according to the login module, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
+msgstr "De combinatie van gebruikersnaam/wachtwoord is geldig volgens de login module, maar de bijbehorende Aigaion account is een %s account en kan niet worden ingelogd door de %s module. Neem contact op met de beheerder voor assistentie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+msgid "internal"
+msgstr "intern"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+msgid "anonymous"
+msgstr "anoniem"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+msgid "group"
+msgstr "group"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:515
+#, php-format
+msgid "Created missing user %s  as member of groups %s"
+msgstr "De ontbrekende gebruiker '%s' is aangemaakt als lid van de groep(en) %s"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:596
+#, php-format
+msgid "A new Aigaion account has been created for you, user '%s'. Please enjoy your stay here."
+msgstr "Beste '%s', er is een nieuwe account voor je aangemaakt. Veel plezier hier."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:603
+msgid "Serious error in login tables"
+msgstr "Ernstige fout in de login tabellen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+#, php-format
+msgid "The username / password combination is valid according to %s, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
+msgstr "De combinatie van gebruikersnaam/wachtwoord is geldig volgens %s, maar de bijbehorende Aigaion account is een %s account en kan niet worden ingelogd door de %s module. Neem contact op met de beheerder voor assistentie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:632
+msgid "The username / password combination is valid, but has no Aigaion account associated with it yet. Please contact your database admin for assistance"
+msgstr "De combinatie van gebruikersnaam/wachtwoord is geldig, maar Aigaion heeft er geen account voor. Neem contact op met de beheerder voor assistentie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:676
+msgid "Anonymous (guest) access to this database has been enabled. However, no default anonymous account has been assigned, so anonymous access is unfortunately not yet possible."
+msgstr "Anonieme (gast)toegang tot de database staat aan. Maar er is geen standaard anonieme account aangewezen, dus anonieme toegang is nu helaas niet mogelijk."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:724
+msgid "Your admin account password still has the default value, please change it on the 'profile' page."
+msgstr "Je beheerders-account heeft nog steeds het standaard wachtwoord. Verander dit zo snel mogelijk op de 'profile' pagina."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:760
+#, php-format
+msgid "Dear guest, welcome to this publication database. As an anonymous user, you will probably not have edit rights. Also, the collapse status of the topic tree will not be persistent. If you like to have these and other options enabled, you might ask %s for a login account."
+msgstr "Beste gast, welkom bij deze publicatiedatabase. Als anonieme gebruiker zul je waarschijnlijk geen rechten hebben om iets aan te passen. Ook kan je de hierarchie van onderwerpen niet blijvend open- of dichtklappen. Als je deze, en andere, mogelijkeheden ook wil hebben, zou je contact op kunnen nemen met %s voor het aanvragen van een gebruikersaccount."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:764
+msgid "This site is powered by Aigaion - A PHP/Web based management system for shared and annotated bibliographies."
+msgstr "Deze site draait op Aigaion - een PHP/Web gebaseerde database voor gedeelde en geannoteerde bibliografieën."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:766
+#, php-format
+msgid "For more information visit %s"
+msgstr "Bezoek voor meer informatie %s"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
+msgid "If you are a user with database manage rights, please login to complete the update."
+msgstr "Als je een gebruiker met database_manage rechten bent, log dan in op de site update te voltooien."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:797
+msgid "Checking for updates..."
+msgstr "Zoeken naar updates..."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
+msgid "OK"
+msgstr "OK"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:801
+msgid "This installation of Aigaion is up-to-date"
+msgstr "Deze installatie van Aigaion is up-to-date"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
+msgid "Alert"
+msgstr "Waarschuwing"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
 msgid "Browse"

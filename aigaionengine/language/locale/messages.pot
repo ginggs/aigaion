@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 14:34+0100\n"
+"POT-Creation-Date: 2009-02-01 17:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,10 +193,31 @@ msgstr ""
 msgid "private"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
-msgid "Add attachment"
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:117
+msgid "effective access level is different"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
+msgid "Edit access level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
@@ -217,6 +238,76 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
 msgid "insufficient rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Modify access level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Restricted edit level to match read level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+msgid ""
+"Increased read level for publication to match new read level for attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:212
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:252
+msgid "Couldn't propagate new level all the way up"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+msgid "Increased read level for publication to match new read level for note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+msgid "You cannot change the access levels of the top topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:379
+msgid "Cascade of access levels not yet implemented"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+msgid "Add attachment"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:113
@@ -429,6 +520,179 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:38
 msgid "Error text"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:86
+msgid "You have been logged out because your login token disappeared."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:93
+msgid "You have been logged out because your login token expired."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:103
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:785
+msgid ""
+"You have been logged out because the Aigaion Engine is in the process of "
+"being updated."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:105
+msgid ""
+"If you are a user with database_manage rights, please login to complete the "
+"update."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:158
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:172
+msgid "You do not have sufficient rights for the requested operation or page."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:160
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:174
+msgid "Sorry for the inconvenience."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:209
+#, php-format
+msgid "Theme '%s' no longer exists"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:221
+#, php-format
+msgid ""
+"Language '%s' no longer exists under that name. Please reset the relevant "
+"profile and site settings."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:277
+msgid "Unknown user or wrong password from external login module"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:282
+msgid "No login info available"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:307
+msgid "No password submitted"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:335
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:350
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:356
+msgid "Unknown user or wrong password"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#, php-format
+msgid ""
+"The username / password combination is valid according to the login module, "
+"but the corresponding Aigaion account is an %s account and cannot be logged "
+"in by the %s module. Please contact your database admin for assistance."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+msgid "internal"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+msgid "anonymous"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+msgid "group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:515
+#, php-format
+msgid "Created missing user %s  as member of groups %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:596
+#, php-format
+msgid ""
+"A new Aigaion account has been created for you, user '%s'. Please enjoy your "
+"stay here."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:603
+msgid "Serious error in login tables"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+#, php-format
+msgid ""
+"The username / password combination is valid according to %s, but the "
+"corresponding Aigaion account is an %s account and cannot be logged in by "
+"the %s module. Please contact your database admin for assistance."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:632
+msgid ""
+"The username / password combination is valid, but has no Aigaion account "
+"associated with it yet. Please contact your database admin for assistance"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:676
+msgid ""
+"Anonymous (guest) access to this database has been enabled. However, no "
+"default anonymous account has been assigned, so anonymous access is "
+"unfortunately not yet possible."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:724
+msgid ""
+"Your admin account password still has the default value, please change it on "
+"the 'profile' page."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:760
+#, php-format
+msgid ""
+"Dear guest, welcome to this publication database. As an anonymous user, you "
+"will probably not have edit rights. Also, the collapse status of the topic "
+"tree will not be persistent. If you like to have these and other options "
+"enabled, you might ask %s for a login account."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:764
+msgid ""
+"This site is powered by Aigaion - A PHP/Web based management system for "
+"shared and annotated bibliographies."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:766
+#, php-format
+msgid "For more information visit %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
+msgid ""
+"If you are a user with database manage rights, please login to complete the "
+"update."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:797
+msgid "Checking for updates..."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
+msgid "OK"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:801
+msgid "This installation of Aigaion is up-to-date"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
+msgid "Alert"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
