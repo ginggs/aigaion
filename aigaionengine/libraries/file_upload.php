@@ -226,26 +226,26 @@ class File_upload {
 
 			default:
 			// start http errors
-			$error[UPLOAD_ERR_OK] = "File: <b>".$this->the_file."</b> successfully uploaded!";
-			$error[UPLOAD_ERR_INI_SIZE] = "The uploaded file exceeds the maximal upload filesize defined in the server configuration.<br />".
-				"Please ask your site administrator to fix the <b>upload_max_filesize</b> directive in php.ini.";
-			$error[UPLOAD_ERR_FORM_SIZE] = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form.";
-			$error[UPLOAD_ERR_PARTIAL] = "The uploaded file was only partially uploaded";
-			$error[UPLOAD_ERR_NO_FILE] = "No file was uploaded";
+			$error[UPLOAD_ERR_OK] = __("File").": <b>".$this->the_file."</b> ".__("successfully uploaded!");
+			$error[UPLOAD_ERR_INI_SIZE] = __("The uploaded file exceeds the maximal upload filesize defined in the server configuration.")."<br />".
+				__("Please ask your site administrator to fix the UPLOAD_MAX_FILESIZE directive in php.ini.");
+			$error[UPLOAD_ERR_FORM_SIZE] = __("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form.");
+			$error[UPLOAD_ERR_PARTIAL] = __("The uploaded file was only partially uploaded");
+			$error[UPLOAD_ERR_NO_FILE] = __("No file was uploaded");
 			/*
 			WB may 17 2007 - following constants are only for php5, we thus won't use them.
 			$error[UPLOAD_ERR_NO_TMP_DIR] = "Missing a temporary folder.";
 			$error[UPLOAD_ERR_CANT_WRITE] = "Failed to write file to disk.";
 			*/
 			// end  http errors
-			$error[10] = "Please select a file for upload.";
-			$error[11] = "Only files with the following extensions are allowed: <b>".$this->ext_string."</b>";
-			$error[12] = "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore. <br/>A valid filename ends with one dot followed by the extension.";
-			$error[13] = "The filename exceeds the maximum length of ".$this->max_length_filename." characters.";
-			$error[14] = "Sorry, the upload directory doesn't exist!";
-			$error[15] = "Uploading <b>".$this->the_file."... Error!</b> Sorry, a file with this name already exists.";
-			$error[16] = "The uploaded file is renamed to <b>".$this->file_copy."</b>.";
-			$error[17] = "Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory.";
+			$error[10] = __("Please select a file for upload.");
+			$error[11] = __("Only files with the following extensions are allowed").": <b>".$this->ext_string."</b>";
+			$error[12] = __("Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore.")." <br/>".__("A valid filename ends with one dot followed by the extension.");
+			$error[13] = sprintf(__("The filename exceeds the maximum length of %s characters."),$this->max_length_filename);
+			$error[14] = __("Sorry, the upload directory doesn't exist!");
+			$error[15] = __("Uploading")." <b>".$this->the_file."... ".__("Error!")."</b> ".__("Sorry, a file with this name already exists.");
+			$error[16] = __("The uploaded file is renamed to")." <b>".$this->file_copy."</b>.";
+			$error[17] = __("Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory.");
 		}
 		return $error[$err_num];
 	}

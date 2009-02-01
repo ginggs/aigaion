@@ -406,7 +406,7 @@ class Publication_db {
     if (    (!$userlogin->hasRights('publication_edit'))
         ) 
     {
-        appendErrorMessage('Add publication: insufficient rights.<br/>');
+        appendErrorMessage(__('Add publication').': '.__('insufficient rights').'.<br/>');
         return;
     }        
     
@@ -817,11 +817,11 @@ class Publication_db {
             !$CI->accesslevels_lib->canEditObject($publication)
             ) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete publication: insufficient rights');
+            appendErrorMessage(__('Cannot delete publication').': '.__('insufficient rights').'.<br/>');
             return false;
         }
         if (empty($publication->pub_id)) {
-            appendErrorMessage('Cannot delete publication: erroneous ID');
+            appendErrorMessage(__('Cannot delete publication').': '.__('erroneous ID').'.<br/>');
             return false;
         }
         //no delete for object with children. check through tables, not through object
@@ -833,11 +833,11 @@ class Publication_db {
             foreach ($Q->result() as $row) {
                 $attachment = $CI->attachment_db->getByID($row->att_id);
                 if ($attachment == null) {
-                    appendErrorMessage('Cannot delete publication: it contains some attachments that you do not have permission to delete<br/>');
+                    appendErrorMessage(__('Cannot delete publication').': '.__('publication contains some attachments that you do not have permission to delete.').'<br/>');
                     return false;
                 }
                 if (!$CI->accesslevels_lib->canEditObject($attachment)) {
-                    appendErrorMessage('Cannot delete publication: it contains some attachments that you do not have permission to delete<br/>');
+                    appendErrorMessage(__('Cannot delete publication').': '.__('publication contains some attachments that you do not have permission to delete.').'<br/>');
                     return false;
                 }
             }
@@ -848,11 +848,11 @@ class Publication_db {
             foreach ($Q->result() as $row) {
                 $note = $CI->note_db->getByID($row->note_id);
                 if ($note == null) {
-                    appendErrorMessage('Cannot delete publication: it contains some notes that you do not have permission to delete<br/>');
+                    appendErrorMessage(__('Cannot delete publication').': '.__('publication contains some notes that you do not have permission to delete.').'<br/>');
                     return false;
                 }
                 if (!$CI->accesslevels_lib->canEditObject($note)) {
-                    appendErrorMessage('Cannot delete publication: it contains some notes that you do not have permission to delete<br/>');
+                    appendErrorMessage(__('Cannot delete publication').': '.__('publication contains some notes that you do not have permission to delete.').'<br/>');
                     return false;
                 }
             }
@@ -909,7 +909,7 @@ class Publication_db {
     {
       if (trim($publication->$key) == '')
       {
-        $validation_message .= "The ".$key." field is required.<br/>\n";
+        $validation_message .=sprintf( __("The %s field is required"),$key).".<br/>\n";
       }
     }
     
@@ -928,13 +928,13 @@ class Publication_db {
       }
       if (!$conditional_validation)
       {
-        $validation_message .= "One of the fields ".$conditional_field_text." is required.<br/>\n";
+        $validation_message .= sprintf(__("One of the fields %s is required"),$conditional_field_text).".<br/>\n";
       }
     }
     
     if ($validation_message != '' && (trim($publication->crossref)=='')) //when crossref set, nothing is required :)
     {
-      appendErrorMessage("Validation error:<br/>\n".$validation_message);
+      appendErrorMessage(__("Validation error").":<br/>\n".$validation_message);
       return false;
     }
     else
@@ -1212,7 +1212,7 @@ class Publication_db {
             $updatefields =  array('crossref'=>$new_bibtex_id);
             $CI->db->update('publication', $updatefields, array('pub_id'=>$R->pub_id));
     		if (mysql_error()) {
-    		    appendErrorMessage("Failed to update the bibtex-id in publication ".$R->pub_id."<br/>");
+    		    appendErrorMessage(sprintf(__("Failed to update the bibtex-id in publication %s"),$R->pub_id).".<br/>");
         	}
         }
     }
@@ -1325,7 +1325,7 @@ class Publication_db {
                             $xref[$publication->crossref] = $xrefpub;
                         }
                         if ($merge) {
-                            appendMessage('resolveXref: merge xref into publication!<br/>');
+                            appendMessage(__('resolveXref: merge xref into publication!').'<br/>');
                         }
                     }
                 } //else: don't do a thing; leave the publication in $normal where it was put in the first place
@@ -1361,7 +1361,7 @@ class Publication_db {
       $num_rows = $Q->num_rows();
       if ($num_rows > 0)
       {
-        return "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database.";
+        return __("A publication with the same title exists. Please make sure that the publication you are importing is not already in the database.");
       }
       else return null;
     }
@@ -1382,7 +1382,10 @@ class Publication_db {
         {
           if ($row->pub_id != $publication->pub_id)
           {
-            $message = "The cite id is not unique, please choose another cite id. <br/>Publication with same cite id: \"".$row->title."\"";
+            $message = __("The cite id is not unique, please choose another cite id.")
+                       ."<br/>"
+                       .__("Publication with same cite id")
+                       .": \"".$row->title."\"";
             
             $Q2 = $CI->db->query("SELECT bibtex_id,pub_id FROM ".AIGAION_DB_PREFIX."publication
                                  WHERE bibtex_id LIKE ".$CI->db->escape($publication->bibtex_id."%"));
@@ -1397,7 +1400,7 @@ class Publication_db {
                   $list .= "<li>".$row2->bibtex_id."</li>\n";
               }
               if ($list != "")
-                $message .= "<br/>\nSimilar cite ids:<br/><ul>\n".$list."</ul>\n";
+                $message .= "<br/>".__("Similar cite ids").":<br/><ul>\n".$list."</ul>\n";
               
             }
             return $message;  

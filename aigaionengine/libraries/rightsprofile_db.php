@@ -139,11 +139,11 @@ class Rightsprofile_db {
         //check, all through the cascade, whether you can read AND edit that object
         if (!$userlogin->hasRights('user_edit_all')) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete rightsprofile: insufficient rights');
+            appendErrorMessage(__('Cannot delete rightsprofile').': '.__('insufficient rights').'.<br/>');
             return;
         }
         if (empty($rightsprofile->rightsprofile_id)) {
-            appendErrorMessage('Cannot delete rightsprofile: erroneous ID');
+            appendErrorMessage(__('Cannot delete rightsprofile').': '.__('erroneous ID').'.<br/>');
             return;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 

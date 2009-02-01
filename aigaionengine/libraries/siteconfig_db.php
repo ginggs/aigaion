@@ -28,7 +28,7 @@ class Siteconfig_db {
               global $AIGAION_SUPPORTED_LANGUAGES;
               if (!in_array($value,$AIGAION_SUPPORTED_LANGUAGES))
               {
-                appendErrorMessage("Language '{$val}' no longer exists under that name. Please reset the relevant profile and site settings.<br/>");
+                appendErrorMessage(sprintf(__("Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."),$val)."<br/>");
                 $value = AIGAION_DEFAULT_LANGUAGE;
               }
             } 
@@ -207,7 +207,7 @@ class Siteconfig_db {
         if (   $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']=='TRUE' 
             && $siteconfig->configSettings['LOGIN_DELEGATES']==''
            ) {
-            appendErrorMessage('Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled.<br/>');
+            appendErrorMessage(__('Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled.').'<br/>');
             $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']='FALSE';
         }
         //-at least one of internal or external login must be enabled. If not, enable internal login again
@@ -215,7 +215,7 @@ class Siteconfig_db {
             && 
                $siteconfig->configSettings['LOGIN_ENABLE_DELEGATED_LOGIN']!='TRUE' //no delegate login or no delegates
            ) {
-            appendErrorMessage('At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled.<br/>');
+            appendErrorMessage(__('At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled.').'<br/>');
             $siteconfig->configSettings['LOGIN_DISABLE_INTERNAL_LOGIN']='FALSE';
         }
         //-Anon access enabled, but no default anon account specified? give warning, but do not bother changing the settings
@@ -223,7 +223,7 @@ class Siteconfig_db {
             $anonAcc = $siteconfig->configSettings['LOGIN_DEFAULT_ANON'];
             $anonUser = $CI->user_db->getByID($anonAcc);
             if ($anonUser == NULL || $anonUser->type!='anon') {//no valid default anon account
-                appendMessage('Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account.<br/>');
+                appendMessage(__('Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account.').'<br/>');
             }
            
         }
@@ -245,8 +245,7 @@ class Siteconfig_db {
             		if (!in_array(strtolower(substr($ext,-4)),array('.php','php3','php4','.exe','.bat'))) {
             		    $templist[] = $ext;
             		} else {
-            		    appendErrorMessage("The extension '".$ext."' is never allowed for Aigaion attachments, and has been 
-            		                        removed from the list of allowed attachments.");
+            		    appendErrorMessage(sprintf(__("The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."),$ext));
             		}
             	}
             	if (sizeof($templist)==0) {
@@ -292,10 +291,10 @@ class Siteconfig_db {
             
                 if (!$my_upload->upload("custom_logo")) {
                     //if failed: set to false again and give message? no, cause maybe there just was no file uploaded :)
-                    appendErrorMessage("Failed to upload custom logo. ".$my_upload->show_error_string().'<br/>' );
+                    appendErrorMessage(__("Failed to upload custom logo.")." ".$my_upload->show_error_string().'<br/>' );
                     //$USE_UPLOADED_LOGO = "FALSE";
                 } else {
-                    appendMessage("New logo uploaded<br/>");
+                    appendMessage(__("New logo uploaded").".<br/>");
                 }
             }
         } else {

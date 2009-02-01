@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 20:21+0100\n"
-"PO-Revision-Date: 2009-02-01 20:25+0100\n"
+"POT-Creation-Date: 2009-02-01 20:32+0100\n"
+"PO-Revision-Date: 2009-02-01 20:32+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: Manuel Strehl <manuel.strehl@physik.uni-r.de>\n"
 "MIME-Version: 1.0\n"
@@ -483,6 +483,82 @@ msgstr "Gemerkte Veröffentlichungen vom Thema entfernt"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
 msgid "Export"
 msgstr "Export"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+#, fuzzy
+msgid "File"
+msgstr "Titel"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+msgid "successfully uploaded!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:230
+msgid "The uploaded file exceeds the maximal upload filesize defined in the server configuration."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:231
+msgid "Please ask your site administrator to fix the UPLOAD_MAX_FILESIZE directive in php.ini."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:232
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:233
+msgid "The uploaded file was only partially uploaded"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:234
+#, fuzzy
+msgid "No file was uploaded"
+msgstr "kein Logo hochgeladen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:241
+msgid "Please select a file for upload."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:242
+msgid "Only files with the following extensions are allowed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "A valid filename ends with one dot followed by the extension."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:244
+#, php-format
+msgid "The filename exceeds the maximum length of %s characters."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:245
+msgid "Sorry, the upload directory doesn't exist!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Uploading"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+#, fuzzy
+msgid "Error!"
+msgstr "Notiztext:"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Sorry, a file with this name already exists."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:247
+msgid "The uploaded file is renamed to"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:248
+msgid "Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory."
+msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
@@ -3322,8 +3398,6 @@ msgstr "Themen"
 #~ msgstr ""
 #~ "Markieren, um querverwiesene Veröffentlichungen auf der "
 #~ "Einzelveröffentlichuns-Seite zusammenzuführen."
-#~ msgid "no logo uploaded"
-#~ msgstr "kein Logo hochgeladen"
 #~ msgid "Default access levels:"
 #~ msgstr "Vorgabe-Zugriffsrechte:"
 #~ msgid ""

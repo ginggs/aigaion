@@ -334,7 +334,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('publication_edit'))
             ) {
-	        appendErrorMessage('Categorize publication: insufficient rights.<br/>');
+	        appendErrorMessage(__('Categorize publication').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
@@ -348,7 +348,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('publication_edit'))
             ) {
-	        appendErrorMessage('Categorize publication: insufficient rights.<br/>');
+	        appendErrorMessage(__('Categorize publication').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         $CI->db->delete('topicpublicationlink', array('pub_id' => $pub_id, 'topic_id' => $topic_id)); 
@@ -362,7 +362,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
             ) {
-	        appendErrorMessage('Change subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Change subscription').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
@@ -376,7 +376,7 @@ class Topic_db {
         if (    
                 (!$userlogin->hasRights('topic_subscription'))
             ) {
-	        appendErrorMessage('Change subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Change subscription').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         $CI->db->delete('usertopiclink', array('user_id' => $user->user_id, 'topic_id' => $topic_id)); 
@@ -393,7 +393,7 @@ class Topic_db {
                 (!$userlogin->hasRights('topic_edit'))
             ) 
         {
-	        appendErrorMessage('Add topic: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add topic').': '.__('insufficient rights').'.<br/>');
 	        return;
         }        
         $fields = array('name'=>$topic->name,
@@ -421,7 +421,7 @@ class Topic_db {
         $CI = &get_instance();
         $CI->load->helper('cleanname');
         if ($topic->topic_id==1) {
-            appendErrorMessage("You cannot edit the top level topic<br/>");
+            appendErrorMessage(__("You cannot edit the top level topic.")."<br/>");
             return;
         }
 
@@ -438,7 +438,7 @@ class Topic_db {
                 (!$CI->accesslevels_lib->canEditObject($topic_testrights))
             ) 
         {
-	        appendErrorMessage('Edit topic: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit topic').': '.__('insufficient rights').'.<br/>');
 	        return;
         }
         
@@ -447,7 +447,7 @@ class Topic_db {
     	$nexttopic_id = $topic->parent_id;
     	while ($nexttopic_id != 1) {
     		if ($nexttopic_id == $topic->topic_id) {
-    			appendErrorMessage("You cannot set a topic to be its own ancestor.<br/>");
+    			appendErrorMessage(__("You cannot set a topic to be its own ancestor.")."<br/>");
     			return False;
     		}
     		$CI->db->select('target_topic_id');
@@ -456,7 +456,7 @@ class Topic_db {
     		    $R = $Q->row();
     			$nexttopic_id = $R->target_topic_id;
     		} else {
-    			appendErrorMessage("Error in the tree structure: the intended new parent is not connected to the top level topic.<br/>");
+    			appendErrorMessage(__("Error in the tree structure: the intended new parent is not connected to the top level topic.")."<br/>");
     			return False;
     		}
     	}
@@ -500,11 +500,11 @@ class Topic_db {
             !$CI->accesslevels_lib->canEditObject($topic)
             ) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete topic: insufficient rights');
+            appendErrorMessage(__('Cannot delete topic').': '.__('insufficient rights').'.<br/>');
             return;
         }
         if (empty($topic->topic_id)) {
-            appendErrorMessage('Cannot delete topic: erroneous ID');
+            appendErrorMessage(__('Cannot delete topic').': '.__('erroneous ID').'.<br/>');
             return;
         }
         //no delete for object with children. check through tables, not through object
@@ -512,7 +512,7 @@ class Topic_db {
         #when (s)he has edit access to ALL descendants!
         $Q = $CI->db->get_where('topictopiclink',array('target_topic_id'=>$topic->topic_id));
         if ($Q->num_rows()>0) {
-            appendErrorMessage('Cannot delete topic: still has children (possibly invisible)<br/>');
+            appendErrorMessage(__('Cannot delete topic').': '.__('still has children (possibly invisible)').'.<br/>');
             return;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 

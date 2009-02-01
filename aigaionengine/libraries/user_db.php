@@ -204,7 +204,7 @@ class User_db {
           global $AIGAION_SUPPORTED_LANGUAGES;
           if (!in_array($user->preferences['language'],$AIGAION_SUPPORTED_LANGUAGES)) 
           {
-            appendErrorMessage("Unknown language: ".$user->preferences['language']."<br/>");
+            appendErrorMessage(__("Unknown language").": ".$user->preferences['language']."<br/>");
             $user->preferences['language'] = AIGAION_DEFAULT_LANGUAGE;
           }
         }
@@ -237,7 +237,7 @@ class User_db {
             foreach ($user->assignedrights as $right) {
                 if ($user->type=='anon') {
                     if ($right=='bookmarklist') {
-                        appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
+                        appendErrorMessage(__("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.")."<br/>");
                         continue;
                     }
                 }
@@ -262,7 +262,7 @@ class User_db {
         $user->user_id = $new_id;
         
         $CI->topic_db->subscribeUser( $user,1);
-        appendMessage("User added.\n");
+        appendMessage(__("User added").".<br/>");
         return $new_id;
     }
 
@@ -285,7 +285,7 @@ class User_db {
         }
         // DR 2008.08.29: no-one can change login names anymore in edit forms......        
         if ($user_test->login != $user->login) {
-            appendErrorMessage("Login names cannot be changed. Login name has been reset to old value. Other changes have been saved.");
+            appendErrorMessage(__("Login names cannot be changed. Login name has been reset to old value. Other changes have been saved."));
             $user->login = $user_test->login;
         }
         //DR 2008.10.10: if this is the current user, set 'type' back to what it was
@@ -302,7 +302,7 @@ class User_db {
             // DR 2008.08.29: cannot change password for anon or external account
             $user->password = "";
         } else if ($user->password_invalidated == 'TRUE') {
-            appendMessage('The account does not have a valid password. It has been disabled. If please get an admin to re-enable it, if you wish.<br/>');
+            appendMessage(__('The account does not have a valid password. It has been disabled. You can ask an admin to re-enable it.').'<br/>');
         }
             
 
@@ -324,7 +324,7 @@ class User_db {
           global $AIGAION_SUPPORTED_LANGUAGES;
           if (!in_array($user->preferences['language'],$AIGAION_SUPPORTED_LANGUAGES)) 
           {
-            appendErrorMessage("Unknown language: ".$user->preferences['language']."<br/>");
+            appendErrorMessage(__("Unknown language").": ".$user->preferences['language']."<br/>");
             $user->preferences['language'] = AIGAION_DEFAULT_LANGUAGE;
           }
         }
@@ -361,7 +361,7 @@ class User_db {
                 $siteconfig = $CI->siteconfig_db->getSiteConfig();
                 $siteconfig->configSettings['LOGIN_DEFAULT_ANON'] = '';
                 $siteconfig->update();
-                appendMessage("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.<br/>");
+                appendMessage(__("You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared.")."<br/>");
             }
         }
 
@@ -372,7 +372,7 @@ class User_db {
             foreach ($user->assignedrights as $right) {
                 if ($user->type=='anon') {
                     if ($right=='bookmarklist') {
-                        appendErrorMessage("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.\n");
+                        appendErrorMessage(__("Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously.")."<br/>");
                         continue;
                     }
                 }
@@ -415,12 +415,12 @@ class User_db {
             $CI->latesession->set('USERLOGIN', $userlogin);
             if ($userlogin->hasRights("user_assign_rights")) {
     	        if (!in_array("user_assign_rights",$user->assignedrights)) {
-    	            appendErrorMessage("<b>You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!</b><br/>");
+    	            appendErrorMessage("<b>".__("You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!")."</b><br/>");
     	        }
-    	        appendMessage("Profile updated, changes to rights of users are applied after the user has logged in again.<br/>");
+    	        appendMessage(__("Profile updated, changes to rights of users are applied after the user has logged in again.")."<br/>");
     	    }
         }
-        appendMessage("User data changed. Changed access rights will be valid upon next login.\n");
+        appendMessage(__("User data changed. Changed access rights will be valid upon next login.")."<br/>");
         return True;
     }
 
@@ -434,11 +434,11 @@ class User_db {
         //check, all through the cascade, whether you can read AND edit that object
         if (!$userlogin->hasRights('user_edit_all')) {
             //if not, for any of them, give error message and return
-            appendErrorMessage('Cannot delete user: insufficient rights');
+            appendErrorMessage(__('Cannot delete user').': '.__('insufficient rights').'.<br/>');
             return;
         }
         if (empty($user->user_id)) {
-            appendErrorMessage('Cannot delete user: erroneous ID');
+            appendErrorMessage(__('Cannot delete user').': '.__('erroneous ID').'.<br/>');
             return;
         }
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
