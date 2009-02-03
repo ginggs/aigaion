@@ -130,11 +130,11 @@ if (count($types) > 0)
 } else { //no publication results
     if (count($resulttabs)==0)
     {
-        echo "<div class='message'>No search results found for query: <b>".htmlentities($query)."</b></div>\n";
+        echo "<div class='message'>No search results found for query: <b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b></div>\n";
     }
     else
     {
-        echo "<div class='message'>Search results for query: <b>".htmlentities($query)."</b></div>\n";
+        echo "<div class='message'>Search results for query: <b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b></div>\n";
     } 
 }
 /*
