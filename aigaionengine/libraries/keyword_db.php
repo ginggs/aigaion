@@ -19,6 +19,7 @@ class Keyword_db {
       $R = $Q->row();
       $kw->keyword_id = $R->keyword_id;
       $kw->keyword = $R->keyword;
+      $kw->cleankeyword = $R->cleankeyword;
       return $kw;
     }
     else
@@ -37,6 +38,7 @@ class Keyword_db {
       
       $kw->keyword_id = $R->keyword_id;
       $kw->keyword = $R->keyword;
+      $kw->cleankeyword = $R->cleankeyword;
       return $kw;
     }
     else
@@ -57,6 +59,7 @@ class Keyword_db {
     {
       $kw->keyword_id = $R->keyword_id;
       $kw->keyword = $R->keyword;
+      $kw->cleankeyword = $R->cleankeyword;
       $result[] = $kw;
       unset($kw);
     }
@@ -78,6 +81,7 @@ class Keyword_db {
       {
         $kw->keyword_id = $R->keyword_id;
         $kw->keyword = $R->keyword;
+        $kw->cleankeyword = $R->cleankeyword;
         $result[] = $kw;
         unset($kw);
       }
@@ -89,7 +93,9 @@ class Keyword_db {
   function add($keyword)
   {
     $CI = &get_instance();
-    $data = array('keyword' => $keyword->keyword);
+    $CI->load->helper('utf8_to_ascii');
+    $cleankeyword = utf8_to_ascii($keyword->keyword);
+    $data = array('keyword' => $keyword->keyword, 'cleankeyword'=>$cleankeyword);
     
     $CI->db->insert('keywords', $data);
     
@@ -100,6 +106,7 @@ class Keyword_db {
       //load the keyword
       $kw->keyword_id = $keyword_id;
       $kw->keyword = $keyword;
+      $kw->cleankeyword = $cleankeyword;
       return $kw;
     }
     else

@@ -188,7 +188,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES)."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8')."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)

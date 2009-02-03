@@ -16,7 +16,7 @@ $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
         
     if ($attachment->isremote) {
-        echo "<a href='".prep_url($attachment->location)."' class='open_extern'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES)."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachment->location)."' class='open_extern'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES, 'utf-8')."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)

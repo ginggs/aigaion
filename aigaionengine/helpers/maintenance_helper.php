@@ -309,6 +309,21 @@
         if ($topiccount > 0) {
             $result .= "<br/>Fixed searchable names of ".$topiccount." topics.";
         }
+        # check clean names of keywords (keywords.cleankeyword)
+        $CI->load->helper('utf8_to_ascii');
+        $keywordcount = 0;
+        $Q = $CI->db->get('keywords');
+        foreach ($Q->result() as $row) { 
+            $oldcleankeyword = $row->cleankeyword;
+            $cleankeyword =  utf8_to_ascii($row->keyword);
+            if ($oldcleankeyword!=$cleankeyword) {
+                $CI->db->update('keywords',array('cleankeyword'=>$cleankeyword),array('keyword_id'=>$row->keyword_id));
+                $keywordcount++;
+            }
+        }
+        if ($keywordcount > 0) {
+            $result .= "<br/>Fixed searchable names of ".$keywordcount." keywords.";
+        }
         $result .= "</td><td><b>OK</b></td></tr>\n";
         return $result;
     }

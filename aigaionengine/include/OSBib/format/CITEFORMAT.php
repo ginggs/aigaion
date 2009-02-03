@@ -795,13 +795,13 @@ class CITEFORMAT
 		$lastSplit = trim($lastSplit);
 		if($this->possessive1)
 		{
-			$poss = htmlentities($this->possessive1, ENT_QUOTES);
+			$poss = htmlentities($this->possessive1, ENT_QUOTES, 'utf-8');
 			$patterns[] = $possessive1 = '(' . $storedSurname . $poss . ')';
 			$patternsEnd[] = $possessive1 . '$';
 		}
 		if($this->possessive2)
 		{
-			$poss = htmlentities($this->possessive2, ENT_QUOTES);
+			$poss = htmlentities($this->possessive2, ENT_QUOTES, 'utf-8');
 			$patterns[] = $possessive2 = '(' . $storedSurname . $poss . ')';
 			$patternsEnd[] = $possessive2 . '$';
 		}

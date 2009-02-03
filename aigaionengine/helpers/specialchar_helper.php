@@ -122,7 +122,7 @@ function addHtmlEntitiesToArray($array)
 	$keys = array_keys($array);
 	foreach ($keys as $key)
 	{
-		$array[$key] = htmlentities($array[$key], ENT_QUOTES);
+		$array[$key] = htmlentities($array[$key], ENT_QUOTES, 'utf-8');
 	}
 	return $array;
 }

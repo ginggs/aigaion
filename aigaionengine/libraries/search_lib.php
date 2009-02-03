@@ -229,7 +229,7 @@ class Search_lib {
       $keywordArray = $query;
   
   //find keywords hits on 'like' clause for keyword
-    $keywordQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."keywords WHERE ".$this->keywordsToLikeQuery($keywordArray,'keyword')." ORDER BY keyword;");
+    $keywordQ = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."keywords WHERE ".$this->keywordsToLikeQuery($keywordArray,'cleankeyword')." ORDER BY keyword;");
     if ($keywordQ->num_rows()>0) {
       $arrayOfKeywords = array();
       foreach ($keywordQ->result() as $R) {

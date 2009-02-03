@@ -20,6 +20,40 @@
 |       
 */
 
+    /** 
+    Add 'clean keyword' column to keywords table, to facilitate searching of accented letters
+    */
+    function updateSchemaV2_18() {
+        $CI = &get_instance();
+        if (checkVersion('V2.18', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_17()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."keywords` 
+                      ADD COLUMN `cleankeyword` 
+                                 TEXT NOT NULL;");
+
+        
+        if (mysql_error()) 
+            return False;
+
+        $Q = $CI->db->get('keywords');
+        $CI->load->helper('utf8_to_ascii');
+        foreach ($Q->result() as $row) { 
+            $cleankeyword =  utf8_to_ascii($row->keyword);
+            $CI->db->update('keywords',array('cleankeyword'=>$cleankeyword),array('keyword_id'=>$row->keyword_id));
+        }
+        
+        
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.18');
+    }
+       
 
     /** 
     Conversion of userlanguage setting to the i18n codes
