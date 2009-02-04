@@ -2,7 +2,7 @@
 
 class Language extends Controller {
 
-	function Userlanguage()
+	function Language()
 	{
 		parent::Controller();	
 	}

@@ -31,8 +31,8 @@ LC_MESSAGES	5
 LC_ALL			6
 */
 
-require('streams.php');
-require('gettext.php');
+require_once(APPPATH.'libraries/gettext/streams.php');
+require_once(APPPATH.'libraries/gettext/gettext.php');
 
 
 // Variables
