@@ -421,6 +421,6 @@ require_once(APPPATH."include/utf8/trim.php");
     		}
     		// process loop ends here
     	}
-    	return "NO FORMAT POSSIBLE<br>";
+    	return __("No format possible").".<br>";
     }
 ?>

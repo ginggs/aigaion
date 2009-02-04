@@ -6,7 +6,8 @@
  * Originally controbuted by Manuel Strehl
  */
 function translateField ($fieldname, $ucfirst=false) {
-
+  require_once(APPPATH."include/utf8/ucfirst.php");
+  
   /**
    * all fields to be translated come in here:
    */
@@ -52,9 +53,35 @@ function translateField ($fieldname, $ucfirst=false) {
   
   
   if (array_key_exists ($fieldname, $fields)) {
-    return $ucfirst? ucfirst ($fields[$fieldname]) : $fields[$fieldname];
+    return $ucfirst? utf8_ucfirst ($fields[$fieldname]) : $fields[$fieldname];
   } else {
-    return $ucfirst? ucfirst ($fieldname) : $fieldname;
+    return $ucfirst? utf8_ucfirst ($fieldname) : $fieldname;
+  }
+}
+
+function translateType ($type, $ucfirst=false) {
+  /**
+   * all types to be translated come in here:
+   */
+  $types = array("Article"        => __('Article'),
+          		 "Book"           => __('Book'),
+          		 "Booklet"        => __('Booklet'),
+          		 "Inbook"         => __('Inbook'),
+          		 "Incollection"   => __('Incollection'),
+          		 "Inproceedings"  => __('Inproceedings'),
+          		 "Manual"         => __('Manual'),
+          		 "Mastersthesis"  => __('Mastersthesis'),
+          		 "Misc"           => __('Misc'),
+          		 "Phdthesis"      => __('Phdthesis'),
+          		 "Proceedings"    => __('Proceedings'),
+          		 "Techreport"     => __('Techreport'),
+          		 "Unpublished"    => __('Unpublished'));
+  
+  
+  if (array_key_exists ($type, $types)) {
+    return $ucfirst? ucfirst ($types[$type]) : $types[$type];
+  } else {
+    return $ucfirst? ucfirst ($type) : $type;
   }
 }
 

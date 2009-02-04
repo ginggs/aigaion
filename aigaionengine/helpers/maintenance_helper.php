@@ -24,9 +24,9 @@
         check whether anyone has an empty password or a password that is the same as the username
 */
     function checkPasswords() {
-        $result = "<tr><td colspan=2><p class='header1'>Passwords check</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Passwords check")."</p></td></tr>\n";
 
-        $result .= "<tr><td>Check all users...</td>";
+        $result .= "<tr><td>".__("Check all users")."...</td>";
         $checkResult = "";
         $CI = &get_instance();
         #for every user:
@@ -34,233 +34,233 @@
           if (($user->type!='external') && ($user->password_invalidated!= 'TRUE')) {
             #check empty passwords
             if ($user->password==md5('')) {
-                $checkResult .= 'User '.$user->login.' has an empty password!<br>';
+                $checkResult .= sprintf(__('User %s has an empty password!'),$user->login).'<br>';
             }
             #check name=pwd
             if ($user->password==md5($user->login)) {
-                $checkResult .= 'User '.$user->login.' has the user name for password!<br>';
+                $checkResult .= sprintf(__('User %s has the user name for password!'),$user->login).'<br>';
             }
           }
         }
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following users have a wrong password:<br/>\n";
+            $result .= __("The following users have a wrong password").":<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         return $result;
     }    
     function checkNotes() {
-        $result = "<tr><td colspan=2><p class='header1'>Notes checks</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Notes checks")."</p></td></tr>\n";
 
-        $result .= "<tr><td>Checking note crossreference consistency...</td>";
+        $result .= "<tr><td>".__("Checking note crossreference consistency")."...</td>";
         $checkResult = checkNoteXrefIDs();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." notes had inconsistent note crossref IDs.</div>\n";
+            $result .= sprintf(__("%s notes had inconsistent note crossref IDs."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td class=errortext><b>NOT YET IMPLEMENTED</b></td></tr>\n";
+            $result .= "<td class=errortext><b>".__("NOT YET IMPLEMENTED")."</b></td></tr>\n";
 
         return $result;
     }
     function checkAttachments() {
-        $result = "<tr><td colspan=2><p class='header1'>Attachments check</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Attachments check")."</p></td></tr>\n";
 
         #check attachments where file on server is missing
-        $result .= "<tr><td>Check missing attachments...</td>";
+        $result .= "<tr><td>".__("Check missing attachments")."...</td>";
         $checkResult = checkMissingFiles();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following files could not be found in the attachment directory.<br/>\n";
+            $result .= __("The following files could not be found in the attachment directory.")."<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         #check for orphaned attachments
-        $result .= "<tr><td>Check orphaned attachments...</td>";
+        $result .= "<tr><td>".__("Check orphaned attachments")."...</td>";
         $checkResult = checkAttachmentPublicationLinks(); //remove attachments of Publications no longer in the database
         if ($checkResult > 0)
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." references to attachments that no longer belong to a publication have been removed.</div>\n";
+            $result .= sprintf(__("%s references to attachments that no longer belong to a publication have been removed."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         #check for unknown files
-        $result .= "<tr><td>Check unknown files...</td>";
+        $result .= "<tr><td>".__("Check unknown files")."...</td>";
         $checkResult = checkUnknownFiles();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following files are on the server, but do not belong to a publication in the database:<br/>\n";
+            $result .= __("The following files are on the server, but do not belong to a publication in the database").":<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
         return $result;
     }
     function checkAuthors() {
-        $result = "<tr><td colspan=2><p class='header1'>Author check</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Author check")."</p></td></tr>\n";
 
         #check for empty author names
-        $result .= "<tr><td>Checking empty author names...</td>";
+        $result .= "<tr><td>".__("Checking empty author names")."...</td>";
         $checkResult = checkEmptyAuthorNames();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following authors have an empty name:<br/>\n";
+            $result .= __("The following authors have an empty name").":<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         #check for similar author names
-        $result .= "<tr><td>Checking similar author names...</td>";
+        $result .= "<tr><td>".__("Checking similar author names")."...</td>";
         //uncomment this block to turn this check on. Warning: It'll probably time-out.
 //        $checkResult = checkSimilarAuthors();
 //        if ($checkResult != "")
 //        {
-//            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+//            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
 //            $result .= "<div class='message'>";
-//            $result .= "The following authors are very similar:<br/>\n";
+//            $result .= __("The following authors are very similar").":<br/>\n";
 //            $result .= $checkResult."<br/>\n";
-//            $result .= "Click on a pair to merge the authors</div>\n";
+//            $result .= __("Click on a pair to merge the authors")."</div>\n";
 //            $result .= "</td></tr>\n";
 //        }
 //        else
-            $result .= "<td class=errortext><b>TURNED OFF BECAUSE IT TENDS TO TIME-OUT</b></td></tr>\n";
+            $result .= "<td class=errortext><b>".__("TURNED OFF BECAUSE IT TENDS TO TIME-OUT")."</b></td></tr>\n";
 
         #check authorpublication links
-        $result .= "<tr><td>Checking orphaned authorpublicationlinks...</td>\n";
+        $result .= "<tr><td>".__("Checking orphaned authorpublicationlinks")."...</td>\n";
         $checkResult = checkAuthorPublicationLinks();
         if ($checkResult > 0)
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." authorpublicationlinks whose corresponding authors could not be found, were removed.</div>\n";
+            $result .= sprintf(__("%s authorpublicationlinks whose corresponding authors could not be found, were removed."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         #check for nonpublishing authors
-        $result .= "<tr><td>Checking for authors that do not publish...</td>\n";
+        $result .= "<tr><td>".__("Checking for authors that do not publish")."...</td>\n";
         $checkResult = checkNonPublishingAuthors();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following authors have no publications listed:<br/>\n";
+            $result .= __("The following authors have no publications listed").":<br/>\n";
             $result .= $checkResult;
-            $result .= '<br/>'.anchor('site/maintenance/deletenonpublishingauthors','Delete all non-publishing authors')."</div>\n";
+            $result .= '<br/>'.anchor('site/maintenance/deletenonpublishingauthors',__('Delete all non-publishing authors'))."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
             
         return $result;
     }
     function checkTopics() {
-        $result = "<tr><td colspan=2><p class='header1'>Topic tree check</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Topic tree check")."</p></td></tr>\n";
 
         //remove deleted topics from topictopiclink table
-        $result .= "<tr><td>Check orphaned topictopiclinks...</td>";
+        $result .= "<tr><td>".__("Check orphaned topictopiclinks")."...</td>";
         $checkResult = checkTopicTopicLinks();
         if ($checkResult > 0)
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." topictopiclinks, of which the topic couldn't be found, have been removed.</div>\n";
+            $result .= sprintf(__("%s topictopiclinks, of which the topic couldn't be found, have been removed."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         //remove topicpublicationlinks where topic is deleted
-        $result .= "<tr><td>Check orphaned topicpublicationlinks...</td>";
+        $result .= "<tr><td>".__("Check orphaned topicpublicationlinks")."...</td>";
         $checkResult = checkTopicPublicationLinks();
         if ($checkResult > 0)
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." topicpublicationlinks, of which the corresponding publication could not be found, have been removed.</div>\n";
+            $result .= sprintf(__("%s topicpublicationlinks, of which the corresponding publication could not be found, have been removed."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
 
         //check for parentless topics
-        $result .= "<tr><td>Check topics without parent...</td>";
+        $result .= "<tr><td>".__("Check topics without parent")."...</td>";
         $checkResult = checkTopicParents();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following topics had no parent. Their parent is set to the top topic.<br/>\n";
+            $result .= __("The following topics had no parent. Their parent is set to the top topic.")."<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         //check for empty topics
-        $result .= "<tr><td>Checking for empty topics...</td>";
+        $result .= "<tr><td>".__("Checking for empty topics")."...</td>";
         $checkResult = checkEmptyTopics();
         if ($checkResult != "")
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= "The following topics have no assigned publications.<br/>\n";
+            $result .= __("The following topics have no assigned publications.")."<br/>\n";
             $result .= $checkResult."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
 
         //check that all publications are subscribed to topic ancestors
-        $result .= "<tr><td>Checking publications in ancestor topics...</td>";
+        $result .= "<tr><td>".__("Checking publications in ancestor topics")."...</td>";
         $leafs = array();
         getLeafTopicIds($leafs);
         $checkResult = checkTopicPublicationAncestors($leafs);
         if ($checkResult > 0)
         {
-            $result .= "<td><span class=errortext>ALERT</span></td></tr>\n<tr><td colspan=2>";
+            $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
             $result .= "<div class='message'>";
-            $result .= $checkResult." publications did not appear in ancestor topics.</div>\n";
+            $result .= sprintf(__("%s publications did not appear in ancestor topics."),$checkResult)."</div>\n";
             $result .= "</td></tr>\n";
         }
         else
-            $result .= "<td><b>OK</b></td></tr>\n";
+            $result .= "<td><b>".__("OK")."</b></td></tr>\n";
           
         return $result;
     }
     function checkCleanNames() {
         $CI = &get_instance();
         $CI->load->helper('cleanname');
-        $result = "<tr><td colspan=2><p class='header1'>Reinit searchable names and titles</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Reinit searchable names, keywords and titles")."</p></td></tr>\n";
 
-        $result .= "<tr><td>Checking... ";
+        $result .= "<tr><td>"._("Checking")."... ";
         # check clean names of authors (author.cleanname)
         $authorcount = 0;
         foreach ($CI->author_db->getAllAuthors() as $author) { //all authors are accessible to all users...
@@ -272,7 +272,7 @@
             }
         }
         if ($authorcount > 0) {
-            $result .= "<br/>Fixed searchable names of ".$authorcount." authors.";
+            $result .= "<br/>".sprintf(__("Fixed searchable names of %s authors."),$authorcount);
         }
         # check clean titles of publications and journals (publication.cleantitle, publication.cleanjournal)
         $pubcount = 0;
@@ -293,7 +293,7 @@
             
         }
         if ($pubcount > 0) {
-            $result .= "<br/>Fixed searchable names of ".$pubcount." publications.";
+            $result .= "<br/>".sprintf(__("Fixed searchable names of %s publications."),$pubcount);
         }
         # check clean names of topics (topics.cleanname)
         $topiccount = 0;
@@ -307,7 +307,7 @@
             }
         }
         if ($topiccount > 0) {
-            $result .= "<br/>Fixed searchable names of ".$topiccount." topics.";
+            $result .= "<br/>".sprintf(__("Fixed searchable names of %s topics."),$topiccount);
         }
         # check clean names of keywords (keywords.cleankeyword)
         $CI->load->helper('utf8_to_ascii');
@@ -322,9 +322,9 @@
             }
         }
         if ($keywordcount > 0) {
-            $result .= "<br/>Fixed searchable names of ".$keywordcount." keywords.";
+            $result .= "<br/>".sprintf(__("Fixed searchable names of %s keywords."),$keywordcount);
         }
-        $result .= "</td><td><b>OK</b></td></tr>\n";
+        $result .= "</td><td><b>".__("OK")."</b></td></tr>\n";
         return $result;
     }
     /** repair the 'total marks' for all publications */
@@ -332,18 +332,18 @@
         $markcount = 0;
         $CI = &get_instance();
         $Q = $CI->db->get('publication');
-        $result = "<tr><td colspan=2><p class='header1'>Check total publication marks</p></td></tr>\n";
+        $result = "<tr><td colspan=2><p class='header1'>".__("Check total publication marks")."</p></td></tr>\n";
 
-        $result .= "<tr><td>Checking... ";
+        $result .= "<tr><td>".__("Checking")."... ";
         foreach ($Q->result() as $R) {
             $oldmark = $R->mark;
             $newmark = $CI->publication_db->recalcTotalMark($R->pub_id);
             if ($oldmark != $newmark) $markcount++;
         }
         if ($markcount > 0) {
-            $result .= "<br/>Fixed total topic mark of ".$markcount." publications.";
+            $result .= "<br/>".sprintf(__("Fixed total topic mark of %s publications."),$markcount);
         }
-        $result .= "</td><td><b>OK</b></td></tr>\n";
+        $result .= "</td><td><b>".__("OK")."</b></td></tr>\n";
         return $result;        
     }
 
@@ -394,7 +394,7 @@ function checkMissingFiles()
             $publication = $CI->publication_db->getByID($R->pub_id);
             if ($publication==null) {//in table, but not linked: just remove
                 $CI->db->query("DELETE FROM attachments WHERE att_id=".$R->att_id);
-                $report .= "<li>Removed: ".$R->name." (file not on server and not linked to a publication).</li>\n";
+                $report .= "<li>".sprintf(__("Removed: %s (file not on server and not linked to a publication)."),$R->name)."</li>\n";
             } else {
                 $report .= "<li>".$R->name." (".anchor('publications/show/'.$publication->pub_id,$publication->title).")</li>\n";
             }
@@ -433,7 +433,7 @@ function checkUnknownFiles()
         closedir($handle);
     }
     else
-        $result .= "Could not open documents directory.<br/>\n";
+        $result .= __("Could not open documents directory.")."<br/>\n";
 
     if ($bFound)
     {
@@ -700,9 +700,9 @@ function checkSimilarAuthors()
         if (count($similar)>0) {
             foreach ($similar as $simauth) {
                 echo '<li>'
-                    .anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'Click to show details'))
-                    .anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('title' => 'Click to show details'))
-    		        .'('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('title' => 'Click to merge')).")</li>\n";
+                    .anchor('authors/show/'.$author->author_id, $author->getName(), array('target'=>'_blank','title' => __('Click to show details')))
+                    .anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('target'=>'_blank','title' => __('Click to show details')))
+    		        .'('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('target'=>'_blank','title' => __('Click to merge'))).")</li>\n";
     		}
         }
     }	
@@ -758,7 +758,7 @@ function deleteNonPublishingAuthors() {
 			$num++;
 		}
 	}
-    return "Deleted ".$num." authors who do not have any publications.<br/>";
+    return sprintf(__("Deleted %s authors who do not have any publications."),$num)."<br/>";
 }
 
 

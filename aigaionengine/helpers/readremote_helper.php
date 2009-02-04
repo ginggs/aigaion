@@ -34,7 +34,7 @@ function getRemoteFile($url)
    $fp = @fsockopen($host, $port, $errno, $errstr, $timeout );
 
    if( !$fp ) {
-      appendErrorMessage( "Cannot retrieve $url");
+      appendErrorMessage( sprintf(__("Cannot retrieve %s"),$url));
    } else {
       // send the necessary headers to get the file
       @fputs($fp, "GET $path HTTP/1.0\r\n" .

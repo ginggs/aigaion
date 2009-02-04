@@ -80,7 +80,7 @@ function checkVersion($v, $bSilent=false) {
 	}
 	if (!$bSilent)
 	{
-		appendMessage("Checking database schema version ".$v."... update needed.<br/>");
+		appendMessage(sprintf(__("Checking database schema version %s"),$v)."... ".__("update needed").".<br/>");
 	}
 	return false;
 }
@@ -95,7 +95,7 @@ function setVersion($v, $bSilent=false) {
 	}
 	if (!$bSilent)
 	{
-		appendMessage("Update database schema version ".$v." Succeeded<br/>");
+		appendMessage(sprintf(__("Update database schema version %s"),$v)." ".__("Succeeded").".<br/>");
 	}
 	return true;
 }
@@ -114,7 +114,7 @@ function setReleaseVersion($v, $type, $description, $bSilent=false) {
 	}
 	if (!$bSilent)
 	{
-		appendMessage("Update to release version ".$v." Succeeded<br/>");
+		appendMessage(sprintf(__("Update to release version %s"),$v)." ".__("Succeeded").".<br/>");
 	}
 	return true;
 }
@@ -123,9 +123,8 @@ function setReleaseVersion($v, $type, $description, $bSilent=false) {
 function dbError($mysqlerror)
 {
     appendErrorMessage("
-	    <br/>".$mysqlerror."<br/>UPDATE WAS NOT SUCCESSFUL<br/>
-	    Some database operations require mysql root privileges. Please ensure that the mysql<br/>
-	    user in your index.php file has sufficient rights.<br/>
+	    <br/>".$mysqlerror."<br/>".__("UPDATE WAS NOT SUCCESSFUL")."<br/>
+	    ".__("Some database operations require mysql root privileges. Please ensure that the mysql user in your index.php file has sufficient rights.")."<br/>
 	    ");
 }
 ?>

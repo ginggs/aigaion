@@ -26,10 +26,10 @@
         #try with short timeout, to get version info from www.aigaion.nl
         $remoterelease = getRemoteFile ('http://demo2.aigaion.nl/index.php/version');
         if ($remoterelease == '') {
-            return "<div class='message'>Couldn't connect to demo2.aigaion.nl to check for updates</div>";
+            return "<div class='message'>".__("Couldn't connect to demo2.aigaion.nl to check for updates")."</div>";
         }
         if ($remoterelease == '') {
-            return "<div class='message'>Couldn't obtain release version info from demo2.aigaion.nl</div>";
+            return "<div class='message'>".__("Couldn't obtain release version info from demo2.aigaion.nl")."</div>";
         }
         #compare info to current version
         $CI->db->orderby('version','desc');
@@ -44,16 +44,16 @@
         }
         #if current installed version higher: SVN?
         if ($remoterelease < $thisrelease) {
-            appendMessage('Your database version is higher than the official release. Probably you are using the SVN version?<br/>');
+            appendMessage(__('Your database version is higher than the official release. Probably you are using the SVN version?').'<br/>');
             return '';
         }
-        $result = '<p>There is a new version available: <b>'.$remoterelease.'</b> (Current version: '.$thisrelease.')<br/>';
+        $result = '<p>'.__('There is a new version available').': <b>'.$remoterelease.'</b> ('.__('Current version').': '.$thisrelease.')<br/>';
         #if deviation: get detailed info for change history from aigaion.nl
         $remotechangehistory = getRemoteFile("http://demo2.aigaion.nl/index.php/version/details/".$thisrelease);
         #parse detailed info
         $class='message';
         if ($remotechangehistory=='') {
-            $result .= "Couldn't obtain detailed update info from demo2.aigaion.nl<br/>";
+            $result .= __("Couldn't obtain detailed update info from demo2.aigaion.nl")."<br/>";
         } else { 
             #note: we use quite ugly parsing here - assuming that version/details outputs exactly what we expect and assuming that description contains NO XML
             $p = xml_parser_create();
@@ -73,24 +73,24 @@
             if (strpos($alltypes,'security')>0) { //if this is a security update
                 $class='errormessage';
                 //also extend message with extra warning
-                $result .= 'Note: the updated version contains security fixes. You are strongly recommended to get the latest version of Aigaion.<br/>';
+                $result .= __('Note: the updated version contains security fixes. You are strongly recommended to get the latest version of Aigaion.').'<br/>';
             }
-            $result .= '<span class=header2>Detailed info for available updates: </span><br/>';
+            $result .= '<span class=header2>'.__('Detailed info for available updates').': </span><br/>';
             //print out the new versions into $result
             $result .= "
               <table class=tablewithborder>
                 <tr>
                     <td class='tablewithborder'></td>
-                    <td class='tablewithborder' colspan=4>Types of update</td>
+                    <td class='tablewithborder' colspan=4>".__("Types of update")."</td>
                     <td class='tablewithborder'></td>
                 </tr>
                 <tr>
-                    <td class='tablewithborder'>Version</td>
-                    <td class='tablewithborder'>bugfix</td>
-                    <td class='tablewithborder'>features</td>
-                    <td class='tablewithborder'>layout</td>
-                    <td class='tablewithborder'>security</td>
-                    <td class='tablewithborder'>Description</td>
+                    <td class='tablewithborder'>".__("Version")."</td>
+                    <td class='tablewithborder'>".__("Bugfix")."</td>
+                    <td class='tablewithborder'>".__("Features")."</td>
+                    <td class='tablewithborder'>".__("Layout")."</td>
+                    <td class='tablewithborder'>".__("Security")."</td>
+                    <td class='tablewithborder'>".__("Description")."</td>
                 </tr>
                 ";
             foreach ($history as $version) {
@@ -98,19 +98,19 @@
                 $result .= '<td class="tablewithborder">'.$version[0].'</td>';
                 $result .= '<td class="tablewithborder">';
                 if (!(strpos($version[1],'bugfix')===false)) {
-                    $result .= '<img class="icon" title="Some bugs were fixed this release" src="'.getIconUrl('check.gif').'"/>';
+                    $result .= '<img class="icon" title="'.__('Some bugs were fixed this release').'" src="'.getIconUrl('check.gif').'"/>';
                 }
                 $result .= '</td><td class="tablewithborder">';
                 if (!(strpos($version[1],'features')===false)) {
-                    $result .= '<img class="icon" title="Some features were added this release" src="'.getIconUrl('check.gif').'"/>';
+                    $result .= '<img class="icon" title="'.__('Some features were added this release').'" src="'.getIconUrl('check.gif').'"/>';
                 }
                 $result .= '</td><td class="tablewithborder">';
                 if (!(strpos($version[1],'layout')===false)) {
-                    $result .= '<img class="icon" title="Some layout elements were changed this release" src="'.getIconUrl('check.gif').'"/>';
+                    $result .= '<img class="icon" title="'.__('Some layout elements were changed this release').'" src="'.getIconUrl('check.gif').'"/>';
                 }
                 $result .= '</td><td class="tablewithborder">';
                 if (!(strpos($version[1],'security')===false)) {
-                    $result .= '<img class="icon" title="This release contains security fixes!" src="'.getIconUrl('check.gif').'"/>';
+                    $result .= '<img class="icon" title="'.__('This release contains security fixes!').'" src="'.getIconUrl('check.gif').'"/>';
                 }
                 $result .= '</td>';
                 $result .= '<td class="tablewithborder">'.str_replace("\n","<br/>",$version[2]).'</td>';
@@ -119,7 +119,7 @@
             $result .= '</table>';
         }
         #give message depending on type of update (normal, minor, security, etc; max type that was missed since current version of installation); 
-        $result .= "<p>You can download the new version <a href='http://www.aigaion.nl'>here</a>.";
+        $result .= "<p>".sprintf(__("You can download the new version %s here %s."),"<a href='http://www.aigaion.nl'>","</a>");
         #update status of 'last check for this user'
         //return message or errormessage
         return '<div class="'.$class.'">'.$result.'</div>';

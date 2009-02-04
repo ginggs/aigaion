@@ -58,29 +58,29 @@ function getMonthsEng()
 }
 function getMonthsInternal() 
 {
-    return array(""=>"","\"jan\""=>"January", "\"feb\""=>"February", "\"mar\""=>"March", "\"apr\""=>"April", "\"may\""=>"May", "\"jun\""=>"June", "\"jul\""=>"July", "\"aug\""=>"August", "\"sep\""=>"September", "\"oct\""=>"October", "\"nov\""=>"November", "\"dec\""=>"December");
+    return array(""=>"","\"jan\""=>__("January"), "\"feb\""=>__("February"), "\"mar\""=>__("March"), "\"apr\""=>__("April"), "\"may\""=>__("May"), "\"jun\""=>__("June"), "\"jul\""=>__("July"), "\"aug\""=>__("August"), "\"sep\""=>__("September"), "\"oct\""=>__("October"), "\"nov\""=>__("November"), "\"dec\""=>__("December"));
 }
 function getMonthsInternalHtmlQuotes() 
 {
-    return array(""=>"","&quot;jan&quot;"=>"January", "&quot;feb&quot;"=>"February", "&quot;mar&quot;"=>"March", "&quot;apr&quot;"=>"April", "&quot;may&quot;"=>"May", "&quot;jun&quot;"=>"June", "&quot;jul&quot;"=>"July", "&quot;aug&quot;"=>"August", "&quot;sep&quot;"=>"September", "&quot;oct&quot;"=>"October", "&quot;nov&quot;"=>"November", "&quot;dec&quot;"=>"December");
+    return array(""=>"","&quot;jan&quot;"=>__("January"), "&quot;feb&quot;"=>__("February"), "&quot;mar&quot;"=>__("March"), "&quot;apr&quot;"=>__("April"), "&quot;may&quot;"=>__("May"), "&quot;jun&quot;"=>__("June"), "&quot;jul&quot;"=>__("July"), "&quot;aug&quot;"=>__("August"), "&quot;sep&quot;"=>__("September"), "&quot;oct&quot;"=>__("October"), "&quot;nov&quot;"=>__("November"), "&quot;dec&quot;"=>__("December"));
 }
 function getMonthsInternalNoQuotes() 
 {
-    return array(""=>"","jan"=>"January", "feb"=>"February", "mar"=>"March", "apr"=>"April", "may"=>"May", "jun"=>"June", "jul"=>"July", "aug"=>"August", "sep"=>"September", "oct"=>"October", "nov"=>"November", "dec"=>"December");
+    return array(""=>"","jan"=>__("January"), "feb"=>__("February"), "mar"=>__("March"), "apr"=>__("April"), "may"=>__("May"), "jun"=>__("June"), "jul"=>__("July"), "aug"=>__("August"), "sep"=>__("September"), "oct"=>__("October"), "nov"=>__("November"), "dec"=>__("December"));
 }
 function getMonthsArray() {
   return array( '0'  => '',
-                '1'  => 'January',
-                '2'  => 'February',
-                '3'  => 'March',
-                '4'  => 'April',
-                '5'  => 'May',
-                '6'  => 'June',
-                '7'  => 'July',
-                '8'  => 'August',
-                '9'  => 'September',
-                '10' => 'October',
-                '11' => 'November',
-                '12' => 'December');
+                '1'  => __('January'),
+                '2'  => __('February'),
+                '3'  => __('March'),
+                '4'  => __('April'),
+                '5'  => __('May'),
+                '6'  => __('June'),
+                '7'  => __('July'),
+                '8'  => __('August'),
+                '9'  => __('September'),
+                '10' => __('October'),
+                '11' => __('November'),
+                '12' => __('December'));
 }
 ?>
