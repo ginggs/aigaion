@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 20:32+0100\n"
-"PO-Revision-Date: 2009-02-01 20:56+0100\n"
+"POT-Creation-Date: 2009-02-04 22:05+0100\n"
+"PO-Revision-Date: 2009-02-04 22:19+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,138 +18,648 @@ msgstr ""
 "X-Poedit-Country: NETHERLANDS\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:29
+msgid "Couldn't connect to demo2.aigaion.nl to check for updates"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:32
+msgid "Couldn't obtain release version info from demo2.aigaion.nl"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:47
+msgid "Your database version is higher than the official release. Probably you are using the SVN version?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:50
+msgid "There is a new version available"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:50
+msgid "Current version"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:56
+msgid "Couldn't obtain detailed update info from demo2.aigaion.nl"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:76
+msgid "Note: the updated version contains security fixes. You are strongly recommended to get the latest version of Aigaion."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:78
+msgid "Detailed info for available updates"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:84
+msgid "Types of update"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:88
+msgid "Version"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:89
+msgid "Bugfix"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:90
+msgid "Features"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:91
+msgid "Layout"
+msgstr "Opmaak"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:92
+msgid "Security"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:93
+msgid "Description"
+msgstr "Omschrijving"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:101
+msgid "Some bugs were fixed this release"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:105
+msgid "Some features were added this release"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:109
+msgid "Some layout elements were changed this release"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:113
+msgid "This release contains security fixes!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:122
+#, php-format
+msgid "You can download the new version %s here %s."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\export_helper.php:424
+msgid "No format possible"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:27
+msgid "Passwords check"
+msgstr "Controle wachtwoorden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:29
+msgid "Check all users"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:37
+#, php-format
+msgid "User %s has an empty password!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:41
+#, php-format
+msgid "User %s has the user name for password!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:97
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:128
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:158
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:171
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:191
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:204
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:218
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:232
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
+msgid "Alert"
+msgstr "Waarschuwing"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:49
+msgid "The following users have a wrong password"
+msgstr "De volgende gebruikers hebben een verkeerd wachtwoord"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:54
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:90
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:103
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:117
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:135
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:164
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:179
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:197
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:210
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:225
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:239
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:254
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:327
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:346
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
+msgid "OK"
+msgstr "OK"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:59
+msgid "Notes checks"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:61
+msgid "Checking note crossreference consistency"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:67
+#, php-format
+msgid "%s notes had inconsistent note crossref IDs."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:71
+msgid "NOT YET IMPLEMENTED"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:76
+msgid "Attachments check"
+msgstr "Controle bestanden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:79
+msgid "Check missing attachments"
+msgstr "Controle missende bestanden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:85
+msgid "The following files could not be found in the attachment directory."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:93
+msgid "Check orphaned attachments"
+msgstr "Controle verweesde bestanden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:99
+#, php-format
+msgid "%s references to attachments that no longer belong to a publication have been removed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:106
+msgid "Check unknown files"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:112
+msgid "The following files are on the server, but do not belong to a publication in the database"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:121
+msgid "Author check"
+msgstr "Controle auteurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:124
+msgid "Checking empty author names"
+msgstr "Controle van lege auteursnamen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:130
+msgid "The following authors have an empty name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:138
+msgid "Checking similar author names"
+msgstr "Controle van soortgelijke auteursnamen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:151
+msgid "TURNED OFF BECAUSE IT TENDS TO TIME-OUT"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:154
+msgid "Checking orphaned authorpublicationlinks"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:160
+#, php-format
+msgid "%s authorpublicationlinks whose corresponding authors could not be found, were removed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:167
+msgid "Checking for authors that do not publish"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:173
+msgid "The following authors have no publications listed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:175
+msgid "Delete all non-publishing authors"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:184
+msgid "Topic tree check"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:187
+msgid "Check orphaned topictopiclinks"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
+#, php-format
+msgid "%s topictopiclinks, of which the topic couldn't be found, have been removed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:200
+msgid "Check orphaned topicpublicationlinks"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:206
+#, php-format
+msgid "%s topicpublicationlinks, of which the corresponding publication could not be found, have been removed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:214
+msgid "Check topics without parent"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:220
+msgid "The following topics had no parent. Their parent is set to the top topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:228
+msgid "Checking for empty topics"
+msgstr "Controle van lege onderwerpen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:234
+msgid "The following topics have no assigned publications."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:242
+msgid "Checking publications in ancestor topics"
+msgstr "Controle dat publicaties hoger in hierarchie ook aanwezig zijn"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:250
+#, php-format
+msgid "%s publications did not appear in ancestor topics."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:261
+msgid "Reinit searchable names, keywords and titles"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:263
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:337
+msgid "Checking"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:275
+#, php-format
+msgid "Fixed searchable names of %s authors."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:296
+#, php-format
+msgid "Fixed searchable names of %s publications."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:310
+#, php-format
+msgid "Fixed searchable names of %s topics."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:325
+#, php-format
+msgid "Fixed searchable names of %s keywords."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:335
+msgid "Check total publication marks"
+msgstr "Controle van totaalscores"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:344
+#, php-format
+msgid "Fixed total topic mark of %s publications."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:397
+#, php-format
+msgid "Removed: %s (file not on server and not linked to a publication)."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:436
+msgid "Could not open documents directory."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:703
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:704
+msgid "Click to show details"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:705
+msgid "Click to merge"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:761
+#, php-format
+msgid "Deleted %s authors who do not have any publications."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:73
+msgid "January"
+msgstr "Januari"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:74
+msgid "February"
+msgstr "Februari"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:75
+msgid "March"
+msgstr "Maart"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:76
+msgid "April"
+msgstr "April"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:77
+msgid "May"
+msgstr "Mei"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:78
+msgid "June"
+msgstr "Juni"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:79
+msgid "July"
+msgstr "July"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:80
+msgid "August"
+msgstr "Augustus"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:81
+msgid "September"
+msgstr "September"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:82
+msgid "October"
+msgstr "Oktober"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:83
+msgid "November"
+msgstr "November"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:84
+msgid "December"
+msgstr "December"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\readremote_helper.php:37
+#, php-format
+msgid "Cannot retrieve %s"
+msgstr "%s kan niet worden opgevraagd"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
+#, php-format
+msgid "Checking database schema version %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
+msgid "update needed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:98
+#, php-format
+msgid "Update database schema version %s"
+msgstr "Databaseversie %s bijwerken"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:117
+msgid "Succeeded"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:117
+#, php-format
+msgid "Update to release version %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:126
+msgid "UPDATE WAS NOT SUCCESSFUL"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:127
+msgid "Some database operations require mysql root privileges. Please ensure that the mysql user in your index.php file has sufficient rights."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:16
 msgid "year"
 msgstr "jaar"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:16
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:17
 msgid "title"
 msgstr "titel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:18
 msgid "survey"
 msgstr "survey"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:19
 msgid "mark"
 msgstr "score"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:20
 msgid "series"
 msgstr "serie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:21
 msgid "volume"
 msgstr "deel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:22
 msgid "publisher"
 msgstr "uitgever"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:22
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:23
 msgid "location"
 msgstr "locatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:23
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:24
 msgid "issn"
 msgstr "issn"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:24
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:25
 msgid "isbn"
 msgstr "isbn"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:25
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:26
 msgid "firstpage"
 msgstr "eerste pagina"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:27
 msgid "lastpage"
 msgstr "laatste pagina"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:27
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:28
 msgid "journal"
 msgstr "tijdschrift"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:28
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:29
 msgid "booktitle"
 msgstr "boektitel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:30
 msgid "number"
 msgstr "nummer"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:30
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:31
 msgid "institution"
 msgstr "instituut"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:32
 msgid "address"
 msgstr "adres"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:32
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:33
 msgid "chapter"
 msgstr "hoofdstuk"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:33
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:34
 msgid "edition"
 msgstr "editie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:34
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:35
 msgid "howpublished"
 msgstr "hoe_uitgegeven"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:35
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:36
 msgid "month"
 msgstr "maand"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:36
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:37
 msgid "organization"
 msgstr "organisatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:37
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:38
 msgid "school"
 msgstr "school"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
 msgid "note"
 msgstr "opmerking"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:40
 msgid "abstract"
 msgstr "samenvatting"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:40
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:41
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:50
 msgid "url"
 msgstr "url"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:41
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:42
 msgid "doi"
 msgstr "doi"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:42
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:43
 msgid "pages"
 msgstr "pagina's"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:45
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:46
 msgid "surname"
 msgstr "achternaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:46
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:47
 msgid "von"
 msgstr "voorvoegsel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:48
 msgid "firstname"
 msgstr "voornaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:49
 msgid "email"
 msgstr "email"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:50
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:51
 msgid "institute"
 msgstr "instituut"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:66
+msgid "Article"
+msgstr "Artikel"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:67
+msgid "Book"
+msgstr "Boek"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:68
+msgid "Booklet"
+msgstr "Foldertje"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:69
+msgid "Inbook"
+msgstr "In boek"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:70
+msgid "Incollection"
+msgstr "Incollectie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:71
+msgid "Inproceedings"
+msgstr "In proceedings"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:72
+msgid "Manual"
+msgstr "Handleiding"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:73
+msgid "Mastersthesis"
+msgstr "Mastersthesis"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:74
+msgid "Misc"
+msgstr "Divers"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:75
+msgid "Phdthesis"
+msgstr "Proefschrift"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:76
+msgid "Proceedings"
+msgstr "Proceedings"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:77
+msgid "Techreport"
+msgstr "Technisch rapport"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:78
+msgid "Unpublished"
+msgstr "Onuitgegeven"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:64
 msgid "read level"
@@ -532,11 +1042,11 @@ msgstr "De opgestuurde file kon niet van de PHP tmp folder verplaatst worden naa
 msgid "Cannot delete group"
 msgstr "Groep kan niet verwijderd worden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:175
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:182
 msgid "Found similar keywords for"
 msgstr "Soortgelijke trefwoorden gevonden voor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:192
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:199
 msgid "Please review the entered keywords."
 msgstr "Controleer alsjeblieft de ingevoerde trefwoorden."
 
@@ -865,17 +1375,9 @@ msgstr "Als je een gebruiker met database_manage rechten bent, log dan in op de 
 msgid "Checking for updates..."
 msgstr "Zoeken naar updates..."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
-msgid "OK"
-msgstr "OK"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:801
 msgid "This installation of Aigaion is up-to-date"
 msgstr "Deze installatie van Aigaion is up-to-date"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
-msgid "Alert"
-msgstr "Waarschuwing"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
@@ -1073,7 +1575,7 @@ msgstr "Log uit"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:59
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:20
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:20
@@ -1084,7 +1586,7 @@ msgstr "verwijder"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:60
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:21
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
@@ -1098,6 +1600,178 @@ msgstr "zet als niet-hoofdbestand"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:54
 msgid "set main"
 msgstr "zet als hoofdbestand"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:20
+msgid "Delete this publication"
+msgstr "Verwijder deze publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:21
+msgid "Edit this publication"
+msgstr "Bewerk deze publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:27
+msgid "UnBookmark"
+msgstr "Verwijder uit bladwijzers"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:34
+msgid "Bookmark"
+msgstr "Voeg toe aan bladwijzers"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:43
+msgid "Export by e-mail"
+msgstr "Exporteer via e-mail"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:70
+msgid "Publication"
+msgstr "Publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:71
+msgid "I understand that the document referenced above is subject to copyright."
+msgstr "Ik begrijp dat het bovenstaande document onder auteursrechtelijke bescherming valt"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:72
+msgid "I hereby request a copy strictly for my personal use."
+msgstr "Hierbij vraag ik een kopie aan voor strikt persoonlijk gebruik"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:73
+msgid "Name and contact details"
+msgstr "Naam en contactgegevens"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:74
+msgid "Request publication by e-mail"
+msgstr "Vraag publicatie per e-mail aan"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:78
+msgid "Request"
+msgstr "Aanvragen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:78
+msgid "No e-mail address available for neither of the authors"
+msgstr "Voor geen van de auteurs is een email adres beschikbaar"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:94
+msgid "Type of publication"
+msgstr "Publicatietype"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:98
+msgid "Citation"
+msgstr "Citatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:109
+msgid "Key"
+msgstr "Sleutel"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:109
+msgid "This is the bibtex `key` field, used to define sorting keys"
+msgstr "Dit is het Bibtex `sleutel` veld, wat wordt gebruikt bij het sorteren in bibtex"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:139
+msgid "View publication details"
+msgstr "Bekijk details publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:148
+msgid "and"
+msgstr "en"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:154
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:171
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:245
+msgid "All information on"
+msgstr "Alle informatie over"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:175
+msgid "(eds)"
+msgstr "(reds)"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:177
+msgid "(ed)"
+msgstr "(red)"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:215
+msgid "Keywords"
+msgstr "Trefwoorden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:224
+msgid "Authors"
+msgstr "Auteurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:240
+msgid "Editors"
+msgstr "Redacteurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:258
+msgid "Crossref by"
+msgstr "Kruisverwijzing vanaf"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:275
+msgid "Added by"
+msgstr "Toegevoegd door"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:300
+msgid "Access rights"
+msgstr "Toegangsrechten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:301
+msgid "publication read / edit rights"
+msgstr "lees- / schrijfrechten van publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:302
+msgid "edit all rights"
+msgstr "bewerk alle rechten"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:302
+msgid "click to modify access levels"
+msgstr "Klik om toegangsniveau aan te passen "
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:311
+msgid "Total mark"
+msgstr "Totaalscore"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:323
+msgid "Your mark"
+msgstr "Mijn score"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:330
+msgid "Read/Add mark"
+msgstr "Lees/Voeg score toe"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:332
+msgid "Update mark"
+msgstr "Werk score bij"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:345
+msgid "Unread"
+msgstr "Niet gelezen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:364
+msgid "Attachments"
+msgstr "Bestanden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:389
+msgid "add note"
+msgstr "Voeg aantekening toe"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:392
+msgid "Notes"
+msgstr "opmerkingen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:420
+msgid "finish categorization"
+msgstr "Voltooi categoriseren"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:422
+msgid "categorize publication"
+msgstr "Categoriseer publicatie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:427
+msgid "Topics"
+msgstr "Onderwerpen"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:439
+msgid "Click on a topic name to change its subscription status."
+msgstr "Klik op een onderwerpnaam om de abbonnementsstatus te veranderen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:23
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:38
