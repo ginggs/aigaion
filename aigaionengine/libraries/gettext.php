@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once ("gettext/gettext.inc");
+require_once (APPPATH."libraries/gettext/gettext.inc");
 
 /**
  * This class was originally contributed by Manuel Strehl.
