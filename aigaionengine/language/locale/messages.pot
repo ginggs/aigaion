@@ -8,13 +8,675 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-04 22:05+0100\n"
+"POT-Creation-Date: 2009-02-05 00:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:42
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:917
+msgid "View bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:42
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:427
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:431
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:580
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:655
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:732
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:870
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:899
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:917
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:257
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:344
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:413
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:467
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
+msgid "insufficient rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:50
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:957
+msgid "Bookmark list"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:54
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:961
+msgid "Export bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:56
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:59
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:62
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:68
+#, php-format
+msgid "Bookmarklist of %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:59
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:81
+msgid "sorted by journal and type"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:62
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:84
+msgid "sorted by recency"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:87
+msgid "sorted by title"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:68
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:90
+msgid "sorted by first author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:117
+msgid "Add publication to bookmarklist: non-existing publication id passed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:122
+msgid "Click to UnBookmark publication"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:159
+msgid "Add topic to bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:303
+msgid "non-existing topic id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:194
+msgid "Add keyword to bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:335
+msgid "non-existing keyword id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:228
+msgid "Add author to bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:228
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:368
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\embeddingtest.php:41
+msgid "non-existing author id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:261
+msgid "Removing publication from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:261
+msgid "non-existing publication id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:266
+msgid "Click to Bookmark publication"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:303
+msgid "Removing topic from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:335
+msgid "Removing keyword from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:368
+msgid "Removing author from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:403
+msgid "Add bookmarked publications to topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:403
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:472
+msgid "invalid topic id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:427
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:431
+msgid "Making topic from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:436
+msgid "-new from bookmarklist-"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:438
+msgid "Error creating topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:472
+msgid "Remove bookmarked publications from topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:507
+msgid "Deleting publications from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:528
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:603
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:755
+#, php-format
+msgid "Skipped %s publications due to insufficient rights."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:533
+msgid "Delete all from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:580
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:584
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:732
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:736
+msgid "Setting access levels of publications from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:584
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:659
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:736
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
+msgid "no existing access level specified"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:754
+#, php-format
+msgid "Set %s access level of %s publications to \"%s\""
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:608
+#, php-format
+msgid "Set access level to %s for all from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:655
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:659
+msgid "Setting access levels of attachments from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:679
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:831
+#, php-format
+msgid "Set %s access level of %s attachments to \"%s\"."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:680
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:832
+#, php-format
+msgid "Skipped %s attachments due to insufficient rights."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:685
+#, php-format
+msgid ""
+"Set access level to %s for all attachments of publications on bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:760
+#, php-format
+msgid "Set edit access level to %s for all from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
+msgid "Setting edit access levels of attachments from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:837
+#, php-format
+msgid ""
+"Set edit access level to %s for all attachments of publications on "
+"bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:870
+msgid "Clear bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:899
+msgid "Export through email"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:927
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:34
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:111
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:188
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:259
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:361
+msgid "Select export format"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:963
+msgid "Export by email"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:973
+msgid "Export from Aigaion"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:985
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1033
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:309
+msgid "Exported from bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:996
+msgid "Formatted"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1054
+msgid "Mail sent successfully"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1058
+msgid ""
+"Something went wrong when exporting the publications. Did you input a "
+"correct email address?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\embeddingtest.php:41
+msgid "View Author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:39
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
+msgid "Export all publications"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:78
+msgid "All publications"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:107
+msgid "Export requested for non existing topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:116
+#, php-format
+msgid "Export all for topic %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:157
+#, php-format
+msgid "All publications for topic \"%s\""
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:184
+msgid "Export requested for non existing author."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:193
+#, php-format
+msgid "Export all for author %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:234
+#, php-format
+msgid "All publications for %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:264
+msgid "Export all publications on bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:274
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\email_export.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
+msgid "Export"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:274
+msgid "no bookmarklist rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:357
+msgid "Export requested for non existing publication."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:366
+msgid "Export one publication"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:37
+msgid "View group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:37
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:128
+msgid "non-existing group_id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:45
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:90
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:144
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:206
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:276
+msgid "Group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:81
+msgid "Add group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:241
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:306
+msgid "Changes not committed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:128
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:257
+msgid "Edit group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:187
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:194
+msgid "Delete group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:187
+msgid "non existing group specified"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:303
+msgid "Commit group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:248
+msgid "no data to commit"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:268
+msgid "Group Name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:303
+msgid "an error occurred"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:303
+msgid "Please contact your Aigaion administrator."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:333
+msgid "Topic review"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:333
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:402
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:422
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:457
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:476
+msgid "invalid group_id specified"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:344
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:413
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:467
+msgid "Topic subscription"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:350
+msgid "Topic subscription for groups"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:359
+#, php-format
+msgid "Topic subscription for %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:360
+msgid "Subscribed topics are highlighted in boldface."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:360
+msgid ""
+"To subscribe or unsubscribe a topic and its descendants, click on the topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:402
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:422
+msgid "Subscribe topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:457
+msgid "Unubscribe topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:476
+msgid "Unsubscribe topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\help.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:100
+msgid "Help"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:90
+msgid "Import"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:30
+msgid "Import publications"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
+msgid "no import data entered."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:72
+#, php-format
+msgid "Unknown import format specified (\"%s\")."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:72
+msgid "Attempting to automatically identify proper format."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
+msgid ""
+"Import: can't automatically figure out import data format; please specify "
+"correct format."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
+#, php-format
+msgid "Import: Data automatically identified as format \"%s\"."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
+msgid ""
+"Import: Could not extract any valid publication entries from the import data."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:118
+msgid "Please verify the input."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:119
+msgid ""
+"If the input is correct, please verify the contents of the \"BibTeX strings"
+"\" setting under \"In- and output settings\", in the site configuration "
+"screen."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:120
+msgid ""
+"If that setting is correct, too, please submit a bug report at http://"
+"aigaion.nl/"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
+msgid "Import/commit: no publications committed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:207
+#, php-format
+msgid "Succesfully imported %s publications."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
+msgid "Review publication"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:61
+msgid "View publications for keyword: non-existing keyword_id passed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:71
+msgid "Keyword"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:75
+msgid "Export for keyword"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:78
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:84
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:90
+#, php-format
+msgid "Publications for keyword \"%s\""
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:110
+msgid "No publications found using this keyword."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\language.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
+msgid "Unknown language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\language.php:58
+msgid "Select language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\login.php:29
+msgid "Please login"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\login.php:134
+msgid "Anonymous accounts are not enabled"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\login.php:144
+msgid "Anonymous login: no existing anonymous user_id provided"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\login.php:156
+msgid "Error logging in anonymous account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:36
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:146
+msgid "Aigaion not configured for this kind of access"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:97
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:162
+msgid "No token available"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:101
+msgid "Token already logged in"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:102
+msgid "Token timed out"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:121
+#, php-format
+msgid "Logged in as %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:124
+msgid "Nonexisting account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:129
+msgid "Fail token"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:131
+msgid "Unknown fail"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:169
+msgid "User logged out"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:171
+msgid "Wrong parameters for logout"
+msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:29
 msgid "Couldn't connect to demo2.aigaion.nl to check for updates"
@@ -736,47 +1398,6 @@ msgstr ""
 msgid "Edit access level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
-msgid "insufficient rights"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
@@ -939,10 +1560,6 @@ msgstr ""
 msgid "One of the fields %s is required"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:306
-msgid "Changes not committed"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:480
 msgid "Found similar authors for"
 msgstr ""
@@ -982,11 +1599,6 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:174
 msgid "Bookmarked publications removed from topic"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\email_export.php:29
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
-msgid "Export"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
@@ -1466,11 +2078,6 @@ msgstr ""
 msgid "This installation of Aigaion is up-to-date"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
-msgid "Unknown language"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:240
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:375
 msgid ""
@@ -1560,10 +2167,6 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
-msgid "Export all publications"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:60
 msgid "Sort by"
 msgstr ""
@@ -1604,16 +2207,8 @@ msgstr ""
 msgid "New Topic"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:90
-msgid "Import"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:98
 msgid "Site"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:100
-msgid "Help"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:101
