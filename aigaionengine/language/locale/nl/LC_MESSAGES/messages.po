@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-04 22:05+0100\n"
-"PO-Revision-Date: 2009-02-04 22:19+0100\n"
+"PO-Revision-Date: 2009-02-04 22:41+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,51 +20,51 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:29
 msgid "Couldn't connect to demo2.aigaion.nl to check for updates"
-msgstr ""
+msgstr "Er kon geen verbinding gemaakt worden met demo2.aigaion.nl om te kijken of er nieuwe versies zjin"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:32
 msgid "Couldn't obtain release version info from demo2.aigaion.nl"
-msgstr ""
+msgstr "De informatie over nieuwe versies kon niet worden opgehaald van demo2.aigaion.nl"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:47
 msgid "Your database version is higher than the official release. Probably you are using the SVN version?"
-msgstr ""
+msgstr "Je database versie is hoger dan de officiele versie. Waarschijnlijk gebruik je de SVN versie?"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:50
 msgid "There is a new version available"
-msgstr ""
+msgstr "Er is een nieuwe versie beschikbaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:50
 msgid "Current version"
-msgstr ""
+msgstr "Huidige versie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:56
 msgid "Couldn't obtain detailed update info from demo2.aigaion.nl"
-msgstr ""
+msgstr "De gedetailleerde informatie over nieuwe versies kon niet worden opgehaald van demo2.aigaion.nl"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:76
 msgid "Note: the updated version contains security fixes. You are strongly recommended to get the latest version of Aigaion."
-msgstr ""
+msgstr "Let op: de nieuwe versie bevat verbeteringen in de veiligheid. Het wordt sterk aangeraden de meest recente versie van Aigaion op te halen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:78
 msgid "Detailed info for available updates"
-msgstr ""
+msgstr "Gedetailleerde informatie over beschikbare nieuwe versies"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:84
 msgid "Types of update"
-msgstr ""
+msgstr "Soorten verbetering"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:88
 msgid "Version"
-msgstr ""
+msgstr "Versie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:89
 msgid "Bugfix"
-msgstr ""
+msgstr "Foutcorrectie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:90
 msgid "Features"
-msgstr ""
+msgstr "Mogelijkheden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:91
 msgid "Layout"
@@ -72,7 +72,7 @@ msgstr "Opmaak"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:92
 msgid "Security"
-msgstr ""
+msgstr "Veiligheid"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:93
 msgid "Description"
@@ -80,28 +80,28 @@ msgstr "Omschrijving"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:101
 msgid "Some bugs were fixed this release"
-msgstr ""
+msgstr "In deze versie zijn fouten gecorrigeerd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:105
 msgid "Some features were added this release"
-msgstr ""
+msgstr "In deze versie zijn mogelijkheden toegevoegd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:109
 msgid "Some layout elements were changed this release"
-msgstr ""
+msgstr "In deze versie is de opmaak verbeterd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:113
 msgid "This release contains security fixes!"
-msgstr ""
+msgstr "Deze versie bevat verbeteringen in de veiligheid!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:122
 #, php-format
 msgid "You can download the new version %s here %s."
-msgstr ""
+msgstr "Je kan de nieuwe versie %s hier %s ophalen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\export_helper.php:424
 msgid "No format possible"
-msgstr ""
+msgstr "Opmaken van referentie niet mogelijk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:27
 msgid "Passwords check"
@@ -109,17 +109,17 @@ msgstr "Controle wachtwoorden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:29
 msgid "Check all users"
-msgstr ""
+msgstr "Controle alle gebruikers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:37
 #, php-format
 msgid "User %s has an empty password!"
-msgstr ""
+msgstr "Gebruiker %s heft een leeg wachtwoord!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:41
 #, php-format
 msgid "User %s has the user name for password!"
-msgstr ""
+msgstr "Gebruiker %s heeft de gebruikersnaam als wachtwoord!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:47
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:65
@@ -162,20 +162,20 @@ msgstr "OK"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:59
 msgid "Notes checks"
-msgstr ""
+msgstr "Controle aantekeningen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:61
 msgid "Checking note crossreference consistency"
-msgstr ""
+msgstr "Controle van consistentie van verwijzingen tussen aantekeningen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:67
 #, php-format
 msgid "%s notes had inconsistent note crossref IDs."
-msgstr ""
+msgstr "%s aantekeningen hadden inconsistente verwijzingen naar elkaar."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:71
 msgid "NOT YET IMPLEMENTED"
-msgstr ""
+msgstr "NOG NIET GEIMPLEMENTEERD"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:76
 msgid "Attachments check"
@@ -187,7 +187,7 @@ msgstr "Controle missende bestanden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:85
 msgid "The following files could not be found in the attachment directory."
-msgstr ""
+msgstr "De volgende bestanden konden niet in de opslagfolder gevonden worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:93
 msgid "Check orphaned attachments"
@@ -196,15 +196,15 @@ msgstr "Controle verweesde bestanden"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:99
 #, php-format
 msgid "%s references to attachments that no longer belong to a publication have been removed."
-msgstr ""
+msgstr "%s verwijzingen naar bestanden die niet meer bij een publicatie horen zijn verwijderd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:106
 msgid "Check unknown files"
-msgstr ""
+msgstr "Controle onbekende files"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:112
 msgid "The following files are on the server, but do not belong to a publication in the database"
-msgstr ""
+msgstr "Devolgende bestanden staan op de server, maar horen niet bij een publicatie in de database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:121
 msgid "Author check"
@@ -216,7 +216,7 @@ msgstr "Controle van lege auteursnamen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:130
 msgid "The following authors have an empty name"
-msgstr ""
+msgstr "De volgende auteurs hebben een lege naam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:138
 msgid "Checking similar author names"
@@ -224,58 +224,58 @@ msgstr "Controle van soortgelijke auteursnamen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:151
 msgid "TURNED OFF BECAUSE IT TENDS TO TIME-OUT"
-msgstr ""
+msgstr "UITGEZET OMDAT HET LANGER DUURT DAN DE SERVER AANKAN"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:154
 msgid "Checking orphaned authorpublicationlinks"
-msgstr ""
+msgstr "Controle verweesde auteur-publicatie verbindingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:160
 #, php-format
 msgid "%s authorpublicationlinks whose corresponding authors could not be found, were removed."
-msgstr ""
+msgstr "%s auteur-publicatie verbindingen waar de auteur niet bij gevonden kon worden zijn verwijderd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:167
 msgid "Checking for authors that do not publish"
-msgstr ""
+msgstr "Controle voor auteurs zonder publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:173
 msgid "The following authors have no publications listed"
-msgstr ""
+msgstr "De volgende auteurs hebben geen publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:175
 msgid "Delete all non-publishing authors"
-msgstr ""
+msgstr "Verwijder alle auteurs zonder publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:184
 msgid "Topic tree check"
-msgstr ""
+msgstr "Controle onderwerphierarchie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:187
 msgid "Check orphaned topictopiclinks"
-msgstr ""
+msgstr "Controle verweesde onderwerp-onderwerp verbindingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
 #, php-format
 msgid "%s topictopiclinks, of which the topic couldn't be found, have been removed."
-msgstr ""
+msgstr "%s onderwerp-onderwerp verbindingen waar het onderwerp niet bij gevonden kon worden zijn verwijderd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:200
 msgid "Check orphaned topicpublicationlinks"
-msgstr ""
+msgstr "Controle verweesde onderwerp-publicatie verbindingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:206
 #, php-format
 msgid "%s topicpublicationlinks, of which the corresponding publication could not be found, have been removed."
-msgstr ""
+msgstr "%s onderwerp-publicatie verbindingen waar de publicatie niet bij gevonden kon worden zijn verwijderd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:214
 msgid "Check topics without parent"
-msgstr ""
+msgstr "Controle van onderwerpen zonder ouder"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:220
 msgid "The following topics had no parent. Their parent is set to the top topic."
-msgstr ""
+msgstr "De volgende onderwerpen waren niet verbonden aan de hierarchie, en zijn nu naast de bovenste onderwerpen geplaatst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:228
 msgid "Checking for empty topics"
@@ -283,7 +283,7 @@ msgstr "Controle van lege onderwerpen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:234
 msgid "The following topics have no assigned publications."
-msgstr ""
+msgstr "De voglende onderwerpen bevatten geen publicaties."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:242
 msgid "Checking publications in ancestor topics"
@@ -292,36 +292,36 @@ msgstr "Controle dat publicaties hoger in hierarchie ook aanwezig zijn"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:250
 #, php-format
 msgid "%s publications did not appear in ancestor topics."
-msgstr ""
+msgstr "%s publicaties kwamen niet voor in de hogergelegen onderwerpen in de hierarchie."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:261
 msgid "Reinit searchable names, keywords and titles"
-msgstr ""
+msgstr "Herinitialiseer de doorzoekbare namen, trefwoorden en titels"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:263
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:337
 msgid "Checking"
-msgstr ""
+msgstr "Controleren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:275
 #, php-format
 msgid "Fixed searchable names of %s authors."
-msgstr ""
+msgstr "Doorzoekbare namen van %s auteurs gecorrigeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:296
 #, php-format
 msgid "Fixed searchable names of %s publications."
-msgstr ""
+msgstr "Doorzoekbare namen van %s publicaties gecorrigeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:310
 #, php-format
 msgid "Fixed searchable names of %s topics."
-msgstr ""
+msgstr "Doorzoekbare namen van %s onderwerpen gecorrigeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:325
 #, php-format
 msgid "Fixed searchable names of %s keywords."
-msgstr ""
+msgstr "Doorzoekbare namen van %s trefwoorden gecorrigeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:335
 msgid "Check total publication marks"
@@ -330,30 +330,30 @@ msgstr "Controle van totaalscores"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:344
 #, php-format
 msgid "Fixed total topic mark of %s publications."
-msgstr ""
+msgstr "Totaalscore van %s publicaties gecorrigeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:397
 #, php-format
 msgid "Removed: %s (file not on server and not linked to a publication)."
-msgstr ""
+msgstr "Verwijderd: %s (bestand was niet meer op de server aanwezig en niet verbonden met een publicatie)."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:436
 msgid "Could not open documents directory."
-msgstr ""
+msgstr "Opslagfolder van bestanden kon niet geopend worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:703
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:704
 msgid "Click to show details"
-msgstr ""
+msgstr "Klik hier om details te tonen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:705
 msgid "Click to merge"
-msgstr ""
+msgstr "Klik hier om samen te voegen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:761
 #, php-format
 msgid "Deleted %s authors who do not have any publications."
-msgstr ""
+msgstr "Verwijderd: %s auteurs die geen publicaties hebben."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:65
@@ -447,11 +447,11 @@ msgstr "%s kan niet worden opgevraagd"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
 #, php-format
 msgid "Checking database schema version %s"
-msgstr ""
+msgstr "Controlerenvan database versie %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
 msgid "update needed"
-msgstr ""
+msgstr "bijwerken nodig"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:98
 #, php-format
@@ -461,20 +461,20 @@ msgstr "Databaseversie %s bijwerken"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:98
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:117
 msgid "Succeeded"
-msgstr ""
+msgstr "Gelukt"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:117
 #, php-format
 msgid "Update to release version %s"
-msgstr ""
+msgstr "Bijwerken tot nieuwe versie %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:126
 msgid "UPDATE WAS NOT SUCCESSFUL"
-msgstr ""
+msgstr "BIJWERKEN NIEUWE VERSIE WAS NIET SUCCESVOL"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:127
 msgid "Some database operations require mysql root privileges. Please ensure that the mysql user in your index.php file has sufficient rights."
-msgstr ""
+msgstr "Sommige databasebewerkingen hebben mysql beheerderstoegangsrechten nodig. Controleer dat de mysql gebruiker in je index.php bestand voldoende rechten heeft."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:16
 msgid "year"
@@ -570,7 +570,7 @@ msgstr "school"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
 msgid "note"
-msgstr "opmerking"
+msgstr "aantekeningen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:40
 msgid "abstract"
@@ -1755,7 +1755,7 @@ msgstr "Voeg aantekening toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:392
 msgid "Notes"
-msgstr "opmerkingen"
+msgstr "Aantekeningen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:420
 msgid "finish categorization"
