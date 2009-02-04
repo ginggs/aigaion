@@ -39,7 +39,7 @@ class Bookmarklist extends Controller {
 	    //check rights
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-            appendErrorMessage("View bookmarklist: insufficient rights<br/>");
+            appendErrorMessage(__("View bookmarklist").": ".__("insufficient rights").".<br/>");
             redirect('');
         }
 	            	    
@@ -47,25 +47,25 @@ class Bookmarklist extends Controller {
         $this->load->helper('publication');
 
         $headerdata = array();
-        $headerdata['title'] = 'Bookmark list';
+        $headerdata['title'] = __('Bookmark list');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         $headerdata['sortPrefix'] = '/bookmarklist/viewlist/';
         $headerdata['exportCommand']    = 'export/bookmarklist/';
-        $headerdata['exportName']    = 'Export bookmarklist';
+        $headerdata['exportName']    = __('Export bookmarklist');
 
-        $content['header']          = 'Bookmarklist of '.$userlogin->loginName();
+        $content['header']          = sprintf(__('Bookmarklist of %s'),$userlogin->loginName());
         switch ($order) {
             case 'type':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by journal and type';
+                $content['header']          = sprintf(__('Bookmarklist of %s'),$userlogin->loginName()).' '.__('sorted by journal and type');
                 break;
             case 'recent':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by recency';
+                $content['header']          = sprintf(__('Bookmarklist of %s'),$userlogin->loginName()).' '.__('sorted by recency');
                 break;
             case 'title':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by title';
+                $content['header']          = sprintf(__('Bookmarklist of %s'),$userlogin->loginName()).' '.__('sorted by title');
                 break;
             case 'author':
-                $content['header']          = 'Bookmarklist of '.$userlogin->loginName().' sorted by first author';
+                $content['header']          = sprintf(__('Bookmarklist of %s'),$userlogin->loginName()).' '.__('sorted by first author');
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {
@@ -114,12 +114,12 @@ class Bookmarklist extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null)
         {
-            appendErrorMessage("Add publication to bookmarklist: non-existing publication id passed");
+            appendErrorMessage(__("Add publication to bookmarklist: non-existing publication id passed.")."<br/>");
             redirect('');
         }
         
         $this->bookmarklist_db->addPublication($publication->pub_id);
-        $output = '<span title="Click to UnBookmark publication">'
+        $output = '<span title="'.__('Click to UnBookmark publication').'">'
                  .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('bookmarked.gif')."'>",
                   array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
                         'update'  => 'bookmark_pub_'.$publication->pub_id
@@ -156,7 +156,7 @@ class Bookmarklist extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
-            appendErrorMessage("Add topic to bookmarklist: non-existing topic id passed");
+            appendErrorMessage(__("Add topic to bookmarklist").": ".__("non-existing topic id passed").".<br/>");
             redirect('');
         }
         
@@ -191,7 +191,7 @@ class Bookmarklist extends Controller {
         $keyword = $this->keyword_db->getByID($keyword_id);
         if ($keyword == null)
         {
-            appendErrorMessage("Add topic to bookmarklist: non-existing keyword id passed");
+            appendErrorMessage(__("Add keyword to bookmarklist").": ".__("non-existing keyword id passed").".<br/>");
             redirect('');
         }
         
@@ -225,7 +225,7 @@ class Bookmarklist extends Controller {
         $author = $this->author_db->getByID($author_id);
         if ($author == null)
         {
-            appendErrorMessage("Add author to bookmarklist: non-existing author id passed");
+            appendErrorMessage(__("Add author to bookmarklist").": ".__("non-existing author id passed").".<br/>");
             redirect('');
         }
         
@@ -258,12 +258,12 @@ class Bookmarklist extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null)
         {
-            appendErrorMessage("Removing publication from bookmarklist: non-existing publication id passed");
+            appendErrorMessage(__("Removing publication from bookmarklist").": ".__("non-existing publication id passed").".<br/>");
             redirect('');
         }
         
         $this->bookmarklist_db->removePublication($publication->pub_id);
-        $output = '<span title="Click to Bookmark publication">'
+        $output = '<span title="'.__('Click to Bookmark publication').'">'
                  .$this->ajax->link_to_remote("<img border=0 src='".getIconUrl('nonbookmarked.gif')."'>",
                   array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
                         'update'  => 'bookmark_pub_'.$publication->pub_id
@@ -300,7 +300,7 @@ class Bookmarklist extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
-            appendErrorMessage("Removing topic from bookmarklist: non-existing topic id passed");
+            appendErrorMessage(__("Removing topic from bookmarklist").": ".__("non-existing topic id passed").".<br/>");
             redirect('');
         }
         
@@ -332,7 +332,7 @@ class Bookmarklist extends Controller {
         $keyword = $this->keyword_db->getByID($keyword_id);
         if ($keyword == null)
         {
-            appendErrorMessage("Removing keyword from bookmarklist: non-existing keyword id passed");
+            appendErrorMessage(__("Removing keyword from bookmarklist").": ".__("non-existing keyword id passed").".<br/>");
             redirect('');
         }
         
@@ -365,7 +365,7 @@ class Bookmarklist extends Controller {
         $author = $this->author_db->getByID($author_id);
         if ($author == null)
         {
-            appendErrorMessage("Removing author from bookmarklist: non-existing author id passed");
+            appendErrorMessage(__("Removing author from bookmarklist").": ".__("non-existing author id passed").".<br/>");
             redirect('');
         }
         
@@ -400,7 +400,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage( "Add bookmarked publications to topic: no valid topic ID provided.<br/>");
+            appendErrorMessage(__("Add bookmarked publications to topic").": ".__("invalid topic id passed").".<br/>");
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->addToTopic($topic);
@@ -424,18 +424,18 @@ class Bookmarklist extends Controller {
     function maketopic() {
       $userlogin = getUserLogin();
 	    if (!$userlogin->hasRights('bookmarklist')) {
-	        appendErrorMessage('Making topic from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Making topic from bookmarklist').': '.__('insufficient rights').' (bookmarklist).<br/>');
 	        redirect('');
 	    }
 	    if (!$userlogin->hasRights('topic_edit')) {
-	        appendErrorMessage('Insufficient rights to create topic<br/>');
+	        appendErrorMessage(__('Making topic from bookmarklist').': '.__('insufficient rights').' (topic_edit).<br/>');
 	        redirect('');
 	    }
 	    
 	    $topic = new Topic;
-	    $topic->name = '-new from bookmarklist-';
+	    $topic->name = __('-new from bookmarklist-');
         if (!$topic->add()) {
-	        appendErrorMessage('Error creating topic<br/>');
+	        appendErrorMessage(__('Error creating topic.').'<br/>');
 	        redirect('');
         }
         $this->bookmarklist_db->addToTopic($topic);
@@ -469,7 +469,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage( "Remove bookmarked publications from topic: no valid topic ID provided.<br/>");
+            appendErrorMessage(__("Remove bookmarked publications from topic").": ".__("invalid topic id passed").".<br/>");
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->removeFromTopic($topic);
@@ -504,7 +504,7 @@ class Bookmarklist extends Controller {
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-	        appendErrorMessage('Deleting publications from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Deleting publications from bookmarklist').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
 
@@ -525,12 +525,12 @@ class Bookmarklist extends Controller {
                 }
             }
             appendMessage('Deleted '.$nrdeleted.' publications<br>');
-            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Delete all from bookmarklist';
+            $headerdata['title'] = __('Delete all from bookmarklist');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -577,11 +577,11 @@ class Bookmarklist extends Controller {
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Setting access levels of publications from bookmarklist').': '._('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         if (!in_array($accesslevel,array('public','intern','private'))) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: no existing access level specified<br/>');
+	        appendErrorMessage(__('Setting access levels of publications from bookmarklist').': '.__('no existing access level specified').'.<br/>');
 	        redirect('bookmarklist');
         }
         if ($commit=='commit') {
@@ -599,13 +599,13 @@ class Bookmarklist extends Controller {
                     $nrskipped++;
                 }
             }
-            appendMessage('Set access level of '.$nrchanged.' publications to "'.$accesslevel.'"<br>');
-            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),'read', $nrchanged,$accesslevel).'<br>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Set access level to '.$accesslevel.' for all from bookmarklist';
+            $headerdata['title'] = sprintf(__('Set access level to %s for all from bookmarklist'),$accesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -652,11 +652,11 @@ class Bookmarklist extends Controller {
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('attachment_edit')) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Setting access levels of attachments from bookmarklist').': '._('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         if (!in_array($accesslevel,array('public','intern','private'))) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: no existing access level specified<br/>');
+	        appendErrorMessage(__('Setting access levels of attachments from bookmarklist').': '.__('no existing access level specified').'.<br/>');
 	        redirect('bookmarklist');
         }
         if ($commit=='commit') {
@@ -676,13 +676,13 @@ class Bookmarklist extends Controller {
                     }
                 }
             }
-            appendMessage('Changed access level of '.$nrchanged.' attachments to "'.$accesslevel.'"<br>');
-            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' attachments due to insufficient rights<br>');
+            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),'read',$nrchanged,$accesslevel).'<br>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped).'<br>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Set access level to '.$accesslevel.' for all attachments of publications on bookmarklist';
+            $headerdata['title'] = sprintf(__('Set access level to %s for all attachments of publications on bookmarklist'),$accesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -729,11 +729,11 @@ class Bookmarklist extends Controller {
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('publication_edit')) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Setting access levels of publications from bookmarklist').': '._('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         if (!in_array($editaccesslevel,array('public','intern','private'))) {
-	        appendErrorMessage('Setting access levels of publications from bookmarklist: no existing access level specified<br/>');
+	        appendErrorMessage(__('Setting access levels of publications from bookmarklist').': '.__('no existing access level specified').'.<br/>');
 	        redirect('bookmarklist');
         }
         if ($commit=='commit') {
@@ -751,13 +751,13 @@ class Bookmarklist extends Controller {
                     $nrskipped++;
                 }
             }
-            appendMessage('Set edit access level of '.$nrchanged.' publications to "'.$editaccesslevel.'"<br>');
-            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' publications due to insufficient rights<br>');
+            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),'edit',$nrchanged,$editaccesslevel).'<br>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Set edit access level to '.$editaccesslevel.' for all from bookmarklist';
+            $headerdata['title'] = sprintf(__('Set edit access level to %s for all from bookmarklist'),$editaccesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -804,11 +804,11 @@ class Bookmarklist extends Controller {
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('attachment_edit')) {
-	        appendErrorMessage('Setting edit access levels of publications from bookmarklist: insufficient rights<br/>');
+	        appendErrorMessage(__('Setting edit access levels of attachments from bookmarklist').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         if (!in_array($editaccesslevel,array('public','intern','private'))) {
-	        appendErrorMessage('Setting edit ccess levels of publications from bookmarklist: no existing access level specified<br/>');
+	        appendErrorMessage(__('Setting edit access levels of attachments from bookmarklist').': '.__('no existing access level specified').'.<br/>');
 	        redirect('bookmarklist');
         }
         if ($commit=='commit') {
@@ -828,13 +828,13 @@ class Bookmarklist extends Controller {
                     }
                 }
             }
-            appendMessage('Changed access level of '.$nrchanged.' attachments to "'.$editaccesslevel.'"<br>');
-            if ($nrskipped>0)appendMessage('Skipped '.$nrskipped.' attachments due to insufficient rights<br>');
+            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),'edit', $nrchanged,$editaccesslevel).'<br>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped),'<br>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Set access level to '.$editaccesslevel.' for all attachments of publications on bookmarklist';
+            $headerdata['title'] = sprintf(__('Set edit access level to %s for all attachments of publications on bookmarklist'),$editaccesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -867,7 +867,7 @@ class Bookmarklist extends Controller {
     function clear() {
       $userlogin = getUserLogin();
 	    if (!$userlogin->hasRights('bookmarklist')) {
-	        appendErrorMessage('Insufficient rights to clear bookmarklist<br/>');
+	        appendErrorMessage(__('Clear bookmarklist').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         $this->bookmarklist_db->clear();
@@ -896,7 +896,7 @@ class Bookmarklist extends Controller {
 					{
         	  $userlogin = getUserLogin();
 						if (!$userlogin->hasRights('export_email')) {
-        	    appendErrorMessage('You are not allowed to export publications through email<br/>');
+        	    appendErrorMessage(__('Export through email').': '.__('insufficient rights').'.<br/>');
         	    redirect('');
             }
             $this->load->library('email_export');
@@ -914,7 +914,7 @@ class Bookmarklist extends Controller {
 						$userlogin = getUserLogin();
 						if (!$userlogin->hasRights('bookmarklist'))
 						{
-							appendErrorMessage("View bookmarklist: insufficient rights <br />");
+							appendErrorMessage(__("View bookmarklist").": ".__("insufficient rights").".<br/>");
 							redirect('');
 						}
 
@@ -924,7 +924,7 @@ class Bookmarklist extends Controller {
 						*/
 						if(!(($email_pdf !='' || $email_bibtex !='' || $email_ris!='' || $email_formatted!='') && $email_address != ''))
 						{
-							$header ['title']       = "Select export format";
+							$header ['title']       = __("Select export format");
 							$header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
 
 							$content['attachmentsize']  = $this->email_export->attachmentSize($publications);
@@ -954,13 +954,13 @@ class Bookmarklist extends Controller {
 							$this->load->helper('publication');
 
 							$headerdata = array();
-							$headerdata['title'] = 'Bookmark list';
+							$headerdata['title'] = __('Bookmark list');
 							$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
 							$headerdata['sortPrefix'] = '/bookmarklist/viewlist/';
 							$headerdata['exportCommand']    = 'export/bookmarklist/';
-							$headerdata['exportName']    = 'Export bookmarklist';
+							$headerdata['exportName']    = __('Export bookmarklist');
 
-							$content['header']          = 'Export by email';
+							$content['header']          = __('Export by email');
 							$output = $this->load->view('header', $headerdata, true);
 
 							$content['publications']    = $publications;
@@ -970,7 +970,7 @@ class Bookmarklist extends Controller {
 
 
 
-							$messageBody = 'Export from Aigaion';
+							$messageBody = __('Export from Aigaion');
 
 							if($email_formatted || $email_bibtex)
 							{
@@ -982,7 +982,7 @@ class Bookmarklist extends Controller {
 
 								$exportdata['nonxrefs'] = $pubs;
 								$exportdata['xrefs']    = $xrefpubs;
-								$exportdata['header']   = 'Exported from bookmarklist';
+								$exportdata['header']   = __('Exported from bookmarklist');
 								$exportdata['exportEmail']   = true;
 							}
 
@@ -993,7 +993,7 @@ class Bookmarklist extends Controller {
 							if($email_formatted)
 							{
 								$messageBody .= "\n";
-								$messageBody .= 'Formatted';
+								$messageBody .= __('Formatted');
 								$messageBody .= "\n";
 
 								$exportdata['format'] = 'html';
@@ -1030,7 +1030,7 @@ class Bookmarklist extends Controller {
 								#send to right export view
 								$exportdata['nonxrefs'] = $pubs;
 								$exportdata['xrefs']    = $xrefpubs;
-								$exportdata['header']   = 'Exported from bookmarklist';
+								$exportdata['header']   = __('Exported from bookmarklist');
 								$exportdata['exportEmail']   = true;
 
 								$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));
@@ -1051,12 +1051,12 @@ class Bookmarklist extends Controller {
 							*/
 							if($this->email_export->sendEmail($email_address, $messageBody, $publications))
 							{
-								$output .= 'Mail sent successfully';
+								$output .= __('Mail sent successfully');
 							}
 							else
 							{
-								appendErrorMessage('Something went wrong when exporting the publications. Did you input a correct email address? <br />');
-								redirect('');
+								appendErrorMessage(__('Something went wrong when exporting the publications. Did you input a correct email address?').' <br />');
+								redirect('bookmarklist/exportEmail');
 							}
 
 							$output .= $this->load->view('footer','', true);

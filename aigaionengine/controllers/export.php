@@ -31,12 +31,12 @@ class Export extends Controller {
     function all() {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
-            $header ['title']       = "Select export format";
+            $header ['title']       = __("Select export format");
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
-            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all publications','exportCommand'=>'export/all/'), true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>__('Export all publications'),'exportCommand'=>'export/all/'), true);
             $output .= $this->load->view('footer',        '',       true);
             
             //set output
@@ -75,7 +75,7 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-        $exportdata['header']   = 'All publications';
+        $exportdata['header']   = __('All publications');
 
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
@@ -104,16 +104,16 @@ class Export extends Controller {
 	    $config = array();
 	    $topic = $this->topic_db->getByID($topic_id,$config);
 	    if ($topic==null) {
-	        appendErrorMessage('Export requested for non existing topic<br/>');
+	        appendErrorMessage(__('Export requested for non existing topic.').'<br/>');
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
-            $header ['title']       = "Select export format";
+            $header ['title']       = __("Select export format");
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
-            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all for topic '.$topic->name,'exportCommand'=>'export/topic/'.$topic->topic_id.'/'), true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>sprintf(__('Export all for topic %s'),$topic->name),'exportCommand'=>'export/topic/'.$topic->topic_id.'/'), true);
             $output .= $this->load->view('footer',        '',       true);
             
             //set output
@@ -154,7 +154,7 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-        $exportdata['header']   = 'All publications for topic "'.$topic->name.'"';
+        $exportdata['header']   = sprintf(__('All publications for topic "%s"',$topic->name));
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
@@ -181,16 +181,16 @@ class Export extends Controller {
 	    $type = $this->uri->segment(4,'');
 	    $author = $this->author_db->getByID($author_id);
 	    if ($author==null) {
-	        appendErrorMessage('Export requested for non existing author<br/>');
+	        appendErrorMessage(__('Export requested for non existing author.').'<br/>');
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
-            $header ['title']       = "Select export format";
+            $header ['title']       = __("Select export format");
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
-            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all for author '.$author->getName(),'exportCommand'=>'export/author/'.$author->author_id.'/'), true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>sprintf(__('Export all for author %s'),$author->getName()),'exportCommand'=>'export/author/'.$author->author_id.'/'), true);
             $output .= $this->load->view('footer',        '',       true);
             
             //set output
@@ -231,7 +231,7 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-        $exportdata['header']   = 'All publications for '.$author->getName();
+        $exportdata['header']   = sprintf(__('All publications for %s'),$author->getName());
 
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
@@ -256,12 +256,12 @@ class Export extends Controller {
     function bookmarklist() {
 	    $type = $this->uri->segment(3,'');
 	    if (!in_array($type,array('bibtex','ris','formatted','email'))) {
-            $header ['title']       = "Select export format";
+            $header ['title']       = __("Select export format");
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
-            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export all publications on bookmarklist','exportCommand'=>'export/bookmarklist/'), true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>__('Export all publications on bookmarklist'),'exportCommand'=>'export/bookmarklist/'), true);
             $output .= $this->load->view('footer',        '',       true);
             
             //set output
@@ -271,7 +271,7 @@ class Export extends Controller {
 	    $exportdata = array();
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('bookmarklist')) {
-	        appendErrorMessage('Export: no bookmarklist rights<br/>');
+	        appendErrorMessage(__('Export').': '.__('no bookmarklist rights').'.<br/>');
 	        redirect ('');
 	    }
         //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
@@ -306,7 +306,7 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-        $exportdata['header']   = 'Exported from bookmarklist';
+        $exportdata['header']   = __('Exported from bookmarklist');
 
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
@@ -354,16 +354,16 @@ class Export extends Controller {
         }
 	    $publication = $this->publication_db->getByID($pub_id);
 	    if ($publication==null) {
-	        appendErrorMessage('Export requested for non existing publication<br/>');
+	        appendErrorMessage(__('Export requested for non existing publication.').'<br/>');
 	        redirect ('');
 	    }
 	    if (!in_array($type,array('bibtex','ris','formatted'))) {
-            $header ['title']       = "Select export format";
+            $header ['title']       = __("Select export format");
             $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
             
             //get output
             $output  = $this->load->view('header',        $header,  true);
-            $output .= $this->load->view('export/chooseformat',  array('header'=>'Export one publication','exportCommand'=>'export/publication/'.$publication->pub_id.'/'), true);
+            $output .= $this->load->view('export/chooseformat',  array('header'=>__('Export one publication'),'exportCommand'=>'export/publication/'.$publication->pub_id.'/'), true);
             $output .= $this->load->view('footer',        '',       true);
             
             //set output

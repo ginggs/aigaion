@@ -34,7 +34,7 @@ class Groups extends Controller {
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {
-	        appendErrorMessage("View group: non-existing group_id passed");
+	        appendErrorMessage(__("View group").": ".__("non-existing group_id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -42,7 +42,7 @@ class Groups extends Controller {
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Group';
+        $headerdata['title'] = __('Group');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -78,16 +78,16 @@ class Groups extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Add group: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add group').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Group';
+        $headerdata['title'] = __('Group');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -120,12 +120,12 @@ class Groups extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {
-	        appendErrorMessage("Edit group: non-existing group_id passed");
+	        appendErrorMessage(__("Edit group").": ".__("non-existing group_id passed").".<br/>");
 	        redirect('');
 	    }
 	    
@@ -135,13 +135,13 @@ class Groups extends Controller {
              
             ) 
         {
-	        appendErrorMessage('Edit group: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit group').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Group';
+        $headerdata['title'] = __('Group');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -184,14 +184,14 @@ class Groups extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($group==null) {
-	        appendErrorMessage('Delete group: non existing group specified.<br/>');
+	        appendErrorMessage(__('Delete group').': '.__('non existing group specified').'.<br/>');
 	        redirect('');
 	    }
 	    //check user rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) )
         {
-	        appendErrorMessage('Delete group: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete group').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -203,7 +203,7 @@ class Groups extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Group';
+            $headerdata['title'] = __('Group');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -238,14 +238,14 @@ class Groups extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get data from POST
         $group = $this->group_db->getFromPost();
         
         //check if fail needed: was all data present in POST?
         if ($group == null) {
-            appendErrorMEssage("Commit group: no data to commit<br/>");
+            appendErrorMEssage(__("Commit group").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
 
@@ -254,7 +254,7 @@ class Groups extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Edit group: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit group').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -265,7 +265,7 @@ class Groups extends Controller {
     	$this->validation->set_rules(array( 'name' => 'required'
                                            )
                                      );
-    	$this->validation->set_fields(array( 'name' => 'Group Name'
+    	$this->validation->set_fields(array( 'name' => __('Group Name')
                                            )
                                      );
     		
@@ -273,7 +273,7 @@ class Groups extends Controller {
             //return to add/edit form if validation failed
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Group';
+            $headerdata['title'] = __('Group');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -300,7 +300,7 @@ class Groups extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit group: an error occurred. Please contact your Aigaion administrator.<br/>");
+                appendErrorMessage(__("Commit group").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect ('users/manage');
             }
             //redirect somewhere if commit was successfull
@@ -330,7 +330,7 @@ class Groups extends Controller {
 	    $group = $this->group_db->getByID($group_id);
 	    
 	    if ($group==null) {
-	        appendErrorMessage('Topic review: invalid group_id specified.<br/>');
+	        appendErrorMessage(__('Topic review').': '.__('invalid group_id specified').'.<br/>');
 	        redirect('');
 	    }
 	    
@@ -341,13 +341,13 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Topic subscription').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic subscription for groups';
+        $headerdata['title'] = __('Topic subscription for groups');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -356,8 +356,8 @@ class Groups extends Controller {
         $config = array('user'=>$group);
         $root = $this->topic_db->getByID(1, $config);
         $this->load->vars(array('subviews'  => array('topics/groupsubscriptiontreerow'=>array('allCollapsed'=>True))));
-        $output .= "<p class='header'>Topic subscription for ".$group->name."</p>";
-        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br/>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<p class='header'>".sprintf(__("Topic subscription for %s"),$group->name)."</p>";
+        $output .= "<div class='message'>".__("Subscribed topics are highlighted in boldface.")."<br/>".__("To subscribe or unsubscribe a topic and its descendants, click on the topic.")."</div>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
@@ -399,7 +399,7 @@ class Groups extends Controller {
         
         $group = $this->group_db->getByID($group_id);
         if ($group == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid group ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("invalid group_id specified").".</div>";
         }
 
 	    
@@ -410,7 +410,7 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Topic subscription').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -419,7 +419,7 @@ class Groups extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("invalid group_id specified")."</div>";
         }
         //do subscribe
         $topic->subscribeUser();
@@ -454,7 +454,7 @@ class Groups extends Controller {
         
         $group = $this->user_db->getByID($group_id);
         if ($group == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid group ID provided</div>";
+            echo "<div class='errormessage'>".__("Unubscribe topic").": ".__("invalid group_id specified")."</div>";
         }
 
 	    //check user rights
@@ -464,7 +464,7 @@ class Groups extends Controller {
                 (  !$userlogin->hasRights('user_edit_all') )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Topic subscription').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -473,7 +473,7 @@ class Groups extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("invalid group_id specified")."</div>";
         }
         //do unsubscribe
         $topic->unsubscribeUser();

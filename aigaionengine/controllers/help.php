@@ -17,7 +17,7 @@ class Help extends Controller {
 	function viewhelp() {
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Help';
+        $headerdata['title'] = __('Help');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);

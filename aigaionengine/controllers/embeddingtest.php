@@ -38,7 +38,7 @@ class Embeddingtest extends Controller {
     $author = $this->author_db->getByID($author_id);
     if ($author == null)
     {
-      appendErrorMessage("View Author: non-existing author id passed");
+      appendErrorMessage(__("View Author").": ".__("non-existing author id passed"));
       redirect('');
     }
     

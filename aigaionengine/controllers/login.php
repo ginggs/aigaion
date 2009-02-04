@@ -26,7 +26,7 @@ class Login extends Controller {
         $data = array('segments' => $segments);
   
         //set header data
-        $header ['title']       = 'Please login';
+        $header ['title']       = __('Please login');
         $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         //get output
@@ -131,7 +131,7 @@ class Login extends Controller {
     */
     function anonymous() {
         if (getConfigurationSetting('LOGIN_ENABLE_ANON')!='TRUE') {
-            appendErrorMessage('Anonymous accounts are not enabled<br/>');
+            appendErrorMessage(__('Anonymous accounts are not enabled').'.<br/>');
             redirect('');
         }
         $segments = $this->uri->segment_array();
@@ -141,7 +141,7 @@ class Login extends Controller {
             $user = $this->user_db->getByLogin($user_id);
         }
         if (($user==null)||($user->type!='anon')) {
-            appendErrorMessage('Anonymous login: no existing anonymous user_id provided<br/>');
+            appendErrorMessage(__('Anonymous login: no existing anonymous user_id provided').'.<br/>');
             redirect('');
         }
         
@@ -153,7 +153,7 @@ class Login extends Controller {
         $result = $userlogin->loginAnonymous($user->user_id);
         $this->latesession->set('USERLOGIN', $userlogin);
         if (($result==1)||($result==2)) {
-            appendErrorMessage('Error logging in anonymous account<br/>');
+            appendErrorMessage(__('Error logging in anonymous account').'<br/>');
         }
         array_shift($segments);
         array_shift($segments);

@@ -37,7 +37,7 @@ class Language extends Controller {
       global $AIGAION_SUPPORTED_LANGUAGES;
       if (!in_array($language,$AIGAION_SUPPORTED_LANGUAGES)) 
       {
-        appendErrorMessage("Unknown language: \"".$language."\"<br/>");
+        appendErrorMessage(__("Unknown language").": \"".$language."\"<br/>");
       }
       else
       {
@@ -55,7 +55,7 @@ class Language extends Controller {
     function choose() {
       //get output
       $headerdata = array();
-      $headerdata['title'] = 'Select language';
+      $headerdata['title'] = __('Select language');
       $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
       
       $output = $this->load->view('header', $headerdata, true);

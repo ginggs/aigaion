@@ -23,11 +23,11 @@ class Import extends Controller {
     $user       = $this->user_db->getByID($userlogin->userID());
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Import : insufficient rights.<br/>');
+      appendErrorMessage(__('Import').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
     
-    $header ['title']       = "import publications";
+    $header ['title']       = __("Import publications");
     $header ['javascripts'] = array();
     
     //get output
@@ -60,7 +60,7 @@ class Import extends Controller {
     $import_data  = $this->input->post('import_data');    
     if ($import_data == '') 
     {
-        appendErrorMessage("Import: no import data entered.<br/>");
+        appendErrorMessage(__("Import").": ".__("no import data entered.")."<br/>");
         $this->viewform();
         return;
     }
@@ -69,7 +69,7 @@ class Import extends Controller {
     //is the type known?
     if (($type!="auto") && ($type!="") && !in_array($type,$this->import_lib->getAvailableImportTypes()))
     {
-      appendErrorMessage("Unknown import format specified (\"".$type."\"). Attempting to automatically identify proper format.<br/>");
+      appendErrorMessage(sprintf(__("Unknown import format specified (\"%s\")."),$type)." ".__("Attempting to automatically identify proper format.")."<br/>");
       $type = "auto";
     }
     //try to determine type automatically?
@@ -78,13 +78,13 @@ class Import extends Controller {
       $type = $this->import_lib->determineImportType($import_data);
       if ($type == "unknown") 
       {
-        appendErrorMessage("Import: can't automatically figure out import data format; please specify correct format.<br/>");
+        appendErrorMessage(__("Import: can't automatically figure out import data format; please specify correct format.")."<br/>");
         $this->viewform($import_data);
         return;
       }
       else
       {
-        appendMessage("Import: Data automatically identified as format \"".$type."\".<br/>");
+        appendMessage(sprintf(__("Import: Data automatically identified as format \"%s\"."),$type)."<br/>");
       }
     }
     
@@ -113,11 +113,11 @@ class Import extends Controller {
     if (count($publications)==0)
     {
       appendErrorMessage("
-      <b>Import: Could not extract any valid publication entries from the import data.</b> 
+      <b>".__("Import: Could not extract any valid publication entries from the import data.")."</b> 
       <ul>
-       <li>Please verify the input. </li>
-       <li>If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen. </li>
-       <li>If that setting is correct, too, please submit a bug report at http://aigaion.nl/ </li>
+       <li>".__("Please verify the input.")."</li>
+       <li>".__("If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen.")."</li>
+       <li>".__("If that setting is correct, too, please submit a bug report at http://aigaion.nl/")."</li>
       </ul><br/>");
       $this->viewform($import_data);
       return;
@@ -171,7 +171,7 @@ class Import extends Controller {
 
     if ($import_count == 0) 
     {
-      appendErrorMessage("Import/commit: no publications committed.<br/>");
+      appendErrorMessage(__("Import/commit: no publications committed.")."<br/>");
       $this->viewform();
       return;
     }
@@ -204,7 +204,7 @@ class Import extends Controller {
       if ($markasread)$pub_to_import->read('');
       $last_id = $pub_to_import->pub_id;
     }
-    appendMessage('Succesfully imported '.$count.' publications.');
+    appendMessage(sprintf(__('Succesfully imported %s publications.'),$count)."<br/>");
     if ($count == 1) {
       redirect('publications/show/'.$last_id);
     } else {
@@ -218,11 +218,11 @@ class Import extends Controller {
     $userlogin      = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Review publication: insufficient rights.<br/>');
+      appendErrorMessage(__('Review publication').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
 
-    $header ['title']       = "review publication";
+    $header ['title']       = __("Review publication");
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publications'] = $publications;
     $content['reviews']      = $review_data;

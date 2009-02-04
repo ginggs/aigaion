@@ -58,7 +58,7 @@ class Keywords extends Controller {
     //$keyword = $keywordResult[$keyword_id];
     if ($keyword == null)
     {
-      appendErrorMessage("View publications for keyword: non-existing keyword_id passed");
+      appendErrorMessage(__("View publications for keyword: non-existing keyword_id passed"));
       redirect('');
     }
     $keywordContent ['keyword'] = $keyword;
@@ -68,26 +68,26 @@ class Keywords extends Controller {
     $userlogin = getUserLogin();
     
     //set header data
-    $header ['title']       = 'Keyword: "'.$keyword->keyword.'"';
+    $header ['title']       = __('Keyword').': "'.$keyword->keyword.'"';
     $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
     $header ['sortPrefix']       = 'publications/keyword/'.$keyword->keyword_id.'/';
     $header ['exportCommand']    = '';//'export/keyword/'.$keyword_id.'/';
-    $header ['exportName']    = 'Export for keyword';
+    $header ['exportName']    = __('Export for keyword');
 
     //set data
-    $publicationContent['header']       = 'Publications for keyword "'.$keyword->keyword.'"';
+    $publicationContent['header']       = sprintf(__('Publications for keyword "%s"'),$keyword->keyword);
     switch ($order) {
         case 'type':
-            $publicationContent['header']          = 'Publications for keyword "'.$keyword->keyword.'" sorted by journal and type';
+            $publicationContent['header']          = sprintf(__('Publications for keyword "%s"'),$keyword->keyword).' '.__('sorted by journal and type');
             break;
         case 'recent':
-            $publicationContent['header']          = 'Publications for keyword "'.$keyword->keyword.'" sorted by recency';
+            $publicationContent['header']          = sprintf(__('Publications for keyword "%s"'),$keyword->keyword).' '.__('sorted by recency');
             break;
         case 'title':
-            $publicationContent['header']          = 'Publications for keyword "'.$keyword->keyword.'" sorted by title';
+            $publicationContent['header']          = sprintf(__('Publications for keyword "%s"'),$keyword->keyword).' '.__('sorted by title');
             break;
         case 'author':
-            $publicationContent['header']          = 'Publications for keyword "'.$keyword->keyword.'" sorted by first author';
+            $publicationContent['header']          = sprintf(__('Publications for keyword "%s"'),$keyword->keyword).' '.__('sorted by first author');
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {
@@ -107,7 +107,7 @@ class Keywords extends Controller {
       $output .= $this->load->view('publications/list', $publicationContent,  true);
     }
     else
-      $output .= "<div class='messagebox'>No publications found using this keyword</div>";
+      $output .= "<div class='messagebox'>".__("No publications found using this keyword.")."</div>";
     
     $output .= $this->load->view('footer',              '',             true);
     

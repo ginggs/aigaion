@@ -1,5 +1,7 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+appendErrorMessage('The conversion controller is not intended for actual use...');
+
 class Conversion extends Controller {
 	function Conversion()
 	{

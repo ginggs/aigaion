@@ -33,7 +33,7 @@ class Logintegration extends Controller {
   function gettoken() {
     if (getConfigurationSetting('LOGINTEGRATION_SECRETWORD')=='')
     {
-      exit('Aigaion not configured for this kind of access');
+      exit(__('Aigaion not configured for this kind of access'));
     }
     $CI = &get_instance();
     $sitename = trim($this->uri->segment(3,''));
@@ -72,7 +72,7 @@ class Logintegration extends Controller {
   function login() {
     if (getConfigurationSetting('LOGINTEGRATION_SECRETWORD')=='')
     {
-      exit('Aigaion not configured for this kind of access');
+      exit(__('Aigaion not configured for this kind of access'));
     }
     //this is a good moment to clean out the logintegration table. Remove all tokens that are expired and were not used.
     $this->db->delete('logintegration',array('status'=>'active','time <'=>(time()-16)));
@@ -94,12 +94,12 @@ class Logintegration extends Controller {
     }
     //get token for sitename+serial
     $res = $this->db->get_where('logintegration',array('sitename'=>$sitename,'serial'=>$serial));
-    if ($res->num_rows() ==0) exit ("no token available");
+    if ($res->num_rows() ==0) exit (__("No token available"));
     $tokenrow = $res->row();
     $correcttoken = $tokenrow->token;
     $time = $tokenrow->time;
-    if ($tokenrow->status=='loggedin') exit("token already logged in");
-    if ($time + 15 < time()) exit ("token timed out");
+    if ($tokenrow->status=='loggedin') exit(__("Token already logged in"));
+    if ($time + 15 < time()) exit (__("Token timed out"));
     $this->load->helper('logintegration');
     if (logintegrationHash($username,$correcttoken) == $hash) {
       $userlogin = getUserLogin();
@@ -118,17 +118,17 @@ class Logintegration extends Controller {
               }
               $this->db->where('token',$correcttoken);
               $this->db->update('logintegration',array('status'=>'loggedin'));
-              exit("logged in as ".$username);
+              exit(sprintf(__("Logged in as %s"),$username));
           }
       } else {
-          exit("nonexisting account");
+          exit(__("Nonexisting account"));
       }      
     }
     else 
     {
-      exit ("fail token ");
+      exit (__("Fail token"));
     }
-    exit("unknown fail");
+    exit(__("Unknown fail"));
   }
   
   /** Log out the user associated to a particular token. Note that this works 
@@ -143,7 +143,7 @@ class Logintegration extends Controller {
   {
     if (getConfigurationSetting('LOGINTEGRATION_SECRETWORD')=='')
     {
-      exit('Aigaion not configured for this kind of access');
+      exit(__('Aigaion not configured for this kind of access'));
     }
     $sitename = trim($this->uri->segment(3,''));
     if ($sitename=='') {
@@ -159,16 +159,16 @@ class Logintegration extends Controller {
     }
     //get token for sitename+serial
     $res = $this->db->get_where('logintegration',array('sitename'=>$sitename,'serial'=>$serial));
-    if ($res->num_rows() ==0) exit ("no token available");
+    if ($res->num_rows() ==0) exit (__("No token available"));
     $row = $res->row();
     $correcttoken = $row->token;
     $this->load->helper('logintegration');
     if (logintegrationLogoutHash($sitename, $serial, $correcttoken) == $hash) 
     {
       $this->db->update('logintegration',array('status'=>'loggedout'),array('token'=>$correcttoken));
-      exit("User logged out");
+      exit(__("User logged out"));
     }
-    exit("wrong parameters for logout");
+    exit(__("Wrong parameters for logout"));
   }
 }
 ?>
