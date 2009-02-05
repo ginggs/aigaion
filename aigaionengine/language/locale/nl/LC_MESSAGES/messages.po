@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-05 22:05+0100\n"
-"PO-Revision-Date: 2009-02-05 22:45+0100\n"
+"PO-Revision-Date: 2009-02-06 00:45+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -498,7 +498,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:533
 msgid "Delete all from bookmarklist"
-msgstr ""
+msgstr "Verwijder alles op de bladwijzerlijst uit Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:580
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:584
@@ -772,7 +772,7 @@ msgstr "Zeg abbonnement op onderwerp op"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:576
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:600
 msgid "Unsubscribe topic"
-msgstr ""
+msgstr "Zeg abbonnement op onderwerp op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\help.php:20
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:96
@@ -795,7 +795,7 @@ msgstr "Ppublicaties importeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
 msgid "no import data entered."
-msgstr ""
+msgstr "geen gegevens ingevoerd om te importeren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:72
 #, php-format
@@ -813,7 +813,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 #, php-format
 msgid "Import: Data automatically identified as format \"%s\"."
-msgstr ""
+msgstr "Importeren: Gegevens automatisch geïdentificeerd als formaat \"%s\"."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
 msgid "Import: Could not extract any valid publication entries from the import data."
@@ -912,11 +912,11 @@ msgstr "Geen login token beschikbaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:101
 msgid "Token already logged in"
-msgstr ""
+msgstr "Token reeds ingelogd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:102
 msgid "Token timed out"
-msgstr ""
+msgstr "Geldigheidsduur token is voorbij"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:121
 #, php-format
@@ -925,7 +925,7 @@ msgstr "Ingelogd als %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:124
 msgid "Nonexisting account"
-msgstr ""
+msgstr "Niet-bestaande account"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:129
 msgid "Fail token"
@@ -1007,7 +1007,7 @@ msgstr "Publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:173
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:240
 msgid "sorted by author"
-msgstr ""
+msgstr "gesorteerd op auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:228
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:231
@@ -1043,7 +1043,7 @@ msgstr "Verwijder deze publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:443
 msgid "There are validation errors with this entry. You may want to correct them."
-msgstr ""
+msgstr "Er zijn fouten opgetreden in de validatie van deze gegevens. Je wil ze misschien corrigeren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:476
 #, fuzzy
@@ -1082,7 +1082,7 @@ msgstr "Exporteer één publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:12
 msgid "no command"
-msgstr ""
+msgstr "geen opdracht"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:124
@@ -1095,7 +1095,7 @@ msgstr "aantekeningen"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:128
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:200
 msgid "no id"
-msgstr ""
+msgstr "geen id"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:32
 #, php-format
@@ -1141,11 +1141,11 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:109
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:214
 msgid "Unknown author id or name"
-msgstr ""
+msgstr "Onbekend auteurs-id of -naam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:112
 msgid "Go to this author in the Aigaion database"
-msgstr ""
+msgstr "Ga naar deze auteur in de database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:115
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:227
@@ -1155,13 +1155,13 @@ msgstr "Onbekende fout"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:138
 msgid "Unknown id or bibtex_id"
-msgstr ""
+msgstr "Onbekend id of bibtex id"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:141
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:196
 #, php-format
 msgid "Embedding for %s"
-msgstr ""
+msgstr "Inbedding voor %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
 #, fuzzy
@@ -1170,7 +1170,7 @@ msgstr "Voeg onderwerp toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:235
 msgid "Aigaion error: no shared domain configured in the Aigaion database"
-msgstr ""
+msgstr "Aigaion fout: geen gedeeld domein geconfigureerd voor de Aigaion database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\repostform.php:14
 #, fuzzy
@@ -1179,7 +1179,7 @@ msgstr "Opmaken van referentie niet mogelijk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\repostform.php:19
 msgid "Repost form"
-msgstr ""
+msgstr "Stuur formulier opnieuw op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:35
 #, fuzzy
@@ -1242,7 +1242,7 @@ msgstr "Zoek"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:29
 msgid "no query"
-msgstr ""
+msgstr "geen zoekopdracht"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:37
 #, fuzzy
@@ -1252,11 +1252,11 @@ msgstr "Zoek"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:60
 msgid "Advanced search"
-msgstr ""
+msgstr "Geavanceerd zoeken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:42
 msgid "Quicksearch results"
-msgstr ""
+msgstr "Snelzoekresultaten"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:105
 msgid "Nonexisting topic_id in advanced search condition"
@@ -1277,7 +1277,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:32
 msgid "Configure database"
-msgstr ""
+msgstr "Configureer database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:58
 #, fuzzy
@@ -1286,11 +1286,11 @@ msgstr "Configuratie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:99
 msgid "Maintain database"
-msgstr ""
+msgstr "Onderhoud database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:139
 msgid "Aigaion updates"
-msgstr ""
+msgstr "Nieuwe versie van Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:140
 #, fuzzy
@@ -1305,7 +1305,7 @@ msgstr "Deze installatie van Aigaion is up-to-date"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:160
 #, php-format
 msgid "Maintenance function \"%s\" not implemented."
-msgstr ""
+msgstr "Onderhoudsfunctie \"%s\" is niet geimplementeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:167
 #, fuzzy
@@ -1314,7 +1314,7 @@ msgstr "Onderhoud"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:205
 msgid "Backup database"
-msgstr ""
+msgstr "Maak een backup"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:292
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:296
