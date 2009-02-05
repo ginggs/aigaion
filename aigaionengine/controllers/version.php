@@ -44,9 +44,6 @@ class Version extends Controller {
         
         //set output
         $this->output->set_output($output);
-
 	}
-
-	
 }
 ?>

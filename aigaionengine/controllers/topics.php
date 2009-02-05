@@ -23,7 +23,7 @@ class Topics extends Controller {
 	    //no rights check here: anyone can (try) to browse topics (though not all topics may be visible)
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Browse topic tree';
+        $headerdata['title'] = __('Browse topic tree');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -37,7 +37,7 @@ class Topics extends Controller {
                         );
         $root = $this->topic_db->getByID($root_id, $config);
         if ($root == null) {
-            appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
+            appendErrorMessage( __("Browse topics").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         $output .= "<div style='border:1px solid black;padding:0.2em;float:right;clear:right;'>"
@@ -69,7 +69,7 @@ class Topics extends Controller {
 	    //no rights check here: anyone can (try) to browse topics (though not all topics may be visible)
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Browse topic tree (include all topics)';
+        $headerdata['title'] = __('Browse topic tree').' ('.__('include all topics').')';
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -83,7 +83,7 @@ class Topics extends Controller {
                         );
         $root = $this->topic_db->getByID($root_id, $config);
         if ($root == null) {
-            appendErrorMessage( "Browse topics: no valid topic ID provided<br/>");
+            appendErrorMessage( __("Browse topics").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         $output .= "<div style='border:1px solid black;padding:0.2em;float:right;clear:right;'>"
@@ -133,7 +133,7 @@ class Topics extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($topic==null) {
-	        appendErrorMessage('Delete topic: non existing topic specified.<br/>');
+	        appendErrorMessage(__('Delete topic').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -146,7 +146,7 @@ class Topics extends Controller {
                 !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
-	        appendErrorMessage('Delete topic: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete topic').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -157,7 +157,7 @@ class Topics extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Delete topic';
+            $headerdata['title'] = __('Delete topic');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -177,7 +177,7 @@ class Topics extends Controller {
 	function add()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
         $parent_id = $this->uri->segment(3,-1);
         $config = array();
         $parent = $this->topic_db->getByID($parent_id,$config);
@@ -186,13 +186,13 @@ class Topics extends Controller {
         if (    (!$userlogin->hasRights('topic_edit'))
             ) 
         {
-	        appendErrorMessage('Add topic: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add topic').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Add topic';
+        $headerdata['title'] = __('Add topic');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output  = $this->load->view('header', $headerdata, true);
@@ -207,7 +207,7 @@ class Topics extends Controller {
 	function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
 	    $topic_id = $this->uri->segment(3,1);
 	    if ($topic_id==1) {
@@ -217,7 +217,7 @@ class Topics extends Controller {
       $topic = $this->topic_db->getByID($topic_id,$config);
 
 	    if ($topic==null) {
-	        appendErrorMessage('Topic does not exist.<br/>');
+	        appendErrorMessage(__("Edit topic").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
         	    
@@ -232,13 +232,13 @@ class Topics extends Controller {
                 !$this->accesslevels_lib->canEditObject($topic)
             ) 
         {
-	        appendErrorMessage('Edit topic: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit topic').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Edit topic';
+        $headerdata['title'] = __('Edit topic');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -289,12 +289,12 @@ class Topics extends Controller {
 					}
 					elseif(count($topic_ids) > 1)
 					{
-						appendErrorMessage("Topic structure is not unique in Aigaion. <br/>");
+						appendErrorMessage(__("Topic structure is not unique in Aigaion.")." <br/>");
 						redirect('');
 					}
 					else
 					{
-						appendErrorMessage("Topic structure does not exist in Aigaion. <br/>");
+						appendErrorMessage(__("Topic structure does not exist in Aigaion.")." <br/>");
 						redirect('');
 					}
 				}
@@ -315,7 +315,7 @@ class Topics extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         $userlogin=getUserLogin();
 	    if ($topic==null) {
-	        appendErrorMessage('Topic does not exist.<br/>');
+	        appendErrorMessage(__('Show topic').': '.__('non-existing id passed').'.<br/>');
 	        redirect('topics/browse');
 	    }
 	    
@@ -326,26 +326,26 @@ class Topics extends Controller {
     
         //get output
         $headerdata                 = array();
-        $headerdata['title']        = 'Topic: '.$topic->name;
+        $headerdata['title']        = __('Topic').': '.$topic->name;
         $headerdata['javascripts']  = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');//, 'publicationlists.js');
         $headerdata['sortPrefix']        = 'topics/single/'.$topic->topic_id.'/';
         $headerdata['exportCommand']        = 'export/topic/'.$topic->topic_id.'/';
-        $headerdata['exportName']    = 'Export topic';
+        $headerdata['exportName']    = __('Export topic');
         
         $content['topic']           = $topic;
-        $content['header']          = "Publications for topic: ".$topic->name;
+        $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name);
         switch ($order) {
             case 'type':
-                $content['header']          = 'Publications for topic '.$topic->name.' sorted by journal and type';
+                $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by journal and type');
                 break;
             case 'recent':
-                $content['header']          = 'Publications for topic '.$topic->name.' sorted by recency';
+                $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by recency');
                 break;
             case 'title':
-                $content['header']          = 'Publications for topic '.$topic->name.' sorted by title';
+                $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by title');
                 break;
             case 'author':
-                $content['header']          = 'Publications for topic '.$topic->name.' sorted by first author';
+                $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by first author');
                 break;
         }
         if ($userlogin->getPreference('liststyle')>0) {
@@ -409,11 +409,11 @@ class Topics extends Controller {
 					}
 					elseif(count($topic_ids) > 1)
 					{
-						exit("Topic structure is not unique in Aigaion. <br/>");
+						exit(__("Topic structure is not unique in Aigaion.")." <br/>");
 					}
 					else
 					{
-						exit("Topic structure does not exist in Aigaion. <br/>");
+						exit(__("Topic structure does not exist in Aigaion.")." <br/>");
 					}
 				}
 
@@ -430,25 +430,25 @@ class Topics extends Controller {
 				$topic = $this->topic_db->getByID($topic_id,$config);
 				$userlogin=getUserLogin();
 				if ($topic==null) {
-					exit("Topic does not exist in Aigaion.<br/>");
+					exit(__("Embed topic").": ".__("non-existing id passed").".<br/>");
 				}
 
 				$this->load->helper('publication');
 
 				$topiccontent['topic']           = $topic;
-				$content['header']          = "Publications for topic: ".$topic->name;
+				$content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name);
 				switch ($order) {
 						case 'type':
-								$content['header']          = 'Publications for topic '.$topic->name.' sorted by journal and type';
+								$content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by journal and type');
 								break;
 						case 'recent':
-								$content['header']          = 'Publications for topic '.$topic->name.' sorted by recency';
+								$content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by recency');
 								break;
 						case 'title':
-								$content['header']          = 'Publications for topic '.$topic->name.' sorted by title';
+								$content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by title');
 								break;
 						case 'author':
-								$content['header']          = 'Publications for topic '.$topic->name.' sorted by first author';
+								$content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by first author');
 								break;
 				}
 				$content['publications']    = $this->publication_db->getForTopic($topic_id,$order);
@@ -482,14 +482,14 @@ class Topics extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get data from POST
         $topic = $this->topic_db->getFromPost();
         
         //check if fail needed: was all data present in POST?
         if ($topic == null) {
-            appendErrorMessage("Commit topic: no data to commit<br/>");
+            appendErrorMessage(__("Commit topic").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
 
@@ -503,7 +503,7 @@ class Topics extends Controller {
     	$this->validation->set_rules(array( 'name' => 'required'
                                            )
                                      );
-    	$this->validation->set_fields(array( 'name' => 'Topic Name'
+    	$this->validation->set_fields(array( 'name' => __('Topic Name')
                                            )
                                      );
     		
@@ -511,7 +511,7 @@ class Topics extends Controller {
             //return to add/edit form if validation failed
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Topic';
+            $headerdata['title'] = __('Topic');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -538,7 +538,7 @@ class Topics extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit topic: an error occurred. Please contact your Aigaion administrator.<br/>");
+                appendErrorMessage(__("Commit topic").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect('topics/single/'.$topic->topic_id);
             }
             //redirect somewhere if commit was successfull
@@ -576,7 +576,7 @@ class Topics extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Collapse topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Collapse topic").": ".__("non-existing id passed").".</div>";
         } else {
             //do collapse
             if ($collapse==1) {
@@ -612,7 +612,7 @@ class Topics extends Controller {
 			{
 				$userlogin = getUserLogin();
         if (!$userlogin->hasRights('export_email')) {
-    	    appendErrorMessage('You are not allowed to export publications through email<br/>');
+  	    appendErrorMessage(__('Export through email').': '.__('insufficient rights').'.<br/>');
     	    redirect('');
         }
         $this->load->library('email_export');
@@ -631,7 +631,7 @@ class Topics extends Controller {
 
 				if (!isset($topic_id) || $topic_id == -1)
 				{
-					appendErrorMessage("No Topic selected for export <br />");
+					appendErrorMessage(__("Export topic").": ".__("non-existing id passed").".<br />");
 					redirect('');
 				}
 
@@ -643,7 +643,7 @@ class Topics extends Controller {
 				*/
 				if(!(($email_pdf !='' || $email_bibtex !='' || $email_ris!='' || $email_formatted!='') && $email_address != ''))
 				{
-					$header ['title']       = "Select export format";
+					$header ['title']       = __("Select export format");
 					$header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
 
 					$content['attachmentsize']  = $this->email_export->attachmentSize($publications);
@@ -673,12 +673,12 @@ class Topics extends Controller {
 					$this->load->helper('publication');
 
 					$headerdata = array();
-					$headerdata['title'] = 'Topic export';
+					$headerdata['title'] = __('Topic export');
 					$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
 					$headerdata['exportCommand']    = 'topics/exportEmail/';
-					$headerdata['exportName']    = 'Export topic';
+					$headerdata['exportName']    = __('Export topic');
 
-					$content['header']          = 'Export by email';
+					$content['header']          = __('Export by email');
 					$output = $this->load->view('header', $headerdata, true);
 					$content['publications']    = $publications;
 
@@ -687,7 +687,7 @@ class Topics extends Controller {
 
 
 
-					$messageBody = 'Export from Aigaion';
+					$messageBody = __('Export from Aigaion');
 
 					if($email_formatted || $email_bibtex)
 					{
@@ -699,7 +699,7 @@ class Topics extends Controller {
 
 						$exportdata['nonxrefs'] = $pubs;
 						$exportdata['xrefs']    = $xrefpubs;
-						$exportdata['header']   = 'Exported from topic';
+						$exportdata['header']   = __('Exported from topic');
 						$exportdata['exportEmail']   = true;
 					}
 
@@ -710,7 +710,7 @@ class Topics extends Controller {
 					if($email_formatted)
 					{
 						$messageBody .= "\n";
-						$messageBody .= 'Formatted';
+						$messageBody .= __('Formatted');
 						$messageBody .= "\n";
 
 						$exportdata['format'] = 'html';
@@ -747,7 +747,7 @@ class Topics extends Controller {
 						#send to right export view
 						$exportdata['nonxrefs'] = $pubs;
 						$exportdata['xrefs']    = $xrefpubs;
-						$exportdata['header']   = 'Exported from topic';
+						$exportdata['header']   = __('Exported from topic');
 						$exportdata['exportEmail']   = true;
 
 						$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));
@@ -768,11 +768,11 @@ class Topics extends Controller {
 					*/
 					if($this->email_export->sendEmail($email_address, $messageBody, $publications))
 					{
-						$output .= 'Mail sent successfully';
+						$output .= __('Mail sent successfully');
 					}
 					else
 					{
-						appendErrorMessage('Something went wrong when exporting the publications. Did you input a correct email address? <br />');
+						appendErrorMessage(__('Something went wrong when exporting the publications. Did you input a correct email address?').' <br />');
 						redirect('');
 					}
 

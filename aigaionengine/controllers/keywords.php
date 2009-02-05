@@ -58,7 +58,7 @@ class Keywords extends Controller {
     //$keyword = $keywordResult[$keyword_id];
     if ($keyword == null)
     {
-      appendErrorMessage(__("View publications for keyword: non-existing keyword_id passed"));
+      appendErrorMessage(__("View publications for keyword").": ".__("non-existing id passed").".<br/>");
       redirect('');
     }
     $keywordContent ['keyword'] = $keyword;

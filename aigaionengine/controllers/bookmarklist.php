@@ -114,7 +114,7 @@ class Bookmarklist extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null)
         {
-            appendErrorMessage(__("Add publication to bookmarklist: non-existing publication id passed.")."<br/>");
+            appendErrorMessage(__("Add publication to bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -156,7 +156,7 @@ class Bookmarklist extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
-            appendErrorMessage(__("Add topic to bookmarklist").": ".__("non-existing topic id passed").".<br/>");
+            appendErrorMessage(__("Add topic to bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -191,7 +191,7 @@ class Bookmarklist extends Controller {
         $keyword = $this->keyword_db->getByID($keyword_id);
         if ($keyword == null)
         {
-            appendErrorMessage(__("Add keyword to bookmarklist").": ".__("non-existing keyword id passed").".<br/>");
+            appendErrorMessage(__("Add keyword to bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -225,7 +225,7 @@ class Bookmarklist extends Controller {
         $author = $this->author_db->getByID($author_id);
         if ($author == null)
         {
-            appendErrorMessage(__("Add author to bookmarklist").": ".__("non-existing author id passed").".<br/>");
+            appendErrorMessage(__("Add author to bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -258,7 +258,7 @@ class Bookmarklist extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null)
         {
-            appendErrorMessage(__("Removing publication from bookmarklist").": ".__("non-existing publication id passed").".<br/>");
+            appendErrorMessage(__("Removing publication from bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -300,7 +300,7 @@ class Bookmarklist extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         if ($topic == null)
         {
-            appendErrorMessage(__("Removing topic from bookmarklist").": ".__("non-existing topic id passed").".<br/>");
+            appendErrorMessage(__("Removing topic from bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -332,7 +332,7 @@ class Bookmarklist extends Controller {
         $keyword = $this->keyword_db->getByID($keyword_id);
         if ($keyword == null)
         {
-            appendErrorMessage(__("Removing keyword from bookmarklist").": ".__("non-existing keyword id passed").".<br/>");
+            appendErrorMessage(__("Removing keyword from bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -365,7 +365,7 @@ class Bookmarklist extends Controller {
         $author = $this->author_db->getByID($author_id);
         if ($author == null)
         {
-            appendErrorMessage(__("Removing author from bookmarklist").": ".__("non-existing author id passed").".<br/>");
+            appendErrorMessage(__("Removing author from bookmarklist").": ".__("non-existing id passed").".<br/>");
             redirect('');
         }
         
@@ -400,7 +400,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage(__("Add bookmarked publications to topic").": ".__("invalid topic id passed").".<br/>");
+            appendErrorMessage(__("Add bookmarked publications to topic").": ".__("non-existing id passed").".<br/>");
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->addToTopic($topic);
@@ -469,7 +469,7 @@ class Bookmarklist extends Controller {
                         );
         $topic = $this->topic_db->getByID($topic_id, $config);
         if ($topic == null) {
-            appendErrorMessage(__("Remove bookmarked publications from topic").": ".__("invalid topic id passed").".<br/>");
+            appendErrorMessage(__("Remove bookmarked publications from topic").": ".__("non-existing id passed").".<br/>");
             redirect('bookmarklist/viewlist');
         } 
         $this->bookmarklist_db->removeFromTopic($topic);

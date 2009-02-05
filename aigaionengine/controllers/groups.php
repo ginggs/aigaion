@@ -34,7 +34,7 @@ class Groups extends Controller {
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {
-	        appendErrorMessage(__("View group").": ".__("non-existing group_id passed").".<br/>");
+	        appendErrorMessage(__("View group").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -125,7 +125,7 @@ class Groups extends Controller {
 	    $group_id = $this->uri->segment(3,-1);
 	    $group = $this->group_db->getByID($group_id);
 	    if ($group==null) {
-	        appendErrorMessage(__("Edit group").": ".__("non-existing group_id passed").".<br/>");
+	        appendErrorMessage(__("Edit group").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    
@@ -184,7 +184,7 @@ class Groups extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($group==null) {
-	        appendErrorMessage(__('Delete group').': '.__('non existing group specified').'.<br/>');
+	        appendErrorMessage(__('Delete group').': '.__('non-existing group specified').'.<br/>');
 	        redirect('');
 	    }
 	    //check user rights

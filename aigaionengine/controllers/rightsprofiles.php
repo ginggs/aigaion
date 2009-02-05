@@ -32,7 +32,7 @@ class Rightsprofiles extends Controller {
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {
-	        appendErrorMessage("View rightsprofile: non-existing id passed");
+	        appendErrorMessage(__("View rightsprofile").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -40,7 +40,7 @@ class Rightsprofiles extends Controller {
 	    	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Rightsprofile';
+        $headerdata['title'] = __('Rightsprofile');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -77,16 +77,16 @@ class Rightsprofiles extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all')||!$userlogin->hasRights('user_assign_rights'))
             ) 
         {
-	        appendErrorMessage('Add rights profile: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add rights profile').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
 	    $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Rightsprofile';
+        $headerdata['title'] = __('Rightsprofile');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -119,12 +119,12 @@ class Rightsprofiles extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {
-	        appendErrorMessage("Edit rightsprofile: non-existing id passed");
+	        appendErrorMessage(__("Edit rightsprofile").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    
@@ -135,13 +135,13 @@ class Rightsprofiles extends Controller {
                 !$userlogin->hasRights('user_assign_rights')
             ) 
         {
-	        appendErrorMessage('Edit rights profile: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit rights profile').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Rightsprofile';
+        $headerdata['title'] = __('Rightsprofile');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -184,14 +184,14 @@ class Rightsprofiles extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($rightsprofile==null) {
-	        appendErrorMessage('Delete rightsprofile: non existing id specified.<br/>');
+	        appendErrorMessage(__('Delete rightsprofile').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 	    //check user rights
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) || !$userlogin->hasRights('user_assign_rights'))
         {
-	        appendErrorMessage('Delete rights profile: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete rights profile').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -202,7 +202,7 @@ class Rightsprofiles extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Rightsprofile';
+            $headerdata['title'] = __('Rightsprofile');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -243,7 +243,7 @@ class Rightsprofiles extends Controller {
         
         //check if fail needed: was all data present in POST?
         if ($rightsprofile == null) {
-            appendErrorMEssage("Commit rightsprofile: no data to commit<br/>");
+            appendErrorMEssage(__("Commit rightsprofile").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
 
@@ -254,7 +254,7 @@ class Rightsprofiles extends Controller {
                 !$userlogin->hasRights('user_assign_rights')
             ) 
         {
-	        appendErrorMessage('Edit rights profile: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit rights profile').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -265,7 +265,7 @@ class Rightsprofiles extends Controller {
     	$this->validation->set_rules(array( 'name' => 'required'
                                            )
                                      );
-    	$this->validation->set_fields(array( 'name' => 'Profile Name'
+    	$this->validation->set_fields(array( 'name' => __('Profile Name')
                                            )
                                      );
     		
@@ -273,7 +273,7 @@ class Rightsprofiles extends Controller {
             //return to add/edit form if validation failed
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Rightsprofile';
+            $headerdata['title'] = __('Rightsprofile');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -300,7 +300,7 @@ class Rightsprofiles extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit rightsprofile: an error occurred. Please contact your Aigaion administrator.<br/>");
+                appendErrorMessage(__("Commit rightsprofile").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect('users/manage');
             }
             //redirect somewhere if commit was successfull

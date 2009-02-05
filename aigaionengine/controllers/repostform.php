@@ -11,12 +11,12 @@ class Repostform extends Controller {
 	function index()
 	{
 	    if (!$this->latesession->get('FORMREPOST')) {
-	        appendMessage('No form data to repost<br/>');
+	        appendMessage(__('No form data to repost').'.<br/>');
 	        redirect('');
 	    }
 
         //set header data
-        $header ['title']       = 'Repost form';
+        $header ['title']       = __('Repost form');
         $header ['javascripts']       = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         //get output

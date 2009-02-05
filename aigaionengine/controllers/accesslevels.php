@@ -56,12 +56,12 @@ class Accesslevels extends Controller {
     }
     //publication null: redirect with error
     if ($publication==null) {
-      appendErrorMessage("Couldn't find publication to edit access levels<br/>");
+      appendErrorMessage(__("Couldn't find publication to edit access levels")."<br/>");
       redirect('');
     }
 
     $headerdata = array();
-    $headerdata['title'] = 'Accesslevels: edit';
+    $headerdata['title'] = __('Edit access levels');
     $headerdata['javascripts'] = array('accesslevels.js','prototype.js','scriptaculous.js','builder.js');
 
     $output = $this->load->view('header', $headerdata, true);
@@ -250,14 +250,14 @@ class Accesslevels extends Controller {
                   );
 
 
-    $this->output->set_output("<span title='".$type." read / edit rights'>r:".$readrights."e:".$editrights."</span>");
+    $this->output->set_output("<span title='".sprintf(__("%s read / edit rights"),__($type))."'>r:".$readrights."e:".$editrights."</span>");
   }
 
   function _edittopic() {
     $object_id = $this->uri->segment(4);
 
     $headerdata = array();
-    $headerdata['title'] = 'Accesslevels: edit';
+    $headerdata['title'] = __('Edit access levels');
     $headerdata['javascripts'] = array('accesslevels.js','prototype.js','scriptaculous.js','builder.js');
 
     $output = $this->load->view('header', $headerdata, true);

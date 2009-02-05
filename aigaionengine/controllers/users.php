@@ -34,20 +34,20 @@ class Users extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Manage accounts: insufficient rights.<br/>');
+	        appendErrorMessage(__('Manage accounts').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    
 	    //get output
         $headerdata = array();
-        $headerdata['title'] = 'User';
+        $headerdata['title'] = __('User');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
         
-        $output .= '<div class="optionbox">['.anchor('users/add','add a new user')."]</div>\n";
+        $output .= '<div class="optionbox">['.anchor('users/add',__('add a new user'))."]</div>\n";
         $output .= "
-            <div class='header'>Users</div>
+            <div class='header'>".__("Users")."</div>
             <ul>
             ";
         $users = $this->user_db->getAllNormalUsers();
@@ -75,9 +75,9 @@ class Users extends Controller {
         }
         $output .= "</ul><br/><br/>\n";
 
-        $output .= '<div class="optionbox">['.anchor('groups/add','add a new group')."]</div>\n";
+        $output .= '<div class="optionbox">['.anchor('groups/add',__('add a new group'))."]</div>\n";
         $output .= "
-            <div class='header'>Groups</div>
+            <div class='header'>".__("Groups")."</div>
             <ul>
             ";
         $groups = $this->group_db->getAllGroups();
@@ -89,10 +89,10 @@ class Users extends Controller {
         }
         $output .= "</ul><br/><br/>\n";
 
-        $output .= '<div class="optionbox">['.anchor('rightsprofiles/add','add a new rightsprofile')."]</div>\n";
+        $output .= '<div class="optionbox">['.anchor('rightsprofiles/add',__('add a new rightsprofile'))."]</div>\n";
 
         $output .= "
-            <div class='header'>Rights profiles</div>
+            <div class='header'>".__("Rights profiles")."</div>
             <ul>
             ";
         $rightsprofiles = $this->rightsprofile_db->getAllRightsprofiles();
@@ -129,7 +129,7 @@ class Users extends Controller {
 	    $user_id = $this->uri->segment(3,-1);
 	    $user = $this->user_db->getByID($user_id);
 	    if ($user==null) {
-	        appendErrorMessage("View user: non-existing user_id passed");
+	        appendErrorMessage(__("View user").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -137,7 +137,7 @@ class Users extends Controller {
 	    	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'User';
+        $headerdata['title'] = __('User');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -174,16 +174,16 @@ class Users extends Controller {
         if (    (!$userlogin->hasRights('user_edit_all'))
             ) 
         {
-	        appendErrorMessage('Add user: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add user').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    
 	    $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'User';
+        $headerdata['title'] = __('User');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','rightsprofiles.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -216,12 +216,12 @@ class Users extends Controller {
     function edit()
 	{
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
 	    $user_id = $this->uri->segment(3,-1);
 	    $user = $this->user_db->getByID($user_id);
 	    if ($user==null) {
-	        appendErrorMessage("Edit user: non-existing user_id passed");
+	        appendErrorMessage(__("Edit user").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -232,14 +232,14 @@ class Users extends Controller {
                 (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
             ) 
         {
-	        appendErrorMessage('Edit account: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit account').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 	    	    
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'User';
+        $headerdata['title'] = __('User');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','rightsprofiles.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -282,7 +282,7 @@ class Users extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($user==null) {
-	        appendErrorMessage('Delete user: non existing user specified.<br/>');
+	        appendErrorMessage(__('Delete user').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -290,7 +290,7 @@ class Users extends Controller {
         $userlogin = getUserLogin();
         if (    (!$userlogin->hasRights('user_edit_all')) )
         {
-	        appendErrorMessage('Delete account: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete account').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -301,7 +301,7 @@ class Users extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'User';
+            $headerdata['title'] = __('User');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -333,14 +333,14 @@ class Users extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get data from POST
         $user = $this->user_db->getFromPost();
 
         //check if fail needed: was all data present in POST?
         if ($user == null) {
-            appendErrorMEssage("Commit user: no data to commit<br/>");
+            appendErrorMEssage(__("Commit user").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
 
@@ -351,7 +351,7 @@ class Users extends Controller {
                 (!$userlogin->hasRights('user_edit_self') || ($userlogin->userId() != $user->user_id))
             ) 
         {
-	        appendErrorMessage('Edit account: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit account').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -371,9 +371,9 @@ class Users extends Controller {
             $rules['password'] = 'required';
         }
     	$this->validation->set_rules($rules);
-    	$this->validation->set_fields(array( 'login'    => 'Login Name',
-    	                                     'password' => 'First Password',
-    	                                     'password_check' => 'Second Password'
+    	$this->validation->set_fields(array( 'login'    => __('Login Name'),
+    	                                     'password' => __('First Password'),
+    	                                     'password_check' => __('Second Password')
                                            )
                                      );
     		
@@ -381,7 +381,7 @@ class Users extends Controller {
             //return to add/edit form if validation failed
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'User';
+            $headerdata['title'] = __('User');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -408,7 +408,7 @@ class Users extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit user: an error occurred at '".$this->input->post('action')."'. Please contact your Aigaion administrator.<br/>");
+                appendErrorMessage(__("Commit user").": ".sprintf(__("an error occurred at '%s'"),$this->input->post('action')).". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect ('');
             }
             //redirect somewhere if commit was successfull
@@ -438,7 +438,7 @@ class Users extends Controller {
 	    $user = $this->user_db->getByID($user_id);
 	    
 	    if ($user==null) {
-	        appendErrorMessage('Topic review: invalid user_id specified.<br/>');
+	        appendErrorMessage(__('Topic review').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 	    
@@ -452,7 +452,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        appendErrorMessage('Topic subscription: insufficient rights.<br/>');
+	        appendErrorMessage(__('Topic subscription').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -460,7 +460,7 @@ class Users extends Controller {
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Topic subscription';
+        $headerdata['title'] = __('Topic subscription');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -469,8 +469,8 @@ class Users extends Controller {
         $config = array('user'=>$user,'includeGroupSubscriptions'=>True);
         $root = $this->topic_db->getByID(1,$config);
         $this->load->vars(array('subviews'  => array('topics/usersubscriptiontreerow'=>array('allCollapsed'=>True))));
-        $output .= "<p class='header'>Topic subscription for ".$user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")</p>";
-        $output .= "<div class='message'>Subscribed topics are highlighted in boldface.<br/>To subscribe or unsubscribe a topic and its descendants, click on the topic.</div>";
+        $output .= "<p class='header'>".sprintf(__("Topic subscription for %s (%s)"),$user->login,$user->firstname." ".$user->betweenname." ".$user->surname)."</p>";
+        $output .= "<div class='message'>".__("Subscribed topics are highlighted in boldface.")."<br/>".__("To subscribe or unsubscribe a topic and its descendants, click on the topic.")."</div>";
         $output .= "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                     .$this->load->view('topics/tree',
                                       array('topics'   => $root->getChildren(),
@@ -513,7 +513,7 @@ class Users extends Controller {
         
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid user ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("non-existing id passed").".</div>";
             return;
         } 
 
@@ -528,7 +528,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        echo 'Topic subscription: insufficient rights.<br/>';
+	        echo __('Topic subscription').': '.__('insufficient rights').'.<br/>';
 	        return;
         }
 
@@ -537,7 +537,7 @@ class Users extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("non-existing id passed").".</div>";
         }
         //do subscribe
         $topic->subscribeUser();
@@ -573,7 +573,7 @@ class Users extends Controller {
         
         $user = $this->user_db->getByID($user_id);
         if ($user == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid user ID provided</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("non-existing id passed").".</div>";
             return;
         }
 
@@ -589,7 +589,7 @@ class Users extends Controller {
                  )
             ) 
         {
-	        echo 'Topic subscription: insufficient rights.<br/>';
+	        echo __('Topic subscription').': '.__('insufficient rights').'.<br/>';
 	        return;
         }
         
@@ -597,7 +597,7 @@ class Users extends Controller {
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("non-existing id passed")."</div>";
         }
         //do unsubscribe
         $topic->unsubscribeUser();

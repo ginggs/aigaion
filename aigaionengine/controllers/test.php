@@ -32,11 +32,11 @@ class Test extends Controller {
 <html xmlns=\"http://www.w3.org/1999/xhtml\">
   <head>
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
-    <title>Aigaion Unit Testing Output</title>
+    <title>Aigaion ".__("Unit Testing Output")."</title>
     </head>
     <body>
-    <h1>Unit Testing Output</h1>
-    See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with \$debug parameter = true to get more output.
+    <h1>".__("Unit Testing Output")."</h1>
+    ".__("See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with \$debug parameter = true to get more output.")."
     ";    
     
     $content .= $this->_testbibtex($debug);
@@ -61,7 +61,7 @@ class Test extends Controller {
   function _testbibtex_charconversion($debug = false) 
   {
     $result = "";
-    $result .= "<h2>Bibtex character conversions</h2>";
+    $result .= "<h2>".__("Bibtex character conversions")."</h2>";
     //bibtex characters - expected conversion vs actual conversion
     $bibtextests = array(
       array ('thoseThatCurrentlyGoWrong', /* IF  you find conversions that go 
@@ -132,16 +132,16 @@ class Test extends Controller {
       $debugout ="&nbsp;&nbsp;".$test[1]."<br>should be<br>&nbsp;&nbsp;".$test[2]."<br>but rather becomes<br>&nbsp;&nbsp;".$this->bibtex2utf8->bibCharsToUtf8FromString($test[1])."<br>";
       if ($this->bibtex2utf8->bibCharsToUtf8FromString($test[1])!=$test[2]) 
       {
-          $result .= "Test: ".$test[0]."<br>";
-          $result .= " FAILED: <br>";
+          $result .= __("Test").": ".$test[0]."<br>";
+          $result .= " ".utf8_strtoupper(__("Failed")).": <br>";
           if ($debug) $result .= $debugout."<br>";
       } 
       else 
       {
         if ($debug) 
         {
-          $result .= "Test: ".$test[0]."<br>";
-          $result .= " PASSED<br>";
+          $result .= __("Test").": ".$test[0]."<br>";
+          $result .= " ".utf8_strtoupper(__("Passed"))."<br>";
         } 
           
       }
@@ -153,7 +153,7 @@ class Test extends Controller {
   function _testbibtex_singleimport($debug = false)
   {
     $result = "";
-    $result .= "<h2>Bibtex single entry imports</h2>Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.<br><br>";
+    $result .= "<h2>".__("Bibtex single entry imports")."</h2>".__("Note: these tests do not take the review and database result into account, only the result of the bibtex parsing.")."<br><br>";
     //bibtex single entry imports: bibtex code, and a list of expected attributes of the resulting publication 
     $bibtexsingleentrytests = array(
       array ('example', /* IF  you find imports that go 
@@ -260,7 +260,7 @@ class Test extends Controller {
       if (count($publications)!=1) 
       {
         $success = false;
-        $debugout .= "&nbsp;&nbsp;Import should return 1 publication, but returned ".count($publications)." publications<br>";
+        $debugout .= "&nbsp;&nbsp;".sprintf(__("Import should return 1 publication, but returned %s publications."),count($publications))."<br>";
       }
       else 
       {
@@ -271,7 +271,7 @@ class Test extends Controller {
           if ($pub->$field!=$value) 
           {
             $success = false;
-            $debugout .= "&nbsp;&nbsp;\"".$field."\" should have been \"".$value."\" but is \"".$pub->$field."\"<br>";
+            $debugout .= "&nbsp;&nbsp;".sprintf(__("\"%s\" should have been \"%s\" but is \"%s\""),$field,$value,$pub->$field)."<br>";
           }
         }
         //test authors
@@ -279,37 +279,37 @@ class Test extends Controller {
         if (count($pub->authors)!=count($test[3])) 
         {
           $success = false;
-          $debugout .= "Import should contain ".count($test[3])." authors, but does contain ".count($pub->authors)." authors<br>";
+          $debugout .= sprintf(__("Import should contain %s authors, but does contain %s authors."),count($test[3]),count($pub->authors))."<br>";
         } 
         else foreach ($pub->authors as $author) 
         {
           $authOk = true;
-          $debugout .= "Author ".$iAuth.":<br>";
+          $debugout .= __("Author")." ".$iAuth.":<br>";
           if ($author->firstname != $test[3][$iAuth]["firstname"])
           {
             $success = false;
             $authOk = false;
-            $debugout .= "&nbsp;&nbsp;First name(s) should have been \"".$test[3][$iAuth]["firstname"]."\" but is \"".$author->firstname."\"<br>";
+            $debugout .= "&nbsp;&nbsp;".sprintf(__("First name(s) should have been \"%s\" but is \"%s\"."),$test[3][$iAuth]["firstname"],$author->firstname)."<br>";
           }
           if ($author->von != $test[3][$iAuth]["von"])
           {
             $success = false;
             $authOk = false;
-            $debugout .= "&nbsp;&nbsp;von-part should have been \"".$test[3][$iAuth]["von"]."\" but is \"".$author->von."\"<br>";
+            $debugout .= "&nbsp;&nbsp;".sprintf(__("von-part should have been \"%s\" but is \"%s\"."),$test[3][$iAuth]["von"],$author->von)."<br>";
           }
           if ($author->surname != $test[3][$iAuth]["surname"])
           {
             $success = false;
             $authOk = false;
-            $debugout .= "&nbsp;&nbsp;Last name(s) should have been \"".$test[3][$iAuth]["surname"]."\" but is \"".$author->surname."\"<br>";
+            $debugout .= "&nbsp;&nbsp;".sprintf(__("Last name(s) should have been \"%s\" but is \"%s\"."),$test[3][$iAuth]["surname"],$author->surname)."<br>";
           }
           if ($author->jr != $test[3][$iAuth]["jr"])
           {
             $success = false;
             $authOk = false;
-            $debugout .= "&nbsp;&nbsp;jr-part should have been \"".$test[3][$iAuth]["jr"]."\" but is \"".$author->jr."\"<br>";
+            $debugout .= "&nbsp;&nbsp;".sprintf(__("jr-part should have been \"%s\" but is \"%s\"."),$test[3][$iAuth]["jr"],$author->jr)."<br>";
           }
-          if ($authOk) $debugout .= "&nbsp;&nbsp;OK<br>";
+          if ($authOk) $debugout .= "&nbsp;&nbsp;".__("OK")."<br>";
           $iAuth++;
         }
         //test editors
@@ -354,15 +354,15 @@ class Test extends Controller {
       //report result (if debug, or if test failed)
       if ($success==false) 
       {
-          $result .= "Test: ".$test[0]."<br>";
-          $result .= " FAILED: <br>".$debugout."<br>";
+          $result .= __("Test").": ".$test[0]."<br>";
+          $result .= " ".utf8_strtoupper(__("Failed")).": <br>".$debugout."<br>";
       } 
       else 
       {
         if ($debug) 
         {
-          $result .= "Test: ".$test[0]."<br>";
-          $result .= " PASSED<br>";
+          $result .= __("Test").": ".$test[0]."<br>";
+          $result .= " ".utf8_strtoupper(__("Passed"))."<br>";
         } 
           
       }

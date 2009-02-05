@@ -33,7 +33,7 @@ class Attachments extends Controller {
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    
 	    if ($attachment==null) {
-	        appendErrorMessage('Download attachment: Attachment does not exist.<br/>');
+	        appendErrorMessage(__('Download attachment').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 	    
@@ -74,7 +74,7 @@ class Attachments extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($attachment==null) {
-	        appendErrorMessage('Delete attachment: attachment does not exist.<br/>');
+	        appendErrorMessage(__('Delete attachment').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -86,7 +86,7 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($attachment)
             ) 
         {
-	        appendErrorMessage('Delete attachment: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete attachment').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -97,7 +97,7 @@ class Attachments extends Controller {
         } else {
             //get output: a full web page with a 'confirm delete' form
             $headerdata = array();
-            $headerdata['title'] = 'Attachment: delete';
+            $headerdata['title'] = __('Delete attachment');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -135,7 +135,7 @@ class Attachments extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            appendErrorMessage("<div class='errormessage'>Add atachment: no valid publication ID provided</div>");
+            appendErrorMessage("<div class='errormessage'>".__("Add attachment").": ".__("non-existing id passed").".</div>");
             redirect('');
         }
 
@@ -150,13 +150,13 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)    
             ) 
         {
-	        appendErrorMessage('Add attachment: insufficient rights..<br/>');
+	        appendErrorMessage(__('Add attachment').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
         //get output: a full web page with a 'attachment add' form
         $headerdata = array();
-        $headerdata['title'] = 'Attachment: add';
+        $headerdata['title'] = __('Add attachment');
         
         $output = $this->load->view('header', $headerdata, true);
 
@@ -190,7 +190,7 @@ class Attachments extends Controller {
 	    $att_id = $this->uri->segment(3,-1);
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    if ($attachment==null) {
-	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        appendErrorMessage(__("Edit attachment").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    
@@ -203,13 +203,13 @@ class Attachments extends Controller {
                 !$this->accesslevels_lib->canEditObject($attachment)
          ) 
         {
-	        appendErrorMessage('Edit attachment: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit attachment').': '.__('insufficient rights').'.<br/>');
 	        redirect('publications/show/'.$attachment->pub_id);
         }
 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Attachment';
+        $headerdata['title'] = __('Attachment');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -247,7 +247,7 @@ class Attachments extends Controller {
         $attachment = $this->attachment_db->getFromPost();
 
 	    if ($attachment==null) {
-	        appendErrorMessage("Commit attachment: no data to commit<br/>");
+	        appendErrorMessage(__("Commit attachment").": ".__("no data to commit").".<br/>");
 	        redirect('');
 	    }
 
@@ -267,7 +267,7 @@ class Attachments extends Controller {
         if (!$success) {
             //might happen, e.g. if upload fails due to post size limits, upload size limits, etc.
             //or illegal attachment extensions etc.
-            appendErrorMessage("Commit attachment: an error occurred. Please contact your Aigaion administrator.<br/>"); 
+            appendErrorMessage(__("Commit attachment").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>"); 
             redirect('publications/show/'.$attachment->pub_id);
         }
         //redirect somewhere if commit was successfull
@@ -295,7 +295,7 @@ class Attachments extends Controller {
 	    $att_id = $this->uri->segment(3,-1);
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    if ($attachment==null) {
-	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        appendErrorMessage(__("Edit attachment").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    $attachment->ismain=true;
@@ -323,7 +323,7 @@ class Attachments extends Controller {
 	    $att_id = $this->uri->segment(3,-1);
 	    $attachment = $this->attachment_db->getByID($att_id);
 	    if ($attachment==null) {
-	        appendErrorMessage("Edit attachment: non-existing att_id passed");
+	        appendErrorMessage(__("Edit attachment").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    $attachment->ismain=false;

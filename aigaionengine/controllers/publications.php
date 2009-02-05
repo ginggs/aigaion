@@ -56,7 +56,7 @@ class Publications extends Controller {
       }
       if ($publication == null)
       {
-        appendErrorMessage("View publication: non-existing publication id passed");
+        appendErrorMessage(__("View publication").": ".__("non-existing id passed").".<br/>");
         redirect('');
       }
     }
@@ -110,7 +110,7 @@ class Publications extends Controller {
     $publication = $this->publication_db->getByBibtexID($bibtex_id);
     if ($publication == null)
     {
-      appendErrorMessage("View publication: non-existing bibtex id \"".$bibtex_id."\" was passed");
+      appendErrorMessage(__("View publication").": ".sprintf(__("non-existing bibtex id \"%s\" was passed"),$bibtex_id));
       redirect('');
     }
     
@@ -153,24 +153,24 @@ class Publications extends Controller {
         $page   = $this->uri->segment(4,0);
         //get output
         $headerdata                 = array();
-        $headerdata['title']        = 'Publication list';
+        $headerdata['title']        = __('Publication list');
         $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');//, 'publicationlists.js');
         $headerdata['sortPrefix']        = 'publications/showlist/';
         
         $userlogin = getUserLogin();
-        $content['header']          = 'All publications';
+        $content['header']          = __('All publications');
         switch ($order) {
             case 'type':
-                $content['header']          = 'All publications sorted by journal and type';
+                $content['header']          = __('All publications').' '.__('sorted by journal and type');
                 break;
             case 'recent':
-                $content['header']          = 'All recent publications';
+                $content['header']          = __('All publications').' '.__('sorted by recency');
                 break;
             case 'title':
-                $content['header']          = 'All publications sorted by title';
+                $content['header']          = __('All publications').' '.__('sorted by title');
                 break;
             case 'author':
-                $content['header']          = 'All publications sorted by author';
+                $content['header']          = __('All publications').' '.__('sorted by author');
                 break;
         }
         
@@ -220,24 +220,24 @@ class Publications extends Controller {
         $page   = $this->uri->segment(4,0);
         //get output
         $headerdata                 = array();
-        $headerdata['title']        = 'Publication list';
+        $headerdata['title']        = __('Publication list');
         $headerdata ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');//, 'publicationlists.js');
         $headerdata['sortPrefix']        = 'publications/unassigned/';
         
         $userlogin = getUserLogin();
-        $content['header']          = 'All publications not assigned to a topic';
+        $content['header']          = __('All publications not assigned to a topic');
         switch ($order) {
             case 'type':
-                $content['header']          = 'All publications not assigned to a topic, sorted by journal and type';
+                $content['header']          = __('All publications not assigned to a topic').' '.__('sorted by journal and type');
                 break;
             case 'recent':
-                $content['header']          = 'All recent publications not assigned to a topic';
+                $content['header']          = __('All publications not assigned to a topic').' '.__('sorted by recency');
                 break;
             case 'title':
-                $content['header']          = 'All publications not assigned to a topic, sorted by title';
+                $content['header']          = __('All publications not assigned to a topic').' '.__('sorted by title');
                 break;
             case 'author':
-                $content['header']          = 'All publications not assigned to a topic, sorted by author';
+                $content['header']          = __('All publications not assigned to a topic').' '.__('sorted by author');
                 break;
         }
         
@@ -300,11 +300,19 @@ class Publications extends Controller {
          || !$this->accesslevels_lib->canEditObject($publication)           
         ) 
     {
-      appendErrorMessage('Edit publication : insufficient rights.<br/>');
+      appendErrorMessage(__('Edit publication').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
     
-    $header ['title']       = $edit_type." publication";
+    switch ($edit_type) 
+    {
+      case 'add': 
+        $header ['title']       = __("Add publication");
+        break;
+      case 'edit': 
+        $header ['title']       = __("Edit publication");
+        break;
+    }        
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js' , 'publications.js','externallinks.js');
     $content['edit_type']   = $edit_type;
     $content['publication'] = $publication;
@@ -319,17 +327,18 @@ class Publications extends Controller {
   }
   
   //import() - Call publication import page
+  //DR: is this controller ever called?
   function import()
   {
     $userlogin  = getUserLogin();
     $user       = $this->user_db->getByID($userlogin->userID());
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Import : insufficient rights.<br/>');
+      appendErrorMessage(__('Import publication').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
     
-    $header ['title']       = "import publications";
+    $header ['title']       = __("Import publications");
     $header ['javascripts'] = array();
     
     $content = "";
@@ -370,7 +379,7 @@ class Publications extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($publication==null) {
-	        appendErrorMessage('Delete publication: non existing publication specified.<br/>');
+	        appendErrorMessage(__('Delete publication').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -383,7 +392,7 @@ class Publications extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)        
             ) 
         {
-	        appendErrorMessage('Delete publication: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete publication').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -397,7 +406,7 @@ class Publications extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Delete publication';
+            $headerdata['title'] = __('Delete publication');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -431,7 +440,7 @@ class Publications extends Controller {
       if (!$this->publication_db->validate($publication)) 
       {
         //there were validation errors
-        appendErrorMessage("There are validation errors with this entry. You may want to correct them.\n"."");
+        appendErrorMessage(__("There are validation errors with this entry. You may want to correct them.")."\n");
       }
       $edit_type = $this->input->post('edit_type');
       $bReview = false;
@@ -443,19 +452,13 @@ class Publications extends Controller {
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
-        //review authors and editors
-        //[DR] no longer needed now we don't edit authors through a text area anymore
-        //$review['authors']   = $this->author_db->review($publication->authors);
-        //$review['editors']   = $this->author_db->review($publication->editors);
         
         if (($review['bibtex_id']   != null) ||
             ($review['keywords']  != null)) 
-            //($review['authors']   != null) || 
-            //($review['editors']   != null))
         {
           $bReview = true;
           $review['edit_type'] = $edit_type;
-          //month: the field has been parsed to internal format, but the review form neds to contain the month in bibtex format
+          //month: the field has been parsed to internal format, but the review form needs to contain the month in bibtex format
           $publication->month = formatMonthBibtexForEdit($publication->month);
           $this->review($publication, $review);
         }
@@ -470,7 +473,7 @@ class Publications extends Controller {
           || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
           ) 
         {
-          appendErrorMessage('Commit publication: insufficient rights.<br/>');
+          appendErrorMessage(__('Commit publication').': '.__('insufficient rights').'.<br/>');
           redirect('');
         }
         
@@ -495,11 +498,11 @@ class Publications extends Controller {
          || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
         ) 
     {
-      appendErrorMessage('Review publication: insufficient rights.<br/>');
+      appendErrorMessage(__('Review publication').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
 
-    $header ['title']       = "review publication";
+    $header ['title']       = __("Review publication");
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['publication'] = $publication;
     $content['review']      = $review_data;
@@ -539,14 +542,14 @@ class Publications extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid publication ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("non-existing id passed").".</div>";
         }
 
         $config = array('publicationId'=>$pub_id);
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Subscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Subscribe topic").": ".__("non-existing id passed").".</div>";
         }
         //do subscribe
         $topic->subscribePublication();
@@ -581,13 +584,13 @@ class Publications extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid publication ID provided</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("non-existing id passed").".</div>";
         }
         $config = array('publicationId'=>$pub_id);
         $topic = $this->topic_db->getByID($topic_id,$config);
         
         if ($topic == null) {
-            echo "<div class='errormessage'>Unsubscribe topic: no valid topic ID provided</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("non-existing id passed").".</div>";
         }
         //do subscribe
         $topic->unsubscribePublication();
@@ -615,12 +618,12 @@ class Publications extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            appendErrorMessage('Mark publication: unknown publication');
+            appendErrorMessage(__('Mark publication').': '.__('non-existing id passed').'.<br/>');
             redirect ('');
         }
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('note_edit')) {
-            appendErrorMessage('Mark publication: insufficient rights');
+            appendErrorMessage(__('Mark publication').': '.__('insufficient rights').'.<br/>');
             redirect ('publications/show/'.$publication->pub_id);
         }
         $mark = $this->input->post('mark','');
@@ -647,59 +650,18 @@ class Publications extends Controller {
         
         $publication = $this->publication_db->getByID($pub_id);
         if ($publication == null) {
-            appendErrorMessage('Mark publication: unknown publication');
+            appendErrorMessage(__('Mark publication').': '.__('non-existing id passed').'.<br/>');
             redirect ('');
         }
         $userlogin = getUserLogin();
         if (!$userlogin->hasRights('note_edit')) {
-            appendErrorMessage('Mark publication: insufficient rights');
+            appendErrorMessage(__('Mark publication').': '.__('insufficient rights').'.<br/>');
             redirect ('publications/show/'.$publication->pub_id);
         }
         $publication->unread();
         redirect ('publications/show/'.$publication->pub_id);
     }
     
-    /**
-    fails if:
-        insufficient rights
-        
-    3rd: pub_id
-    4rth: (n|y) : editors? (default: n, is authors)
-    
-    */
-//    function reorderauthors() {
-//   	    $pub_id = $this->uri->segment(3);
-//   	    $publication = $this->publication_db->getByID($pub_id);
-//   	    $editors = $this->uri->segment(4,'n');
-//   	    
-//        if ($publication == null)
-//        {
-//          echo 'Reorder authors and editors: non-existing publication id passed';
-//          return;
-//        }
-//        $userlogin=getUserLogin();
-//        if (    (!$userlogin->hasRights('publication_edit'))
-//             || !$this->accesslevels_lib->canEditObject($publication)           
-//            ) 
-//        {
-//          echo('Reorder authors: insufficient rights.<br/>');
-//          return;
-//        }
-//        
-//        //do reorder based on post info
-//        $reorder = $this->input->post('authorlist_'.$pub_id.'_'.$editors);
-//        //print_r($reorder);
-//        $this->publication_db->reorderauthors($pub_id, $reorder, $editors);
-//        $publication = $this->publication_db->getByID($pub_id);
-//        
-//        //get output
-//        $output  = $this->load->view('publications/reorderauthors' , array('publication'=>$publication,'editors'=>$editors),  true);
-//
-//        //set output
-//        $this->output->set_output($output);	        
-//    }
-
-
 	/**
 	publications/exportEmail
 
@@ -723,7 +685,7 @@ class Publications extends Controller {
 	{
 	  $userlogin = getUserLogin();
 	  if (!$userlogin->hasRights('export_email')) {
-	    appendErrorMessage('You are not allowed to export publications through email<br/>');
+	    appendErrorMessage(__('Export through email').': '.__('insufficient rights').'.<br/>');
 	    redirect('');
     }
     $this->load->library('email_export');
@@ -741,12 +703,12 @@ class Publications extends Controller {
 
 		if (!isset($pub_id) || $pub_id == -1)
 		{
-			appendErrorMessage("No Publication selected for export <br />");
+		  appendErrorMessage(__('Export publication').': '.__('non-existing id passed').'.<br/>');
 			redirect('');
 		}
-		if ($this->publication_db->getByID($pub_id)==null)
+		if ($this->publication_db->getByID($pub_id)==null) //Unexpected construction. we already need the publicatino for later, no? Why not store it?
 		{
-			appendErrorMessage("Null Publication selected for export <br />");
+			appendErrorMessage(__('Export publication').': '.__('non-existing id passed').'.<br/>');
 			redirect('');
 		}
 
@@ -756,7 +718,7 @@ class Publications extends Controller {
 		*/
 		if(!(($email_pdf !='' || $email_bibtex !='' || $email_ris!='' || $email_formatted!='') && $email_address != ''))
 		{
-			$header ['title']       = "Select export format";
+			$header ['title']       = __("Select export format");
 			$header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
 
 
@@ -788,12 +750,12 @@ class Publications extends Controller {
 			$this->load->helper('publication');
 
 			$headerdata = array();
-			$headerdata['title'] = 'Publication export';
+			$headerdata['title'] = __('Publication export');
 			$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
 			$headerdata['exportCommand']    = 'publications/exportEmail';
-			$headerdata['exportName']    = 'Export publication';
+			$headerdata['exportName']    = __('Export publication');
 
-			$content['header']          = 'Export by email';
+			$content['header']          = __('Export by email');
 			$output = $this->load->view('header', $headerdata, true);
 			$content['publications']    = $publications;
 
@@ -802,7 +764,7 @@ class Publications extends Controller {
 
 
 
-			$messageBody = 'Export from Aigaion';
+			$messageBody = __('Export from Aigaion');
 
 			if($email_formatted || $email_bibtex)
 			{
@@ -814,7 +776,7 @@ class Publications extends Controller {
 
 				$exportdata['nonxrefs'] = $pubs;
 				$exportdata['xrefs']    = $xrefpubs;
-				$exportdata['header']   = 'Exported publication';
+				$exportdata['header']   = __('Exported publication');
 				$exportdata['exportEmail']   = true;
 			}
 
@@ -825,7 +787,7 @@ class Publications extends Controller {
 			if($email_formatted)
 			{
 				$messageBody .= "\n";
-				$messageBody .= 'Formatted';
+				$messageBody .= __('Formatted');
 				$messageBody .= "\n";
 
 				$exportdata['format'] = 'html';
@@ -862,7 +824,7 @@ class Publications extends Controller {
 				#send to right export view
 				$exportdata['nonxrefs'] = $pubs;
 				$exportdata['xrefs']    = $xrefpubs;
-				$exportdata['header']   = 'Exported publicaiton';
+				$exportdata['header']   = __('Exported publicaiton');
 				$exportdata['exportEmail']   = true;
 
 				$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));
@@ -883,11 +845,11 @@ class Publications extends Controller {
 			*/
 			if($this->email_export->sendEmail($email_address, $messageBody, $publications))
 			{
-				$output .= 'Mail sent successfully';
+				$output .= __('Mail sent successfully');
 			}
 			else
 			{
-				appendErrorMessage('Something went wrong when exporting the publications. Did you input a correct email address? <br />');
+				appendErrorMessage(__('Something went wrong when exporting the publications. Did you input a correct email address?').' <br />');
 				redirect('');
 			}
 

@@ -26,7 +26,7 @@ class Search extends Controller {
 	{
         $query = $this->input->post('searchstring');
 	    if (trim($query)=='') {
-	        appendErrorMessage('Search: no query.<br/>');
+	        appendErrorMessage(__('Search').': '.__('no query').'.<br/>');
 	        redirect('');
 	    }
 	    $this->load->library('search_lib');
@@ -34,12 +34,12 @@ class Search extends Controller {
 	    
         //get output: search result page
         $headerdata = array();
-        $headerdata['title'] = 'Search results';
+        $headerdata['title'] = __('Search results');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
-        $output .= "<div class=optionbox>[".anchor('search/advanced','Advanced search')."]</div><div class=header>Quicksearch results</div>";
+        $output .= "<div class=optionbox>[".anchor('search/advanced',__('Advanced search'))."]</div><div class=header>".__("Quicksearch results")."</div>";
         $output .= $this->load->view('search/results',
                                       array('searchresults'=>$searchresults, 'query'=>$query),  
                                       true);
@@ -57,7 +57,7 @@ class Search extends Controller {
 	{
         //get output: advanced earch interface
         $headerdata = array();
-        $headerdata['title'] = 'Advanced search';
+        $headerdata['title'] = __('Advanced search');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -102,7 +102,7 @@ class Search extends Controller {
           if ($topic_id=='header')continue;
           $topic = $this->topic_db->getById($topic_id,$config);
           if ($topic==null) {
-            appendMessage('Nonexisting topic_id in advanced search condition');
+            appendMessage(__('Nonexisting topic_id in advanced search condition'));
             continue;
           }
           if ($do=='True') {
@@ -115,7 +115,7 @@ class Search extends Controller {
         //appendMessage("No query, but some topic restrictions: interpret as a search for ALL publications within topics; don't query for all authors, topics or keywords");
         $query="*";
       } else if ($query == '') {
-        appendMessage("No query at all: please give at least a search term or a topic condition");
+        appendMessage(__("No query at all: please give at least a search term or a topic condition"));
         $this->advanced();
         return;
       }
@@ -148,13 +148,13 @@ class Search extends Controller {
 	    
         //get output: search result page
         $headerdata = array();
-        $headerdata['title'] = 'Advanced search results';
+        $headerdata['title'] = __('Advanced search results');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
         
-        $output .= "<div class=optionbox>(Search form below)</div><div class=header>Advanced search results</div>";
+        $output .= "<div class=optionbox>(".__("Search form below").")</div><div class=header>".__("Advanced search results")."</div>";
 
         $output .= $this->load->view('search/results',
                                       array('searchresults'=>$searchresults, 'query'=>$query),  

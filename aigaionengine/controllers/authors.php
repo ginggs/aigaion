@@ -30,7 +30,7 @@ class Authors extends Controller {
     $author = $this->author_db->getByID($author_id);
     if ($author == null)
     {
-      appendErrorMessage("View Author: non-existing author id passed");
+      appendErrorMessage("View Author: non-existing id passed");
       redirect('');
     }
     
@@ -120,7 +120,7 @@ class Authors extends Controller {
     $author = $this->author_db->getByID($author_id);
     if ($author == null)
     {
-      appendErrorMessage("View Author: non-existing author id passed");
+      appendErrorMessage("View Author: non-existing id passed");
       redirect('');
     }
     
@@ -205,7 +205,7 @@ class Authors extends Controller {
 		    $author = $this->author_db->getByID($author_id);
 		    if ($author == null)
 		    {
-		      appendErrorMessage("View Author: non-existing author id passed");
+		      appendErrorMessage("View Author: non-existing id passed");
 		      redirect('');
 		    }
 
@@ -507,7 +507,7 @@ class Authors extends Controller {
     $topic = $this->topic_db->getByID($topic_id,$config);
 
     if ($topic==null) {
-        appendErrorMessage('Authors for topic: non existing topic specified.<br/>');
+        appendErrorMessage(__('Authors for topic').': '.__('non-existing id passed').'.<br/>');
         redirect('');
     }
     
@@ -516,9 +516,9 @@ class Authors extends Controller {
     
     
     //set header data
-    $header ['title']         = 'Authors';
+    $header ['title']         = __('Authors');
     $header ['javascripts']   = array('prototype.js');
-    $content['header']        = "Authors on topic ".anchor('topics/single/'.$topic->topic_id,$topic->name);
+    $content['header']        = sprintf(__("Authors for topic %s"),anchor('topics/single/'.$topic->topic_id,$topic->name));
     $content['authorlist']    = $authorList;
     
     //get output
@@ -541,9 +541,9 @@ class Authors extends Controller {
     
     
     //set header data
-    $header ['title']         = 'Authors';
+    $header ['title']         = __('Authors');
     $header ['javascripts']   = array('prototype.js');
-    $content['header']        = "All authors in the database";
+    $content['header']        = __("All authors in the database");
     $content['authorlist']    = $authorList;
     $content['searchbox']     = True;
     
@@ -617,7 +617,7 @@ class Authors extends Controller {
   /**
 		author/exportEmail
 
-		Sends the publications for the selected author to the spesified email address(es).
+		Sends the publications for the selected author to the specified email address(es).
 
 		Fails with error message when one of:
 			no topic selected
@@ -638,7 +638,7 @@ class Authors extends Controller {
 		{
   	  $userlogin = getUserLogin();
 			if (!$userlogin->hasRights('export_email')) {
-  	    appendErrorMessage('You are not allowed to export publications through email<br/>');
+  	    appendErrorMessage(__('Export through email').': '.__('insufficient rights').'.<br/>');
   	    redirect('');
       }
       $this->load->library('email_export');
@@ -656,7 +656,7 @@ class Authors extends Controller {
 
 			if (!isset($author_id))
 			{
-				appendErrorMessage("No author selected for export <br />");
+				appendErrorMessage(__("No author selected for export").".<br />");
 				redirect('');
 			}
 
@@ -668,7 +668,7 @@ class Authors extends Controller {
 			*/
 			if(!(($email_pdf !='' || $email_bibtex !='' || $email_ris!='' || $email_formatted!='') && $email_address != ''))
 			{
-				$header ['title']       = "Select export format";
+				$header ['title']       = __("Select export format");
 				$header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js','externallinks.js');
 
 				$content['attachmentsize']  = $this->email_export->attachmentSize($publications);
@@ -698,12 +698,12 @@ class Authors extends Controller {
 				$this->load->helper('publication');
 
 				$headerdata = array();
-				$headerdata['title'] = 'Author export';
+				$headerdata['title'] = __('Author export');
 				$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
 				$headerdata['exportCommand']    = 'author/exportEmail';
-				$headerdata['exportName']    = 'Export author';
+				$headerdata['exportName']    = __('Export author');
 
-				$content['header']          = 'Export by email';
+				$content['header']          = __('Export by email');
 				$output = $this->load->view('header', $headerdata, true);
 				$content['publications']    = $publications;
 
@@ -712,7 +712,7 @@ class Authors extends Controller {
 
 
 
-				$messageBody = 'Export from Aigaion';
+				$messageBody = __('Export from Aigaion');
 
 				if($email_formatted || $email_bibtex)
 				{
@@ -724,7 +724,7 @@ class Authors extends Controller {
 
 					$exportdata['nonxrefs'] = $pubs;
 					$exportdata['xrefs']    = $xrefpubs;
-					$exportdata['header']   = 'Exported for author';
+					$exportdata['header']   = __('Exported for author');
 					$exportdata['exportEmail']   = true;
 				}
 
@@ -735,7 +735,7 @@ class Authors extends Controller {
 				if($email_formatted)
 				{
 					$messageBody .= "\n";
-					$messageBody .= 'Formatted';
+					$messageBody .= __('Formatted');
 					$messageBody .= "\n";
 
 					$exportdata['format'] = 'html';
@@ -772,7 +772,7 @@ class Authors extends Controller {
 					#send to right export view
 					$exportdata['nonxrefs'] = $pubs;
 					$exportdata['xrefs']    = $xrefpubs;
-					$exportdata['header']   = 'Exported for author';
+					$exportdata['header']   = __('Exported for author');
 					$exportdata['exportEmail']   = true;
 
 					$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));
@@ -793,11 +793,11 @@ class Authors extends Controller {
 				*/
 				if($this->email_export->sendEmail($email_address, $messageBody, $publications))
 				{
-					$output .= 'Mail sent successfully';
+					$output .= __('Mail sent successfully');
 				}
 				else
 				{
-					appendErrorMessage('Something went wrong when exporting the publications. Did you input a correct email address? <br />');
+					appendErrorMessage(__('Something went wrong when exporting the publications. Did you input a correct email address?').'<br />');
 					redirect('');
 				}
 

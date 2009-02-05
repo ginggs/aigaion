@@ -42,7 +42,7 @@ class Notes extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($note==null) {
-	        appendErrorMessage('Delete note: non existing note specified.<br/>');
+	        appendErrorMessage(__('Delete note').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -55,7 +55,7 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($note)        
             ) 
         {
-	        appendErrorMessage('Delete note: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete note').': '.__('insufficient rights').'.<br/>');
 	        redirect('publications/show/'.$note->pub_id);
         }
         
@@ -66,7 +66,7 @@ class Notes extends Controller {
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Delete note';
+            $headerdata['title'] = __('Delete note');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -90,7 +90,7 @@ class Notes extends Controller {
         $publication = $this->publication_db->getByID($pub_id);
         
         if ($publication == null) {
-            appendErrorMessage( "<div class='errormessage'>Add note: no valid publication ID provided</div>");
+            appendErrorMessage( "<div class='errormessage'>".__("Add note").": ".__("non-existing id passed").".</div>");
             redirect('');
         }
 
@@ -102,16 +102,16 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($publication)
             ) 
         {
-	        appendErrorMessage('Add note: insufficient rights.<br/>');
+	        appendErrorMessage(__('Add note').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Add note';
+        $headerdata['title'] = __('Add note');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -129,13 +129,13 @@ class Notes extends Controller {
 	{
 	  $this->load->helper('publication_helper');
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
 	    $note_id = $this->uri->segment(3,1);
         $note = $this->note_db->getByID($note_id);
 
 	    if ($note==null) {
-	        appendErrorMessage('Note does not exist.<br/>');
+	        appendErrorMessage(__('Edit note').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 
@@ -147,7 +147,7 @@ class Notes extends Controller {
                 !$this->accesslevels_lib->canEditObject($note)
             ) 
         {
-	        appendErrorMessage('Edit note: insufficient rights.<br/>');
+	        appendErrorMessage(__('Edit note').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
@@ -156,13 +156,13 @@ class Notes extends Controller {
                 	    
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Edit note';
+        $headerdata['title'] = __('Edit note');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','tinymce/tiny_mce.js');
         
         $output = $this->load->view('header', $headerdata, true);
 
         $output  .= $this->load->view('notes/edit' , array('note' => $note),  true);
-        $output  .= $this->load->view('publications/list', array('publications' => array($publication), 'header' => 'Publication belonging to note:', 'noNotes' => true, 'noBookmarkList' => true, 'order' => 'none'), true);
+        $output  .= $this->load->view('publications/list', array('publications' => array($publication), 'header' => __('Publication belonging to note').':', 'noNotes' => true, 'noBookmarkList' => true, 'order' => 'none'), true);
         
         $output .= $this->load->view('footer','', true);
 
@@ -186,14 +186,14 @@ class Notes extends Controller {
     */
     function commit() {
         $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 
         //get data from POST
         $note = $this->note_db->getFromPost();
         
         //check if fail needed: was all data present in POST?
         if ($note == null) {
-            appendErrorMEssage("Commit note: no data to commit<br/>");
+            appendErrorMEssage(__("Commit note").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
         
@@ -206,7 +206,7 @@ class Notes extends Controller {
     	$this->validation->set_rules(array( 'pub_id' => 'required'
                                            )
                                      );
-    	$this->validation->set_fields(array( 'pub_id' => 'Publication id'
+    	$this->validation->set_fields(array( 'pub_id' => __('Publication id')
                                            )
                                      );
     		
@@ -214,7 +214,7 @@ class Notes extends Controller {
             //return to add/edit form if validation failed
             //get output
             $headerdata = array();
-            $headerdata['title'] = 'Note';
+            $headerdata['title'] = __('Note');
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -241,7 +241,7 @@ class Notes extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage("Commit note: an error occurred. Please contact your Aigaion administrator.<br/>");
+                appendErrorMessage(__("Commit note").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect ('publications/show/'.$note->pub_id);
             }
             //redirect somewhere if commit was successfull

@@ -29,14 +29,14 @@ class Site extends Controller {
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Configure database: insufficient rights.<br/>');
+	        appendErrorMessage(__('Configure database').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
         
 	    $commit = $this->uri->segment(3,'');
 	    
 	    $this->load->library('validation');
-        $this->validation->set_error_delimiters('<div class="errormessage">Changes not committed: ', '</div>');
+        $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 	    if ($commit=='commit') {
 	        $siteconfig = $this->siteconfig_db->getFromPost();
 	        if ($siteconfig!= null) {
@@ -55,7 +55,7 @@ class Site extends Controller {
 	    
         //get output: always return to configuration page
         $headerdata = array();
-        $headerdata['title'] = 'Site configuration';
+        $headerdata['title'] = __('Site configuration');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -96,7 +96,7 @@ class Site extends Controller {
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Maintain database: insufficient rights.<br/>');
+	        appendErrorMessage(__('Maintain database').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -136,15 +136,15 @@ class Site extends Controller {
 	                break;
 	        case 'checkupdates':
 	            $this->load->helper('checkupdates');
-                $checkresult .= "<tr><td colspan=2><p class='header1'>Aigaion updates</p></td></tr>\n";
-	            $checkresult .= "<tr><td>Checking for updates...</td>";
+                $checkresult .= "<tr><td colspan=2><p class='header1'>".__("Aigaion updates")."</p></td></tr>\n";
+	            $checkresult .= "<tr><td>".__("Checking for updates")."...</td>";
 //	            $updateinfo = '';
 	            $updateinfo = checkUpdates();
 	            if ($updateinfo == '') {
     		        $checkresult .= '<td><b>OK</b></td></tr>';
-        			$checkresult .= '<tr><td colspan=2><div class="message">This installation of Aigaion is up-to-date</div></td></tr>';
+        			$checkresult .= '<tr><td colspan=2><div class="message">'.__('This installation of Aigaion is up-to-date.').'.</div></td></tr>';
 	            } else {
-        			$checkresult .= '<td><span class="errortext">ALERT</span></td>';
+        			$checkresult .= '<td><span class="errortext">'.utf8_strtoupper('Alert').'</span></td>';
         			$checkresult .= '</tr>';
         			$checkresult .= '<tr><td colspan=2>'.$updateinfo.'</td></tr>';
     	        }
@@ -157,14 +157,14 @@ class Site extends Controller {
 	        case '':
 	            break;
 	        default:
-    	        appendMessage('Maintenance function "'.$maintenance.'" not implemented.<br>');
+    	        appendMessage(sprintf(__('Maintenance function "%s" not implemented.'),$maintenance).'<br>');
 	            break;
 	    }
 	    
 	    $checkresult .= "</table>";
         //get output
         $headerdata = array();
-        $headerdata['title'] = 'Site maintenance';
+        $headerdata['title'] = __('Site maintenance');
         $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
         
         $output = $this->load->view('header', $headerdata, true);
@@ -202,7 +202,7 @@ class Site extends Controller {
         if (    (!$userlogin->hasRights('database_manage'))
             ) 
         {
-	        appendErrorMessage('Backup database: insufficient rights.<br/>');
+	        appendErrorMessage(__('Backup database').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -289,11 +289,11 @@ class Site extends Controller {
     if (    (!$userlogin->hasRights('database_manage'))
         ) 
     {
-      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      appendErrorMessage(__('Restore database').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
     $headerdata = array();
-    $headerdata['title'] = 'Restore backup';
+    $headerdata['title'] = __('Restore database');
     $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
     
     $output = $this->load->view('header', $headerdata, true);
@@ -319,7 +319,7 @@ class Site extends Controller {
     if (    (!$userlogin->hasRights('database_manage'))
         ) 
     {
-      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      appendErrorMessage(__('Restore database').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
 
@@ -328,7 +328,7 @@ class Site extends Controller {
   	$this->file_upload->extensions = array(".sql");
   
   	if (! $this->file_upload->validateExtension()) {
-  		appendErrorMessage("The file appears not to be an SQL file. Please select a valid Aigaion backup file.<br />");
+  		appendErrorMessage(__("The file appears not to be an SQL file. Please select a valid Aigaion backup file.")."<br />");
   		redirect('site/maintenance');
   	}
   	if ($this->file_upload->http_error > 0) {
@@ -352,7 +352,7 @@ class Site extends Controller {
     $this->load->helper("utf8");
   	$report = "";
   	$query  = "";
-  	appendMessage("<b>Restored from:</b><br/>\n");
+  	appendMessage("<b>".__("Restored database").":</b><br/>\n");
   	foreach ($sqlArray as $part) 
     {
 
@@ -393,14 +393,14 @@ class Site extends Controller {
     if (    (!$userlogin->hasRights('database_manage'))
         ) 
     {
-      appendErrorMessage('Restore database: insufficient rights.<br/>');
+      appendErrorMessage(__('Restore database').': '.__('insufficient rights').'.<br/>');
       redirect('');
     }
     $this->load->helper("utf8");
     $data= $this->input->post('backup_data');
     if (trim($data) == '') 
     {
-      appendErrorMessage("no data given to restore!");
+      appendErrorMessage(__("No data given to restore!"));
       redirect('site/maintenance');
     }
   	$sqlArray = explode("\n",$data);
@@ -416,7 +416,7 @@ class Site extends Controller {
     //start loading backup data
   	$report = "";
   	$query  = "";
-  	appendMessage("<b>Restored from:</b><br/>\n");
+  	appendMessage("<b>".__("Restored database").":</b><br/>\n");
   	foreach ($sqlArray as $part) 
     {
 
