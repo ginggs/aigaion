@@ -49,19 +49,15 @@
     <?php
     //the sort options are only available if the view is called with a 'sortPrefix' option that is not ''
     //
-    if (!isset($sortPrefix)||($sortPrefix==''))
+    if (isset($sortPrefix)||($sortPrefix!=''))
     {
-      //$sortPrefix = 'publications/showlist/';
-      //<li class="mainmenu-spacer"></li>
-      //<li class="mainmenu-header">BROWSE ALL BY</li>
-    } else {
       ?>
       <li class="mainmenu-spacer"></li>
       <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Sort by')); ?></li>
       <li><ul class="mainmenu">
       <li class="mainmenu"><?php echo anchor($sortPrefix.'author', __('Author')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'title',  __('Title')); ?></li>
-      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   __('Type/journal')); ?></li>
+      <li class="mainmenu"><?php echo anchor($sortPrefix.'type',   __('Type/Journal')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'year',   __('Year')); ?></li>
       <li class="mainmenu"><?php echo anchor($sortPrefix.'recent', __('Recently added')); ?></li>
       </ul></li>
@@ -118,7 +114,7 @@ if ($userlogin->hasRights('user_edit_all')) {
     $anonusers = $this->user_db->getAllAnonUsers();
 ?>	    
       <li class="mainmenu-spacer"></li>
-      <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Guest user')); ?></li>
+      <li class="mainmenu-header"><?php echo utf8_strtoupper(__('Guest User')); ?></li>
 <?php
     if (count($anonusers)>1) {
       //more than one anonymous user: show a dropdown where you can choose between the different guest users

@@ -6,7 +6,7 @@ $userlogin = getUserLogin();
 if ($userlogin->hasRights('publication_edit'))
 {
 ?>
-  <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, __('delete'), array('title' => 'Delete this author'))."]&nbsp[".anchor('authors/edit/'.$author->author_id, __('edit'), array('title' => 'Edit this author'))."]"; ?>
+  <div class='optionbox'><?php echo "[".anchor('authors/delete/'.$author->author_id, __('delete'), array('title' => __('Delete this author')))."]&nbsp[".anchor('authors/edit/'.$author->author_id, __('edit'), array('title' => __('Edit this author')))."]"; ?>
   </div>
 <?php
 }   
@@ -18,7 +18,7 @@ if ($userlogin->hasRights('publication_edit'))
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'institute'=>'Institute');
+      $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
       foreach ($authorfields as $field=>$display)
       {
         if (trim($author->$field) != '')
@@ -37,7 +37,7 @@ if ($userlogin->hasRights('publication_edit'))
         if (utf8_strlen($urlname)>21) {
             $urlname = utf8_substr($urlname,0,30)."...";
         }
-        echo "<tr><td>URL:</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' class='open_extern'>".$urlname."</a></td></tr>\n";
+        echo "<tr><td>".__('URL').":</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' class='open_extern'>".$urlname."</a></td></tr>\n";
       }
 ?>
       </table>
@@ -49,12 +49,12 @@ echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
 <ul>";
     if ($userlogin->hasRights('bookmarklist')) {
       echo  '<li><nobr>['
-           .anchor('bookmarklist/addauthor/'.$author->author_id,'BookmarkAll')
+           .anchor('bookmarklist/addauthor/'.$author->author_id,__('BookmarkAll'))
            .']</nobr></li><li><nobr>['
-           .anchor('bookmarklist/removeauthor/'.$author->author_id,'UnBookmarkAll').']</nobr></li>';
+           .anchor('bookmarklist/removeauthor/'.$author->author_id,__('UnBookmarkAll')).']</nobr></li>';
     }
 //echo  "<li><nobr>["
-//      .anchor('export/author/'.$author->author_id,'Export')."]</nobr></li>
+//      .anchor('export/author/'.$author->author_id,__('Export'))."]</nobr></li>
 echo  "
 </ul>
 ";
@@ -69,12 +69,12 @@ if ($userlogin->hasRights("publication_edit")) {
     
     $similar = $author->getSimilarAuthors();
     if (count($similar)>0) {
-        echo "<div class='message'>Found authors with very similar names.
+        echo "<div class='message'>".__('Found authors with very similar names.
               You can choose to merge the following authors with this author 
-              by clicking on the merge link.<br/>\n";
+              by clicking on the merge link.')."<br/>\n";
         foreach ($similar as $simauth) {
-            echo anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('title' => 'Click to show details'))."\n";
-		    echo '('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('title' => 'Click to merge')).")<br />\n";
+            echo anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('title' => __('Click to show details')))."\n";
+		    echo '('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('title' => __('Click to merge'))).")<br/>\n";
 		}
 		echo "</div>\n";
     }

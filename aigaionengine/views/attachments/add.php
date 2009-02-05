@@ -25,24 +25,24 @@ if (getConfigurationSetting('SERVER_NOT_WRITABLE')!= 'TRUE') {
     //to the wrong commit and the database is corrupted
     echo form_hidden('formname','attachment');
     echo form_hidden('user_id',$userlogin->userId());
-    echo "<p class='header2'>Upload new attachment from this computer for \"".$publication->title."\"</p>";
+    echo "<p class='header2'>".sprintf(__('Upload new attachment from this computer for publication "%s"'), $publication->title)."</p>";
     echo "
         <table>
-            <tr><td><label for='upload'>Select a file...</label></td>
+            <tr><td><label for='upload'>".__('Select a file...')."</label></td>
                 <td>
          ";
     echo form_upload(array('name'=>'upload','size'=>'30'));
     echo "
                 </td>
             </tr>
-            <tr><td><label for='name'>Set new name (blank: keep original name)...</label></td>
+            <tr><td><label for='name'>".__('Set new name (blank: keep original name)...')."</label></td>
                 <td>
          ";
     echo form_input(array('name'=>'name','size'=>'30'));
     echo "
                 </td>
             </tr>
-            <tr><td><label for='note'>Note</label></td>
+            <tr><td><label for='note'>".__('Note')."</label></td>
                 <td>
          ";
     echo form_input(array('name'=>'note','size'=>'30'));
@@ -50,7 +50,7 @@ if (getConfigurationSetting('SERVER_NOT_WRITABLE')!= 'TRUE') {
                 </td>
             </tr>
             <tr><td>";
-    echo form_submit('submit','Upload attachment');
+    echo form_submit('submit',__('Upload attachment'));
     echo "
             </td>
             </tr>
@@ -58,7 +58,7 @@ if (getConfigurationSetting('SERVER_NOT_WRITABLE')!= 'TRUE') {
          ";
     echo form_close();
     echo form_open('');
-    echo form_submit('cancel','Cancel');
+    echo form_submit('cancel',__('Cancel'));
     echo form_close();
     echo "</div>";
 }
@@ -73,24 +73,24 @@ echo form_open_multipart('attachments/commit','',array('action'=>'add',
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','attachment');
 echo form_hidden('user_id',$userlogin->userId());
-echo "<p class='header2'>Add new attachment (or web site) as a link, without uploading, for \"".$publication->title."\"</p>";
+echo "<p class='header2'>".sprintf(__('Add new attachment (or web site) as a link, without uploading, for publication "%s"'), $publication->title)."</p>";
 echo "
     <table>
-        <tr><td><label for='location'>Location of file or web address</label></td>
+        <tr><td><label for='location'>".__('Location of file or web address')."</label></td>
             <td>
      ";
 echo form_input(array('name'=>'location','size'=>'30'));
 echo "
             </td>
         </tr>
-        <tr><td><label for='name'>Set internal name (blank: keep original name)...</label></td>
+        <tr><td><label for='name'>".__('Set internal name (blank: keep original name)...')."</label></td>
             <td>
      ";
 echo form_input(array('name'=>'name','size'=>'30'));
 echo "
             </td>
         </tr>
-        <tr><td><label for='note'>Note</label></td>
+        <tr><td><label for='note'>".__('Note')."</label></td>
             <td>
      ";
 echo form_input(array('name'=>'note','size'=>'30'));
@@ -98,7 +98,7 @@ echo "
             </td>
         </tr>
         <tr><td>";
-echo form_submit('submit','Add file link');
+echo form_submit('submit',__('Add file link'));
 echo "
         </td>
         </tr>
@@ -106,7 +106,7 @@ echo "
      ";
 echo form_close();
 echo form_open('');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

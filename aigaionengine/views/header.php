@@ -23,7 +23,7 @@
     if (!isset($exportCommand))
       $exportCommand = '';
     if (!isset($exportName))
-      $exportName = 'Export browse list';
+      $exportName = __('Export browse list');
     //view parameter: the javascripts that should be linked
     if (!isset($javascripts))
       $javascripts = array();
@@ -50,7 +50,7 @@
           echo "<div>\n";
           echo form_hidden('formname','simplesearch');
           echo form_input(array('name' => 'searchstring', 'size' => '25'));
-          echo form_submit('submit_search', 'search');
+          echo form_submit('submit_search', __('Search'));
           echo "</div>\n";
           echo form_close();
           ?>

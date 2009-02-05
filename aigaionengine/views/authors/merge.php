@@ -1,12 +1,13 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
-  $authorfields   = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'url'=>'URL', 'institute'=>'Institute');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php
+  $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
   $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
-  <div class='header'>Merge authors</div>
-  Merges the source author with the target author.
-  The source author will be deleted, all publications will be transferred to the target author.
-<?php
+  <div class='header'><?php echo __('Merge authors'); ?></div>
+  <?php echo __('Merges the source author with the target author.
+  The source author will be deleted, all publications will be transferred to the target author.');
+
     //open the edit form
     echo form_open('authors/mergecommit', $formAttributes)."\n";
     echo form_hidden('author_id',   $author->author_id)."\n";
@@ -17,9 +18,9 @@
     <tr><td>
     <table class='author_edit_form' width='100%'>
         <tr>
-        <td colspan=2><p class='header2'>Target author</p></td>
+        <td colspan=2><p class='header2'><?php echo __('Target author');?></p></td>
         <td><p class='header2'></p></td>
-        <td colspan=2><p class='header2'>Source author</p></td>
+        <td colspan=2><p class='header2'><?php echo __('Source author');?></p></td>
         </tr>
 <?php
         foreach ($authorfields as $field=>$display):
@@ -37,7 +38,7 @@
     </table>
     </td></tr>
     <tr><td colspan='2'>
-      <?php echo form_submit('merge_submit', 'Merge')."\n"; ?>
+      <?php echo form_submit('merge_submit', __('Merge'))."\n"; ?>
     </td></tr>
   </table>
 
@@ -45,7 +46,7 @@
     
   echo form_close()."\n";
 echo form_open('authors/show/'.$author->author_id);
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 
 ?>

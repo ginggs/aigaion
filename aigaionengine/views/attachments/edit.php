@@ -27,15 +27,15 @@ echo form_hidden('formname','attachment');
 
                                                        
 echo form_hidden('user_id',$attachment->user_id);
-echo "<p class='header2'>Edit attachment info for \"".$attachment->name."\"</p>";
+echo "<p class='header2'>".sprintf(__('Edit attachment info for "%s"'), $attachment->name)."</p>";
 if ($attachment->isremote) {
-    echo ('Link to remote attachment.<br/>');
+    echo __('Link to remote attachment.')."<br/>";
 } else {
-    echo ('Attachment stored on server.<br/>');
+    echo __('Attachment stored on server.')."<br/>";
 }
 echo "
     <table>
-        <tr><td><label for='name'>Set internal name</label></td>
+        <tr><td><label for='name'>".__('Set internal name')."</label></td>
             <td>
      ";
 echo form_input(array('name'=>'name','size'=>'30','value'=>$attachment->name));
@@ -46,7 +46,7 @@ if (!$attachment->isremote) {
     echo form_hidden('location','$attachment->location');
 } else {
     echo "
-            <tr><td><label for='location'>Set URL</label></td>
+            <tr><td><label for='location'>".__('Set URL')."</label></td>
                 <td>
          ";
     echo form_input(array('name'=>'location','size'=>'30','value'=>$attachment->location));
@@ -55,7 +55,7 @@ if (!$attachment->isremote) {
             </tr>";
 }
 echo "
-        <tr><td><label for='note'>Note</label></td>
+        <tr><td><label for='note'>".__('Note')."</label></td>
             <td>
      ";
 echo form_input(array('name'=>'note','size'=>'30','value'=>$attachment->note));
@@ -63,7 +63,7 @@ echo "
             </td>
         </tr>
         <tr><td>";
-echo form_submit('submit','Change');
+echo form_submit('submit',__('Change'));
 echo "
         </td>
         </tr>
@@ -71,7 +71,7 @@ echo "
      ";
 echo form_close();
 echo form_open('publications/show/'.$attachment->pub_id);
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

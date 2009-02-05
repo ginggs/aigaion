@@ -1,5 +1,6 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
-  $authorfields   = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'url'=>'URL', 'institute'=>'Institute');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php
+  $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
   $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
@@ -38,9 +39,9 @@
   </table>
 <?php
 if ($edit_type=='edit') {
-  echo form_submit('publication_submit', 'Change')."\n";
+  echo form_submit('publication_submit', __('Change'))."\n";
 } else {
-  echo form_submit('publication_submit', 'Add')."\n";
+  echo form_submit('publication_submit', __('Add'))."\n";
 }
   echo form_close()."\n";
 if ($edit_type=='edit') {
@@ -48,7 +49,7 @@ if ($edit_type=='edit') {
 } else {
   echo form_open('');
 }
-  echo form_submit('Cancel', 'Cancel');
+  echo form_submit('Cancel', __('Cancel'));
   echo form_close()."\n";
 ?>
 </div>

@@ -10,11 +10,11 @@ Parameters:
 $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('authors/delete/'.$author->author_id.'/commit');
-echo "Are you sure that you want to delete the author '".$author->getName()."'?<p>\n";
-echo form_submit('confirm','Confirm');
+echo sprintf(__('Are you sure that you want to delete the author "%s"?'), $author->getName())."<p>\n";
+echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('authors/show/'.$author->author_id);
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 ?>

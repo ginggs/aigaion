@@ -11,11 +11,11 @@ $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('bookmarklist/setpubaccesslevel/commit');
 echo form_hidden('accesslevel',$accesslevel);
-echo "Are you sure that you want to set the read access level for all publications on the bookmarklist to '".$accesslevel."'? There is no undo!<p>\n";
-echo form_submit('confirm','Confirm');
+echo sprintf(__('Are you sure that you want to set the read access level for all publications on the bookmarklist to "%s"? There is no undo!'), $accesslevel)."<p>\n";
+echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('bookmarklist');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 ?>

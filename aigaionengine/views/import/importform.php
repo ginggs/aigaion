@@ -10,8 +10,9 @@ if (!isset($content)||($content==null))
 }
 ?>
 <div class='publication'>
-  <div class='header'>Import publications</div>
-  <p>Paste the entries (<?php echo implode(', ',$importTypes); ?>) to import in the text area below and then press "Import". </p>
+  <div class='header'><?php echo __('Import publications'); ?></div>
+  <p>
+    <?php echo sprintf(__('Paste the entries (%s) to import in the text area below and then press "Import"'), implode(', ',$importTypes));?>. </p>
 <?php
   //open the edit form
   $formAttributes     = array('ID' => 'import_form');
@@ -32,9 +33,9 @@ if (!isset($content)||($content==null))
   </table>
 <?php
   $importTypes["auto"] = "auto";
-  echo form_submit('publication_submit', 'Import')
-       .'&nbsp;<span title="Select the format of the data entered in the form above, or \'auto\' to let Aigaion automatically detect the format.">Format: '.form_dropdown('format',$importTypes,'auto')."</span>\n"
-       .'&nbsp;'.form_checkbox('markasread','markasread',False).' Mark imported entries as read.'."\n";
+  echo form_submit('publication_submit', __('Import'))
+       .'&nbsp;<span title="'.__('Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format.').'">'.__('Format:').' '.form_dropdown('format',$importTypes,'auto')."</span>\n"
+       .'&nbsp;'.form_checkbox('markasread','markasread',False).' '.__('Mark imported entries as read.')."\n";
   echo form_close()."\n";
 ?>
 </div>

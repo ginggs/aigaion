@@ -16,7 +16,7 @@ $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
         
     if ($attachment->isremote) {
-        echo "<a href='".prep_url($attachment->location)."' class='open_extern'><img title='Download ".htmlentities($attachment->name,ENT_QUOTES, 'utf-8')."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachment->location)."' class='open_extern'><img title='".sprintf(__('Download %s'), htmlentities($attachment->name,ENT_QUOTES, 'utf-8'))."' class='large_icon' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -25,7 +25,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        $params = array('title'=>'Download '.$attachment->name);
+        $params = array('title'=>sprintf(__('Download %s'),$attachment->name));
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['class'] = 'open_extern';
         echo anchor('attachments/single/'.$attachment->att_id,"<img class='large_icon' src='".$iconUrl."'/>" ,$params)."\n";
@@ -36,8 +36,6 @@ $user       = $this->user_db->getByID($userlogin->userID());
         $name = utf8_substr($name,0,30)."...";
     }
     echo $name;
-    //$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($attachment);
-    //echo anchor('accesslevels/edit/attachment/'.$attachment->att_id,$accesslevels,array('title'=>'click to modify access levels'));
         
     //the block of edit actions: dependent on user rights
     $userlogin = getUserLogin();
@@ -46,12 +44,12 @@ $user       = $this->user_db->getByID($userlogin->userID());
             $this->accesslevels_lib->canEditObject($attachment)         
         ) 
     {
-        echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[".__('delete')."]",array('title'=>'Delete '.$attachment->name));
-        echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[".__('edit')."]",array('title'=>'Edit information for '.$attachment->name));
+        echo "&nbsp;&nbsp;".anchor('attachments/delete/'.$attachment->att_id,"[".__('delete')."]",array('title'=>sprintf(__('Delete %s'), $attachment->name)));
+        echo "&nbsp;".anchor('attachments/edit/'.$attachment->att_id,"[".__('edit')."]",array('title'=>sprintf(__('Edit information for %s'),$attachment->name)));
         if ($attachment->ismain) {
-            echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[".__('unset main')."]",array('title'=>'Unset as main attachment'));
+            echo "&nbsp;".anchor('attachments/unsetmain/'.$attachment->att_id,"[".__('unset main')."]",array('title'=>__('Unset as main attachment')));
         } else {
-            echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[".__('set main')."]",array('title'=>'Set as main attachment'));
+            echo "&nbsp;".anchor('attachments/setmain/'.$attachment->att_id,"[".__('set main')."]",array('title'=>__('Set as main attachment')));
         }
         
         $read_icon = $this->accesslevels_lib->getReadAccessLevelIcon($attachment);
@@ -68,7 +66,7 @@ $user       = $this->user_db->getByID($userlogin->userID());
                            )
                       );
         
-        echo "[<span title='attachment read / edit rights'><span id='attachment_rights_".$attachment->att_id."'>r:".$readrights."e:".$editrights."</span></span>]";
+        echo "[<span title='".__('attachment read / edit rights')."'><span id='attachment_rights_".$attachment->att_id."'>r:".$readrights."e:".$editrights."</span></span>]";
         
     }
     

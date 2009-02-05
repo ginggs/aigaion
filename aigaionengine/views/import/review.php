@@ -11,7 +11,7 @@ echo form_hidden('markasread',  $mark)."\n";
 $b_even = true;
 
 echo "<div class='publication'>\n";
-echo "  <div class='header'>Review publications</div>\n";
+echo "  <div class='header'>".__('Review publications')."</div>\n";
 
 for ($i = 0; $i < $importCount; $i++)
 {
@@ -32,7 +32,7 @@ for ($i = 0; $i < $importCount; $i++)
     <tr>
       <td colspan = 2><?php
         echo form_checkbox(array('name' => 'do_import_'.$i, 'id' => 'import_'.$i, 'value'=>'CHECKED', 'checked' => TRUE));
-        echo "Import: <b>".$publications[$i]->title."</b>\n"; 
+        echo __('Import:')." <b>".$publications[$i]->title."</b>\n"; 
         
         if ($reviews[$i]['title'] != null)
           echo "<div class='errormessage'>".$reviews[$i]['title']."</div>\n";
@@ -51,7 +51,7 @@ for ($i = 0; $i < $importCount; $i++)
     ?>
     <tr>
       <td style='width:2em;'></td>
-      <td>Citation: <?php echo form_input(array('name' => 'bibtex_id_'.$i, 'id' => 'bibtex_id_'.$i, 'size' => '45'), $publications[$i]->bibtex_id); ?></td>
+      <td><?php echo __('Citation')." ".form_input(array('name' => 'bibtex_id_'.$i, 'id' => 'bibtex_id_'.$i, 'size' => '45'), $publications[$i]->bibtex_id); ?></td>
     </tr>
     <?php
 
@@ -70,11 +70,8 @@ for ($i = 0; $i < $importCount; $i++)
     {
 
       ?>
-      <!--tr>
-        <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['authors'][0] ?></div></td>
-      </tr-->
       <tr>
-        <td></td><td valign='top'><br/><b>Choose alternative authors:</b></td>
+        <td></td><td valign='top'><br/><b><?php echo __('Choose alternative authors:'); ?></b></td>
       </tr>
       <tr>
         <td></td><td>
@@ -88,21 +85,21 @@ for ($i = 0; $i < $importCount; $i++)
             echo form_hidden('author_'.$i.'_'.$j.'_inputjr',$author->jr);
             $similar_authors = $reviews[$i]['authors'][1][$j];
             if (count($similar_authors)!=0 ) {
-                echo '<br/>Options for import-author '.$author->getName('lvf').':<br/>';
+                echo '<br/>'.sprintf(__('Options for import-author "%s":'), $author->getName('lvf')).'<br/>';
                 $exactMatch = false;
                 $alternatives = '';
                 $radiocheck = false;
                 foreach ($similar_authors as $sa_id) {
                   $sa = $this->author_db->getByID($sa_id);
-                  $feedback = '[from database]';
+                  $feedback = '['.__('from database').']';
                   if ($sa->getName('lvf') == $author->getName('lvf')) { //exact match!
                     $exactMatch = True;
-                    $feedback = '[keep]';
+                    $feedback = '['.__('keep').']';
                     $radiocheck = true;
                   }
                   $alternatives .= form_radio(array('name'        => 'author_'.$i.'_'.$j.'_alternative',
                                         'id'          => 'author_'.$i.'_'.$j.'_alternative',
-                                        'title'       => 'select to use similar author found in database',
+                                        'title'       => __('select to use similar author found in database'),
                                         'value'       => $sa_id,
                                         'checked'     => $radiocheck
                                        )).$sa->getName('lvf').' '.$feedback.'<br/>';
@@ -110,7 +107,7 @@ for ($i = 0; $i < $importCount; $i++)
                 if (!$exactMatch)
                   echo form_radio(array('name'        => 'author_'.$i.'_'.$j.'_alternative',
                                         'id'          => 'author_'.$i.'_'.$j.'_alternative',
-                                        'title'       => 'select to use author as found in BiBTeX',
+                                        'title'       => __('select to use author as found in BibTeX'),
                                         'value'       => '-1',
                                         'checked'     => TRUE
                                        )).$author->getName('lvf').' [add new]<br/>';
@@ -170,7 +167,7 @@ for ($i = 0; $i < $importCount; $i++)
 
       ?>
       <tr>
-        <td></td><td valign='top'><br/><b>Choose alternative editors:</b></td>
+        <td></td><td valign='top'><br/><b><?php echo __('Choose alternative editors:')?></b></td>
       </tr>
       <tr>
         <td></td><td>
@@ -190,15 +187,15 @@ for ($i = 0; $i < $importCount; $i++)
                 $radiocheck = false;
                 foreach ($similar_editors as $sa_id) {
                   $sa = $this->author_db->getByID($sa_id);
-                  $feedback = '[from database]';
+                  $feedback = '['.__('from database').']';
                   if ($sa->getName('lvf') == $editor->getName('lvf')) { //exact match!
                     $exactMatch = True;
-                    $feedback = '[keep]';
+                    $feedback = '['.__('keep').']';
                     $radiocheck = true;
                   }
                   $alternatives .= form_radio(array('name'        => 'editor_'.$i.'_'.$j.'_alternative',
                                         'id'          => 'editor_'.$i.'_'.$j.'_alternative',
-                                        'title'       => 'select to use similar editor found in database',
+                                        'title'       => __('select to use similar editor found in database'),
                                         'value'       => $sa_id,
                                         'checked'     => $radiocheck
                                        )).$sa->getName('lvf').' '.$feedback.'<br/>';
@@ -206,7 +203,7 @@ for ($i = 0; $i < $importCount; $i++)
                 if (!$exactMatch)
                   echo form_radio(array('name'        => 'editor_'.$i.'_'.$j.'_alternative',
                                         'id'          => 'editor_'.$i.'_'.$j.'_alternative',
-                                        'title'       => 'select to use editor as found in BiBTeX',
+                                        'title'       => __('select to use editor as found in BibTeX'),
                                         'value'       => '-1',
                                         'checked'     => TRUE
                                        )).$editor->getName('lvf').' [add new]<br/>';
@@ -268,7 +265,7 @@ for ($i = 0; $i < $importCount; $i++)
         <td colspan = 2><div class='errormessage'><?php echo $reviews[$i]['keywords'] ?></div></td>
       </tr>
       <tr>
-        <td valign='top'>Keywords:</td>
+        <td valign='top'><?php __('Keywords')?>:</td>
         <td valign='top'>
           <?php
           echo form_input(array('name' => 'keywords_'.$i, 'id' => 'keywords_'.$i, 'size' => '45', 'alt' => 'keywords', 'autocomplete' => 'off'), $keywords);
@@ -286,7 +283,6 @@ for ($i = 0; $i < $importCount; $i++)
         echo form_hidden($field."_".$i,     formatMonthBibtexForEdit($publications[$i]->$field))."\n";
       } else if ($field != "keywords") {
         echo form_hidden($field."_".$i,     $publications[$i]->$field)."\n";
-        //echo $field."_".$i.'___'.$publications[$i]->$field.'<br>';
       }
       else if ($reviews[$i]['keywords'] == null)
       {
@@ -315,7 +311,7 @@ for ($i = 0; $i < $importCount; $i++)
 
 } //end for each publication
 
-echo form_submit('publication_submit', 'Import')."\n";
+echo form_submit('publication_submit', __('Import'))."\n";
 echo form_close()."\n";
 ?>
 </div>

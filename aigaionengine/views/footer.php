@@ -4,7 +4,7 @@
       <!-- End of content_holder -->
 
     	<div id="footer_holder">
-    		processing time: <?php echo $this->benchmark->elapsed_time();?> seconds.
+    		<?php echo sprintf(__('processing time: %s seconds'), $this->benchmark->elapsed_time());?>.
     	</div>
 
     </div>

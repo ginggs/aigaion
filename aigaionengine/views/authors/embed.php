@@ -12,7 +12,7 @@ $userlogin = getUserLogin();
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'institute'=>'Institute');
+      $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
       foreach ($authorfields as $field=>$display)
       {
         if (trim($author->$field) != '')
@@ -38,13 +38,13 @@ echo  "<li><nobr>["
        <li><nobr>["
       .anchor('export/author/'.$author->author_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
        <li><nobr>["
-      .anchor('authors/embed/'.$author->author_id.'/type','Order on type/journal')."]</nobr></li>
+      .anchor('authors/embed/'.$author->author_id.'/type',__('Order on Type/Journal'))."]</nobr></li>
        <li><nobr>["
-      .anchor('authors/embed/'.$author->author_id.'/title','Order alphabetically on title')."]</nobr></li>
+      .anchor('authors/embed/'.$author->author_id.'/title',__('Order alphabetically on Title'))."]</nobr></li>
        <li><nobr>["
-      .anchor('authors/embed/'.$author->author_id.'/author','Order alphabetically on author')."]</nobr></li>
+      .anchor('authors/embed/'.$author->author_id.'/author',__('Order alphabetically on Author'))."]</nobr></li>
        <li><nobr>["
-      .anchor('authors/embed/'.$author->author_id.'/year','Order on year')."]</nobr></li>
+      .anchor('authors/embed/'.$author->author_id.'/year',__('Order on Year'))."]</nobr></li>
 </ul>
 ";
 

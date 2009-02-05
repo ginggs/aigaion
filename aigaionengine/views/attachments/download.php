@@ -16,7 +16,7 @@ $userlogin = getUserLogin();
 if ($attachment->isremote) {
 } else {
     if (!file_exists(AIGAION_ATTACHMENT_DIR."/".$attachment->location)) {
-        appendErrorMessage("Attachment file could not be found: ".AIGAION_ATTACHMENT_DIR."/".$attachment->location."<br/>");
+        appendErrorMessage(sprintf(__('Attachment file could not be found: "%s/%s"'), AIGAION_ATTACHMENT_DIR, $attachment->location)."<br/>");
         redirect('');
     } else {
         $this->load->helper('download');

@@ -12,7 +12,8 @@ $userlogin = getUserLogin();
     <td  width='100%'>
       <table class='author_details'>
 <?php
-      $authorfields = array('firstname'=>'First name(s)', 'von'=>'von-part', 'surname'=>'Last name(s)', 'jr'=>'jr-part', 'email'=>'Email', 'institute'=>'Institute');
+      $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
+      
       foreach ($authorfields as $field=>$display)
       {
         if (trim($author->$field) != '')

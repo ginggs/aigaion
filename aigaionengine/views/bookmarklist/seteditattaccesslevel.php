@@ -11,11 +11,11 @@ $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('bookmarklist/seteditattaccesslevel/commit');
 echo form_hidden('editaccesslevel',$editaccesslevel);
-echo "Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to '".$editaccesslevel."'? There is no undo!<p>\n";
-echo form_submit('confirm','Confirm');
+echo sprintf(__('Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to "%s"? There is no undo!'), $editaccesslevel."<p>\n";
+echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('bookmarklist');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 ?>

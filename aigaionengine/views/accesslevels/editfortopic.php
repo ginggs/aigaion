@@ -8,27 +8,27 @@ $userlogin=getUserLogin();
 $user_id = $userlogin->userId();
 $this->load->helper('form');
 ?>
-<div class='header'>Edit topic access levels</div>
-For now, you still have to manually edit all access levels - there is no automatic propagation of changes up or down the tree.
+<div class='header'><?php echo __('Edit topic access levels');?></div>
+<?php echo __('You have to manually edit all access levels - there is no automatic propagation of changes up or down the tree.');?>
 
 <br/>
 <table>
     <tr >
         <td colspan='2'>
-            <img src='<?php echo getIconUrl('info.gif'); ?>' title='Effective access levels (after combining all relevant access levels)'/>
-            <br/>Effective
+            <img src='<?php echo getIconUrl('info.gif')."' title='".__('Effective access levels (after combining all relevant access levels)')."'";?> />
+            <br/><?php echo __('Effective');?>
         </td>
         <td>
-            <img src='<?php echo getIconUrl('info.gif'); ?>' title='Topic'/>
-            <br/>Topic
+            <img src='<?php echo getIconUrl('info.gif')."' title='".__('Topic')."'"; ?>/>
+            <br/><?php echo __('Topic');?>
         </td>
         <td>
-            <img src='<?php echo getIconUrl('info.gif'); ?>' title='Owner of topic (only owner can change objects with private edit levels...)'/>
-            <br/>Owner
+            <img src='<?php echo getIconUrl('info.gif')."' title='".__('Owner of topic (only owner can change objects with private edit levels...)')."'";?> />
+            <br/><?php echo __('Owner');?>
         </td>
         <td colspan='2'>
-            <img src='<?php echo getIconUrl('info.gif'); ?>' title='Per-object access levels'/>
-            <br/>Individual per-object access levels
+            <img src='<?php echo getIconUrl('info.gif')."' title='".__('Per-object access levels')."'";?> />
+            <br/><?php echo __('Individual per-object access levels');?>
         </td>
         
     </tr>
@@ -64,10 +64,10 @@ $root = $this->topic_db->getByID(1,$config);
                     if ($topic_id==$topic->topic_id)echo 'style="background:#dfdfff;" ';
                     ?>>
                     <td>
-                        r:<img class='al_icon' src='<?php echo getIconurl('al_'.$topic->derived_read_access_level.'_grey.gif'); ?>'/>
+                        r:<img class='rights_icon' src='<?php echo getIconurl('al_'.$topic->derived_read_access_level.'_grey.gif'); ?>'/>
                     </td>
                     <td>
-                        e:<img class='al_icon' src='<?php echo getIconurl('al_'.$topic->derived_edit_access_level.'_grey.gif'); ?>'/>
+                        e:<img class='rights_icon' src='<?php echo getIconurl('al_'.$topic->derived_edit_access_level.'_grey.gif'); ?>'/>
                     </td>
                     <td style='padding-left:0.5em;' class='header2'>
                         <?php 
@@ -110,17 +110,17 @@ $root = $this->topic_db->getByID(1,$config);
 <br/><br/>
 <div style='border:1px solid black;'>
     <div style='border:1px solid black;'>
-        <b>Legenda</b>
+        <b><?php echo __('Legenda'); ?></b>
     </div>
     <?php
-    echo "
-    r:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> read public<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> read intern<br/> 
-    r:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> read private<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_public.gif')."'/> edit public<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_intern.gif')."'/> edit intern<br/> 
-    e:<img class='al_icon' src='".getIconurl('al_private.gif')."'/> edit private<br/> 
-    - If nothing is shown, access level is 'intern'.<br/>
+        echo "
+    r:<img class='rights_icon' src='".getIconurl('rights_public.gif')."'/> ".__('read public')."<br/> 
+    r:<img class='rights_icon' src='".getIconurl('rights_intern.gif')."'/> ".__('read intern')."<br/> 
+    r:<img class='rights_icon' src='".getIconurl('rights_private.gif')."'/> ".__('read private')."<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_public.gif')."'/> ".__('edit public')."<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_intern.gif')."'/> ".__('edit intern')."<br/> 
+    e:<img class='rights_icon' src='".getIconurl('rights_private.gif')."'/> ".__('edit private')."<br/> 
+    - ".__("If nothing is shown, access level is 'intern'")."<br/>
     ";
     ?>
 </div>

@@ -9,27 +9,27 @@ exportCommand       Default: "export/all/"; will be suffixed with type. May also
 $this->load->helper('form');
 $userlogin  = getUserLogin();
 
-if (!isset($header))$header="Export all publications";
+if (!isset($header))$header=__('Export all publications');
 if (!isset($exportCommand))$exportCommand="export/all/";
 ?>
 <p class='header'><?php echo $header; ?></p>
 <p>
-  Please select the format in which you want to export the publications:<br/>
+  <?php echo __('Please select the format in which you want to export the publications:')?><br/>
 </p>
 <?php
 echo form_open($exportCommand.'bibtex');
-echo "<div>".form_submit(array('name'=>'BiBTeX','title'=>'Export to BiBTeX'),'BiBTeX');
+echo "<div>".form_submit(array('name'=>'BiBTeX','title'=>__('Export to BibTeX')),'BiBTeX');
 echo "</div>\n";
 echo form_close();
 echo '<br/>';
 echo form_open($exportCommand.'ris');
-echo "<div>".form_submit(array('name'=>'RIS','title'=>'Export to RIS'),'RIS');
+echo "<div>".form_submit(array('name'=>'RIS','title'=>__('Export to RIS')),'RIS');
 echo "</div>\n";
 echo form_close();
 echo '<br/>';
 if ($userlogin->hasRights('export_email')) {
   echo form_open($exportCommand.'email');
-  echo "<div>".form_submit(array('name'=>'E-mail','title'=>'Export by E-mail'),'E-mail');
+  echo "<div>".form_submit(array('name'=>'E-mail','title'=>__('Export by E-mail')),'E-mail');
   echo "</div>\n";
   echo form_close();
 }
@@ -38,19 +38,17 @@ echo "<br/><hr/>";
 
 $this->load->helper('osbib');
 echo form_open($exportCommand.'formatted');
-echo "<div>Format: ";
-echo form_dropdown('format',array('html'=>'HTML','rtf'=>'RTF','plain'=>'TXT'),'html');//,'sxw'=>'Open Office'
-echo " Style: ";
+echo "<div>".__('Format').": ";
+echo form_dropdown('format',array('html'=>'HTML','rtf'=>'RTF','plain'=>'TXT'),'html');//,'sxw'=>__('Open Office')
+echo " ".__('Style').": ";
 $style_options = array();
 $styles = LOADSTYLE::loadDir(APPPATH."include/OSBib/styles/bibliography");
 foreach ($styles as $style=>$longname) {
     $style_options[$style] = $style;
 }
 echo form_dropdown('style',$style_options);
-//echo " Sort by: ";
-//echo form_dropdown('sort',array('year'=>'Year','title'=>'Title','author'=>'Author','type'=>'Type/journal'),'html');
 echo form_hidden('sort','nothing');
-echo '&nbsp;'.form_submit(array('name'=>'Formatted','title'=>'Export formatted entries'),'Export');
+echo '&nbsp;'.form_submit(array('name'=>__('Formatted'),'title'=>__('Export formatted entries')),__('Export'));
 echo "</div>";
 echo form_close();
 
