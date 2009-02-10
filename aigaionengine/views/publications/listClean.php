@@ -10,9 +10,6 @@
 
   //here the output starts
   echo "<div class='publication_list'>\n";
-  if (isset($header) && ($header != '')) {
-    //echo "  <div class='header'>".$header."</div>\n";
-  }
 
   $b_even = true;
   $subheader = '';
@@ -65,7 +62,7 @@
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
           if ($publication->pub_type!='Article')
-            echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
+            echo '<div><br/></div><div class="header">'.sprintf(__('Publications of type %s'),$subheader).'</div><div><br/></div>';
         }
         if ($publication->pub_type=='Article') {
             $newsubsubheader = $publication->cleanjournal;
@@ -86,12 +83,12 @@
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
           if ($publication->pub_type == 'Mastersthesis')
-            echo '<div><br/></div><div class="header"><b>Master theses</b></div>';
+            echo '<div><br/></div><div class="header">'.__('Master theses').'</div>';
         }
 		$newsubheaderyear = $publication->actualyear;
         if ($newsubheaderyear!=$subheaderyear) {
           $subheaderyear = $newsubheaderyear;
-          echo '<div><br/></div><div class="header"><b>'.$subheaderyear.'</b></div><div></div>';
+          echo '<div><br/></div><div class="header">'.$subheaderyear.'</div><div></div>';
         }
         break;
       case 'recent':
@@ -120,7 +117,7 @@ if (strpos($displayTitle,'$')===false) {
 $num_authors    = count($publication->authors);
 
 if ($summarystyle == 'title') {
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
 
 $current_author = 1;
@@ -133,9 +130,6 @@ foreach ($publication->authors as $author)
   else if ($current_author>1 || ($summarystyle == 'title')) {
     echo ", ";
   }
-	// I had problems with the UTF-8 chars when including the view into another page. The UTF-8 encoding was therefore removed.
-  // Uncomment the line below and comment out the next line if you want UTF-8.
-  //echo  "<span class='author'>".$author->getName()."</span>";
   echo  "<span class='author'>".$author->getName()."</span>";
   $current_author++;
 }
@@ -188,7 +182,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8')."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
+        echo "<a href='".prep_url($attachments[0]->location)."' target='_blank'><img class='large_icon' title='".sprintf(__('Download %s'),htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8'))."' src='".getIconUrl("attachment_html.gif")."'/></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -197,18 +191,14 @@ if (count($attachments) != 0)
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        $params = array('title'=>'Download '.$attachments[0]->name);
+        $params = array('title'=> sprintf(__('Download %s'), $attachments[0]->name));
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['target'] = '_blank';
         echo anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' style='border: none' src='".$iconUrl."'/>" ,$params)."\n";
     }
 }
-
 echo"</td></tr>";
-
-
 echo "</table></div>"; //end of publication_summary div
-
     }
   }
 ?>

@@ -20,9 +20,9 @@ Parameters:
 	echo "
 <p class='header1'>Aigaion statistics</p>
 <ul>
-<li>{$publicationCount} Publications ({$publicationReadCount} read)</li>
-<li>{$authorCount} Authors</li>
-<li>{$topicCount} Main topics</li>
+<li>".sprintf(__('%s publications (%s read)'), $publicationCount, $publicationReadCount)."</li>
+<li>".sprintf(__('%s authors'), $authorCount)."</li>
+<li>".sprintf(__('%s main topics'), $topicCount)."</li>
 </ul>
 ";
 ?>

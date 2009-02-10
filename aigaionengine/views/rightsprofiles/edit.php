@@ -37,9 +37,9 @@ if (!isset($rightsprofile)||($rightsprofile==null)||(isset($action)&&$action=='a
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Create a new rightsprofile</p>";
+    echo "<p class='header2'>".__('Create a new rightsprofile')."</p>";
 } else {
-    echo "<p class='header2'>Edit rightsprofile \"".$rightsprofile->name."\"</p>";
+    echo "<p class='header2'>".sprintf(__('Edit rightsprofile "%s"'), $rightsprofile->name)."</p>";
 }
 
 //validation feedback
@@ -48,7 +48,7 @@ echo $this->validation->error_string;
 echo "
     <table width='100%'>
         <tr>
-        <td>Name</td>
+        <td>".__('Name')."</td>
         <td>"
         .form_input(array('name'=>'name',
                           'size'=>'10',
@@ -57,7 +57,7 @@ echo "
         </tr>
 
         <tr><td colspan='2'>
-        <hr><b>User rights in this profile:</b><hr>
+        <hr><b>".__('User rights in this profile').":</b><hr>
         </td></tr>
         ";
         
@@ -71,9 +71,9 @@ echo "
 echo "
         <tr><td>";
 if ($isAddForm) {
-    echo form_submit('submit','Add');
+    echo form_submit('submit',__('Add'));
 } else {
-    echo form_submit('submit','Change');
+    echo form_submit('submit',__('Change'));
 }
 echo "
         </td>
@@ -82,7 +82,7 @@ echo "
      ";
 echo form_close();
 echo form_open('users/manage');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

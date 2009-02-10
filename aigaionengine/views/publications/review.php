@@ -35,13 +35,13 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
         </td>
       </tr>
       <tr>
-        <td valign='top'>Citation:</td>
-        <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->bibtex_id);?></span></td>
+        <td valign='top'><?php echo __('Citation');?>:</td>
+        <td valign='top'><?php echo "<span title='".sprintf(__('%s field'), $class)."'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $publication->bibtex_id);?></span></td>
       </tr>
 <?php
     }
     else
-      echo form_hidden('bibtex_id',   $publication->bibtex_id)."\n";
+      echo form_hidden('bibtex_id', $publication->bibtex_id)."\n";
     
     //keyword review
     if ($review['keywords'] != null)
@@ -70,8 +70,8 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
       $class  = 'optional';
 ?>
       <tr>
-        <td valign='top'>Keywords:</td>
-        <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span></td>
+        <td valign='top'><?php echo __('Keywords');?>:</td>
+        <td valign='top'><?php echo "<span title='".sprintf(__('%s field'), $class)."'>".form_input(array('name' => $key, 'id' => $key, 'size' => '45', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span></td>
       </tr>
 <?php
     }

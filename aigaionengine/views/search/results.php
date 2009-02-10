@@ -13,7 +13,7 @@ foreach ($searchresults as $type=>$resultList) {
                 $authordisplay .= '<li>'.anchor('authors/show/'.$author->author_id,$author->getName()).'</li>';
             }
             $authordisplay .= "</ul>";
-            $resulttabs['Authors: '.count($resultList)] = $authordisplay;
+            $resulttabs[sprintf(__('Authors: %s'),count($resultList))] = $authordisplay;
             break;
         case 'topics':
             $topicdisplay = "<ul>";
@@ -21,7 +21,7 @@ foreach ($searchresults as $type=>$resultList) {
                 $topicdisplay .= '<li>'.anchor('topics/single/'.$topic->topic_id,$topic->name).'</li>';
             }
             $topicdisplay .= "</ul>";
-            $resulttabs['Topics: '.count($resultList)] = $topicdisplay;
+            $resulttabs[sprintf(__('Topics: %s'),count($resultList))] = $topicdisplay;
             break;
         case 'keywords':
             $keyworddisplay = "<ul>";
@@ -29,7 +29,7 @@ foreach ($searchresults as $type=>$resultList) {
                 $keyworddisplay .= '<li>'.anchor('keywords/single/'.$kw->keyword_id,$kw->keyword).'</li>';
             }
             $keyworddisplay .= "</ul>";
-            $resulttabs['Keywords: '.count($resultList)] = $keyworddisplay;
+            $resulttabs[sprintf(__('Keywords: %s'),count($resultList))] = $keyworddisplay;
             break;
 /*        case 'publications_titles':
             $pubdisplay = "<ul>";
@@ -39,10 +39,10 @@ foreach ($searchresults as $type=>$resultList) {
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";
-            $resulttabs['Publications: '.count($resultList)] = $pubdisplay;
+            $resulttabs[sprintf(__('Publications: %s'),count($resultList))] = $pubdisplay;
             //option below displays the publciations as list, but I don't want the headers and everything... maybe make an option in that view that 
             //determines whether headers are displayed?
-            //$resulttabs['Publications: '.count($resultList)] = $this->load->view('publications/list', array('publications'=>$resultList), true);
+            //$resulttabs[sprintf(__('Publications: %s'),count($resultList))] = $this->load->view('publications/list', array('publications'=>$resultList), true);
             break;
         case 'publications_bibtex':
             $pubdisplay = "<ul>";
@@ -52,7 +52,7 @@ foreach ($searchresults as $type=>$resultList) {
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";
-            $resulttabs['BibTeX ID: '.count($resultList)] = $pubdisplay;
+            $resulttabs[sprintf(__('Citation ID: %s'),count($resultList))] = $pubdisplay;
             break;
         case 'publications_notes':
             $pubdisplay = "<ul>";
@@ -62,7 +62,7 @@ foreach ($searchresults as $type=>$resultList) {
                 $pubdisplay .= '</li>';
             }
             $pubdisplay .= "</ul>";
-            $resulttabs['Notes: '.count($resultList)] = $pubdisplay;
+            $resulttabs[sprintf(__('Notes: %s'),count($resultList))] = $pubdisplay;
             break;
   */
         default:
@@ -74,7 +74,7 @@ foreach ($searchresults as $type=>$resultList) {
 
 //show all relevant result tabs
 foreach ($resulttabs as $title=>$tabdisplay) {
-    echo '<div class="header">'.$title.' matches</div>';
+    echo '<div class="header">'.sprintf(__('%s matches'), $title).'</div>';
     echo $tabdisplay;
 }
 
@@ -95,7 +95,7 @@ foreach ($searchresults as $title=>$content)
 
 if (count($types) > 0)
 {
-  echo "<div class='header'>Publication matches</div>\n";
+  echo "<div class='header'>".__('Publication matches')."</div>\n";
   $cells = "";
   $divs  = "";
   $hideall = "";
@@ -130,11 +130,11 @@ if (count($types) > 0)
 } else { //no publication results
     if (count($resulttabs)==0)
     {
-        echo "<div class='message'>No search results found for query: <b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b></div>\n";
+        echo "<div class='message'>".sprintf(__('No search results found for query: %s'), "<b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b>")."</div>\n";
     }
     else
     {
-        echo "<div class='message'>Search results for query: <b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b></div>\n";
+        echo "<div class='message'>".sprintf(__('Search results for query: %s'), "<b>".htmlentities($query,ENT_QUOTES, 'utf-8')."</b>")."</div>\n";
     } 
 }
 /*

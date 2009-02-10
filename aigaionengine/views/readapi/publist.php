@@ -66,7 +66,7 @@
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
           if ($publication->pub_type!='Article')
-            echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
+            echo '<div><br/></div><div class="header">'.sprintf(__('Publications of type %s'),$subheader).'</div><div><br/></div>';
         }
         if ($publication->pub_type=='Article') {
             $newsubsubheader = $publication->cleanjournal;
@@ -107,7 +107,7 @@ if ( (strpos($displayTitle,'$')===false)
 $num_authors    = count($publication->authors);
 
 if ($summarystyle == 'title') {
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
     
 $current_author = 1;
@@ -121,7 +121,7 @@ foreach ($publication->authors as $author)
     echo ", ";
   }
 
-  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
+  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => sprintf(__('All information on %s'),$author->cleanname)))."</span>";
   $current_author++;
 }
 
@@ -129,7 +129,7 @@ if ($summarystyle == 'author') {
     if ($num_authors > 0) {
         echo ', ';
     }
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
 
 
@@ -168,7 +168,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<br/><a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8')."' src='".getIconUrl("attachment_html.gif")."' alt='download' /></a>\n";
+        echo "<br/><a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='".sprintf(__('Download %s'),htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8'))."' src='".getIconUrl("attachment_html.gif")."' alt='download' /></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -177,14 +177,14 @@ if (count($attachments) != 0)
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        $params = array('title'=>'Download '.$attachments[0]->name);
+        $params = array('title'=> sprintf(__('Download %s'),$attachments[0]->name));
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['class'] = 'open_extern';
         echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."' alt='attachment' />" ,$params)."\n";
     }
 }  
 if (utf8_trim($publication->doi)!='') {
-    echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' class='open_extern' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+    echo "<br/>[<a title='".__('Click to follow Digital Object Identifier link to online publication')."' class='open_extern' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
 }
 if (utf8_trim($publication->url)!='') {
     echo "<br/>[<a title='".prep_url($publication->url)."' class='open_extern' href='".prep_url($publication->url)."'>URL</a>]";

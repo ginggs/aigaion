@@ -10,13 +10,13 @@ Parameters:
 $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('notes/delete/'.$note->note_id.'/commit');
-echo "Are you sure that you want to delete the note below?<p>\n";
-echo form_submit('confirm','Confirm');
+echo __('Are you sure that you want to delete the note below? There is no undo!')."<p>\n";
+echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('publications/show/'.$note->pub_id);
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
-echo "<p class='header'>Note text:</p>";
+echo "<p class='header'>".__('Note text').":</p>";
 echo $note->text;
 ?>

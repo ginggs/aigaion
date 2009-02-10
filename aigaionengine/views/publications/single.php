@@ -8,9 +8,7 @@
 $accessLevelEdit = $this->accesslevels_lib->canEditObject($publication);
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
-
 $this->load->helper('translation');
-
 ?>
 <div class='publication'>
   <div class='optionbox'><?php
@@ -44,12 +42,11 @@ $this->load->helper('translation');
       	  }
         }
         echo  '&nbsp;['
-           .anchor('export/publication/'.$publication->pub_id.'/bibtex','BiBTeX',array('target'=>'aigaion_export')).']';
+           .anchor('export/publication/'.$publication->pub_id.'/bibtex','BibTeX',array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/ris','RIS',array('target'=>'aigaion_export')).']';
 
         if ($userlogin->hasRights('request_copies')) {
-  
   				$author_email = '';
   				if(count($publication->authors)>0)
   				{
@@ -57,7 +54,7 @@ $this->load->helper('translation');
   					{
   						if($author->email != '')
   						{
-  					  	$author_email = $author->email;
+	 				        $author_email = $author->email;
   							break;
   						}
   					}
@@ -65,14 +62,13 @@ $this->load->helper('translation');
   			 if($author_email != '')
   			 {
             $this->load->helper('encode');
-  					$subject=rawurlencode('Request for publication: '.$publication->title);
+  					$subject=rawurlencode(sprintf(__('Request for publication: "%s"'), $publication->title));
   					$bodytext=
   				 	 rawurlencode(__('Publication').': '.$publication->title.' : '.AIGAION_ROOT_URL.'index.php/publications/show/'.$publication->pub_id)
   				 	.rawurlencode("\n\n".__("I understand that the document referenced above is subject to copyright.")." ")
   				 	.rawurlencode("".__("I hereby request a copy strictly for my personal use.")."")
   				 	.rawurlencode("\n\n".__("Name and contact details").":\n");
   				 	echo "&nbsp;[<a href='mailto:".$author->email."?Subject=".$subject."&Body=".$bodytext."' title='".__("Request publication by e-mail")."'>".__("Request")."</a>]";
-  				
   			} else 
         {
   				echo '<span title="'.__('No e-mail address available for neither of the authors').'">&nbsp;['.__('Request').']</span>';
@@ -81,13 +77,6 @@ $this->load->helper('translation');
 ?>
   </div>
   <div class='header'><?php echo $publication->title; ?>
-<?php
-//    $accesslevels = "&nbsp;&nbsp;r:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_read_access_level.'.gif')."'/> e:<img class='rights_icon' src='".getIconurl('rights_'.$publication->derived_edit_access_level.'.gif')."'/>";
-//    echo anchor('accesslevels/edit/publication/'.$publication->pub_id,$accesslevels,array('title'=>'click to modify access levels'));
-
-
-
-?>
   </div>
   <table class='publication_details' width='100%'>
     <tr>
@@ -106,7 +95,7 @@ $this->load->helper('translation');
     <tr>
       <td valign='top'><?php
         if ($key=='namekey') {
-            echo __('Key').' <span title="'.__('This is the bibtex `key` field, used to define sorting keys').'">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
+            echo __('Key').' <span title="'.__('This is the BibTeX `key` field, used to define sorting keys').'">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
         } else {
             if (in_array($key,$capitalfields)) {
                 echo strtoupper(translateField($key));
@@ -162,7 +151,7 @@ $this->load->helper('translation');
                 foreach ($xref_pub->editors as $editor)
                 {
                   if (($current_editor == $num_editors) & ($num_editors > 1)) {
-                    echo " and ";
+                    echo " ".__('and')." ";
                   }
                   else {
                     echo ", ";
@@ -298,8 +287,8 @@ $this->load->helper('translation');
 ?>
     <tr>
       <td valign='top'><?php _e("Access rights");?>:</td>
-      <td valign='top'><?php echo "<span id='publication_rights_".$publication->pub_id."'><span title='".__("publication read / edit rights")."'>r:".$readrights."e:".$editrights."</span></span>";
-    echo "(".anchor('accesslevels/edit/publication/'.$publication->pub_id,__('edit all rights'),array('title'=>__('click to modify access levels'))).")";
+      <td valign='top'><?php echo "<span id='publication_rights_".$publication->pub_id."'><span title='".__("Publication read / edit rights")."'>r:".$readrights."e:".$editrights."</span></span>";
+    echo "(".anchor('accesslevels/edit/publication/'.$publication->pub_id,__('Edit all rights'),array('title'=>__('Click to modify access levels'))).")";
     ?>
 </td>
     </tr>

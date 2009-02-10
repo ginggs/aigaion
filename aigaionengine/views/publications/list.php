@@ -65,14 +65,6 @@
   if (isset($header) && ($header != '')) {
     echo "  <div class='header'>".$header."</div>\n";
   }
-  if ($useBookmarkList)
-  {
-?>
-  <!--input type='submit' value='Select all' onClick='javascript:selectAll(true);'>
-  <input type='submit' value='Unselect all' onClick='javascript:selectAll(false);'>
-  <input type='submit' value='Invert selection' onClick='javascript:invertSelection();'><br/-->
-<?php
-  }
   echo $multipagelinks;
   
   $b_even = true;
@@ -125,7 +117,7 @@
         if ($newsubheader!=$subheader) {
           $subheader = $newsubheader;
           if ($publication->pub_type!='Article')
-            echo '<div><br/></div><div class="header">Publications of type '.$subheader.'</div><div><br/></div>';
+            echo '<div><br/></div><div class="header">'.sprintf(__('Publications of type %s'),$subheader).'</div><div><br/></div>';
         }
         if ($publication->pub_type=='Article') {
             $newsubsubheader = $publication->cleanjournal;
@@ -166,7 +158,7 @@ if ( (strpos($displayTitle,'$')===false)
 $num_authors    = count($publication->authors);
 
 if ($summarystyle == 'title') {
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
     
 $current_author = 1;
@@ -180,7 +172,7 @@ foreach ($publication->authors as $author)
     echo ", ";
   }
 
-  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => 'All information on '.$author->cleanname))."</span>";
+  echo  "<span class='author'>".anchor('authors/show/'.$author->author_id, $author->getName(), array('title' => sprintf(__('All information on %s'),$author->cleanname)))."</span>";
   $current_author++;
 }
 
@@ -188,29 +180,11 @@ if ($summarystyle == 'author') {
     if ($num_authors > 0) {
         echo ', ';
     }
-    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => 'View publication details'))."</span>";
+    echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
 
 
 foreach ($summaryfields as $key => $prefix) {
-//DR 29-09-2008: we no longer store firstpage and lastpage separately
-//  if ($key == 'pages') {
-//    $pages = "";
-//    if (($publication->firstpage != "0") || ($publication->lastpage != "0")) {
-//      if ($publication->firstpage != "0") {
-//        $pages = $publication->firstpage;
-//      }
-//      if (($publication->firstpage != $publication->lastpage)&& ($publication->lastpage != "0") && ($publication->lastpage != "")) {
-//        if ($pages != "") {
-//            $pages .= "-";
-//        }
-//        $pages .= $publication->lastpage;
-//      }
-//    }
-//    $val = $pages;
-//  } else {
-//    $val = utf8_trim($publication->$key);
-//  }
   $val = utf8_trim($publication->$key);
   if ($key=="month")$val=formatMonthText($val);
   $postfix='';
@@ -244,7 +218,7 @@ echo "
       
 if ($useBookmarkList) {
   if ($publication->isBookmarked) {
-    echo '<span title="Click to UnBookmark publication">'
+    echo '<span title="'.__('Click to UnBookmark publication').'">'
          .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('bookmarked.gif')." ' alt='bookmarked' />",
           array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
@@ -252,7 +226,7 @@ if ($useBookmarkList) {
           ).'</span>';
   } 
   else {
-    echo '<span title="Click to Bookmark publication">'
+    echo '<span title="'.__('Click to Bookmark publication').'">'
          .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('nonbookmarked.gif')."' alt='nonbookmarked' />",
           array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
                 'update'  => 'bookmark_pub_'.$publication->pub_id
@@ -265,7 +239,7 @@ $attachments = $publication->getAttachments();
 if (count($attachments) != 0)
 {
     if ($attachments[0]->isremote) {
-        echo "<br/><a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='Download ".htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8')."' src='".getIconUrl("attachment_html.gif")."' alt='download' /></a>\n";
+        echo "<br/><a href='".prep_url($attachments[0]->location)."' class='open_extern'><img class='large_icon' title='".sprintf(__('Download %s'),htmlentities($attachments[0]->name,ENT_QUOTES, 'utf-8'))."' src='".getIconUrl("attachment_html.gif")."' alt='download' /></a>\n";
     } else {
         $iconUrl = getIconUrl("attachment.gif");
         //might give problems if location is something containing UFT8 higher characters! (stringfunctions)
@@ -274,14 +248,14 @@ if (count($attachments) != 0)
         if (iconExists("attachment_".$extension.".gif")) {
             $iconUrl = getIconUrl("attachment_".$extension.".gif");
         }
-        $params = array('title'=>'Download '.$attachments[0]->name);
+        $params = array('title'=>sprintf(__('Download %s'),$attachments[0]->name));
         if ($userlogin->getPreference('newwindowforatt')=='TRUE')
             $params['class'] = 'open_extern';
         echo '<br/>'.anchor('attachments/single/'.$attachments[0]->att_id,"<img class='large_icon' src='".$iconUrl."' alt='attachment' />" ,$params)."\n";
     }
 }  
 if (utf8_trim($publication->doi)!='') {
-    echo "<br/>[<a title='Click to follow Digital Object Identifier link to online publication' class='open_extern' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
+    echo "<br/>[<a title='".__('Click to follow Digital Object Identifier link to online publication')."' class='open_extern' href='http://dx.doi.org/".$publication->doi."'>DOI</a>]";
 }
 if (utf8_trim($publication->url)!='') {
     echo "<br/>[<a title='".prep_url($publication->url)."' class='open_extern' href='".prep_url($publication->url)."'>URL</a>]";

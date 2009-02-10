@@ -41,16 +41,16 @@ if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Add a note</p>";
+    echo "<p class='header2'>".__('Add a note')."</p>";
 } else {
-    echo "<p class='header2'>Change note</p>";
+    echo "<p class='header2'>".__('Change note')."</p>";
 }
 //validation feedback
 echo $this->validation->error_string;
 ?>
     <table>
         <tr>
-          <td colspan='2'><label for='text'>Text:</label><br/>
+          <td colspan='2'><label for='text'><?php echo __('Text');?>:</label><br/>
             <script type="text/javascript">
               tinyMCE.init({
                 mode : "textareas",
@@ -82,35 +82,28 @@ echo $this->validation->error_string;
                         'update'  => 'note_rights_'.$note->note_id
                        )
                   );
-
 ?>
         <tr>
-          <td>Access rights: <?php echo"<span id='note_rights_".$note->note_id."' title='note read / edit rights'>r:".$readrights."e:".$editrights."</span>";?><br/><br/></td>
+          <td><?php echo __('Access rights').": <span id='note_rights_".$note->note_id."' title='".__('note read / edit rights')."'>r:".$readrights."e:".$editrights."</span>";?><br/><br/></td>
         </tr>
-        
 <?php
-  //$accesslevels = $this->accesslevels_lib->getAccessLevelSummary($note);
-  //echo anchor('accesslevels/edit/note/'.$note->note_id,$accesslevels,array('title'=>'click to modify access levels'));
-  //echo "<span id='note_rights_".$note->note_id."' title='note read / edit rights'>".$readrights.$editrights."</span>]";
   }
-  
 ?>
-
         <tr><td>
 <?php
 if ($isAddForm) {
-    echo form_submit('submit','Add');
+    echo form_submit('submit',__('Add'));
 } else {
-    echo form_submit('submit','Change');
+    echo form_submit('submit',__('Change'));
 }
 ?>
         </td>
-        </tr>
+      </tr>
     </table>
 <?php
 echo form_close();
 echo form_open('publications/show/'.$note->pub_id);
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 ?>
 </div>

@@ -18,11 +18,11 @@ echo "</script>";
         }
         else 
         {
-          Element.replace('monthbox',"<div id='monthbox' name='monthbox'>In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings. <br/> Examples: <ul><li>aug</li><li>nov#{~1st}</li><li>{Between January and May}</li></ul> <br/><span title='optional field'><?php echo str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => 'optional','autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Simple","monthFieldSwitch(true);")));?></span></div>");
+          Element.replace('monthbox','<?php echo "<div id=\"monthbox\" name=\"monthbox\">".__('In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings.')." <br/> ".__('Examples').": <ul><li>aug</li><li>nov#{~1st}</li><li>{".__('Between January and May')."}</li></ul> <br/><span title=\"".__('optional field')."\">".str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => __('optional'),'autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Simple","monthFieldSwitch(true);")))."</span></div>"; ?>');
         }
     }
     </script>
-  <div class='header'><?php echo ucfirst($edit_type); ?> publication</div>
+  <div class='header'><?php echo sprintf(__('%s publication'), ucfirst($edit_type));?></div>
 <?php
   $isAddForm = $edit_type=='new';
   //open the edit form
@@ -40,18 +40,18 @@ echo "</script>";
 ?>
   <table class='publication_edit_form' width='100%'>
     <tr>
-      <td>Type of publication:</td>
+      <td><?php echo __('Type of publication');?>:</td>
       <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value='type_change'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?></td>
     </tr>
     <tr>
-      <td>Title:</td>
+      <td><?php echo __('Title');?>:</td>
       <td><?php echo form_input(array('name' => 'title', 
                                       'id'   => 'title', 
                                       'size' => '90',
                                       'class'=> 'required'), $publication->title); ?></td>
     </tr>
     <tr>
-      <td>Citation:</td>
+      <td><?php echo __('Citation');?>:</td>
       <td><?php echo form_input(array('name' => 'bibtex_id', 'id' => 'bibtex_id', 'size' => '90'), $publication->bibtex_id); ?></td>
     </tr>
 <!-- insert text1 -->
@@ -67,7 +67,7 @@ echo "</script>";
       }
       $fieldCol = "";
       if ($key=='namekey') {
-        $fieldCol = 'Key <span title="This is the bibtex `key` field, used to define sorting keys">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
+        $fieldCol = __('Key').' <span title="'.__('This is the bibtex `key` field, used to define sorting keys').'">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
       } else { 
         if (in_array($key,$capitalfields)) {
             $fieldCol = strtoupper($key); 
@@ -76,7 +76,7 @@ echo "</script>";
         }
       }
       if ($class=='nonstandard') {
-        $fieldCol .= ' <span title="This field might not be used by BiBTeX for this publication type">(*)</span>';
+        $fieldCol .= ' <span title="'.__('This field might not be used by BiBTeX for this publication type').'">(*)</span>';
       }
       $fieldCol .= ':';
       $valCol = "";
@@ -103,7 +103,7 @@ echo "</script>";
       }
       else if ($key == "pages")
       {
-        $valCol .= "<span title='".$class." field'>".form_input(array('name' => 'pages', 
+        $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".form_input(array('name' => 'pages', 
                                                                 'id' => 'pages', 
                                                                 'size' => '90', 
                                                                 'alt' => $class, 
@@ -113,7 +113,7 @@ echo "</script>";
       }
       elseif (($key == "abstract") || ($key == "userfields" ))
       {
-          $valCol .= "<span title='".$class." field'>".form_textarea(array('name' => $key, 
+          $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'cols' => '87', 
                                                                      'rows' => '3', 
@@ -125,7 +125,7 @@ echo "</script>";
       else 
       {
           $onelineval = $publication->$key;
-          $valCol .= "<span title='".$class." field'>".form_input(array('name' => $key, 
+          $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".form_input(array('name' => $key, 
                                                                      'id' => $key, 
                                                                      'size' => '90', 
                                                                      'alt' => $class, 
@@ -175,8 +175,8 @@ echo "</script>";
 
 ?>      
     <tr>
-      <td valign='top'>Keywords:</td>
-      <td valign='top'><?php echo "<span title='".$class." field'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
+      <td valign='top'><?php echo __('Keywords');?>:</td>
+      <td valign='top'><?php echo "<span title='".sprintf(__('%s field'), $class)."'>".form_input(array('name' => $key, 'id' => $key, 'size' => '90', 'alt' => $class, 'autocomplete' => 'off', 'class' => $class), $keywords);?></span>
       <div name='keyword_autocomplete' id='keyword_autocomplete' class='autocomplete'>
       </div>
       <?php echo $this->ajax->auto_complete_field('keywords', $options = array('url' => base_url().'index.php/keywords/li_keywords/', 'update' => 'keyword_autocomplete', 'tokens' => array(",", ";"), 'frequency' => '0.01'))."\n";?>
@@ -255,7 +255,7 @@ echo "</script>";
 				<td width='45%' valign='top'>
 					<table width='100%'>
 						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;">Create as new name</a>]</div></td></tr>
-						<tr><td>Search: <input title='Type in name to quick search. Note: use unaccented letters!' type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
+						<tr><td>Search: <input title=<?php echo "'".__('Type in name to quick search. Note: use unaccented letters!')."'";?> type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
 						<tr><td><select style='width:22em;' size='12' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>
@@ -272,9 +272,9 @@ echo "</script>";
      
 
 if ($edit_type=='edit') {
-  echo $this->ajax->button_to_function('Change',"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
+  echo $this->ajax->button_to_function(__('Change'),"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
 } else {
-  echo $this->ajax->button_to_function('Add',"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
+  echo $this->ajax->button_to_function(__('Add'),"submitPublicationForm('publication_".$publication->pub_id."_edit');")."\n";
 }
   echo form_close()."\n";
 
@@ -283,7 +283,7 @@ if ($edit_type=='edit') {
 } else {
   echo form_open('');
 }
-  echo form_submit('Cancel', 'Cancel');
+  echo form_submit('cancel', __('Cancel'));
   echo form_close()."\n";
 
 ?>
