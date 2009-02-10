@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-05 22:05+0100\n"
-"PO-Revision-Date: 2009-02-08 17:49+0100\n"
+"PO-Revision-Date: 2009-02-10 21:33+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1104,7 +1104,7 @@ msgstr "Onbekend ID of bibtex ID: %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:35
 msgid "Go to this publication in the Aigaion database"
-msgstr ""
+msgstr "Ga naar deze publicatie in de Aigaion database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:69
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:175
@@ -1128,11 +1128,11 @@ msgstr "Voeg onderwerp toe"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:88
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:193
 msgid "Unknown topic id or topic path"
-msgstr ""
+msgstr "Onbekend onderwerp id of onderwerppad"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:91
 msgid "Go to this topic in the Aigaion database"
-msgstr ""
+msgstr "Ga naar dit onderwerp in de Aigaion database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:109
 msgid "CANNOT INTERPRET FULL AUTHOR NAMES YET."
@@ -1269,7 +1269,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:151
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:157
 msgid "Advanced search results"
-msgstr ""
+msgstr "Resultaten geavanceerd zoeken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:157
 msgid "Search form below"
@@ -1325,7 +1325,7 @@ msgstr "Herstel database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:331
 msgid "The file appears not to be an SQL file. Please select a valid Aigaion backup file."
-msgstr ""
+msgstr "Het bestand lijkt geen SQL bestand te zijn. Gef svp een geldig Aigaion backup bestand op."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:355
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:419
@@ -1334,12 +1334,12 @@ msgstr "Database hersteld"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:403
 msgid "No data given to restore!"
-msgstr ""
+msgstr "GewenGeen backupgegevens meegegeven om de database mee te herstellen!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:35
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:38
 msgid "Unit Testing Output"
-msgstr ""
+msgstr "Uitvoer van testprocedures"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:39
 msgid "See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with $debug parameter = true to get more output."
@@ -1347,7 +1347,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:64
 msgid "Bibtex character conversions"
-msgstr ""
+msgstr "BibTeX tekenset conversies"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:135
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:143
@@ -1370,11 +1370,11 @@ msgstr "wachtwoord"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:156
 msgid "Bibtex single entry imports"
-msgstr ""
+msgstr "BibTeX import van losse publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:156
 msgid "Note: these tests do not take the review and database result into account, only the result of the bibtex parsing."
-msgstr ""
+msgstr "Let op: deze tests houden geen rekening met de invoercontroles en met het uiteindelijke resultaat, maar kijken enkel of de bibtex goed ontleed wordt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:263
 #, php-format
@@ -1438,7 +1438,7 @@ msgstr "OK"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:72
 msgid "Browse topic tree"
-msgstr ""
+msgstr "Bekijk onderwerpshierarchie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:86
@@ -1448,7 +1448,7 @@ msgstr "Bekijk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:72
 msgid "include all topics"
-msgstr ""
+msgstr "neem alle topics op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:136
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:149
@@ -1553,7 +1553,7 @@ msgstr "Gebruiker"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:48
 msgid "add a new user"
-msgstr ""
+msgstr "voeg een nieuwe gebruiker toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:50
 msgid "Users"
@@ -1574,7 +1574,7 @@ msgstr "Rechtenprofiel kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:95
 msgid "Rights profiles"
-msgstr ""
+msgstr "Toegangsrechtprofielen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:132
 msgid "View user"
@@ -1605,7 +1605,7 @@ msgstr "Verwijder account"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:343
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:411
 msgid "Commit user"
-msgstr ""
+msgstr "Sla gebruikersgegevens op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:374
 msgid "Login Name"
@@ -1622,7 +1622,7 @@ msgstr "Tweede wachtwoord"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:411
 #, php-format
 msgid "an error occurred at '%s'"
-msgstr ""
+msgstr "Er is en fout opgetreden op '%s'"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:472
 #, fuzzy, php-format
@@ -2953,7 +2953,7 @@ msgstr "Gebruiker kan niet verwijderd worden"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\footer.php:7
 #, php-format
 msgid "processing time: %s seconds"
-msgstr ""
+msgstr "Tijd voor verwerking: %s seconden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\header.php:26
 #, fuzzy
@@ -3105,7 +3105,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:27
 msgid "Cancel form"
-msgstr ""
+msgstr "Annuleer formulier"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:7
 #, fuzzy
@@ -3120,21 +3120,21 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:19
 msgid "Effective"
-msgstr ""
+msgstr "Effectief"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:18
 msgid "Object"
-msgstr ""
+msgstr "Object"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:21
 msgid "Owner of object (only owner can change objects with private edit levels)"
-msgstr ""
+msgstr "Eigenaar van object (alleen de eigenaar kan objecten aanpassen die de bewerkingstoegangsrechten op privé hebben staan)"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:22
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:27
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:30
@@ -3165,7 +3165,7 @@ msgstr "Aantekeningen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:164
 msgid "Legend"
-msgstr ""
+msgstr "Legenda"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:168
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:117
@@ -3228,11 +3228,11 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:185
 msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well."
-msgstr ""
+msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet het bestand op 'publiek' --&gt; publicatie wordt ook 'publiek'."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:186
 msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
-msgstr ""
+msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet de publicatie op 'privé' --&gt; bestand blijft 'intern', maar het EFFECTIEVE toegangsniveau wordt 'privé. Als je de publicatie weer op 'intern' zet, zal het effectieve toegansniveau weer 'intern' zijn."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:187
 msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'."
