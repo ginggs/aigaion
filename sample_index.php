@@ -15,7 +15,7 @@
 //define('AIGAION_DB_PREFIX', '');
 
 #define supported languages
-//$AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'es', 'fr', 'it', 'nl', 'no', 'pl');
+//$AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'es', 'fr', 'it', 'nl', 'no', 'pl', 'ro');
 #define short list of languages offered in, e.g., menu
 //$AIGAION_SHORTLIST_LANGUAGES = array ('de', 'en', 'fr', 'nl', 'pl');
 #define default fasll-back language
