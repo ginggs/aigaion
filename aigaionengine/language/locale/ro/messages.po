@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2, Romanian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-10 21:03+0100\n"
+"POT-Creation-Date: 2009-02-11 19:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: Bogdan\n"
@@ -24,6 +24,9 @@ msgid "Edit access levels"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\accesslevels.php:253
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
 #, php-format
 msgid "%s read / edit rights"
 msgstr ""
@@ -38,6 +41,9 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:193
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:298
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:326
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:33
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:208
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:510
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:117
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:159
@@ -97,7 +103,13 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:89
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:153
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\attachments.php:206
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:641
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:281
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:315
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:347
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:393
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:425
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:482
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:645
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:427
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:431
@@ -241,14 +253,129 @@ msgstr ""
 msgid "Please contact your Aigaion administrator."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:510
-msgid "Authors for topic"
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:33
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:208
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\embeddingtest.php:41
+msgid "View Author"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:46
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:708
+msgid "Export author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:50
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:222
+#, php-format
+msgid "Publications of %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:53
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:140
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:225
+#, php-format
+msgid "Publications of %s sorted by journal and type"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:56
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:143
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:228
+#, php-format
+msgid "Publications of %s sorted by recency"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:59
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:231
+#, php-format
+msgid "Publications of %s sorted by title"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:62
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:149
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:234
+#, php-format
+msgid "Publications of %s sorted by first author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:241
+msgid "No publications found."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:281
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:425
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:482
+msgid "Edit author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:307
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:315
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:340
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:347
+msgid "Cannot merge authors"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:307
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:340
+msgid "missing parameters"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:319
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:519
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:544
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:213
 msgid "Authors"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:319
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:41
+msgid "Merge"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:385
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:393
+msgid "Delete author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:385
+msgid "author does not exist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:404
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:58
+msgid "Author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:404
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:57
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:20
+msgid "delete"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:458
+#, php-format
+msgid "Author \"%s\" already exists in the database."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:486
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:501
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:505
+msgid "Review publication"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:510
+msgid "Authors for topic"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:521
@@ -260,18 +387,18 @@ msgstr ""
 msgid "All authors in the database"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:641
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:645
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:899
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:688
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:615
 msgid "Export through email"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:659
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:663
 msgid "No author selected for export"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:671
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:675
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:927
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:34
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:111
@@ -283,34 +410,30 @@ msgstr ""
 msgid "Select export format"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:701
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:705
 msgid "Author export"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:704
-msgid "Export author"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:706
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:710
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:963
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:758
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:681
 msgid "Export by email"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:715
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:719
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:973
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:767
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:690
 msgid "Export from Aigaion"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:727
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:775
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:731
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:779
 msgid "Exported for author"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:738
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:742
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:996
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:790
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:713
@@ -320,14 +443,14 @@ msgstr ""
 msgid "Formatted"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:796
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:800
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1054
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:848
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:771
 msgid "Mail sent successfully"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:800
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:804
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1058
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:852
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:775
@@ -490,6 +613,11 @@ msgstr ""
 msgid "Set %s access level of %s publications to \"%s\""
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:679
+msgid "read"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:608
 #, php-format
 msgid "Set access level to %s for all from bookmarklist"
@@ -517,19 +645,37 @@ msgstr ""
 msgid "Set access level to %s for all attachments of publications on bookmarklist"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:754
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:760
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:831
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:837
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:58
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
+msgid "edit"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:760
 #, php-format
-msgid "Set edit access level to %s for all from bookmarklist"
+msgid "Set %s access level to %s for all from bookmarklist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
-msgid "Setting edit access levels of attachments from bookmarklist"
+#, php-format
+msgid "Setting %s access levels of attachments from bookmarklist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:837
 #, php-format
-msgid "Set edit access level to %s for all attachments of publications on bookmarklist"
+msgid "Set %s access level to %s for all attachments of publications on bookmarklist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:870
@@ -541,10 +687,6 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1033
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:309
 msgid "Exported from bookmarklist"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\embeddingtest.php:41
-msgid "View Author"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:39
@@ -726,9 +868,6 @@ msgid "Subscribe topic"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:457
-msgid "Unubscribe topic"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:476
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:587
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:593
@@ -744,7 +883,12 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:36
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:314
 msgid "Import"
@@ -770,16 +914,16 @@ msgid "Attempting to automatically identify proper format."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
-msgid "Import: can't automatically figure out import data format; please specify correct format."
+msgid "can't automatically figure out import data format; please specify correct format."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 #, php-format
-msgid "Import: Data automatically identified as format \"%s\"."
+msgid "Data automatically identified as format \"%s\"."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
-msgid "Import: Could not extract any valid publication entries from the import data."
+msgid "Could not extract any valid publication entries from the import data."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:118
@@ -795,19 +939,16 @@ msgid "If that setting is correct, too, please submit a bug report at http://aig
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
-msgid "Import/commit: no publications committed."
+msgid "Commit"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
+msgid "no publications committed."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:207
 #, php-format
 msgid "Succesfully imported %s publications."
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:501
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:505
-msgid "Review publication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:61
@@ -886,7 +1027,7 @@ msgid "Logged in as %s"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:124
-msgid "Nonexisting account"
+msgid "Non-existing account"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:129
@@ -954,7 +1095,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:113
 #, php-format
-msgid "non-existing bibtex id \"%s\" was passed"
+msgid "non-existing BibTeX id \"%s\" was passed"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:156
@@ -1012,20 +1153,14 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:706
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:711
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:753
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:756
 msgid "Export publication"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:753
-msgid "Publication export"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:779
-msgid "Exported publication"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:827
-msgid "Exported publicaiton"
+msgid "Exported publication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:12
@@ -1068,7 +1203,8 @@ msgid "Topic structure does not exist in Aigaion."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:76
-msgid "No topic id"
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
+msgid "no topic id"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:88
@@ -1108,10 +1244,6 @@ msgstr ""
 msgid "Embedding for %s"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
-msgid "no topic id"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:235
 msgid "Aigaion error: no shared domain configured in the Aigaion database"
 msgstr ""
@@ -1125,7 +1257,7 @@ msgid "Repost form"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:35
-msgid "View rightsprofile"
+msgid "View rights profile"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:43
@@ -1141,25 +1273,19 @@ msgid "Add rights profile"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:127
-msgid "Edit rightsprofile"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:138
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:257
 msgid "Edit rights profile"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:187
-msgid "Delete rightsprofile"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:194
 msgid "Delete rights profile"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:246
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
-msgid "Commit rightsprofile"
+msgid "Commit rights profile"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:268
@@ -1318,11 +1444,6 @@ msgstr ""
 msgid "Import should contain %s authors, but does contain %s authors."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:287
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:58
-msgid "Author"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:292
 #, php-format
 msgid "First name(s) should have been \"%s\" but is \"%s\"."
@@ -1403,9 +1524,10 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:514
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:22
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:23
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:23
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:6
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:11
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:38
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
 msgid "Topic"
 msgstr ""
 
@@ -1481,6 +1603,7 @@ msgid "add a new group"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:80
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:377
 msgid "Groups"
 msgstr ""
 
@@ -1601,6 +1724,7 @@ msgid "Security"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:93
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:76
 msgid "Description"
 msgstr ""
 
@@ -2079,6 +2203,8 @@ msgid "school"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
 msgid "note"
 msgstr ""
 
@@ -2196,7 +2322,7 @@ msgid "edit access"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
-msgid "edit acces level"
+msgid "Edit acces level"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:95
@@ -2532,7 +2658,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:211
 #, php-format
-msgid "Failed to update the bibtex-id in note %s."
+msgid "Failed to update the BibTeX-id in note %s."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
@@ -2874,7 +3000,7 @@ msgid "processing time: %s seconds"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\header.php:26
-msgid "Export browse list"
+msgid "Aigaion export list"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
@@ -2914,7 +3040,7 @@ msgid "Sort by"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:49
 msgid "Title"
 msgstr ""
 
@@ -2982,23 +3108,29 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:72
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:56
 msgid "Login"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:155
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:51
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:48
 msgid "Name"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:161
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:108
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:147
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:157
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:166
 msgid "Password"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:73
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:70
 msgid "Remember me"
 msgstr ""
 
@@ -3012,22 +3144,47 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:8
 #, php-format
-msgid ""
-"The system detected that you were logged out while submitting a form named '%s'.\n"
-"      The data in that form has <b>not</b> yet been submitted successfully to the database. \n"
-"      Press the button below to re-submit the form data."
+msgid "The system detected that you were logged out while submitting a form named '%s'. The data in that form has <b>not</b> yet been submitted successfully to the database. Press the button below to re-submit the form data."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:13
-msgid ""
-"<b>NOTE</b>: You are now logged in as a guest user. If you submitted the form from a \n"
-"            registered account, you should first login with your registered account before \n"
-"            resubmitting the form, because from this guest account you might then not have enough \n"
-"            rights to submit the form."
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
+msgid "NOTE"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:27
-msgid "Cancel form"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
+msgid "You are now logged in as a guest user. If you submitted the form from a registered account, you should first login with your registered account before resubmitting the form, because from this guest account you might then not have enough rights to submit the form."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:15
+msgid "Repost"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:22
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:289
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:623
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:504
+msgid "Cancel"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:7
@@ -3146,19 +3303,19 @@ msgid "<b>Unsure how the access levels turned out?</b> The column on the left sh
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:185
-msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well."
+msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' &rarr; publication will become 'public' as well."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:186
-msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
+msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' &rarr; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:187
-msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'."
+msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' &rarr; attachment edit will also change to 'private'."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:188
-msgid "Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. --&gt; Subsequently, you can no longer edit that publication :o)"
+msgid "Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. &rarr; Subsequently, you can no longer edit that publication :o)"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:11
@@ -3195,29 +3352,6 @@ msgstr ""
 msgid "Upload attachment"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:61
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:109
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:52
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:49
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:106
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:286
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:623
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
-msgid "Cancel"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:76
 #, php-format
 msgid "Add new attachment (or web site) as a link, without uploading, for publication \"%s\""
@@ -3250,6 +3384,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:15
 msgid "Confirm"
 msgstr ""
 
@@ -3282,8 +3418,9 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:66
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:97
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:275
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:278
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:76
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:96
 msgid "Change"
 msgstr ""
 
@@ -3300,30 +3437,8 @@ msgid "Download %s"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:47
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
-#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:57
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
-#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:20
-msgid "delete"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:47
 #, php-format
 msgid "Delete %s"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
-#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:58
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
-#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
-msgid "edit"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
@@ -3412,8 +3527,10 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:44
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:95
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:277
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:280
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:94
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:489
 msgid "Add"
 msgstr ""
 
@@ -3462,10 +3579,6 @@ msgstr ""
 msgid "Source author"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:41
-msgid "Merge"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 msgid "Delete this author"
 msgstr ""
@@ -3475,16 +3588,20 @@ msgid "Edit this author"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
 msgid "URL"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:52
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:116
 msgid "BookmarkAll"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:117
 msgid "UnBookmarkAll"
 msgstr ""
 
@@ -3592,27 +3709,27 @@ msgid "Set attachment edit access level"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:13
-msgid "Are you sure that you want to delete all publications on the bookmarklist from your database? There is no undo!"
+msgid "Are you sure that you want to delete all publications on the bookmarklist from your database?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:14
 #, php-format
-msgid "Are you sure that you want to set the read access level for all attachments of publications on the bookmarklist to \"%s\"? There is no undo!"
+msgid "Are you sure that you want to set the read access level for all attachments of publications on the bookmarklist to \"%s\"?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:14
 #, php-format
-msgid "Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to \"%s\"? There is no undo!"
+msgid "Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to \"%s\"?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:14
 #, php-format
-msgid "Are you sure that you want to set the edit access level for all publications on the bookmarklist to \"%s\"? There is no undo!"
+msgid "Are you sure that you want to set the edit access level for all publications on the bookmarklist to \"%s\"?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:14
 #, php-format
-msgid "Are you sure that you want to set the read access level for all publications on the bookmarklist to \"%s\"? There is no undo!"
+msgid "Are you sure that you want to set the read access level for all publications on the bookmarklist to \"%s\"?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtex.php:16
@@ -3664,7 +3781,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:45
 #, php-format
-msgid "Attacment size: %s KB"
+msgid "Attachment size: %s KB"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:49
@@ -3674,12 +3791,12 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:49
 #, php-format
-msgid "Current attacment size: %s KB"
+msgid "Current attachment size: %s KB"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
 #, php-format
-msgid "Paste the entries (%s) to import in the text area below and then press \"Import\""
+msgid "Paste the entries (%s) to import in the text area below and then press \"%s\""
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:37
@@ -3703,7 +3820,7 @@ msgid "Import:"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:54
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:54
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:38
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:87
 msgid "Citation"
@@ -3749,7 +3866,7 @@ msgid "select to use editor as found in BibTeX"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:268
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:181
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:73
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:204
 msgid "Keywords"
@@ -3769,29 +3886,25 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:22
 #, php-format
-msgid ""
-"You just submitted a\n"
-"\t\t\t   form named %s, but it seems that you have been logged out. To proceed with\n"
-"\t\t\t   submitting the information, please log in again, then confirm that you want\n"
-"\t\t\t   to re-submit the data."
+msgid "You just submitted a form named %s, but it seems that you have been logged out. To proceed with submitting the information, please log in again, then confirm that you want to re-submit the data."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:27
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:24
 msgid "Login to proceed with form submission"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:78
 #, php-format
 msgid "If you want a password, please mail to %s."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:84
 #, php-format
 msgid "For more information about the Aigaion bibliography system visit %s"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:13
-msgid "Are you sure that you want to delete the note below? There is no undo!"
+msgid "Are you sure that you want to delete the note below?!"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:20
@@ -3815,70 +3928,65 @@ msgstr ""
 msgid "Access rights"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
-msgid "note read / edit rights"
-msgstr ""
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:13
 #, php-format
 msgid "Are you sure that you want to delete the publication '%s'?"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "Examples"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "Between January and May"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "optional field"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "optional"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:25
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:27
 #, php-format
 msgid "%s publication"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:43
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:45
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:83
 msgid "Type of publication"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:72
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:98
 msgid "Key"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:72
 msgid "This is the bibtex `key` field, used to define sorting keys"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:79
-msgid "This field might not be used by BiBTeX for this publication type"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:82
+msgid "This field might not be used by BibTeX for this publication type"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:106
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:116
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:128
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:179
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:119
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:131
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:182
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:39
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:74
 #, php-format
 msgid "%s field"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:261
 msgid "Type in name to quick search. Note: use unaccented letters!"
 msgstr ""
 
@@ -3994,7 +4102,8 @@ msgid "Added by"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
-msgid "Publication read / edit rights"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
+msgid "publication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:291
@@ -4047,7 +4156,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:16
 #, php-format
-msgid "Are you sure that you want to delete rightsprofile %s? There is no undo!"
+msgid "Are you sure that you want to delete rightsprofile %s?"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:40
@@ -4150,6 +4259,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:91
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:485
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:321
 msgid "All"
 msgstr ""
 
@@ -4385,7 +4495,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:230
 msgid ""
-"If you select this, be sure to have that \n"
+"If you select this, be sure that \n"
 "\t        you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also \n"
 "\t        not turn the httpauth login module off without directly accessing the Aigaion database."
 msgstr ""
@@ -4521,14 +4631,17 @@ msgid "Default author display style"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "First [von] Last"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last, First"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last"
 msgstr ""
 
@@ -4537,14 +4650,17 @@ msgid "Default number of publications per page"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:490
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:326
 msgid "'Similar author' check"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Last names, then initials"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Full name"
 msgstr ""
 
@@ -4631,6 +4747,7 @@ msgid "LDAP based authentication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:615
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:491
 msgid "Store new settings"
 msgstr ""
 
@@ -4717,6 +4834,7 @@ msgid "Paste backup data here. Restoring from backup data will overwrite all dat
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:449
 msgid "Restore"
 msgstr ""
 
@@ -4735,8 +4853,32 @@ msgstr ""
 msgid "%s main topics"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
-msgid "publication"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:13
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:18
+msgid "No description"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:13
+#, php-format
+msgid "Are you sure that you want to delete topic \"%s\"?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:40
+msgid "Add a topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:42
+#, php-format
+msgid "Change topic \"%s\""
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:54
+msgid "Parent"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+msgid "Subtopics"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:93
@@ -4752,12 +4894,283 @@ msgstr ""
 msgid "view"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+msgid "view author for topic"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
 msgid "authors"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+msgid "view authors for topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
+msgid "Subtopic"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
-msgid "topics"
+msgid "No subtopics"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
+msgid "create new subtopic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:32
+msgid "collapse"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:37
+msgid "expand"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:47
+#, php-format
+msgid "read: %s of %s publications"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\usersubscriptiontreerow.php:51
+msgid "group subscribed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:14
+#, php-format
+msgid "Are you sure that you want to delete user \"%s\"?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:41
+msgid "Create a new user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:43
+msgid "Edit user preferences"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
+msgid "Account settings"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
+msgid "'Account settings' is the only block of settings that is <i>mandatory</i>"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:79
+msgid "Note: Login names, once assigned, cannot be changed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:92
+msgid "Disable account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:101
+msgid ""
+"Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.\n"
+"    \t        You can re-enable the account in the future."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:108
+msgid "leave blank for no change"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:124
+msgid "Re-type new password"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:149
+msgid "Cannot change password on anonymous accounts; they do not have a password."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:159
+msgid "Cannot change password on this account. It has a password which is externally managed by some other system."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:168
+msgid ""
+"Cannot change password on this account. The account has been disabled and cannot be used to login. \n"
+"            Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password?\n"
+"            Ask an admin to re-enable it and assign a password."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:182
+msgid ""
+"It is impossible to change the type of your own account (normal, anon or external). This would lead to problems\n"
+"\t        if you accidentally disable it."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:189
+msgid "Account type"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Normal"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Anonymous"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Managed by external module"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:198
+msgid ""
+"Note: when you set this account to be anonymous, you should not forget to enable \n"
+"    \t        anonymous access to this database on the site configuration page!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:200
+msgid ""
+"Note2: when you set this account to be externally managed, you must be certain that \n"
+"    \t        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:209
+msgid "Person details"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:213
+msgid "Initials"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:221
+msgid "First name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:229
+msgid "Middle name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:237
+msgid "Surname"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:245
+msgid "Abbreviation (about three characters)"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:253
+msgid "Email address"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:281
+msgid "Display preferences"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:285
+msgid "Theme"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:293
+msgid "Language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:302
+msgid "Publication summary style"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:305
+msgid "author first"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:305
+msgid "title first"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:310
+msgid "Author display style"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:318
+msgid "Number of publications per page"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
+msgid "Site default"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:335
+msgid "Select the method for checking whether two author names are counted as \"similar\"."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:339
+msgid "Open attachments in new browser window"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:348
+msgid "Open export data in browser"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:355
+msgid ""
+"Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window \n"
+"\t        instead of downloading it as a file."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:361
+msgid "Export BibTeX as UTF8"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:368
+#, php-format
+msgid ""
+"Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want\n"
+"\t        Aigaion to convert special characters to BibTeX codes such as %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:378
+msgid ""
+"The groups to which this user belongs. When you add this user to a group that it was previously not a member of,\n"
+"        all rights associated with that group will be appended to the user rights of this user upon commit."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:397
+msgid "User rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:401
+msgid "Check all rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:404
+msgid "Check all"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:411
+msgid "Uncheck all rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:414
+msgid "Uncheck all"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:421
+msgid "Check all rights from"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:435
+msgid "Uncheck all rights from"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:446
+msgid "Restore old state"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:22
+msgid "topic subscription"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:27
+msgid "guest user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:29
+msgid "externally managed account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:31
+msgid "disabled account"
 msgstr ""
 
