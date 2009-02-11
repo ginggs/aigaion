@@ -30,7 +30,7 @@ class Authors extends Controller {
     $author = $this->author_db->getByID($author_id);
     if ($author == null)
     {
-      appendErrorMessage("View Author: non-existing id passed");
+      appendErrorMessage(__('View Author').": ".__('non-existing id passed').".<br/>");
       redirect('');
     }
     
@@ -43,23 +43,23 @@ class Authors extends Controller {
     $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
     $header ['sortPrefix']       = 'authors/show/'.$author->author_id.'/';
     $header ['exportCommand']    = 'export/author/'.$author->author_id.'/';
-    $header ['exportName']    = 'Export author';
+    $header ['exportName']    = __('Export author');
 
     //set data
     $authorContent['author']            = $author;
-    $publicationContent['header']       = 'Publications of '.$author->getName();
+    $publicationContent['header']       = sprintf(__('Publications of %s'),$author->getName());
     switch ($order) {
         case 'type':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by journal and type';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by journal and type'), $author->getName());
             break;
         case 'recent':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by recency';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by recency'), $author->getName());
             break;
         case 'title':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by title';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by title'), $author->getName());
             break;
         case 'author':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by first author';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by first author'), $author->getName());
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {
@@ -120,7 +120,7 @@ class Authors extends Controller {
     $author = $this->author_db->getByID($author_id);
     if ($author == null)
     {
-      appendErrorMessage("View Author: non-existing id passed");
+      appendErrorMessage(__('View Author').": ".__('non-existing id passed').".<br/>");
       redirect('');
     }
     
@@ -134,19 +134,19 @@ class Authors extends Controller {
     
     //set data
     $authorContent['author']            = $author;
-    $publicationContent['header']       = 'Publications of '.$author->getName();
+    $publicationContent['header']       = sprintf(__('Publications of %s'),$author->getName());
     switch ($order) {
         case 'type':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by journal and type';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by journal and type'), $author->getName());
             break;
         case 'recent':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by recency';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by recency'), $author->getName());
             break;
         case 'title':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by title';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by title'), $author->getName());
             break;
         case 'author':
-            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by first author';
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by first author'), $author->getName());
             break;
     }
     if ($userlogin->getPreference('liststyle')>0) {
@@ -205,7 +205,7 @@ class Authors extends Controller {
 		    $author = $this->author_db->getByID($author_id);
 		    if ($author == null)
 		    {
-		      appendErrorMessage("View Author: non-existing id passed");
+		      appendErrorMessage(__('View Author').": ".__('non-existing id passed').".<br/>");
 		      redirect('');
 		    }
 
@@ -219,26 +219,26 @@ class Authors extends Controller {
 
 		    //set data
 		    $authorContent['author']            = $author;
-		    $publicationContent['header']       = 'Publications of '.$author->getName();
+		    $publicationContent['header']       = sprintf(__('Publications of %s'), $author->getName());
 		    switch ($order) {
-		        case 'type':
-		            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by journal and type';
-		            break;
-		        case 'recent':
-		            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by recency';
-		            break;
-		        case 'title':
-		            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by title';
-		            break;
-		        case 'author':
-		            $publicationContent['header']          = 'Publications of '.$author->getName().' sorted by first author';
-		            break;
-		    }
+        case 'type':
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by journal and type'), $author->getName());
+            break;
+        case 'recent':
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by recency'), $author->getName());
+            break;
+        case 'title':
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by title'), $author->getName());
+            break;
+        case 'author':
+            $publicationContent['header']          = sprintf(__('Publications of %s sorted by first author'), $author->getName());
+            break;
+        }
 
 		    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
 		    $publicationContent['order'] = $order;
 
-				$output = "No publications so far ... ";
+				$output = __("No publications found.");
 		    if ($publicationContent['publications'] != null) {
 		      $output = $this->load->view('publications/listClean', $publicationContent, true);
 		    }
@@ -278,7 +278,7 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      appendErrorMessage(__('Edit author').": ".__('insufficient rights').".<br/>");
       redirect('');
     }
 
@@ -304,7 +304,7 @@ class Authors extends Controller {
     $author = $this->author_db->getByID($author_id);
     $simauthor = $this->author_db->getByID($simauthor_id);
     if ($author==null || $simauthor==null) {
-        appendErrorMessage("Cannot merge authors: missing parameters<br/>");
+        appendErrorMessage(__("Cannot merge authors").": ".__('missing parameters').".<br/>");
         redirect('');
     }
     
@@ -312,11 +312,11 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Merge authors: insufficient rights.<br/>');
+      appendErrorMessage(__('Cannot merge authors').": ".__('insufficient rights').'.<br/>');
       redirect('');
     }
 
-    $header ['title']       = "Authors: merge";
+    $header ['title']       = __("Authors").": ".__('Merge');
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['author']      = $author;
     $content['simauthor']      = $simauthor;
@@ -337,14 +337,14 @@ class Authors extends Controller {
     $simauthor_id = $this->input->post('simauthor_id');
     $simauthor = $this->author_db->getByID($simauthor_id);
     if ($author==null || $simauthor==null) {
-        appendErrorMessage("Cannot merge authors: missing parameters<br/>");
+        appendErrorMessage(__("Cannot merge authors").": ".__('missing parameters').".<br/>");
         redirect('');
     }
 
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Cannot merge authors: insufficient rights.<br/>');
+      appendErrorMessage(__('Cannot merge authors').": ".__('insufficient rights').'.<br/>');
       redirect('');
     }
     
@@ -382,7 +382,7 @@ class Authors extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($author==null) {
-	        appendErrorMessage('Delete author: author does not exist.<br/>');
+	        appendErrorMessage(__('Delete author').": ".__('author does not exist').'.<br/>');
 	        redirect('');
 	    }
 
@@ -390,7 +390,7 @@ class Authors extends Controller {
         if (    (!$userlogin->hasRights('publication_edit'))
             ) 
         {
-	        appendErrorMessage('Delete author: insufficient rights.<br/>');
+	        appendErrorMessage(__('Delete author').": ".__('insufficient rights').'.<br/>');
 	        redirect('');
         }
 
@@ -401,7 +401,7 @@ class Authors extends Controller {
         } else {
             //get output: a full web page with a 'confirm delete' form
             $headerdata = array();
-            $headerdata['title'] = 'Author: delete';
+            $headerdata['title'] = __('Author').": ".__('delete');
             
             $output = $this->load->view('header', $headerdata, true);
     
@@ -422,7 +422,7 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      appendErrorMessage(__('Edit author').": ".__('insufficient rights').'.<br/>');
       redirect('');
     }
 
@@ -455,7 +455,7 @@ class Authors extends Controller {
           //note: the author_db review method will not give an error if ONE EXACT MATCH EXISTS
           //so we should still check that here
           if ($this->author_db->getByExactName($author->firstname,$author->von,$author->surname,$author->jr) != null) {
-            appendMessage('Author "'.$author->getName('lvf').'" already exists in the database.<br/>');
+            appendMessage(sprintf(__('Author "%s" already exists in the database.'), $author->getName('lvf')).'<br/>');
             redirect('authors/add');
           } else {
             $author = $this->author_db->add($author);
@@ -479,11 +479,11 @@ class Authors extends Controller {
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {
-      appendErrorMessage('Edit author: insufficient rights.<br/>');
+      appendErrorMessage(__('Edit author').": ".__('insufficient rights').'.<br/>');
       redirect('');
     }
 
-    $header ['title']       = "review publication";
+    $header ['title']       = __("Review publication");
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $this->input->post('edit_type');
     $content['author']      = $author;
@@ -562,7 +562,11 @@ class Authors extends Controller {
     $author_search = $this->input->post('author_search');
     if ($author_search) // user pressed show, so redirect to single author page
     {
-      echo "to be done: user pressed 'show' -> find corresponding author and redirect to single author page";
+      $authorList     = $this->author_db->getAuthorsLike($author_search);
+      if (sizeof($authorList) > 0)
+      {
+        $this->show($authorList[0]->author_id);
+      }     
     }
     else
     {
@@ -750,7 +754,7 @@ class Authors extends Controller {
 				if($email_bibtex)
 				{
 					$messageBody .= "\n";
-					$messageBody .= 'BiBTex';
+					$messageBody .= 'BibTex';
 					$messageBody .= "\n";
 					$messageBody .= strip_tags($this->load->view('export/'.'bibtexEmail', $exportdata, True));
 				}
