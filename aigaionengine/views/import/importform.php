@@ -12,7 +12,7 @@ if (!isset($content)||($content==null))
 <div class='publication'>
   <div class='header'><?php echo __('Import publications'); ?></div>
   <p>
-    <?php echo sprintf(__('Paste the entries (%s) to import in the text area below and then press "Import"'), implode(', ',$importTypes));?>. </p>
+    <?php echo sprintf(__('Paste the entries (%s) to import in the text area below and then press "%s"'), implode(', ',$importTypes), __('Import'));?>. </p>
 <?php
   //open the edit form
   $formAttributes     = array('ID' => 'import_form');

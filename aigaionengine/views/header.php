@@ -23,7 +23,7 @@
     if (!isset($exportCommand))
       $exportCommand = '';
     if (!isset($exportName))
-      $exportName = __('Export browse list');
+      $exportName = __('Aigaion export list');
     //view parameter: the javascripts that should be linked
     if (!isset($javascripts))
       $javascripts = array();

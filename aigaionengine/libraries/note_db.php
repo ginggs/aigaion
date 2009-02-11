@@ -208,7 +208,7 @@ class Note_db {
               $updatefields =  array('text'=>$text);
               $CI->db->update('notes',$updatefields,array('note_id'=>$R->note_id));
       		    if (mysql_error()) {
-      		      appendErrorMessage(sprintf(__("Failed to update the bibtex-id in note %s."),$R->note_id)."<br/>");
+      		      appendErrorMessage(sprintf(__("Failed to update the BibTeX-id in note %s."),$R->note_id)."<br/>");
           	  }
             }
         }

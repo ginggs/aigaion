@@ -109,7 +109,7 @@ if ($topicCount>0)
   $topicstatBlock .= "<li class='nobr'>".__('No subtopics')." ";
 }
 if ($userlogin->hasRights('topic_edit')) {
-  $topicstatBlock .= "[".anchor('topics/add/'.$topic->topic_id,__('create new'), 'title="'.__('create new subtopic').'"')."]";
+  $topicstatBlock .= "[".anchor('topics/add/'.$topic->topic_id,__('create new subtopic'), 'title="'.__('create new subtopic').'"')."]";
 }
 $topicstatBlock .= "</li>\n";
   if ($userlogin->hasRights('bookmarklist')) {

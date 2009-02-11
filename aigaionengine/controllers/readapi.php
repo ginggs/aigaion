@@ -73,7 +73,7 @@ class Readapi extends Controller {
 						exit(__("Topic structure does not exist in Aigaion.")." ".implode('/',$topic_structure)."<br/>");
 					}
 				}
-        if ($topic_id == '') exit(__('No topic id'));
+        if ($topic_id == '') exit(__('no topic id'));
         
         //load topic
         $config = array();

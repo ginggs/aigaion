@@ -84,7 +84,7 @@ echo $this->validation->error_string;
                   );
 ?>
         <tr>
-          <td><?php echo __('Access rights').": <span id='note_rights_".$note->note_id."' title='".__('note read / edit rights')."'>r:".$readrights."e:".$editrights."</span>";?><br/><br/></td>
+          <td><?php echo __('Access rights').": <span id='note_rights_".$note->note_id."' title='".sprintf(__('%s read / edit rights'), __('note'))."'>r:".$readrights."e:".$editrights."</span>";?><br/><br/></td>
         </tr>
 <?php
   }

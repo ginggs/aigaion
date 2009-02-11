@@ -11,7 +11,7 @@ $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('bookmarklist/seteditattaccesslevel/commit');
 echo form_hidden('editaccesslevel',$editaccesslevel);
-echo sprintf(__('Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to "%s"? There is no undo!'), $editaccesslevel."<p>\n";
+echo sprintf(__('Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to "%s"?'), $editaccesslevel)."<p>\n";
 echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('bookmarklist');

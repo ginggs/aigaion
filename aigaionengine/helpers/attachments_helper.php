@@ -11,7 +11,7 @@
 |   This helper contains a few functions to help interpret such data in such a way
 |   that the information can be stored in Aigaion as a 'remote attachment' or a DOI.
 |
-|   Normally, one would expect to use this method on the BiBTeX fields:
+|   Normally, one would expect to use this method on the BibTeX fields:
 |       pdf, url, doi, ee, 
 |
 |	Usage:
@@ -24,7 +24,7 @@
 |       DOI will not be returned as attUrl as well.
 |
 |   Example:
-|       BiBTeX: url={http://dx.doi.org/10.1007/11872320_3}
+|       BibTeX: url={http://dx.doi.org/10.1007/11872320_3}
 |       Output: (True, '', '10.1007/11872320_3')
 |
 */

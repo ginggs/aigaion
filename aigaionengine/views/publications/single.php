@@ -287,7 +287,7 @@ $this->load->helper('translation');
 ?>
     <tr>
       <td valign='top'><?php _e("Access rights");?>:</td>
-      <td valign='top'><?php echo "<span id='publication_rights_".$publication->pub_id."'><span title='".__("Publication read / edit rights")."'>r:".$readrights."e:".$editrights."</span></span>";
+      <td valign='top'><?php echo "<span id='publication_rights_".$publication->pub_id."'><span title='".sprintf(__("%s read / edit rights"), __('publication'))."'>r:".$readrights."e:".$editrights."</span></span>";
     echo "(".anchor('accesslevels/edit/publication/'.$publication->pub_id,__('Edit all rights'),array('title'=>__('Click to modify access levels'))).")";
     ?>
 </td>

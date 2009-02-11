@@ -9,7 +9,7 @@
 |
 |   Though based upon the old specialcharfunctions of aigaion 1.x,
 |   this helper ONLY considers itself with converting certain UTF-8 encoded
-|   characters to BiBTeX equivalents and vice versa. No more helper functions 
+|   characters to BibTeX equivalents and vice versa. No more helper functions 
 |   are available for conversion to html entities and such - as we use utf-8
 |   this is no longer needed in most cases; and for the quote replacement, other 
 |   possibilities exist.

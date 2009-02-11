@@ -42,11 +42,11 @@ echo form_open($controller);
 
 if(MAXIMUM_ATTACHMENT_SIZE > $attachmentsize)
 {
-	echo '<table><tr><td>PDF </td><td>'.form_checkbox('email_pdf', 'pdf', FALSE).'</td><td>'.sprintf(__('Attacment size: %s KB'), $attachmentsize).'</td></tr>';
+	echo '<table><tr><td>PDF </td><td>'.form_checkbox('email_pdf', 'pdf', FALSE).'</td><td>'.sprintf(__('Attachment size: %s KB'), $attachmentsize).'</td></tr>';
 }
 else
 {
-	echo '<table><tr><td>PDF </td><td>'.sprintf(__('Maximum attachment size: %s KB'), MAXIMUM_ATTACHMENT_SIZE).'</td><td>'.sprintf(__('Current attacment size: %s KB'), $attachmentsize).'</td></tr>';
+	echo '<table><tr><td>PDF </td><td>'.sprintf(__('Maximum attachment size: %s KB'), MAXIMUM_ATTACHMENT_SIZE).'</td><td>'.sprintf(__('Current attachment size: %s KB'), $attachmentsize).'</td></tr>';
 }
 
 echo '<tr><td>BibTeX </td><td>'.form_checkbox('email_bibtex', 'bibtex', FALSE).'</td></tr>';

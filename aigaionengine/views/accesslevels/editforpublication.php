@@ -182,8 +182,8 @@ echo "
 <p>".__("On the other hand, when you edit the read access level of for example an attachment, and the new level is higher than that of the publication it belongs to, the <b>actual</b> read level of the publication is updated as well!")."</p>
 <p>".__("Note that the effective access levels are shown on the left; the access levels defined per individual object are shown on the right. Editing of access levels is done through the right column.")."</p>
 <p>".__("<b>Unsure how the access levels turned out?</b> The column on the left shows which objects are effectively accessible with what levels!")."</p>
-<p>".__("Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well.")."</p>
-<p>".__("Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'.")."</p>
-<p>".__("Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'.")."</p>
-<p>".__("Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. --&gt; Subsequently, you can no longer edit that publication :o)")."</p>";
+<p>".__("Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' &rarr; publication will become 'public' as well.")."</p>
+<p>".__("Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' &rarr; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'.")."</p>
+<p>".__("Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' &rarr; attachment edit will also change to 'private'.")."</p>
+<p>".__("Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. &rarr; Subsequently, you can no longer edit that publication :o)")."</p>";
 

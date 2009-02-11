@@ -352,7 +352,7 @@ echo "
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        ".__('Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
+	        ".__('Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window 
 	        instead of downloading it as a file.')."
 	        </td>
 	    </tr>
@@ -365,7 +365,7 @@ echo "
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        ".sprintf(__('Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
+	        ".sprintf(__('Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want
 	        Aigaion to convert special characters to BibTeX codes such as %s'),"{\\'e}")."
 	        </td>
 	    </tr>

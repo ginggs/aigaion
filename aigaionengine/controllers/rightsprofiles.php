@@ -32,7 +32,7 @@ class Rightsprofiles extends Controller {
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {
-	        appendErrorMessage(__("View rightsprofile").": ".__("non-existing id passed").".<br/>");
+	        appendErrorMessage(__("View rights profile").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 
@@ -124,7 +124,7 @@ class Rightsprofiles extends Controller {
 	    $rightsprofile_id = $this->uri->segment(3,-1);
 	    $rightsprofile = $this->rightsprofile_db->getByID($rightsprofile_id);
 	    if ($rightsprofile==null) {
-	        appendErrorMessage(__("Edit rightsprofile").": ".__("non-existing id passed").".<br/>");
+	        appendErrorMessage(__("Edit rights profile").": ".__("non-existing id passed").".<br/>");
 	        redirect('');
 	    }
 	    
@@ -184,7 +184,7 @@ class Rightsprofiles extends Controller {
 	    $commit = $this->uri->segment(4,'');
 
 	    if ($rightsprofile==null) {
-	        appendErrorMessage(__('Delete rightsprofile').': '.__('non-existing id passed').'.<br/>');
+	        appendErrorMessage(__('Delete rights profile').': '.__('non-existing id passed').'.<br/>');
 	        redirect('');
 	    }
 	    //check user rights
@@ -243,7 +243,7 @@ class Rightsprofiles extends Controller {
         
         //check if fail needed: was all data present in POST?
         if ($rightsprofile == null) {
-            appendErrorMEssage(__("Commit rightsprofile").": ".__("no data to commit").".<br/>");
+            appendErrorMEssage(__("Commit rights profile").": ".__("no data to commit").".<br/>");
             redirect ('');
         }
 
@@ -300,7 +300,7 @@ class Rightsprofiles extends Controller {
             }
             if (!$success) {
                 //this is quite unexpected, I think this should not happen if we have no bugs.
-                appendErrorMessage(__("Commit rightsprofile").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
+                appendErrorMessage(__("Commit rights profile").": ".__("an error occurred").". ".__("Please contact your Aigaion administrator.")."<br/>");
                 redirect('users/manage');
             }
             //redirect somewhere if commit was successfull

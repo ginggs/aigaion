@@ -70,7 +70,7 @@ if (    ($userlogin->hasRights('note_edit'))
                         'update'  => 'note_rights_'.$note->note_id
                        )
                   );
-    echo"[<span id='note_rights_".$note->note_id."' title='".__('note read / edit rights')."'>r:".$readrights."e:".$editrights."</span>]";
+    echo"[<span id='note_rights_".$note->note_id."' title='".sprintf(__('%s read / edit rights'), __('note'))."'>r:".$readrights."e:".$editrights."</span>]";
 }
 ?>
 </div>

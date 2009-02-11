@@ -121,7 +121,7 @@ class Logintegration extends Controller {
               exit(sprintf(__("Logged in as %s"),$username));
           }
       } else {
-          exit(__("Nonexisting account"));
+          exit(__("Non-existing account"));
       }      
     }
     else 

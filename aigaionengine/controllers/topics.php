@@ -725,7 +725,7 @@ class Topics extends Controller {
 					if($email_bibtex)
 					{
 						$messageBody .= "\n";
-						$messageBody .= 'BiBTex';
+						$messageBody .= 'BibTeX';
 						$messageBody .= "\n";
 						$messageBody .= strip_tags($this->load->view('export/'.'bibtexEmail', $exportdata, True));
 					}

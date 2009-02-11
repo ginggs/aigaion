@@ -2,7 +2,7 @@
 
 /*
 | -------------------------------------------------------------------
-|  Helper for some BiBTeX related functions. 
+|  Helper for some BibTeX related functions. 
 | -------------------------------------------------------------------
 |
 |   This helper caches the bibtex id mappings, used for e.g. crossreferencing in notes.

@@ -227,7 +227,7 @@ echo $this->validation->error_string;
             <td colspan='2'><p class='header2'><?php echo __('Login settings (HTTP Authentication):');?></p>
 			<?php echo __("'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine 
 	        the name of the logged user, instead of a login form.")."
-	        <br/><br/><b>".__('Note').":</b> ".__('If you select this, be sure to have that 
+	        <br/><br/><b>".__('Note').":</b> ".__('If you select this, be sure that 
 	        you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also 
 	        not turn the httpauth login module off without directly accessing the Aigaion database.');?></td>
         </tr>

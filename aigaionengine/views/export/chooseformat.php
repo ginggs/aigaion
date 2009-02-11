@@ -18,7 +18,7 @@ if (!isset($exportCommand))$exportCommand="export/all/";
 </p>
 <?php
 echo form_open($exportCommand.'bibtex');
-echo "<div>".form_submit(array('name'=>'BiBTeX','title'=>__('Export to BibTeX')),'BiBTeX');
+echo "<div>".form_submit(array('name'=>'BibTeX','title'=>__('Export to BibTeX')),'BibTeX');
 echo "</div>\n";
 echo form_close();
 echo '<br/>';

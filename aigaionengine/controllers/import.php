@@ -78,13 +78,13 @@ class Import extends Controller {
       $type = $this->import_lib->determineImportType($import_data);
       if ($type == "unknown") 
       {
-        appendErrorMessage(__("Import: can't automatically figure out import data format; please specify correct format.")."<br/>");
+        appendErrorMessage(__("Import").": ".__("can't automatically figure out import data format; please specify correct format.")."<br/>");
         $this->viewform($import_data);
         return;
       }
       else
       {
-        appendMessage(sprintf(__("Import: Data automatically identified as format \"%s\"."),$type)."<br/>");
+        appendMessage(sprintf(__("Import").": ".__("Data automatically identified as format \"%s\"."),$type)."<br/>");
       }
     }
     
@@ -113,7 +113,7 @@ class Import extends Controller {
     if (count($publications)==0)
     {
       appendErrorMessage("
-      <b>".__("Import: Could not extract any valid publication entries from the import data.")."</b> 
+      <b>".__("Import").": ".__("Could not extract any valid publication entries from the import data.")."</b> 
       <ul>
        <li>".__("Please verify the input.")."</li>
        <li>".__("If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen.")."</li>
@@ -171,7 +171,7 @@ class Import extends Controller {
 
     if ($import_count == 0) 
     {
-      appendErrorMessage(__("Import/commit: no publications committed.")."<br/>");
+      appendErrorMessage(__("Import")."/".__("Commit").": ".__("no publications committed.")."<br/>");
       $this->viewform();
       return;
     }

@@ -76,7 +76,7 @@ echo "</script>";
         }
       }
       if ($class=='nonstandard') {
-        $fieldCol .= ' <span title="'.__('This field might not be used by BiBTeX for this publication type').'">(*)</span>';
+        $fieldCol .= ' <span title="'.__('This field might not be used by BibTeX for this publication type').'">(*)</span>';
       }
       $fieldCol .= ':';
       $valCol = "";

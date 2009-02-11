@@ -34,7 +34,7 @@ echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
 	echo "
 <ul>";
 echo  "<li><nobr>["
-      .anchor('export/author/'.$author->author_id,'BiBTeX',array('target'=>'aigaion_export'))."]</nobr></li>
+      .anchor('export/author/'.$author->author_id,'BibTeX',array('target'=>'aigaion_export'))."]</nobr></li>
        <li><nobr>["
       .anchor('export/author/'.$author->author_id.'/ris','RIS',array('target'=>'aigaion_export'))."]</nobr></li>
        <li><nobr>["

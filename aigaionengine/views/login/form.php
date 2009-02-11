@@ -19,10 +19,7 @@
     }
     $formtitle = __('Welcome to the Aigaion bibliography system, please login');
     if ($this->latesession->get('FORMREPOST')==True) {
-        echo "<div class='errormessage' width='100%'>".sprintf(__('You just submitted a
-			   form named %s, but it seems that you have been logged out. To proceed with
-			   submitting the information, please log in again, then confirm that you want
-			   to re-submit the data.'), $this->latesession->get('FORMREPOST_formname'))
+        echo "<div class='errormessage' width='100%'>".sprintf(__('You just submitted a form named %s, but it seems that you have been logged out. To proceed with submitting the information, please log in again, then confirm that you want to re-submit the data.'), $this->latesession->get('FORMREPOST_formname'))
 			   ." </div>";
         $formtitle = __('Login to proceed with form submission');
     }

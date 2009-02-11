@@ -524,8 +524,8 @@ class Bookmarklist extends Controller {
                     $nrskipped++;
                 }
             }
-            appendMessage('Deleted '.$nrdeleted.' publications<br>');
-            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
+            appendMessage('Deleted '.$nrdeleted.' publications<br/>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br/>');
             redirect('bookmarklist');
         } else {
             //get output
@@ -599,8 +599,8 @@ class Bookmarklist extends Controller {
                     $nrskipped++;
                 }
             }
-            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),'read', $nrchanged,$accesslevel).'<br>');
-            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
+            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),__('read'), $nrchanged,$accesslevel).'<br/>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br/>');
             redirect('bookmarklist');
         } else {
             //get output
@@ -676,8 +676,8 @@ class Bookmarklist extends Controller {
                     }
                 }
             }
-            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),'read',$nrchanged,$accesslevel).'<br>');
-            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped).'<br>');
+            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),__('read'),$nrchanged,$accesslevel).'<br/>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped).'<br/>');
             redirect('bookmarklist');
         } else {
             //get output
@@ -723,7 +723,7 @@ class Bookmarklist extends Controller {
 	function seteditpubaccesslevel()
 	{
 	    $commit = $this->uri->segment(3,'');
-        $editaccesslevel = $this->input->post('editaccesslevel');
+        $editaccesslevel = $this->input->post('accesslevel');
 	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin  = getUserLogin();
@@ -751,13 +751,13 @@ class Bookmarklist extends Controller {
                     $nrskipped++;
                 }
             }
-            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),'edit',$nrchanged,$editaccesslevel).'<br>');
-            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br>');
+            appendMessage(sprintf(__('Set %s access level of %s publications to "%s"'),__('edit'),$nrchanged,$editaccesslevel).'<br/>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s publications due to insufficient rights.'),$nrskipped).'<br/>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = sprintf(__('Set edit access level to %s for all from bookmarklist'),$editaccesslevel);
+            $headerdata['title'] = sprintf(__('Set %s access level to %s for all from bookmarklist'),__('edit'),$editaccesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -798,17 +798,17 @@ class Bookmarklist extends Controller {
 	function seteditattaccesslevel()
 	{
 	    $commit = $this->uri->segment(3,'');
-        $editaccesslevel = $this->input->post('editaccesslevel');
+        $editaccesslevel = $this->input->post('accesslevel');
 	    //besides the rights needed to READ this publication, checked by publication_db->getByID, we need to check:
 	    //edit_access_level and the user edit rights
         $userlogin  = getUserLogin();
 
 	    if (!$userlogin->hasRights('bookmarklist') || !$userlogin->hasRights('attachment_edit')) {
-	        appendErrorMessage(__('Setting edit access levels of attachments from bookmarklist').': '.__('insufficient rights').'.<br/>');
+	        appendErrorMessage(sprintf(__('Setting %s access levels of attachments from bookmarklist'), __('edit')).': '.__('insufficient rights').'.<br/>');
 	        redirect('');
 	    }
         if (!in_array($editaccesslevel,array('public','intern','private'))) {
-	        appendErrorMessage(__('Setting edit access levels of attachments from bookmarklist').': '.__('no existing access level specified').'.<br/>');
+	        appendErrorMessage(sprintf(__('Setting %s access levels of attachments from bookmarklist'), __('edit')).': '.__('no existing access level specified').'.<br/>');
 	        redirect('bookmarklist');
         }
         if ($commit=='commit') {
@@ -828,13 +828,13 @@ class Bookmarklist extends Controller {
                     }
                 }
             }
-            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),'edit', $nrchanged,$editaccesslevel).'<br>');
-            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped),'<br>');
+            appendMessage(sprintf(__('Set %s access level of %s attachments to "%s".'),__('edit'), $nrchanged,$editaccesslevel).'<br/>');
+            if ($nrskipped>0)appendMessage(sprintf(__('Skipped %s attachments due to insufficient rights.'),$nrskipped),'<br/>');
             redirect('bookmarklist');
         } else {
             //get output
             $headerdata = array();
-            $headerdata['title'] = sprintf(__('Set edit access level to %s for all attachments of publications on bookmarklist'),$editaccesslevel);
+            $headerdata['title'] = sprintf(__('Set %s access level to %s for all attachments of publications on bookmarklist'),__('edit'), $editaccesslevel);
             $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
             
             $output = $this->load->view('header', $headerdata, true);
@@ -1008,7 +1008,7 @@ class Bookmarklist extends Controller {
 							if($email_bibtex)
 							{
 								$messageBody .= "\n";
-								$messageBody .= 'BiBTex';
+								$messageBody .= 'BibTeX';
 								$messageBody .= "\n";
 								$messageBody .= strip_tags($this->load->view('export/'.'bibtexEmail', $exportdata, True));
 							}

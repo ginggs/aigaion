@@ -454,7 +454,7 @@ class Groups extends Controller {
         
         $group = $this->user_db->getByID($group_id);
         if ($group == null) {
-            echo "<div class='errormessage'>".__("Unubscribe topic").": ".__("invalid group_id specified")."</div>";
+            echo "<div class='errormessage'>".__("Unsubscribe topic").": ".__("invalid group_id specified")."</div>";
         }
 
 	    //check user rights

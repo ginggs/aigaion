@@ -5,7 +5,7 @@
 |  Helper for export functions.
 | -------------------------------------------------------------------
 |
-|   This helper contains functions to export to BiBTeX and RIS
+|   This helper contains functions to export to BibTeX and RIS
 |
 |	Usage:
 |       //load this helper:

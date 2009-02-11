@@ -110,7 +110,7 @@ class Publications extends Controller {
     $publication = $this->publication_db->getByBibtexID($bibtex_id);
     if ($publication == null)
     {
-      appendErrorMessage(__("View publication").": ".sprintf(__("non-existing bibtex id \"%s\" was passed"),$bibtex_id));
+      appendErrorMessage(__("View publication").": ".sprintf(__("non-existing BibTeX id \"%s\" was passed"),$bibtex_id));
       redirect('');
     }
     
@@ -750,7 +750,7 @@ class Publications extends Controller {
 			$this->load->helper('publication');
 
 			$headerdata = array();
-			$headerdata['title'] = __('Publication export');
+			$headerdata['title'] = __('Export publication');
 			$headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
 			$headerdata['exportCommand']    = 'publications/exportEmail';
 			$headerdata['exportName']    = __('Export publication');
@@ -802,7 +802,7 @@ class Publications extends Controller {
 			if($email_bibtex)
 			{
 				$messageBody .= "\n";
-				$messageBody .= 'BiBTex';
+				$messageBody .= 'BibTeX';
 				$messageBody .= "\n";
 				$messageBody .= strip_tags($this->load->view('export/'.'bibtexEmail', $exportdata, True));
 			}
@@ -824,7 +824,7 @@ class Publications extends Controller {
 				#send to right export view
 				$exportdata['nonxrefs'] = $pubs;
 				$exportdata['xrefs']    = $xrefpubs;
-				$exportdata['header']   = __('Exported publicaiton');
+				$exportdata['header']   = __('Exported publication');
 				$exportdata['exportEmail']   = true;
 
 				$messageBody .= strip_tags($this->load->view('export/'.'risEmail', $exportdata, True));

@@ -10,7 +10,7 @@ Parameters:
 $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('bookmarklist/deleteall/commit');
-echo __('Are you sure that you want to delete all publications on the bookmarklist from your database? There is no undo!')."<p>\n";
+echo __('Are you sure that you want to delete all publications on the bookmarklist from your database?')."<p>\n";
 echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('bookmarklist');
