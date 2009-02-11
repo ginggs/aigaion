@@ -76,8 +76,7 @@ echo $this->validation->error_string;
 	    <tr>
 	        <td align='left' colspan='2'>
 	        <p><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __("Select the user account that will be used by default for logging in anonymous users. Only
-	        users that are marked 'anonymous' on the edit user page can be selected here!")."
+	        <?php echo __("Select the user account that will be used by default for logging in anonymous users. Only users that are marked 'anonymous' on the edit user page can be selected here!")."
 	        <p>".__("Note: Be careful in assigning user rights to anonymous accounts!"); ?></td>
 	    </tr>
 	    <tr>
@@ -156,19 +155,13 @@ echo $this->validation->error_string;
 	    </tr>
 
         <tr>
-            <td colspan='2'><p class='header2'><?php echo __('Login settings (LDAP):')."</p>".__("If you use LDAP authentication, 
-                you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl)
-                (That's just an example! We don't really have an LDAP server at Aigaion.nl!)");?>.
+            <td colspan='2'><p class='header2'><?php echo __('Login settings (LDAP):')."</p>".__("If you use LDAP authentication, you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl) (That's just an example! We don't really have an LDAP server at Aigaion.nl!)");?>.
             </td>
         </tr>
 	    
         <tr>
             <td colspan='2'>
-                <?php echo "<b>".__('Note').":</b> ".sprintf(__('If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server 
-            activated. Explaining how to install that is well outside the scope of Aigaion documentation.
-            See the LDAP documentation at %s for more information.
-            Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll
-            to be available somewhere...'), "<a href='http://www.php.net/' class='open_extern'>www.php.net</a>");?>
+                <?php echo "<b>".__('Note').":</b> ".sprintf(__('If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server activated. Explaining how to install that is well outside the scope of Aigaion documentation. See the LDAP documentation at %s for more information. Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll to be available somewhere...'), "<a href='http://www.php.net/' class='open_extern'>www.php.net</a>");?>
             </td>
         </tr>
 	    <tr>    
@@ -293,10 +286,7 @@ echo $this->validation->error_string;
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __("Check this box if you want to allow all external attachment names, instead of just those ending in 
-	        one of the 'allowed extensions' specified above. This may be useful because external attachments are 
-	        often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a 
-	        proper file name. This only affects *remote* attachments.");?></td>
+	        <?php echo __("Check this box if you want to allow all external attachment names, instead of just those ending in one of the 'allowed extensions' specified above. This may be useful because external attachments are often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a proper file name. This only affects *remote* attachments.");?></td>
 	    </tr>
 	
 	    <tr>
@@ -309,8 +299,7 @@ echo $this->validation->error_string;
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('Check this box if the server is read-only, i.e. if you cannot write files such as attachments to 
-	        the server.');?></td>
+	        <?php echo __('Check this box if the server is read-only, i.e. if you cannot write files such as attachments to the server.');?></td>
 	    </tr>
 
 <!-- INPUT/OUTPUT SETTINGS -->
@@ -324,8 +313,7 @@ echo $this->validation->error_string;
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo sprintf(__('BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.
-	        The correct syntax for strings is: %s'), '@string {AIG = "Aigaion bibliography System"}');?><br/><br/></td>
+	        <?php echo sprintf(__('BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX. The correct syntax for strings is: %s'), '@string {AIG = "Aigaion bibliography System"}');?><br/><br/></td>
 	    </tr>
 	    <tr>
 	        <td><label><?php echo __('Convert BibTeX to UTF8 upon input');?></label></td>
@@ -337,8 +325,7 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them
-          into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly.');?></td>
+	        <?php echo __('Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly.');?></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>
@@ -367,9 +354,7 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('Checking this box means that the full list of publications for a topic is included below the topic 
-	        description, to speed up browsing for papers. Turning this on might however slow down the loading 
-	        of the topic pages.');?></td>
+	        <?php echo __('Checking this box means that the full list of publications for a topic is included below the topic description, to speed up browsing for papers. Turning this on might however slow down the loading of the topic pages.');?></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>
@@ -428,8 +413,7 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
 	        <td colspan='2'><hr><p class='header2'><?php echo __('Defaults for user preferences:');?></p></td>
 	    </tr>
         <tr><td align=left colspan=2><img class='icon' border=0 src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-        <?php echo __('Several user preferences can be given a default value here, to be overridden as wished by 
-        users who can change their profile.');?></td>
+        <?php echo __('Several user preferences can be given a default value here, to be overridden as wished by users who can change their profile.');?></td>
         </tr>
 <?php
 $theme_array = array();
@@ -507,8 +491,7 @@ echo "
         <hr><p class=header2><?php echo __('Default access levels:');?></p>
         </TD></TR>
         <tr><td align=left colspan=2><img border=0 src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-        <?php echo __("Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly 
-        accessible by default");?></td>
+        <?php echo __("Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly accessible by default");?></td>
         </tr>
         <tr>
             <td><?php echo __('Type:');?></td>
