@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-11 23:55+0100\n"
-"PO-Revision-Date: 2009-02-12 00:04+0100\n"
+"PO-Revision-Date: 2009-02-12 00:24+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1073,9 +1073,8 @@ msgstr "Foute parameters om mee uit te loggen"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:45
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:69
-#, fuzzy
 msgid "Delete note"
-msgstr "Verwijder groep"
+msgstr "Verwijder aantekening"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:93
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:105
@@ -1097,14 +1096,12 @@ msgstr "Publicatie die bij de aantekening hoort"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:196
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:244
-#, fuzzy
 msgid "Commit note"
-msgstr "Bewerk aantekening"
+msgstr "Sla  aantekening op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:209
-#, fuzzy
 msgid "Publication id"
-msgstr "Publicatie"
+msgstr "Publicatie id"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:217
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:45
@@ -1112,26 +1109,23 @@ msgstr "Publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:164
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:223
-#, fuzzy
 msgid "Note"
-msgstr "Aantekeningen"
+msgstr "Aantekening"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:59
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:113
-#, fuzzy
 msgid "View publication"
-msgstr "Review publicatie"
+msgstr "Bekijk publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:113
-#, fuzzy, php-format
+#, php-format
 msgid "non-existing BibTeX id \"%s\" was passed"
 msgstr "niet-bestaand bibtex id \"%s\" opgegeven"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:156
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:224
-#, fuzzy
 msgid "Publication list"
-msgstr "Publicatie"
+msgstr "Publicatielijst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:173
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:241
@@ -1143,13 +1137,11 @@ msgstr "gesorteerd op auteur"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:235
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:238
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:241
-#, fuzzy
 msgid "All publications not assigned to a topic"
-msgstr "Alle publicaties voor onderwerp \"%s\""
+msgstr "Alle publicaties die niet aan een onderwerp zijn toegewezen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:304
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:314
-#, fuzzy
 msgid "Edit publication"
 msgstr "Bewerk deze publicatie"
 
@@ -1159,14 +1151,12 @@ msgid "Add publication"
 msgstr "Publicatie toevoegen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:338
-#, fuzzy
 msgid "Import publication"
-msgstr "Ppublicaties importeren"
+msgstr "Publicatie importeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:383
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:396
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:410
-#, fuzzy
 msgid "Delete publication"
 msgstr "Verwijder deze publicatie"
 
@@ -1175,31 +1165,27 @@ msgid "There are validation errors with this entry. You may want to correct them
 msgstr "Er zijn fouten opgetreden in de validatie van deze gegevens. Je wil ze misschien corrigeren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:477
-#, fuzzy
 msgid "Commit publication"
-msgstr "publicatie"
+msgstr "Sla publicatie op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:622
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:627
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:654
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:659
-#, fuzzy
 msgid "Mark publication"
-msgstr "publicatie"
+msgstr "Beoordeel publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:707
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:712
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:754
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:757
-#, fuzzy
 msgid "Export publication"
-msgstr "Exporteer één publicaties"
+msgstr "Exporteer publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:780
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:828
-#, fuzzy
 msgid "Exported publication"
-msgstr "Exporteer één publicaties"
+msgstr "Publicatie geexporteerd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:12
 msgid "no command"
@@ -1207,9 +1193,8 @@ msgstr "geen opdracht"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:124
-#, fuzzy
 msgid "no type"
-msgstr "aantekeningen"
+msgstr "geen type"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:22
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:95
@@ -1243,9 +1228,8 @@ msgstr "Onderwerpstructuur bestaat niet in Aigaion."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:76
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
-#, fuzzy
 msgid "no topic id"
-msgstr "Voeg onderwerp toe"
+msgstr "geen onderwerp id"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:88
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:193
@@ -1271,9 +1255,8 @@ msgstr "Ga naar deze auteur in de database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:115
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:227
-#, fuzzy
 msgid "Unknown type"
-msgstr "Onbekende fout"
+msgstr "Onbekend type"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:138
 msgid "Unknown id or bibtex_id"
@@ -1299,42 +1282,36 @@ msgid "Repost form"
 msgstr "Stuur formulier opnieuw op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:35
-#, fuzzy
 msgid "View rights profile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Bekijk rechtenprofiel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:43
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:89
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:144
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:205
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:276
-#, fuzzy
 msgid "Rightsprofile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Rechtenprofiel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:80
-#, fuzzy
 msgid "Add rights profile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Voeg rechtenprofiel toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:127
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:138
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:257
-#, fuzzy
 msgid "Edit rights profile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Bewerk rechtenprofiel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:187
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:194
-#, fuzzy
 msgid "Delete rights profile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Verwijder rechtenprofiel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:246
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
-#, fuzzy
 msgid "Commit rights profile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
+msgstr "Sla rechtenprofiel op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:268
 #, fuzzy
@@ -1354,9 +1331,8 @@ msgid "no query"
 msgstr "geen zoekopdracht"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:37
-#, fuzzy
 msgid "Search results"
-msgstr "Zoek"
+msgstr "Zoekresultaten"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:60
@@ -1389,9 +1365,8 @@ msgid "Configure database"
 msgstr "Configureer database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:58
-#, fuzzy
 msgid "Site configuration"
-msgstr "Configuratie"
+msgstr "Instellingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:99
 msgid "Maintain database"
@@ -1402,12 +1377,10 @@ msgid "Aigaion updates"
 msgstr "Nieuwe versie van Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:140
-#, fuzzy
 msgid "Checking for updates"
-msgstr "Zoeken naar updates..."
+msgstr "Zoeken naar updates"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:145
-#, fuzzy
 msgid "This installation of Aigaion is up-to-date."
 msgstr "Deze installatie van Aigaion is up-to-date"
 
@@ -1417,7 +1390,6 @@ msgid "Maintenance function \"%s\" not implemented."
 msgstr "Onderhoudsfunctie \"%s\" is niet geimplementeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:167
-#, fuzzy
 msgid "Site maintenance"
 msgstr "Onderhoud"
 
@@ -1467,15 +1439,13 @@ msgstr "Test"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:136
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:358
-#, fuzzy
 msgid "Failed"
-msgstr "Bestand"
+msgstr "Mislukt"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:144
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:365
-#, fuzzy
 msgid "Passed"
-msgstr "wachtwoord"
+msgstr "Geslaagd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:156
 msgid "Bibtex single entry imports"
@@ -1546,9 +1516,8 @@ msgstr "Bekijk onderwerpshierarchie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:86
-#, fuzzy
 msgid "Browse topics"
-msgstr "Bekijk"
+msgstr "Bekijk onderwerpenhierarchie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:72
 msgid "include all topics"
@@ -1557,9 +1526,8 @@ msgstr "neem alle topics op"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:136
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:149
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:160
-#, fuzzy
 msgid "Delete topic"
-msgstr "Verwijder groep"
+msgstr "Verwijder onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:189
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:195
@@ -1575,9 +1543,8 @@ msgid "Edit topic"
 msgstr "Bewerk onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:319
-#, fuzzy
 msgid "Show topic"
-msgstr "Voeg onderwerp toe"
+msgstr "Bekijk onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:330
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:516
@@ -1593,9 +1560,8 @@ msgstr "Onderwerp"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:334
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:636
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:681
-#, fuzzy
 msgid "Export topic"
-msgstr "Bewerk onderwerp"
+msgstr "Exporteer onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:337
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:340
@@ -1607,7 +1573,7 @@ msgstr "Bewerk onderwerp"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:447
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:450
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:453
-#, fuzzy, php-format
+#, php-format
 msgid "Publications for topic \"%s\""
 msgstr "Alle publicaties voor onderwerp \"%s\""
 
@@ -1643,7 +1609,6 @@ msgid "Exported from topic"
 msgstr "Exporteer alle publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:37
-#, fuzzy
 msgid "Manage accounts"
 msgstr "Gebruikersbeheer"
 
@@ -3226,7 +3191,6 @@ msgid "You are now logged in as a guest user. If you submitted the form from a r
 msgstr "Je bent nu aangemeld als gastgebruiker. Als je het formulier van een niet-anonieme gebruikersaccount had opgestuurd, moet je nu eerst inloggen met die gebruikersaccount voordat je het formulier nog eens opstuurd, omdat je vanaf deze gast toegang misschien niet genoeg rechten hebt om het formulier succesvol op te sturen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:15
-#, fuzzy
 msgid "Repost"
 msgstr "Stuur formulier opnieuw op"
 
@@ -3518,9 +3482,9 @@ msgid "Download %s"
 msgstr "%s openen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:47
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s"
-msgstr "Verwijder groep"
+msgstr "Verwijder %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
 #, fuzzy, php-format
@@ -3642,9 +3606,9 @@ msgstr "Toon"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\list_items.php:11
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:175
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:124
-#, fuzzy, php-format
+#, php-format
 msgid "All information on %s"
-msgstr "Alle informatie over"
+msgstr "Alle informatie over %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:7
 msgid "Merge authors"
@@ -3664,14 +3628,12 @@ msgid "Source author"
 msgstr "Bronauteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
-#, fuzzy
 msgid "Delete this author"
-msgstr "Verwijder deze publicatie"
+msgstr "Verwijder deze auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
-#, fuzzy
 msgid "Edit this author"
-msgstr "Bewerk deze publicatie"
+msgstr "Bewerk deze auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
@@ -3712,9 +3674,8 @@ msgid "Add all bookmarked publications to the selected topic"
 msgstr "Publicaties op bladwijzerlijst toevoegen aan onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:35
-#, fuzzy
 msgid "Add all to topic"
-msgstr "Voeg onderwerp toe"
+msgstr "Voeg alles toe aan onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:50
 #, fuzzy
@@ -3741,9 +3702,8 @@ msgid "Make into new topic"
 msgstr "Maak er een nieuw onderwerp van"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:68
-#, fuzzy
 msgid "Clear the bookmarklist"
-msgstr "Veranderen van bladwijzers"
+msgstr "Maak bladwijzerlijst leeg"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:75
 #, fuzzy
@@ -3856,17 +3816,14 @@ msgid "Please select the format in which you want to export the publications:"
 msgstr "Kies het formaat waarin je de publicaties wil exporteren:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:21
-#, fuzzy
 msgid "Export to BibTeX"
-msgstr "Exporteer via e-mail"
+msgstr "Exporteer naar BibTeX"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:26
-#, fuzzy
 msgid "Export to RIS"
-msgstr "Exporteer"
+msgstr "Exporteer naar RIS"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:32
-#, fuzzy
 msgid "Export by E-mail"
 msgstr "Exporteer via e-mail"
 
@@ -4699,11 +4656,11 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:318
 msgid "Convert BibTeX to UTF8 upon input"
-msgstr ""
+msgstr "Converteer Bibtex naar UTF8 bij importeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:327
 msgid "Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly."
-msgstr ""
+msgstr "Schakel dit uit als je de speciale BibTeX codes als zodanig wil opslaan in de database, zonder ze naar utf8 te converteren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:335
 msgid "Some display settings:"
@@ -5129,7 +5086,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:79
 msgid "Note: Login names, once assigned, cannot be changed."
-msgstr ""
+msgstr "Let op: login namen kunnen niet aangepast als ze eenmaal toegekend zijn."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:92
 #, fuzzy
