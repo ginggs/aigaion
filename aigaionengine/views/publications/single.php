@@ -98,7 +98,7 @@ $this->load->helper('translation');
             echo __('Key').' <span title="'.__('This is the BibTeX `key` field, used to define sorting keys').'">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
         } else {
             if (in_array($key,$capitalfields)) {
-                echo strtoupper(translateField($key));
+                echo utf8_strtoupper(translateField($key));
             } else  {
                 echo translateField($key,true);
             }

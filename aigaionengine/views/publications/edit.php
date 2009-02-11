@@ -4,6 +4,8 @@
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
 
+$this->load->helper('translation');
+
 echo "<script language='javascript'>";
 include_once(APPPATH.'javascript/authorselection.js');
 echo "</script>";
@@ -69,11 +71,12 @@ echo "</script>";
       if ($key=='namekey') {
         $fieldCol = __('Key').' <span title="'.__('This is the bibtex `key` field, used to define sorting keys').'">(?)</span>'; //stored in the databse as namekey, it is actually the bibtex field 'key'
       } else { 
-        if (in_array($key,$capitalfields)) {
-            $fieldCol = strtoupper($key); 
-        } else  {
-            $fieldCol = ucfirst($key); 
-        }
+          if (in_array($key,$capitalfields)) {
+              $fieldCol = utf8_strtoupper(translateField($key));
+          } else  {
+              $fieldCol = translateField($key,true);
+          }
+
       }
       if ($class=='nonstandard') {
         $fieldCol .= ' <span title="'.__('This field might not be used by BibTeX for this publication type').'">(*)</span>';
