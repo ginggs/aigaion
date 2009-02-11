@@ -235,7 +235,7 @@ echo $this->validation->error_string;
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('Check this box to enable anonymous (guest) access.');?></td>
+	        <?php echo __('Check this box to enable the httpauth login module.');?></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>

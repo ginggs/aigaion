@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 23:49+0100\n"
+"POT-Creation-Date: 2009-02-11 23:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4549,7 +4549,6 @@ msgid "Enable anonymous access:"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:58
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:238
 msgid "Check this box to enable anonymous (guest) access."
 msgstr ""
 
@@ -4716,6 +4715,10 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:229
 msgid "Use HTTPAUTH login modules:"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:238
+msgid "Check this box to enable the httpauth login module."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:245
