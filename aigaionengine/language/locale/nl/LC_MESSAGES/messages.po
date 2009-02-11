@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 18:34+0100\n"
-"PO-Revision-Date: 2009-02-11 19:20+0100\n"
+"POT-Creation-Date: 2009-02-11 19:29+0100\n"
+"PO-Revision-Date: 2009-02-11 19:50+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgid "Edit access levels"
 msgstr "Schrijftoegangsniveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\accesslevels.php:253
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
 #, fuzzy, php-format
 msgid "%s read / edit rights"
 msgstr "lees- / schrijfrechten van publicatie"
@@ -649,6 +652,12 @@ msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 msgid "Set %s access level of %s publications to \"%s\""
 msgstr "Doorzoekbare namen van %s publicaties gecorrigeerd."
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:679
+#, fuzzy
+msgid "read"
+msgstr "Niet gelezen"
+
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:608
 #, php-format
 msgid "Set access level to %s for all from bookmarklist"
@@ -676,21 +685,38 @@ msgstr "%s bestanden overgeslagen vanwege gebrek aan toegangsrechten"
 msgid "Set access level to %s for all attachments of publications on bookmarklist"
 msgstr "Verander toegangsrechten in %s voor alle bestanden bij publicaties op de bladwijzerlijst"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:754
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:760
-#, php-format
-msgid "Set edit access level to %s for all from bookmarklist"
-msgstr "Verander wijzigingsrechten in %s voor alle publicaties op de bladwijzerlijst"
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:831
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:837
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:58
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
+msgid "edit"
+msgstr "bewerk"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:760
+#, fuzzy, php-format
+msgid "Set %s access level to %s for all from bookmarklist"
+msgstr "Verander toegangsrechten voor alle publicaties op de bladwijzerlijst in %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:807
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:811
-#, fuzzy
-msgid "Setting edit access levels of attachments from bookmarklist"
-msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
+#, fuzzy, php-format
+msgid "Setting %s access levels of attachments from bookmarklist"
+msgstr "Veranderen toegangsrechten voor alle publicaties op de bladwijzerlijst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:837
-#, php-format
-msgid "Set edit access level to %s for all attachments of publications on bookmarklist"
-msgstr "Verander wijzigingsrechten in %s voor alle bestanden bij publicaties op de bladwijzerlijst"
+#, fuzzy, php-format
+msgid "Set %s access level to %s for all attachments of publications on bookmarklist"
+msgstr "Verander toegangsrechten in %s voor alle bestanden bij publicaties op de bladwijzerlijst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:870
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:68
@@ -886,9 +912,6 @@ msgid "Subscribe topic"
 msgstr "Abbonneer op onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:457
-msgid "Unubscribe topic"
-msgstr "Zeg abbonnement op onderwerp op"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:476
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:587
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:593
@@ -904,7 +927,12 @@ msgstr "Help"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:36
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:314
 msgid "Import"
@@ -930,16 +958,16 @@ msgid "Attempting to automatically identify proper format."
 msgstr "Poging tot automatisch identificeren van juiste invoerformaat."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
-msgid "Import: can't automatically figure out import data format; please specify correct format."
+msgid "can't automatically figure out import data format; please specify correct format."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
-#, php-format
-msgid "Import: Data automatically identified as format \"%s\"."
+#, fuzzy, php-format
+msgid "Data automatically identified as format \"%s\"."
 msgstr "Importeren: Gegevens automatisch geïdentificeerd als formaat \"%s\"."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
-msgid "Import: Could not extract any valid publication entries from the import data."
+msgid "Could not extract any valid publication entries from the import data."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:118
@@ -955,7 +983,13 @@ msgid "If that setting is correct, too, please submit a bug report at http://aig
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
-msgid "Import/commit: no publications committed."
+#, fuzzy
+msgid "Commit"
+msgstr "Bewerk aantekening"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
+#, fuzzy
+msgid "no publications committed."
 msgstr "Importeren/vastleggen: geen publicaties vastgelegd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:207
@@ -1040,7 +1074,8 @@ msgid "Logged in as %s"
 msgstr "Ingelogd als %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:124
-msgid "Nonexisting account"
+#, fuzzy
+msgid "Non-existing account"
 msgstr "Niet-bestaande account"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:129
@@ -1112,8 +1147,8 @@ msgid "View publication"
 msgstr "Review publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:113
-#, php-format
-msgid "non-existing bibtex id \"%s\" was passed"
+#, fuzzy, php-format
+msgid "non-existing BibTeX id \"%s\" was passed"
 msgstr "niet-bestaand bibtex id \"%s\" opgegeven"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:156
@@ -1178,24 +1213,16 @@ msgstr "publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:706
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:711
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:753
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:756
 #, fuzzy
 msgid "Export publication"
 msgstr "Exporteer één publicaties"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:753
-#, fuzzy
-msgid "Publication export"
-msgstr "Publicatie"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:779
-#, fuzzy
-msgid "Exported publication"
-msgstr "Exporteer één publicaties"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:827
 #, fuzzy
-msgid "Exported publicaiton"
+msgid "Exported publication"
 msgstr "Exporteer één publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:12
@@ -1239,8 +1266,9 @@ msgid "Topic structure does not exist in Aigaion."
 msgstr "Onderwerpstructuur bestaat niet in Aigaion."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:76
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
 #, fuzzy
-msgid "No topic id"
+msgid "no topic id"
 msgstr "Voeg onderwerp toe"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:88
@@ -1281,11 +1309,6 @@ msgstr "Onbekend id of bibtex id"
 msgid "Embedding for %s"
 msgstr "Inbedding voor %s"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:182
-#, fuzzy
-msgid "no topic id"
-msgstr "Voeg onderwerp toe"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:235
 msgid "Aigaion error: no shared domain configured in the Aigaion database"
 msgstr "Aigaion fout: geen gedeeld domein geconfigureerd voor de Aigaion database"
@@ -1301,7 +1324,7 @@ msgstr "Stuur formulier opnieuw op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:35
 #, fuzzy
-msgid "View rightsprofile"
+msgid "View rights profile"
 msgstr "Rechtenprofiel kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:43
@@ -1319,10 +1342,6 @@ msgid "Add rights profile"
 msgstr "Rechtenprofiel kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:127
-#, fuzzy
-msgid "Edit rightsprofile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:138
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:257
 #, fuzzy
@@ -1330,10 +1349,6 @@ msgid "Edit rights profile"
 msgstr "Rechtenprofiel kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:187
-#, fuzzy
-msgid "Delete rightsprofile"
-msgstr "Rechtenprofiel kan niet verwijderd worden"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:194
 #, fuzzy
 msgid "Delete rights profile"
@@ -1342,7 +1357,7 @@ msgstr "Rechtenprofiel kan niet verwijderd worden"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:246
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
 #, fuzzy
-msgid "Commit rightsprofile"
+msgid "Commit rights profile"
 msgstr "Rechtenprofiel kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:268
@@ -2280,6 +2295,8 @@ msgid "school"
 msgstr "school"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
 msgid "note"
 msgstr "aantekeningen"
 
@@ -2397,8 +2414,9 @@ msgid "edit access"
 msgstr "schrijftoegang"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
-msgid "edit acces level"
-msgstr "schrijftoegangsniveau"
+#, fuzzy
+msgid "Edit acces level"
+msgstr "Schrijftoegangsniveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:95
 msgid "cannot edit access levels of this object"
@@ -2732,8 +2750,8 @@ msgid "Cannot delete note"
 msgstr "Kan aantekening niet verwijderen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:211
-#, php-format
-msgid "Failed to update the bibtex-id in note %s."
+#, fuzzy, php-format
+msgid "Failed to update the BibTeX-id in note %s."
 msgstr "Corrigeren van de bibtex-id in aantekening %s is niet gelukt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
@@ -3076,8 +3094,8 @@ msgstr "Tijd voor verwerking: %s seconden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\header.php:26
 #, fuzzy
-msgid "Export browse list"
-msgstr "Fout bij veranderen van bladwijzers"
+msgid "Aigaion export list"
+msgstr "Aigaion2 BibTeX export van %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
 msgid "Browse"
@@ -3116,7 +3134,7 @@ msgid "Sort by"
 msgstr "Sorteer op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:49
 msgid "Title"
 msgstr "Titel"
 
@@ -3184,20 +3202,20 @@ msgstr "Onderwerpen abbonneren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:72
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:56
 msgid "Login"
 msgstr "Inloggen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:155
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:51
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:48
 msgid "Name"
 msgstr "Naam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:161
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:49
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:108
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:147
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:157
@@ -3206,7 +3224,7 @@ msgid "Password"
 msgstr "wachtwoord"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:73
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:70
 msgid "Remember me"
 msgstr "Onthoudt mij"
 
@@ -3219,27 +3237,53 @@ msgid "Logout"
 msgstr "Log uit"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:8
-#, php-format
-msgid ""
-"The system detected that you were logged out while submitting a form named '%s'.\n"
-"      The data in that form has <b>not</b> yet been submitted successfully to the database. \n"
-"      Press the button below to re-submit the form data."
+#, fuzzy, php-format
+msgid "The system detected that you were logged out while submitting a form named '%s'. The data in that form has <b>not</b> yet been submitted successfully to the database. Press the button below to re-submit the form data."
 msgstr ""
 "Het systeem heeft gemerkt dat je uitgelogd bent terwijl je een formulier met de naam '%s' probeerde op te sturen.\n"
 " De gegevens in dat formulier zijn nog <b>niet</b> in de database ingevoerd. \n"
 " Druk op de knop hieronder om het formulier nogmaals op te sturen."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:13
-msgid ""
-"<b>NOTE</b>: You are now logged in as a guest user. If you submitted the form from a \n"
-"            registered account, you should first login with your registered account before \n"
-"            resubmitting the form, because from this guest account you might then not have enough \n"
-"            rights to submit the form."
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
+msgid "NOTE"
+msgstr "LET OP"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
+msgid "You are now logged in as a guest user. If you submitted the form from a registered account, you should first login with your registered account before resubmitting the form, because from this guest account you might then not have enough rights to submit the form."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:27
-msgid "Cancel form"
-msgstr "Annuleer formulier"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:15
+#, fuzzy
+msgid "Repost"
+msgstr "Stuur formulier opnieuw op"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:22
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:289
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:623
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:504
+msgid "Cancel"
+msgstr "Annuleren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:7
 #, fuzzy
@@ -3361,19 +3405,21 @@ msgid "<b>Unsure how the access levels turned out?</b> The column on the left sh
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:185
-msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' --&gt; publication will become 'public' as well."
+#, fuzzy
+msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' &rarr; publication will become 'public' as well."
 msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet het bestand op 'publiek' --&gt; publicatie wordt ook 'publiek'."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:186
-msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' --&gt; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
+#, fuzzy
+msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' &rarr; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
 msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet de publicatie op 'privé' --&gt; bestand blijft 'intern', maar het EFFECTIEVE toegangsniveau wordt 'privé. Als je de publicatie weer op 'intern' zet, zal het effectieve toegansniveau weer 'intern' zijn."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:187
-msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' --&gt; attachment edit will also change to 'private'."
+msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' &rarr; attachment edit will also change to 'private'."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:188
-msgid "Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. --&gt; Subsequently, you can no longer edit that publication :o)"
+msgid "Example: A publication has edit level 'intern'. You are not the owner. You change the edit level to 'private'. &rarr; Subsequently, you can no longer edit that publication :o)"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:11
@@ -3411,33 +3457,6 @@ msgstr "Zet nieuwe naam (leeg: behoud oude naam)..."
 #, fuzzy
 msgid "Upload attachment"
 msgstr "Bijwerken bestand"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:61
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:109
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:52
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:49
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:106
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:286
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:623
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
-#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:18
-#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:504
-msgid "Cancel"
-msgstr "Annuleren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:76
 #, php-format
@@ -3507,7 +3526,7 @@ msgstr "Zet URL"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:66
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:97
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:275
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:278
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:76
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:96
 msgid "Change"
@@ -3529,17 +3548,6 @@ msgstr "%s openen"
 #, fuzzy, php-format
 msgid "Delete %s"
 msgstr "Verwijder groep"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
-#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:58
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
-#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
-#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
-msgid "edit"
-msgstr "bewerk"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
 #, fuzzy, php-format
@@ -3630,7 +3638,7 @@ msgstr "Instituut"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:44
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:95
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:277
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:280
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:74
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:489
@@ -3840,28 +3848,29 @@ msgid "Set attachment edit access level"
 msgstr "schrijftoegangsniveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:13
-msgid "Are you sure that you want to delete all publications on the bookmarklist from your database? There is no undo!"
-msgstr ""
+#, fuzzy
+msgid "Are you sure that you want to delete all publications on the bookmarklist from your database?"
+msgstr "Exporteer alles in bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:14
-#, php-format
-msgid "Are you sure that you want to set the read access level for all attachments of publications on the bookmarklist to \"%s\"? There is no undo!"
-msgstr ""
+#, fuzzy, php-format
+msgid "Are you sure that you want to set the read access level for all attachments of publications on the bookmarklist to \"%s\"?"
+msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:14
-#, php-format
-msgid "Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to \"%s\"? There is no undo!"
-msgstr ""
+#, fuzzy, php-format
+msgid "Are you sure that you want to set the edit access level for all attachments of publications on the bookmarklist to \"%s\"?"
+msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:14
-#, php-format
-msgid "Are you sure that you want to set the edit access level for all publications on the bookmarklist to \"%s\"? There is no undo!"
-msgstr ""
+#, fuzzy, php-format
+msgid "Are you sure that you want to set the edit access level for all publications on the bookmarklist to \"%s\"?"
+msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:14
-#, php-format
-msgid "Are you sure that you want to set the read access level for all publications on the bookmarklist to \"%s\"? There is no undo!"
-msgstr ""
+#, fuzzy, php-format
+msgid "Are you sure that you want to set the read access level for all publications on the bookmarklist to \"%s\"?"
+msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtex.php:16
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtexEmail.php:16
@@ -3876,7 +3885,7 @@ msgstr "Exporteer één publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:17
 msgid "Please select the format in which you want to export the publications:"
-msgstr ""
+msgstr "Kies het formaat waarin je de publicaties wil exporteren:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:21
 #, fuzzy
@@ -3910,35 +3919,35 @@ msgstr "Fout bij veranderen van bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:16
 msgid "Please select the format(s) in which you want to export the publications and enter the email address(es) you want to send it to:"
-msgstr ""
+msgstr "Kies het formaten waarin je de publicaties wil exporteren en voer de emailadressen in waar het heen gestuurd moet worden:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:28
 msgid "Input email addresses here separated by ,"
-msgstr ""
+msgstr "Voer hier de emailadressen in, gescheiden door een komma"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:45
 #, fuzzy, php-format
-msgid "Attacment size: %s KB"
+msgid "Attachment size: %s KB"
 msgstr "Bestanden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:49
 #, php-format
 msgid "Maximum attachment size: %s KB"
-msgstr ""
+msgstr "Maximale bestandsgrootte:%s KB"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:49
-#, php-format
-msgid "Current attacment size: %s KB"
-msgstr ""
+#, fuzzy, php-format
+msgid "Current attachment size: %s KB"
+msgstr "Bestanden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
 #, php-format
-msgid "Paste the entries (%s) to import in the text area below and then press \"Import\""
-msgstr ""
+msgid "Paste the entries (%s) to import in the text area below and then press \"%s\""
+msgstr "Kopieer de invoerdata (%s) naar het textveld hieronder en druk dan op \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:37
 msgid "Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format."
-msgstr ""
+msgstr "Kies het formaat van de invoergegevens in het formulier hierboven, of auto om Aigaion automatisch het formaat te laten vinden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:37
 msgid "Format:"
@@ -3959,7 +3968,7 @@ msgid "Import:"
 msgstr "Importeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:54
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:54
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:38
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:87
 msgid "Citation"
@@ -3967,12 +3976,12 @@ msgstr "Citatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:74
 msgid "Choose alternative authors:"
-msgstr ""
+msgstr "Kies alternatieve auteurs:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:88
 #, php-format
 msgid "Options for import-author \"%s\":"
-msgstr ""
+msgstr "Opties voor import-auteur \"%s\":"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:190
@@ -3986,26 +3995,26 @@ msgstr "behoud"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:102
 msgid "select to use similar author found in database"
-msgstr ""
+msgstr "kies deze om er op lijkende auteur  die in database is gevonden te gebruiken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:110
 msgid "select to use author as found in BibTeX"
-msgstr ""
+msgstr "kies deze om auteur die in BibTex stond te gebruiken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:170
 msgid "Choose alternative editors:"
-msgstr ""
+msgstr "Kies alternatieve redacteurs:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:198
 msgid "select to use similar editor found in database"
-msgstr ""
+msgstr "kies deze om er op lijkende redacteur die in database is gevonden te gebruiken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:206
 msgid "select to use editor as found in BibTeX"
-msgstr ""
+msgstr "kies deze om redacteur die in BibTex stond te gebruiken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:268
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:181
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:73
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:204
 msgid "Keywords"
@@ -4022,34 +4031,31 @@ msgstr "Loginnaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:20
 msgid "Welcome to the Aigaion bibliography system, please login"
-msgstr ""
+msgstr "Welkom bij het Aigaion bibliografiesysteem, log svp in"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:22
 #, php-format
-msgid ""
-"You just submitted a\n"
-"\t\t\t   form named %s, but it seems that you have been logged out. To proceed with\n"
-"\t\t\t   submitting the information, please log in again, then confirm that you want\n"
-"\t\t\t   to re-submit the data."
+msgid "You just submitted a form named %s, but it seems that you have been logged out. To proceed with submitting the information, please log in again, then confirm that you want to re-submit the data."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:27
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:24
 msgid "Login to proceed with form submission"
-msgstr ""
+msgstr "Log in om verder te gaan met het indienen van het formulier"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:78
 #, php-format
 msgid "If you want a password, please mail to %s."
-msgstr ""
+msgstr "Als je een wachtwoord wil, mail dan %s."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:84
 #, fuzzy, php-format
 msgid "For more information about the Aigaion bibliography system visit %s"
 msgstr "Bezoek voor meer informatie %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:13
-msgid "Are you sure that you want to delete the note below? There is no undo!"
-msgstr ""
+#, fuzzy
+msgid "Are you sure that you want to delete the note below?!"
+msgstr "Weet je zeker dat je bestand \"%s\" wil verwijderen?"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:20
 #, fuzzy
@@ -4076,74 +4082,68 @@ msgstr "Test"
 msgid "Access rights"
 msgstr "Toegangsrechten"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
-#, fuzzy
-msgid "note read / edit rights"
-msgstr "lees- / schrijfrechten van publicatie"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:13
 #, php-format
 msgid "Are you sure that you want to delete the publication '%s'?"
-msgstr ""
+msgstr "Weet je zeker dat je de publicatie '%s' wil verwijderen?"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "Examples"
-msgstr ""
+msgstr "Voorbeelden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "Between January and May"
-msgstr ""
+msgstr "Tussen Januari en Mei"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "optional field"
-msgstr ""
+msgstr "optioneel veld"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 #, fuzzy
 msgid "optional"
 msgstr "locatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:25
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:27
 #, fuzzy, php-format
 msgid "%s publication"
 msgstr "publicatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:43
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:45
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:83
 msgid "Type of publication"
 msgstr "Publicatietype"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:72
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:98
 msgid "Key"
 msgstr "Sleutel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:72
 msgid "This is the bibtex `key` field, used to define sorting keys"
 msgstr "Dit is het Bibtex `sleutel` veld, wat wordt gebruikt bij het sorteren in bibtex"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:79
-msgid "This field might not be used by BiBTeX for this publication type"
-msgstr ""
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:82
+msgid "This field might not be used by BibTeX for this publication type"
+msgstr "Dit veld wordt mogelijkerwijs niet gebruikt door BibTeX bij publicaties van dit type"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:106
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:116
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:128
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:179
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:119
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:131
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:182
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:39
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:74
 #, php-format
 msgid "%s field"
-msgstr ""
+msgstr "%s veld"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:261
 msgid "Type in name to quick search. Note: use unaccented letters!"
-msgstr ""
+msgstr "Type hier een naam in voor snelzoeken. Let op: alleen letters zonder accenten!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:120
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:65
@@ -4164,7 +4164,7 @@ msgstr "Bekijk details publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:258
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:187
 msgid "Click to follow Digital Object Identifier link to online publication"
-msgstr ""
+msgstr "Klik om de Digitale Object Identificatie te volgen naar de online puiblicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:86
 #, fuzzy
@@ -4259,9 +4259,9 @@ msgid "Added by"
 msgstr "Toegevoegd door"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
-#, fuzzy
-msgid "Publication read / edit rights"
-msgstr "lees- / schrijfrechten van publicatie"
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
+msgid "publication"
+msgstr "publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:291
 #, fuzzy
@@ -4314,9 +4314,9 @@ msgid "Click on a topic name to change its subscription status."
 msgstr "Klik op een onderwerpnaam om de abbonnementsstatus te veranderen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:16
-#, php-format
-msgid "Are you sure that you want to delete rightsprofile %s? There is no undo!"
-msgstr ""
+#, fuzzy, php-format
+msgid "Are you sure that you want to delete rightsprofile %s?"
+msgstr "Weet je zeker dat je bestand \"%s\" wil verwijderen?"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:40
 #, fuzzy
@@ -4346,11 +4346,11 @@ msgstr "Zoek"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:27
 msgid "Result types"
-msgstr ""
+msgstr "Resultaatsoorten"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:28
 msgid "Choose which types of results you want returned"
-msgstr ""
+msgstr "Kies welke soorten resultaten je terug wilt"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:30
 #, fuzzy
@@ -4379,7 +4379,7 @@ msgstr "Publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:38
 msgid "Choose, if you are searching for publications (see above!), which fields are searched"
-msgstr ""
+msgstr "Kies, als je publicaties zoekt, in welke velden gezocht moet worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:75
@@ -4411,11 +4411,11 @@ msgstr "Publicaties op bladwijzerlijst toegevoeged aan onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:63
 msgid "Leave empty if you want to search all publications"
-msgstr ""
+msgstr "Leeglaten als je alle publicaties wil doorzoeken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:73
 msgid "Search publications with these terms in the following fields:"
-msgstr ""
+msgstr "Zoek publicaties met deze zoektermen in de volgende velden:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:77
 #, fuzzy
@@ -4424,12 +4424,12 @@ msgstr "Bekijk details publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:88
 msgid "Choose the topic restrictions that apply."
-msgstr ""
+msgstr "Kies te onderwerpsbeperkingen die gebruikt moeten worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:89
 #, php-format
 msgid "Return all publications that satisfy %s of the following conditions"
-msgstr ""
+msgstr "Geef alle publicaties dat %s voldoen aan de volgende condities"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:91
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:485
@@ -4461,12 +4461,12 @@ msgstr "Niet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:105
 msgid "Select topic to include or exclude"
-msgstr ""
+msgstr "Kies onderwerp om wel of niet mee te nemen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:113
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:118
 msgid "More..."
-msgstr ""
+msgstr "Meer..."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\results.php:16
 #, fuzzy, php-format
@@ -4486,7 +4486,7 @@ msgstr "Trefwoorden"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\results.php:77
 #, php-format
 msgid "%s matches"
-msgstr ""
+msgstr "%s resultaten"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\results.php:98
 #, fuzzy
@@ -4496,7 +4496,7 @@ msgstr "Publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\results.php:133
 #, php-format
 msgid "No search results found for query: %s"
-msgstr ""
+msgstr "Geen zoekresultaten voor zoekvraag: %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\results.php:137
 #, php-format
@@ -4599,7 +4599,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:131
 msgid "Create missing users:"
-msgstr ""
+msgstr "Maak missende gebruikers aan:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:140
 msgid "Check this box to force the system to create users that are logged in using an external account/password, but do not have an internal Aigaion user account yet. Note that this setting only has an effect when 'delegated password checking' or one of the external login modules have been enabled."
@@ -4679,7 +4679,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:230
 msgid ""
-"If you select this, be sure to have that \n"
+"If you select this, be sure that \n"
 "\t        you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also \n"
 "\t        not turn the httpauth login module off without directly accessing the Aigaion database."
 msgstr ""
@@ -4726,7 +4726,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:303
 msgid "The server is read only:"
-msgstr ""
+msgstr "De server is alleen-lezen:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:312
 msgid ""
@@ -4829,12 +4829,12 @@ msgstr "Voornaam [van] Achternaam"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last, First"
-msgstr ""
+msgstr "[van] Achternaam, Voornaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last"
-msgstr ""
+msgstr "[van] Achternaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:482
 msgid "Default number of publications per page"
@@ -4848,7 +4848,7 @@ msgstr "Controle gelijkende auteurs"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Last names, then initials"
-msgstr ""
+msgstr "Achternaam gevolgd door initialen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
@@ -5099,10 +5099,6 @@ msgstr ""
 msgid "Subtopics"
 msgstr "onderwerpen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
-msgid "publication"
-msgstr "publicatie"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:93
 msgid "publications"
 msgstr "publicaties"
@@ -5139,10 +5135,6 @@ msgstr "onderwerpen"
 #, fuzzy
 msgid "No subtopics"
 msgstr "Voeg onderwerp toe"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
-msgid "create new"
-msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
 #, fuzzy
@@ -5355,7 +5347,7 @@ msgstr "geen gegevens ingevoerd om te importeren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:355
 msgid ""
-"Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window \n"
+"Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window \n"
 "\t        instead of downloading it as a file."
 msgstr ""
 
@@ -5367,7 +5359,7 @@ msgstr "Exporteer via e-mail"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:368
 #, php-format
 msgid ""
-"Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want\n"
+"Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want\n"
 "\t        Aigaion to convert special characters to BibTeX codes such as %s"
 msgstr ""
 
@@ -5437,6 +5429,58 @@ msgstr "Gebruikersbeheer"
 msgid "disabled account"
 msgstr "Bewerk aantekening"
 
+#~ msgid "Set edit access level to %s for all from bookmarklist"
+#~ msgstr ""
+#~ "Verander wijzigingsrechten in %s voor alle publicaties op de "
+#~ "bladwijzerlijst"
+
+#, fuzzy
+#~ msgid "Setting edit access levels of attachments from bookmarklist"
+#~ msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
+#~ msgid ""
+#~ "Set edit access level to %s for all attachments of publications on "
+#~ "bookmarklist"
+#~ msgstr ""
+#~ "Verander wijzigingsrechten in %s voor alle bestanden bij publicaties op "
+#~ "de bladwijzerlijst"
+#~ msgid "Unubscribe topic"
+#~ msgstr "Zeg abbonnement op onderwerp op"
+
+#, fuzzy
+#~ msgid "Publication export"
+#~ msgstr "Publicatie"
+
+#, fuzzy
+#~ msgid "Exported publicaiton"
+#~ msgstr "Exporteer één publicaties"
+
+#, fuzzy
+#~ msgid "No topic id"
+#~ msgstr "Voeg onderwerp toe"
+
+#, fuzzy
+#~ msgid "Edit rightsprofile"
+#~ msgstr "Rechtenprofiel kan niet verwijderd worden"
+
+#, fuzzy
+#~ msgid "Delete rightsprofile"
+#~ msgstr "Rechtenprofiel kan niet verwijderd worden"
+#~ msgid "edit acces level"
+#~ msgstr "schrijftoegangsniveau"
+
+#, fuzzy
+#~ msgid "Export browse list"
+#~ msgstr "Fout bij veranderen van bladwijzers"
+#~ msgid "Cancel form"
+#~ msgstr "Annuleer formulier"
+
+#, fuzzy
+#~ msgid "note read / edit rights"
+#~ msgstr "lees- / schrijfrechten van publicatie"
+
+#, fuzzy
+#~ msgid "Publication read / edit rights"
+#~ msgstr "lees- / schrijfrechten van publicatie"
 #~ msgid "Name:"
 #~ msgstr "Naam"
 
