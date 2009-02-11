@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-10 21:03+0100\n"
+"POT-Creation-Date: 2009-02-11 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1429,9 +1429,10 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:514
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:22
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:23
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:23
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:6
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:11
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:38
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
 msgid "Topic"
 msgstr ""
 
@@ -1507,6 +1508,7 @@ msgid "add a new group"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:80
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:377
 msgid "Groups"
 msgstr ""
 
@@ -1631,6 +1633,7 @@ msgid "Security"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\checkupdates_helper.php:93
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:76
 msgid "Description"
 msgstr ""
 
@@ -3111,17 +3114,23 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:56
 msgid "Login"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:155
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:51
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:48
 msgid "Name"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:161
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:108
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:147
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:157
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:166
 msgid "Password"
 msgstr ""
 
@@ -3377,6 +3386,10 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:623
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:18
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:504
 msgid "Cancel"
 msgstr ""
 
@@ -3414,6 +3427,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:15
 msgid "Confirm"
 msgstr ""
 
@@ -3448,6 +3463,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:97
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:275
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:76
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:96
 msgid "Change"
 msgstr ""
 
@@ -3578,6 +3594,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:277
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:94
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:489
 msgid "Add"
 msgstr ""
 
@@ -3640,16 +3658,20 @@ msgid "Edit this author"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
 msgid "URL"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:52
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:116
 msgid "BookmarkAll"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:117
 msgid "UnBookmarkAll"
 msgstr ""
 
@@ -4345,6 +4367,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:91
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:485
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:321
 msgid "All"
 msgstr ""
 
@@ -4759,14 +4782,17 @@ msgid "Default author display style"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "First [von] Last"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last, First"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:313
 msgid "[von] Last"
 msgstr ""
 
@@ -4775,14 +4801,17 @@ msgid "Default number of publications per page"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:490
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:326
 msgid "'Similar author' check"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Last names, then initials"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Full name"
 msgstr ""
 
@@ -4873,6 +4902,7 @@ msgid "LDAP based authentication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:615
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:491
 msgid "Store new settings"
 msgstr ""
 
@@ -4975,6 +5005,7 @@ msgid ""
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:449
 msgid "Restore"
 msgstr ""
 
@@ -4991,6 +5022,34 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\stats.php:25
 #, php-format
 msgid "%s main topics"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:13
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:18
+msgid "No description"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:13
+#, php-format
+msgid "Are you sure that you want to delete topic \"%s\"?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:40
+msgid "Add a topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:42
+#, php-format
+msgid "Change topic \"%s\""
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:54
+msgid "Parent"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+msgid "Subtopics"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
@@ -5010,11 +5069,305 @@ msgstr ""
 msgid "view"
 msgstr ""
 
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+msgid "view author for topic"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
 msgid "authors"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+msgid "view authors for topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
+msgid "Subtopic"
+msgstr ""
+
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
-msgid "topics"
+msgid "No subtopics"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
+msgid "create new"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
+msgid "create new subtopic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:32
+msgid "collapse"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:37
+msgid "expand"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:47
+#, php-format
+msgid "read: %s of %s publications"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\usersubscriptiontreerow.php:51
+msgid "group subscribed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\delete.php:14
+#, php-format
+msgid "Are you sure that you want to delete user \"%s\"?"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:41
+msgid "Create a new user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:43
+msgid "Edit user preferences"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
+msgid "Account settings"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
+msgid ""
+"'Account settings' is the only block of settings that is <i>mandatory</i>"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:79
+msgid "Note: Login names, once assigned, cannot be changed."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:92
+msgid "Disable account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:101
+msgid ""
+"Note: when you disable this account, it can no loner be used to login, but "
+"the information associated to the account will reamin in the database.\n"
+"    \t        You can re-enable the account in the future."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:108
+msgid "leave blank for no change"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:124
+msgid "Re-type new password"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:149
+msgid ""
+"Cannot change password on anonymous accounts; they do not have a password."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:159
+msgid ""
+"Cannot change password on this account. It has a password which is "
+"externally managed by some other system."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:168
+msgid ""
+"Cannot change password on this account. The account has been disabled and "
+"cannot be used to login. \n"
+"            Maybe because it used to be an anonymous account or an external "
+"login, and therefore does never had a valid password?\n"
+"            Ask an admin to re-enable it and assign a password."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:182
+msgid ""
+"It is impossible to change the type of your own account (normal, anon or "
+"external). This would lead to problems\n"
+"\t        if you accidentally disable it."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:189
+msgid "Account type"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Normal"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Anonymous"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:192
+msgid "Managed by external module"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:198
+msgid ""
+"Note: when you set this account to be anonymous, you should not forget to "
+"enable \n"
+"    \t        anonymous access to this database on the site configuration "
+"page!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:200
+msgid ""
+"Note2: when you set this account to be externally managed, you must be "
+"certain that \n"
+"    \t        the external login module is working; otherwise this account "
+"can no longer login! If you are unsure, please read the documentation on "
+"external login modules."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:209
+msgid "Person details"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:213
+msgid "Initials"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:221
+msgid "First name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:229
+msgid "Middle name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:237
+msgid "Surname"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:245
+msgid "Abbreviation (about three characters)"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:253
+msgid "Email address"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:281
+msgid "Display preferences"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:285
+msgid "Theme"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:293
+msgid "Language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:302
+msgid "Publication summary style"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:305
+msgid "author first"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:305
+msgid "title first"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:310
+msgid "Author display style"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:318
+msgid "Number of publications per page"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
+msgid "Site default"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:335
+msgid ""
+"Select the method for checking whether two author names are counted as "
+"\"similar\"."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:339
+msgid "Open attachments in new browser window"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:348
+msgid "Open export data in browser"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:355
+msgid ""
+"Check this box to force the system to show export data such as BiBTeX or RIS "
+"directly in a browser window \n"
+"\t        instead of downloading it as a file."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:361
+msgid "Export BibTeX as UTF8"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:368
+#, php-format
+msgid ""
+"Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do "
+"NOT want\n"
+"\t        Aigaion to convert special characters to BibTeX codes such as %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:378
+msgid ""
+"The groups to which this user belongs. When you add this user to a group "
+"that it was previously not a member of,\n"
+"        all rights associated with that group will be appended to the user "
+"rights of this user upon commit."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:397
+msgid "User rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:401
+msgid "Check all rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:404
+msgid "Check all"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:411
+msgid "Uncheck all rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:414
+msgid "Uncheck all"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:421
+msgid "Check all rights from"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:435
+msgid "Uncheck all rights from"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:446
+msgid "Restore old state"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:22
+msgid "topic subscription"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:27
+msgid "guest user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:29
+msgid "externally managed account"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:31
+msgid "disabled account"
 msgstr ""
