@@ -270,8 +270,7 @@ echo $this->validation->error_string;
         </tr>
         <tr>
             <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('The list of allowed extensions for attachments. Attachments that do not have an extension from this 
-	        list can not be uploaded.');?></td>
+	        <?php echo __('The list of allowed extensions for attachments. Attachments that do not have an extension from this list can not be uploaded.');?></td>
 	    </tr>
 	    <tr>
 	        <td align='left' colspan='2'></td>

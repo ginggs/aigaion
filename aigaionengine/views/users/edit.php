@@ -98,8 +98,7 @@ if ($user->password_invalidated != 'TRUE') {
             </tr>
             <tr>
     	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-    	        ".__('Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.
-    	        You can re-enable the account in the future.')."
+    	        ".__('Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database. You can re-enable the account in the future.')."
     	        </td>
     	    </tr>";
     }    
@@ -165,9 +164,7 @@ if ($user->password_invalidated != 'TRUE') {
             <tr>
             <td>".__('Password').":</td>
             <td class='message'>
-            ".__('Cannot change password on this account. The account has been disabled and cannot be used to login. 
-            Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password?
-            Ask an admin to re-enable it and assign a password.')."
+            ".__('Cannot change password on this account. The account has been disabled and cannot be used to login. Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password? Ask an admin to re-enable it and assign a password.')."
             </td>
             </tr>
             <tr>";
@@ -179,8 +176,7 @@ if ($userlogin->hasRights('user_edit_all')) {
         echo "
 	    <tr>
 	        <td align='left' colspan='2' class='message'>
-	        ".__('It is impossible to change the type of your own account (normal, anon or external). This would lead to problems
-	        if you accidentally disable it.')."
+	        ".__('It is impossible to change the type of your own account (normal, anon or external). This would lead to problems if you accidentally disable it.')."
 	        </td>
 	    </tr>";
     } else {
@@ -195,10 +191,8 @@ if ($userlogin->hasRights('user_edit_all')) {
             </tr>
     	    <tr>
     	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-    	        ".__('Note: when you set this account to be anonymous, you should not forget to enable 
-    	        anonymous access to this database on the site configuration page!')."<br/>
-    	        ".__('Note2: when you set this account to be externally managed, you must be certain that 
-    	        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules.')."
+    	        ".__('Note: when you set this account to be anonymous, you should not forget to enable anonymous access to this database on the site configuration page!')."<br/>
+    	        ".__('Note2: when you set this account to be externally managed, you must be certain that the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules.')."
     	        </td>
     	    </tr>";
     }
@@ -352,8 +346,7 @@ echo "
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        ".__('Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window 
-	        instead of downloading it as a file.')."
+	        ".__('Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window instead of downloading it as a file.')."
 	        </td>
 	    </tr>
 
@@ -365,8 +358,7 @@ echo "
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        ".sprintf(__('Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want
-	        Aigaion to convert special characters to BibTeX codes such as %s'),"{\\'e}")."
+	        ".sprintf(__('Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want Aigaion to convert special characters to BibTeX codes such as %s'),"{\\'e}")."
 	        </td>
 	    </tr>
 ";
@@ -375,8 +367,7 @@ if ($userlogin->hasRights('user_edit_all')) {
     echo "   
         <tr><td colspan='2'>
         <hr><b>".__('Groups').":</b><hr>
-        ".__('The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
-        all rights associated with that group will be appended to the user rights of this user upon commit.')."
+        ".__('The groups to which this user belongs. When you add this user to a group that it was previously not a member of, all rights associated with that group will be appended to the user rights of this user upon commit.')."
         </td></tr>
         ";
         

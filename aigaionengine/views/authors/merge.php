@@ -5,8 +5,7 @@
 ?>
 <div class='author'>
   <div class='header'><?php echo __('Merge authors'); ?></div>
-  <?php echo __('Merges the source author with the target author.
-  The source author will be deleted, all publications will be transferred to the target author.');
+  <?php echo __('Merges the source author with the target author. The source author will be deleted, all publications will be transferred to the target author.');
 
     //open the edit form
     echo form_open('authors/mergecommit', $formAttributes)."\n";

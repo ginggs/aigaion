@@ -69,9 +69,7 @@ if ($userlogin->hasRights("publication_edit")) {
     
     $similar = $author->getSimilarAuthors();
     if (count($similar)>0) {
-        echo "<div class='message'>".__('Found authors with very similar names.
-              You can choose to merge the following authors with this author 
-              by clicking on the merge link.')."<br/>\n";
+        echo "<div class='message'>".__('Found authors with very similar names. You can choose to merge the following authors with this author by clicking on the merge link.')."<br/>\n";
         foreach ($similar as $simauth) {
             echo anchor('authors/show/'.$simauth->author_id, $simauth->getName(), array('title' => __('Click to show details')))."\n";
 		    echo '('.anchor('authors/merge/'.$author->author_id.'/'.$simauth->author_id, 'merge', array('title' => __('Click to merge'))).")<br/>\n";
