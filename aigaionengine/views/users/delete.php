@@ -11,11 +11,11 @@ we assume that this view is not loaded if you don't have the appropriate read an
 $this->load->helper('form');
 echo "<div class='confirmform'>";
 echo form_open('users/delete/'.$user->user_id.'/commit');
-echo "Are you sure that you want to delete user \"".$user->login."\"?<p>\n";
-echo form_submit('confirm','Confirm');
+echo sprintf(__('Are you sure that you want to delete user "%s"?'),$user->login)."<p>\n";
+echo form_submit('confirm',__('Confirm'));
 echo form_close();
 echo form_open('');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

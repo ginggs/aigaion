@@ -2,31 +2,23 @@
 <div id='singletopic-content-holder'>
 <!-- Topic: HEADER AND DESCRIPTION -->
 <?php
-
-
-
     if ($topic->name=="") {
-        $name = "Topic #".$topic->topic_id;
+        $name = __('Topic')." #".$topic->topic_id;
     } else {
         $name = $topic->name;
     }
     if ($topic->description != null) {
         $description = $topic->description;
     } else {
-        $description = "-no description-";
+        $description = "- ".__('No description')." -";
     }
-
 ?>
-
 <div class='header'>
 <?php 
     echo __('Topic').": ";
     echo $name;
-    
-
 ?>
 </div>
-
 <table class='fullwidth'>
 <tr>
     <td class='fullwidth'>
@@ -47,7 +39,4 @@
     </td>
 </tr>
 </table>
-
-
-
 </div> 

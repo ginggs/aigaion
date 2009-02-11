@@ -19,16 +19,16 @@ $userlogin  = getUserLogin();
         echo '['.anchor('users/edit/'.$user->user_id,__('edit'))."]&nbsp;[";
         echo anchor('users/delete/'.$user->user_id,__('delete'))."]&nbsp;";
         if ($userlogin->hasRights('topic_subscription')) {
-            echo '['.anchor('users/topicreview/'.$user->user_id,'topic subscription')."]&nbsp;";
+            echo '['.anchor('users/topicreview/'.$user->user_id,__('topic subscription'))."]&nbsp;";
         }
     }
     echo $user->login." (".$user->firstname." ".$user->betweenname." ".$user->surname.")";
     if ($user->type=='anon') {
-        echo ' (guest user)';
+        echo ' ('.__('guest user').')';
     } else if ($user->type=='external') {
-        echo ' (externally managed account)';
+        echo ' ('.__('externally managed account').')';
     } else if ($user->password_invalidated=='TRUE') {
-        echo ' (disabled account)';
+        echo ' ('.__('disabled account').')';
     }
 
 

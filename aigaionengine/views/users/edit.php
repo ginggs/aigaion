@@ -38,9 +38,9 @@ if (!isset($user)||($user==null)||(isset($action)&&$action=='add')) {
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Create a New User</p>";
+    echo "<p class='header2'>".__('Create a new user')."</p>";
 } else {
-    echo "<p class='header2'>Edit User Preferences</p>";
+    echo "<p class='header2'>".__('Edit user preferences')."</p>";
 }
 
 //validation feedback
@@ -50,11 +50,10 @@ echo "
     <table width='100%'>
 
         <tr><td colspan='2'>
-        <hr><b>Account settings:</b> ('Account settings' is the only block of settings that is <i>mandatory</i>)<hr>
+        <hr><b>".__('Account settings').":</b> (".__("'Account settings' is the only block of settings that is <i>mandatory</i>").")<hr>
         </td></tr>
-        
         <tr>
-        <td>Login </td>
+        <td>".__('Login')." </td>
         <td>";
 
 // DR 2008.08.29: no-one can change login names anymore in edit forms......
@@ -77,7 +76,7 @@ echo "  </td>
         </tr>
         <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Note: Login names, once assigned, cannot be changed.
+	        ".__('Note: Login names, once assigned, cannot be changed.')."
 	        </td>
 	    </tr>";
 
@@ -90,7 +89,7 @@ if ($user->password_invalidated != 'TRUE') {
         //never disable own account
         echo "
             <tr>
-            <td>Disable account</td>
+            <td>".__('Disable account')."</td>
             <td>
          "
          .form_checkbox('disableaccount','disableaccount',false).
@@ -99,14 +98,14 @@ if ($user->password_invalidated != 'TRUE') {
             </tr>
             <tr>
     	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-    	        Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.
-    	        You can re-enable the account in the future.
+    	        ".__('Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.
+    	        You can re-enable the account in the future.')."
     	        </td>
     	    </tr>";
     }    
     echo "
             <tr>
-            <td>Password (leave blank for no change)</td>
+            <td>".__('Password')." (".__('leave blank for no change').")</td>
             <td>"
             .form_password(array('name'=>'password', /////
                                                      //one VERY annoying firefox feature is to 
@@ -122,7 +121,7 @@ if ($user->password_invalidated != 'TRUE') {
             </td>
             </tr>
             <tr>
-            <td>Re-type new password</td>
+            <td>".__('Re-type new password')."</td>
             <td>"
             .form_password(array('name'=>'password_check',
                               'size'=>'10',
@@ -145,9 +144,9 @@ if ($user->password_invalidated != 'TRUE') {
     if ($user->type=='anon') {
         echo "
             <tr>
-            <td>Password:</td>
+            <td>".__('Password').":</td>
             <td class='message'>
-            Cannot change password on anonymous accounts; they do not have a password.
+            ".__('Cannot change password on anonymous accounts; they do not have a password.')."
             </td>
             </tr>
             <tr>";
@@ -155,20 +154,20 @@ if ($user->password_invalidated != 'TRUE') {
     } else if ($user->type=='external'){
         echo "
             <tr>
-            <td>Password:</td>
+            <td>".__('Password').":</td>
             <td class='message'>
-            Cannot change password on this account. It has a password which is externally managed by some other system.
+            ".__('Cannot change password on this account. It has a password which is externally managed by some other system.')."
             </td>
             </tr>
             <tr>";
     }  else {
         echo "
             <tr>
-            <td>Password:</td>
+            <td>".__('Password').":</td>
             <td class='message'>
-            Cannot change password on this account. The account has been disabled and cannot be used to login. 
+            ".__('Cannot change password on this account. The account has been disabled and cannot be used to login. 
             Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password?
-            Ask an admin to re-enable it and assign a password.
+            Ask an admin to re-enable it and assign a password.')."
             </td>
             </tr>
             <tr>";
@@ -180,41 +179,38 @@ if ($userlogin->hasRights('user_edit_all')) {
         echo "
 	    <tr>
 	        <td align='left' colspan='2' class='message'>
-	        It is, for now, impossible to change the type of your own account (normal, anon or external). This would only lead to problems
-	        if you accidentally disable it. Because who would then repair it for you?
+	        ".__('It is impossible to change the type of your own account (normal, anon or external). This would lead to problems
+	        if you accidentally disable it.')."
 	        </td>
 	    </tr>";
     } else {
         echo "        
             <tr>
-            <td>Account type:</td>
+            <td>".__('Account type').":</td>
             <td>"
             .form_dropdown('type',
-                            array('normal'=>'Normal','anon'=>'Anonymous','external'=>'Managed by external module'),
+                            array('normal'=>__('Normal'),'anon'=>__('Anonymous'),'external'=>__('Managed by external module')),
                             $user->type)."
             </td>
             </tr>
     	    <tr>
     	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-    	        Note: when you set this account to be anonymous, you should not forget to enable 
-    	        anonymous access to this database on the site configuration page!<br/>
-    	        Note2: when you set this account to be externally managed, you must be certain that 
-    	        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules.
+    	        ".__('Note: when you set this account to be anonymous, you should not forget to enable 
+    	        anonymous access to this database on the site configuration page!')."<br/>
+    	        ".__('Note2: when you set this account to be externally managed, you must be certain that 
+    	        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules.')."
     	        </td>
     	    </tr>";
     }
-
-    
-        
 }
 
 echo "        
         <tr><td colspan='2'>
-        <hr><b>Person details:</b><hr>
+        <hr><b>".__('Person details').":</b><hr>
         </td></tr>
 
         <tr>
-        <td>Initials</td>
+        <td>".__('Initials')."</td>
         <td>"
         .form_input(array('name'=>'initials',
                           'size'=>'5',
@@ -222,7 +218,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>First name</td>
+        <td>".__('First name')."</td>
         <td>"
         .form_input(array('name'=>'firstname',
                           'size'=>'10',
@@ -230,7 +226,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Middle name</td>
+        <td>".__('Middle name')."</td>
         <td>"
         .form_input(array('name'=>'betweenname',
                           'size'=>'5',
@@ -238,7 +234,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Surname</td>
+        <td>".__('Surname')."</td>
         <td>"
         .form_input(array('name'=>'surname',
                           'size'=>'15',
@@ -246,7 +242,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Abbreviation (about three characters)</td>
+        <td>".__('Abbreviation (about three characters)')."</td>
         <td>"
         .form_input(array('name'=>'abbreviation',
                           'size'=>'5',
@@ -254,7 +250,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>E-Mail Address</td>
+        <td>".__('Email address')."</td>
         <td>"
         .form_input(array('name'=>'email',
                           'size'=>'20',
@@ -282,11 +278,11 @@ foreach ($AIGAION_SUPPORTED_LANGUAGES as $lang)
 echo "
         
         <tr><td colspan='2'>
-        <hr><b>Display preferences:</b><hr/>
+        <hr><b>".__('Display preferences').":</b><hr/>
         </td></tr>
         
         <tr>
-        <td>Theme</td>
+        <td>".__('Theme')."</td>
         <td>
         ".form_dropdown('theme',
                         $theme_array,
@@ -294,7 +290,7 @@ echo "
         </td>
         </tr>
 
-        <td>Language</td>
+        <td>".__('Language')."</td>
         <td>
         ".form_dropdown('language',
                         $lang_array,
@@ -303,44 +299,44 @@ echo "
         </tr>
 
         <tr>
-        <td>Publication summary style</td>
+        <td>".__('Publication summary style')."</td>
         <td>
         ".form_dropdown('summarystyle',
-                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_SUMMARYSTYLE').')','author'=>'author first','title'=>'title first'),
+                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_SUMMARYSTYLE').')','author'=>__('author first'),'title'=>__('title first')),
                         $user->preferences["summarystyle"])."
         </td>
         </tr>
         <tr>
-        <td>Author display style</td>
+        <td>".__('Author display style')."</td>
         <td>
         ".form_dropdown('authordisplaystyle',
-                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_AUTHORDISPLAYSTYLE').')','fvl'=>'First [von] Last','vlf'=>'[von] Last, First','vl'=>'[von] Last'),
+                        array('default'=>'default ('.getConfigurationSetting('DEFAULTPREF_AUTHORDISPLAYSTYLE').')','fvl'=>__('First [von] Last'),'vlf'=>__('[von] Last, First'),'vl'=>__('[von] Last')),
                         $user->preferences["authordisplaystyle"])."
         </td>
         </tr>
         <tr>
-        <td>Number of publications per page</td>
+        <td>".__('Number of publications per page')."</td>
         <td>
         ".form_dropdown('liststyle',
-                        array(/* 'default'=>'default ('.getConfigurationSetting('DEFAULTPREF_LISTSTYLE').')',*/'0'=>"All", "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
+                        array(/* 'default'=>'default ('.getConfigurationSetting('DEFAULTPREF_LISTSTYLE').')',*/'0'=>__("All"), "10"=>"10", '15'=>"15", '20'=>"20", '25'=>"25", '50'=>"50", '100'=>"100"),
                         $user->preferences["liststyle"])."
         </td>
         </tr>
         <tr>
-        <td>'Similar author' check</td>
+        <td>".__("'Similar author' check")."</td>
         <td>
         ".form_dropdown('similar_author_test',
-                        array('default'=>'Site default','il'=>"Last names, then initials", "c"=>"Full name"),
+                        array('default'=>__('Site default'),'il'=>__("Last names, then initials"), "c"=>__("Full name")),
                         $user->preferences["similar_author_test"])."
         </td>
         </tr>
         <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Select the method for checking whether two author names are counted as 'similar'.
+	        ".__('Select the method for checking whether two author names are counted as "similar".')."
 	        </td>
 	      </tr>
         <tr>
-        <td>Open attachments in new browser window</td>
+        <td>".__('Open attachments in new browser window')."</td>
         <td>
         ". //to do this, we need to rewrite many things, among which: the database should allow for 'default' beside TRUE and FALSE; the getfrompost, add and update in user_db should allow for a dropdown valued 'TRUE', 'FALSE' or 'default', ...
         form_checkbox('newwindowforatt','newwindowforatt',$user->preferences['newwindowforatt']=="TRUE")."
@@ -349,28 +345,28 @@ echo "
 
 
         <tr>
-        <td>Open export data in browser</td>
+        <td>".__('Open export data in browser')."</td>
         <td>
         ".form_checkbox('exportinbrowser','exportinbrowser',$user->preferences['exportinbrowser']=="TRUE")."
         </td>
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
-	        instead of downloading it as a file.
+	        ".__('Check this box to force the system to show export data such as BiBTeX or RIS directly in a browser window 
+	        instead of downloading it as a file.')."
 	        </td>
 	    </tr>
 
         <tr>
-        <td>Export BiBTeX as UTF8</td>
+        <td>".__('Export BibTeX as UTF8')."</td>
         <td>
         ".form_checkbox('utf8bibtex','utf8bibtex',$user->preferences['utf8bibtex']=="TRUE")."
         </td>
         </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-	        Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
-	        Aigaion to convert special characters to BiBTeX codes such as {\\'e}
+	        ".sprintf(__('Check this box if you want all BiBTeX output to be in UTF8, i.e. when you do NOT want
+	        Aigaion to convert special characters to BibTeX codes such as %s'),"{\\'e}")."
 	        </td>
 	    </tr>
 ";
@@ -378,9 +374,9 @@ echo "
 if ($userlogin->hasRights('user_edit_all')) {
     echo "   
         <tr><td colspan='2'>
-        <hr><b>Groups:</b><hr>
-        The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
-        all rights associated with that group will be appended to the user rights of this user upon commit.
+        <hr><b>".__('Groups').":</b><hr>
+        ".__('The groups to which this user belongs. When you add this user to a group that it was previously not a member of,
+        all rights associated with that group will be appended to the user rights of this user upon commit.')."
         </td></tr>
         ";
         
@@ -398,31 +394,31 @@ if ($userlogin->hasRights('user_assign_rights')) {
         echo "   
     
             <tr><td colspan='2'>
-            <hr><b>User rights:</b><hr>
+            <hr><b>".__('User rights').":</b><hr>
             </td></tr>
             
             <tr>
-            <td>Check all rights:</td>
+            <td>".__('Check all rights').":</td>
             <td>
             ";
-    echo $this->ajax->button_to_function('Check all', "selectAllRights();");
+    echo $this->ajax->button_to_function(__('Check all'), "selectAllRights();");
     
     echo "
             </td>
             </tr>
 
             <tr>
-            <td>Uncheck all rights:</td>
+            <td>".__('Uncheck all rights').":</td>
             <td>
             ";
-    echo $this->ajax->button_to_function('Uncheck all', "deselectAllRights();");
+    echo $this->ajax->button_to_function(__('Uncheck all'), "deselectAllRights();");
     
     echo "
             </td>
             </tr>
 
             <tr>
-            <td>Check all rights from:</td>
+            <td>".__('Check all rights from').":</td>
             <td>
             ";
     $options = array(''=>'');
@@ -436,7 +432,7 @@ if ($userlogin->hasRights('user_assign_rights')) {
             </tr>
             
             <tr>
-            <td>Uncheck all rights from:</td>
+            <td>".__('Uncheck all rights from').":</td>
             <td>
             ";
             
@@ -447,10 +443,10 @@ if ($userlogin->hasRights('user_assign_rights')) {
             </tr>
             
             <tr>
-            <td>Restore old state:</td>
+            <td>".__('Restore old state').":</td>
             <td>
             ";
-    echo $this->ajax->button_to_function('Restore', "restoreRights();");
+    echo $this->ajax->button_to_function(__('Restore'), "restoreRights();");
     
     echo "
             </td>
@@ -490,9 +486,9 @@ echo "
         </tr>
         <tr><td>";
 if ($isAddForm) {
-    echo form_submit('submit','Add');
+    echo form_submit('submit',__('Add'));
 } else {
-    echo form_submit('submit','Store new settings');
+    echo form_submit('submit',__('Store new settings'));
 }
 echo "
         </td>
@@ -505,7 +501,7 @@ if ($userlogin->hasRights('user_edit_all')) {
 } else {
     echo form_open('');
 }
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

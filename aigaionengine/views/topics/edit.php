@@ -37,21 +37,21 @@ if (!isset($topic)||($topic==null)||(isset($action)&&$action=='add')) {
 
 
 if ($isAddForm) {
-    echo "<p class='header2'>Add a topic</p>";
+    echo "<p class='header2'>".__('Add a topic')."</p>";
 } else {
-    echo "<p class='header2'>Change topic \"".$topic->name."\"</p>";
+    echo "<p class='header2'>".sprintf(__('Change topic "%s"'), $topic->name)."</p>";
 }
 //validation feedback
 echo $this->validation->error_string;
 ?>
     <table>
-        <tr><td><label for='name'>Name</label></td>
+        <tr><td><label for='name'><?php echo __('Name');?></label></td>
             <td>
 <?php echo form_input(array('name'=>'name','size'=>'30','value'=>$topic->name)); ?>
             </td>
         </tr>
 
-        <tr><td><label for='parent_id'>Parent</label></td>
+        <tr><td><label for='parent_id'><?php echo __('Parent');?></label></td>
             <td>
 <?php     
 
@@ -73,14 +73,14 @@ echo $this->load->view('topics/optiontree',
 ?>
             </td>
         </tr>
-        <tr><td><label for='description'>Description</label></td>
+        <tr><td><label for='description'><?php echo __('Description');?></label></td>
             <td>
 <?php
     echo form_textarea(array('name'=>'description','cols'=>'70','rows'=>'7','value'=>$topic->description));
 ?>
             </td>
         </tr>                
-        <tr><td><label for='url'>URL</label></td>
+        <tr><td><label for='url'><?php echo __('URL');?></label></td>
             <td>
 <?php
 echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
@@ -91,9 +91,9 @@ echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
         <tr><td>
 <?php
 if ($isAddForm) {
-    echo form_submit('submit','Add');
+    echo form_submit('submit',__('Add'));
 } else {
-    echo form_submit('submit','Change');
+    echo form_submit('submit',__('Change'));
 }
 ?>
         </td>
@@ -102,7 +102,7 @@ if ($isAddForm) {
 <?php
 echo form_close();
 echo form_open('');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 ?>
 </div>

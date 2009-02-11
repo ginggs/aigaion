@@ -37,8 +37,6 @@ of the topic.
                     src     = '".getIconUrl('tree_blank.gif')."'/>\n";
     }
     
-///*=== (UN)SUBSCRIPTION LINK ===*/
-//    echo anchor('topics/single/'.$topic->topic_id,$topic->name)."\n";
 
 if ($topic->flags['userIsSubscribed']) {
     $class = 'subscribedtopic';
@@ -50,6 +48,6 @@ echo "\n<span id='subscription_".$topic->topic_id."' class='".$class."'>"
      ."</span>";
      
 if ($topic->flags['userIsGroupSubscribed']) {
-    echo " (group subscribed)";
+    echo " (".__('group subscribed').")";
 }
 ?>

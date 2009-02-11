@@ -29,12 +29,12 @@ Parameters:
                    onclick = 'collapse(\"".$topic->topic_id."\",\"".$collapseCallback."\");' 
                    class   = 'icon'
                    src     = '".getIconUrl('tree_min.gif')."'
-                   alt     = 'collapse'/>\n";
+                   alt     = '".__('collapse')."'/>\n";
         echo "<img id      = 'plus_topic_".$topic->topic_id."' 
                    onclick = 'expand(\"".$topic->topic_id."\",\"".$expandCallback."\");' 
                    class   = 'icon'
                    src     = '".getIconUrl('tree_plus.gif')."'
-                   alt     = 'expand'/>\n";
+                   alt     = '".__('expand')."'/>\n";
         echo "<script type='text/javascript'>".$hide1.$hide2."</script>"; 
     } else {
         echo "<img  class   = 'icon'
@@ -44,5 +44,5 @@ Parameters:
    	$publicationCount     = $this->topic_db->getPublicationCountForTopic($topic->topic_id);
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic($topic->topic_id);
 
-    echo anchor('topics/single/'.$topic->topic_id,$topic->name)." <span title='read: ".$publicationReadCount.' of '.$publicationCount."'><i> ".$publicationReadCount.'/'.$publicationCount."</i></span>\n";
+    echo anchor('topics/single/'.$topic->topic_id,$topic->name)." <span title='".sprintf(__('read: %s of %s publications'), $publicationReadCount, $publicationCount)."'><i> ".$publicationReadCount.'/'.$publicationCount."</i></span>\n";
 ?>
