@@ -49,7 +49,7 @@
     <?php
     //the sort options are only available if the view is called with a 'sortPrefix' option that is not ''
     //
-    if (isset($sortPrefix)||($sortPrefix!=''))
+    if (isset($sortPrefix)&&($sortPrefix!=''))
     {
       ?>
       <li class="mainmenu-spacer"></li>
