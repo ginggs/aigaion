@@ -134,7 +134,8 @@ if ($topicstatBlock != '')
 <?php
     
   if (isset($publications))
-    $this->load->view('publications/list', $publications);
+    $this->load->view('publications/list', array('publications'=>$publications, 'currentpage'=>$currentpage,'multipageprefix'=>$multipageprefix));
+    //$this->load->view('publications/list', $publications);
 ?>
 
 </div> 

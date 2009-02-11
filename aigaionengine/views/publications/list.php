@@ -36,15 +36,15 @@
     $liststyle = $userlogin->getPreference('liststyle');
     if ($liststyle > 0) 
     {
-      if (count($publications) > 0)
+      if (($pubCount > 0) && ($pubCount > $liststyle))
       {
         $multipagelinks.= '<div class="aligncenter">';
-        while ($page*$liststyle<count($publications)) 
+        while ($page*$liststyle < $pubCount) 
         {
           $multipagelinks.= ' | ';
           $linktext = ($page*$liststyle+1).'-';
-          if (($page+1)*$liststyle>count($publications)) {
-              $linktext .= count($publications);
+          if (($page+1)*$liststyle > $pubCount) {
+              $linktext .= $pubCount;
           } else {
               $linktext .= (($page+1)*$liststyle);
           }
@@ -70,14 +70,14 @@
   $b_even = true;
   $subheader = '';
   $subsubheader = '';
-  $pubno = 0;
+  //$pubno = 0;
   foreach ($publications as $publication)
   {
-    $pubno++;
-    if (isset($multipage) && ($multipage == True)) {
-        if (($currentpage*$liststyle > $pubno) || (($currentpage+1)*$liststyle < $pubno))
-            continue;
-    }
+    //$pubno++;
+    //if (isset($multipage) && ($multipage == True)) {
+    //    if (($currentpage*$liststyle > $pubno) || (($currentpage+1)*$liststyle < $pubno))
+    //        continue;
+    //}
     if ($publication!=null) {
       $b_even = !$b_even;
     if ($b_even)

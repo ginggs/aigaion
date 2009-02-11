@@ -66,9 +66,10 @@ class Authors extends Controller {
         //set these parameters when you want to get a good multipublication list display
         $publicationContent['multipage']       = True;
         $publicationContent['currentpage']     = $page;
+        $publicationContent['pubCount']        = $this->author_db->getPublicationCount($author_id);
         $publicationContent['multipageprefix'] = 'authors/show/'.$author_id.'/'.$order.'/';
     }    
-    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,$page);
     $publicationContent['order'] = $order;
 
     

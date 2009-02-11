@@ -944,7 +944,7 @@ class Publication_db {
 
 ///////publication list functions
 
-  function getForTopic($topic_id,$order='')
+  function getForTopic($topic_id,$order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -965,12 +965,22 @@ class Publication_db {
         break;
     }
     $CI = &get_instance();
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
+    $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.",".$liststyle;
+    }
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."topicpublicationlink
     WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id
-    ORDER BY ".$orderby);
+    ORDER BY ".$orderby." ".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -985,7 +995,8 @@ class Publication_db {
     unset($this->crossref_cache);
     return $result;
   }
-  function getUnassigned($order='')
+  
+  function getUnassigned($order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1008,6 +1019,16 @@ class Publication_db {
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
+    $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+    }
     ///////////////////
     //DR: this query is copied from another method - needs to be modified to retrieve all unassigned papers.
     ///////////////////
@@ -1015,7 +1036,7 @@ class Publication_db {
                                     LEFT JOIN ".AIGAION_DB_PREFIX."topicpublicationlink
                         			       ON (".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id AND (".AIGAION_DB_PREFIX."topicpublicationlink.topic_id != 1))
                           WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id IS NULL
-                       ORDER BY ".$orderby);
+                       ORDER BY ".$orderby." ".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -1029,8 +1050,10 @@ class Publication_db {
 
     unset($this->crossref_cache);
     return $result;
-  }  
-  function getForAuthor($author_id,$order='')
+  }
+  
+  
+  function getForAuthor($author_id,$order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1050,13 +1073,24 @@ class Publication_db {
         $orderby='cleanauthor, actualyear DESC';
         break;
     }
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
+    $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+    }
+    
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
     WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
-    ORDER BY ".$orderby);
+    ORDER BY ".$orderby." ".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -1072,7 +1106,7 @@ class Publication_db {
     return $result;
   }
  
-  function getForKeyword($keyword,$order='')
+  function getForKeyword($keyword,$order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1092,13 +1126,24 @@ class Publication_db {
         $orderby='cleanauthor, actualyear DESC';
         break;
     }
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
+    $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+    }
+    
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationkeywordlink
     WHERE ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".$CI->db->escape($keyword->keyword_id)."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationkeywordlink.pub_id
-    ORDER BY ".$orderby);
+    ORDER BY ".$orderby." ".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)
@@ -1114,7 +1159,7 @@ class Publication_db {
     return $result;
   }  
   /** Return a list of publications for the bookmark list of the logged user */
-  function getForBookmarkList($order='')
+  function getForBookmarkList($order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1134,8 +1179,19 @@ class Publication_db {
         $orderby='cleanauthor, actualyear DESC';
         break;
     }
-    $CI = &get_instance();
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
     $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+    }
+    
+    $CI = &get_instance();
+    //$userlogin = getUserLogin();
     
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."userbookmarklists
     WHERE ".AIGAION_DB_PREFIX."userbookmarklists.user_id=".$CI->db->escape($userlogin->userId())."
@@ -1155,7 +1211,7 @@ class Publication_db {
   }
   
   //contributed by Andreas Bulling
-  function getForYear($year_id,$order='')
+  function getForYear($year_id,$order='',$page=0)
   {
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
@@ -1175,13 +1231,24 @@ class Publication_db {
         $orderby='cleanauthor, actualyear DESC';
         break;
     }
+    
+    //do we need multipage output / use limit statement
+    $limit = "";
+    $userlogin = getUserLogin();
+    $liststyle = $userlogin->getPreference('liststyle');
+    if ($liststyle > 0)
+    {
+      $limitOffset = $liststyle * $page;
+      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+    }
+    
     $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
                                    WHERE ".AIGAION_DB_PREFIX."publication.actualyear = ".$CI->db->escape($year_id)."
                                    AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
-                                   ORDER BY ".$orderby);
+                                   ORDER BY ".$orderby." ".$limit);
 
     $result = array();
     foreach ($Q->result() as $row)

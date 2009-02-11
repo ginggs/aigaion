@@ -406,6 +406,15 @@ TODO:
     return $result;
   }
   
+  function getPublicationCount($author_id) {
+    $CI = &get_instance();
+    $CI->db->select("author_id");
+    $CI->db->distinct();
+    $CI->db->where(array('author_id'=>$author_id));
+    $CI->db->from("publicationauthorlink");
+    return $CI->db->count_all_results();
+  } 
+  
   function ensureAuthorsInDatabase($authors)
   {
         $CI = &get_instance();

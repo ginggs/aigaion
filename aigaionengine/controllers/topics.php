@@ -303,11 +303,12 @@ class Topics extends Controller {
 					//redirect('topics/browse');
 				//}
 
-				$order   = $this->uri->segment($url_segment,'year');
+				$order   = $this->uri->segment($url_segment+1,'year');
 				if (!in_array($order,array('year','type','recent','title','author'))) {
 					$order='year';
 				}
-				$page   = $this->uri->segment($url_segment+1,0);
+				$page   = $this->uri->segment($url_segment+2,0);
+
 	    if ($topic_id==1) {
 	        redirect('topics/browse');
 	    }
@@ -351,10 +352,11 @@ class Topics extends Controller {
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
+            $content['pubCount']        = $this->topic_db->getPublicationCountForTopic($topic_id);
             $content['currentpage']     = $page;
             $content['multipageprefix'] = 'topics/single/'.$topic_id.'/'.$order.'/';
         }
-        $content['publications']    = $this->publication_db->getForTopic($topic_id,$order);
+        $content['publications']    = $this->publication_db->getForTopic($topic_id,$order,$page);
         $content['order'] = $order;
         
         $output = $this->load->view('header', $headerdata, true);
@@ -362,7 +364,7 @@ class Topics extends Controller {
         $output  .= $this->load->view('topics/full', $content,  true);
         
         $output .= $this->load->view('footer','', true);
-
+        
         //set output
         $this->output->set_output($output);
 	}    
