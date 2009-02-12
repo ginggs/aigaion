@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 23:55+0100\n"
+"POT-Creation-Date: 2009-02-12 21:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -525,7 +525,7 @@ msgid "Add publication to bookmarklist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:122
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:224
 msgid "Click to UnBookmark publication"
 msgstr ""
 
@@ -546,7 +546,7 @@ msgid "Removing publication from bookmarklist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:266
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:232
 msgid "Click to Bookmark publication"
 msgstr ""
 
@@ -3590,8 +3590,8 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:28
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:242
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:251
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:245
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:254
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:185
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:194
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:171
@@ -3719,7 +3719,7 @@ msgid "Show"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\list_items.php:11
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:175
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:178
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:124
 #, php-format
 msgid "All information on %s"
@@ -4178,15 +4178,15 @@ msgstr ""
 msgid "Type in name to quick search. Note: use unaccented letters!"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:120
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:123
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:65
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:69
 #, php-format
 msgid "Publications of type %s"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:161
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:183
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:164
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:186
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:120
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:128
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:110
@@ -4194,7 +4194,7 @@ msgstr ""
 msgid "View publication details"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:261
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:187
 msgid "Click to follow Digital Object Identifier link to online publication"
 msgstr ""
