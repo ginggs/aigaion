@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-11 23:55+0100\n"
-"PO-Revision-Date: 2009-02-12 00:24+0100\n"
+"PO-Revision-Date: 2009-02-12 19:50+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -474,9 +474,8 @@ msgstr "Bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:961
-#, fuzzy
 msgid "Export bookmarklist"
-msgstr "Fout bij veranderen van bladwijzers"
+msgstr "Exporteer bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:59
@@ -624,15 +623,14 @@ msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:754
-#, fuzzy, php-format
+#, php-format
 msgid "Set %s access level of %s publications to \"%s\""
-msgstr "Doorzoekbare namen van %s publicaties gecorrigeerd."
+msgstr "De %s toegang van %s publicaties op \"%s\" gezet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:679
-#, fuzzy
 msgid "read"
-msgstr "Niet gelezen"
+msgstr "lees-"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:608
 #, php-format
@@ -1023,7 +1021,7 @@ msgstr "Anonieme toegang: er is geen anonyme gebruikersaccount opgegeven"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\login.php:156
 msgid "Error logging in anonymous account"
-msgstr "Er is een fout opgetreden bij het anoniem inloggen"
+msgstr "Er is een fout opgetreden bij het anoniem aanmelden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:36
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:75
@@ -3146,7 +3144,7 @@ msgstr "Onderwerpen abbonneren"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:72
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:56
 msgid "Login"
-msgstr "Inloggen"
+msgstr "Aanmelden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:155
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:37
@@ -3188,7 +3186,7 @@ msgstr "LET OP"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
 msgid "You are now logged in as a guest user. If you submitted the form from a registered account, you should first login with your registered account before resubmitting the form, because from this guest account you might then not have enough rights to submit the form."
-msgstr "Je bent nu aangemeld als gastgebruiker. Als je het formulier van een niet-anonieme gebruikersaccount had opgestuurd, moet je nu eerst inloggen met die gebruikersaccount voordat je het formulier nog eens opstuurd, omdat je vanaf deze gast toegang misschien niet genoeg rechten hebt om het formulier succesvol op te sturen."
+msgstr "Je bent nu aangemeld als gastgebruiker. Als je het formulier van een niet-anonieme gebruikersaccount had opgestuurd, moet je nu eerst aanmelden met die gebruikersaccount voordat je het formulier nog eens opstuurd, omdat je vanaf deze gast toegang misschien niet genoeg rechten hebt om het formulier succesvol op te sturen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:15
 msgid "Repost"
@@ -4525,7 +4523,7 @@ msgstr "Maak missende gebruikers aan:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:139
 msgid "Check this box to force the system to create users that are logged in using an external account/password, but do not have an internal Aigaion user account yet. Note that this setting only has an effect when 'delegated password checking' or one of the external login modules have been enabled."
-msgstr "Vink dit vakje aan om het systeem te dwingen om gebruikersaccounts te maken voor iedereen die mag inloggen volgens de externe wachtwoordcontrolemodules, maar die nog geen interne Aigaion account hebben. Bedenk dat deze instelling alleen effect heeft als 'overdragen wachtwoordcontrole' is ingesteld, dan wel één van de externe aanmeldmodules is ingeschakeld."
+msgstr "Vink dit vakje aan om het systeem te dwingen om gebruikersaccounts te maken voor iedereen die mag aanmelden volgens de externe wachtwoordcontrolemodules, maar die nog geen interne Aigaion account hebben. Bedenk dat deze instelling alleen effect heeft als 'overdragen wachtwoordcontrole' is ingesteld, dan wel één van de externe aanmeldmodules is ingeschakeld."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:144
 #, fuzzy
@@ -4613,7 +4611,7 @@ msgstr "Voeg automatisch aangemaakte gebruikers to aan groep:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:255
 msgid "If \"Create missing users\" is enabled, new users will automatically be added to this group. Use the group name!"
-msgstr ""
+msgstr "Als \"Maak missende gebruikersaccounts\" ingeschakeld is, worden de nieuwe gebruikers automatisch aan deze groep toegevoegd. Voor de groepsnaam in."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:261
 #, fuzzy
@@ -4626,7 +4624,7 @@ msgstr "Toegestane filetypes voor bestanden:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:273
 msgid "The list of allowed extensions for attachments. Attachments that do not have an extension from this list can not be uploaded."
-msgstr ""
+msgstr "De lijst met toegestane bestandstypen. Bestanden van een type dat niet in deze lijst staat kunnen niet aan een publicatie toegevoegd worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:279
 #, fuzzy
@@ -4635,7 +4633,7 @@ msgstr "Bestand kan niet verwijderd worden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:288
 msgid "Check this box if you want to allow all external attachment names, instead of just those ending in one of the 'allowed extensions' specified above. This may be useful because external attachments are often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a proper file name. This only affects *remote* attachments."
-msgstr ""
+msgstr "Vink dit vakje aan als je vor externe bestanden (bestandsverwijzingen) alle typen wil toestaan, in plaats van enkel die typen die als 'toegestaan bestandstype' hierboven zijn aangegeven. Dit kan nuttig zijn omdat externe bestanden vaak via portals (bv portal.acm, of ieee-explore) gevonden worden, waarbij de linknaam eindigt in betekenisloze nummers in plaats van een echte bestandsnaam. Deze instelling heeft enkel effect op *externe* bestandsverwijzingen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:292
 msgid "The server is read only:"
@@ -4643,16 +4641,16 @@ msgstr "De server is alleen-lezen:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:301
 msgid "Check this box if the server is read-only, i.e. if you cannot write files such as attachments to the server."
-msgstr ""
+msgstr "Vink dit vakje aan als de server als alleen-lezen is ingesteld, d.w.z. als je geen bestanden op de server kan plaatsen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:310
 msgid "BibTeX strings:"
-msgstr ""
+msgstr "BibTeX String Macros:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:315
 #, php-format
 msgid "BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX. The correct syntax for strings is: %s"
-msgstr ""
+msgstr "In BibTeX kan je macro's definieren. Hieronder kun je macro's definieren die bij importeren van BibTeX gebruikt moeten worden. De correcte vorm voor zo'n macro is: %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:318
 msgid "Convert BibTeX to UTF8 upon input"
@@ -4664,7 +4662,7 @@ msgstr "Schakel dit uit als je de speciale BibTeX codes als zodanig wil opslaan 
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:335
 msgid "Some display settings:"
-msgstr ""
+msgstr "Enkele weergave-instellingen:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:339
 msgid "Title of the site:"
@@ -4677,7 +4675,7 @@ msgstr "Alle publicaties voor onderwerp \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:356
 msgid "Checking this box means that the full list of publications for a topic is included below the topic description, to speed up browsing for papers. Turning this on might however slow down the loading of the topic pages."
-msgstr ""
+msgstr "Als dit vakje is aangevinkt wordt de volledige lijst publicaties op een onderwerpspagina getoond, onder de onderwerpsbeschrijving. Dit maakt het doorzoeken van onderwerpen sneller, maar kan het laden van de onderwerpspagina wat trager maken."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:363
 #, fuzzy
@@ -4686,15 +4684,15 @@ msgstr "Exporteer één publicaties"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:372
 msgid "Check to merge cross-referenced publications on a single publication page view."
-msgstr ""
+msgstr "aanvinken om gerefereerde publicaties met de refererende publicatie in een publicatieoverzicht samen te voegen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:412
 msgid "Defaults for user preferences:"
-msgstr ""
+msgstr "Standaard gebruikersvoorkeuren:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:415
 msgid "Several user preferences can be given a default value here, to be overridden as wished by users who can change their profile."
-msgstr ""
+msgstr "Een aantal gebruikersvoorkeuren kunnen hier een standaardwaarde krijgen, die de individuele gebruikers dan desgewenst in hun profiel nog kunnen aanpassen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:432
 #, fuzzy
@@ -4721,7 +4719,7 @@ msgstr "Eerst titel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:457
 msgid "Default author display style"
-msgstr ""
+msgstr "Standaard weergavestijl voor auteurs"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:460
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
@@ -4740,7 +4738,7 @@ msgstr "[van] Achternaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:465
 msgid "Default number of publications per page"
-msgstr ""
+msgstr "Standaard aantal publicaties per pagina"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:473
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:320
@@ -4760,7 +4758,7 @@ msgstr "achternaam"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:482
 msgid "Select the method for checking whether two author names are counted as 'similar'."
-msgstr ""
+msgstr "Kies hoe bepaald wordt of twee auteurs 'op elkaar lijken'."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:490
 #, fuzzy
@@ -4769,7 +4767,7 @@ msgstr "leestoegangsniveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
 msgid "Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly accessible by default"
-msgstr ""
+msgstr "Kies hier de standaardtoegangsniveaus voor verschillende soorten objecten. Een 'standaard leestoegangsniveau' voor publicaties met de waarde 'publiek' betekent bijvoorbeeld dat nieuwe publicaties standaard publiek toegankelijk zijn."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:496
 msgid "Type:"
@@ -4827,7 +4825,7 @@ msgstr "Inbedding voor %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:536
 msgid "Shared domain for embedding:"
-msgstr ""
+msgstr "Gedeeld domein voor inbedding:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:541
 msgid "Logintegration options:"
@@ -4835,7 +4833,7 @@ msgstr "Opties voor login integratie:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:545
 msgid "Shared secret phrase for integrated login:"
-msgstr ""
+msgstr "Gedeelde geheime zin voor geïntegreerde aanmeldmechanismes:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:562
 msgid "Aigaion login module"
@@ -4861,11 +4859,11 @@ msgstr "Onderhoud en controles"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:15
 #, php-format
 msgid "There is a set of maintenance functions available. You can either perform the maintenance functions separately by selecting from the list, or you can %s"
-msgstr ""
+msgstr "Er is een verzameling onderhoudsfuncties beschikbaar. Je kan ervoor kiezen om elke onderhoudsfunctie apart te selecteren in onderstaande lijst, of je kan %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:15
 msgid "perform all checks at once"
-msgstr ""
+msgstr "alle controles in één keer uitvoeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:17
 #, fuzzy
@@ -4914,7 +4912,7 @@ msgstr "Maak een backup"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:27
 msgid "Making regular backups of the database is recommended. Collecting a complete bibliography takes a lot of time and a single server crash fades all these efforts away. Storing the backupfiles on another server or medium is recommended."
-msgstr ""
+msgstr "Maak vaak reservekopieen van je database! Een complete geannoteerde bibliografie verzamelen kost veel tijd, en een enkele server-crash kan al je werk teniet doen. Het verdient de aanbeveling om je reservekopie op een andere server of disk te bewaren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:29
 #, fuzzy
@@ -4929,7 +4927,7 @@ msgstr "Herstel database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:14
 msgid "<b>Important</b>: if you don't paste the full contents of an Aigaion 2 backup file here, the database will end up being corrupted."
-msgstr ""
+msgstr "<b>Belangrijk</b>: als je niet de volledige inhoud van een Aigaion 2 reservekopie hier invoegt kan de database gecorrumpeerd raken."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:16
 msgid "Table Prefix"
@@ -4937,7 +4935,7 @@ msgstr "Tabelprefix"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:17
 msgid "If the sql code pasted below defines a table prefix different from the prefix defined in this installation of Aigaion, you should change these prefixes in the sql code pasted below, in all drop, create and insert statements. In the future we will make a more elegant solution for this."
-msgstr ""
+msgstr "Als de SQL code die je hieronder invoegt een andere tabel-prefix hanteert dan deze installatie van Aigaion, moet je dat handmatig aanpassen in de code hieronder, voor alle DROP, CREATE en INSERT commandos. "
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:29
 msgid "Paste your backup data here"
@@ -4945,7 +4943,7 @@ msgstr "Voeg je backupgegevens hier in"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:40
 msgid "Paste backup data here. Restoring from backup data will overwrite all data currently in this database! Do not restore if you do not have a backup file of the current status of the database!"
-msgstr ""
+msgstr "Voeg de gegevens van je reservekopie hieronder in. Als je een reservekopie op deze manier hersteld zal alle data die momenteel in deze database zit overschreven worden! Voer geen herstel uit als je niet nog een backup van de huidige database hebt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:44
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:440
@@ -4991,7 +4989,7 @@ msgstr "Verander onderwerp \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:54
 msgid "Parent"
-msgstr ""
+msgstr "Bovenliggend"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:65
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
@@ -5078,11 +5076,11 @@ msgstr "Bewerk gebruiker"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
 msgid "Account settings"
-msgstr "Accountintstellingen"
+msgstr "aanmeldinstellingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
 msgid "'Account settings' is the only block of settings that is <i>mandatory</i>"
-msgstr ""
+msgstr "'Aanmeldinstellingen' is het enige blok met instellingen dat <i>verplicht</i> is."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:79
 msgid "Note: Login names, once assigned, cannot be changed."
@@ -5095,7 +5093,7 @@ msgstr "Verwijder account"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:101
 msgid "Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database. You can re-enable the account in the future."
-msgstr ""
+msgstr "Let op: als je deze account uitschakelt kan hij niet meer gebruikt worden om aan te melden, maar de informatie die bij deze account hoort zal bewaard blijven. Je kan de account later ook weer inschakelen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:107
 msgid "leave blank for no change"
@@ -5107,19 +5105,19 @@ msgstr "Type nieuwe wachtwoord nog een keer"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:148
 msgid "Cannot change password on anonymous accounts; they do not have a password."
-msgstr ""
+msgstr "Het wachtwoord van een anonieme account kan niet worden aangepast, omdat die geen wachtwoord hebben."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:158
 msgid "Cannot change password on this account. It has a password which is externally managed by some other system."
-msgstr ""
+msgstr "Het wachtwoord van deze  account kan niet worden aangepast, omdat het wachtwoord door een externe module beheerd wordt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:167
 msgid "Cannot change password on this account. The account has been disabled and cannot be used to login. Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password? Ask an admin to re-enable it and assign a password."
-msgstr ""
+msgstr "Het wachtwoord van deze  account kan niet worden aangepast, omdat het account is uitgeschakeld. Misschien komt dat omdat het ooit een anonieme of extern beheerde account was, en daarom geen wachtwoord heeft? Vraag je beheerder om het account weer in te schakelen en om een wachtwoord toe te kennen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:179
 msgid "It is impossible to change the type of your own account (normal, anon or external). This would lead to problems if you accidentally disable it."
-msgstr ""
+msgstr "Het is niet mogelijk om het type van je eigen account te veranderen (anoniem, normaal of extern beheerd). Dit zou namelijk probelemn geven als je hem per ongeluk uitschakelt."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:185
 #, fuzzy
@@ -5138,15 +5136,15 @@ msgstr "anoniem"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:188
 msgid "Managed by external module"
-msgstr ""
+msgstr "Door externe module geregeld"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:194
 msgid "Note: when you set this account to be anonymous, you should not forget to enable anonymous access to this database on the site configuration page!"
-msgstr ""
+msgstr "Let op: als je deze account als anoniem aanmerkt, moet je niet vergeten daarnaast anonieme toegang in te schakelen op de configuratiepagina!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:195
 msgid "Note2: when you set this account to be externally managed, you must be certain that the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules."
-msgstr ""
+msgstr "Let op: als je aangeeft dat deze account extern beheerd wordt moet je zeker weten dat de externe aanmeldmodule werkt, anders kan je niet meer aanmelden met deze account! Als je niet zeker weet wat hier gebeurt, lees dan de documentatie over externe aanmeldmodules"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:203
 msgid "Person details"
@@ -5182,7 +5180,7 @@ msgstr "adres"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:275
 msgid "Display preferences"
-msgstr ""
+msgstr "Weergavevoorkeuren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:279
 msgid "Theme"
@@ -5210,7 +5208,7 @@ msgstr "titel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:304
 msgid "Author display style"
-msgstr ""
+msgstr "Stijl voor auteursweergave"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:312
 #, fuzzy
@@ -5223,11 +5221,11 @@ msgstr "Standaardwaarde van site)"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Select the method for checking whether two author names are counted as \"similar\"."
-msgstr ""
+msgstr "Selecteer hoe het systeem moet bepalen of twee auteursnamen \"op elkaar lijken\"."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:333
 msgid "Open attachments in new browser window"
-msgstr ""
+msgstr "Open bestanden in een nieuw venster van je browser"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:342
 #, fuzzy
@@ -5236,7 +5234,7 @@ msgstr "geen gegevens ingevoerd om te importeren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:349
 msgid "Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window instead of downloading it as a file."
-msgstr ""
+msgstr "Vink dit vakje aan om te zorgen dat het systeem BibTeX en RIS gegevens direct in de browser tont, in plaats van deze als bestand op te halen naar de lokale computer."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:354
 #, fuzzy
@@ -5246,11 +5244,11 @@ msgstr "Exporteer via e-mail"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:361
 #, php-format
 msgid "Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want Aigaion to convert special characters to BibTeX codes such as %s"
-msgstr ""
+msgstr "VInk dit vakje aan als je wil dat BibTeX data als UTF8 wordt geexporteerd, d.w.z., als je NIET wil dat Aigaion UTF8 automatisch naar BibTeX codes zoals %s omzet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:370
 msgid "The groups to which this user belongs. When you add this user to a group that it was previously not a member of, all rights associated with that group will be appended to the user rights of this user upon commit."
-msgstr ""
+msgstr "De groepen waar deze gebruiker bijhoort. Als je deze gebruiker aan een groep toevoegt waar hij of zij nog geen lid van was, zullen alle rechten die bij die groep horen worden toegevoegd aan de gebruikersrechten van deze account."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:388
 #, fuzzy
