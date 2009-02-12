@@ -23,6 +23,9 @@
   if (!isset($order))
     $order = 'year';
   
+  if (!isset($pubCount) || ($pubCount==0))
+    $pubCount = sizeof($publications);
+    
   //retrieve the publication summary and list stype preferences (author first or title first etc)
   $summarystyle = $userlogin->getPreference('summarystyle');  
   $liststyle    = $userlogin->getPreference('liststyle');
