@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-12 21:04+0100\n"
+"POT-Creation-Date: 2009-02-13 18:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1099,7 +1099,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\add.php:93
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:164
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:223
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
 msgid "Note"
 msgstr ""
 
@@ -2374,7 +2374,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:509
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
 msgid "public"
 msgstr ""
 
@@ -2383,7 +2383,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:509
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
 msgid "intern"
 msgstr ""
 
@@ -2392,7 +2392,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:509
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
 msgid "private"
 msgstr ""
 
@@ -2927,6 +2927,7 @@ msgid ""
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:105
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
 msgid ""
 "If you are a user with database_manage rights, please login to complete the "
 "update."
@@ -3053,12 +3054,6 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:766
 #, php-format
 msgid "For more information visit %s"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
-msgid ""
-"If you are a user with database manage rights, please login to complete the "
-"update."
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:797
@@ -3311,7 +3306,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:289
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:605
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:601
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
@@ -4449,7 +4444,7 @@ msgid "Return all publications that satisfy %s of the following conditions"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:91
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:468
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:464
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:315
 msgid "All"
 msgstr ""
@@ -4700,56 +4695,54 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
 msgid ""
 "'.htpasswd' is a module that uses the .htaccess and .htpasswd login system "
-"to determine \n"
-"\t        the name of the logged user, instead of a login form."
+"to determine the name of the logged user, instead of a login form."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:223
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
 msgid ""
-"If you select this, be sure that \n"
-"\t        you have the httpauth correctly configured - otherwise you may "
-"have problems logging in and then you can also \n"
-"\t        not turn the httpauth login module off without directly accessing "
-"the Aigaion database."
+"If you select this, be sure that you have the httpauth correctly configured "
+"- otherwise you may have problems logging in and then you can also not turn "
+"the httpauth login module off without directly accessing the Aigaion "
+"database."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:225
 msgid "Use HTTPAUTH login modules:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:238
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:234
 msgid "Check this box to enable the httpauth login module."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:245
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:241
 msgid "Add autocreated users to group:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:255
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:251
 msgid ""
 "If \"Create missing users\" is enabled, new users will automatically be "
 "added to this group. Use the group name!"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:261
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:257
 msgid "Attachment settings:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:264
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:260
 msgid "Allowed extensions for attachments:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:273
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:269
 msgid ""
 "The list of allowed extensions for attachments. Attachments that do not have "
 "an extension from this list can not be uploaded."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:279
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:275
 msgid "Allow all remote attachments:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:288
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:284
 msgid ""
 "Check this box if you want to allow all external attachment names, instead "
 "of just those ending in one of the 'allowed extensions' specified above. "
@@ -4758,221 +4751,221 @@ msgid ""
 "a proper file name. This only affects *remote* attachments."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:292
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:288
 msgid "The server is read only:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:301
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:297
 msgid ""
 "Check this box if the server is read-only, i.e. if you cannot write files "
 "such as attachments to the server."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:310
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:306
 msgid "BibTeX strings:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:315
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:311
 #, php-format
 msgid ""
 "BibTeX allows definition of strings. Strings that are defined here are "
 "converted when importing BibTeX. The correct syntax for strings is: %s"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:318
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:314
 msgid "Convert BibTeX to UTF8 upon input"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:327
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:323
 msgid ""
 "Turn this off if you want special BibTeX character codes to be stored as "
 "such in the database, without converting them into utf8. This is useful if "
 "you find that you have a lot of BibTeX that is converted wrongly."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:335
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:331
 msgid "Some display settings:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:339
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:335
 msgid "Title of the site:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:347
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:343
 msgid "Display publications on single-topic page:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:356
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:352
 msgid ""
 "Checking this box means that the full list of publications for a topic is "
 "included below the topic description, to speed up browsing for papers. "
 "Turning this on might however slow down the loading of the topic pages."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:363
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:359
 msgid "Merge crossreferenced publications in single publication view:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:372
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:368
 msgid ""
 "Check to merge cross-referenced publications on a single publication page "
 "view."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:412
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:408
 msgid "Defaults for user preferences:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:415
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:411
 msgid ""
 "Several user preferences can be given a default value here, to be overridden "
 "as wished by users who can change their profile."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:432
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:428
 msgid "Default theme"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:440
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:436
 msgid "Default language"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:449
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:445
 msgid "Default publication summary style"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:452
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:448
 msgid "Author first"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:452
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:448
 msgid "Title first"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:457
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:453
 msgid "Default author display style"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:460
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "First [von] Last"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:460
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "[von] Last, First"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:460
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "[von] Last"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:465
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:461
 msgid "Default number of publications per page"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:473
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:469
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:320
 msgid "'Similar author' check"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:476
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:472
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:323
 msgid "Last names, then initials"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:476
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:472
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:323
 msgid "Full name"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:482
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:478
 msgid ""
 "Select the method for checking whether two author names are counted as "
 "'similar'."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:490
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:486
 msgid "Default access levels:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:489
 msgid ""
 "Specify here the default access levels for different types of objects. A "
 "'Default publication read level' of 'public' means, for example, that new "
 "publications are publicly accessible by default"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:496
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:492
 msgid "Type:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:497
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
 msgid "Default access level:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:500
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:496
 msgid "Default attachment read level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:501
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:497
 msgid "Default attachment edit level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:502
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:498
 msgid "Default publication read level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:499
 msgid "Default publication edit level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:504
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:500
 msgid "Default note read level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:501
 msgid "Default note edit level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:506
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:502
 msgid "Default topic read level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:503
 msgid "Default topic edit level"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:532
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:528
 msgid "Embedding options:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:536
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:532
 msgid "Shared domain for embedding:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:541
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:537
 msgid "Logintegration options:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:545
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:541
 msgid "Shared secret phrase for integrated login:"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:562
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:558
 msgid "Aigaion login module"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:563
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:559
 msgid ".htpasswd file"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:564
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:560
 msgid "LDAP based authentication"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:597
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:593
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:482
 msgid "Store new settings"
 msgstr ""

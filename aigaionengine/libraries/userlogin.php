@@ -784,7 +784,7 @@ class UserLogin {
                 $this->logout();
                 $this->sNotice = __("You have been logged out because the Aigaion Engine is in the process of being updated.")
                                  ."<br/>"
-                                 .__("If you are a user with database manage rights, please login to complete the update.")
+                                 .__("If you are a user with database_manage rights, please login to complete the update.")
                                  ."<br/>";
                 return 2;
             }
