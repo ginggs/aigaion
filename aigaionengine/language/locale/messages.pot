@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-13 18:13+0100\n"
+"POT-Creation-Date: 2009-02-13 18:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3911,6 +3911,7 @@ msgid "Aigaion2 BibTeX export from %s"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtex.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtexEmail.php:26
 msgid "crossreferenced publications"
 msgstr ""
 

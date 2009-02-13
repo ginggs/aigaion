@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-13 18:13+0100\n"
-"PO-Revision-Date: 2009-02-13 18:15+0100\n"
+"POT-Creation-Date: 2009-02-13 18:17+0100\n"
+"PO-Revision-Date: 2009-02-13 18:18+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -3736,6 +3736,7 @@ msgid "Aigaion2 BibTeX export from %s"
 msgstr "Aigaion2 BibTeX export van %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtex.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\views\export\bibtexEmail.php:26
 msgid "crossreferenced publications"
 msgstr "Gerefereerde publicaties"
 
@@ -4474,12 +4475,10 @@ msgid "Login settings (HTTP Authentication):"
 msgstr "Aanmeldinstellingen (HTTP Authenticatie):"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
-#, fuzzy
 msgid "'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine the name of the logged user, instead of a login form."
 msgstr "'.htpasswd' is een module die de .htaccess en .htpasswd aanmeldsysteem gebruikt om te bepalen of een gebruiker is aangemeld, in plaats van het aanmeldformulier."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
-#, fuzzy
 msgid "If you select this, be sure that you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also not turn the httpauth login module off without directly accessing the Aigaion database."
 msgstr "Als je deze selecteert, let dan op dat je de httpauth goed hebt ingesteld -- anders krijg je misschien problemen met het aanmelden, en dan kan je de module ook niet meer uitzetten zonder iets direct in de SQL database te wijzigen."
 

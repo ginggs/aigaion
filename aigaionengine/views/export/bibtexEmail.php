@@ -23,7 +23,7 @@ $this->load->helper('export');
 foreach ($nonxrefs as $pub_id=>$publication) {
     $result .= getBibtexForPublication($publication)."\n";
 }
-if (count($xrefs)>0) $result .= "\n\n".__(crossreferenced publications).": \n";
+if (count($xrefs)>0) $result .= "\n\n".__('crossreferenced publications').": \n";
 foreach ($xrefs as $pub_id=>$publication) {
     $result .= getBibtexForPublication($publication)."\n";
 }
