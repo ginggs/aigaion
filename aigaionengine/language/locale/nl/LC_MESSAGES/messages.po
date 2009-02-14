@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-13 18:17+0100\n"
-"PO-Revision-Date: 2009-02-13 18:18+0100\n"
+"PO-Revision-Date: 2009-02-14 16:53+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -431,12 +431,12 @@ msgstr "Exporteer via e-mail"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:768
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:692
 msgid "Export from Aigaion"
-msgstr "Geexporteerd uit Aigaion"
+msgstr "Geëxporteerd uit Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:732
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:780
 msgid "Exported for author"
-msgstr "Geexporteerd voor auteur"
+msgstr "Geëxporteerd voor auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:743
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:996
@@ -692,7 +692,7 @@ msgstr "Bladwijzerlijst leegmaken"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1033
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:309
 msgid "Exported from bookmarklist"
-msgstr "Geexporteerd van bladwijzers"
+msgstr "Geëxporteerd van bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:39
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
@@ -760,7 +760,7 @@ msgstr "Export opgevraagd voor niet-bestaande publicatie."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:366
 msgid "Export one publication"
-msgstr "Exporteer één publicaties"
+msgstr "Exporteer één publicatie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:37
 msgid "View group"
@@ -903,7 +903,7 @@ msgstr "Importeren"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:342
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:13
 msgid "Import publications"
-msgstr "Ppublicaties importeren"
+msgstr "Publicaties importeren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
 msgid "no import data entered."
@@ -1020,7 +1020,7 @@ msgstr "Geen aanmeld- token beschikbaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:101
 msgid "Token already logged in"
-msgstr "Token reeds ingelogd"
+msgstr "Token reeds aangemeld"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:102
 msgid "Token timed out"
@@ -1045,11 +1045,11 @@ msgstr "Onbekende fout"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:169
 msgid "User logged out"
-msgstr "Gebruiker uitgelogd"
+msgstr "Gebruiker afgemeld"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\logintegration.php:171
 msgid "Wrong parameters for logout"
-msgstr "Foute parameters om mee uit te loggen"
+msgstr "Foute parameters om mee af te melden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:45
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:58
@@ -1166,7 +1166,7 @@ msgstr "Exporteer publicatie"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:780
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:828
 msgid "Exported publication"
-msgstr "Publicatie geexporteerd"
+msgstr "Publicatie geëxporteerd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:12
 msgid "no command"
@@ -1366,7 +1366,7 @@ msgstr "Deze installatie van Aigaion is up-to-date"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:160
 #, php-format
 msgid "Maintenance function \"%s\" not implemented."
-msgstr "Onderhoudsfunctie \"%s\" is niet geimplementeerd."
+msgstr "Onderhoudsfunctie \"%s\" is niet geïmplementeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:167
 msgid "Site maintenance"
@@ -1580,7 +1580,7 @@ msgstr "Onderwerp exporteren"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:704
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:752
 msgid "Exported from topic"
-msgstr "Geexporteerd voor onderwerp"
+msgstr "Geëxporteerd voor onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:37
 msgid "Manage accounts"
@@ -1841,7 +1841,7 @@ msgstr "Controle onbekende files"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:112
 msgid "The following files are on the server, but do not belong to a publication in the database"
-msgstr "Devolgende bestanden staan op de server, maar horen niet bij een publicatie in de database"
+msgstr "De volgende bestanden staan op de server, maar horen niet bij een publicatie in de database"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:121
 msgid "Author check"
@@ -2086,7 +2086,7 @@ msgstr "%s kan niet worden opgevraagd"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
 #, php-format
 msgid "Checking database schema version %s"
-msgstr "Controlerenvan database versie %s"
+msgstr "Controleren van database versie %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\schema_helper.php:83
 msgid "update needed"
@@ -2268,7 +2268,7 @@ msgstr "In boek"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:70
 msgid "Incollection"
-msgstr "Incollectie"
+msgstr "In collectie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:71
 msgid "Inproceedings"
@@ -2312,7 +2312,7 @@ msgstr "schrijf-niveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:67
 msgid "effective access levels"
-msgstr "effektief toegansniveau"
+msgstr "effektief toegangsniveau"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:73
 msgid "read access"
@@ -2364,7 +2364,7 @@ msgstr "privé"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:110
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:117
 msgid "effective access level is different"
-msgstr "effektief toegansniveau wijkt af"
+msgstr "effektief toegangsniveau wijkt af"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
@@ -2672,7 +2672,7 @@ msgstr "Waarschuwing: de publicatie lijkt niet het goede formaat te hebben."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
 msgid "Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry."
-msgstr "De komma die na de 'citation key' moet komen is niet gevonden. Als de 'citation key' niet aanwezig is, moet de komma er nog steeds wel zijn. Als de 'citation key' er is, maar er komen geen bibliografische achteraan, is de publicatie leeg en kan deze niet worden geimporteerd. Het importeren van de volgende entry is overgeslagen."
+msgstr "De komma die na de 'citation key' moet komen is niet gevonden. Als de 'citation key' niet aanwezig is, moet de komma er nog steeds wel zijn. Als de 'citation key' er is, maar er komen geen bibliografische achteraan, is de publicatie leeg en kan deze niet worden geïmporteerd. Het importeren van de volgende entry is overgeslagen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:573
 #, php-format
@@ -2775,7 +2775,7 @@ msgstr "Vertaling \"%s' bestaat niet langer onder die naam. Pas de instellingen 
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:210
 msgid "Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled."
-msgstr "\"Gedelegeed wachtwoorden controleren\" kan alleen aangezet worden als er een wachtwoordcontrolemodule gespecificeerd is! Aangezien dit niet het geval is, is het \"gedelegeed wachtwoorden controleren\" weer uitgeschakeld."
+msgstr "\"Gedelegeerd wachtwoorden controleren\" kan alleen aangezet worden als er een wachtwoordcontrolemodule gespecificeerd is! Aangezien dit niet het geval is, is het \"gedelegeerd wachtwoorden controleren\" weer uitgeschakeld."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:218
 msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
@@ -2841,7 +2841,7 @@ msgstr "Je bent afgemeld omdat je aanmeld- token niet meer geldig  is."
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:103
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:785
 msgid "You have been logged out because the Aigaion Engine is in the process of being updated."
-msgstr "Je bent uitgelogd omdat de Aigaion Engine op dit moment wordt opgewaardeerd."
+msgstr "Je bent afgemeld omdat de Aigaion Engine op dit moment wordt opgewaardeerd."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:105
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
@@ -2981,7 +2981,7 @@ msgstr "Je hebt zojuist de \"standaard anonieme gebruiker\" niet-anoniem gemaakt
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:418
 msgid "You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!"
-msgstr "Je hebt zojuist je eigen recht om gebruikersrechten te wijzigen verwijderd! Weet je zeker dat dat klopt? Zo nee, corrigeer de fout vóór je weer uitlogt!"
+msgstr "Je hebt zojuist je eigen recht om gebruikersrechten te wijzigen verwijderd! Weet je zeker dat dat klopt? Zo nee, corrigeer de fout vóór je je weer afmeld!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:420
 msgid "Profile updated, changes to rights of users are applied after the user has logged in again."
@@ -3142,12 +3142,12 @@ msgstr "Ingelogd"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:185
 msgid "Logout"
-msgstr "Log uit"
+msgstr "Afmelden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:8
 #, php-format
 msgid "The system detected that you were logged out while submitting a form named '%s'. The data in that form has <b>not</b> yet been submitted successfully to the database. Press the button below to re-submit the form data."
-msgstr "Het systeem heeft gemerkt dat je uitgelogd bent terwijl je een formulier met de naam '%s' probeerde op te sturen. De gegevens in dat formulier zijn nog <b>niet</b> in de database ingevoerd. Druk op de knop hieronder om het formulier nogmaals op te sturen."
+msgstr "Het systeem heeft gemerkt dat je afgemeld bent terwijl je een formulier met de naam '%s' probeerde op te sturen. De gegevens in dat formulier zijn nog <b>niet</b> in de database ingevoerd. Druk op de knop hieronder om het formulier nogmaals op te sturen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:11
 msgid "NOTE"
@@ -3220,12 +3220,12 @@ msgstr "Eigenaar"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:30
 msgid "Per-object access levels"
-msgstr "Toegansniveaus per object"
+msgstr "Toegangsniveaus per object"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:27
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:31
 msgid "Individual per-object access levels"
-msgstr "Toegansniveaus per individueel object"
+msgstr "Toegangsniveaus per individueel object"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:38
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:67
@@ -3310,7 +3310,7 @@ msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet het bestand o
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:186
 msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' &rarr; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
-msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet de publicatie op 'privé' &rarr; bestand blijft 'intern', maar het EFFECTIEVE toegangsniveau wordt 'privé. Als je de publicatie weer op 'intern' zet, zal het effectieve toegansniveau weer 'intern' zijn."
+msgstr "Voorbeeld Publicatie is 'intern'; bestand is 'intern'; Zet de publicatie op 'privé' &rarr; bestand blijft 'intern', maar het EFFECTIEVE toegangsniveau wordt 'privé. Als je de publicatie weer op 'intern' zet, zal het effectieve toegangsniveau weer 'intern' zijn."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:187
 msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' &rarr; attachment edit will also change to 'private'."
@@ -3450,7 +3450,7 @@ msgstr "Wijzig informatie voor %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:50
 msgid "unset main"
-msgstr "zet als niet-hoofdbestand"
+msgstr "niet-hoofdbestand"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:50
 msgid "Unset as main attachment"
@@ -3458,7 +3458,7 @@ msgstr "Zet als niet-hoofdbestand"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:52
 msgid "set main"
-msgstr "zet als hoofdbestand"
+msgstr "hoofdbestand"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:52
 msgid "Set as main attachment"
@@ -3615,7 +3615,7 @@ msgstr "Bladwijzerlijst bewerken"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:32
 msgid "Add bookmarked to topic..."
-msgstr "Publicaties op bladwijzerlijst toevoegen aan onderwerp"
+msgstr "Toevoegen aan onderwerp..."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:35
 msgid "Add all bookmarked publications to the selected topic"
@@ -3627,7 +3627,7 @@ msgstr "Voeg alles toe aan onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:50
 msgid "Remove bookmarked from topic..."
-msgstr "Publicaties op bladwijzerlijst verwijderen uit onderwerp"
+msgstr "Verwijderen uit onderwerp..."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:53
 msgid "Remove all bookmarked publications from the selected topic"
@@ -3639,7 +3639,7 @@ msgstr "Publicaties op bladwijzerlijst verwijderen uit onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:59
 msgid "Make a new topic from the bookmarked publications"
-msgstr "Maak en nieuw onderwerp van de publicaties op de bladwijzerlijst"
+msgstr "Maak een nieuw onderwerp van de publicaties op de bladwijzerlijst"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:59
 msgid "Make into new topic"
@@ -4891,7 +4891,7 @@ msgstr "inklappen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:37
 msgid "expand"
-msgstr "uitklapen"
+msgstr "uitklappen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\maintreerow.php:47
 #, php-format
@@ -4917,7 +4917,7 @@ msgstr "Bewerk gebruikersvoorkeuren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
 msgid "Account settings"
-msgstr "aanmeldinstellingen"
+msgstr "Aanmeldinstellingen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:53
 msgid "'Account settings' is the only block of settings that is <i>mandatory</i>"
@@ -5045,7 +5045,7 @@ msgstr "Aantal publicaties per pagina"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:323
 msgid "Site default"
-msgstr "Standaardwaarde van site)"
+msgstr "Standaardwaarde van site"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:329
 msgid "Select the method for checking whether two author names are counted as \"similar\"."
@@ -5070,7 +5070,7 @@ msgstr "Exporteer BibTeX als UTF8"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:361
 #, php-format
 msgid "Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want Aigaion to convert special characters to BibTeX codes such as %s"
-msgstr "VInk dit vakje aan als je wil dat BibTeX data als UTF8 wordt geexporteerd, d.w.z., als je NIET wil dat Aigaion UTF8 automatisch naar BibTeX codes zoals %s omzet"
+msgstr "Vink dit vakje aan als je wil dat BibTeX data als UTF8 wordt geëxporteerd, d.w.z., als je NIET wil dat Aigaion UTF8 automatisch naar BibTeX codes zoals %s omzet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:370
 msgid "The groups to which this user belongs. When you add this user to a group that it was previously not a member of, all rights associated with that group will be appended to the user rights of this user upon commit."
@@ -5114,7 +5114,7 @@ msgstr "onderwerpen abbonneren"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:27
 msgid "guest user"
-msgstr "Gastgebruiker"
+msgstr "gastgebruiker"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:29
 msgid "externally managed account"
