@@ -132,9 +132,11 @@ if ($topicstatBlock != '')
 </table>
 
 <?php
-    
+  $content['publications']=$publications;
+  if (isset($currentpage))$content['currentpage']=$currentpage;
+  if (isset($multipageprefix))$content['multipageprefix']=$multipageprefix;
   if (isset($publications))
-    $this->load->view('publications/list', array('publications'=>$publications, 'currentpage'=>$currentpage,'multipageprefix'=>$multipageprefix));
+    $this->load->view('publications/list', $content);
     //$this->load->view('publications/list', $publications);
 ?>
 
