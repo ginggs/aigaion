@@ -478,7 +478,7 @@ function getPublicationSummaryFieldArray($type)
 		case "Article":
 			return array( 
 	                  'actualyear'    => array(' (',')'),
-			              'journal'       => ', in: ',
+			              'journal'       => ', '.__('in:').' ',
 	                  'volume'        => ', ', 
 	                  'number'        => ':',
 	                  'pages'         => array('(',')')
@@ -487,7 +487,7 @@ function getPublicationSummaryFieldArray($type)
 		case "Book":
 			return array( 'publisher'     => ', ',
 	                  'series'        => ', ',
-	                  'volume'        => ', volume ', 
+	                  'volume'        => ', '.__('volume').' ', 
 	                  'actualyear'    => ', '
                   );
 		break;
@@ -497,27 +497,27 @@ function getPublicationSummaryFieldArray($type)
 			            );
 		break;
 		case "Inbook":
-			return array( 'chapter'       => ', chapter ', 
-			              'pages'         => ', pages ', 
+			return array( 'chapter'       => ', '.__('chapter').' ', 
+			              'pages'         => ', '.__('pages').' ', 
 			              'publisher'     => ', ',
 			              'series'        => ', ',
-			              'volume'        => ', volume ', 
+			              'volume'        => ', '.__('volume').' ', 
 			              'actualyear'    => ', '
 			            );
 		break;
 		case "Incollection":
-			return array( 'booktitle'     => ', in: ', 
+			return array( 'booktitle'     => ', '.__('in:').' ', 
 			              'organization'  => ', ', 
-	                  'pages'         => ', pages ', 
+	                  'pages'         => ', '.__('pages').' ', 
 	                  'publisher'     => ', ',
 	                  'actualyear'    => ', '
 	                );
 		break;
 		case "Inproceedings":
-			return array( 'booktitle'     => ', in: ', 
+			return array( 'booktitle'     => ', '.__('in:').' ', 
 	                  'organization'  => ', ', 
  	                  'location'      => ', ',
-	                  'pages'         => ', pages ', 
+	                  'pages'         => ', '.__('pages').' ', 
 	                  'publisher'     => ', ',
 	                  'actualyear'    => ', '
                   );
@@ -551,7 +551,7 @@ function getPublicationSummaryFieldArray($type)
 		break;
 		case "Techreport":
 			return array( 'institution'   => ', ',
-	                  'number'        => ', number ', 
+	                  'number'        => ', '.__('number').' ', 
 	                  'type'          => ', ',
 	                  'actualyear'    => ', '
                   );
@@ -568,19 +568,19 @@ function getPublicationSummaryFieldArray($type)
 
 function getPublicationTypes()
 {
-  return array("Article"        => 'Article',
-          		 "Book"           => 'Book',
-          		 "Booklet"        => 'Booklet',
-          		 "Inbook"         => 'Inbook',
-          		 "Incollection"   => 'Incollection',
-          		 "Inproceedings"  => 'Inproceedings',
-          		 "Manual"         => 'Manual',
-          		 "Mastersthesis"  => 'Mastersthesis',
-          		 "Misc"           => 'Misc',
-          		 "Phdthesis"      => 'Phdthesis',
-          		 "Proceedings"    => 'Proceedings',
-          		 "Techreport"     => 'Techreport',
-          		 "Unpublished"    => 'Unpublished');
+  return array("Article"        => __('Article'),
+          		 "Book"           => __('Book'),
+          		 "Booklet"        => __('Booklet'),
+          		 "Inbook"         => __('Inbook'),
+          		 "Incollection"   => __('Incollection'),
+          		 "Inproceedings"  => __('Inproceedings'),
+          		 "Manual"         => __('Manual'),
+          		 "Mastersthesis"  => __('Mastersthesis'),
+          		 "Misc"           => __('Misc'),
+          		 "Phdthesis"      => __('Phdthesis'),
+          		 "Proceedings"    => __('Proceedings'),
+          		 "Techreport"     => __('Techreport'),
+          		 "Unpublished"    => __('Unpublished'));
 }
 
 
