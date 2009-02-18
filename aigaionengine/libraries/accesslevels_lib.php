@@ -77,7 +77,7 @@ class Accesslevels_lib {
     
     function getEditAccessLevelIcon(&$object) {
         if ($object->derived_edit_access_level!='group')
-          return "<img class='al_icon' title='".__("edit access")."' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='".__("Edit acces level")."' /> ";
+          return "<img class='al_icon' title='".__("edit access")."' src='".getIconurl('rights_'.$object->derived_edit_access_level.'.gif')."' alt='".__("Edit access level")."' /> ";
         else
           return "";
     }

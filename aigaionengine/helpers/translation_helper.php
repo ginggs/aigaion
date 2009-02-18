@@ -41,6 +41,7 @@ function translateField ($fieldname, $ucfirst=false) {
     "url"          => __("url"),
     "doi"          => __("doi"),
     "pages"        => __("pages"),
+    "userfields"   => __("userfields"),
     
     // authors:
     "surname"   => __("surname"),

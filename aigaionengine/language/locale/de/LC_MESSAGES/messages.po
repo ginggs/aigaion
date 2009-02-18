@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 19:16+0100\n"
-"PO-Revision-Date: 2009-02-11 19:17+0100\n"
+"POT-Creation-Date: 2009-02-18 20:46+0100\n"
+"PO-Revision-Date: 2009-02-18 21:30+0100\n"
 "Last-Translator: Wietse <wietse@aigaion.nl>\n"
 "Language-Team: Manuel Strehl <manuel.strehl@physik.uni-r.de>\n"
 "MIME-Version: 1.0\n"
@@ -47,9 +47,9 @@ msgstr "Anhang herunterladen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\attachments.php:298
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\attachments.php:326
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:33
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:123
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:208
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:510
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:124
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:209
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:511
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:117
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:159
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:194
@@ -68,15 +68,15 @@ msgstr "Anhang herunterladen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:93
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:138
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:59
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:382
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:545
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:552
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:587
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:593
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:621
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:653
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:706
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:711
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:383
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:546
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:553
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:588
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:594
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:622
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:654
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:707
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:712
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:35
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:127
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:187
@@ -84,10 +84,10 @@ msgstr "Anhang herunterladen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:86
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:136
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:220
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:318
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:433
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:579
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:634
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:319
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:435
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:581
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:636
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:132
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:224
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:285
@@ -108,13 +108,13 @@ msgstr "Anhang löschen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\attachments.php:89
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\attachments.php:153
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\attachments.php:206
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:281
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:315
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:347
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:393
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:425
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:482
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:645
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:282
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:316
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:348
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:394
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:426
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:483
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:646
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:42
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:427
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:431
@@ -138,14 +138,14 @@ msgstr "Anhang löschen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:58
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:105
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:150
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:303
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:337
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:395
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:476
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:501
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:626
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:658
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:688
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:304
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:338
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:396
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:477
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:502
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:627
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:659
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:689
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:80
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:138
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:194
@@ -159,7 +159,7 @@ msgstr "Anhang löschen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:149
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:189
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:235
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:615
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:617
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:37
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:177
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:235
@@ -236,7 +236,7 @@ msgstr "Anhang übertragen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:248
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:196
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:246
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:492
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:494
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:343
 msgid "no data to commit"
 msgstr "keine Daten zur Übertragung"
@@ -245,7 +245,7 @@ msgstr "keine Daten zur Übertragung"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:303
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:244
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:303
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:541
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:543
 msgid "an error occurred"
 msgstr "ein Fehler ist aufgetaucht"
 
@@ -253,108 +253,109 @@ msgstr "ein Fehler ist aufgetaucht"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:303
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\notes.php:244
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:303
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:541
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:543
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:411
 msgid "Please contact your Aigaion administrator."
 msgstr "Bitte kontaktieren Sie Ihren Aigaion-Administrator."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:33
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:123
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:208
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:124
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:209
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\embeddingtest.php:41
 msgid "View Author"
 msgstr "Autor betrachten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:46
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:708
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:709
 msgid "Export author"
 msgstr "Autor exportieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:50
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:137
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:222
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:138
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:223
 #, php-format
 msgid "Publications of %s"
 msgstr "Veröffentlichungen von %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:53
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:140
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:225
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:141
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:226
 #, php-format
 msgid "Publications of %s sorted by journal and type"
 msgstr "Veröffentlichungen von %s sortiert nach Journal und Typ"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:56
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:143
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:228
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:144
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:229
 #, php-format
 msgid "Publications of %s sorted by recency"
 msgstr "Veröffentlichungen von %s sortiert nach Aktualität"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:59
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:146
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:231
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:147
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:232
 #, php-format
 msgid "Publications of %s sorted by title"
 msgstr "Veröffentlichungen von %s sortiert nach Titel"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:62
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:149
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:234
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:150
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:235
 #, php-format
 msgid "Publications of %s sorted by first author"
 msgstr "Veröffentlichungen von %s sortiert nach erstem Autor"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:241
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:242
 msgid "No publications found."
 msgstr "Keine Veröffentlichungen gefunden."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:281
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:425
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:482
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:282
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:426
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:483
 msgid "Edit author"
 msgstr "Autor bearbeiten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:307
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:315
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:340
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:347
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:308
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:316
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:341
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:348
 msgid "Cannot merge authors"
 msgstr "Kann Autoren nicht zusammenführen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:307
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:340
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:308
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:341
 msgid "missing parameters"
 msgstr "fehlende Parameter"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:319
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:519
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:544
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:320
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:520
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:545
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:201
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:213
 msgid "Authors"
 msgstr "Autoren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:319
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:41
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:320
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:40
 msgid "Merge"
 msgstr "zusammenführen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:385
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:393
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:386
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:394
 msgid "Delete author"
 msgstr "Diesen Autor löschen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:385
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:386
 msgid "author does not exist"
 msgstr "Autor existiert nicht"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:404
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:405
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:287
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\menu.php:58
 msgid "Author"
 msgstr "Autor"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:404
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:405
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\summary.php:47
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:9
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\groups\summary.php:16
@@ -366,102 +367,102 @@ msgstr "Autor"
 msgid "delete"
 msgstr "löschen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:458
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:459
 #, php-format
 msgid "Author \"%s\" already exists in the database."
 msgstr "Autor \"%s\" existiert bereits in der Datenbank."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:486
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:487
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:221
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:225
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:501
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:505
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:502
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:506
 msgid "Review publication"
 msgstr "Veröffentlichung überprüfen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:510
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:511
 msgid "Authors for topic"
 msgstr "Autoren zu Thema"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:521
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:522
 #, php-format
 msgid "Authors for topic %s"
 msgstr "Autoren zu Thema %s"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:546
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:547
 msgid "All authors in the database"
 msgstr "Alle Autoren in der Datenbank"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:645
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:646
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:899
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:688
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:615
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:689
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:617
 msgid "Export through email"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:663
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:664
 msgid "No author selected for export"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:675
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:676
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:927
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\export.php:34
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\export.php:111
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\export.php:188
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\export.php:259
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\export.php:361
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:721
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:646
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:722
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:648
 msgid "Select export format"
 msgstr "Exportformat wählen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:705
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:706
 msgid "Author export"
 msgstr "Autor exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:710
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:711
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:963
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:758
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:681
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:759
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:683
 #, fuzzy
 msgid "Export by email"
 msgstr "Merkliste exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:719
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:720
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:973
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:767
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:690
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:768
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:692
 #, fuzzy
 msgid "Export from Aigaion"
 msgstr "Eine Veröffentlichung exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:731
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:779
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:732
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:780
 #, fuzzy
 msgid "Exported for author"
 msgstr "Autor exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:742
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:743
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:996
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:790
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:713
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:791
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:715
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformat.php:51
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:54
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:57
 msgid "Formatted"
 msgstr "Formatiert"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:800
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:801
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:1054
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:848
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:771
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:849
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:773
 msgid "Mail sent successfully"
-msgstr ""
+msgstr "E-Mail erfolgreich gesendet"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:804
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:805
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:1058
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:852
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:775
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:853
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:777
 msgid "Something went wrong when exporting the publications. Did you input a correct email address?"
 msgstr ""
 
@@ -492,34 +493,34 @@ msgstr "Merkliste von %s"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:59
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:81
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:164
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:231
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:339
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:442
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:232
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:340
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:444
 msgid "sorted by journal and type"
 msgstr "sortiert nach Journal und Typ"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:62
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:84
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:167
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:234
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:342
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:445
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:235
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:343
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:447
 msgid "sorted by recency"
 msgstr "sortiert nach Aktualität"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:65
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:87
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:170
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:237
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:345
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:448
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:238
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:346
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:450
 msgid "sorted by title"
 msgstr "nach Titel sortiert"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:68
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:90
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:348
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:451
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:349
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:453
 msgid "sorted by first author"
 msgstr "sortiert nach erstem Autor"
 
@@ -528,7 +529,7 @@ msgid "Add publication to bookmarklist"
 msgstr "Veröffentlichung zur Merkliste hinzufügen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:122
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:221
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:224
 msgid "Click to UnBookmark publication"
 msgstr "Klicken, um Veröffentlichung von der Merkliste zu nehmen"
 
@@ -549,7 +550,7 @@ msgid "Removing publication from bookmarklist"
 msgstr "Veröffentlichung von der Merkliste nehmen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:266
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:229
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:232
 msgid "Click to Bookmark publication"
 msgstr "Klicken, um Veröffentlichung zu merken"
 
@@ -792,7 +793,7 @@ msgstr "Gruppe hinzufügen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\site.php:39
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:180
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:210
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:485
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:487
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:182
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:219
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:336
@@ -868,8 +869,8 @@ msgstr "Um ein Thema und seine Unterthemen zu abonnieren oder zu kündigen, klic
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:402
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:422
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:545
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:552
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:546
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:553
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:516
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:540
 msgid "Subscribe topic"
@@ -877,8 +878,8 @@ msgstr "Thema abonnieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:457
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\groups.php:476
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:587
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:593
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:588
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:594
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:576
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:600
 msgid "Unsubscribe topic"
@@ -903,7 +904,7 @@ msgid "Import"
 msgstr "Importieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:30
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:341
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:342
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\importform.php:13
 msgid "Import publications"
 msgstr "Veröffentlichungen importieren"
@@ -937,7 +938,7 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:118
 msgid "Please verify the input."
-msgstr ""
+msgstr "Bitte die Eingabe kontrollieren."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:119
 msgid "If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen."
@@ -948,9 +949,8 @@ msgid "If that setting is correct, too, please submit a bug report at http://aig
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:174
-#, fuzzy
 msgid "Commit"
-msgstr "Notiz übertragen"
+msgstr "Übertragen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:174
 msgid "no publications committed."
@@ -1047,11 +1047,11 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:131
 msgid "Unknown fail"
-msgstr ""
+msgstr "Unbekannter Fehler"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:169
 msgid "User logged out"
-msgstr ""
+msgstr "Nutzer ist abgemeldet"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:171
 msgid "Wrong parameters for logout"
@@ -1094,8 +1094,8 @@ msgstr "Veröffentlichungs-ID"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\add.php:45
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\add.php:93
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\edit.php:58
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:167
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:230
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:164
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:221
 msgid "Note"
 msgstr "Notiz"
 
@@ -1105,79 +1105,79 @@ msgid "View publication"
 msgstr "Veröffentlichung betrachten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:113
-#, fuzzy, php-format
+#, php-format
 msgid "non-existing BibTeX id \"%s\" was passed"
 msgstr "nicht existierende BibTeX-ID \"%s\" wurde übermittelt"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:156
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:223
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:224
 msgid "Publication list"
 msgstr "Veröffentlichungsliste"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:173
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:240
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:241
 msgid "sorted by author"
 msgstr "nach Autor sortiert"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:228
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:231
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:234
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:237
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:240
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:229
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:232
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:235
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:238
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:241
 msgid "All publications not assigned to a topic"
 msgstr "Alle Veröffentlichungen, die keinem Thema zugeordnet sind"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:303
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:313
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:304
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:314
 msgid "Edit publication"
 msgstr "Veröffentlichung bearbeiten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:310
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:311
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:409
 msgid "Add publication"
 msgstr "Veröffentlichung hinzufügen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:337
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:338
 msgid "Import publication"
 msgstr "Veröffentlichung importieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:382
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:395
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:409
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:383
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:396
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:410
 msgid "Delete publication"
 msgstr "Veröffentlichung löschen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:443
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:444
 msgid "There are validation errors with this entry. You may want to correct them."
 msgstr "Es gibt Überprüfungsfehler in diesem Eintrag. Bitte korrigieren Sie sie."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:476
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:477
 msgid "Commit publication"
 msgstr "Veröffentlichung übertragen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:621
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:626
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:653
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:658
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:622
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:627
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:654
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:659
 msgid "Mark publication"
 msgstr "Veröffentlichung markieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:706
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:711
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:753
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:756
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:707
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:712
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:754
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:757
 msgid "Export publication"
 msgstr "Veröffentlichung exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:779
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:827
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:780
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\publications.php:828
 #, fuzzy
 msgid "Exported publication"
 msgstr "Eine Veröffentlichung exportieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:12
 msgid "no command"
-msgstr ""
+msgstr "kein Kommando"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:18
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:124
@@ -1189,12 +1189,12 @@ msgstr "kein Typ"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:128
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:200
 msgid "no id"
-msgstr ""
+msgstr "kein ID"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:32
 #, php-format
 msgid "Unknown id or bibtex_id: %s"
-msgstr ""
+msgstr "Unbekannter ID oder BibTeX-ID: %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:35
 #, fuzzy
@@ -1204,17 +1204,16 @@ msgstr "Alle Veröffentlichungen auf der Merkliste aus der Datenbank löschen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:69
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:175
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:292
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:412
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:414
 msgid "Topic structure is not unique in Aigaion."
-msgstr ""
+msgstr "Themenstruktur ist nicht eindeutig"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:73
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:179
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:297
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:416
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:418
 msgid "Topic structure does not exist in Aigaion."
-msgstr "Thema existiert nicht."
+msgstr "Themenstruktur existiert nicht."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:76
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:182
@@ -1224,7 +1223,7 @@ msgstr "keine Themen-ID"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:88
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:193
 msgid "Unknown topic id or topic path"
-msgstr ""
+msgstr "Unbekannter Themen-ID oder Themenpfad"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:91
 msgid "Go to this topic in the Aigaion database"
@@ -1237,7 +1236,7 @@ msgstr ""
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:109
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:214
 msgid "Unknown author id or name"
-msgstr ""
+msgstr "Unbekannter Author-ID oder Name"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:112
 #, fuzzy
@@ -1247,11 +1246,11 @@ msgstr "Alle Autoren in der Datenbank"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:115
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:227
 msgid "Unknown type"
-msgstr ""
+msgstr "Unbekannter Typ"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:138
 msgid "Unknown id or bibtex_id"
-msgstr ""
+msgstr "Unbekannter ID oder BibTeX-ID"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:141
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:196
@@ -1273,7 +1272,6 @@ msgid "Repost form"
 msgstr "Wiederherstellen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:35
-#, fuzzy
 msgid "View rights profile"
 msgstr "Rechteprofil betrachten"
 
@@ -1302,7 +1300,6 @@ msgstr "Rechteprofil löschen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:246
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:303
-#, fuzzy
 msgid "Commit rights profile"
 msgstr "Rechteprofil übertragen"
 
@@ -1420,7 +1417,7 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:64
 msgid "Bibtex character conversions"
-msgstr ""
+msgstr "BibTeX Zeichenkonvertierungen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:135
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:143
@@ -1534,12 +1531,12 @@ msgstr "Thema hinzufügen"
 msgid "Edit topic"
 msgstr "Thema bearbeiten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:318
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:319
 msgid "Show topic"
 msgstr "Thema ansehen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:329
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:514
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:330
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:516
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\accesslevels\editfortopic.php:22
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\accesslevels\editfortopic.php:23
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\clean.php:6
@@ -1549,50 +1546,50 @@ msgstr "Thema ansehen"
 msgid "Topic"
 msgstr "Thema"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:333
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:634
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:679
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:334
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:636
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:681
 msgid "Export topic"
 msgstr "Thema exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:336
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:339
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:342
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:345
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:348
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:439
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:442
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:445
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:448
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:451
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:337
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:340
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:343
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:346
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:349
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:441
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:444
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:447
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:450
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:453
 #, php-format
 msgid "Publications for topic \"%s\""
 msgstr "Veröffentlichungen für Thema: %s"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:433
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:435
 #, fuzzy
 msgid "Embed topic"
 msgstr "Thema bearbeiten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:492
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:541
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:494
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:543
 msgid "Commit topic"
 msgstr "Thema übertragen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:506
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:508
 msgid "Topic Name"
 msgstr "Themenname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:579
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:581
 msgid "Collapse topic"
 msgstr "Thema zuklappen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:676
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:678
 msgid "Topic export"
 msgstr "Thema exportieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:702
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:750
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:704
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:752
 msgid "Exported from topic"
 msgstr "Exportiert von Thema"
 
@@ -1622,7 +1619,7 @@ msgid "add a new group"
 msgstr "neue Gruppe hinzufügen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\users.php:80
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:377
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:369
 msgid "Groups"
 msgstr "Gruppen"
 
@@ -1770,7 +1767,7 @@ msgstr "Sie können die neue Version  %s hier %s herunterladen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\export_helper.php:424
 msgid "No format possible"
-msgstr ""
+msgstr "Format nicht möglich"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:27
 msgid "Passwords check"
@@ -1994,12 +1991,12 @@ msgstr "Konnte Dokumentenverzeichnis nicht öffnen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:703
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:704
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:76
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:74
 msgid "Click to show details"
 msgstr "Klicken, um Details zu zeigen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:705
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:77
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:75
 msgid "Click to merge"
 msgstr "Klicken, um zusammenzuführen"
 
@@ -2232,7 +2229,7 @@ msgid "abstract"
 msgstr "Abriss"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:41
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:50
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:51
 msgid "url"
 msgstr "URL"
 
@@ -2244,82 +2241,81 @@ msgstr "DOI"
 msgid "pages"
 msgstr "Seiten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:46
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:44
+msgid "userfields"
+msgstr "Nutzerfelder"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:47
 msgid "surname"
 msgstr "Nachname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:47
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:48
 msgid "von"
 msgstr "von"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:48
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:49
 msgid "firstname"
 msgstr "Vorname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:49
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:50
 msgid "email"
 msgstr "E-Mail"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:51
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:52
 msgid "institute"
 msgstr "Institut"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:66
-#, fuzzy
-msgid "Article"
-msgstr "Titel"
-
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:67
-#, fuzzy
-msgid "Book"
-msgstr "merken"
+msgid "Article"
+msgstr "Artikel"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:68
-#, fuzzy
-msgid "Booklet"
-msgstr "Buchtitel"
+msgid "Book"
+msgstr "Buch"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:69
-msgid "Inbook"
-msgstr ""
+msgid "Booklet"
+msgstr "Gebundenes Druckwerk"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:70
-#, fuzzy
-msgid "Incollection"
-msgstr "Einführung"
+msgid "Inbook"
+msgstr "Teil eines Buches"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:71
-msgid "Inproceedings"
-msgstr ""
+msgid "Incollection"
+msgstr "Teil eines Buches (eigenen Titel)"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:72
-msgid "Manual"
-msgstr ""
+msgid "Inproceedings"
+msgstr "Artikel in einem Konferenzbericht"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:73
-msgid "Mastersthesis"
-msgstr ""
+msgid "Manual"
+msgstr "Anleitung"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:74
-msgid "Misc"
-msgstr ""
+msgid "Mastersthesis"
+msgstr "Diplomarbeit"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:75
-msgid "Phdthesis"
-msgstr ""
+msgid "Misc"
+msgstr "beliebiger Eintrag"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:76
-msgid "Proceedings"
-msgstr ""
+msgid "Phdthesis"
+msgstr "Doktorarbeit"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:77
-msgid "Techreport"
-msgstr ""
+msgid "Proceedings"
+msgstr "Konferenzbericht"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:78
-#, fuzzy
+msgid "Techreport"
+msgstr "Technische Dokumentation"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:79
 msgid "Unpublished"
-msgstr "Veröffentlicher"
+msgstr "Nicht veröffentlicht"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:64
 msgid "read level"
@@ -2342,12 +2338,10 @@ msgid "read access level"
 msgstr "Lesezugriffsebene"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:80
-#, fuzzy
 msgid "edit access"
 msgstr "Schreibzugriff"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:80
-#, fuzzy
 msgid "Edit acces level"
 msgstr "Schreibzugriffsebene"
 
@@ -2360,7 +2354,7 @@ msgstr "Kann Zugriffsebenen dieses Objekts nicht bearbeiten"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:527
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:505
 msgid "public"
 msgstr "öffentlich"
 
@@ -2369,7 +2363,7 @@ msgstr "öffentlich"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:527
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:505
 msgid "intern"
 msgstr "intern"
 
@@ -2378,7 +2372,7 @@ msgstr "intern"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:527
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:505
 msgid "private"
 msgstr "privat"
 
@@ -2396,7 +2390,6 @@ msgstr "Effektive Zugriffsebene ist anders"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:302
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:325
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:351
-#, fuzzy
 msgid "Edit access level"
 msgstr "Schreibzugriffsebene"
 
@@ -2472,7 +2465,7 @@ msgstr "FEHLER BEIM HOCHLADEN: %s ist keine erlaubte Dateiendung für entfernte 
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\attachment_db.php:114
 msgid "Allowed types"
-msgstr ""
+msgstr "Zugelassene Typen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\attachment_db.php:115
 #, php-format
@@ -2548,15 +2541,15 @@ msgstr ""
 msgid "One of the fields %s is required"
 msgstr "Eines der Felder %s ist verpflichtend"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:480
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:489
 msgid "Found similar authors for"
 msgstr "Ähnliche Autoren gefunden für"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:497
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:506
 msgid "Please review the entered authors"
 msgstr "Bitte überprüfen Sie die eingegebenen Autoren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:628
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:637
 msgid "There are some publications that could not be reassigned due to access rights"
 msgstr ""
 
@@ -2709,11 +2702,11 @@ msgstr ""
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_hardcoded.php:9
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_hardcoded.php:19
 msgid "Not a valid login!"
-msgstr ""
+msgstr "Kein gültiger Login!"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_hardcoded.php:16
 msgid "Last Name of user"
-msgstr ""
+msgstr "Nachname von Nutzer"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_ldap.php:11
 msgid "The LDAP password checker cannot handle md5 passwords yet"
@@ -2721,7 +2714,7 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_ldap.php:36
 msgid "LDAP auth: There was a problem."
-msgstr ""
+msgstr "LDAP authentifizierung: Es gab ein Problem."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_ldap.php:37
 msgid "Error code"
@@ -2759,28 +2752,28 @@ msgstr "Das %s-Feld ist verpflichtend"
 msgid "Validation error"
 msgstr "Überprüfungsfehler"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1215
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1282
 #, php-format
 msgid "Failed to update the bibtex-id in publication %s"
 msgstr "Aktualisieren der BiBTeX-ID in Veröffentlichung %s fehlgeschlagen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1328
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1395
 msgid "resolveXref: merge xref into publication!"
 msgstr "resolveXref: führe Querverweis mit Veröffentlichung zusammen!"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1364
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1431
 msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
 msgstr "Eine Veröffentlichung mit dem selben Titel existiert bereits. Bitte versichern Sie sich, dass die Veröffentlichung, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1385
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1452
 msgid "The cite id is not unique, please choose another cite id."
 msgstr "Die Zitat-ID ist nicht eindeutig, bitte wählen Sie eine andere Zitat-ID."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1387
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1454
 msgid "Publication with same cite id"
 msgstr "Veröffentlichung mit der gleichen Zitat-ID"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1403
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1470
 msgid "Similar cite ids"
 msgstr "Ähnliche Zitat-IDs"
 
@@ -2866,6 +2859,7 @@ msgid "You have been logged out because the Aigaion Engine is in the process of 
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:105
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:787
 msgid "If you are a user with database_manage rights, please login to complete the update."
 msgstr ""
 
@@ -2971,10 +2965,6 @@ msgstr "Diese Seite wird unterstützt von Aigaion - Ein PHP/Web-basiertes Manage
 msgid "For more information visit %s"
 msgstr "Für mehr Informationen besuchen Sie %s."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:787
-msgid "If you are a user with database manage rights, please login to complete the update."
-msgstr ""
-
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:797
 msgid "Checking for updates..."
 msgstr "Suche nach Aktualisierungen..."
@@ -3068,7 +3058,7 @@ msgid "Sort by"
 msgstr "Sortiere nach"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\menu.php:59
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:47
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:49
 msgid "Title"
 msgstr "Titel"
 
@@ -3150,10 +3140,10 @@ msgstr "Name"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\menu.php:161
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\login\form.php:49
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:108
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:147
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:157
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:166
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:107
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:146
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:156
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:165
 msgid "Password"
 msgstr "Passwort"
 
@@ -3194,7 +3184,7 @@ msgstr "Erneut übermitteln"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\edit.php:74
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\delete.php:17
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\edit.php:52
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:49
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:48
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\delete.php:17
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
@@ -3203,15 +3193,15 @@ msgstr "Erneut übermitteln"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\notes\delete.php:17
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\notes\edit.php:106
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\delete.php:17
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:286
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:289
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\rightsprofiles\delete.php:20
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\rightsprofiles\edit.php:85
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:623
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:601
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\restore.php:52
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\delete.php:17
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\edit.php:105
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\delete.php:18
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:504
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:495
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -3446,7 +3436,7 @@ msgstr "URL setzen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\edit.php:66
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\edit.php:42
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\notes\edit.php:97
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:275
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:278
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\rightsprofiles\edit.php:76
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\edit.php:96
 msgid "Change"
@@ -3454,8 +3444,8 @@ msgstr "Ändern"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\summary.php:19
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\attachments\summary.php:28
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:242
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:251
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:245
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:254
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\listClean.php:185
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\listClean.php:194
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\readapi\publist.php:171
@@ -3555,10 +3545,10 @@ msgstr "Institut"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\edit.php:44
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\notes\edit.php:95
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:277
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:280
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\rightsprofiles\edit.php:74
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\edit.php:94
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:489
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:480
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -3583,7 +3573,7 @@ msgid "Show"
 msgstr "Zeigen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\list_items.php:11
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:175
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:178
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\readapi\publist.php:124
 #, php-format
 msgid "All information on %s"
@@ -3594,16 +3584,14 @@ msgid "Merge authors"
 msgstr "Autoren zusammenführen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:8
-msgid ""
-"Merges the source author with the target author.\n"
-"  The source author will be deleted, all publications will be transferred to the target author."
+msgid "Merges the source author with the target author. The source author will be deleted, all publications will be transferred to the target author."
 msgstr "Führt den Quell- mit dem Zielautor zusammen. Der Quellautor wird gelöscht, alle Veröffentlichungen werden auf den Zielautor übertragen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:20
 msgid "Target author"
 msgstr "Zielautor"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:23
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\merge.php:22
 msgid "Source author"
 msgstr "Quellautor"
 
@@ -3634,10 +3622,7 @@ msgid "UnBookmarkAll"
 msgstr "alle entmarkieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\authors\single.php:72
-msgid ""
-"Found authors with very similar names.\n"
-"              You can choose to merge the following authors with this author \n"
-"              by clicking on the merge link."
+msgid "Found authors with very similar names. You can choose to merge the following authors with this author by clicking on the merge link."
 msgstr "Autoren mit sehr ähnlichen Namen gefunden. Sie können die folgenden Autoren mit diesem Autor zusammenführen, indem Sie auf 'zusammenführen' klicken."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:14
@@ -3717,27 +3702,22 @@ msgid "Set edit access level for all bookmarked publications:"
 msgstr "Lesezugriffsebene für alle gemerkten Veröffentlichungen setzen:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:108
-#, fuzzy
 msgid "Set the edit  access levels for all publications on the bookmarklist"
 msgstr "Schreibzugriffsebenen für alle Veröffentlichungen auf der Merkliste setzen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:108
-#, fuzzy
 msgid "Set publication edit access level"
 msgstr "Veröffentlichungs-Schreibzugriffsebene setzen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:115
-#, fuzzy
 msgid "Set edit access level for all attachments of bookmarked publications:"
-msgstr "Schreibzugriffsebene für alle Anhänge der Veröffentlichungen auf der Merkliste setzen"
+msgstr "Schreibzugriffsebene für alle Anhänge der Veröffentlichungen auf der Merkliste setzen:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:118
-#, fuzzy
 msgid "Set the edit access levels for all attachments of publications on the bookmarklist"
 msgstr "Schreibzugriffsebenen für alle Anhänge der Veröffentlichungen auf der Merkliste setzen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\controls.php:118
-#, fuzzy
 msgid "Set attachment edit access level"
 msgstr "Anhangs-Schreibzugriffsebene setzen"
 
@@ -3756,14 +3736,14 @@ msgid "Are you sure that you want to set the edit access level for all attachmen
 msgstr "Sind Sie sicher, dass Sie die Lesezugriffsebene für alle Anhänge der Veröffentlichungen auf der Merkliste auf '%s' setzen wollen?"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:14
-#, fuzzy, php-format
+#, php-format
 msgid "Are you sure that you want to set the edit access level for all publications on the bookmarklist to \"%s\"?"
 msgstr "Sind Sie sicher, dass Sie die Schreibzugriffsebene für alle Veröffentlichungen auf der Merkliste auf '%s' setzen wollen?"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\bookmarklist\setpubaccesslevel.php:14
-#, fuzzy, php-format
+#, php-format
 msgid "Are you sure that you want to set the read access level for all publications on the bookmarklist to \"%s\"?"
-msgstr "Sind Sie sicher, dass Sie die Schreibzugriffsebene für alle Veröffentlichungen auf der Merkliste auf '%s' setzen wollen?"
+msgstr "Sind Sie sicher, dass Sie die Lesezugriffsebene für alle Veröffentlichungen auf der Merkliste auf '%s' setzen wollen?"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\bibtex.php:16
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\bibtexEmail.php:16
@@ -3772,11 +3752,11 @@ msgid "Aigaion2 BibTeX export from %s"
 msgstr "Aigaion2 BibTeX export von %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\bibtex.php:26
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\bibtexEmail.php:26
 msgid "crossreferenced publications"
 msgstr "Veröffentlichungen, auf die querverwiesen wird"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformat.php:17
-#, fuzzy
 msgid "Please select the format in which you want to export the publications:"
 msgstr "Klicken Sie auf das gewünschte Exportformat für die Veröffentlichungen:"
 
@@ -3816,22 +3796,22 @@ msgid "Input email addresses here separated by ,"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:45
-#, fuzzy, php-format
+#, php-format
 msgid "Attachment size: %s KB"
 msgstr "Anhangsgroße: %s KB"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:49
 #, php-format
 msgid "Maximum attachment size: %s KB"
-msgstr ""
+msgstr "Maximale Anhangsgroße: %s KB"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "Current attachment size: %s KB"
 msgstr "Anhangsgroße: %s KB"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\importform.php:15
-#, fuzzy, php-format
+#, php-format
 msgid "Paste the entries (%s) to import in the text area below and then press \"%s\""
 msgstr "Fügen Sie die Einträge (%s) in das untere Textfeld ein und drücken Sie dann \"%s\"."
 
@@ -3856,7 +3836,7 @@ msgid "Import:"
 msgstr "Import:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\review.php:54
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:54
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:56
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\review.php:38
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:87
 msgid "Citation"
@@ -3902,7 +3882,7 @@ msgid "select to use editor as found in BibTeX"
 msgstr "auswählen, um Herausgeber zu verwenden, der in BibTeX gefunden wurde"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\review.php:268
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:178
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:181
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\review.php:73
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:204
 msgid "Keywords"
@@ -3940,7 +3920,6 @@ msgid "For more information about the Aigaion bibliography system visit %s"
 msgstr "Für mehr Information über das Aigaion Bibliographiesystem besuchen Sie %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\notes\delete.php:13
-#, fuzzy
 msgid "Are you sure that you want to delete the note below?!"
 msgstr "Sind Sie sicher, dass Sie untenstehende Notiz löschen wollen?"
 
@@ -3970,72 +3949,109 @@ msgstr "Zugriffsrechte"
 msgid "Are you sure that you want to delete the publication '%s'?"
 msgstr "Sind Sie sicher, dass Sie Veröffentlichung \"%s\" löschen wollen?"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:19
+msgid "Special"
+msgstr "Speziell"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
 msgid "In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
 msgid "Examples"
 msgstr "Beispiele"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
 msgid "Between January and May"
 msgstr "Zwischen Januar und Mai"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
 msgid "optional field"
 msgstr "Optionales Feld"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:21
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
 msgid "optional"
 msgstr "optional"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:25
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:23
+msgid "Simple"
+msgstr "Einfach"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:27
 #, php-format
 msgid "%s publication"
 msgstr "%s Veröffentlichung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:43
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:45
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:83
 msgid "Type of publication"
 msgstr "Art der Veröffentlichung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:70
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:72
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:98
 msgid "Key"
 msgstr "Schlüssel"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:70
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:72
 msgid "This is the bibtex `key` field, used to define sorting keys"
 msgstr "Das ist das BiBTeX 'Schlüssel'-Feld, das verwendet wird, um Sortierschlüssel zu definieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:79
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:82
 msgid "This field might not be used by BibTeX for this publication type"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:106
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:116
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:128
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:179
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:109
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:119
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:131
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:182
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\review.php:39
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\review.php:74
 #, php-format
 msgid "%s field"
 msgstr "%s-Feld"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:258
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:218
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:245
+msgid "add"
+msgstr "Hinzufügen"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:219
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:246
+msgid "rem"
+msgstr "Entfernen"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:225
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:252
+msgid "up"
+msgstr "hoch"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:226
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:253
+msgid "down"
+msgstr "runter"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:229
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:229
+msgid "Editors"
+msgstr "Herausgeber"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:260
+msgid "Create as new name"
+msgstr "Als neuen Namen erzeugen"
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:261
 msgid "Type in name to quick search. Note: use unaccented letters!"
 msgstr "Geben Sie einen Namen für die Schnellsuche ein. Hinweis: verwenden Sie unakzentuierte Buchstaben!"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:120
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:123
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\listClean.php:65
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\readapi\publist.php:69
 #, php-format
 msgid "Publications of type %s"
 msgstr "Veröffentlichungen vom Typ %s"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:161
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:183
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:164
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:186
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\listClean.php:120
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:128
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\readapi\publist.php:110
@@ -4043,14 +4059,14 @@ msgstr "Veröffentlichungen vom Typ %s"
 msgid "View publication details"
 msgstr "Veröffentlichungsdetails betrachten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:258
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\list.php:261
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\readapi\publist.php:187
 msgid "Click to follow Digital Object Identifier link to online publication"
 msgstr "Klicken, um der Digital Object Identifier (DOI)-Verknüpfung zur Online-Veröffentlichung zu folgen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\listClean.php:86
 msgid "Master theses"
-msgstr ""
+msgstr "Diplomarbeit"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:18
 msgid "Delete this publication"
@@ -4088,7 +4104,7 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:70
 msgid "Name and contact details"
-msgstr ""
+msgstr "Name und Kontaktdaten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:71
 #, fuzzy
@@ -4097,9 +4113,8 @@ msgstr "Veröffentlichungsdetails betrachten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:71
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:74
-#, fuzzy
 msgid "Request"
-msgstr "Aktuell"
+msgstr "Anfragen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:74
 msgid "No e-mail address available for neither of the authors"
@@ -4128,10 +4143,6 @@ msgstr " (Hrsg.)"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:166
 msgid "(ed)"
 msgstr " (Hrsg.)"
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:229
-msgid "Editors"
-msgstr "Herausgeber"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:247
 msgid "Crossref by"
@@ -4299,8 +4310,8 @@ msgid "Return all publications that satisfy %s of the following conditions"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\search\advanced.php:91
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:485
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:321
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:464
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:315
 msgid "All"
 msgstr "Alle"
 
@@ -4398,7 +4409,6 @@ msgid "Enable anonymous access:"
 msgstr "Anonymen Zugang aktivieren:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:58
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:245
 msgid "Check this box to enable anonymous (guest) access."
 msgstr "Diesen Kasten markieren, um anonymen (Gast-)Zugang zu erlauben."
 
@@ -4407,401 +4417,365 @@ msgid "Default anonymous user account"
 msgstr "Vorgabekonto für anonymen Nutzer"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:79
-msgid ""
-"Select the user account that will be used by default for logging in anonymous users. Only\n"
-"\t        users that are marked 'anonymous' on the edit user page can be selected here!"
+msgid "Select the user account that will be used by default for logging in anonymous users. Only users that are marked 'anonymous' on the edit user page can be selected here!"
 msgstr "Wählen Sie das Nutzerkonto, das vorgabemäßig für die Anmeldung anonymer Nutzer verwendet wird. Nur Nutzer, die auf der \"Nutzer bearbeiten\"-Seite als \"anonym\" gekennzeichnet sind, können hier gewählt werden!"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:81
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:80
 msgid "Note: Be careful in assigning user rights to anonymous accounts!"
 msgstr "Hinweis: Seien Sie vorsichtig bei der Vergabe von Nutzerrechten an anonyme Konten!"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:88
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:87
 msgid "Login settings (Delegation of password checking to external module):"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:88
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:87
 msgid "These login settings determine whether the login password checking is delegated to some external module, and if so, how this is configured."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:92
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:91
 #, fuzzy
 msgid "Delegate password checking:"
 msgstr "Passwort-Überprüfung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:101
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:100
 msgid "Check this box to delegate password checking to external modules."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:107
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:106
 #, fuzzy
 msgid "Password checking module"
 msgstr "Passwort-Überprüfung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:111
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:110
 #, fuzzy
 msgid "Test delegate"
 msgstr "löschen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:111
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:110
 msgid "LDAP Password checking"
 msgstr "LDAP Passwort-Überprüfung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:119
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:118
 msgid "Select the module to which the password checking is to be delegated. Be sure to also configure that login module properly, before you turn off the internal login modules!"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:120
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:119
 msgid "Note: check 'Disable internal login' to disallow access to any account not verified using the above module."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:127
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:126
 msgid "Login settings (Special settings):"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:131
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:130
 msgid "Create missing users:"
 msgstr "Fehlende Nutzer erzeugen:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:140
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:139
 msgid "Check this box to force the system to create users that are logged in using an external account/password, but do not have an internal Aigaion user account yet. Note that this setting only has an effect when 'delegated password checking' or one of the external login modules have been enabled."
 msgstr "Markieren Sie diesen Kasten, um das System zu zwingen, Nutzer zu erzeugen, die via externes Anmeldemodul angemeldet sind, aber noch kein Aigaion-Nutzerkonto besitzen. Beachten Sie, dass diese Einstellung nur wirksam ist, wenn ein anderes Anmeldemodul als \"Aigaion\" ausgewählt wurde."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:145
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:144
 msgid "Disable internal login:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:154
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:153
 msgid "Check this box to disable internal login facilities. If internal login is disabled, users can only login using one of the delegated password checking modules such as IMAP or LDAP or one of the external login modules such as the httpauth login."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:159
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:158
 msgid "Login settings (LDAP):"
-msgstr "Kontoeinstellungen:"
+msgstr "Anmeldeeinstellungen (LDAP):"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:159
-msgid ""
-"If you use LDAP authentication, \n"
-"                you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl)\n"
-"                (That's just an example! We don't really have an LDAP server at Aigaion.nl!)"
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:158
+msgid "If you use LDAP authentication, you should set the LDAP server and the base DN. (e.g. server: ldap.aigaion.nl, base dn: dc=dev,dc=aigaion,dc=nl) (That's just an example! We don't really have an LDAP server at Aigaion.nl!)"
 msgstr "Falls Sie LDAP-Authentifizierung verwenden, sollten Sie LDAP-Server und Basis-DN setzen. (Z.B. Server: ldap.aigaion.nl, Basis-DN: dc=dev,dc=aigaion,dc=nl; das ist nur ein Beispiel! Wir haben nicht wirklich einen LDAP-Server unter Aigaion.nl.)"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:167
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:164
 #, php-format
-msgid ""
-"If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server \n"
-"            activated. Explaining how to install that is well outside the scope of Aigaion documentation.\n"
-"            See the LDAP documentation at %s for more information.\n"
-"            Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll\n"
-"            to be available somewhere..."
+msgid "If you want to use the LDAP authentication, you need to have the LDAP modules of your PHP server activated. Explaining how to install that is well outside the scope of Aigaion documentation. See the LDAP documentation at %s for more information. Take special note of the dependencies of this module: for Windows you need e.g. libeay32.dll and ssleay32.dll and msvcr71.dll to be available somewhere..."
 msgstr "Falls Sie LDAP-Authentifizierung wünschen, müssen Sie die LDAP-Module Ihrer PHP-Installation aktiviert haben. Zu erklären, wie diese installiert werden, ist außerhalb des Rahmens der Aigaion-Dokumentation. Siehe die LDAP-Dokumentation bei %s für weitergehende Informationen. Achten Sie besonders auf die Abhängigkeiten dieses Moduls: Für Windows müssen z.B. libeay32.dll, ssleay32.dll sowie msvcr71.dll verfügbar sein."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:175
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:168
 msgid "LDAP server:"
 msgstr "LDAP-Server:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:184
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:177
 msgid "The LDAP server (like: ldap.aigaion.nl)."
 msgstr "Der LDAP-Server (z.B.: ldap.aigaion.nl)."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:187
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:180
 msgid "LDAP base DN:"
 msgstr "LDAP Basis-DN:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:196
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:189
 msgid "The base DN for loggin in to the LDAP server (like: dc=dev,dc=aigaion,dc=nl)."
 msgstr "Der Basis-DN für die Anmeldung am LDAP-Server (wie: dc=dev,dc=aigaion,dc=nl)."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:200
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:193
 msgid "Login domain:"
 msgstr "Anmeldedomäne:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:209
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:202
 msgid "The domain for logging in to the LDAP server (like: dev.aigaion.nl)."
 msgstr "Die Domäne für die Anmeldung am LDAP-Server (wie: dev.aigaion.nl)."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:212
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:205
 msgid "Server type is 'ActiveDirectory':"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:221
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:214
 msgid "Check this box if your LDAP server is an Active Directory server."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:227
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:220
 msgid "Login settings (HTTP Authentication):"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:228
-msgid ""
-"'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine \n"
-"\t        the name of the logged user, instead of a login form."
-msgstr "\".htpasswd\" ist ein Modul, das das .htaccess und .htpasswd Anmeldesystem statt eines Anmeldeformulars verwendet, um den Namen des angemeldeten Nutzers zu bestimmen."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:221
+msgid "'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine the name of the logged user, instead of a login form."
+msgstr "'.htpasswd' ist ein Modul, das das .htaccess und .htpasswd Anmeldesystem statt eines Anmeldeformulars verwendet, um den Namen des angemeldeten Nutzers zu bestimmen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:230
-#, fuzzy
-msgid ""
-"If you select this, be sure that \n"
-"\t        you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also \n"
-"\t        not turn the httpauth login module off without directly accessing the Aigaion database."
-msgstr "Falls Sie ein anderes Modul als \"Aigaion\" wählen, versichern Sie sich, das Modul weiter unten korrekt konfiguriert zu haben. Andernfalls werden Sie vermutlich beim Anmelden Probleme haben und damit das externe Modul auch nicht deaktivieren ohne direkt auf die Aigaion-Datenbank zuzugreifen :)"
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:221
+msgid "If you select this, be sure that you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also not turn the httpauth login module off without directly accessing the Aigaion database."
+msgstr "Falls Sie dieses Modul wählen, versichern Sie sich, dass das httpauth Modul korrekt konfiguriert ist. Andernfalls werden Sie vermutlich beim Anmelden Probleme haben und damit das externe Modul auch nicht deaktivieren ohne direkt auf die Aigaion-Datenbank zuzugreifen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:236
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:225
 msgid "Use HTTPAUTH login modules:"
-msgstr "Anmeldemodule:"
+msgstr "HTTPAUTH Anmeldemodule verwenden:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:252
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:234
+msgid "Check this box to enable the httpauth login module."
+msgstr "Diesen Kasten markieren, um das httpauth Anmeldemodul zu erlauben."
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:241
 msgid "Add autocreated users to group:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:262
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:251
 msgid "If \"Create missing users\" is enabled, new users will automatically be added to this group. Use the group name!"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:268
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:257
 msgid "Attachment settings:"
 msgstr "Anhangeinstellungen:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:271
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:260
 msgid "Allowed extensions for attachments:"
 msgstr "Erlaubte Erweiterungen für Anhänge:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:280
-msgid ""
-"The list of allowed extensions for attachments. Attachments that do not have an extension from this \n"
-"\t        list can not be uploaded."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:269
+msgid "The list of allowed extensions for attachments. Attachments that do not have an extension from this list can not be uploaded."
 msgstr "Die Liste erlaubter Erweiterungen für Anhänge. Anhänge, die keine Dateinamenerweiterung aus dieser Liste haben, können nicht hochgeladen werden."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:287
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:275
 msgid "Allow all remote attachments:"
 msgstr "Alle entfernten Anhänge zulassen:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:296
-msgid ""
-"Check this box if you want to allow all external attachment names, instead of just those ending in \n"
-"\t        one of the 'allowed extensions' specified above. This may be useful because external attachments are \n"
-"\t        often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a \n"
-"\t        proper file name. This only affects *remote* attachments."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:284
+msgid "Check this box if you want to allow all external attachment names, instead of just those ending in one of the 'allowed extensions' specified above. This may be useful because external attachments are often to sites such as portal.acm or doi, with link names ending in meaningless numbers instead of a proper file name. This only affects *remote* attachments."
 msgstr "Markieren Sie diesen Kasten, falls Sie alle auswärtigen Anhangnamen erlauben wollen anstatt lediglich diesen, die mit den \"erlaubten Erweiterungen\" aus der obigen Liste enden. Dies kann sinnvoll sein, weil externe Anhänge oft auf Seiten wie portal.acm oder DOI mit Verknüpfungsnamen führen, die in bedeutungslosen Nummern enden statt in aussagekräftigen Dateiendungen. Dies betrifft lediglich *entfernte* Anhänge."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:303
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:288
 msgid "The server is read only:"
 msgstr "Der Server ist 'nur-lesen':"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:312
-msgid ""
-"Check this box if the server is read-only, i.e. if you cannot write files such as attachments to \n"
-"\t        the server."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:297
+msgid "Check this box if the server is read-only, i.e. if you cannot write files such as attachments to the server."
 msgstr "Markieren Sie diesen Kasten, falls der Server 'nur-lesen' ist, d.h., falls Sie keine Dateien, z.B. Anhänge, auf dem Server speichern können."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:322
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:306
 msgid "BibTeX strings:"
 msgstr "BiBTeX-Zeichenketten:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:327
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:311
 #, php-format
-msgid ""
-"BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX.\n"
-"\t        The correct syntax for strings is: %s"
-msgstr "BibTeX erlaubt die Definition von Zeichenketten. Zeichenketten, die hier definiert werden, werden beim Import von BiBTeX konvertiert. Die korrekte Syntax für Zeichenketten ist: %s"
+msgid "BibTeX allows definition of strings. Strings that are defined here are converted when importing BibTeX. The correct syntax for strings is: %s"
+msgstr "BibTeX erlaubt die Definition von Zeichenketten. Zeichenketten, die hier definiert werden, werden beim Import von BibTeX konvertiert. Die korrekte Syntax für Zeichenketten ist: %s"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:331
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:314
 msgid "Convert BibTeX to UTF8 upon input"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:340
-msgid ""
-"Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them\n"
-"          into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:323
+msgid "Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:349
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:331
 msgid "Some display settings:"
 msgstr "Einige Anzeigeeinstellungen:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:353
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:335
 msgid "Title of the site:"
 msgstr "Seitentitel:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:361
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:343
 msgid "Display publications on single-topic page:"
 msgstr "Zeige Veröffentlichungen auf Einzelthemen-Seiten an:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:370
-msgid ""
-"Checking this box means that the full list of publications for a topic is included below the topic \n"
-"\t        description, to speed up browsing for papers. Turning this on might however slow down the loading \n"
-"\t        of the topic pages."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:352
+msgid "Checking this box means that the full list of publications for a topic is included below the topic description, to speed up browsing for papers. Turning this on might however slow down the loading of the topic pages."
 msgstr "Diesen Kasten zu markieren bedeutet, dass eine vollständige Liste von Veröffentlichungen unter der Themenbeschreibung angezeigt wird, sodass das Suchen nach Papern beschleunigt wird. Allerdings könnte dies auch zu verlangsamtem Laden der Themenseiten führen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:379
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:359
 msgid "Merge crossreferenced publications in single publication view:"
 msgstr "Veröffentlichungen, auf die querverwiesen wird, in die Einzelveröffentlichungs-Ansicht integrieren:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:388
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:368
 msgid "Check to merge cross-referenced publications on a single publication page view."
 msgstr "Markieren, um querverwiesene Veröffentlichungen auf der Einzelveröffentlichuns-Seite zusammenzuführen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:428
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:408
 msgid "Defaults for user preferences:"
-msgstr "Nutzereinstellungen bearbeiten"
+msgstr "Vorgaben für Nutzereinstellungen:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:431
-msgid ""
-"Several user preferences can be given a default value here, to be overridden as wished by \n"
-"        users who can change their profile."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:411
+msgid "Several user preferences can be given a default value here, to be overridden as wished by users who can change their profile."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:449
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:428
 #, fuzzy
 msgid "Default theme"
 msgstr "Vorgabe-Leseebene für Notizen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:457
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:436
 msgid "Default language"
 msgstr "Vorgabe-Sprache"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:466
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:445
 msgid "Default publication summary style"
-msgstr "Stil der Publikationszusammenfassung"
+msgstr "Vorgabestil der Publikationszusammenfassung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:469
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:448
 msgid "Author first"
 msgstr "Autor zuerst"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:469
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:448
 msgid "Title first"
 msgstr "Titel zuerst"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:474
-#, fuzzy
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:453
 msgid "Default author display style"
-msgstr "Stil der Autorenanzeige"
+msgstr "Vorgabestil der Autorenanzeige"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:477
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:313
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:456
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:307
 #, fuzzy
 msgid "First [von] Last"
 msgstr "Vorname "
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:477
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:313
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:456
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:307
 msgid "[von] Last, First"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:477
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:313
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:456
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:307
 msgid "[von] Last"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:482
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:461
 msgid "Default number of publications per page"
 msgstr "Vorgabe-Anzahl Veröffentlichungen pro Seite"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:490
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:326
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:469
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:320
 msgid "'Similar author' check"
 msgstr "Autorenüberprüfung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:493
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:329
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:472
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:323
 msgid "Last names, then initials"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:493
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:329
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:472
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:323
 #, fuzzy
 msgid "Full name"
 msgstr "Vorname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:499
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:478
 msgid "Select the method for checking whether two author names are counted as 'similar'."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:507
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:486
 msgid "Default access levels:"
 msgstr "Vorgabe-Zugriffsrechte:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:510
-msgid ""
-"Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly \n"
-"        accessible by default"
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:489
+msgid "Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly accessible by default"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:514
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:492
 msgid "Type:"
 msgstr "Typ:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:515
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:493
 msgid "Default access level:"
 msgstr "Vorgabe-Zugriffsrecht:"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:518
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:496
 msgid "Default attachment read level"
 msgstr "Vorgabe-Zugriffsebene \"Anhang lesen\""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:519
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:497
 msgid "Default attachment edit level"
 msgstr "Vorgabe-Zugriffsebene \"Anhang bearbeiten\""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:520
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:498
 msgid "Default publication read level"
 msgstr "Vorgabe-Zugriffsebene \"Veröffentlichung lesen\""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:521
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:499
 msgid "Default publication edit level"
 msgstr "Vorgabe-Zugriffsebene \"Veröffentlichung bearbeiten\""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:522
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:500
 msgid "Default note read level"
 msgstr "Vorgabe-Leseebene für Notizen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:523
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:501
 msgid "Default note edit level"
 msgstr "Vorgabe-Notiz-Zugriffsebene"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:524
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:502
 msgid "Default topic read level"
 msgstr "Vorgabe-Leseebene für Themen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:525
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:503
 msgid "Default topic edit level"
 msgstr "Vorgabe-Themen-Zugriffsebene"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:550
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:528
 msgid "Embedding options:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:554
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:532
 msgid "Shared domain for embedding:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:559
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:537
 msgid "Logintegration options:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:563
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:541
 msgid "Shared secret phrase for integrated login:"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:580
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:558
 msgid "Aigaion login module"
 msgstr "Aigaion-Anmeldemodul"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:581
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:559
 msgid ".htpasswd file"
 msgstr ".htpasswd-Datei"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:582
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:560
 msgid "LDAP based authentication"
 msgstr "LDAP-basierte Authentifizierung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:615
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:491
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:593
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:482
 msgid "Store new settings"
 msgstr "Neue Einstellungen speichern"
 
@@ -4888,7 +4862,7 @@ msgid "Paste backup data here. Restoring from backup data will overwrite all dat
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\restore.php:44
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:449
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:440
 msgid "Restore"
 msgstr "Wiederherstellen"
 
@@ -5016,200 +4990,183 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:92
 msgid "Disable account"
-msgstr ""
+msgstr "Konto Sperren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:101
-msgid ""
-"Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database.\n"
-"    \t        You can re-enable the account in the future."
+msgid "Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database. You can re-enable the account in the future."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:108
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:107
 msgid "leave blank for no change"
 msgstr "leer lassen zum Beibehalten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:124
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:123
 msgid "Re-type new password"
 msgstr "Neues Passwort erneut eintippen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:149
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:148
 msgid "Cannot change password on anonymous accounts; they do not have a password."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:159
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:158
 msgid "Cannot change password on this account. It has a password which is externally managed by some other system."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:168
-msgid ""
-"Cannot change password on this account. The account has been disabled and cannot be used to login. \n"
-"            Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password?\n"
-"            Ask an admin to re-enable it and assign a password."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:167
+msgid "Cannot change password on this account. The account has been disabled and cannot be used to login. Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password? Ask an admin to re-enable it and assign a password."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:182
-msgid ""
-"It is impossible to change the type of your own account (normal, anon or external). This would lead to problems\n"
-"\t        if you accidentally disable it."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:179
+msgid "It is impossible to change the type of your own account (normal, anon or external). This would lead to problems if you accidentally disable it."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:189
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:185
 msgid "Account type"
 msgstr "Kontentyp"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:192
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:188
 msgid "Normal"
 msgstr "Normal"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:192
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:188
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:192
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:188
 #, fuzzy
 msgid "Managed by external module"
 msgstr "Externe Suchmaschinen verwalten"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:198
-msgid ""
-"Note: when you set this account to be anonymous, you should not forget to enable \n"
-"    \t        anonymous access to this database on the site configuration page!"
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:194
+msgid "Note: when you set this account to be anonymous, you should not forget to enable anonymous access to this database on the site configuration page!"
 msgstr "Hinweis: Wenn Sie dieses Konto als anonym markieren, sollten Sie nicht vergessen, anonymen Zugriff zu dieser Datenbank in der Seitenkonfiguration zu aktivieren!"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:200
-msgid ""
-"Note2: when you set this account to be externally managed, you must be certain that \n"
-"    \t        the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:195
+msgid "Note2: when you set this account to be externally managed, you must be certain that the external login module is working; otherwise this account can no longer login! If you are unsure, please read the documentation on external login modules."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:209
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:203
 msgid "Person details"
 msgstr "Personendetails"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:213
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:207
 msgid "Initials"
 msgstr "Initialen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:221
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:215
 msgid "First name"
 msgstr "Vorname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:229
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:223
 msgid "Middle name"
 msgstr "Beiname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:237
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:231
 msgid "Surname"
 msgstr "Nachname"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:245
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:239
 msgid "Abbreviation (about three characters)"
 msgstr "Abkürzung (etwa drei Zeichen)"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:253
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:247
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:281
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:275
 msgid "Display preferences"
 msgstr "Anzeige-Einstellungen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:285
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:279
 msgid "Theme"
 msgstr "Design"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:293
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:287
 msgid "Language"
 msgstr "Sprache"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:302
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:296
 msgid "Publication summary style"
 msgstr "Stil der Publikationszusammenfassung"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:305
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:299
 msgid "author first"
 msgstr "Autoren zuerst"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:305
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:299
 msgid "title first"
 msgstr "Titel zuerst"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:310
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:304
 msgid "Author display style"
 msgstr "Stil der Autorenanzeige"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:318
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:312
 msgid "Number of publications per page"
 msgstr "Anzahl Veröffentlichungen pro Seite"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:329
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:323
 msgid "Site default"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:335
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:329
 msgid "Select the method for checking whether two author names are counted as \"similar\"."
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:339
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:333
 msgid "Open attachments in new browser window"
 msgstr "Anhänge in neuem Browserfenster öffnen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:348
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:342
 msgid "Open export data in browser"
 msgstr "Exportdaten im Browser öffnen"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:355
-msgid ""
-"Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window \n"
-"\t        instead of downloading it as a file."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:349
+msgid "Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window instead of downloading it as a file."
 msgstr "Markieren Sie diesen Kasten, um das System zu zwingen, Exportdaten wie BibTeX oder RIS direkt in einem Browserfenster anzuzeigen, statt sie als Datei herunterzuladen."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:361
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:354
 msgid "Export BibTeX as UTF8"
 msgstr "Exportiere BibTeX als UTF-8"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:368
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:361
 #, php-format
-msgid ""
-"Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want\n"
-"\t        Aigaion to convert special characters to BibTeX codes such as %s"
-msgstr "Markieren Sie diesen Kasten, wenn Sie möchten, dass die gesamte BibTeX-Ausgabe UTF-8-kodiert ist, d.h., wenn Sie NICHT wollen, dass Aigaion Sonderzeichen in BiBTeX-Codes wie z.B. %s konvertiert."
+msgid "Check this box if you want all BibTeX output to be in UTF8, i.e. when you do NOT want Aigaion to convert special characters to BibTeX codes such as %s"
+msgstr "Markieren Sie diesen Kasten, wenn Sie möchten, dass die gesamte BibTeX-Ausgabe UTF-8-kodiert ist, d.h., wenn Sie NICHT wollen, dass Aigaion Sonderzeichen in BibTeX-Codes wie z.B. %s konvertiert."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:378
-msgid ""
-"The groups to which this user belongs. When you add this user to a group that it was previously not a member of,\n"
-"        all rights associated with that group will be appended to the user rights of this user upon commit."
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:370
+msgid "The groups to which this user belongs. When you add this user to a group that it was previously not a member of, all rights associated with that group will be appended to the user rights of this user upon commit."
 msgstr "Die Gruppen, zu denen dieser Nutzer gehört. Wenn Sie diesen Nutzer zu einer Gruppe hinzufügen, zu der er zuvor nicht gehörte, werden alle Rechte dieser Gruppe beim Absenden an die Nutzerrechte dieses Nutzers angehängt."
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:397
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:388
 msgid "User rights"
 msgstr "Nutzerrechte"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:401
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:392
 msgid "Check all rights"
 msgstr "Alle Rechte markieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:404
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:395
 msgid "Check all"
 msgstr "Alle markieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:411
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:402
 msgid "Uncheck all rights"
 msgstr "Alle Rechte demarkieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:414
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:405
 msgid "Uncheck all"
 msgstr "Alle demarkieren"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:421
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:412
 msgid "Check all rights from"
 msgstr "Alle Rechte markieren von"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:435
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:426
 msgid "Uncheck all rights from"
 msgstr "Alle Rechte demarkieren von"
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:446
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:437
 msgid "Restore old state"
 msgstr "Alten Zustand wiederherstellen"
 
@@ -6445,12 +6402,6 @@ msgstr ""
 #~ msgstr "&lt;&lt;&nbsp;dazu"
 #~ msgid "rem&nbsp;&gt;&gt;"
 #~ msgstr "weg&nbsp;&gt;&gt;"
-#~ msgid "up"
-#~ msgstr "hoch"
-#~ msgid "down"
-#~ msgstr "runter"
-#~ msgid "Create as new name"
-#~ msgstr "Als neuen Namen erzeugen"
 #~ msgid ", "
 #~ msgstr ", "
 #~ msgid "BiBTeX"

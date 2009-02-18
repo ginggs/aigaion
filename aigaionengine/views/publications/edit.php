@@ -16,11 +16,11 @@ echo "</script>";
     function monthFieldSwitch(simpleMonth) {
         if (simpleMonth)
         {
-          Element.replace('monthbox','<div id="monthbox" name="monthbox"><?php echo str_replace("\"","\\\"",str_replace("\n","",form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Special","monthFieldSwitch(false);")));?></div>');
+          Element.replace('monthbox','<div id="monthbox" name="monthbox"><?php echo str_replace("\"","\\\"",str_replace("\n","",form_dropdown('month', getMonthsInternalNoQuotes(), formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function(__("Special"),"monthFieldSwitch(false);")));?></div>');
         }
         else 
         {
-          Element.replace('monthbox','<?php echo "<div id=\"monthbox\" name=\"monthbox\">".__('In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings.')." <br/> ".__('Examples').": <ul><li>aug</li><li>nov#{~1st}</li><li>{".__('Between January and May')."}</li></ul> <br/><span title=\"".__('optional field')."\">".str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => __('optional'),'autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function("Simple","monthFieldSwitch(true);")))."</span></div>"; ?>');
+          Element.replace('monthbox','<?php echo "<div id=\"monthbox\" name=\"monthbox\">".__('In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings.')." <br/> ".__('Examples').": <ul><li>aug</li><li>nov#{~1st}</li><li>{".__('Between January and May')."}</li></ul> <br/><span title=\"".__('optional field')."\">".str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => __('optional'),'autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function(__("Simple"),"monthFieldSwitch(true);")))."</span></div>"; ?>');
         }
     }
     </script>
@@ -198,7 +198,7 @@ echo "</script>";
 			<tr>
 				<td  width='55%' valign='top'>
 					<table width='100%'>
-						<tr><td width='80%' align='left'>Authors</td>
+						<tr><td width='80%' align='left'><?php echo __('Authors');?></td>
 							<td width='20%'></td></tr>
 						<tr><td align='right'>
 							<select name='selectedauthors' id='selectedauthors' style='width:100%;' size='5'>
@@ -215,18 +215,18 @@ echo "</script>";
 						</td>
 						<td align='center'>
 <?php
-                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;add','AddAuthor();').']<br/>';
-                            echo '['.$this->ajax->link_to_function('rem&nbsp;&gt;&gt;','RemoveAuthor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;'.__('add'),'AddAuthor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function(__('rem').'&nbsp;&gt;&gt;','RemoveAuthor();').']<br/>';
 ?>
                         </td>
                         </tr>
 						<tr><td align='right'>
 <?php
-                            echo '['.$this->ajax->link_to_function('up','AuthorUp();').']';
-                            echo '['.$this->ajax->link_to_function('down','AuthorDown();').']';
+                            echo '['.$this->ajax->link_to_function(__('up'),'AuthorUp();').']';
+                            echo '['.$this->ajax->link_to_function(__('down'),'AuthorDown();').']';
 ?>
 						</td><td></td></tr>
-						<tr><td align='left'>Editors</td><td></td></tr>
+						<tr><td align='left'><?php echo __('Editors');?></td><td></td></tr>
 						<tr>
 						<td align='right'>
 							<select name='selectededitors' id='selectededitors' style='width: 100%;' size='5'>
@@ -242,23 +242,23 @@ echo "</script>";
 							</select></td>
 						<td align='center'>
 <?php
-                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;add','AddEditor();').']<br/>';
-                            echo '['.$this->ajax->link_to_function('rem&nbsp;&gt;&gt;','RemoveEditor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function('&lt;&lt;&nbsp;'.__('add'),'AddEditor();').']<br/>';
+                            echo '['.$this->ajax->link_to_function(__('rem').'&nbsp;&gt;&gt;','RemoveEditor();').']<br/>';
 ?>
                         </td>
 					    </tr>
 						<tr><td align='right'>
 <?php
-                            echo '['.$this->ajax->link_to_function('up','EditorUp();').']';
-                            echo '['.$this->ajax->link_to_function('down','EditorDown();').']';
+                            echo '['.$this->ajax->link_to_function(__('up'),'EditorUp();').']';
+                            echo '['.$this->ajax->link_to_function(__('down'),'EditorDown();').']';
 ?>
 						</td><td></td></tr>
 					</table>
 				</td>
 				<td width='45%' valign='top'>
 					<table width='100%'>
-						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;">Create as new name</a>]</div></td></tr>
-						<tr><td>Search: <input title=<?php echo "'".__('Type in name to quick search. Note: use unaccented letters!')."'";?> type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
+						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;"><?php echo __('Create as new name');?></a>]</div></td></tr>
+						<tr><td><?php echo ('Search');?>: <input title=<?php echo "'".__('Type in name to quick search. Note: use unaccented letters!')."'";?> type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
 						<tr><td><select style='width:22em;' size='12' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>
