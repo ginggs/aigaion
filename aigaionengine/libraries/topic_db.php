@@ -103,7 +103,7 @@ class Topic_db {
         */
         if (array_key_exists('user',$configuration)) {
             $userSubscribedQ = $CI->db->get_where('usertopiclink', array('topic_id' => $topic->topic_id,  
-                                                                              'user_id' => $configuration['user']->user_id));
+                                                                          'user_id' => $configuration['user']->user_id));
             $groupIrrelevant = True;
             $groupSubscribed = False;
             if (array_key_exists('includeGroupSubscriptions',$configuration)) {

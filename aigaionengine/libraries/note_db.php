@@ -69,7 +69,7 @@ class Note_db {
         $result = array();
         $Q = $CI->db->get_where('notes', array('pub_id' => $pub_id));
         foreach ($Q->result() as $row) {
-            $next  =$this->getByID($row->note_id);
+            $next  = $this->getFromRow($row);
             if ($next != null) {
                 $result[] = $next;
             }

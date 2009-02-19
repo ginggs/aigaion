@@ -383,11 +383,11 @@ TODO:
   
   function getForPublication($pub_id, $is_editor = 'N')
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     $result = array();
     
     //retrieve authors and editors
-    $Q = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink 
+    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."author.* FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink 
                            WHERE ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
                            AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".$CI->db->escape($pub_id)."
                            AND ".AIGAION_DB_PREFIX."publicationauthorlink.is_editor = ".$CI->db->escape($is_editor)."

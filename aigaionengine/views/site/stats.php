@@ -18,7 +18,7 @@ Parameters:
 	$publicationReadCount = $this->topic_db->getReadPublicationCountForTopic(1);
 
 	echo "
-<p class='header1'>Aigaion statistics</p>
+<p class='header1'>".__('Aigaion statistics')."</p>
 <ul>
 <li>".sprintf(__('%s publications (%s read)'), $publicationCount, $publicationReadCount)."</li>
 <li>".sprintf(__('%s authors'), $authorCount)."</li>
