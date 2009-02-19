@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-18 20:46+0100\n"
+"POT-Creation-Date: 2009-02-19 17:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2112,6 +2112,100 @@ msgstr ""
 msgid "December"
 msgstr ""
 
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:481
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:509
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:517
+msgid "in:"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:490
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:504
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:21
+msgid "volume"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:500
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:33
+msgid "chapter"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:501
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:511
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:520
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:43
+msgid "pages"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:554
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:30
+msgid "number"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:571
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:67
+msgid "Article"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:572
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:68
+msgid "Book"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:573
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:69
+msgid "Booklet"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:574
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:70
+msgid "Inbook"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:575
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:71
+msgid "Incollection"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:576
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:72
+msgid "Inproceedings"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:577
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:73
+msgid "Manual"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:578
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:74
+msgid "Mastersthesis"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:579
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:75
+msgid "Misc"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:580
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:76
+msgid "Phdthesis"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:581
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:77
+msgid "Proceedings"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:582
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:78
+msgid "Techreport"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:583
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:79
+msgid "Unpublished"
+msgstr ""
+
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\readremote_helper.php:37
 #, php-format
 msgid "Cannot retrieve %s"
@@ -2171,10 +2265,6 @@ msgstr ""
 msgid "series"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:21
-msgid "volume"
-msgstr ""
-
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:22
 msgid "publisher"
 msgstr ""
@@ -2207,20 +2297,12 @@ msgstr ""
 msgid "booktitle"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:30
-msgid "number"
-msgstr ""
-
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:31
 msgid "institution"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:32
 msgid "address"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:33
-msgid "chapter"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:34
@@ -2262,10 +2344,6 @@ msgstr ""
 msgid "doi"
 msgstr ""
 
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:43
-msgid "pages"
-msgstr ""
-
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:44
 msgid "userfields"
 msgstr ""
@@ -2288,58 +2366,6 @@ msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:52
 msgid "institute"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:67
-msgid "Article"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:68
-msgid "Book"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:69
-msgid "Booklet"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:70
-msgid "Inbook"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:71
-msgid "Incollection"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:72
-msgid "Inproceedings"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:73
-msgid "Manual"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:74
-msgid "Mastersthesis"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:75
-msgid "Misc"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:76
-msgid "Phdthesis"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:77
-msgid "Proceedings"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:78
-msgid "Techreport"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:79
-msgid "Unpublished"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:64
@@ -2367,7 +2393,16 @@ msgid "edit access"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:80
-msgid "Edit acces level"
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:281
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:351
+msgid "Edit access level"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:95
@@ -2404,18 +2439,6 @@ msgstr ""
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:110
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:117
 msgid "effective access level is different"
-msgstr ""
-
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:137
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:159
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:181
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:221
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:276
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:281
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:302
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:325
-#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:351
-msgid "Edit access level"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\accesslevels_lib.php:145
@@ -5110,6 +5133,10 @@ msgstr ""
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\restore.php:44
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\users\edit.php:440
 msgid "Restore"
+msgstr ""
+
+#: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\stats.php:21
+msgid "Aigaion statistics"
 msgstr ""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\stats.php:23
