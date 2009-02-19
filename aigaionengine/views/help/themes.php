@@ -4,7 +4,7 @@
   <p>Aigaion supports the use of themes, you can select it on your 'profile' page. If you don't like the standard themes, feel free to create one yourself. Here is how to do it:
     <ul>
       <li>Create a directory where the theme-files will be stored, below the '/aigaionengine/themes/' directory.</li>
-      <li>Copy the <code>themes/default/css/</code>, <code>themes/default/img/</code> and <code>themes/default/icons/</code> directories to that theme directory. You end up with the following directory structure:
+      <li>Copy the <code>themes/default/css/</code>, <code>themes/default/img/</code> and <code>themes/default/icons/</code> directories (but NOT the files in them) to that theme directory. You end up with the following directory structure:
 <pre>
  [new-theme-directory]/css/
                         [all style files]
