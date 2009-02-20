@@ -26,7 +26,7 @@ echo "</script>";
     </script>
   <div class='header'><?php echo sprintf(__('%s publication'), ucfirst($edit_type));?></div>
 <?php
-  $isAddForm = $edit_type=='new';
+  $isAddForm = $edit_type=='add';
   //open the edit form
   echo form_open('publications/commit', $formAttributes)."\n";
   echo "<div>\n";

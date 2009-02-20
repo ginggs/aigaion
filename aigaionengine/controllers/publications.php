@@ -470,7 +470,7 @@ class Publications extends Controller {
         $userlogin  = getUserLogin();
         $user       = $this->user_db->getByID($userlogin->userID());
         if ( (!$userlogin->hasRights('publication_edit'))
-          || (($oldpublication == null) && ($edit_type != 'new'))
+          || (($oldpublication == null) && ($edit_type != 'add'))
           || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
           ) 
         {
@@ -478,7 +478,7 @@ class Publications extends Controller {
           redirect('');
         }
         
-        if ($edit_type == 'new')
+        if ($edit_type == 'add')
           $publication = $this->publication_db->add($publication);
         else
           $publication = $this->publication_db->update($publication);
@@ -495,7 +495,7 @@ class Publications extends Controller {
     $userlogin      = getUserLogin();
     $user           = $this->user_db->getByID($userlogin->userID());
     if ((!$userlogin->hasRights('publication_edit'))
-         || (($oldpublication == null) && ($review_data['edit_type']!='new'))
+         || (($oldpublication == null) && ($review_data['edit_type']!='add'))
          || (!$this->accesslevels_lib->canEditObject($oldpublication) && ($oldpublication != null))
         ) 
     {
