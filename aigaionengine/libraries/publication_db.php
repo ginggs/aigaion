@@ -166,7 +166,7 @@ class Publication_db {
         
     //check if this publication was bookmarked by the logged user
     //$Q = $CI->db->query("SELECT * FROM ".AIGAION_DB_PREFIX."userbookmarklists WHERE user_id=".$userlogin->userId()." AND pub_id=".$R->pub_id);
-    $Q = $CI->db->get_where(AIGAION_DB_PREFIX.'userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
+    $Q = $CI->db->get_where('userbookmarklists',array('user_id'=>$userlogin->userId(),'pub_id'=>$R->pub_id));
     if ($Q->num_rows()>0) {
         $publication->isBookmarked = True;
     }
