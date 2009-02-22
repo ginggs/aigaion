@@ -42,6 +42,7 @@ function translateField ($fieldname, $ucfirst=false) {
     "doi"          => __("doi"),
     "pages"        => __("pages"),
     "userfields"   => __("userfields"),
+    "crossref"     => __("crossref"),
     
     // authors:
     "surname"   => __("surname"),

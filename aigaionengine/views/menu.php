@@ -195,7 +195,7 @@ foreach ($AIGAION_SHORTLIST_LANGUAGES as $lang)
 {
   echo anchor('language/set/'.$lang.'/'.implode('/',$this->uri->segment_array()),$this->userlanguage->getLanguageName($lang)).', ';
 }
-echo anchor('language/choose/',"&lt;more...&gt;");
+echo anchor('language/choose/',"&lt;".__('more')."...&gt;");
 ?>
 </div>
 </div>

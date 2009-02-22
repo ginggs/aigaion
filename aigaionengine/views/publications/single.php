@@ -38,13 +38,13 @@ $this->load->helper('translation');
           echo "</span>";
           echo "</span>";
           if ($userlogin->hasRights('export_email')) {
-      	    echo  '&nbsp;['.anchor('publications/exportEmail/'.$publication->pub_id.'/','E-mail',array('title'=>__('Export by e-mail'))).']';
+      	    echo  '&nbsp;['.anchor('publications/exportEmail/'.$publication->pub_id.'/',__('E-mail'),array('title'=>__('Export by e-mail'))).']';
       	  }
         }
         echo  '&nbsp;['
-           .anchor('export/publication/'.$publication->pub_id.'/bibtex','BibTeX',array('target'=>'aigaion_export')).']';
+           .anchor('export/publication/'.$publication->pub_id.'/bibtex',__('BibTeX'),array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['
-           .anchor('export/publication/'.$publication->pub_id.'/ris','RIS',array('target'=>'aigaion_export')).']';
+           .anchor('export/publication/'.$publication->pub_id.'/ris',__('RIS'),array('target'=>'aigaion_export')).']';
 
         if ($userlogin->hasRights('request_copies')) {
   				$author_email = '';
@@ -347,7 +347,7 @@ $this->load->helper('translation');
     if (    ($userlogin->hasRights('attachment_edit'))
          && ($accessLevelEdit)
         )
-        echo '['.anchor('attachments/add/'.$publication->pub_id,'add attachment').']';
+        echo '['.anchor('attachments/add/'.$publication->pub_id,__('add attachment')).']';
 ?>
         </div>
         <div class='header'><?php _e("Attachments");?></div>

@@ -24,7 +24,18 @@ echo "</script>";
         }
     }
     </script>
-  <div class='header'><?php echo sprintf(__('%s publication'), ucfirst($edit_type));?></div>
+  <div class='header'><?php
+    switch ($edit_type) {
+      case 'add':
+        echo __('New Publication');
+        break;
+      case 'edit':
+      default:
+        echo __('Edit Publication');
+        break;
+    }
+    ?>
+    </div>
 <?php
   $isAddForm = $edit_type=='add';
   //open the edit form
@@ -258,7 +269,7 @@ echo "</script>";
 				<td width='45%' valign='top'>
 					<table width='100%'>
 						<tr><td align='center'><div id='addnewauthorbutton'>[<a href="#" onclick="AddNewAuthor(); return false;"><?php echo __('Create as new name');?></a>]</div></td></tr>
-						<tr><td><?php echo ('Search');?>: <input title=<?php echo "'".__('Type in name to quick search. Note: use unaccented letters!')."'";?> type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
+						<tr><td><?php echo __('Search');?>: <input title=<?php echo "'".__('Type in name to quick search. Note: use unaccented letters!')."'";?> type='text' onkeyup='AuthorSearch();' name='authorinputtext' id='authorinputtext' size='31'></td></tr>
 						<tr><td><select style='width:22em;' size='12' name='authorinputselect' id='authorinputselect'></select></td></tr>
 						<tr><td align='right'></td></tr>
 					</table>

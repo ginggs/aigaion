@@ -141,7 +141,7 @@ class Site extends Controller {
 //	            $updateinfo = '';
 	            $updateinfo = checkUpdates();
 	            if ($updateinfo == '') {
-    		        $checkresult .= '<td><b>OK</b></td></tr>';
+    		        $checkresult .= '<td><b>'.__('OK').'</b></td></tr>';
         			$checkresult .= '<tr><td colspan=2><div class="message">'.__('This installation of Aigaion is up-to-date.').'.</div></td></tr>';
 	            } else {
         			$checkresult .= '<td><span class="errortext">'.utf8_strtoupper('Alert').'</span></td>';

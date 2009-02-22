@@ -17,7 +17,7 @@ access rights: we presume that this view is not loaded when the user doesn't hav
     
     $userlogin = getUserLogin();
     if ($userlogin->hasRights('topic_subscription')) {
-        echo '['.anchor('groups/topicreview/'.$group->group_id,'topic subscription')."]&nbsp;";
+        echo '['.anchor('groups/topicreview/'.$group->group_id,__('topic subscription'))."]&nbsp;";
     }
     echo $group->name;
 

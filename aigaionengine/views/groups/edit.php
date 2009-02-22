@@ -35,9 +35,9 @@ if (!isset($group)||($group==null)||(isset($action)&&$action=='add')) {
 }
 
 if ($isAddForm) {
-    echo "<p class='header2'>Create a new group</p>";
+    echo "<p class='header2'>".__('Create a new group')."</p>";
 } else {
-    echo "<p class='header2'>Edit group settings</p>";
+    echo "<p class='header2'>".__('Edit group settings')."</p>";
 }
 
 //validation feedback
@@ -47,11 +47,11 @@ echo "
     <table width='100%'>
         
         <tr><td colspan='2'>
-        <hr><b>Group details:</b><hr>
+        <hr><b>".__('Group details:')."</b><hr>
         </td></tr>
 
         <tr>
-        <td>Name</td>
+        <td>".__('Name')."</td>
         <td>"
         .form_input(array('name'=>'name',
                           'size'=>'15',
@@ -59,7 +59,7 @@ echo "
         </td>
         </tr>
         <tr>
-        <td>Abbreviation</td>
+        <td>".__('Abbreviation')."</td>
         <td>"
         .form_input(array('name'=>'abbreviation',
                           'size'=>'5',
@@ -68,14 +68,14 @@ echo "
         </tr>
 
         <tr><td colspan='2'>
-        <hr><b>Rights profiles:</b><hr>
+        <hr><b>".__('Rights profiles:')."</b><hr>
         </td></tr>";
 
 $userlogin = getUserLogin(); 
 if ($userlogin->hasRights('user_assign_rights')) {    
     echo "        
         <tr><td colspan='2'>
-        The following rights profiles will by default be assigned to a user when it is added to this group.
+        ".__('The following rights profiles will by default be assigned to a user when it is added to this group.')."
         </td></tr>
         ";
         
@@ -93,9 +93,9 @@ echo    "
         </tr>
         <tr><td>";
 if ($isAddForm) {
-    echo form_submit('submit','Add');
+    echo form_submit('submit',__('Add'));
 } else {
-    echo form_submit('submit','Change');
+    echo form_submit('submit',__('Change'));
 }
 echo "
         </td>
@@ -104,7 +104,7 @@ echo "
      ";
 echo form_close();
 echo form_open('');
-echo form_submit('cancel','Cancel');
+echo form_submit('cancel',__('Cancel'));
 echo form_close();
 echo "</div>";
 

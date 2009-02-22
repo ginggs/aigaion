@@ -4,7 +4,18 @@
   $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
-  <div class='header'><?php echo ucfirst($edit_type); ?> author</div>
+  <div class='header'><?php 
+    switch ($edit_type) {
+      case 'new':
+        echo __('New Author');
+        break;
+      case 'edit':
+      default:
+        echo __('Edit Author');
+        break;
+    }
+    ?>
+    </div>
 <?php
   //open the edit form
   echo form_open('authors/commit', $formAttributes)."\n";

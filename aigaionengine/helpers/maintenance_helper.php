@@ -260,7 +260,7 @@
         $CI->load->helper('cleanname');
         $result = "<tr><td colspan=2><p class='header1'>".__("Reinit searchable names, keywords and titles")."</p></td></tr>\n";
 
-        $result .= "<tr><td>"._("Checking")."... ";
+        $result .= "<tr><td>".__("Checking")."... ";
         # check clean names of authors (author.cleanname)
         $authorcount = 0;
         foreach ($CI->author_db->getAllAuthors() as $author) { //all authors are accessible to all users...

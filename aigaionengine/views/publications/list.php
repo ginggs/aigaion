@@ -169,7 +169,7 @@ $current_author = 1;
 foreach ($publication->authors as $author)
 {
   if (($current_author == $num_authors) & ($num_authors > 1)) {
-    echo " and ";
+    echo " ".__('and')." ";
   }
   else if ($current_author>1 || ($summarystyle == 'title')) {
     echo ", ";

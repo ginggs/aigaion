@@ -18,18 +18,18 @@ if (!isset($exportCommand))$exportCommand="export/all/";
 </p>
 <?php
 echo form_open($exportCommand.'bibtex');
-echo "<div>".form_submit(array('name'=>'BibTeX','title'=>__('Export to BibTeX')),'BibTeX');
+echo "<div>".form_submit(array('name'=>'BibTeX','title'=>__('Export to BibTeX')),__('BibTeX'));
 echo "</div>\n";
 echo form_close();
 echo '<br/>';
 echo form_open($exportCommand.'ris');
-echo "<div>".form_submit(array('name'=>'RIS','title'=>__('Export to RIS')),'RIS');
+echo "<div>".form_submit(array('name'=>'RIS','title'=>__('Export to RIS')),__('RIS'));
 echo "</div>\n";
 echo form_close();
 echo '<br/>';
 if ($userlogin->hasRights('export_email')) {
   echo form_open($exportCommand.'email');
-  echo "<div>".form_submit(array('name'=>'E-mail','title'=>__('Export by E-mail')),'E-mail');
+  echo "<div>".form_submit(array('name'=>'E-mail','title'=>__('Export by E-mail')),__('E-mail'));
   echo "</div>\n";
   echo form_close();
 }
