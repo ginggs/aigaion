@@ -495,11 +495,11 @@ ul.tagcloud li {
 }
 ul.tagcloud li.t1 a { 
   font-size: 1em; 
-  opacity:0.8;
+  opacity:0.6;
 }
 ul.tagcloud li.t2 a { 
-  font-size: 1.5em;
-  opacity:0.9;
+  font-size: 1.3em;
+  opacity:0.8;
 }
 ul.tagcloud li.t3 a { 
   font-size: 1.6em; 
