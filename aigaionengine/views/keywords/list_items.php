@@ -51,10 +51,11 @@ else
           $liClass='class=t2';
         }
       }
+      else {
+        $liClass='class=t3';
+      }  
     }
-    else {
-      $liClass='class=t3';
-    }  
+    
     
     echo "  <li ".$liClass.">".anchor('keywords/single/'.$keyword->keyword_id, $keyword->keyword, array('title' => sprintf(__('All information on %s'), $keyword->cleankeyword)));
     echo "</li>\n";
