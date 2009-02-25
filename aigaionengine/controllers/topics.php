@@ -349,6 +349,12 @@ class Topics extends Controller {
                 $content['header']          = sprintf(__("Publications for topic \"%s\""),$topic->name).' '.__('sorted by first author');
                 break;
         }
+        
+        $output = $this->load->view('header', $headerdata, true);
+
+        $output  .= $this->load->view('topics/full', $content,  true);
+        
+        //get keyword list
         if ($userlogin->getPreference('liststyle')>0) {
             //set these parameters when you want to get a good multipublication list display
             $content['multipage']       = True;
@@ -359,9 +365,7 @@ class Topics extends Controller {
         $content['publications']    = $this->publication_db->getForTopic($topic_id,$order,$page);
         $content['order'] = $order;
         
-        $output = $this->load->view('header', $headerdata, true);
-
-        $output  .= $this->load->view('topics/full', $content,  true);
+        $output .= $this->load->view('publications/list', $content, true);
         
         $output .= $this->load->view('footer','', true);
         

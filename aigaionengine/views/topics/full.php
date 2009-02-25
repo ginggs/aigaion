@@ -72,6 +72,18 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                                     'depth'     => 2
                                     ),  
                               true)."<li></li></ul>\n</div>\n";
+
+echo "<div id='tagcloud'>\n";
+$keywords = $topic->getKeywords();
+if (sizeof($keywords) > 0)
+{
+  echo "<p class=header2>".__('Keywords').":</p>\n";
+  $keywordContent['keywordList'] = $keywords;
+  $keywordContent['isCloud'] = true;
+  echo $this->load->view('keywords/list_items', $keywordContent, true);
+}
+echo "</div>\n"; //tagcloud
+
 ?>
     </td>
     <td>
@@ -130,14 +142,5 @@ if ($topicstatBlock != '')
    </td>
 </tr>
 </table>
-
-<?php
-  $content['publications']=$publications;
-  if (isset($currentpage))$content['currentpage']=$currentpage;
-  if (isset($multipageprefix))$content['multipageprefix']=$multipageprefix;
-  if (isset($publications))
-    $this->load->view('publications/list', $content);
-    //$this->load->view('publications/list', $publications);
-?>
 
 </div> 

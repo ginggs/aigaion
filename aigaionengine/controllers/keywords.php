@@ -12,9 +12,70 @@ class Keywords extends Controller {
   /** Default function: list publications */
   function index()
 	{
-    $this->li_keywords();
+    $this->_keywordlist();
 	}
 
+  /** List all keywords of one topic in a keyword cloud.
+    When no parameter is given, display all publications
+  **/
+  function _keywordlist()
+  {
+    $this->load->helper('form');
+
+//    $topic_id = $this->uri->segment(3,-1);
+//    if ($topic_id == -1)
+//      $topic_id = 1; //no topic? display all
+//    $config = array();
+//    $topic = $this->topic_db->getByID($topic_id,$config);
+//
+//    if ($topic==null) {
+//        appendErrorMessage(__('Keywords for topic').': '.__('non-existing id passed').'<br/>');
+//        redirect('');
+//    }
+//    
+//    $keywordList = $topic->getKeywords();
+    $keywordList = $this->keyword_db->getAllKeywords();
+    
+    //set header data
+    $header ['title']         = __('Keywords');
+    $header ['javascripts']   = array('prototype.js');
+    //$content['header']        = sprintf(__("Keywords for topic %s"),anchor('topics/single/'.$topic->topic_id,$topic->name));
+    $content['header']        = "All keywords in the database";
+    $content['keywordList']   = $keywordList;
+    $content['searchbox']     = True;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('keywords/list',        $content, true);
+    
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+    
+  function searchlist()
+  {
+    $keyword = $this->input->post('keyword_search');
+    if ($keyword) // user pressed show, so redirect to single keyword page
+    {
+      $keywordList     = $this->keyword_db->getKeywordsLike($keyword);
+      if (sizeof($keywordList) > 0)
+      {
+        $this->single($keywordList[0]->keyword_id);
+      }     
+    }
+    else
+    {
+      $keyword                = $this->uri->segment(3);
+      
+      $content['keywordList'] = $this->keyword_db->getKeywordsLike($keyword);
+      $content['useHeaders']  = true;
+      
+      echo $this->load->view('keywords/list_items', $content, true);
+    }
+  }
+  
   function li_keywords($fieldname = "")
   {
     if ($fieldname == "")
@@ -23,8 +84,10 @@ class Keywords extends Controller {
     $keyword = $this->input->post($fieldname);
     if ($keyword != "")
     {
-      $keywords = $this->keyword_db->getKeywordsLike($keyword);
-      echo $this->load->view('keywords/li_keywords', array('keywords' => $keywords, true));
+      $content['keywordList'] = $this->keyword_db->getKeywordsLike($keyword);
+      $content['useHeaders']  = false;
+      
+      echo $this->load->view('keywords/list_items', $content, true);
     }
   }
   
@@ -44,10 +107,14 @@ class Keywords extends Controller {
   Returns:
       A full HTML page with all a list of all publications that have been assigned the given keyword
   */
-  function single()
+  function single($keyword_id)
   {
-    $keyword_id   = $this->uri->segment(3);
-    $order   = $this->uri->segment(4,'year');
+    $order = '';
+    if (!is_numeric($keyword_id))
+    {
+      $keyword_id   = $this->uri->segment(3);
+      $order   = $this->uri->segment(4,'year');
+    }
     if (!in_array($order,array('year','type','recent','title','author'))) {
       $order='year';
     }

@@ -67,6 +67,10 @@ class Topic {
         return $CI->topic_db->getAuthorsForTopic($this->topic_id);
     }
   
+    function getKeywords() {
+      $CI = &get_instance();
+      return $CI->topic_db->getKeywordsForTopic($this->topic_id);
+    }
     
     /** if this topic is a user subscription tree, use this method to set the user to being subscribed to this
     topic and commit it to the database. Afterwards, the topic tree has been updated and the database also. 

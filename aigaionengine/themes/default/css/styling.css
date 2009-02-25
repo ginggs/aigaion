@@ -479,6 +479,33 @@ li.help-header {
   font-size: 140%; 
 }
 
+/* ==== TAG-Cloud views ==== */
+ul.tagcloud { 
+  padding:0; 
+  margin:0px;
+  text-align:center; 
+  list-style:none; 
+}
+
+ul.tagcloud li { 
+  display:inline; 
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+ul.tagcloud li.t1 a { 
+  font-size: 1em; 
+  opacity:0.6;
+}
+ul.tagcloud li.t2 a { 
+  font-size: 1.5em;
+  opacity:0.8;
+}
+ul.tagcloud li.t3 a { 
+  font-size: 2em; 
+  opacity:1.0;
+}
+
 .header1  {  font-weight: bold;   font-family: arial; font-size: 140%; margin-top: 0.2em;} 
 .header2 {  font-weight: bold;   font-family: arial; font-size: 120%; margin-top: 0.2em;} 
 .header3 {  font-style:  italic; font-family: arial; font-size: 120%; margin-top: 0.2em;}

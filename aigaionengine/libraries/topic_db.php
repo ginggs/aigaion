@@ -606,5 +606,27 @@ class Topic_db {
     }        
     return $result;
   }
+  
+  function getKeywordsForTopic($topic_id) {
+    # get keywords for this topic
+    $CI = &get_instance();
+    $query = "SELECT DISTINCT ".AIGAION_DB_PREFIX."keywords.keyword_id, COUNT(".AIGAION_DB_PREFIX."keywords.keyword_id) AS sum
+    FROM ".AIGAION_DB_PREFIX."keywords, ".AIGAION_DB_PREFIX."topicpublicationlink, ".AIGAION_DB_PREFIX."publicationkeywordlink
+    WHERE ".AIGAION_DB_PREFIX."topicpublicationlink.topic_id = ".$CI->db->escape($topic_id)."
+    AND ".AIGAION_DB_PREFIX."topicpublicationlink.pub_id = ".AIGAION_DB_PREFIX."publicationkeywordlink.pub_id
+    AND ".AIGAION_DB_PREFIX."publicationkeywordlink.keyword_id = ".AIGAION_DB_PREFIX."keywords.keyword_id
+    GROUP BY ".AIGAION_DB_PREFIX."keywords.keyword_id ORDER BY ".AIGAION_DB_PREFIX."keywords.cleankeyword";
+
+    $Q = $CI->db->query($query);
+    $result = array();
+    foreach ($Q->result() as $R) {
+        $keyword = $CI->keyword_db->getByID($R->keyword_id);
+        $keyword->count = $R->sum;
+        $result[] = $keyword;
+        //$result[] = $CI->keyword_db->getByID($R->keyword_id);
+    }        
+    return $result;
+    
+  }
 }
 ?>

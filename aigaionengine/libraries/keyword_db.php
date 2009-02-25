@@ -17,14 +17,20 @@ class Keyword_db {
     {
       //load the keyword
       $R = $Q->row();
-      $kw->keyword_id = $R->keyword_id;
-      $kw->keyword = $R->keyword;
-      $kw->cleankeyword = $R->cleankeyword;
-      return $kw;
+      return $this->getFromRow($R);
     }
     else
       return null;
   }
+  
+  function getFromRow($R)
+  {
+    foreach ($R as $key => $value)
+    {
+      $kw->$key = $value;
+    }
+    return $kw;
+  }  
   
   function getByKeyword($keyword)
   {
@@ -35,11 +41,8 @@ class Keyword_db {
     {
       //load the publication
       $R = $Q->row();
-      
-      $kw->keyword_id = $R->keyword_id;
-      $kw->keyword = $R->keyword;
-      $kw->cleankeyword = $R->cleankeyword;
-      return $kw;
+    
+      return $this->getFromRow($R);
     }
     else
       return null;
@@ -57,11 +60,28 @@ class Keyword_db {
     $result = array();
     foreach ($Q->result() as $R)
     {
-      $kw->keyword_id = $R->keyword_id;
-      $kw->keyword = $R->keyword;
-      $kw->cleankeyword = $R->cleankeyword;
-      $result[] = $kw;
-      unset($kw);
+      $result[] = $this->getFromRow($R);
+    }
+    return $result;
+  }
+  
+  function getAllKeywords()
+  {
+    $CI = &get_instance();
+    $result = array();
+    
+    //get all keywords from the database, order by cleankeyword
+    $CI->db->orderby('cleankeyword');
+    $Q = $CI->db->get('keywords');
+    
+    //retrieve results or fail
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
     }
     return $result;
   }
@@ -79,11 +99,7 @@ class Keyword_db {
     {
       foreach ($Q->result() as $R)
       {
-        $kw->keyword_id = $R->keyword_id;
-        $kw->keyword = $R->keyword;
-        $kw->cleankeyword = $R->cleankeyword;
-        $result[] = $kw;
-        unset($kw);
+        $result[] = $this->getFromRow($R);
       }
     }
 

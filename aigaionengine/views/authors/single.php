@@ -81,3 +81,15 @@ if ($userlogin->hasRights("publication_edit")) {
 
   <br/>
 </div>
+<?php
+echo "<div id='tagcloud'>\n";
+$keywords = $author->getKeywords();
+if (sizeof($keywords) > 0)
+{
+  echo "<p class=header2>".__('Keywords').":</p>\n";
+  $keywordContent['keywordList'] = $keywords;
+  $keywordContent['isCloud'] = true;
+  echo $this->load->view('keywords/list_items', $keywordContent, true);
+}
+echo "</div>\n"; //tagcloud
+?>

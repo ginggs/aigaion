@@ -187,6 +187,7 @@ function _gettext($msgid) {
  */
 function __($msgid) {
   return _gettext($msgid);
+  //return "<font color='red'>"._gettext($msgid)."</font>";//_gettext($msgid);
 }
 /**
  * Plural version of gettext.

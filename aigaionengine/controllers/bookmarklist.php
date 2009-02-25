@@ -337,7 +337,7 @@ class Bookmarklist extends Controller {
         }
         
         $this->bookmarklist_db->removeKeyword($keyword->keyword_id);
-        redirect('keyword/single/'.$keyword->keyword_id);      
+        redirect('keywords/single/'.$keyword->keyword_id);      
     }
     
     

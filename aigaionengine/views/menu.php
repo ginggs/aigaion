@@ -23,6 +23,7 @@
     <li class="mainmenu"><?php echo anchor('topics/all', __('All Topics')); ?></li>
     <li class="mainmenu"><?php echo anchor('publications', __('All Publications')); ?></li>
     <li class="mainmenu"><?php echo anchor('authors', __('All Authors')); ?></li>
+    <li class="mainmenu"><?php echo anchor('keywords', __('All Keywords')); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/unassigned', __('Unassigned')); ?></li>
     <li class="mainmenu"><?php echo anchor('publications/showlist/recent', __('Recent')); ?></li>
     <li class="mainmenu"><?php echo anchor('search', __('Search')); ?></li>

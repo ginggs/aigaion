@@ -152,5 +152,10 @@ function format($formatStyle, $data='')
       $CI = &get_instance();
       return $CI->author_db->merge($this,$simauthor_id);
   }
+  
+  function getKeywords() {
+      $CI = &get_instance();
+      return $CI->author_db->getKeywordsForAuthor($this->author_id);
+    }
 }
 ?>
