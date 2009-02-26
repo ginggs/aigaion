@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-25 20:39+0100\n"
-"PO-Revision-Date: 2009-02-25 20:40+0100\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Wietse <wietse@aigaion.nl>\n"
-"Language-Team: Manuel Strehl <manuel.strehl@physik.uni-r.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -402,7 +402,7 @@ msgstr "Export via E-Mail"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:664
 msgid "No author selected for export"
-msgstr "Kin Autor für den Export ausgewählt"
+msgstr "Kein Autor für den Export ausgewählt"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:676
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:927
@@ -436,9 +436,8 @@ msgstr "Export von Aigaion"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:732
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:780
-#, fuzzy
 msgid "Exported for author"
-msgstr "Autor exportieren"
+msgstr "Exportiert für Autor"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\authors.php:743
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:996
@@ -1023,13 +1022,12 @@ msgstr "Fehler beim Anmelden des anonymen Kontos"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:75
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:146
 msgid "Aigaion not configured for this kind of access"
-msgstr ""
+msgstr "Aigaion wurde für diesen Zugriff nicht konfiguriert."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:97
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:162
-#, fuzzy
 msgid "No token available"
-msgstr "Keine Anmeldeinformation verfügbar..."
+msgstr "Kein Token verfügbar..."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:101
 msgid "Token already logged in"
@@ -1050,7 +1048,7 @@ msgstr "Nicht existierendes Konto"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:129
 msgid "Fail token"
-msgstr ""
+msgstr "Tokenfehler"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\logintegration.php:131
 msgid "Unknown fail"
@@ -1260,20 +1258,19 @@ msgstr "Unbekannte ID oder BibTeX-ID"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:196
 #, php-format
 msgid "Embedding for %s"
-msgstr ""
+msgstr "Einbetten für %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\readapi.php:235
 msgid "Aigaion error: no shared domain configured in the Aigaion database"
-msgstr ""
+msgstr "Aigaion-Fehler: Keine verteilte Domain in der Aigaion-Datenbank konfiguriert."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\repostform.php:14
 msgid "No form data to repost"
-msgstr ""
+msgstr "Keine Formulardaten zum erneuten Senden"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\repostform.php:19
-#, fuzzy
 msgid "Repost form"
-msgstr "Wiederherstellen"
+msgstr "Formular erneut senden"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\rightsprofiles.php:35
 msgid "View rights profile"
@@ -1434,7 +1431,7 @@ msgstr "Keine Daten für die Wiederherstellung übergeben!"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:35
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:38
 msgid "Unit Testing Output"
-msgstr ""
+msgstr "Unit Testing-Ausgabe"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:39
 msgid "See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with $debug parameter = true to get more output."
@@ -1710,7 +1707,7 @@ msgstr "Aktuelle Version"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\checkupdates_helper.php:56
 msgid "Couldn't obtain detailed update info from demo2.aigaion.nl"
-msgstr "Konnte keine detaillierten Aktualisierungsinfos von demo2.aigaion.nl empfangen."
+msgstr "Konnte keine detaillierten Aktualisierungsinfos von demo2.aigaion..nl empfangen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\checkupdates_helper.php:76
 msgid "Note: the updated version contains security fixes. You are strongly recommended to get the latest version of Aigaion."
@@ -1983,7 +1980,7 @@ msgstr "Gesamte Veröffentlichungsbewertungen überprüfen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:344
 #, php-format
 msgid "Fixed total topic mark of %s publications."
-msgstr "Gesamtthemenbewertung von %s Veröffentlichungen ausgebessert."
+msgstr "Gesamtthemenbewertung von %s Veröffentlichungen ausgebessert.."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:397
 #, php-format
@@ -2008,7 +2005,7 @@ msgstr "Klicken, um zusammenzuführen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:761
 #, php-format
 msgid "Deleted %s authors who do not have any publications."
-msgstr "%s Autoren ohne verzeichnete Veröffentlichugen gelöscht."
+msgstr "%s Autoren ohne verzeichnete Veröffentlichugen gelöscht.."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\month_helper.php:61
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\month_helper.php:65
@@ -2223,7 +2220,7 @@ msgstr "AKTUALISIERUNG WAR NICHT ERFOLGREICH"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\schema_helper.php:127
 msgid "Some database operations require mysql root privileges. Please ensure that the mysql user in your index.php file has sufficient rights."
-msgstr "Einige Datenbankoperationen benötigen MySQL-Root-Privilegien. Bitte versichern Sie sich, dass der MySQL-Nutzer in Ihrer index.php über ausreichende Rechte verfügt."
+msgstr "Einige Datenbankoperationen benötigen MySQL-Root-Privilegien.. Bitte versichern Sie sich, dass der MySQL-Nutzer in Ihrer index.php über ausreichende Rechte verfügt."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:16
 msgid "year"
@@ -2565,7 +2562,7 @@ msgstr "Kann Autor nicht löschen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:268
 msgid "still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there..."
-msgstr ""
+msgstr "hat noch Veröffentlichungen (eventuell unsichtbar...). Suchen Sie einen schnellen Weg, um alle Veröffentlichungen eines Autors zu löschen? Fügen Sie sie zur Merkliste hinzu und löschen Sie sie von da..."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:301
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:927
@@ -2583,7 +2580,7 @@ msgstr "Bitte überprüfen Sie die eingegebenen Autoren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\author_db.php:637
 msgid "There are some publications that could not be reassigned due to access rights"
-msgstr ""
+msgstr "Es gibt einige Veröffentlichungen, die wegen Zugriffsrechten nicht erneut zugewiesen werden konnten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\bookmarklist_db.php:14
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\bookmarklist_db.php:29
@@ -2651,7 +2648,7 @@ msgstr "Nur Dateien mit den folgenden Erweiterungen sind erlaubt"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\file_upload.php:243
 msgid "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore."
-msgstr "Entschuldigung, der Dateiname enthält ungültige Zeichen. Nutzen Sie nur alphanumerische Zeichen und trennen Sie einzelne Namensbestandteile (falls benötigt) mit einem Unterstrich."
+msgstr "Entschuldigung, der Dateiname enthält ungültige Zeichen.. Nutzen Sie nur alphanumerische Zeichen und trennen Sie einzelne Namensbestandteile (falls benötigt) mit einem Unterstrich."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\file_upload.php:243
 msgid "A valid filename ends with one dot followed by the extension."
@@ -2701,7 +2698,7 @@ msgstr "Bitte überprüfen Sie die eingegebenen Schlüsselwörter."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\login_ldap.php:5
 msgid "Loaded deprecated login_ldap module. LDAP login now uses delegated password checking!"
-msgstr ""
+msgstr "Veraltetes login_ldap-Modul geladen. LDAP-Anmeldung nutzt jetzt delegierte Passwortüberprüfung!"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\note_db.php:178
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\note_db.php:182
@@ -2715,11 +2712,11 @@ msgstr "Aktualisierung der BibTeX-ID in Notiz %s fehlgeschlagen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\parseentries.php:324
 msgid "Warning: entry does not seem to have the proper format."
-msgstr ""
+msgstr "Warnung: Eintrag scheint nicht das richtige Format zu haben."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\parseentries.php:324
 msgid "Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry."
-msgstr ""
+msgstr "Konnte das Komma nicht finden, das nach dem Zitierschlüssel kommen sollte. Wenn der Schlüssel nicht da ist, sollte trotzdem das Komma da sein. Wenn der Schlüssel da ist, aber keine bibliografischen Daten folgen, ist der Eintrag leer und kann nicht importiert werden. Der Import des folgenden Eintrags wurde übersprungen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\parseentries.php:573
 #, php-format
@@ -2742,7 +2739,7 @@ msgstr "Nachname von Nutzer"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_ldap.php:11
 msgid "The LDAP password checker cannot handle md5 passwords yet"
-msgstr ""
+msgstr "Der LDAP-Passwortprüfer kann noch keine md5-Passwörter verarbeiten."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\passwordchecker_ldap.php:36
 msgid "LDAP auth: There was a problem."
@@ -2795,7 +2792,7 @@ msgstr "resolveXref: führe Querverweis mit Veröffentlichung zusammen!"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1427
 msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
-msgstr "Eine Veröffentlichung mit dem selben Titel existiert bereits. Bitte versichern Sie sich, dass die Veröffentlichung, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
+msgstr "Eine Veröffentlichung mit dem selben Titel existiert bereits.. Bitte versichern Sie sich, dass die Veröffentlichung, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\publication_db.php:1448
 msgid "The cite id is not unique, please choose another cite id."
@@ -2933,7 +2930,7 @@ msgstr "Unbekannter Nutzer oder falsches Passwort"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:433
 #, php-format
 msgid "The username / password combination is valid according to the login module, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
-msgstr ""
+msgstr "Die Kombination aus Name und Passwort ist gültig nach dem Anmeldemodul, aber das dazugehörige Aigaion-Konto ist ein %s-Konto und kann nicht vom Modul %s verwaltet werden. Bitte kontaktieren Sie Ihren Datenbank-Administrator für Unterstützung."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:423
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:612
@@ -2969,11 +2966,11 @@ msgstr "Ernsthafter Fehler in Login-Tabellen"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:622
 #, php-format
 msgid "The username / password combination is valid according to %s, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
-msgstr ""
+msgstr "Die Kombination aus Name und Passwort ist gültig nach %s, aber das dazugehörige Aigaion-Konto ist ein %s-Konto und kann nicht vom Modul %s verwaltet werden. Bitte kontaktieren Sie Ihren Datenbank-Administrator für Unterstützung."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:632
 msgid "The username / password combination is valid, but has no Aigaion account associated with it yet. Please contact your database admin for assistance"
-msgstr ""
+msgstr "Die Kombination aus Name und Passwort ist gültig, hat aber noch kein assoziiertes Aigaion-Konto. Bitte kontaktieren Sie Ihren Datenbank-Administrator für Unterstützung."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\userlogin.php:676
 msgid "Anonymous (guest) access to this database has been enabled. However, no default anonymous account has been assigned, so anonymous access is unfortunately not yet possible."
@@ -3365,11 +3362,11 @@ msgstr "<b>Unsicher, wie die Zugriffsebenen ausfallen?</b> Die Spalte auf der Li
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\accesslevels\editforpublication.php:185
 msgid "Example: Publication is 'intern'; attachment is 'intern'. SET attachment to 'public' &rarr; publication will become 'public' as well."
-msgstr "Beispiel: Veröffentlichung ist 'intern'; Anhang ist 'intern'. Setze Anhang auf 'public' &rarr; Veröffentlichung wird ebenfalls 'public'."
+msgstr "Beispiel: Veröffentlichung ist 'intern'; Anhang ist 'intern'.. Setze Anhang auf 'public' &rarr; Veröffentlichung wird ebenfalls 'public'."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\accesslevels\editforpublication.php:186
 msgid "Example: Publication is 'intern'; attachment is 'intern'. SET publication to 'private' &rarr; attachment stays 'intern', but EFFECTIVE access level of attachment becomes 'private'. When you set the publication to 'intern' again, the effective access level of the attachment reverts to 'intern'."
-msgstr "Beispiel: Veröffentlichung ist 'intern'; Anhang ist 'intern'. Setze Veröffentlichung auf 'privat' &rarr; Anhang bleibt 'intern', aber die effektive Zugriffsebene des Anhangs wird 'private'. Wenn Sie die Veröffentlichung wieder auf 'intern' setzen, wird die effektive Zugriffsebene des Anhangs wieder zurück auf 'intern' gesetzt."
+msgstr "Beispiel: Veröffentlichung ist 'intern'; Anhang ist 'intern'.. Setze Veröffentlichung auf 'privat' &rarr; Anhang bleibt 'intern', aber die effektive Zugriffsebene des Anhangs wird 'private'. Wenn Sie die Veröffentlichung wieder auf 'intern' setzen, wird die effektive Zugriffsebene des Anhangs wieder zurück auf 'intern' gesetzt."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\accesslevels\editforpublication.php:187
 msgid "Example: Attachment read is 'public', attachment edit is 'intern'. Set attachment read to 'private' &rarr; attachment edit will also change to 'private'."
@@ -3852,9 +3849,8 @@ msgid "Export formatted entries"
 msgstr "Formatierte Einträge exportieren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:16
-#, fuzzy
 msgid "Please select the format(s) in which you want to export the publications and enter the email address(es) you want to send it to:"
-msgstr "Klicken Sie auf die gewünschte Exportformate für die Veröffentlichungen:"
+msgstr "Bitte wählen Sie das Format, in dem Sie die Veröffentlichungen exportieren möchten, und geben Sie die E-Mail-Adresse an, an die Sie sie schicken möchten:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\export\chooseformatEmail.php:28
 msgid "Input email addresses here separated by ,"
@@ -3911,7 +3907,7 @@ msgstr "Fügen Sie die Einträge (%s) in das untere Textfeld ein und drücken Si
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\importform.php:37
 msgid "Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format."
-msgstr ""
+msgstr "Wählen Sie das Daten-Format für das untere Feld oder &bdquo;auto&ldquo;, um Aigaion das Format automatisch bestimmen zu lassen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\import\importform.php:37
 msgid "Format:"
@@ -3990,11 +3986,11 @@ msgstr "Willkommen zum Aigaion Bibliographiesystem. Bitte melden Sie sich an."
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\login\form.php:22
 #, php-format
 msgid "You just submitted a form named %s, but it seems that you have been logged out. To proceed with submitting the information, please log in again, then confirm that you want to re-submit the data."
-msgstr ""
+msgstr "Sie haben gerade ein Formular namens %s abgesendet, aber anscheinend wurden Sie abgemeldet. Um mit der Übertragung der Daten fortzufahren, melden Sie sich bitte wieder an und bestätigen dann, dass Sie die Daten erneut senden wollen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\login\form.php:24
 msgid "Login to proceed with form submission"
-msgstr ""
+msgstr "Anmelden zum Fortfahren mit der Übertragung"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\login\form.php:78
 #, php-format
@@ -4084,7 +4080,7 @@ msgstr "Das ist das BibTeX-&sbquo;Schlüssel&lsquo;-Feld, das verwendet wird, um
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:93
 msgid "This field might not be used by BibTeX for this publication type"
-msgstr ""
+msgstr "Dieses Feld könnte von BibTeX für diesen Veröffentlichungstyp nicht verwendet werden."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:120
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\edit.php:130
@@ -4181,26 +4177,25 @@ msgid "Export by e-mail"
 msgstr "Export via E-Mail"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:65
-#, fuzzy, php-format
+#, php-format
 msgid "Request for publication: \"%s\""
-msgstr "Veröffentlichungen überprüfen"
+msgstr "Anfrage für Veröffentlichung: &bdquo;%s&ldquo;"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:68
 msgid "I understand that the document referenced above is subject to copyright."
-msgstr ""
+msgstr "Ich habe verstanden, dass das Dokument, auf das oben Bezug genommen wurde, dem Copyright unterliegt."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:69
 msgid "I hereby request a copy strictly for my personal use."
-msgstr ""
+msgstr "Hiermit ordere ich eine Kopie allein zum persönlichen Gebrauch."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:70
 msgid "Name and contact details"
 msgstr "Name und Kontaktdaten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:71
-#, fuzzy
 msgid "Request publication by e-mail"
-msgstr "Veröffentlichungsdetails betrachten"
+msgstr "Veröffentlichung via E-Mail ordern"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:71
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:74
@@ -4624,7 +4619,7 @@ msgstr "'.htpasswd' ist ein Modul, das das .htaccess und .htpasswd Anmeldesystem
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:221
 msgid "If you select this, be sure that you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also not turn the httpauth login module off without directly accessing the Aigaion database."
-msgstr "Falls Sie dieses Modul wählen, versichern Sie sich, dass das httpauth Modul korrekt konfiguriert ist. Andernfalls werden Sie vermutlich beim Anmelden Probleme haben und damit das externe Modul auch nicht deaktivieren können, ohne direkt auf die Aigaion-Datenbank zuzugreifen."
+msgstr "Falls Sie dieses Modul wählen, versichern Sie sich, dass das httpauth Modul korrekt konfiguriert ist. Andernfalls werden Sie vermutlich beim Anmelden Probleme haben und damit das externe Modul auch nicht deaktivieren können, ohne direkt auf die Aigaion-Datenbank zuzugreifen.."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:225
 msgid "Use HTTPAUTH login modules:"
@@ -4632,7 +4627,7 @@ msgstr "HTTPAUTH-Anmeldemodul verwenden:"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:234
 msgid "Check this box to enable the httpauth login module."
-msgstr "Diesen Kasten markieren, um das httpauth Anmeldemodul zu erlauben."
+msgstr "Diesen Kasten markieren, um das httpauth Anmeldemodul zu erlauben.."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:241
 msgid "Add autocreated users to group:"
@@ -5268,10 +5263,10 @@ msgstr "extern verwaltetes Konto"
 msgid "disabled account"
 msgstr "deaktiviertes Konto"
 
-#~ msgid "%s publication"
-#~ msgstr "%s Veröffentlichung"
 #~ msgid "In- and output settings:"
 #~ msgstr "Ein- und Ausgabeoptionen:"
+#~ msgid "%s publication"
+#~ msgstr "%s Veröffentlichung"
 #~ msgid "Edit acces level"
 #~ msgstr "Schreibzugriffsebene"
 
@@ -5377,7 +5372,7 @@ msgstr "deaktiviertes Konto"
 #~ msgid "review publication"
 #~ msgstr "Veröffentlichung überprüfen"
 #~ msgid "Authors for topic: non existing topic specified."
-#~ msgstr "Autoren für Thema: nicht existierendes Thema gewählt."
+#~ msgstr "Autoren für Thema: nicht existierendes Thema gewählt.."
 #~ msgid ""
 #~ "to be done: user pressed 'show' -> find corresponding author and redirect "
 #~ "to single author page"
@@ -5430,7 +5425,7 @@ msgstr "deaktiviertes Konto"
 #~ msgid "Insufficient rights to create topic"
 #~ msgstr "Unzureichende Rechte, um ein Thema anzulegen"
 #~ msgid ""
-#~ "Remove bookmarked publications from topic: no valid topic ID provided."
+#~ "Remove bookmarked publications from topic: no valid topic ID provided.."
 #~ msgstr ""
 #~ "Gemerkte Veröffentlichungen vom Thema entfernen: keine gültige Themen-ID "
 #~ "übergeben."
@@ -5677,7 +5672,7 @@ msgstr "deaktiviertes Konto"
 #~ msgid "Unsubscribe topic: no valid user ID provided"
 #~ msgstr "Themenabo kündigen: keine gültige Nutzer-ID übergeben"
 #~ msgid ""
-#~ "The database has not been migrated from Aigaion 1.x towards Aigaion 2.0. "
+#~ "The database has not been migrated from Aigaion 1.x towards Aigaion 2..0. "
 #~ "<br/>\n"
 #~ "                                    Automatic update is not possible, "
 #~ "even from an account with sufficient rights.<br/><br/> \n"
@@ -5702,7 +5697,7 @@ msgstr "deaktiviertes Konto"
 #~ msgid "Edit access levels: insufficient rights"
 #~ msgstr "Zugriffsebenen bearbeiten: unzureichende Rechte"
 #~ msgid ""
-#~ "GENERIC ERROR UPLOADING. THIS SHOULD NOT HAVE BEEN LOGICALLY POSSIBLE. "
+#~ "GENERIC ERROR UPLOADING. THIS SHOULD NOT HAVE BEEN LOGICALLY POSSIBLE.. "
 #~ "PLEASE CONTACT YOUR DATABASE ADMINISTRATOR."
 #~ msgstr ""
 #~ "GENERISCHER FEHLER BEIM HOCHLADEN. DIES SOLLTE DEN GESETZEN DER LOGIK "
@@ -6481,7 +6476,7 @@ msgstr "deaktiviertes Konto"
 #~ msgstr "Suchparameter"
 #~ msgid "Save"
 #~ msgstr "Speichern"
-#~ msgid "The search engine \"%s\" was successfully added to the database."
+#~ msgid "The search engine \"%s\" was successfully added to the database.."
 #~ msgstr ""
 #~ "Die Suchmaschine \"%s\" wurde erfolgreich zur Datenbank hinzugefügt."
 #~ msgid "Add another search engine."
@@ -6501,7 +6496,7 @@ msgstr "deaktiviertes Konto"
 #~ msgid "AIGAION SITE CONFIGURATION FORM"
 #~ msgstr "AIGAION SEITENKONFIGURATIONSFORMULAR"
 #~ msgid ""
-#~ "Specify here the default access levels for different types of objects."
+#~ "Specify here the default access levels for different types of objects.."
 #~ msgstr ""
 #~ "Wählen Sie hier die Vorgabezugriffsebene für verschiedene Typen von "
 #~ "Objekten."
