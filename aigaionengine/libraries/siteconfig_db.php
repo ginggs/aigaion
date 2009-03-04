@@ -188,6 +188,11 @@ class Siteconfig_db {
         
         $result->configSettings['EMBEDDING_SHAREDDOMAIN']                     = $CI->input->post('EMBEDDING_SHAREDDOMAIN');
         $result->configSettings['LOGINTEGRATION_SECRETWORD']                     = $CI->input->post('LOGINTEGRATION_SECRETWORD');
+        if ($CI->input->post('ENABLE_TINYMCE')=='ENABLE_TINYMCE') {
+            $result->configSettings['ENABLE_TINYMCE'] = 'TRUE';
+        } else {
+            $result->configSettings['ENABLE_TINYMCE'] = 'FALSE';
+        }
         
         return $result;
     }

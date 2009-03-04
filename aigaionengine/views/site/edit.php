@@ -367,6 +367,19 @@ echo $this->validation->error_string;
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        <?php echo __('Check to merge cross-referenced publications on a single publication page view.');?></td>
 	    </tr>
+	
+	    <tr>
+	        <td><label><?php echo __('Use TinyMCE note editor:');?></label></td>
+	        <td align='left'>
+<?php
+            echo form_checkbox('ENABLE_TINYMCE','ENABLE_TINYMCE',$siteconfig->getConfigSetting("ENABLE_TINYMCE")== "TRUE");
+?>
+            </td>
+        </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        <?php echo __('Check to enable the Tiny-MCE editor for editing notes.');?></td>
+	    </tr>	    
 	    <tr>
 	        <td align='left' colspan='2'></td>
 	    </tr>

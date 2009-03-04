@@ -51,6 +51,10 @@ echo $this->validation->error_string;
     <table>
         <tr>
           <td colspan='2'><label for='text'><?php echo __('Text');?>:</label><br/>
+<?php
+ if (getConfigurationSetting("ENABLE_TINYMCE")=="TRUE") 
+ {
+?>
             <script type="text/javascript">
               tinyMCE.init({
                 mode : "textareas",
@@ -60,6 +64,9 @@ echo $this->validation->error_string;
                 editor_selector : "richeditor"
               });
             </script>
+<?php
+ }
+?>
 <?php 
   echo form_textarea(array('name' => 'text','id' => 'text','cols' => '70','rows' => '7','value' => $note->text,'class'=>"richeditor")); 
 ?>
