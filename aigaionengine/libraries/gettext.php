@@ -47,9 +47,9 @@ class Gettext {
       
     // do the gettext stuff here
     !defined ('LC_MESSAGES') ? define ('LC_MESSAGES', 5) : false;
-    _setlocale (LC_MESSAGES, $lang);
-    _bindtextdomain ('messages', APPPATH.'language/locale');
     _bind_textdomain_codeset ('messages', "UTF-8");
+    _bindtextdomain ('messages', APPPATH.'language/locale');
+    _setlocale (LC_MESSAGES, $lang);
     _textdomain ('messages');
     return true;
   }
