@@ -120,30 +120,44 @@ function _encode($text) {
 /**
  * Sets a requested locale, if needed emulates it.
  */
-function _setlocale($category, $locale) {
+function _setlocale($category, $locale) 
+{
     global $CURRENTLOCALE, $EMULATEGETTEXT;
     if ($locale === 0) { // use === to differentiate between string "0"
-        if ($CURRENTLOCALE != '') 
-            return $CURRENTLOCALE;
-        else 
-            // obey LANG variable, maybe extend to support all of LC_* vars
-            // even if we tried to read locale without setting it first
-            return _setlocale($category, $CURRENTLOCALE);
-    } else {
-        $ret = 0;
-        if (function_exists('setlocale')) // I don't know if this ever happens ;)
-           $ret = setlocale($category, $locale);
-        if (($ret and $locale == '') or ($ret == $locale)) {
-            $EMULATEGETTEXT = 0;
-            $CURRENTLOCALE = $ret;
-        } else {
-        if ($locale == '') // emulate variable support
-          $CURRENTLOCALE = getenv('LANG');
-      else
-          $CURRENTLOCALE = $locale;
-            $EMULATEGETTEXT = 1;
-        }
+      if ($CURRENTLOCALE != '') 
+      {
         return $CURRENTLOCALE;
+      }
+      else 
+      {
+      // obey LANG variable, maybe extend to support all of LC_* vars
+      // even if we tried to read locale without setting it first
+        return _setlocale($category, $CURRENTLOCALE);
+      }
+    } else {
+      $ret = 0;
+      if (function_exists('setlocale')) // I don't know if this ever happens ;)
+      {
+        $ret = setlocale($category, $locale);
+      }
+      if (($ret and $locale == '') or ($ret == $locale)) 
+      {
+        $EMULATEGETTEXT = 0;
+        $CURRENTLOCALE = $ret;
+      } 
+      else 
+      {
+        if ($locale == '') // emulate variable support
+        {
+          $CURRENTLOCALE = getenv('LANG');
+        }
+        else
+        {
+          $CURRENTLOCALE = $locale;
+        }
+        $EMULATEGETTEXT = 1;
+      }
+      return $CURRENTLOCALE;
     }
 }
 
