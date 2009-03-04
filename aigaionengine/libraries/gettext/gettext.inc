@@ -135,6 +135,10 @@ function _setlocale($category, $locale)
         return _setlocale($category, $CURRENTLOCALE);
       }
     } else {
+      /*
+      DR 2009-03-04: this block gives trouble.
+      1) the native setlocale function will only return languages instaled ON THE SERVER PHP SYSTEM, but we don't care abou that (Aigaion carries its own languages)
+      2) the rest of the block will somehow crash apache on some systems
       $ret = 0;
       if (function_exists('setlocale')) // I don't know if this ever happens ;)
       {
@@ -157,6 +161,9 @@ function _setlocale($category, $locale)
         }
         $EMULATEGETTEXT = 1;
       }
+      */
+      $CURRENTLOCALE = $locale;
+      $EMULATEGETTEXT = 1;
       return $CURRENTLOCALE;
     }
 }
