@@ -52,7 +52,7 @@ if (!defined('MAXIMUM_ATTACHMENT_SIZE')) {
 global $AIGAION_SUPPORTED_LANGUAGES;
 if (!isset($AIGAION_SUPPORTED_LANGUAGES) || !is_array($AIGAION_SUPPORTED_LANGUAGES))
 {
-  $AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'fr', 'nl', 'pl'); //default is the original set of languages from the multiling Aigaion 2.0
+  $AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'nl', 'no'); //default is the original set of languages from the multiling Aigaion 2.0
 }
 global $AIGAION_SHORTLIST_LANGUAGES;
 if (!isset($AIGAION_SHORTLIST_LANGUAGES) || !is_array($AIGAION_SHORTLIST_LANGUAGES))
