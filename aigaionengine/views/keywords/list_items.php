@@ -29,9 +29,7 @@ else
   $isCloud = false;
   echo "<ul class='nosymbol'>";
 }
-?>
 
-<?php
   $initial = '';
   $liClass = '';
   foreach ($keywordList as $keyword)
@@ -60,5 +58,6 @@ else
     echo "  <li ".$liClass.">".anchor('keywords/single/'.$keyword->keyword_id, $keyword->keyword, array('title' => sprintf(__('All information on %s'), $keyword->cleankeyword)));
     echo "</li>\n";
   }
+  
+  echo "</ul>";
 ?>
-</ul>

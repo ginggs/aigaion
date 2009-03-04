@@ -480,11 +480,15 @@ li.help-header {
 }
 
 /* ==== TAG-Cloud views ==== */
+#tagcloud {
+  text-align:center; 
+}
 ul.tagcloud { 
   padding:0; 
   margin:0px;
   text-align:center; 
   list-style:none; 
+  display: inline;
 }
 
 ul.tagcloud li { 

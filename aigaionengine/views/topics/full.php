@@ -73,16 +73,17 @@ echo "<div id='topictree-holder'>\n<ul class='topictree-list'>\n"
                                     ),  
                               true)."<li></li></ul>\n</div>\n";
 
-echo "<div id='tagcloud'>\n";
 $keywords = $topic->getKeywords();
 if (sizeof($keywords) > 0)
 {
   echo "<p class=header2>".__('Keywords').":</p>\n";
+  echo "<div id='tagcloud'>\n";
   $keywordContent['keywordList'] = $keywords;
   $keywordContent['isCloud'] = true;
   echo $this->load->view('keywords/list_items', $keywordContent, true);
+  echo "</div>\n"; //tagcloud
 }
-echo "</div>\n"; //tagcloud
+
 
 ?>
     </td>
