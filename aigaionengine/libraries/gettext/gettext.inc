@@ -162,7 +162,14 @@ function _setlocale($category, $locale)
         $EMULATEGETTEXT = 1;
       }
       */
-      $CURRENTLOCALE = $locale;
+      if ($locale == '') 
+      {
+        $CURRENTLOCALE = 'en';
+      }
+      else
+      {
+        $CURRENTLOCALE = $locale;
+      }
       $EMULATEGETTEXT = 1;
       return $CURRENTLOCALE;
     }
