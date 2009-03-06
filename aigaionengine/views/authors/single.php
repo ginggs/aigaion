@@ -44,20 +44,17 @@ if ($userlogin->hasRights('publication_edit'))
     </td>
     <td>
 <?php 
-echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
-	echo "
-<ul>";
     if ($userlogin->hasRights('bookmarklist')) {
+      echo '<div style="border:1px solid black;padding-right:0.2em;margin:0.2em;">';
+      echo "<ul>";
       echo  '<li><nobr>['
            .anchor('bookmarklist/addauthor/'.$author->author_id,__('BookmarkAll'))
            .']</nobr></li><li><nobr>['
            .anchor('bookmarklist/removeauthor/'.$author->author_id,__('UnBookmarkAll')).']</nobr></li>';
+      echo  "</ul>";
     }
 //echo  "<li><nobr>["
 //      .anchor('export/author/'.$author->author_id,__('Export'))."]</nobr></li>
-echo  "
-</ul>
-";
 
 echo '</div>';
 ?>
