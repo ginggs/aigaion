@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-22 19:42+0100\n"
-"PO-Revision-Date: 2009-02-22 19:44+0100\n"
+"POT-Creation-Date: 2009-03-12 20:37+0100\n"
+"PO-Revision-Date: 2009-03-12 20:38+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Edit access levels"
 msgstr "Toegangsniveaus aanpassen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\accesslevels.php:253
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
 #, php-format
@@ -63,7 +63,7 @@ msgstr "Open bestand"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\embeddingtest.php:41
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:128
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:128
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:45
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:93
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:138
@@ -85,9 +85,9 @@ msgstr "Open bestand"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:136
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:220
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:319
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:435
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:581
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:636
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:439
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:585
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:640
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:132
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:224
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:285
@@ -159,7 +159,7 @@ msgstr "Verwijder bestand"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:149
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:189
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:235
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:617
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:621
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:177
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:235
@@ -236,7 +236,7 @@ msgstr "Sla bestand op"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:248
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:196
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:246
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:494
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:498
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:343
 msgid "no data to commit"
 msgstr "geen data om op te slaan"
@@ -245,7 +245,7 @@ msgstr "geen data om op te slaan"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:303
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:244
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:543
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:547
 msgid "an error occurred"
 msgstr "er is een fout opgetreden"
 
@@ -253,7 +253,7 @@ msgstr "er is een fout opgetreden"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:303
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:244
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:543
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:547
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:411
 msgid "Please contact your Aigaion administrator."
 msgstr "Neem svp contact op met je Aigaion beheerder."
@@ -351,7 +351,7 @@ msgstr "auteur bestaat niet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:405
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:287
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:58
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
 msgid "Author"
 msgstr "Auteur"
 
@@ -396,7 +396,7 @@ msgstr "Alle auteurs in de database"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:646
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:899
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:689
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:617
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:621
 msgid "Export through email"
 msgstr "Exporteer via e-mail"
 
@@ -412,7 +412,7 @@ msgstr "Er is geen auteur geselecteerd om te exporteren"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:259
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:361
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:722
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:648
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:652
 msgid "Select export format"
 msgstr "Kies het formaat om te exporteren"
 
@@ -423,14 +423,14 @@ msgstr "Exporteren auteur"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:711
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:963
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:759
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:683
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:687
 msgid "Export by email"
 msgstr "Exporteer via e-mail"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:720
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:973
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:768
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:692
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:696
 msgid "Export from Aigaion"
 msgstr "Geëxporteerd uit Aigaion"
 
@@ -442,7 +442,7 @@ msgstr "Geëxporteerd voor auteur"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:743
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:996
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:791
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:715
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:719
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:51
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:57
@@ -452,14 +452,14 @@ msgstr "Opgemaakt"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:801
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1054
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:849
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:773
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:777
 msgid "Mail sent successfully"
 msgstr "Mail met succes verzonden"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:805
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1058
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:853
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:777
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:781
 msgid "Something went wrong when exporting the publications. Did you input a correct email address?"
 msgstr "Er ging iets mis bij het exporteren van de publicaties. Heb je een correct emailadres opgegeven?"
 
@@ -488,36 +488,36 @@ msgid "Bookmarklist of %s"
 msgstr "Bladwijzers van %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:59
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:148
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:164
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:232
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:340
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:444
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:448
 msgid "sorted by journal and type"
 msgstr "gesorteerd op tijdschrift en type"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:62
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:84
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:151
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:167
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:235
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:343
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:447
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:451
 msgid "sorted by recency"
 msgstr "gesorteerd op nieuwheid"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:65
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:154
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:170
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:238
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:346
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:450
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:454
 msgid "sorted by title"
 msgstr "gesorteerd op titel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:68
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:90
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:157
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:349
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:453
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:457
 msgid "sorted by first author"
 msgstr "gesorteerd op eerste auteur"
 
@@ -696,7 +696,7 @@ msgid "Exported from bookmarklist"
 msgstr "Geëxporteerd van bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:39
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:39
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:12
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:11
 msgid "Export all publications"
@@ -745,7 +745,7 @@ msgstr "Exporteer alles in bladwijzers"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:274
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\email_export.php:29
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:51
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformatEmail.php:57
 msgid "Export"
@@ -790,7 +790,7 @@ msgstr "Voeg group toe"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:39
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:180
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:210
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:487
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:491
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:182
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:219
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\users.php:336
@@ -883,7 +883,7 @@ msgid "Unsubscribe topic"
 msgstr "Zeg abbonnement op onderwerp op"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\help.php:20
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:96
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:97
 msgid "Help"
 msgstr "Help"
 
@@ -893,7 +893,7 @@ msgstr "Help"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:87
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:36
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:314
@@ -957,28 +957,38 @@ msgstr "geen publicaties vastgelegd."
 msgid "Succesfully imported %s publications."
 msgstr "%s publicaties successvol geïmporteerd."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:268
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:192
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:73
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:204
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:79
+msgid "Keywords"
+msgstr "Trefwoorden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:128
 msgid "View publications for keyword"
 msgstr "Toon publicaties voor trefwoord"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:71
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:138
 msgid "Keyword"
 msgstr "Trefwoord"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:142
 msgid "Export for keyword"
 msgstr "Exporteer voor trefwoord"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:78
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:81
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:84
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:87
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:90
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:148
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:154
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:157
 #, php-format
 msgid "Publications for keyword \"%s\""
 msgstr "Publicaties voor trefwoord \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:177
 msgid "No publications found using this keyword."
 msgstr "Geen publicaties gevonden die dit trefwoord gebruiken."
 
@@ -1197,14 +1207,14 @@ msgstr "Ga naar deze publicatie in de Aigaion database"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:69
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:175
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:292
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:414
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:418
 msgid "Topic structure is not unique in Aigaion."
 msgstr "Onderwerpstructuur is niet uniek in Aigaion."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:73
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\readapi.php:179
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:297
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:418
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:422
 msgid "Topic structure does not exist in Aigaion."
 msgstr "Onderwerpstructuur bestaat niet in Aigaion."
 
@@ -1300,7 +1310,7 @@ msgstr "Naam van rechtenprofiel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\search.php:29
 #: C:\WEBROOT\aigaion2\aigaionengine\views\header.php:53
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:28
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:29
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:272
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:49
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:123
@@ -1529,7 +1539,7 @@ msgid "Show topic"
 msgstr "Bekijk onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:330
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:516
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:520
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:22
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editfortopic.php:23
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:6
@@ -1540,8 +1550,8 @@ msgid "Topic"
 msgstr "Onderwerp"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:334
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:636
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:681
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:640
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:685
 msgid "Export topic"
 msgstr "Exporteer onderwerp"
 
@@ -1550,38 +1560,38 @@ msgstr "Exporteer onderwerp"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:343
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:346
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:349
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:441
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:444
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:447
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:450
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:453
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:445
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:448
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:451
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:454
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:457
 #, php-format
 msgid "Publications for topic \"%s\""
 msgstr "Alle publicaties voor onderwerp \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:435
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:439
 msgid "Embed topic"
 msgstr "Onderwerp inbedden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:494
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:543
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:498
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:547
 msgid "Commit topic"
 msgstr "Sla onderwerp op"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:508
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:512
 msgid "Topic Name"
 msgstr "Onderwerpnaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:581
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:585
 msgid "Collapse topic"
 msgstr "Onderwerp  inklappen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:678
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:682
 msgid "Topic export"
 msgstr "Onderwerp exporteren"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:704
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:752
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:708
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:756
 msgid "Exported from topic"
 msgstr "Geëxporteerd voor onderwerp"
 
@@ -1983,12 +1993,12 @@ msgstr "Opslagfolder van bestanden kon niet geopend worden."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:703
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:704
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:71
 msgid "Click to show details"
 msgstr "Klik hier om details te tonen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:705
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:72
 msgid "Click to merge"
 msgstr "Klik hier om samen te voegen"
 
@@ -2293,7 +2303,7 @@ msgid "school"
 msgstr "school"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
 msgid "note"
 msgstr "aantekeningen"
@@ -2385,7 +2395,7 @@ msgstr "Het schrijftoegangsniveau van dit object kan niet worden aangepast"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:518
 msgid "public"
 msgstr "publiek"
 
@@ -2394,7 +2404,7 @@ msgstr "publiek"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:518
 msgid "intern"
 msgstr "intern"
 
@@ -2403,7 +2413,7 @@ msgstr "intern"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:95
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\controls.php:117
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:518
 msgid "private"
 msgstr "privé"
 
@@ -2678,11 +2688,11 @@ msgstr "De opgestuurde file kon niet van de PHP tmp folder verplaatst worden naa
 msgid "Cannot delete group"
 msgstr "Groep kan niet verwijderd worden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:182
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:198
 msgid "Found similar keywords for"
 msgstr "Soortgelijke trefwoorden gevonden voor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:199
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:215
 msgid "Please review the entered keywords."
 msgstr "Controleer alsjeblieft de ingevoerde trefwoorden."
 
@@ -2807,28 +2817,28 @@ msgstr "Rechtenprofiel kan niet verwijderd worden"
 msgid "Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."
 msgstr "Vertaling \"%s' bestaat niet langer onder die naam. Pas de instellingen van je profile en van de site hier op aan."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:210
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:215
 msgid "Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled."
 msgstr "\"Gedelegeerd wachtwoorden controleren\" kan alleen aangezet worden als er een wachtwoordcontrolemodule gespecificeerd is! Aangezien dit niet het geval is, is het \"gedelegeerd wachtwoorden controleren\" weer uitgeschakeld."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:218
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:223
 msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
 msgstr "In elk geval één van de twee moet worden ingeschakeld: interne wachtwoordcontrole, of \"gedelegeerd wachtwoorden controleren\"! Aangezien dit niet het geval was, is de interne wachtwoordcontrole weer ingeschakeld."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:226
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:231
 msgid "Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account."
 msgstr "Anonieme toegang is ingeschakeld, maar er is geen geldige anonieme account aangewezen. Denk erom dat anoniem aanmelden pas werkt als er zo'n account aangemaakt is en is aangewezen als de standaard anonieme account."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:253
 #, php-format
 msgid "The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."
 msgstr "Bestandstype '%s' is nooit toegestaan voor Aigaion bestanden, en is daarom verwijderd uit de lijst van toegestane bestandstypen."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:294
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:299
 msgid "Failed to upload custom logo."
 msgstr "Opsturen van aangepast logo is mislukt."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:297
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:302
 msgid "New logo uploaded"
 msgstr "New logo naar server gestuurd"
 
@@ -3064,94 +3074,98 @@ msgid "All Authors"
 msgstr "Alle Auteurs"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:26
+msgid "All Keywords"
+msgstr "Alle trefwoorden"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:27
 msgid "Unassigned"
 msgstr "Niet gesorteerd"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:27
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:28
 msgid "Recent"
 msgstr "Nieuwe publicaties"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:56
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:57
 msgid "Sort by"
 msgstr "Sorteer op"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:60
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:60
 msgid "Title"
 msgstr "Titel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:61
 msgid "Type/Journal"
 msgstr "Type/tijdschrift"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:61
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:62
 msgid "Year"
 msgstr "Jaar"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:62
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:63
 msgid "Recently added"
 msgstr "Toevoegdatum"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:75
 msgid "New Data"
 msgstr "Maak"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:76
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:77
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:30
 msgid "New Publication"
 msgstr "Nieuwe Publicatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:77
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:78
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:10
 msgid "New Author"
 msgstr "Nieuwe Auteur"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:82
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:83
 msgid "New Topic"
 msgstr "Nieuw onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:94
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:95
 msgid "Site"
 msgstr "Systeem"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:97
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:98
 msgid "About this site"
 msgstr "Over deze site"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:101
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:102
 msgid "Site Configuration"
 msgstr "Configuratie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:102
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:103
 msgid "Site Maintenance"
 msgstr "Onderhoud"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:107
 msgid "Manage All Accounts"
 msgstr "Gebruikersbeheer"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:117
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:118
 msgid "Guest User"
 msgstr "Gastgebruiker"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:137
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:179
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:180
 msgid "My Profile"
 msgstr "Mijn instellingen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:140
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:182
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:141
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:183
 msgid "Topic Subscribe"
 msgstr "Onderwerpen abbonneren"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:145
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:168
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:72
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:56
 msgid "Login"
 msgstr "Aanmelden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:155
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:156
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:37
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:51
@@ -3159,7 +3173,7 @@ msgstr "Aanmelden"
 msgid "Name"
 msgstr "Naam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:161
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:162
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:49
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:146
@@ -3168,20 +3182,20 @@ msgstr "Naam"
 msgid "Password"
 msgstr "wachtwoord"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:168
 #: C:\WEBROOT\aigaion2\aigaionengine\views\login\form.php:70
 msgid "Remember me"
 msgstr "Onthoudt mij"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:175
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:176
 msgid "Logged In"
 msgstr "Ingelogd"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:185
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:186
 msgid "Logout"
 msgstr "Afmelden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:198
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:199
 msgid "more"
 msgstr "meer"
 
@@ -3217,12 +3231,12 @@ msgstr "Stuur formulier opnieuw op"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:107
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:113
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:300
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:20
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:85
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:601
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:614
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:52
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:105
@@ -3462,7 +3476,7 @@ msgstr "Zet URL"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:66
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:53
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:98
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:97
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:104
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:289
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:76
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:96
@@ -3576,7 +3590,7 @@ msgstr "Bewerk auteur"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:55
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:96
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:95
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:102
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:291
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:74
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:94
@@ -3601,10 +3615,12 @@ msgid "Order on Year"
 msgstr "Sorteer op jaar"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\list.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\list.php:9
 msgid "Show"
 msgstr "Toon"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\list_items.php:11
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\list_items.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:178
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:124
 #, php-format
@@ -3641,19 +3657,19 @@ msgstr "Bewerk deze auteur"
 msgid "URL"
 msgstr "URL"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:52
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:51
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:14
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:116
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:129
 msgid "BookmarkAll"
 msgstr "Voeg alles toe aan bladwijzers"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:54
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:53
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:117
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:130
 msgid "UnBookmarkAll"
 msgstr "Verwijder alles uit bladwijzers"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:72
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:69
 msgid "Found authors with very similar names. You can choose to merge the following authors with this author by clicking on the merge link."
 msgstr "Auteurs gevonden met gelijkende namen. Je kan ervoor kiezen de onderstaande auteurs samen te voegen met deze auteur door op de verwijzing 'samenvoegen' te klikken."
 
@@ -3955,13 +3971,6 @@ msgstr "kies deze om er op lijkende redacteur die in database is gevonden te geb
 msgid "select to use editor as found in BibTeX"
 msgstr "kies deze om redacteur die in BibTex stond te gebruiken"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:268
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:192
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:73
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:204
-msgid "Keywords"
-msgstr "Trefwoorden"
-
 #: C:\WEBROOT\aigaion2\aigaionengine\views\language\choose.php:3
 msgid "All available languages"
 msgstr "Alle beschikbare talen"
@@ -4013,7 +4022,7 @@ msgstr "Verandering aantekening"
 msgid "Text"
 msgstr "Tekst"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:289
 msgid "Access rights"
 msgstr "Toegangsrechten"
@@ -4225,7 +4234,7 @@ msgid "Added by"
 msgstr "Toegevoegd door"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:102
 msgid "publication"
 msgstr "publicatie"
 
@@ -4385,7 +4394,7 @@ msgid "Return all publications that satisfy %s of the following conditions"
 msgstr "Geef alle publicaties dat %s voldoen aan de volgende condities"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:91
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:464
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:477
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:315
 msgid "All"
 msgstr "Alle"
@@ -4696,153 +4705,161 @@ msgstr "gerefereerde publicaties in een publicatieoverzicht samen voegen:"
 msgid "Check to merge cross-referenced publications on a single publication page view."
 msgstr "aanvinken om gerefereerde publicaties met de refererende publicatie in een publicatieoverzicht samen te voegen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:408
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:372
+msgid "Use TinyMCE note editor:"
+msgstr "Gebruik TinyMCE editor:"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:381
+msgid "Check to enable the Tiny-MCE editor for editing notes."
+msgstr "Vink dit vakje aan om de TinyMCE editor in te schakelen voor het bewerken van aantekeningen."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:421
 msgid "Defaults for user preferences:"
 msgstr "Standaard gebruikersvoorkeuren:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:411
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:424
 msgid "Several user preferences can be given a default value here, to be overridden as wished by users who can change their profile."
 msgstr "Een aantal gebruikersvoorkeuren kunnen hier een standaardwaarde krijgen, die de individuele gebruikers dan desgewenst in hun profiel nog kunnen aanpassen."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:441
 msgid "Default theme"
 msgstr "Standaardthema"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:436
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:449
 msgid "Default language"
 msgstr "Standaardtaal"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:445
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:458
 msgid "Default publication summary style"
 msgstr "Standaardstijl voor samenvatting publicaties"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:448
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:461
 msgid "Author first"
 msgstr "Eerst auteurs"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:448
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:461
 msgid "Title first"
 msgstr "Eerst titel"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:453
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:466
 msgid "Default author display style"
 msgstr "Standaard weergavestijl voor auteurs"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:469
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "First [von] Last"
 msgstr "Voornaam [van] Achternaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:469
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "[von] Last, First"
 msgstr "[van] Achternaam, Voornaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:456
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:469
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:307
 msgid "[von] Last"
 msgstr "[van] Achternaam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:461
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:474
 msgid "Default number of publications per page"
 msgstr "Standaard aantal publicaties per pagina"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:469
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:482
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:320
 msgid "'Similar author' check"
 msgstr "Controle gelijkende auteurs"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:472
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:485
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:323
 msgid "Last names, then initials"
 msgstr "Achternaam gevolgd door initialen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:472
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:485
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:323
 msgid "Full name"
 msgstr "Volledige naam"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:478
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:491
 msgid "Select the method for checking whether two author names are counted as 'similar'."
 msgstr "Kies hoe bepaald wordt of twee auteurs 'op elkaar lijken'."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:486
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:499
 msgid "Default access levels:"
 msgstr "Standaard toegangsniveaus:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:489
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:502
 msgid "Specify here the default access levels for different types of objects. A 'Default publication read level' of 'public' means, for example, that new publications are publicly accessible by default"
 msgstr "Kies hier de standaardtoegangsniveaus voor verschillende soorten objecten. Een 'standaard leestoegangsniveau' voor publicaties met de waarde 'publiek' betekent bijvoorbeeld dat nieuwe publicaties standaard publiek toegankelijk zijn."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:492
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:505
 msgid "Type:"
 msgstr "Type:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:493
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:506
 msgid "Default access level:"
 msgstr "Standaard toegangsniveau:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:496
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:509
 msgid "Default attachment read level"
 msgstr "Standaard leestoegangsniveaus"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:497
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:510
 msgid "Default attachment edit level"
 msgstr "Standaard wijzigingsniveau bestanden"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:498
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:511
 msgid "Default publication read level"
 msgstr "Standaard leesniveau publicatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:499
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:512
 msgid "Default publication edit level"
 msgstr "Standaard wijzigingsniveau publicatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:500
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:513
 msgid "Default note read level"
 msgstr "Standaard leesniveau aantekening"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:501
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:514
 msgid "Default note edit level"
 msgstr "Standaard wijzigingsniveau aantekening"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:502
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:515
 msgid "Default topic read level"
 msgstr "Standaard leesniveau onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:516
 msgid "Default topic edit level"
 msgstr "Standaard wijzigingsniveau onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:528
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:541
 msgid "Embedding options:"
 msgstr "Instellingen voor inbedden:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:532
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:545
 msgid "Shared domain for embedding:"
 msgstr "Gedeeld domein voor inbedding:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:537
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:550
 msgid "Logintegration options:"
 msgstr "Opties voor integratie aanmeldsysteem:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:541
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:554
 msgid "Shared secret phrase for integrated login:"
 msgstr "Gedeelde geheime zin voor geïntegreerde aanmeldmechanismes:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:558
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:571
 msgid "Aigaion login module"
 msgstr "Aigaion aanmeldmodule"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:559
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:572
 msgid ".htpasswd file"
 msgstr ".htpasswd bestand"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:560
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:573
 msgid "LDAP based authentication"
 msgstr "LDAP authenticatie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:593
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:606
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\edit.php:482
 msgid "Store new settings"
 msgstr "Sla nieuwe instellingen op"
@@ -4977,44 +4994,44 @@ msgid "Parent"
 msgstr "Bovenliggend"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:65
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:119
 msgid "Subtopics"
 msgstr "Sub-onderwerpen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:93
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
 msgid "publications"
 msgstr "publicaties"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
 msgid "author"
 msgstr "auteur"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:111
 msgid "view"
 msgstr "bekijk"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
 msgid "view author for topic"
 msgstr "bekijk auteur bij onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:111
 msgid "authors"
 msgstr "auteurs"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:111
 msgid "view authors for topic"
 msgstr "bekijk auteurs bij onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:117
 msgid "Subtopic"
 msgstr "Sub-onderwerp"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:122
 msgid "No subtopics"
 msgstr "Geen sub-onderwerpen"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:112
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:125
 msgid "create new subtopic"
 msgstr "Maak nieuw sub-onderwerp"
 
