@@ -766,12 +766,12 @@ class UserLogin {
                           .sprintf(__("For more information visit %s"),"<a href='http://www.aigaion.nl/' class='open_extern'>www.aigaion.nl</a>.")
                           ."</td>
                           <td>
-                          <a href="http://sourceforge.net/projects/aigaion" class='open_extern'>
-                                <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=109910&type=12" 
-                                     width="120" 
-                                     height="30" 
-                                     border="0" 
-                                     alt="Get Web based bibliography management system at SourceForge.net. Fast, secure and Free Open Source software downloads" />
+                          <a href='http://sourceforge.net/projects/aigaion' class='open_extern'>
+                                <img src='http://sflogo.sourceforge.net/sflogo.php?group_id=109910&type=12' 
+                                     width='120' 
+                                     height='30' 
+                                     border='0'
+                                     alt='Get Web based bibliography management system at SourceForge.net. Fast, secure and Free Open Source software downloads' />
                           </a>
                           </td></tr>\n</table>
               ");
