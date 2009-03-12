@@ -20,6 +20,67 @@
 |       
 */
 
+
+    /** 
+    The first proper multilang release!
+    */
+    function updateSchemaV2_19() {
+        if (checkVersion('V2.19', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_18()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        if (!setReleaseVersion('2.1.2','bugfix,features,layout',"
+==================
+MAJOR IMPROVEMENTS
+==================
+Backup restore function is back  -- It is now possible again to restore
+old backups by entering the originally exported backup data into the
+restore function from the maintenance page.
+===
+Performance improvement -- several libraries have been improved to
+optimize the database access and speed up paginated display of large
+lists of publications.
+===
+Internationalisation -- Aigaion now officialy has multi-language
+support. Four languages are immediately available in this release,
+thanks to the hard work of Manuel Strehl, and the translators mentioned 
+on the translation wiki: Norwegian, German, English and Dutch.
+==================
+MINOR IMPROVEMENTS
+==================
+Keyword clouds -- Topic and author pages now show keyword clouds, with different
+font sizes for the keywords depending on how important they are in the
+publications under a certain topic or for a certain author.
+===
+BibTeX to UTF8 conversion -- We have extended and improved the
+BibTeX2UTF8 conversions (and the other way around). In addition, we have
+written a set of testing functions to spot recurring bugs easier. 
+This was supported by heavy testing from Peter Mosses.
+===
+Import: better feedback and input checking -- The input data entered in
+the import screen is tested more thoroughly for certain problems, and if
+the import fails, a better feedback message is given.
+===
+TinyMCE editor for editing notes -- It is now possible to edit notes
+using the great editor TinyMCE, which allows a WYSIWYG basic formatting
+interface. To enable it, check the box in the configuration screen.
+===
+IE display cleanup -- Many display issues in Internet Explorer were fixed
+===
+Documentation -- We have extended the in-code documentation and the
+documentation on the Wiki pages
+===
+New CodeIgniter version -- Thanks to the help of Dennis Allerkamp,
+Aigaion now runs on CodeIgniter version 1.7
+==================
+        ")) 
+            return False;
+        
+        return setVersion('V2.19');
+    }
+
     /** 
     Add 'clean keyword' column to keywords table, to facilitate searching of accented letters
     */

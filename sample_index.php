@@ -15,10 +15,10 @@
 //define('AIGAION_DB_PREFIX', '');
 
 #define supported languages
-//$AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'es', 'fr', 'it', 'nl', 'no', 'pl', 'ro');
+//$AIGAION_SUPPORTED_LANGUAGES = array ('de', 'en', 'nl', 'no');
 #define short list of languages offered in, e.g., menu
-//$AIGAION_SHORTLIST_LANGUAGES = array ('de', 'en', 'fr', 'nl', 'pl');
-#define default fasll-back language
+//$AIGAION_SHORTLIST_LANGUAGES = array ('de', 'en', 'nl', 'no');
+#define default fall-back language
 //define('AIGAION_DEFAULT_LANGUAGE',  'en');
 
 /*==== MANDATORY SETTINGS */

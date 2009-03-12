@@ -57,11 +57,12 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
     // get the current locale
     $locale = _setlocale(LC_MESSAGES, 0);
     $p = isset($text_domains[$domain]->path) ? $text_domains[$domain]->path : './';
-    $path = $p . "$locale/". $LC_CATEGORIES[$category] ."/$domain.mo";
+    $path = $p . $locale."/". $LC_CATEGORIES[$category] ."/".$domain.".mo";
     if (file_exists($path)) {
       $input = new FileReader($path);
     }
     else {
+      //appendErrorMessage("Cannot find l10n file ".$domain." for language ".$locale."<br>");
       $input = null;
     }
     $text_domains[$domain]->l10n = new gettext_reader($input, $enable_cache);
