@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-25 20:39+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Wietse <wietse@aigaion.nl>\n"
+"Last-Translator: Jens Koolwaay <jenskoolwaay@web.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -942,7 +942,7 @@ msgstr "Wenn die Eingabe korrekt ist, überprüfen Sie bitte den Inhalt der Eins
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:120
 msgid "If that setting is correct, too, please submit a bug report at http://aigaion.nl/"
-msgstr ""
+msgstr "Falls diese Einstellung ebenfalls richtig ist, melden Sie den Fehler bitte unter http://aigaion.nl/"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\import.php:174
 msgid "Commit"
@@ -1435,7 +1435,7 @@ msgstr "Unit Testing-Ausgabe"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:39
 msgid "See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with $debug parameter = true to get more output."
-msgstr ""
+msgstr "Schauen Sie bitte auf das Entwurfsmuster \"test.php\" um die Funktionen der Einheit zu testen. Von seiner Hauptmethode her, rufen Sie die Testmethode bitte mit $debug parameter = true auf, um ein besseres Ergebnis zu erzielen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:64
 msgid "Bibtex character conversions"
@@ -1460,46 +1460,46 @@ msgstr "Bestanden"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:156
 msgid "Bibtex single entry imports"
-msgstr ""
+msgstr "Einfacher Bibtex-Eintrag importiert"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:156
 msgid "Note: these tests do not take the review and database result into account, only the result of the bibtex parsing."
-msgstr ""
+msgstr "Bitte beachten Sie: Diese Tests ziehen weder den Review, noch die Datenbank mit ein, sondern lediglich das Ergebnis des \"Bibtex parsing\"."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:263
 #, php-format
 msgid "Import should return 1 publication, but returned %s publications."
-msgstr ""
+msgstr "Der Import hat statt 1 Publikation %s zurückgewiesen."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:274
 #, php-format
 msgid "\"%s\" should have been \"%s\" but is \"%s\""
-msgstr ""
+msgstr "\"%s\"  hätten \"%s\" sein sollen, ist aber \"%s\""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:282
 #, php-format
 msgid "Import should contain %s authors, but does contain %s authors."
-msgstr ""
+msgstr "Der Import hätte %s Autoren enthalten sollen, enthält aber %s Autoren."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:292
 #, php-format
 msgid "First name(s) should have been \"%s\" but is \"%s\"."
-msgstr ""
+msgstr "Der/die Vorname(n) hätten \"%s\" sein sollen, sind aber \"%s\"."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:298
 #, php-format
 msgid "von-part should have been \"%s\" but is \"%s\"."
-msgstr ""
+msgstr "von-Teil hätte \"%s\" sein sollen, sind aber \"%s\"."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:304
 #, php-format
 msgid "Last name(s) should have been \"%s\" but is \"%s\"."
-msgstr ""
+msgstr "Nachname(n) hätten \"%s\" sein sollen, sind aber \"%s\"."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\test.php:310
 #, php-format
 msgid "jr-part should have been \"%s\" but is \"%s\"."
-msgstr ""
+msgstr "jr-Teil hätte \"%s\" sein sollen, ist aber \"%s\"."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:26
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\topics.php:72
@@ -4528,9 +4528,8 @@ msgid "Password checking module"
 msgstr "Passwort-Überprüfungsmodul"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:110
-#, fuzzy
 msgid "Test delegate"
-msgstr "löschen"
+msgstr "Test Delegate"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\edit.php:110
 msgid "LDAP Password checking"
