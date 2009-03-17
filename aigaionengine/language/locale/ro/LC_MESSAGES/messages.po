@@ -2090,7 +2090,7 @@ msgstr "Decembrie"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:509
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:517
 msgid "in:"
-msgstr ""
+msgstr "în:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:490
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:504
@@ -2317,14 +2317,12 @@ msgid "doi"
 msgstr "doi"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:44
-#, fuzzy
 msgid "userfields"
-msgstr "serie"
+msgstr "câmpurile utilizatorilor"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:45
-#, fuzzy
 msgid "crossref"
-msgstr "Referinţe multiple de"
+msgstr "referinţe multiple"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:48
 msgid "surname"
@@ -3071,9 +3069,8 @@ msgid "All Authors"
 msgstr "Toţi autorii"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:26
-#, fuzzy
 msgid "All Keywords"
-msgstr "Cuvinte cheie"
+msgstr "Toate cuvintele cheie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:27
 msgid "Unassigned"
@@ -3194,9 +3191,8 @@ msgid "Logout"
 msgstr "Deconectare"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:199
-#, fuzzy
 msgid "more"
-msgstr "Importă"
+msgstr "mai mult"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\repostform.php:8
 #, php-format
@@ -3584,9 +3580,8 @@ msgid "Institute"
 msgstr "Institutul"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:14
-#, fuzzy
 msgid "Edit Author"
-msgstr "Editează autor"
+msgstr "Editează autorul"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:55
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:96
@@ -3815,7 +3810,7 @@ msgstr "Export în format BibTeX"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:21
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:45
 msgid "BibTeX"
-msgstr ""
+msgstr "BibTeX"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:26
 msgid "Export to RIS"
@@ -3824,7 +3819,7 @@ msgstr "Export în format RIS"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:26
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:47
 msgid "RIS"
-msgstr ""
+msgstr "RIS"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:32
 msgid "Export by E-mail"
@@ -3832,7 +3827,6 @@ msgstr "Export prin E-mail"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:32
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:41
-#, fuzzy
 msgid "E-mail"
 msgstr "Email"
 
@@ -3873,33 +3867,28 @@ msgid "Current attachment size: %s KB"
 msgstr "Dimensiunea curentă a ataşamentului: %s KB"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:38
-#, fuzzy
 msgid "Create a new group"
-msgstr "Creare utilizator nou"
+msgstr "Creare grup nou"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:40
-#, fuzzy
 msgid "Edit group settings"
-msgstr "Editează grup"
+msgstr "Editează setările grup"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:50
-#, fuzzy
 msgid "Group details:"
-msgstr "Detaliile persoanei"
+msgstr "Detaliile grupului:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:62
-#, fuzzy
 msgid "Abbreviation"
-msgstr "ediţia"
+msgstr "Abreviere"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:71
-#, fuzzy
 msgid "Rights profiles:"
-msgstr "Profilele drepturilor"
+msgstr "Profilele drepturilor:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:78
 msgid "The following rights profiles will by default be assigned to a user when it is added to this group."
-msgstr ""
+msgstr "Următoarele profile ale drepturilor  vor fi asignate implicit utilizatorului când este adăugat acestui grup."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:20
 #: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:22
@@ -4040,7 +4029,7 @@ msgstr "Sunteţi sigur că doriţi să ştergeţi publicaţia '%s'?"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:19
 msgid "Special"
-msgstr ""
+msgstr "Special"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
 msgid "In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings."
@@ -4063,14 +4052,12 @@ msgid "optional"
 msgstr "opţional"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:23
-#, fuzzy
 msgid "Simple"
-msgstr "Fişier"
+msgstr "Simplu"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:34
-#, fuzzy
 msgid "Edit Publication"
-msgstr "Editează publicaţia"
+msgstr "Editează Publicaţia"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:83
@@ -4102,24 +4089,23 @@ msgstr "câmpul %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:229
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:256
-#, fuzzy
 msgid "add"
-msgstr "Adăugare"
+msgstr "adaugă"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:230
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:257
 msgid "rem"
-msgstr ""
+msgstr "remarcă"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:236
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:263
 msgid "up"
-msgstr ""
+msgstr "sus"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:237
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:264
 msgid "down"
-msgstr ""
+msgstr "jos"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:240
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:229
@@ -4127,9 +4113,8 @@ msgid "Editors"
 msgstr "Editori"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:271
-#, fuzzy
 msgid "Create as new name"
-msgstr "Creare utilizator nou"
+msgstr "Creare nume nou"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:272
 msgid "Type in name to quick search. Note: use unaccented letters!"
@@ -4277,9 +4262,8 @@ msgid "Unread"
 msgstr "Necitit"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:350
-#, fuzzy
 msgid "add attachment"
-msgstr "Adaugă ataşament"
+msgstr "adaugă ataşament"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:378
 msgid "add note"
@@ -4624,19 +4608,12 @@ msgid "Login settings (HTTP Authentication):"
 msgstr "Setările conectării (Autentificare HTTP):"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
-#, fuzzy
 msgid "'.htpasswd' is a module that uses the .htaccess and .htpasswd login system to determine the name of the logged user, instead of a login form."
-msgstr ""
-"'.htpasswd' este un modul ce foloseşte sistemul de conectare .htaccess şi .htpasswd pentru a determina \n"
-"\t        numele utilizatorului conectat, în loc de a folosi un formular de conectare."
+msgstr "'.htpasswd' este un modul ce foloseşte sistemul de conectare .htaccess şi .htpasswd pentru a determina numele utilizatorului conectat, în loc de a folosi un formular de conectare."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:221
-#, fuzzy
 msgid "If you select this, be sure that you have the httpauth correctly configured - otherwise you may have problems logging in and then you can also not turn the httpauth login module off without directly accessing the Aigaion database."
-msgstr ""
-"Dacă selectaţi aceasta, asiguraţi-vă că \n"
-"\t        aveţi httpauth corect configurat - altfel puteţi avea probleme la conectare după care puteţi să \n"
-"\t        nu opriţi modulul de conectare httpauth fără a accesa direct baza de date Aigaion."
+msgstr "Dacă selectaţi aceasta, asiguraţi-vă că aveţi httpauth corect configurat - altfel puteţi avea probleme la conectare după care puteţi să nu opriţi modulul de conectare httpauth fără a accesa direct baza de date Aigaion."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:225
 msgid "Use HTTPAUTH login modules:"
@@ -4725,11 +4702,11 @@ msgstr "Selectaţi pentru a contopi publicaţiile cu referinţe multiple în ima
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:372
 msgid "Use TinyMCE note editor:"
-msgstr ""
+msgstr "Foloseşte editorul de note TinyMCE:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:381
 msgid "Check to enable the Tiny-MCE editor for editing notes."
-msgstr ""
+msgstr "Selectaţi pentru a activa editorul Tiny-MCE pentru editarea notelor."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:421
 msgid "Defaults for user preferences:"
@@ -4970,9 +4947,8 @@ msgid "Restore"
 msgstr "Restaurează"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\stats.php:21
-#, fuzzy
 msgid "Aigaion statistics"
-msgstr "Actualizări Aigaion"
+msgstr "Statistici Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\stats.php:23
 #, php-format
