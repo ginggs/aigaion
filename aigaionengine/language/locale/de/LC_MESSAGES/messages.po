@@ -536,7 +536,7 @@ msgstr "Thema zur Merkliste hinzufügen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:194
 msgid "Add keyword to bookmarklist"
-msgstr "Schlüsselwort zur Merkliste hinzufügen"
+msgstr "Stichwort zur Merkliste hinzufügen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:228
 msgid "Add author to bookmarklist"
@@ -557,7 +557,7 @@ msgstr "Thema von der Merkliste nehmen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:335
 msgid "Removing keyword from bookmarklist"
-msgstr "Schlüsselwort von der Merkliste nehmen"
+msgstr "Stichwort von der Merkliste nehmen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\bookmarklist.php:368
 msgid "Removing author from bookmarklist"
@@ -965,19 +965,19 @@ msgstr "Erfolgreich %s Veröffentlichungen importiert"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\publications\single.php:204
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\topics\full.php:80
 msgid "Keywords"
-msgstr "Schlüsselwörter"
+msgstr "Stichwörter"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:128
 msgid "View publications for keyword"
-msgstr "Veröffentlichungen für ein Schlüsselwort betrachten"
+msgstr "Veröffentlichungen für ein Stichwort betrachten"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:138
 msgid "Keyword"
-msgstr "Schlüsselwort"
+msgstr "Stichwort"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:142
 msgid "Export for keyword"
-msgstr "Export für Schlüsselwort"
+msgstr "Export für Stichwort"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:145
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:148
@@ -986,11 +986,11 @@ msgstr "Export für Schlüsselwort"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:157
 #, php-format
 msgid "Publications for keyword \"%s\""
-msgstr "Veröffentlichungen für Schlüsselwort \"%s\""
+msgstr "Veröffentlichungen für Stichwort \"%s\""
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\keywords.php:177
 msgid "No publications found using this keyword."
-msgstr "Keine Veröffentlichungen mit diesem Schlüsselwort gefunden."
+msgstr "Keine Veröffentlichungen mit diesem Stichwort gefunden."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\controllers\language.php:40
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\user_db.php:207
@@ -1946,7 +1946,7 @@ msgstr "%s Veröffentlichungen erschienen nicht im Stammthema."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:261
 msgid "Reinit searchable names, keywords and titles"
-msgstr "Reinitialisiere durchsuchbare Namen und Titel"
+msgstr "Reinitialisiere durchsuchbare Namen, Stichwörter und Titel"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:263
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:337
@@ -1971,7 +1971,7 @@ msgstr "Durchsuchbare Namen und Titel von %s Themen ausgebessert."
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:325
 #, php-format
 msgid "Fixed searchable names of %s keywords."
-msgstr "Durchsuchbare Namen von %s Autoren ausgebessert."
+msgstr "Durchsuchbare Namen von %s Stichwörter ausgebessert."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\maintenance_helper.php:335
 msgid "Check total publication marks"
@@ -2143,7 +2143,7 @@ msgstr "Teil eines Buches"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:575
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:72
 msgid "Incollection"
-msgstr "Teil eines Buches (eigenen Titel)"
+msgstr "Artikel in Sammelband"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:576
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:73
@@ -2158,7 +2158,7 @@ msgstr "Anleitung"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:578
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:75
 msgid "Mastersthesis"
-msgstr "Diplomarbeit"
+msgstr "Diplom- oder Magisterarbeit"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\publication_helper.php:579
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:76
@@ -2244,7 +2244,7 @@ msgstr "Serie"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:22
 msgid "publisher"
-msgstr "Veröffentlicher"
+msgstr "Verlag"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\helpers\translation_helper.php:23
 msgid "location"
@@ -2690,11 +2690,11 @@ msgstr "Kann Gruppe nicht löschen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\keyword_db.php:198
 msgid "Found similar keywords for"
-msgstr "Ähnliche Schlüsselwörter gefunden für"
+msgstr "Ähnliche Stichwörter gefunden für"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\keyword_db.php:215
 msgid "Please review the entered keywords."
-msgstr "Bitte überprüfen Sie die eingegebenen Schlüsselwörter."
+msgstr "Bitte überprüfen Sie die eingegebenen Stichwörter."
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\libraries\login_ldap.php:5
 msgid "Loaded deprecated login_ldap module. LDAP login now uses delegated password checking!"
@@ -3075,7 +3075,7 @@ msgstr "Alle Autoren"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\menu.php:26
 msgid "All Keywords"
-msgstr "Alle Schlüsselwörter"
+msgstr "Alle Stichwörter"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\menu.php:27
 msgid "Unassigned"
@@ -4339,7 +4339,7 @@ msgstr "Themen anzeigen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\search\advanced.php:33
 msgid "Return keywords"
-msgstr "Schlüsselwörter anzeigen"
+msgstr "Stichwörter anzeigen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\search\advanced.php:37
 msgid "Publication search"
@@ -4442,7 +4442,7 @@ msgstr "Themen: %s"
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\search\results.php:32
 #, php-format
 msgid "Keywords: %s"
-msgstr "Schlüsselwörter: %s"
+msgstr "Stichwörter: %s"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\search\results.php:77
 #, php-format
@@ -4891,7 +4891,7 @@ msgstr "Passwörter überprüfen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\maintenance.php:22
 msgid "Check searchable names, keywords and titles"
-msgstr "Durchsuchbare Namen und Titel überprüfen"
+msgstr "Durchsuchbare Namen, Stichwörter und Titel überprüfen"
 
 #: C:\webserver\xampp\htdocs\aigaion2root\aigaionengine\views\site\maintenance.php:23
 msgid "Check publication marks"
