@@ -17,9 +17,14 @@ if (isset($isCloud) && $isCloud)
     }
   }
   
-  //set thresholds for three tag classes
-  $threshold1 = $minKeywordCount + ceil(($maxKeywordCount - $minKeywordCount) / 3);
-  $threshold2 = $minKeywordCount + ceil((($maxKeywordCount - $minKeywordCount) * 2) / 3);
+  if ($minKeywordCount != $maxKeywordCount)
+  {
+    //set thresholds for three tag classes
+    $threshold1 = $minKeywordCount + ceil(($maxKeywordCount - $minKeywordCount) / 3);
+    $threshold2 = $minKeywordCount + ceil((($maxKeywordCount - $minKeywordCount) * 2) / 3);
+  }
+  else
+    $threshold1 = $threshold2 = $maxKeywordCount + 1;
   
   //clouds use no headers.
   $useHeaders = false;

@@ -283,7 +283,7 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $header ['title']       = $edit_type." author";
+    $header ['title']       = sprintf(__("%s author"), $edit_type);
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $edit_type;
     $content['author']      = $author;
@@ -484,7 +484,7 @@ class Authors extends Controller {
       redirect('');
     }
 
-    $header ['title']       = __("Review publication");
+    $header ['title']       = __("Review author");
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['edit_type']   = $this->input->post('edit_type');
     $content['author']      = $author;

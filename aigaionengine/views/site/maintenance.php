@@ -18,6 +18,7 @@ we assume that this view is not loaded if you don't have the appropriate databas
 	<li><?php echo anchor('site/maintenance/topics',__('Check topics')); ?></li>
 	<li><?php echo anchor('site/maintenance/notes',__('Check notes')); ?></li>
 	<li><?php echo anchor('site/maintenance/authors',__('Check authors')); ?></li>
+	<li><?php echo anchor('site/maintenance/keywords',__('Check keywords')); ?></li>
 	<li><?php echo anchor('site/maintenance/passwords',__('Check passwords')); ?></li>
 	<li><?php echo anchor('site/maintenance/cleannames',__('Check searchable names, keywords and titles')); ?></li>
 	<li><?php echo anchor('site/maintenance/publicationmarks',__('Check publication marks')); ?></li>

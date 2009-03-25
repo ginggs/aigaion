@@ -130,6 +130,11 @@ class Keywords extends Controller {
     }
     $keywordContent ['keyword'] = $keyword;
     
+    //load related keywords
+    $relatedKeywords = $this->keyword_db->getRelatedKeywords($keyword);
+    if (count($relatedKeywords) > 0)
+      $keywordContent ['relatedKeywords'] = $relatedKeywords;
+    
     $this->load->helper('publication');
     
     $userlogin = getUserLogin();
@@ -180,6 +185,251 @@ class Keywords extends Controller {
     
     //set output
     $this->output->set_output($output);  
+  }
+  
+  //edit() - Call keyword edit form.
+  function edit($keyword = "")
+  {
+    if (is_numeric($keyword))
+    {
+      $keyword_id = $keyword;
+      $keyword = $this->keyword_db->getByID($keyword_id);
+      
+      //set header data
+      $edit_type = "edit";
+    }
+    else if (empty($keyword_id))
+    {
+      redirect('');
+    }
+    else
+    {
+      //there was a keyword post, retrieve the edit type from the post.
+      $edit_type = $this->input->post('edit_type');
+    }
+    
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage(__('Edit keyword').": ".__('insufficient rights').".<br/>");
+      redirect('');
+    }
+
+    $header ['title']       = sprintf(__("%s keyword"), $edit_type);
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['edit_type']   = $edit_type;
+    $content['keyword']      = $keyword;
+    
+    //get output
+    $output  = $this->load->view('header',        $header,  true);
+    $output .= $this->load->view('keywords/edit',  $content, true);
+    $output .= $this->load->view('footer',        '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+  
+  //merge() - Call keyword merge form. 
+  function merge()
+  {
+    $keyword_id = $this->uri->segment(3);
+    $simkeyword_id = $this->uri->segment(4);
+    $keyword = $this->keyword_db->getByID($keyword_id);
+    $simkeyword = $this->keyword_db->getByID($simkeyword_id);
+    if ($keyword==null || $simkeyword==null) {
+        appendErrorMessage(__("Cannot merge keywords").": ".__('missing parameters').".<br/>");
+        redirect('');
+    }
+    
+
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage(__('Cannot merge keywords').": ".__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    $header ['title']       = __("Keywords").": ".__('Merge');
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['keyword']      = $keyword;
+    $content['simkeyword']      = $simkeyword;
+    
+    //get output
+    $output  = $this->load->view('header',        $header,  true);
+    $output .= $this->load->view('keywords/merge',  $content, true);
+    $output .= $this->load->view('footer',        '',       true);
+    
+    //set output
+    $this->output->set_output($output);
   }  
+  
+  //commit() - Commit the posted keyword to the database
+  function commit()
+  {
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage(__('Edit keyword').": ".__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    
+    $keyword = $this->keyword_db->getFromPost();
+    //check the submit type, if 'type_change', we redirect to the edit form
+    $submit_type = $this->input->post('submit_type');
+    
+      $bReview = false;
+      if ($submit_type != 'review')
+      {
+        //review keyword for similar keywords
+        $review_message = $this->keyword_db->review(array($keyword), $keyword->keyword_id);
+        
+        if ($review_message != null)
+        {
+          $bReview = true;
+          $this->review($keyword, $review_message);
+        }
+      }
+      if (!$bReview)
+      {
+        //do actual commit, depending on the edit_type, choose add or update
+        //
+        $edit_type = $this->input->post('edit_type');
+        if ($edit_type == 'new') {
+          //note: the keyword_db review method will not give an error if ONE EXACT MATCH EXISTS
+          //so we should still check that here
+//WB: TODO!!!
+          if ($this->keyword_db->getByKeyword($keyword->keyword) != null) {
+            appendMessage(sprintf(__('Keyword "%s" already exists in the database.'), $keyword->keyword).'<br/>');
+            redirect('keywords/add/'.$keyword->keyword);
+          } else {
+            $keyword = $this->keyword_db->add($keyword);
+          }
+        } else
+          $keyword = $this->keyword_db->update($keyword->keyword_id, $keyword->keyword);
+              
+        //show publication
+        redirect('keywords/single/'.$keyword->keyword_id);
+      }
+  }
+  
+  function review($keyword, $review_message)
+  {
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage(__('Edit keyword').": ".__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    $header ['title']       = __("Review keyword");
+    $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
+    $content['edit_type']   = $this->input->post('edit_type');
+    $content['keyword']      = $keyword;
+    $content['review']      = $review_message;
+    
+    //get output
+    $output  = $this->load->view('header',              $header,  true);
+    $output .= $this->load->view('keywords/edit',       $content, true);
+    $output .= $this->load->view('footer',              '',       true);
+    
+    //set output
+    $this->output->set_output($output);
+  }
+  
+  //mergecommit() - Do merge commit
+  function mergecommit()
+  {
+    $keyword_id = $this->input->post('keyword_id');
+    $newkeyword = $this->input->post('keyword');
+    $keyword = $this->keyword_db->getByID($keyword_id);
+    $simkeyword_id = $this->input->post('simkeyword_id');
+    $simkeyword = $this->keyword_db->getByID($simkeyword_id);
+    if ($keyword==null || $simkeyword==null) {
+        appendErrorMessage(__("Cannot merge keywords").": ".__('missing parameters').".<br/>");
+        redirect('');
+    }
+
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('publication_edit'))
+    {
+      appendErrorMessage(__('Cannot merge keywords').": ".__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+    //echo "replace source ".$keyword_id." by target ".$simkeyword_id."<br/>";
+    //so... actually, we should now test whether the user has edit access on all involved publications!!!
+    $this->keyword_db->replaceSourceTarget($simkeyword_id, $keyword_id);
+    $this->keyword_db->delete($simkeyword_id);
+    
+    if ($keyword->keyword != $newkeyword)
+    {
+      //echo "update keyword ".$keyword_id.": ".$newkeyword."</br>";
+      $this->keyword_db->update($keyword_id, $newkeyword);
+    }   
+    
+    redirect ('keywords/single/'.$keyword->keyword_id);
+  }  
+  
+	/** 
+	keywords/delete
+	
+	Entry point for deleting a keyword.
+	Depending on whether 'commit' is specified in the url, confirmation may be requested before actually
+	deleting. 
+	
+	Fails with error message when one of:
+	    delete requested for non-existing author
+	    insufficient user rights
+	    
+	Parameters passed via URL segments:
+	    3rd: keyword_id, the id of the to-be-deleted-keyword
+	    4th: if the 4th segment is the string 'commit', no confirmation is requested.
+	         if not, a confirmation form is shown; upon choosing 'confirm' this same controller will be 
+	         called with 'commit' specified
+	         
+    Returns:
+        A full HTML page showing a 'request confirmation' form for the delete action, if no 'commit' was specified
+        Redirects somewhere (?) after deleting, if 'commit' was specified
+	*/
+	function delete()
+	{
+	    $keyword_id = $this->uri->segment(3);
+	    $keyword = $this->keyword_db->getByID($keyword_id);
+	    $commit = $this->uri->segment(4,'');
+
+	    if ($keyword==null) {
+	        appendErrorMessage(__('Delete keyword').": ".__('keyword does not exist').'.<br/>');
+	        redirect('');
+	    }
+
+        $userlogin  = getUserLogin();
+        if (    (!$userlogin->hasRights('publication_edit'))
+            ) 
+        {
+	        appendErrorMessage(__('Delete keyword').": ".__('insufficient rights').'.<br/>');
+	        redirect('');
+        }
+
+        if ($commit=='commit') {
+            //do delete, redirect somewhere
+            $this->keyword_db->delete($keyword->keyword_id);
+            redirect('keywords');
+        } else {
+            //get output: a full web page with a 'confirm delete' form
+            $headerdata = array();
+            $headerdata['title'] = __('Keyword').": ".__('delete');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('keywords/delete',
+                                         array('keyword'=>$keyword),  
+                                         true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);	
+        }
+    }
 }
 ?>

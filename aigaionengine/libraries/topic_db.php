@@ -623,7 +623,6 @@ class Topic_db {
         $keyword = $CI->keyword_db->getByID($R->keyword_id);
         $keyword->count = $R->sum;
         $result[] = $keyword;
-        //$result[] = $CI->keyword_db->getByID($R->keyword_id);
     }        
     return $result;
     

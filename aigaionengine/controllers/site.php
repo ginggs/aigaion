@@ -122,6 +122,10 @@ class Site extends Controller {
 	            $checkresult .= checkAuthors();
 	            if ($maintenance != 'all') 
 	                break;
+	        case 'keywords':
+	            $checkresult .= checkKeywords();
+	            if ($maintenance != 'all') 
+	                break;
 	        case 'passwords':
 	            $checkresult .= checkPasswords();
 	            if ($maintenance != 'all') 
@@ -154,6 +158,9 @@ class Site extends Controller {
 	        case 'deletenonpublishingauthors':
 	            $checkresult .= deleteNonPublishingAuthors();
                 break;
+          case 'deleteunusedkeywords':
+              $checkresult .= deleteUnusedKeywords();
+              break;
 	        case '':
 	            break;
 	        default:

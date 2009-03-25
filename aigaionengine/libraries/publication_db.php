@@ -1127,7 +1127,7 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    if (($liststyle > 0) && ($page != -1))
     {
       $limitOffset = $liststyle * $page;
       $limit = "LIMIT ".$limitOffset.", ".$liststyle;

@@ -537,7 +537,7 @@ TODO:
     $Q = $CI->db->get('author');
     
     $db_cleanauthors = array();
-    //retrieve results or fail                       
+    //retrieve results or fail    
     foreach ($Q->result() as $R)
     {
       $db_cleanauthors[$R->author_id] = strtolower($R->cleanname); //why strtolower? because we want to check case insensitive.
@@ -545,11 +545,20 @@ TODO:
     //check on cleanname
     //create cleanname
     
+    $cleanAuthorName = strtolower($author->cleanname);
+    
+    if (sizeof($cleanAuthorName) < 4)
+      $dist_threshold = 2;
+    else if (sizeof($cleanAuthorName) < 8)
+      $dist_threshold = 3;
+    else
+      $dist_threshold = 4;
+    
     $db_distances = array();
     foreach ($db_cleanauthors as $author_id => $db_author)
     {
-      $distance = levenshtein($db_author, strtolower($author->cleanname));
-      if (($distance < 3) && ($author_id != $author->author_id))
+      $distance = levenshtein($db_author, $cleanAuthorName);
+      if (($distance < $dist_threshold) && ($author_id != $author->author_id))
         $db_distances[$author_id] = $distance;
     }
     
@@ -587,10 +596,12 @@ TODO:
     //check on cleanname
     //create cleanname
 
+    $cleanAuthorName = strtolower($author->cleanname);
+    
     $db_distances = array();
     foreach ($db_cleanauthors as $author_id => $db_author)
     {
-      $distance = levenshtein($db_author[0], strtolower($author->surname));
+      $distance = levenshtein($db_author[0], $cleanAuthorName);
       if (($distance < 2) && ($author_id != $author->author_id) && substr($db_author[1],0,1) == strtolower(substr($author->firstname,0,1)))
       {
 				$db_distances[$author_id] = $distance;
