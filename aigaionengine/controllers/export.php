@@ -154,7 +154,7 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-        $exportdata['header']   = sprintf(__('All publications for topic "%s"',$topic->name));
+        $exportdata['header']   = sprintf(__('All publications for topic "%s"'),$topic->name);
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
         //set output
