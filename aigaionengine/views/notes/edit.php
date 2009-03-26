@@ -109,7 +109,7 @@ if ($isAddForm) {
     </table>
 <?php
 echo form_close();
-echo form_open('publications/show/'.$note->pub_id);
+echo form_open('publications/show/'.$pub_id);
 echo form_submit('cancel',__('Cancel'));
 echo form_close();
 ?>
