@@ -231,6 +231,15 @@ class Keyword_db {
     return $result;
   }
   
+  function getPublicationCount($keyword_id) {
+    $CI = &get_instance();
+    $CI->db->select("keyword_id");
+    $CI->db->distinct();
+    $CI->db->where(array('keyword_id'=>$keyword_id));
+    $CI->db->from("publicationkeywordlink");
+    return $CI->db->count_all_results();
+  } 
+  
   function add($keyword)
   {
     $CI = &get_instance();

@@ -1630,7 +1630,7 @@ class Userlanguage {
  * @return string language code, that matches best the user preferences
  */
 if (!function_exists ("http_negotiate_language")) {
-  function http_negotiate_language ( $supported, &$result = false) {
+  function http_negotiate_language ( $supported, &$result) {
     $handler = new UserLanguage ();
     $handler->setSupported ($supported);
     if ($result) {

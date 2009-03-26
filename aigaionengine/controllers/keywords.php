@@ -142,7 +142,7 @@ class Keywords extends Controller {
     //set header data
     $header ['title']       = __('Keyword').': "'.$keyword->keyword.'"';
     $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
-    $header ['sortPrefix']       = 'publications/keyword/'.$keyword->keyword_id.'/';
+    $header ['sortPrefix']       = 'keywords/single/'.$keyword->keyword_id.'/';
     $header ['exportCommand']    = '';//'export/keyword/'.$keyword_id.'/';
     $header ['exportName']    = __('Export for keyword');
 
@@ -166,9 +166,10 @@ class Keywords extends Controller {
         //set these parameters when you want to get a good multipublication list display
         $publicationContent['multipage']       = True;
         $publicationContent['currentpage']     = $page;
-        $publicationContent['multipageprefix'] = 'publications/keyword/'.$keyword->keyword_id.'/'.$order.'/';
+        $publicationContent['pubCount']        = $this->keyword_db->getPublicationCount($keyword_id);
+        $publicationContent['multipageprefix'] = $header['sortPrefix'].'/'.$order.'/';
     }    
-    $publicationContent['publications'] = $this->publication_db->getForKeyword($keyword,$order);
+    $publicationContent['publications'] = $this->publication_db->getForKeyword($keyword,$order,$page);
     $publicationContent['order'] = $order;
 
     

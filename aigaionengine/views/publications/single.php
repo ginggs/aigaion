@@ -19,28 +19,26 @@ $this->load->helper('translation');
 		echo "[".anchor('publications/edit/'.$publication->pub_id, __('edit'), array('title' => __('Edit this publication')))."]";
 	}
 
-        if ($userlogin->hasRights('bookmarklist')) {
-          echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
-          if ($publication->isBookmarked) {
-            echo '['.$this->ajax->link_to_remote(__("UnBookmark"),
-                  array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
-                        'update'  => 'bookmark_pub_'.$publication->pub_id
-                        )
-                  ).']';
-          }
-          else {
-            echo '['.$this->ajax->link_to_remote(__("Bookmark"),
-                  array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
-                        'update'  => 'bookmark_pub_'.$publication->pub_id
-                        )
-                  ).']';
-          }
-          echo "</span>";
-          echo "</span>";
-          if ($userlogin->hasRights('export_email')) {
-      	    echo  '&nbsp;['.anchor('publications/exportEmail/'.$publication->pub_id.'/',__('E-mail'),array('title'=>__('Export by e-mail'))).']';
-      	  }
-        }
+//        if ($userlogin->hasRights('bookmarklist')) {
+//          echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
+//          if ($publication->isBookmarked) {
+//            echo '['.$this->ajax->link_to_remote(__("UnBookmark"),
+//                  array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
+//                        'update'  => 'bookmark_pub_'.$publication->pub_id
+//                        )
+//                  ).']';
+//          }
+//          else {
+//            echo '['.$this->ajax->link_to_remote(__("Bookmark"),
+//                  array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
+//                        'update'  => 'bookmark_pub_'.$publication->pub_id
+//                        )
+//                  ).']';
+//          }
+//          echo "</span>";
+        if ($userlogin->hasRights('export_email')) {
+    	    echo  '&nbsp;['.anchor('publications/exportEmail/'.$publication->pub_id.'/',__('E-mail'),array('title'=>__('Export by e-mail'))).']';
+    	  }
         echo  '&nbsp;['
            .anchor('export/publication/'.$publication->pub_id.'/bibtex',__('BibTeX'),array('target'=>'aigaion_export')).']';
         echo  '&nbsp;['
@@ -74,6 +72,30 @@ $this->load->helper('translation');
   				echo '<span title="'.__('No e-mail address available for neither of the authors').'">&nbsp;['.__('Request').']</span>';
   			}
   		}
+      if ($userlogin->hasRights('bookmarklist')) 
+      {
+        echo "&nbsp;<span id='bookmark_pub_".$publication->pub_id."'>";
+        if ($publication->isBookmarked) 
+        {
+          echo '<span title="'.__('Click to UnBookmark publication').'">'
+                .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('bookmarked.gif')." ' alt='bookmarked' />",
+                array('url'     => site_url('/bookmarklist/removepublication/'.$publication->pub_id),
+                      'update'  => 'bookmark_pub_'.$publication->pub_id
+                     )
+                ).'</span>';
+        } 
+        else 
+        {
+          echo '<span title="'.__('Click to Bookmark publication').'">'
+               .$this->ajax->link_to_remote("<img class='large_icon' src='".getIconUrl('nonbookmarked.gif')."' alt='nonbookmarked' />",
+                array('url'     => site_url('/bookmarklist/addpublication/'.$publication->pub_id),
+                      'update'  => 'bookmark_pub_'.$publication->pub_id
+                      )
+                ).'</span>';
+        }
+        echo "</span>";
+      }
+
 ?>
   </div>
   <div class='header'><?php echo $publication->title; ?>
