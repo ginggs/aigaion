@@ -537,8 +537,8 @@ class Authors extends Controller {
   {
     $this->load->helper('form');
     
-    $authorList = $this->author_db->getAllAuthors();
-    
+    //$authorList = $this->author_db->getAllAuthors();
+    $authorList = $this->author_db->getAllVisibleAuthors();
     
     
     //set header data
@@ -563,7 +563,8 @@ class Authors extends Controller {
     $author_search = $this->input->post('author_search');
     if ($author_search) // user pressed show, so redirect to single author page
     {
-      $authorList     = $this->author_db->getAuthorsLike($author_search);
+      //$authorList     = $this->author_db->getAuthorsLike($author_search);
+      $authorList     = $this->author_db->getVisibleAuthorsLike($author_search);
       if (sizeof($authorList) > 0)
       {
         $this->show($authorList[0]->author_id);
@@ -572,7 +573,8 @@ class Authors extends Controller {
     else
     {
       $author_search  = $this->uri->segment(3);
-      $authorList     = $this->author_db->getAuthorsLike($author_search);
+      //$authorList     = $this->author_db->getAuthorsLike($author_search);
+      $authorList     = $this->author_db->getVisibleAuthorsLike($author_search);
       echo $this->load->view('authors/list_items', array('authorlist' => $authorList), true);
     }
   }

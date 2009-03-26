@@ -357,6 +357,46 @@ TODO:
     return $result;
   }
   
+  //returns all authors that are visible to the user
+  function getAllVisibleAuthors()
+  {
+    $CI = &get_instance();
+    $userlogin=getUserLogin();
+    
+    if ($userlogin->hasRights('read_all_override'))
+      return $this->getAllAuthors();
+      
+    if ($userlogin->isAnonymous()) //get only public authors
+    {
+      $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."author.* FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink, ".AIGAION_DB_PREFIX."publication
+                           WHERE ".AIGAION_DB_PREFIX."publication.derived_read_access_level = 'public'
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".AIGAION_DB_PREFIX."publication.pub_id 
+                           AND ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
+                           ORDER BY ".AIGAION_DB_PREFIX."author.cleanname");
+    }
+    else //get all non-private authors and authors for publications that belong to the user
+    {
+      $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."author.* FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink, ".AIGAION_DB_PREFIX."publication
+                           WHERE (".AIGAION_DB_PREFIX."publication.derived_read_access_level != 'private' 
+                                  OR ".AIGAION_DB_PREFIX."publication.user_id = ".$userlogin->userId().")
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".AIGAION_DB_PREFIX."publication.pub_id 
+                           AND ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
+                           ORDER BY ".AIGAION_DB_PREFIX."author.cleanname");
+    }
+    
+    //retrieve results or fail                       
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+    return $result;
+    
+  }  
+  
   function getAuthorsLike($cleanname)
   {
     $CI = &get_instance();
@@ -379,6 +419,49 @@ TODO:
     
     return $result;
 
+  }
+  function getVisibleAuthorsLike($cleanname)
+  {
+    $CI = &get_instance();
+    $userlogin = getUserLogin();
+    
+    //select all authors from the database where the cleanname begins with the characters
+    //as given in $cleanname
+    if ($userlogin->hasRights('read_all_override'))
+      return $this->getAuthorsLike($cleanname);
+      
+    if ($userlogin->isAnonymous()) //get only public authors
+    {
+      $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."author.* FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink, ".AIGAION_DB_PREFIX."publication
+                           WHERE ".AIGAION_DB_PREFIX."author.cleanname LIKE ".$CI->db->escape('%'.$cleanname.'%')."
+                           AND ".AIGAION_DB_PREFIX."publication.derived_read_access_level = 'public'
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".AIGAION_DB_PREFIX."publication.pub_id 
+                           AND ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
+                           ORDER BY ".AIGAION_DB_PREFIX."author.cleanname");
+    }
+    else //get all non-private authors and authors for publications that belong to the user
+    {
+      $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."author.* FROM ".AIGAION_DB_PREFIX."author, ".AIGAION_DB_PREFIX."publicationauthorlink, ".AIGAION_DB_PREFIX."publication
+                           WHERE ".AIGAION_DB_PREFIX."author.cleanname LIKE ".$CI->db->escape('%'.$cleanname.'%')."
+                           AND (".AIGAION_DB_PREFIX."publication.derived_read_access_level != 'private' 
+                                  OR ".AIGAION_DB_PREFIX."publication.user_id = ".$userlogin->userId().")
+                           AND ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id = ".AIGAION_DB_PREFIX."publication.pub_id 
+                           AND ".AIGAION_DB_PREFIX."author.author_id = ".AIGAION_DB_PREFIX."publicationauthorlink.author_id
+                           ORDER BY ".AIGAION_DB_PREFIX."author.cleanname");
+    }
+    
+    //retrieve results or fail
+    $result = array();
+    foreach ($Q->result() as $row)
+    {
+      $next = $this->getFromRow($row);
+      if ($next != null)
+      {
+        $result[] = $next;
+      }
+    }
+    
+    return $result;
   }
   
   function getForPublication($pub_id, $is_editor = 'N')

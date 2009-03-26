@@ -46,8 +46,6 @@ class Publication_db {
     return null;
   }
   
-  
-
   function getFromArray($pub_array)
   {
     //load publication, since an array handles the same as a row we call getFromRow
