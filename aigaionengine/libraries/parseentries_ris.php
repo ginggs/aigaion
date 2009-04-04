@@ -211,7 +211,7 @@ class Parseentries_ris
               $elementValue = "PHDThesis";
               break;
             case "RPRT":
-            	$elementValue = "report";
+            	$elementValue = "techreport";
             	break;
             case "UNPB":
             	$elementValue = "unpublished";
