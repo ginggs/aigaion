@@ -57,13 +57,28 @@ class Import extends Controller {
 
     $markasread   = $this->input->post('markasread')=='markasread'; // true iff all imported entries should be marked as 'read' for the user
     
-    $import_data  = $this->input->post('import_data');    
+    $fromFile = False;
+    
+    $import_data  = '';
+    
+    //first attempt whether the data was submitted as file
+    //if so, get data from file, and remember that it was from file, as we can use the extension later on to guess import data type
+    if (isset($_FILES['import_file']) && ($_FILES['import_file']['error']==0)) {
+      $fromFile = True;
+      $import_data=file_get_contents($_FILES['import_file']['tmp_name']);
+    }
+    else
+    {
+      //if not a file, get import data from post
+      $import_data  = $this->input->post('import_data');    
+    }
     if ($import_data == '') 
     {
         appendErrorMessage(__("Import").": ".__("no import data entered.")."<br/>");
         $this->viewform();
         return;
     }
+    //Determine type. Was it set explicitly?
     $type = $this->input->post('format');
     if (!isset($type)||($type==null))$type="auto";
     //is the type known?
@@ -72,22 +87,28 @@ class Import extends Controller {
       appendErrorMessage(sprintf(__("Unknown import format specified (\"%s\")."),$type)." ".__("Attempting to automatically identify proper format.")."<br/>");
       $type = "auto";
     }
-    //try to determine type automatically?
+    //try to determine type automatically
     if ($type=="auto") 
     {
+      //first try from data -- the content is more important than the file extension
       $type = $this->import_lib->determineImportType($import_data);
       if ($type == "unknown") 
       {
-        appendErrorMessage(__("Import").": ".__("can't automatically figure out import data format; please specify correct format.")."<br/>");
-        $this->viewform($import_data);
-        return;
+        if ($fromFile) 
+        {
+          $type = $this->import_lib->determineImportTypeFromFilename($_FILES['import_file']['name']);
+          if ($type == "unknown") 
+          {
+            appendErrorMessage(__("Import").": ".__("can't automatically figure out import data format; please specify correct format.")."<br/>");
+            $this->viewform($import_data);
+            return;
+          }
+        }
       }
-      else
-      {
-        appendMessage(sprintf(__("Import").": ".__("Data automatically identified as format \"%s\"."),$type)."<br/>");
-      }
+      appendMessage(sprintf(__("Import").": ".__("Data automatically identified as format \"%s\"."),$type)."<br/>");
     }
     
+    //depending on the type, use the right parser to get the publications from the data
     switch ($type) {
       case 'BibTeX':
         $this->load->library('parseentries');
@@ -119,14 +140,28 @@ class Import extends Controller {
        <li>".__("If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen.")."</li>
        <li>".__("If that setting is correct, too, please submit a bug report at http://aigaion.nl/")."</li>
       </ul><br/>");
-      $this->viewform($import_data);
+      if (!$fromFile) {
+        $this->viewform($import_data);
+      }
+      else
+      {
+        $this->viewform('');
+      }
       return;
     }
-          
-    $reviewed_publications  = array();
-    $review_messages        = array();
-    $count                  = 0;
-    foreach ($publications as $publication) {
+    
+    //so. Now we have the publications. Either commit them, or review them...
+    $noreview		= $this->input->post('noreview')=='noreview';
+    //if ($noreview) 
+    {
+      //do whatever is also done in commit. To this end, split commit in "getting the data" and "doing he commit"
+    }
+    //else
+    {
+      $reviewed_publications  = array();
+      $review_messages        = array();
+      $count                  = 0;
+      foreach ($publications as $publication) {
         //get review messages
         
         //review title
@@ -148,6 +183,7 @@ class Import extends Controller {
         unset($review);
       }
       $this->review($reviewed_publications, $review_messages,$markasread);
+    }
   }
 
     

@@ -95,6 +95,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'doc'	=>	'application/msword',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
+				'bib'	=>	'text/x-bibtex',
 				'eml'	=>	'message/rfc822'
 			);
 

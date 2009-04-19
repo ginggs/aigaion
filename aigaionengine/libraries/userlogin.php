@@ -265,28 +265,28 @@ class UserLogin {
         $this->iUserId = "";                
         $CI->latesession->set('USERLOGIN', $this);
         
-            //Maybe we can login from external module?
-            if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
-                //this part will change in a major way when mode 3 login is implemented
-                $result = $this->loginFromExternalSystem();
-                if ($this->bIsLoggedIn) {
-                    return;
-                }
-                if ($result == 1) {
-                    //report error and return
-                    $this->sNotice = __("Unknown user or wrong password from external login module");
-                    //return; don't return, but rather attempt to do the anonymous login later on
-                }
-                if ($result == 2) {
-                    //report error and return
-                    $this->sNotice = __("No login info available");
-                    //return; don't return, but rather attempt to do the anonymous login later on
-                }
-                if ($result == 3) { //critical fail
-                    return 1;
-                }
-
+        //Maybe we can login from external module?
+        if (getConfigurationSetting("USE_EXTERNAL_LOGIN") == 'TRUE') {
+            //this part will change in a major way when mode 3 login is implemented
+            $result = $this->loginFromExternalSystem();
+            if ($this->bIsLoggedIn) {
+                return;
             }
+            if ($result == 1) {
+                //report error and return
+                $this->sNotice = __("Unknown user or wrong password from external login module");
+                //return; don't return, but rather attempt to do the anonymous login later on
+            }
+            if ($result == 2) {
+                //report error and return
+                $this->sNotice = __("No login info available");
+                //return; don't return, but rather attempt to do the anonymous login later on
+            }
+            if ($result == 3) { //critical fail
+                return 1;
+            }
+
+        }
         $result = 0;
         //try to find login info from post vars (form) or from cookies
         $loginInfoAvailable = false;

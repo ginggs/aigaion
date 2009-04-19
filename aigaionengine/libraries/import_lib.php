@@ -37,6 +37,24 @@ class Import_lib
     }    
     return $type;
   }
+
+  /** Try to guess importt type from file name. We can try to add more extensions here, but let's be
+  conservative: not every XML extension is endnote data, and '.ref' is not very imformative either... */
+  function determineImportTypeFromFilename($fileName)
+  {
+    $type = 'unknown';
+    //determine type of input
+    if (strlen($fileName)<4) return $type;
+    if (strtolower(substr($fileName,-4))=='.bib')
+    {
+      $type = "BibTeX";
+    } 
+    if (strtolower(substr($fileName,-4))=='.ris')
+    {
+      $type = "ris";
+    }
+    return $type;
+  }
 }
 
 ?>

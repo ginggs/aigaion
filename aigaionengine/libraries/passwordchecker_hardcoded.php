@@ -13,7 +13,7 @@ class Passwordchecker_hardcoded extends Passwordchecker {
                 $p = md5($p);
             }
             if ($uname==$u && $password==$p) {
-                return array('uname'=>$u,'surname'=>__('Last Name of user').' '.$u); 
+                return array('uname'=>$u,'surname'=>__('Last Name of test user').' '.$u); 
             }
         } 
         return array('uname'=>'','notice'=>__('Not a valid login!')); 

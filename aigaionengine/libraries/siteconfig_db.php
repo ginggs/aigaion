@@ -264,7 +264,7 @@ class Siteconfig_db {
             $CI->db->where('setting', $setting);
             $CI->db->update('config', array('value'=>$value));
         	if (mysql_error()) {
-        		appendErrorMessage("Error updating config: <br/>");
+        		appendErrorMessage(__("Error updating config").": <br/>");
         		appendErrorMessage(mysql_error()."<br/>");
         	}
         }

@@ -16,7 +16,7 @@ if (!isset($content)||($content==null))
 <?php
   //open the edit form
   $formAttributes     = array('ID' => 'import_form');
-  echo form_open('import/submit', $formAttributes)."\n";
+  echo form_open_multipart('import/submit', $formAttributes)."\n";
   echo form_hidden('submit_type', 'submit')."\n";
   echo form_hidden('formname','import');
 ?>
@@ -29,13 +29,24 @@ if (!isset($content)||($content==null))
 ?>
       </td>      
     </tr>
-    
+    <tr>
+      <td>
+<?php    
+    echo __('When you upload a file for import (below), any data in the import form above will be discarded.');
+    echo '<br/>';
+    echo form_upload(array('name'=>'import_file', 'id'=>'import_file'));
+?>
+      </td>      
+    </tr>
   </table>
 <?php
   $importTypes["auto"] = "auto";
-  echo form_submit('publication_submit', __('Import'))
-       .'&nbsp;<span title="'.__('Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format.').'">'.__('Format:').' '.form_dropdown('format',$importTypes,'auto')."</span>\n"
-       .'&nbsp;'.form_checkbox('markasread','markasread',False).' '.__('Mark imported entries as read.')."\n";
+  echo '<span title="'.__('Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format.').'">'.__('Format:')
+       .'&nbsp;'.form_dropdown('format',$importTypes,'auto')."</span>\n"
+       .'<br/>'.form_checkbox('markasread','markasread',False).'&nbsp;'.__('Mark imported entries as read.')
+       //."<br/>".form_checkbox('noreview','noreview',False).'&nbsp;'.__('Do not review entries.')
+       ."<br/>".form_submit('publication_submit', __('Import'));
+       
   echo form_close()."\n";
 ?>
 </div>
