@@ -191,6 +191,56 @@ class Test extends Controller {
              
              )
       ),
+      array ('FieldContentThatLooksLikeAListOfFields', /* The entry below contains one field ('note') the content of which looks actually like a list of fields (= characters; komma separation). The brace matching should cause the field to be imported as one field, but it was somehow split wrongly somewhere */
+             //input:
+             "@TECHREPORT{reidsma2004a,
+                    author = {Reidsma, Dennis and Jovanovi{\\'{c}}, Nata{\\v s}a and Hofs, Dennis H. W.},
+                     title = {Designing Annotation Tools based on Properties of Annotation Problems},
+                      type = {Technical Report},
+                    number = {04-45},
+                      year = {2004},
+               institution = {CTIT},
+                   address = {Enschede, NL},
+                      note = {ISBN=1381-3625, publisher=CTIT, number of pages=13}
+              }",
+             //an array of pairs for all fields except author and editor: what are the expected values of the fields? 
+             array(
+               "pub_type"=>"Techreport",
+               "bibtex_id"=>"reidsma2004a",
+               "title"=>"Designing Annotation Tools based on Properties of Annotation Problems",
+               "type"=>"Technical Report",
+               "number"=>"04-45",
+               "year"=>"2004",
+               "institution"=>"CTIT",
+               "address"=>"Enschede, NL",
+               "note"=>"ISBN=1381-3625, publisher=CTIT, number of pages=13"
+             ),
+             //the expected author result: enter, for each expected author, all values for all four name-parts
+             array(
+                 array(
+                   "firstname" => "Dennis",
+                   "von"=>"",
+                   "surname"=>"Reidsma",
+                   "jr"=>"" 
+                 ),
+                 array(
+                   "firstname" => "Nataša",
+                   "von"=>"",
+                   "surname"=>"Jovanović",
+                   "jr"=>""
+                 ),
+                 array(
+                   "firstname" => "Dennis H. W.",
+                   "von"=>"",
+                   "surname"=>"Hofs",
+                   "jr"=>""
+                 )
+             ),
+             //the expected editor result: enter, for each expected editor, all values for all four name-parts
+             array(
+             
+             )
+      ),      
       array('macroBug54',
             "
             @String{chap = \"Chap.\"}
