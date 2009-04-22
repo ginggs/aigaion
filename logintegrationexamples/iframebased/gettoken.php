@@ -98,7 +98,7 @@ function getToken($aigaionRoot,$sitename,$serial,$keepchecking)
 					;//echo $header_name.": ".$http->request_headers[$header_name],"\r\n";
 			}
 			//echo "</PRE>\n";
-			flush();
+			//flush();
 
 			$headers=array();
 			$error=$http->ReadReplyHeaders($headers);
@@ -140,7 +140,7 @@ function getToken($aigaionRoot,$sitename,$serial,$keepchecking)
 					$result = $body;
 				}
 				//echo "</PRE>\n";
-				flush();
+				//flush();
 			}
 		}
 		$http->Close();

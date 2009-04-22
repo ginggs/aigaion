@@ -132,7 +132,7 @@ $pageToEmbed = str_replace(' ','%20',$pageToEmbed);
 					;//echo $header_name.": ".$http->request_headers[$header_name],"\r\n";
 			}
 			//echo "</PRE>\n";
-			flush();
+			//  flush();
 
 			$headers=array();
 			$error=$http->ReadReplyHeaders($headers);
@@ -174,7 +174,7 @@ $pageToEmbed = str_replace(' ','%20',$pageToEmbed);
 					$result = $body;
 				}
 				//echo "</PRE>\n";
-				flush();
+				//flush();
 			}
 		}
 		$http->Close();
