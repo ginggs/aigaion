@@ -44,7 +44,7 @@ if (!isset($content)||($content==null))
   echo '<span title="'.__('Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format.').'">'.__('Format:')
        .'&nbsp;'.form_dropdown('format',$importTypes,'auto')."</span>\n"
        .'<br/>'.form_checkbox('markasread','markasread',False).'&nbsp;'.__('Mark imported entries as read.')
-       //."<br/>".form_checkbox('noreview','noreview',False).'&nbsp;'.__('Do not review entries.')
+       ."<br/>".form_checkbox('noreview','noreview',False).'&nbsp;'.__('Do not review entries.')
        ."<br/>".form_submit('publication_submit', __('Import'));
        
   echo form_close()."\n";

@@ -152,11 +152,26 @@ class Import extends Controller {
     
     //so. Now we have the publications. Either commit them, or review them...
     $noreview		= $this->input->post('noreview')=='noreview';
-    //if ($noreview) 
+    $markasread		= $this->input->post('markasread')=='markasread';
+    if ($noreview) 
     {
       //do whatever is also done in commit. To this end, split commit in "getting the data" and "doing he commit"
+      foreach ($publications as $pub_to_import)
+      {
+        $pub_to_import = $this->publication_db->add($pub_to_import);
+        if ($markasread)$pub_to_import->read('');
+        $last_id = $pub_to_import->pub_id;
+        if (!ini_get('safe_mode'))set_time_limit(2); // give an additional 2 seconds for every entry to be displayed
+      }
+      $count = count($publications);
+      appendMessage(sprintf(__('Succesfully imported %s publications.'),$count)."<br/>");
+      if ($count == 1) {
+        redirect('publications/show/'.$last_id);
+      } else {
+        redirect('publications/showlist/recent');
+      }
     }
-    //else
+    else
     {
       $reviewed_publications  = array();
       $review_messages        = array();
@@ -239,6 +254,7 @@ class Import extends Controller {
       $pub_to_import = $this->publication_db->add($pub_to_import);
       if ($markasread)$pub_to_import->read('');
       $last_id = $pub_to_import->pub_id;
+      if (!ini_get('safe_mode'))set_time_limit(2); // give an additional 2 seconds for every entry to be displayed
     }
     appendMessage(sprintf(__('Succesfully imported %s publications.'),$count)."<br/>");
     if ($count == 1) {
