@@ -1,7 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
-  $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
-  $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
+$authorfields = array(
+	'firstname'	=>	__('First name(s)'),
+	'von'		=>	__('von-part'),
+	'surname'	=>	__('Last name(s)'),
+	'jr'			=>	__('jr-part'),
+	'email'		=>	__('Email'),
+	'institute'		=>	__('Institute'),
+	'url'			=>	__('URL')
+);
+$formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
   <div class='header'><?php echo __('Merge authors'); ?></div>
@@ -42,7 +50,7 @@
   </table>
 
 <?php
-    
+
   echo form_close()."\n";
 echo form_open('authors/show/'.$author->author_id);
 echo form_submit('cancel',__('Cancel'));

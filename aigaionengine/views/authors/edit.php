@@ -1,10 +1,18 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
-  $authorfields = array('firstname'=>__('First name(s)'), 'von'=>__('von-part'), 'surname'=>__('Last name(s)'), 'jr'=>__('jr-part'), 'email'=>__('Email'), 'institute'=>__('Institute'));
-  $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
+$authorfields = array(
+	'firstname'	=>	__('First name(s)'),
+	'von'		=>	__('von-part'),
+	'surname'	=>	__('Last name(s)'),
+	'jr'			=>	__('jr-part'),
+	'email'		=>	__('Email'),
+	'institute'		=>	__('Institute'),
+	'url'			=>	__('URL')
+);
+$formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
-  <div class='header'><?php 
+  <div class='header'><?php
     switch ($edit_type) {
       case 'new':
         echo __('New Author');
@@ -30,7 +38,7 @@
   <table class='author_edit_form' width='100%'>
 <?php
     if (isset($review)):
-?>    
+?>
     <tr>
       <td colspan = 2>
         <div class='errormessage'><?php echo $review['author']; ?></div>
