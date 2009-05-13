@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-22 22:14+0200\n"
+"POT-Creation-Date: 2009-05-13 15:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:320
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:253
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:48
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:40
 msgid "Merge"
 msgstr ""
@@ -363,7 +363,7 @@ msgid "author does not exist"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:405
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:337
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
 msgid "Author"
 msgstr ""
@@ -1447,7 +1447,7 @@ msgid "Checking for updates"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:148
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:312
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:362
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:90
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:103
@@ -1525,18 +1525,18 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:135
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:143
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:357
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:364
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:407
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:414
 msgid "Test"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:136
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:358
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:408
 msgid "Failed"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:144
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:415
 msgid "Passed"
 msgstr ""
 
@@ -1550,37 +1550,37 @@ msgid ""
 "only the result of the bibtex parsing."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:263
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:313
 #, php-format
 msgid "Import should return 1 publication, but returned %s publications."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:274
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:324
 #, php-format
 msgid "\"%s\" should have been \"%s\" but is \"%s\""
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:282
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:332
 #, php-format
 msgid "Import should contain %s authors, but does contain %s authors."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:292
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:342
 #, php-format
 msgid "First name(s) should have been \"%s\" but is \"%s\"."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:298
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:348
 #, php-format
 msgid "von-part should have been \"%s\" but is \"%s\"."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:304
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:354
 #, php-format
 msgid "Last name(s) should have been \"%s\" but is \"%s\"."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:310
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:360
 #, php-format
 msgid "jr-part should have been \"%s\" but is \"%s\"."
 msgstr ""
@@ -3348,7 +3348,7 @@ msgid "New Publication"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:78
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:18
 msgid "New Author"
 msgstr ""
 
@@ -3461,8 +3461,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:63
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:71
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
@@ -3748,7 +3748,7 @@ msgid "Set URL"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:66
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:53
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:61
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:98
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:53
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:104
@@ -3805,65 +3805,73 @@ msgstr ""
 msgid "Are you sure that you want to delete the author \"%s\"?"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:4
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:4
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "First name(s)"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:5
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:5
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "von-part"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:6
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:6
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Last name(s)"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:7
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:7
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "jr-part"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:8
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:8
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Email"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Institute"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
+msgid "URL"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:22
 msgid "Edit Author"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:55
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:63
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:96
 #: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:55
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:102
@@ -3903,21 +3911,21 @@ msgstr ""
 msgid "All information on %s"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:7
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:15
 msgid "Merge authors"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:8
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:16
 msgid ""
 "Merges the source author with the target author. The source author will be "
 "deleted, all publications will be transferred to the target author."
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:28
 msgid "Target author"
 msgstr ""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:22
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:30
 msgid "Source author"
 msgstr ""
 
@@ -3927,12 +3935,6 @@ msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 msgid "Edit this author"
-msgstr ""
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:38
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
-msgid "URL"
 msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:49
