@@ -1,0 +1,1154 @@
+# Iñtërnâtiônàlizætiøn
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Aigaion 2.1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-01 20:32+0100\n"
+"PO-Revision-Date: 2009-02-01 20:36+0100\n"
+"Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:15
+msgid "year"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:16
+msgid "title"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:17
+msgid "survey"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:18
+msgid "mark"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:19
+msgid "series"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:20
+msgid "volume"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:21
+msgid "publisher"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:22
+msgid "location"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:23
+msgid "issn"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:24
+msgid "isbn"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:25
+msgid "firstpage"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:26
+msgid "lastpage"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:27
+msgid "journal"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:28
+msgid "booktitle"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:29
+msgid "number"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:30
+msgid "institution"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:31
+msgid "address"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:32
+msgid "chapter"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:33
+msgid "edition"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:34
+msgid "howpublished"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:35
+msgid "month"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:36
+msgid "organization"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:37
+msgid "school"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:38
+msgid "note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:39
+msgid "abstract"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:49
+msgid "url"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:41
+msgid "doi"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:42
+msgid "pages"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:45
+msgid "surname"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:46
+msgid "von"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:47
+msgid "firstname"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:48
+msgid "email"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:50
+msgid "institute"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:64
+msgid "read level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:66
+msgid "edit level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:67
+msgid "effective access levels"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:73
+msgid "read access"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:73
+msgid "read access level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
+msgid "edit access"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:80
+msgid "edit acces level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:95
+msgid "cannot edit access levels of this object"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:102
+#, fuzzy
+msgid "public"
+msgstr "Nouvelle publication"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:102
+#, fuzzy
+msgid "intern"
+msgstr "Site"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:104
+msgid "private"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:117
+msgid "effective access level is different"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
+msgid "Edit access level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:181
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:276
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:302
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:351
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
+msgid "insufficient rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Modify access level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:194
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:293
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:308
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:314
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:363
+msgid "Restricted edit level to match read level"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:203
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:208
+msgid "Increased read level for publication to match new read level for attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:212
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:252
+msgid "Couldn't propagate new level all the way up"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:243
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:248
+msgid "Increased read level for publication to match new read level for note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:281
+msgid "You cannot change the access levels of the top topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\accesslevels_lib.php:379
+msgid "Cascade of access levels not yet implemented"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:101
+msgid "Add attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:113
+#, php-format
+msgid "ERROR UPLOADING: %s is not an allowed extension for remote files."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:114
+msgid "Allowed types"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:115
+#, php-format
+msgid "Need other file types? Ask %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:152
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:321
+msgid "Error un-'main'-ing other attachments"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:172
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:260
+msgid "Error adding attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:182
+msgid "You cannot upload attachment files to this server (the server is declared write-only); please use remote attachments instead."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:189
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:278
+msgid "Error while uploading"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:267
+msgid "Error uploading. The file was not written to disk."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:269
+msgid "Is this error entirely unexpected? You might want to check whether the php settings 'upload_max_filesize', 'post_max_size' and 'max_execution_time' are all large enough for uploading your attachments... Please check this with your administrator."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:278
+#, php-format
+msgid "Is the error due to allowed file types? Ask %s for more types."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:305
+msgid "Update attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:352
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:356
+msgid "Cannot delete attachment"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\attachment_db.php:356
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:824
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
+msgid "erroneous ID"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:258
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:268
+msgid "Cannot delete author"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:268
+msgid "still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there..."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:301
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:931
+#, php-format
+msgid "One of the fields %s is required"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:306
+msgid "Changes not committed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:480
+msgid "Found similar authors for"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:497
+msgid "Please review the entered authors"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:628
+msgid "There are some publications that could not be reassigned due to access rights"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:44
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:75
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:91
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:123
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:166
+msgid "Changing bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:34
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:143
+msgid "Error changing bookmarklist"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:159
+msgid "Bookmarked publications added to topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\bookmarklist_db.php:174
+msgid "Bookmarked publications removed from topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\email_export.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:36
+msgid "Export"
+msgstr "Exporter"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+#, fuzzy
+msgid "File"
+msgstr "Titre"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:229
+msgid "successfully uploaded!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:230
+msgid "The uploaded file exceeds the maximal upload filesize defined in the server configuration."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:231
+msgid "Please ask your site administrator to fix the UPLOAD_MAX_FILESIZE directive in php.ini."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:232
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:233
+msgid "The uploaded file was only partially uploaded"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:234
+msgid "No file was uploaded"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:241
+msgid "Please select a file for upload."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:242
+msgid "Only files with the following extensions are allowed"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
+msgid "A valid filename ends with one dot followed by the extension."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:244
+#, php-format
+msgid "The filename exceeds the maximum length of %s characters."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:245
+msgid "Sorry, the upload directory doesn't exist!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Uploading"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Error!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:246
+msgid "Sorry, a file with this name already exists."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:247
+msgid "The uploaded file is renamed to"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:248
+msgid "Couldn't move uploaded file from PHP tmp upload dir to permanent storage directory."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
+msgid "Cannot delete group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:175
+msgid "Found similar keywords for"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:192
+msgid "Please review the entered keywords."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\login_ldap.php:5
+msgid "Loaded deprecated login_ldap module. LDAP login now uses delegated password checking!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
+msgid "Add note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
+msgid "Edit note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
+msgid "Cannot delete note"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:211
+#, php-format
+msgid "Failed to update the bibtex-id in note %s."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
+msgid "Warning: entry does not seem to have the proper format."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:324
+msgid "Could not find the comma which should come after the citation key. If the key is not present, the comma should still be there. If the key is present, but no bibliographic data follows, the entry is empty and cannot be imported. Skipped importing the following entry."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:573
+#, php-format
+msgid "Import: unknown abbreviation encountered in \"%s\"."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\parseentries.php:573
+#, php-format
+msgid "Interpreted as %s={%s}"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:19
+msgid "Not a valid login!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:16
+msgid "Last Name of user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
+msgid "The LDAP password checker cannot handle md5 passwords yet"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:36
+msgid "LDAP auth: There was a problem."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:37
+msgid "Error code"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:38
+msgid "Error text"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:409
+#, fuzzy
+msgid "Add publication"
+msgstr "Nouvelle publication"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:824
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:840
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:855
+#, fuzzy
+msgid "Cannot delete publication"
+msgstr "Exporter toutes les publications"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:840
+msgid "publication contains some attachments that you do not have permission to delete."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:855
+msgid "publication contains some notes that you do not have permission to delete."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:912
+#, php-format
+msgid "The %s field is required"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:937
+msgid "Validation error"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1215
+#, php-format
+msgid "Failed to update the bibtex-id in publication %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1328
+msgid "resolveXref: merge xref into publication!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1364
+msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1385
+msgid "The cite id is not unique, please choose another cite id."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1387
+msgid "Publication with same cite id"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1403
+msgid "Similar cite ids"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
+msgid "Cannot delete rightsprofile"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:221
+#, php-format
+msgid "Language '%s' no longer exists under that name. Please reset the relevant profile and site settings."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:210
+msgid "Delegated password checking can only be enabled when some password checking module was specified! Since this was not the case, delegated password checking has been disabled."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:218
+msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:226
+msgid "Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:248
+#, php-format
+msgid "The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:294
+msgid "Failed to upload custom logo."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:297
+msgid "New logo uploaded"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
+#, fuzzy
+msgid "Categorize publication"
+msgstr "Nouvelle publication"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:379
+msgid "Change subscription"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:396
+#, fuzzy
+msgid "Add topic"
+msgstr "Mes Rubriques"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:424
+msgid "You cannot edit the top level topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:441
+#, fuzzy
+msgid "Edit topic"
+msgstr "Mes Rubriques"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:450
+msgid "You cannot set a topic to be its own ancestor."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:459
+msgid "Error in the tree structure: the intended new parent is not connected to the top level topic."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:503
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:515
+msgid "Cannot delete topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:515
+msgid "still has children (possibly invisible)"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:86
+msgid "You have been logged out because your login token disappeared."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:93
+msgid "You have been logged out because your login token expired."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:103
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:785
+msgid "You have been logged out because the Aigaion Engine is in the process of being updated."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:105
+msgid "If you are a user with database_manage rights, please login to complete the update."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:158
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:172
+msgid "You do not have sufficient rights for the requested operation or page."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:160
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:174
+msgid "Sorry for the inconvenience."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:209
+#, php-format
+msgid "Theme '%s' no longer exists"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:277
+msgid "Unknown user or wrong password from external login module"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:282
+msgid "No login info available"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:307
+msgid "No password submitted"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:335
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:350
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:356
+msgid "Unknown user or wrong password"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#, php-format
+msgid "The username / password combination is valid according to the login module, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:423
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+msgid "internal"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+msgid "anonymous"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:433
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+msgid "group"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:515
+#, php-format
+msgid "Created missing user %s  as member of groups %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:596
+#, php-format
+msgid "A new Aigaion account has been created for you, user '%s'. Please enjoy your stay here."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:603
+msgid "Serious error in login tables"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:612
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:617
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:622
+#, php-format
+msgid "The username / password combination is valid according to %s, but the corresponding Aigaion account is an %s account and cannot be logged in by the %s module. Please contact your database admin for assistance."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:632
+msgid "The username / password combination is valid, but has no Aigaion account associated with it yet. Please contact your database admin for assistance"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:676
+msgid "Anonymous (guest) access to this database has been enabled. However, no default anonymous account has been assigned, so anonymous access is unfortunately not yet possible."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:724
+msgid "Your admin account password still has the default value, please change it on the 'profile' page."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:760
+#, php-format
+msgid "Dear guest, welcome to this publication database. As an anonymous user, you will probably not have edit rights. Also, the collapse status of the topic tree will not be persistent. If you like to have these and other options enabled, you might ask %s for a login account."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:764
+msgid "This site is powered by Aigaion - A PHP/Web based management system for shared and annotated bibliographies."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:766
+#, php-format
+msgid "For more information visit %s"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:787
+msgid "If you are a user with database manage rights, please login to complete the update."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:797
+msgid "Checking for updates..."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
+msgid "OK"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:801
+msgid "This installation of Aigaion is up-to-date"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
+msgid "Alert"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:327
+msgid "Unknown language"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:240
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:375
+msgid "Removed 'bookmarklist' right from anonymous user: it makes no sense to assign it since many people will be loggin on with that account simultaneously."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:265
+msgid "User added"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:288
+msgid "Login names cannot be changed. Login name has been reset to old value. Other changes have been saved."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:305
+msgid "The account does not have a valid password. It has been disabled. You can ask an admin to re-enable it."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:364
+msgid "You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:418
+msgid "You just removed your own right to assign user rights! Are you sure that this is correct? If not, re-assign this right before logging out!"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:420
+msgid "Profile updated, changes to rights of users are applied after the user has logged in again."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:423
+msgid "User data changed. Changed access rights will be valid upon next login."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:437
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
+msgid "Cannot delete user"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:12
+msgid "Browse"
+msgstr "Naviguer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:14
+msgid "My Topics"
+msgstr "Mes Rubriques"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:19
+msgid "My Bookmarks"
+msgstr "Mes Favoris"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:23
+msgid "All Topics"
+msgstr "Toutes les rubriques"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:24
+msgid "All Publications"
+msgstr "Toutes les publications"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:25
+msgid "All Authors"
+msgstr "Tous les auteurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:26
+msgid "Unassigned"
+msgstr "Non assignées"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:27
+msgid "Recent"
+msgstr "Récentes"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:28
+#: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\search\advanced.php:118
+#, fuzzy
+msgid "Search"
+msgstr "Année"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:38
+msgid "Export all publications"
+msgstr "Exporter toutes les publications"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:60
+#, fuzzy
+msgid "Sort by"
+msgstr "Trier Par"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:62
+msgid "Author"
+msgstr "Auteur"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:63
+msgid "Title"
+msgstr "Titre"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:64
+msgid "Type/journal"
+msgstr "Type/Journal"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:65
+msgid "Year"
+msgstr "Année"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:66
+msgid "Recently added"
+msgstr "Dernières ajoutées"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:78
+msgid "New Data"
+msgstr "Nouvelle Donnée"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:80
+msgid "New Publication"
+msgstr "Nouvelle publication"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:81
+msgid "New Author"
+msgstr "Nouvel auteur"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:86
+msgid "New Topic"
+msgstr "Nouvelle rubrique"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:90
+msgid "Import"
+msgstr "Importer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:98
+msgid "Site"
+msgstr "Site"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:100
+msgid "Help"
+msgstr "Aide"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:101
+msgid "About this site"
+msgstr "À propos de ce site"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:105
+msgid "Site Configuration"
+msgstr "Configurer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:106
+msgid "Site Maintenance"
+msgstr "Effectuer maintenance"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:110
+msgid "Manage All Accounts"
+msgstr "Gérer les utilisateurs"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:121
+#, fuzzy
+msgid "Guest user"
+msgstr "Invité"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:141
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:183
+msgid "My Profile"
+msgstr "Mon profile"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:144
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:186
+msgid "Topic Subscribe"
+msgstr "Souscrire à une rubrique"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:149
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:171
+msgid "Login"
+msgstr "Entrer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:159
+msgid "Name"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:165
+msgid "Password"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:171
+msgid "Remember me"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:179
+#, fuzzy
+msgid "Logged In"
+msgstr "Connecté"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:189
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:59
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:20
+msgid "delete"
+msgstr "supprimer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:50
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:60
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:31
+#: C:\WEBROOT\aigaion2\aigaionengine\views\users\summary.php:19
+msgid "edit"
+msgstr "éditer"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:52
+msgid "unset main"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:54
+msgid "set main"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\clean.php:23
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:104
+msgid "Topic"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:89
+#, fuzzy
+msgid "publication"
+msgstr "Nouvelle publication"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:93
+#, fuzzy
+msgid "publications"
+msgstr "Toutes les publications"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+#, fuzzy
+msgid "author"
+msgstr "Auteur"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:96
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+msgid "view"
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:98
+#, fuzzy
+msgid "authors"
+msgstr "Auteur"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:106
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:109
+#, fuzzy
+msgid "topics"
+msgstr "Mes Rubriques"
+
+#~ msgid "Name:"
+#~ msgstr "Nom"
+
