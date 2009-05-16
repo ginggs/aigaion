@@ -255,10 +255,16 @@ class Bibtex2utf8 {
         
         */  
 
-        /*
-        add more of those!
-        */
+        /* some Polish and eastern european characters */
+        
+        //array(".","z","ż"), //why does this one not work?
+        //array("'","z","ź"), //why does this one not work?
+        
+        array("'","s","ś"),
+        array("'","n","ń"),
         array("'","c","ć")
+       
+        /* add more of those! */
        
       ); //did you put the comma's right? the last entry without comma!
       
@@ -274,6 +280,10 @@ class Bibtex2utf8 {
       $this->combinedLetters = array ( 
             array("c","c","ç"),
             array("c","C","Ç"),
+            //array("c","a","ą"),  // ĄąĘę I think these are wrong -- the little curly thing should be in the other direction, like with the c and e
+            //array("c","A","Ą"),
+            array("c","e","ȩ"),
+            array("c","E","Ȩ"),
             
             array("d","o","ọ"),
             array("d","o","Ọ"),
@@ -284,6 +294,7 @@ class Bibtex2utf8 {
             array("v","C","Č"),
             array("v","s","š"),
             array("v","S","Š")
+                  
       ); //did you put the comma's right? the last entry without comma!
       
       /*
