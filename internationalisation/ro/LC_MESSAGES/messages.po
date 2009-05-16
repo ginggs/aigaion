@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aigaion 2, Romanian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-12 20:37+0100\n"
+"POT-Creation-Date: 2009-05-16 16:01+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: Bogdan\n"
@@ -26,7 +26,7 @@ msgstr "Editează nivelele de acces"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\accesslevels.php:253
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:94
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:73
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:312
 #, php-format
 msgid "%s read / edit rights"
 msgstr "%s citeşte / editează drepturi"
@@ -109,7 +109,7 @@ msgstr "Şterge ataşament"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:394
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:426
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:483
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:646
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:648
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:42
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:427
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:431
@@ -129,7 +129,13 @@ msgstr "Şterge ataşament"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:413
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\groups.php:467
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:273
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:215
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:249
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:273
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:322
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:357
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:410
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:105
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\notes.php:150
@@ -147,10 +153,10 @@ msgstr "Şterge ataşament"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\rightsprofiles.php:257
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:32
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:99
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:205
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:292
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:322
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:396
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:212
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:299
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:329
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:403
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:149
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:189
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:235
@@ -190,8 +196,8 @@ msgstr "Şterge ataşament"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:110
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:145
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:178
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:405
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:816
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:403
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:814
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:142
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:337
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:351
@@ -261,7 +267,7 @@ msgid "View Author"
 msgstr "Afişează autor"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:46
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:709
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:711
 msgid "Export author"
 msgstr "Exportă autor"
 
@@ -310,6 +316,11 @@ msgstr "Nu s-a găsit nici o publicaţie."
 msgid "Edit author"
 msgstr "Editează autor"
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:286
+#, fuzzy, php-format
+msgid "%s author"
+msgstr "%s autor(i)"
+
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:308
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:316
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:341
@@ -319,6 +330,8 @@ msgstr "Nu se pot fuziona autorii"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:308
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:341
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:241
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:350
 msgid "missing parameters"
 msgstr "lipsesc parametri"
 
@@ -326,12 +339,14 @@ msgstr "lipsesc parametri"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:520
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:545
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:212
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:213
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:235
 msgid "Authors"
 msgstr "Autori"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:320
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:40
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:253
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:40
 msgid "Merge"
 msgstr "Fuzionare"
 
@@ -345,15 +360,17 @@ msgid "author does not exist"
 msgstr "autorul nu există"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:405
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:287
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:337
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:59
 msgid "Author"
 msgstr "Autor"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:405
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:421
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:47
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:16
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:57
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:15
@@ -368,12 +385,9 @@ msgid "Author \"%s\" already exists in the database."
 msgstr "Autorul \"%s\" există deja în baza de date."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:487
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:221
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:502
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:506
-msgid "Review publication"
-msgstr "Revizuie publicaţia"
+#, fuzzy
+msgid "Review author"
+msgstr "Afişează autor"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:511
 msgid "Authors for topic"
@@ -388,18 +402,18 @@ msgstr "Autori pentru subiectul %s"
 msgid "All authors in the database"
 msgstr "Toţi autorii din baza de date"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:646
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:648
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:899
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:689
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:621
 msgid "Export through email"
 msgstr "Exportă prin e-mail"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:664
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:666
 msgid "No author selected for export"
 msgstr "Nici un autor selectat pentru export"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:676
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:678
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:927
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:34
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\export.php:111
@@ -411,30 +425,30 @@ msgstr "Nici un autor selectat pentru export"
 msgid "Select export format"
 msgstr "Selectare format de export"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:706
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:708
 msgid "Author export"
 msgstr "Export autor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:711
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:713
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:963
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:759
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:687
 msgid "Export by email"
 msgstr "Export prin e-mail"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:720
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:722
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:973
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:768
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:696
 msgid "Export from Aigaion"
 msgstr "Export din Aigaion"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:732
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:780
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:734
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:782
 msgid "Exported for author"
 msgstr "Exportat pentru autor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:743
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:745
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:996
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:791
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:719
@@ -444,14 +458,14 @@ msgstr "Exportat pentru autor"
 msgid "Formatted"
 msgstr "Formatat"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:801
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:803
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1054
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:849
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:777
 msgid "Mail sent successfully"
 msgstr "Mail trimis cu succes"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:805
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\authors.php:807
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:1058
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:853
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:781
@@ -483,7 +497,7 @@ msgid "Bookmarklist of %s"
 msgstr "Lista de marcaje de %s"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:59
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:148
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:153
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:164
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:232
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:340
@@ -492,7 +506,7 @@ msgid "sorted by journal and type"
 msgstr "sortat după jurnal şi tip"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:62
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:156
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:167
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:235
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:343
@@ -501,7 +515,7 @@ msgid "sorted by recency"
 msgstr "sortat după vechime"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:65
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:154
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:159
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:170
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:238
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:346
@@ -510,7 +524,7 @@ msgid "sorted by title"
 msgstr "sortat după titlu"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:68
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:157
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:162
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:349
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\topics.php:457
 msgid "sorted by first author"
@@ -522,6 +536,7 @@ msgstr "Adaugă publicaţia la lista de marcaje"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:122
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:224
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:80
 msgid "Click to UnBookmark publication"
 msgstr "Clic pentru a demarca publicaţia"
 
@@ -543,6 +558,7 @@ msgstr "Şterge publicaţia din lista de marcaje"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:266
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:232
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:89
 msgid "Click to Bookmark publication"
 msgstr "Clic pentru a marca publicaţia"
 
@@ -655,6 +671,7 @@ msgstr "Setează nivelul de acces la valoarea %s pentru toate ataşamentele publ
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\summary.php:48
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\summary.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\summary.php:58
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\summary.php:14
@@ -883,14 +900,14 @@ msgid "Help"
 msgstr "Ajutor"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:26
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:77
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:102
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:108
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:137
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:87
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:36
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:48
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:314
 msgid "Import"
 msgstr "Importă"
@@ -901,63 +918,72 @@ msgstr "Importă"
 msgid "Import publications"
 msgstr "Importă publicaţii"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:63
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:77
 msgid "no import data entered."
 msgstr "nu s-au introdus date de importat"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:72
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 #, php-format
 msgid "Unknown import format specified (\"%s\")."
 msgstr "S-a specificat un format de import necunoscut (\"%s\")."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:72
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 msgid "Attempting to automatically identify proper format."
 msgstr "Se încearcă identificarea automată a formatului corespunzător."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:81
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:102
 msgid "can't automatically figure out import data format; please specify correct format."
 msgstr "nu se poate detecta automat formatul de import al datelor; vă rugăm să specificaţi formatul corect"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:108
 #, php-format
 msgid "Data automatically identified as format \"%s\"."
 msgstr "Datele au fost identificate automat ca având formatul \"%s\"."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:116
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:137
 msgid "Could not extract any valid publication entries from the import data."
 msgstr "Nu se pot extrage intrări valide ale publicaţiilor din datele importate."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:118
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:139
 msgid "Please verify the input."
 msgstr "Vă rugăm verificaţi intrarea."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:119
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:140
 msgid "If the input is correct, please verify the contents of the \"BibTeX strings\" setting under \"In- and output settings\", in the site configuration screen."
 msgstr "Dacă intrarea este corectă, vă rugăm verificaţi conţinutul setărilor din  \"BibTeX strings\" sub \"In- and output settings\",  în ecranul de configurare a site-ului."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:120
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:141
 msgid "If that setting is correct, too, please submit a bug report at http://aigaion.nl/"
 msgstr "Dacă şi această setare este corectă, vă rugăm să trimiteţi un raport al erorii la http://aigaion.nl"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
-msgid "Commit"
-msgstr "Înscriere"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:174
-msgid "no publications committed."
-msgstr "nu s-au înscris publicaţii"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:207
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:259
 #, php-format
 msgid "Succesfully imported %s publications."
 msgstr "S-au importat cu succes %s publicaţii."
 
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
+msgid "Commit"
+msgstr "Înscriere"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:225
+msgid "no publications committed."
+msgstr "nu s-au înscris publicaţii"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:273
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:277
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:502
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:506
+msgid "Review publication"
+msgstr "Revizuie publicaţia"
+
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:40
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:86
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:253
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:84
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:268
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:192
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:73
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:204
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:226
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:79
 msgid "Keywords"
 msgstr "Cuvinte cheie"
@@ -966,26 +992,69 @@ msgstr "Cuvinte cheie"
 msgid "View publications for keyword"
 msgstr "Afişare publicaţii după cuvântul cheie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:138
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:143
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:421
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:3
 msgid "Keyword"
 msgstr "Cuvânt cheie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:142
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:147
 msgid "Export for keyword"
 msgstr "Export pentru cuvântul cheie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:145
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:148
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:151
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:154
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:157
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:150
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:153
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:156
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:162
 #, php-format
 msgid "Publications for keyword \"%s\""
 msgstr "Publicaţii pentru cuvântul cheie \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:177
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:183
 msgid "No publications found using this keyword."
 msgstr "Nu s-au găsit publicaţii folosind acest cuvânt cheie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:215
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:273
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:322
+#, fuzzy
+msgid "Edit keyword"
+msgstr "Export pentru cuvântul cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:219
+#, fuzzy, php-format
+msgid "%s keyword"
+msgstr "Cuvânt cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:241
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:249
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:350
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:357
+#, fuzzy
+msgid "Cannot merge keywords"
+msgstr "Nu se pot fuziona autorii"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:304
+#, fuzzy, php-format
+msgid "Keyword \"%s\" already exists in the database."
+msgstr "Autorul \"%s\" există deja în baza de date."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:326
+#, fuzzy
+msgid "Review keyword"
+msgstr "Returnează cuvinte cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:402
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:410
+#, fuzzy
+msgid "Delete keyword"
+msgstr "Şterge utilizator"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\keywords.php:402
+#, fuzzy
+msgid "keyword does not exist"
+msgstr "autorul nu există"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\language.php:40
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:207
@@ -1133,7 +1202,7 @@ msgid "Edit publication"
 msgstr "Editează publicaţia"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\publications.php:311
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:405
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:403
 msgid "Add publication"
 msgstr "Adaugă publicaţia"
 
@@ -1358,16 +1427,16 @@ msgstr "Configurarea site-ului"
 msgid "Maintain database"
 msgstr "Întreţine baza de date"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:139
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:143
 msgid "Aigaion updates"
 msgstr "Actualizări Aigaion"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:140
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:144
 msgid "Checking for updates"
 msgstr "Se caută actualizări"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:144
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:312
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:148
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:362
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:90
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:103
@@ -1375,51 +1444,53 @@ msgstr "Se caută actualizări"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:135
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:164
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:179
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:197
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:210
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:225
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:239
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:254
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:327
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:346
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:213
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:228
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:247
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:260
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:275
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:289
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:304
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:377
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:396
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:800
 msgid "OK"
 msgstr "OK"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:145
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:149
 msgid "This installation of Aigaion is up-to-date."
 msgstr "Această instalare Aigaion este actualizată."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:160
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:167
 #, php-format
 msgid "Maintenance function \"%s\" not implemented."
 msgstr "Funcţia de mentenanţă  \"%s\" nu este implementată."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:167
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:174
 msgid "Site maintenance"
 msgstr "Mentenanţa site-ului"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:205
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:212
 msgid "Backup database"
 msgstr "Copie de siguranţă pentru baza de date "
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:292
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:296
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:322
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:396
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:299
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:303
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:329
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:403
 msgid "Restore database"
 msgstr "Restaurează baza de date"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:331
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:338
 msgid "The file appears not to be an SQL file. Please select a valid Aigaion backup file."
 msgstr "Fişierul nu pare a fi un fişier SQL. Vă rugăm selectaţi un fişier valid pentru copia de siguranţă Aigaion."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:355
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:419
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:362
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:426
 msgid "Restored database"
 msgstr "Bază de date restaurată"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:403
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\site.php:410
 msgid "No data given to restore!"
 msgstr "Nu sunt date de restaurat!"
 
@@ -1438,18 +1509,18 @@ msgstr "Conversiile caracterelor Bibtex"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:135
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:143
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:357
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:364
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:407
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:414
 msgid "Test"
 msgstr "Test"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:136
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:358
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:408
 msgid "Failed"
 msgstr "Eşuat"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:144
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:365
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:415
 msgid "Passed"
 msgstr "Trecut"
 
@@ -1461,37 +1532,37 @@ msgstr "Importurile unei singure intrări Bibtex"
 msgid "Note: these tests do not take the review and database result into account, only the result of the bibtex parsing."
 msgstr "Notă: aceste teste nu iau în considerare revizuirea şi rezultatele bazei de date, ci doar rezultatele analizei bibtex."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:263
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:313
 #, php-format
 msgid "Import should return 1 publication, but returned %s publications."
 msgstr "Importul ar trebui să returneze o publicaţie, dar a returnat %s publicaţii."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:274
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:324
 #, php-format
 msgid "\"%s\" should have been \"%s\" but is \"%s\""
 msgstr "\"%s\" ar trebui să fie \"%s\" dar este \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:282
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:332
 #, php-format
 msgid "Import should contain %s authors, but does contain %s authors."
 msgstr "Importul ar trebui să conţină %s autori, dar conţine %s autori."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:292
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:342
 #, php-format
 msgid "First name(s) should have been \"%s\" but is \"%s\"."
 msgstr "Prenumele ar trebui să fie \"%s\" în loc de \"%s\"."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:298
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:348
 #, php-format
 msgid "von-part should have been \"%s\" but is \"%s\"."
 msgstr "Partea \"von\" ar trebui să fie \"%s\" în loc de \"%s\"."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:304
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:354
 #, php-format
 msgid "Last name(s) should have been \"%s\" but is \"%s\"."
 msgstr "Numele de familie ar trebui să fie \"%s\" în loc de \"%s\"."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:310
+#: C:\WEBROOT\aigaion2\aigaionengine\controllers\test.php:360
 #, php-format
 msgid "jr-part should have been \"%s\" but is \"%s\"."
 msgstr "Partea \"jr\" ar trebui să fie \"%s\" în loc de \"%s\"."
@@ -1792,11 +1863,13 @@ msgstr "Utilizatorul %s are numele de utilizator ca parolă!"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:128
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:158
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:171
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:191
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:204
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:218
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:232
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:248
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:207
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:220
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:241
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:254
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:268
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:282
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:298
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\userlogin.php:803
 msgid "Alert"
 msgstr "Alertă"
@@ -1868,6 +1941,7 @@ msgid "Checking similar author names"
 msgstr "Se verifică numele de autori similare"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:151
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:200
 msgid "TURNED OFF BECAUSE IT TENDS TO TIME-OUT"
 msgstr "OPRIT PENTRU CĂ TINDE SĂ EXPIRE"
 
@@ -1892,114 +1966,159 @@ msgstr "Următorii autori nu au nici o publicaţie enumerată"
 msgid "Delete all non-publishing authors"
 msgstr "Şterge toţi autorii care nu au publicaţii"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:184
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:185
+#, fuzzy
+msgid "Keyword check"
+msgstr "Verificarea parolelor"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:188
+#, fuzzy
+msgid "Checking similar keywords"
+msgstr "Se verifică numele de autori similare"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:203
+#, fuzzy
+msgid "Checking orphaned keywordpublicationlinks"
+msgstr "Se verifică referinţele autor publicaţie goale"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:209
+#, fuzzy, php-format
+msgid "%s keywordpublicationlinks whose corresponding keywords could not be found, were removed."
+msgstr "Au fost şterse %s referinţe autor publicaţie ale căror autori corespunzători nu pot fi găsiţi"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:216
+#, fuzzy
+msgid "Checking for unused keywords"
+msgstr "Se caută actualizări"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:222
+#, fuzzy
+msgid "The following keywords are not used"
+msgstr "Următorii autori au un nume gol"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:224
+#, fuzzy
+msgid "Delete all unused keywords"
+msgstr "Returnează cuvinte cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:234
 msgid "Topic tree check"
 msgstr "Verificarea structurii subiectelor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:187
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:237
 msgid "Check orphaned topictopiclinks"
 msgstr "Se verifică referinţele subiect subiect orfane"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:243
 #, php-format
 msgid "%s topictopiclinks, of which the topic couldn't be found, have been removed."
 msgstr "Au fost şterse %s referinţe subiect subiect, pentru care subiectul nu a putut fi găsit."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:200
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:250
 msgid "Check orphaned topicpublicationlinks"
 msgstr "Se verifică referinţele subiect publicaţie orfane"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:206
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:256
 #, php-format
 msgid "%s topicpublicationlinks, of which the corresponding publication could not be found, have been removed."
 msgstr "Au fost şterse %s referinţe subiect publicaţie, pentru care publicaţia corespunzătoare nu a putut fi găsită."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:214
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:264
 msgid "Check topics without parent"
 msgstr "Se verifică subiectele fără părinte"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:220
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:270
 msgid "The following topics had no parent. Their parent is set to the top topic."
 msgstr "Următoarele subiecte nu au părinte. Părintele lor este setat subiectul principal."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:228
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:278
 msgid "Checking for empty topics"
 msgstr "Se verifică subiecte goale"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:284
 msgid "The following topics have no assigned publications."
 msgstr "Subiectele următoare nu au publicaţii asignate"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:242
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:292
 msgid "Checking publications in ancestor topics"
 msgstr "Se verifică publicaţiile din subiectele strămoş"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:250
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:300
 #, php-format
 msgid "%s publications did not appear in ancestor topics."
 msgstr "%s publicaţii nu apar în subiectele strămoş."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:261
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:311
 msgid "Reinit searchable names, keywords and titles"
 msgstr "Se reiniţializează numele căutabile, cuvintele cheie şi titlurile"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:263
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:337
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:313
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:387
 msgid "Checking"
 msgstr "Se verifică"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:275
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:325
 #, php-format
 msgid "Fixed searchable names of %s authors."
 msgstr "Nume căutabile fixe pentru %s autori."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:296
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:346
 #, php-format
 msgid "Fixed searchable names of %s publications."
 msgstr "Nume căutabile fixe pentru %s publicaţii."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:310
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:360
 #, php-format
 msgid "Fixed searchable names of %s topics."
 msgstr "Nume căutabile fixe pentru %s subiecte."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:325
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:375
 #, php-format
 msgid "Fixed searchable names of %s keywords."
 msgstr "Nume căutabile fixe pentru %s cuvinte cheie."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:335
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:385
 msgid "Check total publication marks"
 msgstr "Se verifică mărcile publicaţiilor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:344
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:394
 #, php-format
 msgid "Fixed total topic mark of %s publications."
 msgstr "Mărci fixe ale subiectelor pentru %s publicaţii."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:397
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:447
 #, php-format
 msgid "Removed: %s (file not on server and not linked to a publication)."
 msgstr "S-a şters: %s (fişierul nu este pe server şi nu este legat de o publicaţie)"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:436
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:487
 msgid "Could not open documents directory."
 msgstr "Nu s-a putut deschide directorul documentelor."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:703
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:704
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:71
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:756
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:757
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:852
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:853
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:37
 msgid "Click to show details"
 msgstr "Clic pentru a afişa detaliile"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:705
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:72
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:758
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:854
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:38
 msgid "Click to merge"
 msgstr "Clic pentru a unifica"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:761
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:814
 #, php-format
 msgid "Deleted %s authors who do not have any publications."
+msgstr "S-au şters %s autori care nu au nici o publicaţie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\helpers\maintenance_helper.php:910
+#, fuzzy, php-format
+msgid "Deleted %s keywords which do not have any publications."
 msgstr "S-au şters %s autori care nu au nici o publicaţie."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\month_helper.php:61
@@ -2542,7 +2661,7 @@ msgstr "Nu se poate şterge ataşamentul"
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:262
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\group_db.php:146
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\note_db.php:182
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:818
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\rightsprofile_db.php:146
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\topic_db.php:507
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\user_db.php:441
@@ -2560,20 +2679,20 @@ msgid "still has publications (possibly invisible...). Do you need a quick way t
 msgstr "încă are publicaţii (posibil invizibile ...). Aveţi nevoie de un mijloc rapid de a şterge toate publicaţiile pentru un autor? Adaugaţi-le la lista de marcaje, apoi ştergeţi-le de acolo ..."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:301
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:927
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:925
 #, php-format
 msgid "One of the fields %s is required"
 msgstr "Unul din câmpurile %s este necesar"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:489
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:572
 msgid "Found similar authors for"
 msgstr "S-au găsit autori similari pentru"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:506
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:589
 msgid "Please review the entered authors"
 msgstr "Vă rugăm revizuiţi autorii introduşi"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:637
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\author_db.php:731
 msgid "There are some publications that could not be reassigned due to access rights"
 msgstr "Există câteva publicaţii ce nu pot fi reasignate datorită drepturilor de acces"
 
@@ -2683,11 +2802,11 @@ msgstr "Nu s-a putut muta fişierul încărcat din directorul PHP de încărcare
 msgid "Cannot delete group"
 msgstr "Nu s-a putut şterge grupul"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:198
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:362
 msgid "Found similar keywords for"
 msgstr "S-au găsit cuvinte cheie similare pentru"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:215
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\keyword_db.php:380
 msgid "Please review the entered keywords."
 msgstr "Vă rugăm revizuiţi cuvintele cheie introduse."
 
@@ -2729,7 +2848,8 @@ msgid "Not a valid login!"
 msgstr "Conectare invalidă"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:16
-msgid "Last Name of user"
+#, fuzzy
+msgid "Last Name of test user"
 msgstr "Numele de familie al utilizatorului"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
@@ -2748,56 +2868,56 @@ msgstr "Cod de eroare"
 msgid "Error text"
 msgstr "Text de eroare"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:816
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:820
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:832
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:847
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:814
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:818
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:830
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:834
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:845
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:849
 msgid "Cannot delete publication"
 msgstr "Nu s-a putut şterge publicaţia"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:832
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:836
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:830
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:834
 msgid "publication contains some attachments that you do not have permission to delete."
 msgstr "publicaţia conţine nişte ataşamente pe care nu aveţi permisiunea să le ştergeţi."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:847
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:851
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:845
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:849
 msgid "publication contains some notes that you do not have permission to delete."
 msgstr "publicaţia conţine nişte note pe care nu aveţi permisiunea să le ştergeţi."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:908
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:906
 #, php-format
 msgid "The %s field is required"
 msgstr "Câmpul %s este necesar"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:933
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:931
 msgid "Validation error"
 msgstr "Eroare de validare"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1278
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1276
 #, php-format
 msgid "Failed to update the bibtex-id in publication %s"
 msgstr "Nu s-a putut actualiza bibtex-id-ul publicaţiei %s"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1391
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1389
 msgid "resolveXref: merge xref into publication!"
 msgstr "resolveXref: se combină xref cu publicaţia!"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1427
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1425
 msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
 msgstr "O publicaţie cu acelaşi nume există deja. Vă rugăm asiguraţi-vă că publicaţia pe care o importaţi nu este deja în baza de date."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1448
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1446
 msgid "The cite id is not unique, please choose another cite id."
 msgstr "ID-ul de citare nu este unic, vă rugăm alegeţi un alt ID de citare."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1450
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1448
 msgid "Publication with same cite id"
 msgstr "Publicaţie cu acelaşi ID de citare"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1466
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1464
 msgid "Similar cite ids"
 msgstr "ID-uri de citare similare"
 
@@ -2828,6 +2948,11 @@ msgstr "Accesul vizitatorilor anonimi a fost activat, dar nici un cont anonim va
 #, php-format
 msgid "The extension '%s' is never allowed for Aigaion attachments, and has been removed from the list of allowed attachments."
 msgstr "Extensia  '%s' nu este permisă pentru ataşamentele Aigaion şi a fost îndepărtată din lista ataşamentelor permise."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:267
+#, fuzzy
+msgid "Error updating config"
+msgstr "Eroare la crearea subiectului."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:299
 msgid "Failed to upload custom logo."
@@ -3111,7 +3236,7 @@ msgid "New Publication"
 msgstr "Publicaţie nouă"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\menu.php:78
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:18
 msgid "New Author"
 msgstr "Autor nou"
 
@@ -3217,14 +3342,17 @@ msgstr "Republicare"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\delete.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:74
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\delete.php:17
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:63
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:48
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:71
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:56
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setattaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:18
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:107
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\delete.php:17
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:63
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:48
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:17
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:113
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:17
@@ -3279,17 +3407,17 @@ msgid "Individual per-object access levels"
 msgstr "Nivele de acces pe obiect individuale"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:38
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:67
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:65
 msgid "Publication"
 msgstr "Publicaţia"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:76
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:353
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:375
 msgid "Attachments"
 msgstr "Ataşamente"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\accesslevels\editforpublication.php:120
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:381
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:403
 msgid "Notes"
 msgstr "Note"
 
@@ -3434,6 +3562,7 @@ msgstr "Sunteţi sigur că vreţi să ştergeţi ataşamentul \"%s\"?"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditattaccesslevel.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\seteditpubaccesslevel.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\bookmarklist\setpubaccesslevel.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\delete.php:14
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\delete.php:17
@@ -3469,8 +3598,9 @@ msgid "Set URL"
 msgstr "Setare URL"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\attachments\edit.php:66
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:53
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:61
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:53
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:104
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:289
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:76
@@ -3525,66 +3655,75 @@ msgstr "Drepturile ataşamentului de citire / editare"
 msgid "Are you sure that you want to delete the author \"%s\"?"
 msgstr "Sunteţi sigur că vreţi să ştergeţi autorul \"%s\"?"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:4
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:4
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "First name(s)"
 msgstr "Numele de familie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:5
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:5
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "von-part"
 msgstr "von-part"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:6
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:6
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Last name(s)"
 msgstr "Prenumele"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:7
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:7
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "jr-part"
 msgstr "jr-part"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:8
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:8
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Email"
 msgstr "Email"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:3
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:9
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\embed.php:15
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:3
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:21
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:9
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:19
 #: C:\WEBROOT\aigaion2\aigaionengine\views\embeddingtest\test.php:15
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\author.php:15
 msgid "Institute"
 msgstr "Institutul"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:10
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
+msgid "URL"
+msgstr "URL"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:22
 msgid "Edit Author"
 msgstr "Editează autorul"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:55
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\edit.php:63
 #: C:\WEBROOT\aigaion2\aigaionengine\views\groups\edit.php:96
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:55
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:102
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:291
 #: C:\WEBROOT\aigaion2\aigaionengine\views\rightsprofiles\edit.php:74
@@ -3615,26 +3754,26 @@ msgid "Show"
 msgstr "Afişare"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\authors\list_items.php:11
-#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\list_items.php:58
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\list_items.php:63
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:178
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:124
 #, php-format
 msgid "All information on %s"
 msgstr "Toate informaţiile despre %s"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:7
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:15
 msgid "Merge authors"
 msgstr "Contopire autori"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:8
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:16
 msgid "Merges the source author with the target author. The source author will be deleted, all publications will be transferred to the target author."
 msgstr "Contopeşte autorul sursă cu autorul destinaţie. Autorul sursă va fi şters, toate publicaţiile vor fi transferate autorului destinaţie."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:20
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:28
 msgid "Target author"
 msgstr "Autorul destinaţie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:22
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\merge.php:30
 msgid "Source author"
 msgstr "Autorul sursă"
 
@@ -3646,25 +3785,19 @@ msgstr "Şterge acest autor"
 msgid "Edit this author"
 msgstr "Editează acest autor"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:40
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\edit.php:83
-#: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:60
-msgid "URL"
-msgstr "URL"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:51
-#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:14
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:49
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:23
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:129
 msgid "BookmarkAll"
 msgstr "Marchează tot"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:53
-#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:15
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:51
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:24
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:130
 msgid "UnBookmarkAll"
 msgstr "Demarchează tot"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\views\authors\single.php:67
 msgid "Found authors with very similar names. You can choose to merge the following authors with this author by clicking on the merge link."
 msgstr "S-au găsit autori cu nume foarte apropiate. Puteţi alege să contopiţi autorii următori cu acest autor selectând legătura de contopire."
 
@@ -3808,7 +3941,7 @@ msgid "Export to BibTeX"
 msgstr "Export în format BibTeX"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:21
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:45
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:43
 msgid "BibTeX"
 msgstr "BibTeX"
 
@@ -3817,7 +3950,7 @@ msgid "Export to RIS"
 msgstr "Export în format RIS"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:26
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:47
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:45
 msgid "RIS"
 msgstr "RIS"
 
@@ -3826,7 +3959,7 @@ msgid "Export by E-mail"
 msgstr "Export prin E-mail"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\export\chooseformat.php:32
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:41
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:40
 msgid "E-mail"
 msgstr "Email"
 
@@ -3900,17 +4033,25 @@ msgstr "subscriere la subiect"
 msgid "Paste the entries (%s) to import in the text area below and then press \"%s\""
 msgstr "Lipiţi intrările (%s) pentru a importa în zona de text de mai jos şi apoi apăsaţi \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:37
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:35
+msgid "When you upload a file for import (below), any data in the import form above will be discarded."
+msgstr ""
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:44
 msgid "Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format."
 msgstr "Selectaţi formatul datelor introduse în formularul de mai sus sau auto pentru a lăsa Aigaion să detecteze automat formatul."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:37
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:44
 msgid "Format:"
 msgstr "Format:"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:38
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:46
 msgid "Mark imported entries as read."
 msgstr "Marchează intrările importate ca citite."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\import\importform.php:47
+msgid "Do not review entries."
+msgstr ""
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:14
 msgid "Review publications"
@@ -3923,7 +4064,7 @@ msgstr "Import:"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:54
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:67
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\review.php:38
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:87
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:109
 msgid "Citation"
 msgstr "Citaţie"
 
@@ -3965,6 +4106,61 @@ msgstr "selectaţi pentru a folosi editorul similar găsit în baza de date"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\import\review.php:206
 msgid "select to use editor as found in BibTeX"
 msgstr "selectaţi pentru a folosi editorul găsit în BibTeX"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\delete.php:13
+#, fuzzy, php-format
+msgid "Are you sure that you want to delete the keyword \"%s\"?"
+msgstr "Sunteţi sigur că vreţi să ştergeţi autorul \"%s\"?"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:10
+#, fuzzy
+msgid "New Keyword"
+msgstr "Cuvânt cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\edit.php:14
+#, fuzzy
+msgid "Edit Keyword"
+msgstr "Cuvânt cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:7
+#, fuzzy
+msgid "Merge keywords"
+msgstr "Returnează cuvinte cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:8
+#, fuzzy
+msgid "Merges the source keyword with the target keyword. The source keyword will be deleted, all publications using this keyword will use the target keyword instead."
+msgstr "Contopeşte autorul sursă cu autorul destinaţie. Autorul sursă va fi şters, toate publicaţiile vor fi transferate autorului destinaţie."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:20
+#, fuzzy
+msgid "Target keyword"
+msgstr "Returnează cuvinte cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\merge.php:22
+#, fuzzy
+msgid "Source keyword"
+msgstr "Returnează cuvinte cheie"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:9
+#, fuzzy
+msgid "Delete this keyword"
+msgstr "Şterge acest autor"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:9
+#, fuzzy
+msgid "Edit this keyword"
+msgstr "Editează acest autor"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:35
+#, fuzzy
+msgid "Found keywords with very similar names. You can choose to merge the following keywords with this keyword by clicking on the merge link."
+msgstr "S-au găsit autori cu nume foarte apropiate. Puteţi alege să contopiţi autorii următori cu acest autor selectând legătura de contopire."
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\keywords\single.php:47
+#, fuzzy
+msgid "Related keywords"
+msgstr "Returnează cuvinte cheie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\language\choose.php:3
 msgid "All available languages"
@@ -4018,7 +4214,7 @@ msgid "Text"
 msgstr "Text"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\notes\edit.php:94
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:289
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:311
 msgid "Access rights"
 msgstr "Drepturile de acces"
 
@@ -4060,12 +4256,12 @@ msgid "Edit Publication"
 msgstr "Editează Publicaţia"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:56
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:83
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:105
 msgid "Type of publication"
 msgstr "Tipul publicaţiei"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:83
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:120
 msgid "Key"
 msgstr "Cheia"
 
@@ -4108,7 +4304,7 @@ msgid "down"
 msgstr "jos"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\edit.php:240
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:229
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:251
 msgid "Editors"
 msgstr "Editori"
 
@@ -4130,15 +4326,15 @@ msgstr "Publicaţii de tipul %s"
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:164
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:186
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\listClean.php:120
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:128
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:150
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:110
 #: C:\WEBROOT\aigaion2\aigaionengine\views\readapi\publist.php:132
 msgid "View publication details"
 msgstr "Afişare detalii publicaţie"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\publications\list.php:172
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:137
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:154
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:159
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:176
 msgid "and"
 msgstr "şi"
 
@@ -4159,129 +4355,121 @@ msgstr "Şterge această publicaţie"
 msgid "Edit this publication"
 msgstr "Editează această publicaţie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:25
-msgid "UnBookmark"
-msgstr "Demarcare"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:32
-msgid "Bookmark"
-msgstr "Marcare"
-
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:41
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:40
 msgid "Export by e-mail"
 msgstr "Exportă prin e-mail"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:65
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:63
 #, php-format
 msgid "Request for publication: \"%s\""
 msgstr "Cerere pentru publicaţia: \"%s\""
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:68
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:66
 msgid "I understand that the document referenced above is subject to copyright."
 msgstr "Am înţeles că documentul la care se face referire mai sus este sub protecţia drepturilor de autor."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:67
 msgid "I hereby request a copy strictly for my personal use."
 msgstr "Subsemnatul solicită o copie pentru uz strict personal."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:70
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:68
 msgid "Name and contact details"
 msgstr "Numele şi detaliile contactului"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:71
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:69
 msgid "Request publication by e-mail"
 msgstr "Cere publicaţia prin e-mail"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:71
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:69
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:72
 msgid "Request"
 msgstr "Cerere"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:74
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:72
 msgid "No e-mail address available for neither of the authors"
 msgstr "Nici o adresă de email nu este disponibilă pentru nici unul dintre autori"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:98
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:120
 msgid "This is the BibTeX `key` field, used to define sorting keys"
 msgstr "Acesta este câmpul `cheie` BibTeX, folosit pentru a defini cheile de sortare"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:143
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:160
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:218
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:234
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:165
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:182
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:240
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:256
 msgid "All information on"
 msgstr "Toate informaţiile despre"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:164
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:186
 msgid "(eds)"
 msgstr "(eds)"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:166
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:188
 msgid "(ed)"
 msgstr "(ed)"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:247
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:269
 msgid "Crossref by"
 msgstr "Referinţe multiple de"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:264
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:286
 msgid "Added by"
 msgstr "Adăugat de"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:290
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:312
 #: C:\WEBROOT\aigaion2\aigaionengine\views\topics\full.php:102
 msgid "publication"
 msgstr "publicaţie"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:291
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:313
 msgid "Edit all rights"
 msgstr "Editează toate drepturile"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:291
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:313
 msgid "Click to modify access levels"
 msgstr "Clic pentru a modifica nivelele de acces"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:300
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:322
 msgid "Total mark"
 msgstr "Marcaj total"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:312
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:334
 msgid "Your mark"
 msgstr "Marcajul dumneavoastră"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:319
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:341
 msgid "Read/Add mark"
 msgstr "Citeşte/Adaugă marcaj"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:321
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:343
 msgid "Update mark"
 msgstr "Actualizare marcaj"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:334
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:356
 msgid "Unread"
 msgstr "Necitit"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:350
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:372
 msgid "add attachment"
 msgstr "adaugă ataşament"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:378
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:400
 msgid "add note"
 msgstr "adăugare notă"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:409
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:431
 msgid "finish categorization"
 msgstr "teminare categorizare"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:411
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:433
 msgid "categorize publication"
 msgstr "categorizează publicaţia"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:416
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:438
 msgid "Topics"
 msgstr "Subiecte"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:428
+#: C:\WEBROOT\aigaion2\aigaionengine\views\publications\single.php:450
 msgid "Click on a topic name to change its subscription status."
 msgstr "Clic pe un nume de subiect pentru a schimba starea de abonare."
 
@@ -4889,34 +5077,39 @@ msgid "Check authors"
 msgstr "Verificare autori"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:21
-msgid "Check passwords"
+#, fuzzy
+msgid "Check keywords"
 msgstr "Verificare parole"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:22
+msgid "Check passwords"
+msgstr "Verificare parole"
+
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:23
 msgid "Check searchable names, keywords and titles"
 msgstr "Verificare nume căutabile, cuvinte cheie şi titluri"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:23
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:24
 msgid "Check publication marks"
 msgstr "Verificare marcaje publicaţii"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:24
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:25
 msgid "Check for updates"
 msgstr "Verificare actualizări"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:26
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:27
 msgid "Backup and restore"
 msgstr "Arhivează şi restaurează"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:27
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:28
 msgid "Making regular backups of the database is recommended. Collecting a complete bibliography takes a lot of time and a single server crash fades all these efforts away. Storing the backupfiles on another server or medium is recommended."
 msgstr "Este recomandată efectuarea de arhive regulate ale bazei de date. Construirea unei bibliografii complete ia mult timp şi o singură avarie a server-ului poate anula toate aceste eforturi. Este recomandată stocarea fişierelor arhivă pe un alt server sau mediu."
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:29
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:30
 msgid "Export database"
 msgstr "Exportă baza de date"
 
-#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:30
+#: C:\WEBROOT\aigaion2\aigaionengine\views\site\maintenance.php:31
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\restore.php:25
 msgid "Restore database from backup"
 msgstr "Restaurează baza de date din arhivă"
@@ -5265,6 +5458,10 @@ msgstr "cont gestionat din exterior"
 msgid "disabled account"
 msgstr "cont dezactivat"
 
+#~ msgid "UnBookmark"
+#~ msgstr "Demarcare"
+#~ msgid "Bookmark"
+#~ msgstr "Marcare"
 #~ msgid "Edit acces level"
 #~ msgstr "editează nivelul de acces"
 #~ msgid ""
