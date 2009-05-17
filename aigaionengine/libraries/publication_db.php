@@ -964,10 +964,14 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    $limit = "";
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.",".$liststyle;
+      if ($liststyle > 0)
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.",".$liststyle;
+      }
     }
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
@@ -1018,10 +1022,14 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    $limit = "";
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      if ($liststyle > 0)
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      }
     }
     ///////////////////
     //DR: this query is copied from another method - needs to be modified to retrieve all unassigned papers.
@@ -1072,10 +1080,13 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      if ($liststyle > 0)
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      }
     }
     
     $CI = &get_instance();
@@ -1125,10 +1136,13 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if (($liststyle > 0) && ($page != -1))
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      if (($liststyle > 0) && ($page != -1))
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      }
     }
     
     $CI = &get_instance();
@@ -1178,10 +1192,13 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      if ($liststyle > 0)
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      }
     }
     
     $CI = &get_instance();
@@ -1230,10 +1247,13 @@ class Publication_db {
     $limit = "";
     $userlogin = getUserLogin();
     $liststyle = $userlogin->getPreference('liststyle');
-    if ($liststyle > 0)
+    if ($page!=-1)
     {
-      $limitOffset = $liststyle * $page;
-      $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      if ($liststyle > 0)
+      {
+        $limitOffset = $liststyle * $page;
+        $limit = "LIMIT ".$limitOffset.", ".$liststyle;
+      }
     }
     
     $CI = &get_instance();
