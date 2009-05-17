@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-05 07:40+0200\n"
-"PO-Revision-Date: 2009-02-01 13:02+0100\n"
-"Last-Translator: Manuel Strehl <translate@manuel-strehl.de>\n"
+"PO-Revision-Date: 2009-05-17 16:09+0100\n"
+"Last-Translator: Jens Koolwaay <jenskoolwaay@web.de>\n"
 "Language-Team: Manuel Strehl <manuel.strehl@physik.uni-r.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1584,7 +1584,7 @@ msgstr "Die Datenbank wurde nicht von Aigaion 1.x auf Aigaion 2.0 migriert.<br/>
 
 #: ../../helpers/specialchar_helper.php:79
 msgid "You just loaded the specialchar helper. This is not good; it should be replaced by a combination of the bibtexutf8 (for converting bibtex codes to utf) helper and the utf8_to_ascii library (for transliteration, generating clean ascii for cleanname and cleantitle rows) available in include/...)"
-msgstr "Sie haben gerade den specialchar helper geladen. Das ist nicht gut; er sollte durch eine Kombination aus bibtexutf8 (für die Konvertierung von BiBTeX code zu UTF-8) und der utf8_to_ascii Bibliothek (für Transliteration) ersetzt werden."
+msgstr "Sie haben gerade den specialchar helper geladen. Das ist nicht gut; er sollte durch eine Kombination aus bibtexutf8 (für die Konvertierung von BiBTeX code zu UTF-8) und der utf8_to_ascii Bibliothek (für Transliteration, die einen sauberen ascii für die Name-n und Titelreihen generieren) ersetzt werden."
 
 #: ../../helpers/translation_helper.php:10
 msgid "year"
@@ -3199,7 +3199,7 @@ msgstr "Der Eigenschaftensatz, der von Aucouturier gefunden wurde, repräsentier
 
 #: ../../views/help/notes.php:24
 msgid "INCLUDE: MOCKUP OF EDIT AND DELETE LINKS!"
-msgstr ""
+msgstr "EINSCHLIESSEN: MOCK-UP FÜR BEARBEITETE UND GELÖSCHTE LINKS!"
 
 #: ../../views/help/notes.php:28
 msgid "Referencing other publications"
