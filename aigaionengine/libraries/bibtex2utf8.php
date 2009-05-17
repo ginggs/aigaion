@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
-//Code adapted from org.variorum.services.bibtex.UTF8Converter.java
+//Code started in a very early version from org.variorum.services.bibtex.UTF8Converter.java, but has been completely rewritten since
 //see https://variorum.htmlweb.com/trac/browser/webappDemo/trunk/src/org/variorum/services/bibtex/UTF8Converter.java
 
 /*
@@ -20,21 +20,22 @@
 |   and their utf8 equivalents. We use a number of codes hardcoded in this file.
 |   Do you find missing codes there? Just suggest the additions to the Aigaion developers.
 |
-|   We expect that this library is only loaded on import and export of bibtex.
+|   We expect that this library is only loaded on export of bibtex, and on adding new data (import, or form)
 |
 | Note:
 | A string containing math code will not be converted from bibtex to utf8 -- the
 | risks of making a mistake are currently too large, we need some more time for
 | extensive coding for that :)
+| 
 |
 |    Usage:
-|       //load this library in COdeIgniter:
+|       //load this library:
 |       $this->load->library('bibtex2utf8');
 |       //...or load this library in any other php context (this library is not dependent on CodeIgniter)
 |       require_once("aigaionengine/libraries/bibtex2utf8.php");
 |       $this->bibtex2utf8 = new Bibtex2utf8();
 |
-|    THen, to convert from bibtex to utf8 and vice versa, use these functions:
+|    Then, to convert from bibtex to utf8 and vice versa, use these functions:
 
     $this->bibtex2utf8->utf8ToBibCharsFromArray(&$array)
         converts utf8 chars to bibtex special chars from an array
@@ -52,11 +53,13 @@ If you want to add extra character conversions:
   check which group it belongs to 
   add its entry for conversion and reverse conversion
   don't forget to take care of escapes needed for PHP as well as those needed for regexps!
+  add testing entries to the unit test controller (!)
   
 TODO:
  extend the test controller with more bibtex2utf8 conversion testing, including weird and 
     slightly erroneous brace usage (such as that of DBLP)
  add some of the polish charset
+ add yet more common characters
 */
 
 class Bibtex2utf8 {
@@ -294,6 +297,8 @@ class Bibtex2utf8 {
             array("v","C","Č"),
             array("v","s","š"),
             array("v","S","Š")
+            
+            /* This list is never complete... extensions are welcome, if someone wants to structurally add a list of eastern european diacritic usages, it would be quite welcome */
                   
       ); //did you put the comma's right? the last entry without comma!
       
@@ -355,11 +360,11 @@ class Bibtex2utf8 {
  	          //array("\\}", "}"), //these two play havoc with all other expressions :( but the old A|igaion converters didn't have it either
  	          array("%", "%"), 
  	          //array("_", "_")
-            //array("SS", "SS") //one waY ONLY, dont convert back! TUrned off for now. THey almost never occur, and because we cannot symmetrycally export all SS as \SS, better to leave them unconverted  
+            //array("SS", "SS") ecause we cannot symmetrycally export all SS as \SS, better to leave them unconverted. Anyhow, I don't understand really why this one exists in LaTeX [DR]
             
             
-        //{"\\\\~?", "¡"},
- 	      //{"\\\\?? ", "¿"},   
+        //{"\\\\~?", "¡"}, not sure whether this one exists
+ 	      //{"\\\\?? ", "¿"},   not sure whether this one exists
  	          
  	    ); //did you put the comma's right? the last entry without comma!
 
