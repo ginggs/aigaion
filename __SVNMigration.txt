@@ -1,0 +1,59 @@
+On May 17th, 2009, we have changed the directory structure of the SVN Repository.
+
+The structure is explained on the Aigaion wiki: http://wiki.aigaion.nl/index.php?title=SVNStructure
+
+If you were running your copy of Aigaion directly from the SVN contents this means you have to change the configuration a little bit to make sure everything keeps running smoothly. Please read further if you want to know more.
+
+If you installed Aigaion from a release package, you can ignore the documentation in this file.
+
+==== 
+WILL MY COPY OF AIGAION STOP WORKING?
+----
+Not yet. For now, Aigaion will keep working even if you do not change a single thing, because we kept the old structure present in SVN. For a month or two, we will keep the two structures running side-by-side in the SVN repository. Note, however, that the old structure will *not* be updated. If you want to make use of the latest updates, you must reconfigure your Aigaion. After this grace period, we will remove the old structures, to clean up the repository.
+ 
+ 
+====
+WHAT WAS CHANGED, AND WHY?
+----
+We collected all directories with material that is directly used in running Aigaion, and moved them together under a new top-level directory called 'aigaion2'. Development files, embedding examples, and files that concern (unfinished) translation processes are kept out of this directory, as they are not needed for the proper running of Aigaion. This keeps the SVN repository cleaner.
+
+**This means that the latest version of the aigaion code can now be found under <svnroot>/aigaion2 **
+
+
+
+====
+WHAT SHOULD I CHANGE IN MY CONFIGURATION?
+----
+The changes that you should make are all in the index.php file.
+After you have made these changes, when Aigaion is running in the new version, you may want to have a look at the advanced install documentation on the wiki (http://wiki.aigaion.nl/index.php?title=InstallAdvanced), to see what the current advanced configuration possibilities are that may not have yet been possible when you first installed Aigaion.
+
+Take the following steps to reconfigure your index.php:
+
+1) AIGAION_ATTACHMENT_URL    Is deprecated and can be removed
+2) $application_folder       Should point to the correct aigaionengine folder.
+                             Normally, that is now <svnroot>/aigaion2/aigaionengine
+3) $system_folder            Should point to the correct codeigniter folder.
+                             Normally, that is now <svnroot>/aigaion2/codeigniter
+4) APPURL                    Is deprecated and can be removed
+5) AIGAION_WEBCONTENT_URL    Is a new setting which must point to the URL of 
+                             <svnroot>/aigaion2/webcontent
+                             It replaces the old APPURL setting.
+6) Any custom themes that you have developed should be moved to the directory indicated by AIGAION_WEBCONTENT_URL
+7) Note that the default directory 'attachments' also has been moved to a different place in the repository. If you are using the default directory in the SVN root for your attachments, you might consider changing that.
+8) Finally, the block of code below should be removed from index.php
+
+
+//this code must be removed or commented out in index.php:
+/*
+|---------------------------------------------------------------
+| SET THE SERVER PATH
+|---------------------------------------------------------------
+|
+| Let's attempt to determine the full-server path to the "system"
+| folder in order to reduce the possibility of path problems.
+|
+*/
+if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE)
+{
+	$system_folder = str_replace("\\", "/", realpath(dirname(__FILE__))).'/'.$system_folder;
+}

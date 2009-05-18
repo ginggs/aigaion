@@ -1,0 +1,1 @@
+The files that you need for installing the Aigaion bibliography system are found in the aigaion2 subdirectory.

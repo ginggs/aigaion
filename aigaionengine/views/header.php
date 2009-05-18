@@ -81,6 +81,16 @@
       <?php
             $err = getErrorMessage();
             $msg = getMessage();
+            echo "<div class='errormessage'>
+                     Dear Aigaion user,<br/>
+                     This installation of Aigaion 2 operates from a copy of the SVN repository.
+                     Due to certain changes in the structure of this repository, this database is no longer
+                     configured to use the latest version of the code, but instead uses the version of
+                     May 15th, 2009. The administrator 
+                     of this database must modify the configuration settings in order to keep using the latest 
+                     version of Aigaion. For more information, please refer to the explanation in the file
+                     '_SVNMigration.txt'
+                  </div>";
             if ($err != "") {
                 echo "<div class='errormessage'>".$err."</div>";
                 clearErrorMessage();
