@@ -40,7 +40,7 @@ Take the following steps to reconfigure your index.php:
                              It replaces the old APPURL setting.
                              Normally, that is http://localhost/aigaion2/webcontent/
 6) Any custom themes that you have developed should be moved to the directory indicated by AIGAION_WEBCONTENT_URL
-7) Note that the default directory 'attachments' also has been moved to a different place in the repository. If you are using the default directory in the SVN root for your attachments, you might consider changing that.
+7) Note that the default directory 'attachments' also has been moved to a different place in the repository. If you are using the default directory in the SVN root for your attachments, you might consider changing AIGAION_ATTACHMENT_DIR to <svnroot>/aigaion2/attachments
 8) Finally, the block of code below should be removed from index.php
 
 
