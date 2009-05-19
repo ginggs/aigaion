@@ -673,8 +673,9 @@ TODO:
     foreach ($Q->result() as $R)
     {
       $db_cleanauthors[$R->author_id] = array();
-      $db_cleanauthors[$R->author_id][] = strtolower($R->surname); //why strtolower? because we want to check case insensitive.
-      $db_cleanauthors[$R->author_id][] = strtolower($R->firstname);
+      $db_cleanauthors[$R->author_id][0] = strtolower($R->surname); //why strtolower? because we want to check case insensitive.
+      $db_cleanauthors[$R->author_id][1] = strtolower($R->firstname);
+      $db_cleanauthors[$R->author_id][2] = strtolower($R->surname) . ", " . strtolower($R->firstname);
     }
     //check on cleanname
     //create cleanname
@@ -684,7 +685,7 @@ TODO:
     $db_distances = array();
     foreach ($db_cleanauthors as $author_id => $db_author)
     {
-      $distance = levenshtein($db_author[0], $cleanAuthorName);
+      $distance = levenshtein($db_author[2], $cleanAuthorName);
       if (($distance < 2) && ($author_id != $author->author_id) && substr($db_author[1],0,1) == strtolower(substr($author->firstname,0,1)))
       {
 				$db_distances[$author_id] = $distance;
