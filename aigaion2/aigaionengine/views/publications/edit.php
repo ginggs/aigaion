@@ -7,7 +7,7 @@
 $this->load->helper('translation');
 
 echo "<script language='javascript'>";
-include_once(APPPATH.'javascript/authorselection.js');
+include_once(APPPATH.'../webcontent/javascript/authorselection.js');
 echo "</script>";
   
 ?>
