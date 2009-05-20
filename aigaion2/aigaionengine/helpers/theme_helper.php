@@ -23,7 +23,7 @@
     /* Return a list of available themes. Themes are subdirectories of ROOT/themes/
        other than the CVS directory. */
     function getThemes() {
-    	$themepath = APPPATH."../webcontent/themes/";
+    	$themepath = AIGAION_WEBCONTENT_DIR."themes/";
     	$themelist = array();
     	if ($handle = opendir($themepath)) {
     		while (false !== ($nextfile = readdir($handle))) {
