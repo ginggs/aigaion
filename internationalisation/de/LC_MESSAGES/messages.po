@@ -637,7 +637,7 @@ msgstr "%s Zugriffsebene von %s Publikationen auf \"%s\" gesetzt"
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:602
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:679
 msgid "read"
-msgstr "lese"
+msgstr "lesen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\bookmarklist.php:608
 #, php-format
@@ -933,7 +933,7 @@ msgstr "Unbekanntes Importdaten-Format (\"%s\")."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:87
 msgid "Attempting to automatically identify proper format."
-msgstr "Versuche, automatisch das richtige Format zu bestimmen."
+msgstr "Versuche automatisch das richtige Format zu bestimmen."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\controllers\import.php:102
 msgid "can't automatically figure out import data format; please specify correct format."
@@ -2240,7 +2240,7 @@ msgstr "Buch"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:573
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:70
 msgid "Booklet"
-msgstr "Gebundenes Druckwerk"
+msgstr "Booklet"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:574
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:71
@@ -2265,7 +2265,7 @@ msgstr "Anleitung"
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:578
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:75
 msgid "Mastersthesis"
-msgstr "Diplom- oder Magisterarbeit"
+msgstr "Abschlussarbeit"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\publication_helper.php:579
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:76
@@ -2383,7 +2383,7 @@ msgstr "Buchtitel"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:31
 msgid "institution"
-msgstr "Institut"
+msgstr "Institution"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\helpers\translation_helper.php:32
 msgid "address"
@@ -2731,7 +2731,7 @@ msgstr "Die Größe der hochgeladenen Datei überschreitet die maximale Dateigr�
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:231
 msgid "Please ask your site administrator to fix the UPLOAD_MAX_FILESIZE directive in php.ini."
-msgstr "Bitte bitten Sie Ihren Seitenadministrator, die UPLOAD_MAX_FILESIZE-Direktive in der php.ini zu richten."
+msgstr "Bitte bitten Sie Ihren Seitenadministrator, die UPLOAD_MAX_FILESIZE-Direktive in der php.ini zu ändern."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:232
 msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form."
@@ -2743,7 +2743,7 @@ msgstr "Die Datei wurde nur teilweise hochgeladen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:234
 msgid "No file was uploaded"
-msgstr "keine Datei hochgeladen"
+msgstr "Keine Datei hochgeladen"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:241
 msgid "Please select a file for upload."
@@ -2755,7 +2755,7 @@ msgstr "Nur Dateien mit den folgenden Erweiterungen sind erlaubt"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
 msgid "Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore."
-msgstr "Entschuldigung, der Dateiname enthält ungültige Zeichen.. Nutzen Sie nur alphanumerische Zeichen und trennen Sie einzelne Namensbestandteile (falls benötigt) mit einem Unterstrich."
+msgstr "Entschuldigung, der Dateiname enthält ungültige Zeichen. Nutzen Sie nur alphanumerische Zeichen und trennen Sie einzelne Namensbestandteile (falls benötigt) mit einem Unterstrich."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\file_upload.php:243
 msgid "A valid filename ends with one dot followed by the extension."
@@ -2858,7 +2858,7 @@ msgstr "Fehlercode"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:38
 msgid "Error text"
-msgstr "Fehlermeldung:"
+msgstr "Fehlermeldung"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:814
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:818
@@ -2899,7 +2899,7 @@ msgstr "resolveXref: führe Querverweis mit Publikation zusammen!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1425
 msgid "A publication with the same title exists. Please make sure that the publication you are importing is not already in the database."
-msgstr "Eine Publikation mit dem selben Titel existiert bereits.. Bitte versichern Sie sich, dass die Publikation, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
+msgstr "Eine Publikation mit dem selben Titel existiert bereits. Bitte versichern Sie sich, dass die Publikation, die Sie importieren möchten, nicht bereits in der Datenbank vorhanden ist."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\publication_db.php:1446
 msgid "The cite id is not unique, please choose another cite id."
@@ -2930,7 +2930,7 @@ msgstr "Übergebene Passwort-Überprüfung kann nur aktiviert werden, wenn ein P
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:223
 msgid "At least one of internal login or delegated password checking must be enabled! Since this was not the case, internal login has been re-enabled."
-msgstr "Entweder interne oder übergebene Anmeldung muss mindestens aktiviert sein! Da das nicht der Fall ist, wurde die interne Anmeldung wieder aktiviert."
+msgstr "Entweder interne oder delegierte Anmeldung muss aktiviert sein! Da das nicht der Fall ist, wurde die interne Anmeldung wieder aktiviert."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\libraries\siteconfig_db.php:231
 msgid "Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account."
@@ -4677,15 +4677,15 @@ msgstr "Anmeldeeinstellungen (Übergabe der Passwortprüfung an externes Modul):
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:87
 msgid "These login settings determine whether the login password checking is delegated to some external module, and if so, how this is configured."
-msgstr "Diese Anmeldeeinstellungen bestimmen, ob das Anmeldepasswort an ein externes Modul übergeben wird, und falls ja, wie dieses konfiguriert ist."
+msgstr "Diese Anmeldeeinstellungen bestimmen, ob das Anmeldepasswort an ein externes Modul delegiert wird, und falls ja, wie dieses konfiguriert ist."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:91
 msgid "Delegate password checking:"
-msgstr "Passwort-Überprüfung übergeben:"
+msgstr "Passwort-Überprüfung delegieren:"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:100
 msgid "Check this box to delegate password checking to external modules."
-msgstr "Dieses Kästchen anklicken, um die Passwortüberprüfung einem externen Modul zu übergeben."
+msgstr "Dieses Kästchen anklicken, um die Passwortüberprüfung an ein externen Modul zu delegieren."
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:106
 msgid "Password checking module"
@@ -4701,7 +4701,7 @@ msgstr "LDAP Passwort-Überprüfung"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:118
 msgid "Select the module to which the password checking is to be delegated. Be sure to also configure that login module properly, before you turn off the internal login modules!"
-msgstr "Wählen Sie das Modul, dem die Passwortüberprüfung übergeben werden soll. Stellen Sie außerdem sicher, dass das Modul richtig konfiguriert ist, bevor Sie die internen Login-Module ausschalten!"
+msgstr "Wählen Sie das Modul, an das die Passwortüberprüfung delegiert werden soll. Stellen Sie außerdem sicher, dass das Modul richtig konfiguriert ist, bevor Sie die internen Login-Module ausschalten!"
 
 #: C:\WEBROOT\aigaion2\aigaionengine\views\site\edit.php:119
 msgid "Note: check 'Disable internal login' to disallow access to any account not verified using the above module."
