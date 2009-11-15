@@ -211,7 +211,8 @@ class Publication_db {
     'crossref',
     'namekey',
     'userfields',
-    'keywords'
+    'keywords',
+    'status'
     //'authors',
     //'editors'
     );
@@ -443,7 +444,8 @@ class Publication_db {
                     'cleanjournal',
                     'actualyear',
                     'mark', //always 0 by default; mark value will only be changed in a separate method so it doesn't need to get a value ehre or in the update method
-                    'specialchars'
+                    'specialchars',
+                    'status'
     );
 
     //change type in report_type
@@ -647,7 +649,8 @@ class Publication_db {
                     'cleantitle',
                     'cleanjournal',
                     'actualyear',
-                    'specialchars'
+                    'specialchars',
+                    'status'
     ); //'mark' doesn't need to get updated as that is done through other methods.
   
     $specialfields = array(
@@ -784,7 +787,7 @@ class Publication_db {
         $CI->note_db->changeAllCrossrefs($publication->pub_id, $publication->bibtex_id);
         //fix all crossreffing pubs
         $this->changeAllCrossrefs($publication->pub_id, $oldpublication->bibtex_id, $publication->bibtex_id);
-		refreshBibtexIdLinks();
+		    refreshBibtexIdLinks();
     }
 
     //change report_type in type
@@ -875,7 +878,11 @@ class Publication_db {
         $CI->db->delete('publicationkeywordlink',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('userbookmarklists',array('pub_id'=>$publication->pub_id));
         $CI->db->delete('userpublicationmark',array('pub_id'=>$publication->pub_id));
+        $CI->db->delete('notecrossrefid',array('xref_id'=>$publication->pub_id));
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
+        
+        //refresh the bibtex ID links
+        refreshBibtexIdLinks();
         return true;
     }
     
