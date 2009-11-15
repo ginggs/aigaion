@@ -31,6 +31,7 @@ if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
         echo form_hidden('pub_id',$pub_id);
     } else {
         echo form_hidden('pub_id',$note->pub_id);
+        $pub_id = $note->pub_id;
     }
     echo form_hidden('user_id',$userlogin->userId());
 } else {
@@ -38,6 +39,7 @@ if (!isset($note)||($note==null)||(isset($action)&&$action=='add')) {
     echo form_hidden('note_id',$note->note_id);
     echo form_hidden('user_id',$note->user_id);
     echo form_hidden('pub_id',$note->pub_id);
+    $pub_id = $note->pub_id;
 }
 
 if ($isAddForm) {
