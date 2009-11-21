@@ -48,7 +48,7 @@
     function themeExists($themeName) {
     	#don't accidentally accept CVS directory...
     	if (strtolower($themeName) == "cvs") return false;
-    	$path = APPPATH."/themes/".$themeName."/";
+    	$path = AIGAION_WEBCONTENT_DIR."themes/".$themeName."/";
     	return (file_exists($path) && file_exists($path."css/styling.css") && is_dir($path));
     }
 
@@ -64,11 +64,11 @@
     
     /* Return true iff icon exists at all */
     function iconExists($iconName) {
-        return file_exists(APPPATH."/themes/".getThemeName()."/icons/".$iconName) || file_exists(APPPATH."/themes/default/icons/".$iconName);
+        return file_exists(AIGAION_WEBCONTENT_DIR."themes/".getThemeName()."/icons/".$iconName) || file_exists(AIGAION_WEBCONTENT_DIR."themes/default/icons/".$iconName);
     }
     /* Return true iff icon exists in current theme */
     function iconExistsInTheme($iconName) {
-        return file_exists(APPPATH."/themes/".getThemeName()."/icons/".$iconName);
+        return file_exists(AIGAION_WEBCONTENT_DIR."themes/".getThemeName()."/icons/".$iconName);
     }
     /** Return the Url of the requested icon (full file name!), taking current theme
         into account. */
