@@ -29,6 +29,9 @@ if (!defined('AIGAION_ATTACHMENT_DIR') || (AIGAION_ATTACHMENT_DIR=='')) {
 if (!defined('AIGAION_WEBCONTENT_URL') || (AIGAION_WEBCONTENT_URL=='')) {
     define ('AIGAION_WEBCONTENT_URL',AIGAION_ROOT_URL.'webcontent/');
 }
+if (!defined('AIGAION_WEBCONTENT_DIR') || (AIGAION_WEBCONTENT_DIR=='')) {
+    define ('AIGAION_WEBCONTENT_DIR',$ROOT_PATH.'/webcontent/');
+}
 #AIGAION_DB_PREFIX: table prefix, default "", see config/database.php
 if (!defined('AIGAION_DB_PREFIX')) {
     define ('AIGAION_DB_PREFIX','');
