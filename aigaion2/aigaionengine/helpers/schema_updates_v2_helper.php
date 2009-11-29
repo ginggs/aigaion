@@ -20,6 +20,47 @@
 |       
 */
 
+    /** 
+    / * Add 'publicaton status' column to publication table.
+    / * Add customfields table
+    / * Add author "synonym of" column for enabling multiple instances of the same author.
+    */
+    function updateSchemaV2_20() {
+        $CI = &get_instance();
+        if (checkVersion('V2.20', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_19()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        //insert publicationstatus field to the publiation table
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                      ADD COLUMN `status` varchar(255) NOT NULL default '';");
+
+        if (mysql_error()) 
+            return False;
+
+        //add customfields table
+        mysql_query("CREATE TABLE `".AIGAION_DB_PREFIX."customfields` 
+                        (  `entry_id` int(10) unsigned NOT NULL auto_increment,  
+                        `type` enum('publication','author','topic') NOT NULL default 'publication', 
+                        `object_id` int(10) unsigned NOT NULL,
+                        `value` TEXT NOT NULL,  PRIMARY KEY  (`entry_id`)) ENGINE=MyISAM CHARACTER SET utf8;");
+        
+        if (mysql_error()) 
+            return False;
+            
+        //add "synonym of" column
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."author` 
+                      ADD COLUMN `synonym_of` int(10) unsigned NOT NULL default '0';");
+
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.20');
+    }
+
 
     /** 
     The first proper multilang release!
