@@ -110,6 +110,21 @@ $this->load->helper('translation');
       <td><?php echo $publication->bibtex_id; ?></td>
     </tr>
 <?php
+
+    if ($publication->status != ''):
+?>
+    <tr>
+      <td valign='top'><?php _e("Publication status");?>:</td>
+      <td valign='top'>
+<?php
+        $statustypes = getPublicationStatusTypes();
+        echo $statustypes[$publication->status];
+?>
+      </td>
+    </tr>
+<?php
+    endif;
+    
     $capitalfields = getCapitalFieldArray();
     foreach ($publicationfields as $key => $class):
       if ($publication->$key):

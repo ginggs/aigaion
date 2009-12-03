@@ -57,6 +57,11 @@ echo "</script>";
       <td><?php echo form_dropdown('pub_type', getPublicationTypes(), $publication->pub_type, "onchange=\"this.form.submit_type.value='type_change'; submitPublicationForm('publication_".$publication->pub_id."_edit');\""); ?></td>
     </tr>
     <tr>
+      <td><?php echo __('Publication status');?>:</td>
+      <td><?php echo form_dropdown('status', getPublicationStatusTypes(), $publication->status); ?></td>
+    </tr>
+
+    <tr>
       <td><?php echo __('Title');?>:</td>
       <td><?php echo form_input(array('name' => 'title', 
                                       'id'   => 'title', 

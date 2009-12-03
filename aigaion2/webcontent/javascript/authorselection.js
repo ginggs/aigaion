@@ -15,6 +15,15 @@
     $cleanname = addslashes ($author->cleanname."||".$author->getName('fvl'));
     $name = addslashes ($author->getName('vlf'));
     
+    //has primary?
+    //if so: same name?
+    //   diff institute? add institute
+    //   same institute? diff email? add email
+    //   same email? add nothing
+    //diff name?
+    //   add primary name in parenth
+    //so: for a synonym, we ALWAYS see why it is a synonym
+    
     echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
     echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
     echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
