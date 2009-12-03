@@ -15,14 +15,34 @@
     $cleanname = addslashes ($author->cleanname."||".$author->getName('fvl'));
     $name = addslashes ($author->getName('vlf'));
     
-    //has primary?
-    //if so: same name?
-    //   diff institute? add institute
-    //   same institute? diff email? add email
+    if ($author->synonym_of=='0')
+    {
+      if ($author->hasSynonyms() && $author->institute!='')
+      {
+        $name .= ' ('.addslashes ($author->institute).')';
+      }
+    }
+    else
+    { //has primary?
+      $prim = $CI->author_db->getByID($author->synonym_of);
+      if (addslashes ($prim->getName('vlf'))==$name)
+      { //same name?
+        if ($prim->institute!=$author->institute)
+        { //diff institute? add institute
+          $name .= ' ('.addslashes ($author->institute).')';
+        }
+        else if ($prim->email!=$author->email)
+        { //diff email? add email
+          $name .= ' ('.addslashes ($author->email).')';
+        }
     //   same email? add nothing
-    //diff name?
-    //   add primary name in parenth
-    //so: for a synonym, we ALWAYS see why it is a synonym
+      }
+      else
+      { //diff name?
+        //add primary name in parenth
+        $name.=' ('.addslashes ($prim->getName('vlf')).')';
+      }
+    } //so: for a synonym, we ALWAYS see why it is a synonym
     
     echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
     echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
