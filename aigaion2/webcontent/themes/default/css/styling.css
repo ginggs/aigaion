@@ -386,7 +386,6 @@ option.primaryauthor {
 }
 option.synonymauthor {
   font-style      : italic;
-  padding-left:2em;
 }
 span.title {
   font-weight     : bold;

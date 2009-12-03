@@ -453,6 +453,7 @@ class Publications extends Controller {
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
+        //TODO: review authors for "duplicates" (synonyms)
         
         if (($review['bibtex_id']   != null) ||
             ($review['keywords']  != null)) 

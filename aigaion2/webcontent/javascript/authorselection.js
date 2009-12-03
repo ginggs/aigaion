@@ -6,7 +6,7 @@
   echo "var CLEANAUTHORS = new Array();\n"; //separate authors and clean authors list. One is for searching, the other for showing
   $CI = &get_instance();
   $CI->db->orderby('cleanname');
-  $Q = $CI->db->getwhere("author",array('synonym_of'=>'0')); //get only the primary authors
+  $Q = $CI->db->get("author");
   foreach ($Q->result() as $R)  //for each primary author
   {
     
@@ -21,20 +21,7 @@
     echo "AUTHORPRIMARY [".$R->author_id."] = '".$R->synonym_of."';\n";
     
     $count++;
-    $syns = $author->getSynonyms(false);
-    foreach ($syns as $syn)
-    {
-      
-      $scleanname = addslashes ($syn->cleanname."||".$syn->getName('fvl'));
-      $sname = addslashes ($syn->getName('vlf'))." (synonym of {$name})";
-      
-      echo "AUTHORIDS [{$count}] = ".$syn->author_id.";";
-      echo "CLEANAUTHORS [".$syn->author_id."] = '{$scleanname}';\n";
-      echo "AUTHORS [".$syn->author_id."] = '{$sname}';\n";
-      echo "AUTHORPRIMARY [".$syn->author_id."] = '".$syn->synonym_of."';\n";
-      
-      $count++;
-    } 
+   
   }
 ?>
 function Init ()
