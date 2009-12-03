@@ -1061,9 +1061,29 @@ class Publication_db {
     return $result;
   }
   
-  
-  function getForAuthor($author_id,$order='',$page=0)
+  /** Use page==-1 to get ALL publications 
+  default ordering '' is by year */
+  function getForAuthor($author_id,$order='',$page=0,$include_synonyms=false)
   {
+    $CI = &get_instance();
+    
+    $result = array();
+    $author_cond = AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id);
+    #if synonynms must be included: get the list of synonyms and build a new author-sql-condition
+    if ($include_synonyms)
+    {
+      $author = $CI->author_db->getByID($author_id);
+      if ($author==null) return $result;
+      //get synonyms; make list of author_ids... INCLUDING PRIMARY AUTHOR
+      $authors = $author->getSynonyms(true);
+      $author_cond = AIGAION_DB_PREFIX."publicationauthorlink.author_id IN (".$authors[0]->author_id;
+      for ($i = 1; $i < count($authors); $i++) 
+      {
+        $author_cond .= ",".$authors[$i]->author_id;
+      }
+      $author_cond .= ")";
+    }
+    # build order-by clause
     $orderby='actualyear DESC, cleantitle';
     switch ($order) {
       case 'year':
@@ -1096,15 +1116,13 @@ class Publication_db {
       }
     }
     
-    $CI = &get_instance();
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
-    WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    WHERE ".$author_cond."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
     ORDER BY ".$orderby." ".$limit);
 
-    $result = array();
     foreach ($Q->result() as $row)
     {
       $next = $this->getFromRow($row);
@@ -1360,17 +1378,34 @@ class Publication_db {
     }
     return $result;
   }    
-  function getForAuthorAsMap($author_id)
+  function getForAuthorAsMap($author_id,$include_synonyms=false)
   {
     $CI = &get_instance();
+    
+    $result = array();
+    
+    $author_cond = AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id);
+    #if synonynms must be included: get the list of synonyms and build a new author-sql-condition
+    if ($include_synonyms)
+    {
+      $author = $CI->author_db->getByID($author_id);
+      if ($author==null) return $result;
+      //get synonyms; make list of author_ids... INCLUDING PRIMARY AUTHOR
+      $authors = $author->getSynonyms(true);
+      $author_cond = AIGAION_DB_PREFIX."publicationauthorlink.author_id IN (".$authors[0]->author_id;
+      for ($i = 1; $i < count($authors); $i++) 
+      {
+        $author_cond .= ",".$authors[$i]->author_id;
+      }
+      $author_cond .= ")";
+    }
     //we need merge functionality here, so initialze a merge cache
     $this->crossref_cache = array();
     $Q = $CI->db->query("SELECT DISTINCT ".AIGAION_DB_PREFIX."publication.* FROM ".AIGAION_DB_PREFIX."publication, ".AIGAION_DB_PREFIX."publicationauthorlink
-    WHERE ".AIGAION_DB_PREFIX."publicationauthorlink.author_id = ".$CI->db->escape($author_id)."
+    WHERE ".$author_cond."
     AND ".AIGAION_DB_PREFIX."publication.pub_id = ".AIGAION_DB_PREFIX."publicationauthorlink.pub_id
     ORDER BY bibtex_id");
 
-    $result = array();
     foreach ($Q->result() as $row)
     {
       $next = $this->getFromRow($row);

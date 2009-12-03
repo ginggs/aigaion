@@ -229,7 +229,7 @@ class Bookmarklist extends Controller {
             redirect('');
         }
         
-        $this->bookmarklist_db->addAuthor($author->author_id);
+        $this->bookmarklist_db->addAuthor($author->author_id,$author->synonym_of=='0'); //for primary authors, also add pubs of synonym...
         redirect('authors/show/'.$author->author_id);
       
     }    
@@ -326,7 +326,6 @@ class Bookmarklist extends Controller {
     function removekeyword() {
         $keyword_id   = $this->uri->segment(3,-1);
 
-	    //check rights is done in the $this->bookmarklist_db->removeAuthor function, no need to do it twice
 
         //load keyword
         $keyword = $this->keyword_db->getByID($keyword_id);
@@ -369,7 +368,7 @@ class Bookmarklist extends Controller {
             redirect('');
         }
         
-        $this->bookmarklist_db->removeAuthor($author->author_id);
+        $this->bookmarklist_db->removeAuthor($author->author_id,$author->synonym_of=='0'); //for primary authors, also remove pubs of synonyms..
         redirect('authors/show/'.$author->author_id);      
     }
 

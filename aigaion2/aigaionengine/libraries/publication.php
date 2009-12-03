@@ -58,6 +58,7 @@ class Publication {
   var $crossref     = '';
   var $namekey      = '';
   var $userfields   = '';
+  var $status       = '';
   var $read_access_level  = 'intern';
   var $edit_access_level  = 'intern';
   var $derived_read_access_level  = 'intern';

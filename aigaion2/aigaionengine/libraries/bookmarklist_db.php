@@ -67,7 +67,7 @@ class Bookmarklist_db {
         }
 
     }
-    function addAuthor($author_id)
+    function addAuthor($author_id, $include_synonyms = false)
     {
         $CI = &get_instance();
         $userlogin = getUserLogin();
@@ -76,14 +76,14 @@ class Bookmarklist_db {
             return;
         }
         //get all accessible publications for this author
-        $pubs = $CI->publication_db->getForAuthor($author_id,-1);
+        $pubs = $CI->publication_db->getForAuthor($author_id,'',-1,$include_synonyms);
         foreach ($pubs as $pub) {
             $this->addPublication($pub->pub_id);
         }
 
     }
     
-    function removeAuthor($author_id)
+    function removeAuthor($author_id,$include_synonyms=false)
     {
         $CI = &get_instance();
         $userlogin = getUserLogin();
@@ -92,7 +92,7 @@ class Bookmarklist_db {
             return;
         }
         //get all accessible publications for this author
-        $pubs = $CI->publication_db->getForAuthor($author_id,-1);
+        $pubs = $CI->publication_db->getForAuthor($author_id,'',-1,$include_synonyms);
         foreach ($pubs as $pub) {
             $this->removePublication($pub->pub_id);
         }

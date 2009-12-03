@@ -1,6 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class regulates the database access for Authors. Several accessors are present that return an Author or 
-array of Authors. */
+array of Authors. 
+
+Authors can be known under more than one name, e.g. when they marry, or when they write their name differently in different papers. 
+These aliases are known as "synonyms": an author can be synonym_of a primary author (stored in the synonym_of variable)
+
+*/
 class Author_db {
   
   
@@ -100,7 +105,8 @@ class Author_db {
                     'jr',
                     'email',
                     'url',
-                    'institute'
+                    'institute',
+                    'synonym_of'
                    );
     
     $author = new Author;
@@ -143,7 +149,8 @@ class Author_db {
                     'jr',
                     'email',
                     'url',
-                    'institute'
+                    'institute',
+                    'synonym_of'
                    );
     
     //check for specialchars
@@ -188,7 +195,8 @@ class Author_db {
                     'url',
                     'institute'
                    );
-    
+    //synonym data only allowed for authors that are not a primary themselves:
+    if (!$this->hasSynonyms($author)) $fields[] = 'synonym_of';
     //check for specialchars
     $specialfields = array('firstname', 'von', 'surname', 'jr', 'institute');
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
@@ -246,7 +254,8 @@ class Author_db {
   }
   
     /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades
-    in the _db class before actually deleting. */
+    in the _db class before actually deleting. 
+    Returns TRUE or FALSE depending on whether the operation was successful. */
     function delete($author) {
         $CI = &get_instance();
         $userlogin = getUserLogin();
@@ -336,13 +345,18 @@ TODO:
       return false;
   }
   
-  function getAllAuthors()
+  function getAllAuthors($include_synonyms = true)
   {
     $CI = &get_instance();
     $result = array();
     
     //get all authors from the database, order by cleanname
     $CI->db->orderby('cleanname');
+    if (!$include_synonyms) 
+    {
+      $CI->db->where('synonym_of','0');
+    }
+      
     $Q = $CI->db->get('author');
     
     //retrieve results or fail
@@ -594,6 +608,7 @@ TODO:
   }
 
   /** returns a list of similar authors (possibly empty), method depends on site setting */
+  //The method does only check main authors, synonyms are not checked.
   function getSimilarAuthors($author) {
     $userlogin = getUserLogin();
     if ($userlogin->getPreference('similar_author_test')=='il') 
@@ -609,13 +624,22 @@ TODO:
     
   }
   /** returns a list of similar authors (possibly empty), on cleanname */
+  //The method does only check main authors, synonyms are not checked.
   function getSimilarAuthors1($author) {
     $result = array();
+    
+    //return when this is a synonym of a main author.
+    if ($author->synonym_of != '0')
+      return $result;
+      
     $CI = &get_instance();
     $CI->load->helper('utf8_to_ascii');
     
     //get database author array
     $CI->db->select('author_id, cleanname');
+    
+    //do not return synonyms of this author
+    $CI->db->where('synonym_of !=', $author->author_id);
     $CI->db->orderby('cleanname');
     $Q = $CI->db->get('author');
     
@@ -656,8 +680,15 @@ TODO:
   }
   /** returns a list of similar authors (possibly empty), on first initial.
    * By Øyvind.   */
+  //The method does only check main authors, synonyms are not checked.
   function getSimilarAuthors2($author) {
     $result = array();
+    
+    //Return when this is a synonym of a main author
+    if ($author->synonym_of != '0')
+      return $result;
+    
+    
     $CI = &get_instance();
     $CI->load->helper('utf8_to_ascii');
 
@@ -665,6 +696,9 @@ TODO:
 
     //get database author array
     $CI->db->select('author_id, cleanname, surname, firstname');
+    //do not return synonyms of this author
+    $CI->db->where('synonym_of !=', $author->author_id);
+    
     $CI->db->orderby('surname');
     $Q = $CI->db->get('author');
 
@@ -701,9 +735,24 @@ TODO:
     }
     return $result;
   }
-  //this function steals the publications and kills the similar author
+  //this function steals the publications and kills the similar author.
+  //note that we should NOT steal the publications of any SYNONYMS of the source, but the synonyms should be retargeted to the target
   function merge($author, $simauthor_id) {
     $CI = &get_instance();
+    //0) get author and simauthor, to verify synonym information! 
+    //a synonym can ONLY be merged with its primary as TARGET.
+    $simauthor = $CI->author_db->getByID($simauthor_id);
+    if ($author->synonym_of != '0')
+    {
+      appendErrorMessage(__("You cannot merge authors with a synonym author as target").'.<br/>');
+      return;
+    }
+    if (($simauthor->synonym_of != '0') && ($simauthor->synonym_of != $author->author_id))
+    {
+      appendErrorMessage(__("An author synonym can only be merged with the corresponding primary author").'.<br/>');
+      return;
+    }
+    
     //1) get all publications of old, similar author, one by one.
     $pubs = $CI->publication_db->getForAuthor($simauthor_id);
     //2) reassign the publication, if appropriate rights 
@@ -733,6 +782,8 @@ TODO:
     } else {
         $CI->db->delete('author',array('author_id'=>$simauthor_id));
     }
+    //4) reassign all synonyms of old author  to new author
+    $CI->db->update('author',array('synonym_of'=>$author->author_id),array('synonym_of'=>$simauthor_id));
   }
   
   function getKeywordsForAuthor($author_id) {
@@ -754,7 +805,110 @@ TODO:
         //$result[] = $CI->keyword_db->getByID($R->keyword_id);
     }        
     return $result;
+  }
+  
+  //this function returns a list of synonyms for a given author.
+  //when the given author is a synonym itself, first the main author id is found.
+  //the main author itself is not part of the result list, unless $includePrimary==true.
+  function getSynonymsForAuthor($author_id, $include_primary=false) {
+    $CI = &get_instance();
+    $result = array();
     
+    #check whether this is the primary author:
+    $author = $this->getByID($author_id);
+    
+    #check if this is the primary author. If not, fetch the primary author first.
+    if ($author->synonym_of != '0') { 
+      $author_id  = $author->synonym_of;
+      $author    = $this->getByID($author_id);
+    }
+
+    #add primary to list only if requested
+    if ($include_primary)
+    {
+      $result[] = $author;
+    }
+    
+    
+    //now we have the primary author id, we check if it has any synonyms
+    $query = "SELECT DISTINCT ".AIGAION_DB_PREFIX."author.author_id
+    FROM ".AIGAION_DB_PREFIX."author
+    WHERE ".AIGAION_DB_PREFIX."author.synonym_of = ".$CI->db->escape($author_id);
+
+    $Q = $CI->db->query($query);
+    
+    foreach ($Q->result() as $R) {
+        $author = $this->getByID($R->author_id);
+        $result[] = $author;
+    }        
+    return $result;
+  }
+  
+  /**
+   set given author as primary of a set of synonyms; old primary (if any) becomes synonym of given author
+   */
+  function setPrimary($author) 
+  {
+    $CI = &get_instance();
+    if ($author == null) return;
+    if ($author->synonym_of=='0') return;
+    $syns = $this->getSynonymsForAuthor($author->author_id, false);
+    $prim = $this->getByID($author->synonym_of);
+    //for new primary: set synonym-link to 0
+    $author->synonym_of = '0';
+    $author->update();
+    foreach ($syns as $syn)
+    {
+      //for all other synonyms: set link to new primary and update
+      if ($syn->author_id != $author->author_id)
+      {
+        $syn->synonym_of = $author->author_id;
+        $syn->update();
+      }
+    }
+    //and finaly, set old primary as alias for new primary (cannot be done earlier, since primary authors cannot be set to be an alias)
+    $prim->synonym_of = $author->author_id;
+    $prim->update();
+
+  }
+  
+  /** set syn_author to be a synonym of $author
+  BUT:
+  - if author and syn_author are the same, refuse
+  - if syn_author is a primary itself, refuse
+  - if author is a syn itself -> redirect to its primary
+  */
+  function addSynonymForAuthor($author, $syn_author)
+  {
+    $CI = &get_instance();
+    if ($author == null) return;
+    if ($author->author_id==$syn_author->author_id)
+    {
+      appendErrorMessage(__("Cannot set author as synonym of itself").'.<br/>');
+      return;
+    }
+    if ($this->hasSynonyms($syn_author)) 
+    {
+      appendErrorMessage(__("Cannot set author as synonym, because it already has synonyms itself").'.<br/>');
+      return;
+    }
+    if ($author->synonym_of!='0')
+    {
+      $this->addSynonymForAuthor($CI->author_db->getByID($author->synonym_of),$syn_author);
+    }
+    $syn_author->synonym_of = $author->author_id;
+    $syn_author->update();
+  }
+  
+  /** return true if this author is set as synonym for other authors */
+  function hasSynonyms($author)
+  {
+    $CI = &get_instance();
+    $CI->db->select("*");
+    $CI->db->distinct();
+    $CI->db->where(array('synonym_of'=>$author->author_id));
+    $CI->db->from("author");
+	  return ($CI->db->count_all_results() > 0);
   }
 }
 ?>

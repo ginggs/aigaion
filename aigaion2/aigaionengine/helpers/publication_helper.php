@@ -584,4 +584,16 @@ function getPublicationTypes()
 }
 
 
+function getPublicationStatusTypes()
+{
+  return array(""               => "",
+               "preparation"    => __('In preparation'),
+               "submitted"      => __('Submitted'),
+               "review"         => __('Under review'),
+               "revision"       => __('Under revision'),
+               "accepted"       => __('Accepted'),
+               "rejected"       => __('Rejected'),
+               "published"      => __('Published'));
+}
+
 ?>

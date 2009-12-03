@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 
 /** Using LDAP for password checking. */
-class Passwordchecker_ldap {
+class Passwordchecker_ldap extends Passwordchecker {
     /** 
     Check password using LDAP; get as much info as possible from the LDAP server.
     NEED TESTING

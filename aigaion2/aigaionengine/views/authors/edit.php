@@ -54,6 +54,42 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
     </tr>
 <?php
     endforeach;
+
+    //and add the primary_author input stuff... (if this author is not already a primary itself)
+    if ($edit_type!='new' && $author->hasSynonyms())
+    {
+?>
+      <tr>
+        <td colspan='2' valign='top'>
+          <?php 
+            echo __('This author is a primary author with one or more synonyms').'.'; 
+            echo form_hidden('synonym_of',0);
+          ?>
+        </td>
+      </tr>
+<?php
+    }
+    else
+    {    
+?>
+      <tr>
+        <td valign='top'><?php echo __('This author is a synonym of'); ?>:</td>
+        <td valign='top'>
+          <?php 
+            $primaries = array();
+            $primaries[0] = '';
+            $prims = $this->author_db->getAllAuthors(false);
+            foreach ($prims as $prim)
+            {
+              $primaries[$prim->author_id] = $prim->getName();
+            }
+            echo form_dropdown('synonym_of',$primaries,$author->synonym_of);
+          ?>
+        </td>
+      </tr>
+<?php
+    }
+    
 ?>
   </table>
 <?php

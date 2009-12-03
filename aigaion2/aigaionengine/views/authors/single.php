@@ -39,6 +39,30 @@ if ($userlogin->hasRights('publication_edit'))
       }
 ?>
       </table>
+<?php
+      //check if this is a synonym of another author
+      if ($author->synonym_of != '0') {
+        echo "<div class='message'>".__('This author entry is a synonym of another author entry.').' '.sprintf(__('Click %s to go to the main entry to see any additional publications of this author'), anchor('authors/show/'.$author->synonym_of, "here", array('title' => __('Click to show details'))))."</div>\n";
+      }
+      else {
+        $synonyms = $author->getSynonyms();
+        if (count($synonyms) > 0)
+        {
+          echo "<div class='message'>".__('This author is also known under the following synonyms').":<br/>\n<ul>";
+          foreach ($synonyms as $synonym)
+          {
+            echo "<li>".anchor('authors/show/'.$synonym->author_id, $synonym->getName(), array('title' => __('Click to show details')));
+            if ($synonym->institute != '')
+              echo ", ".$synonym->institute;
+            echo ' ['.anchor('authors/merge/'.$author->author_id.'/'.$synonym->author_id, 'merge', array('title' => __('Click to merge')))."]".'&nbsp;['.anchor('authors/setprimary/'.$synonym->author_id, 'set as primary', array('title' => __('Click to set this one as primary')))."]</li>\n";
+          }
+          echo "</ul>\n";
+          echo ' ('.__('All publications of this author under all names are included in the publication list below').')';
+          echo "</div>\n";
+        }       
+      }
+      
+?>
     </td>
     <td>
 <?php 

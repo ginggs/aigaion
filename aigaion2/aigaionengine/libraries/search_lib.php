@@ -178,7 +178,9 @@ class Search_lib {
     if ($authorQ->num_rows()>0) {
       $arrayOfAuthors = array();
       foreach ($authorQ->result() as $R) {
-        $arrayOfAuthors[] = $CI->author_db->getFromRow($R); //create author from row
+        $nextAuthor = $CI->author_db->getFromRow($R); //create author from row
+        //if ($nextAuthor->synonym_of != '0') $nextAuthor = $CI->author_db->getByID($nextAuthor->synonym_of); //synonyms are redirected to the primary?
+        $arrayOfAuthors[] = $nextAuthor;
       }
       return $arrayOfAuthors;
     }

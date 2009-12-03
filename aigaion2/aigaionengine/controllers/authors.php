@@ -69,7 +69,9 @@ class Authors extends Controller {
         $publicationContent['pubCount']        = $this->author_db->getPublicationCount($author_id);
         $publicationContent['multipageprefix'] = 'authors/show/'.$author_id.'/'.$order.'/';
     }    
-    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,$page);
+    $include_synonyms = false;
+    if ($author->hasSynonyms()) $include_synonyms = true;
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,$page,$include_synonyms);
     $publicationContent['order'] = $order;
 
     
@@ -156,7 +158,9 @@ class Authors extends Controller {
         $publicationContent['currentpage']     = $page;
         $publicationContent['multipageprefix'] = 'authors/embed/'.$author_id.'/'.$order.'/';
     }    
-    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
+    $include_synonyms = false;
+    if ($author->hasSynonyms()) $include_synonyms = true;
+    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,-1,$include_synonyms);
     $publicationContent['order'] = $order;
     $publicationContent['noBookmarkList'] = True;
 
@@ -236,7 +240,9 @@ class Authors extends Controller {
             break;
         }
 
-		    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order);
+        $include_synonyms = false;
+        if ($author->hasSynonyms()) $include_synonyms = true;
+		    $publicationContent['publications'] = $this->publication_db->getForAuthor($author_id,$order,-1,$include_synonyms);
 		    $publicationContent['order'] = $order;
 
 				$output = __("No publications found.");
@@ -317,6 +323,18 @@ class Authors extends Controller {
       redirect('');
     }
 
+    if (($simauthor->synonym_of != '0') && ($simauthor->synonym_of != $author->author_id))
+    {
+      appendErrorMessage(__("An author synonym can only be merged with the corresponding primary author").'.<br/>');
+      return;
+    }
+    if ($author->synonym_of != '0')
+    {
+        appendErrorMessage(__("You cannot merge authors with a synonym author as target").'.<br/>');
+        redirect('');
+    }
+
+    
     $header ['title']       = __("Authors").": ".__('Merge');
     $header ['javascripts'] = array('prototype.js', 'effects.js', 'dragdrop.js', 'controls.js');
     $content['author']      = $author;
@@ -497,6 +515,22 @@ class Authors extends Controller {
     
     //set output
     $this->output->set_output($output);
+  }
+
+  /** set primary.
+  3rd segment is author_id
+  */
+  function setPrimary()
+  {
+    $author_id = $this->uri->segment(3,-1);
+    $author = $this->author_db->getByID($author_id);
+    if ($author == null)
+    {
+        appendErrorMessage(__('Set author as primary').': '.__('non-existing id passed').'.<br/>');
+        redirect('');
+    }
+    $author->setPrimary();
+    redirect('authors/show/'.$author_id);
   }
 
   function fortopic()

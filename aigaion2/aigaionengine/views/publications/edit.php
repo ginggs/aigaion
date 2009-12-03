@@ -23,7 +23,7 @@ echo "</script>";
           Element.replace('monthbox','<?php echo "<div id=\"monthbox\" name=\"monthbox\">".__('In the input field below, you can enter a month using bibtex codes containing things such as the default month abbreviations. Do not forget to use outer braces or quotes for literal strings.')." <br/> ".__('Examples').": <ul><li>aug</li><li>nov#{~1st}</li><li>{".__('Between January and May')."}</li></ul> <br/><span title=\"".__('optional field')."\">".str_replace("\"","\\\"",str_replace("\n","",form_input(array('name' => 'month','id' => 'month','size' => '90','alt' => __('optional'),'autocomplete' => 'off','class' => 'optional'),formatMonthBibtexForEdit($publication->month))."&nbsp;".$this->ajax->button_to_function(__("Simple"),"monthFieldSwitch(true);")))."</span></div>"; ?>');
         }
     }
-    </script>
+</script>
   <div class='header'><?php
     switch ($edit_type) {
       case 'add':

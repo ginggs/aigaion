@@ -44,9 +44,15 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
     </table>
     </td></tr>
+
+    <tr><td colspan='2'>
+      <?php echo __("Note that you can also choose to set the source author as a synonym of the target author, instead of fully merging them").". ".__("To do this, go to the edit page of the source author").". \n"; ?>
+    </td></tr>
+
     <tr><td colspan='2'>
       <?php echo form_submit('merge_submit', __('Merge'))."\n"; ?>
     </td></tr>
+
   </table>
 
 <?php

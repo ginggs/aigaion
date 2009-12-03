@@ -1,23 +1,41 @@
 <?php
-	$count = 0;
-	echo "var AUTHORIDS = new Array();\n";
-	echo "var AUTHORS = new Array();\n";
-	echo "var CLEANAUTHORS = new Array();\n"; //separate authors and clean authors list. One is for searching, the other for showing
-    $CI = &get_instance();
-    $CI->db->orderby('cleanname');
-    $Q = $CI->db->get("author");
-	foreach ($Q->result() as $R)  {
-	    $author = $CI->author_db->getFromRow($R);
-	    
-		$cleanname = addslashes ($author->cleanname."||".$author->getName('fvl'));
-		$name = addslashes ($author->getName('vlf'));
-
-		echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
-		echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
-		echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
-
-		$count++;
-	}
+  $count = 0;
+  echo "var AUTHORIDS = new Array();\n";
+  echo "var AUTHORPRIMARY = new Array();\n"; //link to primary author id, or 0
+  echo "var AUTHORS = new Array();\n";
+  echo "var CLEANAUTHORS = new Array();\n"; //separate authors and clean authors list. One is for searching, the other for showing
+  $CI = &get_instance();
+  $CI->db->orderby('cleanname');
+  $Q = $CI->db->getwhere("author",array('synonym_of'=>'0')); //get only the primary authors
+  foreach ($Q->result() as $R)  //for each primary author
+  {
+    
+    $author = $CI->author_db->getFromRow($R);
+    
+    $cleanname = addslashes ($author->cleanname."||".$author->getName('fvl'));
+    $name = addslashes ($author->getName('vlf'));
+    
+    echo "AUTHORIDS [{$count}] = ".$R->author_id.";";
+    echo "CLEANAUTHORS [".$R->author_id."] = '{$cleanname}';\n";
+    echo "AUTHORS [".$R->author_id."] = '{$name}';\n";
+    echo "AUTHORPRIMARY [".$R->author_id."] = '".$R->synonym_of."';\n";
+    
+    $count++;
+    $syns = $author->getSynonyms(false);
+    foreach ($syns as $syn)
+    {
+      
+      $scleanname = addslashes ($syn->cleanname."||".$syn->getName('fvl'));
+      $sname = addslashes ($syn->getName('vlf'))." (synonym of {$name})";
+      
+      echo "AUTHORIDS [{$count}] = ".$syn->author_id.";";
+      echo "CLEANAUTHORS [".$syn->author_id."] = '{$scleanname}';\n";
+      echo "AUTHORS [".$syn->author_id."] = '{$sname}';\n";
+      echo "AUTHORPRIMARY [".$syn->author_id."] = '".$syn->synonym_of."';\n";
+      
+      $count++;
+    } 
+  }
 ?>
 function Init ()
 {
@@ -31,8 +49,19 @@ function AuthorSearch ()
 	for (a=0;a<AUTHORIDS.length; a++) {
 		cleanAuthorString = new String (CLEANAUTHORS [AUTHORIDS [a]]);
 		authorString = new String (AUTHORS [AUTHORIDS [a]]);
-		if (cleanAuthorString.toLowerCase().indexOf(searchtext.toLowerCase ()) != -1)  {
+		authorPrim = new String (AUTHORPRIMARY [AUTHORIDS [a]]);
+		if (cleanAuthorString.toLowerCase().indexOf(searchtext.toLowerCase ()) != -1)  
+		{
 			$('authorinputselect').options [$('authorinputselect').length] = new Option (authorString,a,false,false);
+			optionelement = Element.extend($('authorinputselect').options [$('authorinputselect').length-1]);
+			if (authorPrim=='0')
+			{
+			  optionelement.addClassName("primaryauthor");
+			} 
+			else
+		  {
+			  optionelement.addClassName("synonymauthor");
+		  }
 		}
 	}
 //	if ($('authorinputselect').length == 0) {

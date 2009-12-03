@@ -1,13 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 /** This class holds the data structure of an author.
 
-Database access for Authors is done through the author_db library */
+Database access for Authors is done through the author_db library -- a lot of function documentation can be found there */
 class Author {
 
   //system vars
   var $author_id    = 0;
   var $specialchars = 'FALSE';
   var $cleanname    = '';
+  var $synonym_of   = '0';
 
   //user vars
   var $firstname    = '';
@@ -87,6 +88,7 @@ class Author {
     }
   }
 
+/** [DR: is this function used anywhere? */
 function format($formatStyle, $data='')
   {
     //if no data are passed, use $this->data
@@ -135,27 +137,49 @@ function format($formatStyle, $data='')
       $CI = &get_instance();
     return $CI->author_db->update($this);
   }
-  /** Deletes this author. Returns TRUE or FALSE depending on whether the operation was
-  successful. */
+
   function delete() {
       $CI = &get_instance();
       return $CI->author_db->delete($this);
   }
   
-  /** returns a list of similar authors (possibly empty) */
+  /** see author_db for documentation! */
   function getSimilarAuthors() {
       $CI = &get_instance();
       return $CI->author_db->getSimilarAuthors($this);
   }
-  //this function steals the publications and kills the similar author
+  
   function merge($simauthor_id) {
       $CI = &get_instance();
-      return $CI->author_db->merge($this,$simauthor_id);
+      $CI->author_db->merge($this,$simauthor_id);
   }
   
   function getKeywords() {
       $CI = &get_instance();
       return $CI->author_db->getKeywordsForAuthor($this->author_id);
-    }
+  }
+  
+  function getSynonyms($include_primary=false) {
+      $CI = &get_instance();
+      return $CI->author_db->getSynonymsForAuthor($this->author_id,$include_primary);
+  }
+  
+  function setPrimary()
+  {
+      $CI = &get_instance();
+      $CI->author_db->setPrimary($this);
+  }
+  
+  function addSynonym($syn_author)
+  {
+      $CI = &get_instance();
+      $CI->author_db->addSynonymForAuthor($this,$syn_author);
+  }
+  
+  function hasSynonyms()
+  {
+      $CI = &get_instance();
+      return $CI->author_db->hasSynonyms($this);
+  }
 }
 ?>
