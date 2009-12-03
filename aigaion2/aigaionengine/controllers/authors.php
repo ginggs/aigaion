@@ -258,9 +258,16 @@ class Authors extends Controller {
   {
     $this->edit();
   }
-  
+
+  /** add a new author as synonym for the given author_id (3rd segment)*/
+  function addsynonym()
+  {
+    $prim_id   = $this->uri->segment(3,'0');
+    $this->edit("",$prim_id);
+  }
+    
   //edit() - Call author edit form. When no ID is given: new authorform
-  function edit($author = "")
+  function edit($author = "", $synonym_of='0')
   {
     if (is_numeric($author))
     {
@@ -281,7 +288,12 @@ class Authors extends Controller {
       //there was a author post, retrieve the edit type from the post.
       $edit_type = $this->input->post('edit_type');
     }
-    
+    if ($edit_type=="new")
+    {
+      $prim = $this->author_db->getByID($synonym_of);
+      if ($prim->synonym_of!='0') $synonym_of = $prim->synonym_of;
+      $author->synonym_of = $synonym_of;
+    }
     $userlogin = getUserLogin();
     if (!$userlogin->hasRights('publication_edit'))
     {

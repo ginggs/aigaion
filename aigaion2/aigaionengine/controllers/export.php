@@ -222,7 +222,7 @@ class Export extends Controller {
         }
 
         #collect to-be-exported publications 
-        $publicationMap = $this->publication_db->getForAuthorAsMap($author->author_id);
+        $publicationMap = $this->publication_db->getForAuthorAsMap($author->author_id,$author->synonym_of=='0');
         #split into publications and crossreffed publications, adding crossreffed publications as needed
         $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
         $pubs = $splitpubs[0];
