@@ -12,11 +12,11 @@ class Rss extends Controller {
   */
   function index()
 	{
-    redirect('');
+    redirect('rss/publicstream');
 	}
 
   /** Public RSS: 
-  No login filter; only return content if anon login is enabled and an anon user exists; return RSS data for the 'n' most recent publications
+  No login filter (most rss readers cannot handle the associated redirects); only return content if anon login is enabled and an anon user exists; return RSS data for the 'n' most recent publications
   3rd segment: n  */
   function publicstream() 
   {

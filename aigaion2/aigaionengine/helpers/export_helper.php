@@ -265,7 +265,7 @@ require_once(APPPATH."include/utf8/trim.php");
     			$return = "BOOK";
     		break;
     		case "Booklet":
-    			$return = "BOOK";
+    			$return = "PAMP";
     		break;
     		case "Inbook":
     			$return = "CHAP";

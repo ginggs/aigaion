@@ -201,6 +201,9 @@ class Parseentries_ris
             case "BOOK":
               $elementValue = "book";
               break;
+            case "PAMP":
+              $elementValue = "booklet";
+              break;
             case "CHAP":
               $elementValue = "inbook";
               break;
