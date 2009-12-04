@@ -102,7 +102,7 @@ echo form_submit('submit',__('Change password'));
 echo "
         </td>
         </tr>
-        </table></div>";
+        </table>";
 echo form_close();
 echo form_open('');
 echo form_submit('cancel',__('Cancel'));
