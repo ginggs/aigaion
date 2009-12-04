@@ -107,7 +107,7 @@ echo $this->validation->error_string;
             <td>
 <?php              
             //[DR 2008.09.03] While I'm writing this, everything that's needed to allow more than one delegate at a time is in place, except for this piece of interface in which you can only select one delegate at a time... "LOGIN_DELEGATES" can be a comma separate list of module names
-            $options = array(''=>'','hardcoded'=>__('Test delegate'),'ldap'=>__('LDAP Password checking'));
+            $options = array(''=>'','hardcoded'=>__('Test delegate'),'ldap'=>__('LDAP Password checking'),'pam'=>__('PAM Password checking').'. '.__('Uses php_pam_auth module'),'pwauth'=>__('pwauth Password checking').'. '.__('Directly from /usr/bin/pwauth'));
             echo form_dropdown('LOGIN_DELEGATES', $options,$siteconfig->getConfigSetting("LOGIN_DELEGATES"));
 ?>
             </td>                

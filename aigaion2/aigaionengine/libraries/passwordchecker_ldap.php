@@ -8,7 +8,7 @@ class Passwordchecker_ldap extends Passwordchecker {
     */
     function checkPassword($uname, $password,$pwdInMd5) {
         if ($pwdInMd5) {
-            return array('uname'=>'','notice'=>__('The LDAP password checker cannot handle md5 passwords yet'));
+            return array('uname'=>'','notice'=>sprintf(__('The %s password checker cannot handle md5 passwords'),'LDAP'));
         }
         $CI = &get_instance();
         $CI->load->library('authldap');
