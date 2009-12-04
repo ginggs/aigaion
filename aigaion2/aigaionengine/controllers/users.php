@@ -254,6 +254,78 @@ class Users extends Controller {
         $this->output->set_output($output);
 	}
 
+  /**
+  users/setpassword
+	Entry point for changing password.
+	Depending on whether 'commit' is specified in the url, edit form is shown or password is changed
+	
+	Fails with error message when one of:
+	    setpassword requested for non-existing user
+	    insufficient user rights
+	    wrong old password
+	    
+	Parameters passed via URL segments:
+	    3rd: user_id, the id of the to-be-deleted-user
+	    4th: if the 4th segment is the string 'commit', password is set, otherwise, form is shown
+	         
+  */
+  function setpassword()
+  {
+	    $user_id = $this->uri->segment(3);
+	    $user = $this->user_db->getByID($user_id);
+	    $commit = $this->uri->segment(4,'');
+
+	    if ($user==null) {
+	        appendErrorMessage(__('Set password').': '.__('non-existing id passed').'.<br/>');
+	        redirect('');
+	    }
+
+	    //check user rights:
+	    // either own pwd and user_edit_self, or user_edit_all
+      $userlogin = getUserLogin();
+      if (   (!($userlogin->hasRights('user_edit_self') && $user_id==$userlogin->userId()))
+          &&   
+             (!$userlogin->hasRights('user_edit_all')) )
+      {
+        appendErrorMessage(__('Set password').': '.__('insufficient rights').'.<br/>');
+        redirect('');
+      }
+
+        if ($commit=='commit') {
+            //-verify password for current user using userlogin (not: error+redirect)
+            if (!$userlogin->checkPassword($this->input->post('password_old')))
+            {
+              appendErrorMessage(__('Set password').': '.__('error: please type your current password correctly').'.<br/>');
+              redirect('users/setpassword/'.$user->user_id);
+            } 
+            //-verify matching of two new paswords (not: error+redirect)
+            if ($this->input->post('password')!=$this->input->post('password_check'))
+            {
+              appendErrorMessage(__('Set password').': '.__('error: the two new passwords do not match').'.<br/>');
+              redirect('users/setpassword/'.$user->user_id);
+            } 
+            //-set password and redirect to front page
+            $user->setPassword($this->input->post('password'));
+            redirect('');
+        } else {
+            //get output
+            $headerdata = array();
+            $headerdata['title'] = __('Set password');
+            $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js');
+            
+            $output = $this->load->view('header', $headerdata, true);
+    
+            $output .= $this->load->view('users/setpassword',
+                                          array('user'=>$user),  
+                                          true);
+            
+            $output .= $this->load->view('footer','', true);
+    
+            //set output
+            $this->output->set_output($output);
+        }
+    }
+        
 	/** 
 	users/delete
 	

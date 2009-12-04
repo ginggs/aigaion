@@ -84,7 +84,7 @@ echo "  </td>
 echo form_hidden('password_invalidated',$user->password_invalidated);
 if ($user->password_invalidated != 'TRUE') {
     
-    //checkbox to disable account, with many warnings?
+    //checkbox to disable account, with many warnings? always visible, for edit and add form
     if ($user->user_id != $userlogin->userId()) {
         //never disable own account
         echo "
@@ -98,10 +98,14 @@ if ($user->password_invalidated != 'TRUE') {
             </tr>
             <tr>
     	        <td align='left' colspan='2'><img class='icon' src='".getIconUrl("small_arrow.gif")."'>
-    	        ".__('Note: when you disable this account, it can no loner be used to login, but the information associated to the account will reamin in the database. You can re-enable the account in the future.')."
+    	        ".__('Note: when you disable this account, it can no longer be used to login, but the information associated to the account will remain in the database. You can re-enable the account in the future.')."
     	        </td>
     	    </tr>";
     }    
+}
+    
+if ($isAddForm) //password fields only for add forms
+{
     echo "
             <tr>
             <td>".__('Password')." (".__('leave blank for no change').")</td>
@@ -135,41 +139,13 @@ if ($user->password_invalidated != 'TRUE') {
                 </script>                          
             </td>
             </tr>";
-} else {
-    
-    //anon or external: give remark on pwd changing
-    echo form_hidden('password','');
-    echo form_hidden('password_check','');
-    if ($user->type=='anon') {
-        echo "
-            <tr>
-            <td>".__('Password').":</td>
-            <td class='message'>
-            ".__('Cannot change password on anonymous accounts; they do not have a password.')."
-            </td>
-            </tr>
-            <tr>";
-        
-    } else if ($user->type=='external'){
-        echo "
-            <tr>
-            <td>".__('Password').":</td>
-            <td class='message'>
-            ".__('Cannot change password on this account. It has a password which is externally managed by some other system.')."
-            </td>
-            </tr>
-            <tr>";
-    }  else {
-        echo "
-            <tr>
-            <td>".__('Password').":</td>
-            <td class='message'>
-            ".__('Cannot change password on this account. The account has been disabled and cannot be used to login. Maybe because it used to be an anonymous account or an external login, and therefore does never had a valid password? Ask an admin to re-enable it and assign a password.')."
-            </td>
-            </tr>
-            <tr>";
-    }
+} 
+else
+{
+  echo form_hidden('password','');
+  echo form_hidden('password_check','');
 }
+
 
 if ($userlogin->hasRights('user_edit_all')) {
     if ($user->user_id == $userlogin->userId()) {

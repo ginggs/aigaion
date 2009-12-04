@@ -246,7 +246,51 @@ class UserLogin {
     }
     
     /* ================ login/logout methods ================ */
+ 
+    /**
+    a small method to check the password for the current user (some actions require the password to be given anew)
     
+    can only be called if user is logged in, and can only check password for current user; and not for anonymous users
+    */
+    function checkPassword($pwd) 
+    {
+        $CI = &get_instance();
+        if (!$this->isLoggedIn()) return false;
+        if ($this->isAnonymous()) return false;
+        if ($this->theUser->type == 'normal')
+        {
+            $Q = $CI->db->get_where('users',array('login'=>$this->theUser->login,'password'=>md5($pwd)));
+            if ($Q->num_rows()<=0) {
+                return false; //wrong pwd
+            }
+            return true;
+        }
+        else
+        {   //external user? check the delegates
+            if (getConfigurationSetting("LOGIN_ENABLE_DELEGATED_LOGIN") == 'TRUE') {
+                $CI->load->library('Passwordchecker');
+                $delegates = explode (',',getConfigurationSetting("LOGIN_DELEGATES"));
+                foreach ($delegates as $delegate) {
+                    //determine next delegate
+                    $delegateLibrary = 'passwordchecker_'.$delegate;
+                    $CI->load->library($delegateLibrary);
+                    //check password
+                    $loginInfo = $CI->$delegateLibrary->checkPassword($loginName, $loginPwd,false);
+                    if (isset($loginInfo['uname']) && ($loginInfo['uname'] != null) && ($loginInfo['uname']!= '')) {
+                        //password was OK
+                        return true;
+                    }
+                }
+                return false; // no delegate accepted the password
+            } 
+            else
+            {   //external user, but delegates not allowed ?
+                return false;
+            }
+        } //no one accepted the password
+        return false;
+    }
+   
     /** This is the method that you call to perform the login
      *  If already logged in as non-anonymous, do nothing
      *  Else if external login in use: try to login from external module
@@ -832,7 +876,3 @@ class UserLogin {
     }
 
 }
-
-
-
-?>

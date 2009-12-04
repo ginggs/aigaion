@@ -74,6 +74,14 @@ class User {
         $CI = &get_instance();
         return $CI->user_db->update($this);
     }
+    
+    /** Set a new password for this user, and, if needed, enable it */
+    function setPassword($pwd)
+    {
+        $CI = &get_instance();
+        $CI->user_db->setPassword($this,$pwd);
+    }
+    
     /** Deletes this user. Returns TRUE or FALSE depending on whether the operation was
     successful. */
     function delete() {

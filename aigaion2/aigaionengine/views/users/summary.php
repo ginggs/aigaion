@@ -30,6 +30,11 @@ $userlogin  = getUserLogin();
     } else if ($user->password_invalidated=='TRUE') {
         echo ' ('.__('disabled account').')';
     }
+    if ($userlogin->hasRights('user_edit_all') || ($userlogin->hasRights('user_edit_all')&&$user->user_id==$userlogin->userId()))
+    {
+        if($user->type != 'anon' && $user->type !='external')
+          echo '&nbsp;['.anchor('users/setpassword/'.$user->user_id,__('set password'))."]&nbsp;";
+    }
 
 
 ?>

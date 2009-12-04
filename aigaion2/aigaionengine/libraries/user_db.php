@@ -299,12 +299,15 @@ class User_db {
         if (($user->type=='anon') || ($user->type=='external')) {
             //always invalidate password for anon and external accounts
             $user->password_invalidated = 'TRUE';
-            // DR 2008.08.29: cannot change password for anon or external account
-            $user->password = "";
         } else if ($user->password_invalidated == 'TRUE') {
             appendMessage(__('The account does not have a valid password. It has been disabled. You can ask an admin to re-enable it.').'<br/>');
         }
-            
+        //you are not alowed to ENABLE the account here, only DISABLE it. ENABLING goes through the setpassword method: setting a password enables the account as well.
+        if ($user_test->password_invalidated == 'TRUE' && $user->password_invalidated != 'TRUE')
+        {
+            appendErrorMessage(__("You cannot enable an invalidated account through this method. Instead, enable it by setting a password. Other changes have been saved."));
+            $user->password_invalidated = 'TRUE';
+        }
 
         $newwindowforatt ='FALSE';
         if ($user->preferences['newwindowforatt']) {
@@ -347,11 +350,7 @@ class User_db {
                                'newwindowforatt'    => $newwindowforatt,
                                'exportinbrowser'    => $exportinbrowser,
                                'utf8bibtex'         => $utf8bibtex
-                               );
-        //update password only if not empty
-        if (isset($user->password) && ($user->password!="")) {
-            $updatefields['password']=$user->password;
-        }
+                               ); //password is NOT updated here! ue setPassword for that!
 
         $CI->db->update('users', $updatefields,array('user_id'=>$user->user_id));
         //if the user is NOT anonymous, but it is the 'DEFAULT ANONYMOUS ACCOUNT from the site config settings, 
@@ -422,6 +421,39 @@ class User_db {
         }
         appendMessage(__("User data changed. Changed access rights will be valid upon next login.")."<br/>");
         return True;
+    }
+
+    /** Set a new password for user, and, if needed, enable it */
+    function setPassword($user, $pwd)
+    {
+        $CI = &get_instance();
+        
+        if (($user->type=='anon') || ($user->type=='external')) 
+        {
+          // cannot change password for anon or external account
+          appendErrorMessage(__("You cannot change the password for anonymous accounts or externally managed accounts"));
+          return;
+        }
+        //check user rights:
+        // either own pwd and user_edit_self, or user_edit_all
+        $userlogin = getUserLogin();
+        if (   (!($userlogin->hasRights('user_edit_self') && $user_id==$userlogin->userId()))
+            &&   
+               (!$userlogin->hasRights('user_edit_all')) )
+        {
+          appendErrorMessage(__('Set password').': '.__('insufficient rights').'.<br/>');
+          return;
+        }        
+        if ($pwd == "")
+        {
+          appendErrorMessage(__('Set password').': '.__('no empty passwords allowed').'.<br/>');
+          return;
+        }
+        $user->password = $pwd;
+        $user->password_invalidated = 'FALSE';
+        //store password, enable user 
+        $CI->db->update('users',array('password'=>md5($pwd),'password_invalidated'=>'FALSE'),array('user_id'=>$user->user_id));
+        appendMessage(__('Password updated and user account enabled'));
     }
 
     /** delete given object. where necessary cascade. Checks for edit and read rights on this object and all cascades

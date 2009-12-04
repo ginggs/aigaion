@@ -288,7 +288,7 @@ class Authors extends Controller {
       //there was a author post, retrieve the edit type from the post.
       $edit_type = $this->input->post('edit_type');
     }
-    if ($edit_type=="new")
+    if ($edit_type=="new" && $synonym_of != '0')
     {
       $prim = $this->author_db->getByID($synonym_of);
       if ($prim->synonym_of!='0') $synonym_of = $prim->synonym_of;

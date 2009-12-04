@@ -178,6 +178,7 @@ if ($userlogin->hasRights('topic_subscription')) {
 <?php
 if ($userlogin->hasRights('user_edit_self')) {
     echo "    <li class='mainmenu'>".anchor('users/edit/'.$userlogin->userId(), __('My Profile'))."</li>\n";
+    echo "    <li class='mainmenu'>".anchor('users/setpassword/'.$userlogin->userId(), __('Set password'))."</li>\n";
 }
 if ($userlogin->hasRights('topic_subscription')) {
     echo "    <li class='mainmenu'>".anchor('users/topicreview/', __('Topic Subscribe'))."</li>\n";
