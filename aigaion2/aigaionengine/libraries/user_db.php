@@ -437,7 +437,7 @@ class User_db {
         //check user rights:
         // either own pwd and user_edit_self, or user_edit_all
         $userlogin = getUserLogin();
-        if (   (!($userlogin->hasRights('user_edit_self') && $user_id==$userlogin->userId()))
+        if (   (!($userlogin->hasRights('user_edit_self') && $user->user_id==$userlogin->userId()))
             &&   
                (!$userlogin->hasRights('user_edit_all')) )
         {
