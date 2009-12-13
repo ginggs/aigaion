@@ -87,4 +87,18 @@ function translateType ($type, $ucfirst=false) {
   }
 }
 
+function translateCustomFieldsType ($type, $ucfirst=false) {
+  /**
+   * all types to be translated come in here:
+   */
+  $types = array("author"       => __('Author'),
+                 "publication"  => __('Publication'),
+                 "topic"        => __('Topic'));
+ 
+  if (array_key_exists ($type, $types)) {
+    return $ucfirst? ucfirst ($types[$type]) : $types[$type];
+  } else {
+    return $ucfirst? ucfirst ($type) : $type;
+  }
+}
 ?>

@@ -10,6 +10,7 @@ Parameters:
 we assume that this view is not loaded if you don't have the appropriate database_manage rights
 */
 $this->load->helper('form');
+$this->load->helper('translation');
 echo "<div class='editform'>";
 echo form_open_multipart('site/configure/commit');
 //formname is used to check whether the POST data is coming from the right form.
@@ -66,7 +67,7 @@ echo $this->validation->error_string;
             <td>
 <?php              
             $options = array(''=>'');
-            foreach ($this->user_db->getAllAnonUsers() as $anonUser) {
+            foreach ($anonUsers as $anonUser) {
                 $options[$anonUser->user_id] = $anonUser->login;
             }
             echo form_dropdown('LOGIN_DEFAULT_ANON', $options,$siteconfig->getConfigSetting("LOGIN_DEFAULT_ANON"));
@@ -297,11 +298,94 @@ echo $this->validation->error_string;
 	        <?php echo __('Check this box if the server is read-only, i.e. if you cannot write files such as attachments to the server.');?></td>
 	    </tr>
 
+<!-- CUSTOM FIELDS SETTINGS -->
+	    <tr>
+	        <td colspan='2'><hr>
+	          <p class='header2'><?php echo __('Custom fields settings:');?></p>
+	          <p><?php echo __('Aigaion allows adding installation-specific custom fields to publications, authors and topics. You can create these custom fields here.');?></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td valign='top'><label for='USE_CUSTOM_FIELDS'><?php echo __('Enable custom fields:');?></label></td>
+	        <td align='left'>
+<?php	            
+    echo form_checkbox('USE_CUSTOM_FIELDS','USE_CUSTOM_FIELDS',$siteconfig->getConfigSetting("USE_CUSTOM_FIELDS")== "TRUE")."\n";
+    echo form_hidden('customfield_count', sizeof($customFieldsInfo))."\n";
+?>
+          </td>
+      </tr>
+	    <tr>
+	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
+	        <?php echo __('Check this box to enable custom fields.');?></td>
+	    </tr>
+      <tr>
+        <td></td><td>
+          <table>
+            <tr>
+              <td><p class='header2'><?php echo __('Type');?></p></td>
+              <td><p class='header2'><?php echo __('Name');?></p></td>
+              <td><p class='header2'><?php echo __('Order');?></p></td>
+              <td><p class='header2'><?php echo __('Keep');?></p></td>
+            </tr>
+            <?php
+            $count = 0;
+            //generate type count arrays
+            $authorTypeCount = $publicationTypeCount = $topicTypeCount = 0;
+            $authorTypeCountArray = $publicationTypeCountArray = $topicTypeCountArray = array();
+            $authorTypeCountArray[] = 0;
+            $publicationTypeCountArray[] = 0;
+            $topicTypeCountArray[] = 0;
+            
+            foreach ($customFieldsInfo as $customField)
+            {
+              if ($customField['type'] == 'author') {
+                $authorTypeCount++;
+                $authorTypeCountArray[] = $authorTypeCount;
+              }
+              else if ($customField['type'] == 'publication') {
+                $publicationTypeCount++;
+                $publicationTypeCountArray[] = $publicationTypeCount;
+              }
+              else if ($customField['type'] == 'topic') {
+                $topicTypeCount++;
+                $topicTypeCountArray[] = $topicTypeCount;
+              }
+            }
+            $countArrays = array('author' => $authorTypeCountArray, 'publication' => $publicationTypeCountArray, 'topic' => $topicTypeCountArray);
+            foreach ($customFieldsInfo as $customField)
+            {
+              ?>
+            <tr>
+              <td><?php 
+                echo form_hidden('CUSTOM_FIELD_ID_'.$count, $customField['type_id'])."\n";
+                echo form_hidden('CUSTOM_FIELD_TYPE_'.$count, $customField['type'])."\n";
+                echo translateCustomFieldsType($customField['type']); ?></td>
+              <td><?php echo form_input(array('name'=>'CUSTOM_FIELD_NAME_'.$count,'id'=>'CUSTOM_FIELD_NAME_'.$count,'value'=>$customField['name'], 'size'=>30)); ?></td>
+              <td><?php echo form_dropdown('CUSTOM_FIELD_ORDER_'.$count,$countArrays[$customField['type']],$customField['order']); ?></td>
+              <td><?php echo form_checkbox('CUSTOM_FIELD_KEEP_'.$count,'CUSTOM_FIELD_KEEP_'.$count,true)."\n"; ?></td>
+            </tr>
+              <?php
+              $count++;
+            }
+            //show empty row for adding new custom fields
+            ?>
+            <tr>
+              <td><?php 
+                echo form_hidden('CUSTOM_FIELD_ID_'.$count, '')."\n";
+                echo form_dropdown('CUSTOM_FIELD_TYPE_'.$count,array(''=>'','publication' => __('Publication'),'author' => __('Author'),'topic' => __('Topic')),''); ?></td>
+              <td><?php echo form_input(array('name'=>'CUSTOM_FIELD_NAME_'.$count,'id'=>'CUSTOM_FIELD_NAME_'.$count,'value'=>'', 'size'=>30)); ?></td>
+              <td><?php echo form_dropdown('CUSTOM_FIELD_ORDER_'.$count,max($countArrays),''); ?></td>
+              <td><?php echo form_checkbox('CUSTOM_FIELD_KEEP_'.$count,'CUSTOM_FIELD_KEEP_'.$count,false)."\n"; ?></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+
 <!-- INPUT/OUTPUT SETTINGS -->
 	    <tr>
-	        <td colspan='2'><hr><p class='header2'>In- and output settings:</p></td>
+	        <td colspan='2'><hr><p class='header2'><?php echo __('In- and output settings:');?></p></td>
 	    </tr>
-	
 	    <tr>
 	        <td valign='top'><label for='BIBTEX_STRINGS_IN'><?php echo __('BibTeX strings:');?></label></td>
 	        <td><textarea name='BIBTEX_STRINGS_IN' wrap='virtual' cols='50' rows='10'><?php echo $siteconfig->getConfigSetting("BIBTEX_STRINGS_IN"); ?></textarea></td>

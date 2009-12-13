@@ -21,6 +21,47 @@
 */
 
     /** 
+    / * Add customfieldInfo table
+    */
+    
+    function updateSchemaV2_21() {
+      $CI = &get_instance();
+        if (checkVersion('V2.21', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_20()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        //add customfieldsinfo table
+        mysql_query("CREATE TABLE `".AIGAION_DB_PREFIX."customfieldsinfo` 
+                        (  `type_id` int(10) unsigned NOT NULL auto_increment,
+                        `type` enum('publication','author','topic') NOT NULL default 'publication',
+                        `order` int(10) unsigned NOT NULL default '0',
+                        `name` VARCHAR(255) NOT NULL default '',
+                        PRIMARY KEY  (`type_id`)) ENGINE=MyISAM CHARACTER SET utf8;");
+        
+        if (mysql_error()) 
+            return False;
+            
+        //drop "type" column of customfields table since it is successed by customfiledsinfo table
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."customfields` 
+                      DROP COLUMN `type`;");
+                      
+        if (mysql_error()) 
+            return False;
+
+        //insert type_id column
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."customfields` 
+                      ADD `type_id` int(10) unsigned NOT NULL AFTER `entry_id`;");
+
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.21');
+    }
+
+    /** 
     / * Add 'publicaton status' column to publication table.
     / * Add customfields table
     / * Add author "synonym of" column for enabling multiple instances of the same author.

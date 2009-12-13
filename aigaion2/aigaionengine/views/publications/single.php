@@ -227,6 +227,20 @@ $this->load->helper('translation');
       endif;
     endforeach;
 
+    $customfields = $publication->getCustomFields();
+    if (is_array($customfields))
+    {
+      foreach ($customfields as $customfield)
+      {
+          ?>
+        <tr>
+          <td valign='top'><?php echo $customfield['fieldname']; ?> </td>
+          <td valign='top'><?php echo $customfield['value']; ?> </td>
+        </tr>
+            <?php
+      }
+    }
+
     $keywords = $publication->getKeywords();
     if (is_array($keywords))
     {

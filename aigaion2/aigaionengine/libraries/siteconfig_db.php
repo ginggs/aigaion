@@ -48,9 +48,8 @@ class Siteconfig_db {
             &&
                ($result->configSettings['EXTERNAL_LOGIN_MODULE'] == 'Httpauth')
             )
-            {
-            $result->configSettings['LOGIN_HTTPAUTH_ENABLE'] = 'TRUE';
-                
+        {
+          $result->configSettings['LOGIN_HTTPAUTH_ENABLE'] = 'TRUE';
         }
 
         return $result;
@@ -93,6 +92,12 @@ class Siteconfig_db {
         } else {
             $result->configSettings['PUBLICATION_XREF_MERGE']       = 'FALSE';
         }
+        if ($CI->input->post('USE_CUSTOM_FIELDS') == 'USE_CUSTOM_FIELDS') {
+          $result->configSettings['USE_CUSTOM_FIELDS']              = 'TRUE';
+        } else {
+          $result->configSettings['USE_CUSTOM_FIELDS']              = 'FALSE';
+        }
+        
         $result->configSettings['DEFAULTPREF_THEME']              = $CI->input->post('DEFAULTPREF_THEME');
         $result->configSettings['DEFAULTPREF_LANGUAGE']           = $CI->input->post('DEFAULTPREF_LANGUAGE');
         $result->configSettings['DEFAULTPREF_SUMMARYSTYLE']       = $CI->input->post('DEFAULTPREF_SUMMARYSTYLE');

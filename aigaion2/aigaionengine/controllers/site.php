@@ -26,8 +26,7 @@ class Site extends Controller {
 	{
 	    //check rights
         $userlogin = getUserLogin();
-        if (    (!$userlogin->hasRights('database_manage'))
-            ) 
+        if (!$userlogin->hasRights('database_manage')) 
         {
 	        appendErrorMessage(__('Configure database').': '.__('insufficient rights').'.<br/>');
 	        redirect('');
@@ -39,6 +38,7 @@ class Site extends Controller {
         $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 	    if ($commit=='commit') {
 	        $siteconfig = $this->siteconfig_db->getFromPost();
+	        $customFieldsInfo = $this->customfields_db->getSettingsFromPost();
 	        if ($siteconfig!= null) {
     	        //do validation
                 //----no validation rules are implemented yet. When validation rules are defined, see e.g. users/commit for
@@ -47,11 +47,16 @@ class Site extends Controller {
     	            //if validation successfull, set settings
     	            $siteconfig->update();
     	            $siteconfig = $this->siteconfig_db->getSiteConfig();
+    	            
+    	            $customFieldsInfo = $this->customfields_db->updateFromPost($customFieldsInfo);
     	        //}
     	    }
 	    } else {
 	        $siteconfig = $this->siteconfig_db->getSiteConfig();
+	        $customFieldsInfo = $this->customfields_db->getAllFieldsInfo();
 	    }
+ 	    $anonUsers = $this->user_db->getAllAnonUsers();
+	    
 	    
         //get output: always return to configuration page
         $headerdata = array();
@@ -62,7 +67,7 @@ class Site extends Controller {
 
         
         $output .= $this->load->view('site/edit',
-                                      array('siteconfig'=>$siteconfig),  
+                                      array('siteconfig'=>$siteconfig, 'anonUsers'=>$anonUsers, 'customFieldsInfo'=>$customFieldsInfo),  
                                       true);
         
         $output .= $this->load->view('footer','', true);

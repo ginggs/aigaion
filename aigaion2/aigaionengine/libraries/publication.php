@@ -70,6 +70,7 @@ class Publication {
   var $keywords     = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getKeywords()
   var $attachments  = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getAttachments()
   var $notes        = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getNotes()
+  var $customfields = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getCustomFields()
   
   //class constructor
   function Publication()
@@ -130,6 +131,16 @@ class Publication {
         $this->notes = $CI->note_db->getNotesForPublication($this->pub_id);
     }
     return $this->notes;
+  }
+  
+  function getCustomFields()
+  {
+    $CI = &get_instance();
+    if ($this->customfields == null)
+    {
+      $this->customfields = $CI->customfields_db->getForPublication($this->pub_id);
+    }
+    return $this->customfields;
   }
   
   function getUserMark() 
