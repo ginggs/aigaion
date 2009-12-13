@@ -359,7 +359,9 @@ class Attachment_db {
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('attachments',array('att_id'=>$attachment->att_id));
         if (!$attachment->isremote) {
+          if (is_file(AIGAION_ATTACHMENT_DIR.'/'.$attachment->location)) {
             unlink(AIGAION_ATTACHMENT_DIR.'/'.$attachment->location);
+          }
         }
         //add the information of the deleted rows to trashcan(time, data), in such a way that at least manual reconstruction will be possible
         return true;
