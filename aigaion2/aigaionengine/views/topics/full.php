@@ -57,7 +57,15 @@ echo '<br/>&nbsp;&nbsp;<img class="icon" src="'.getIconUrl('small_arrow.gif').'"
         if (utf8_strlen($urlname)>21) {
             $urlname = utf8_substr($urlname,0,30)."...";
         }
-        echo __('URL').": <a  title='".prep_url($topic->url)."' href='".prep_url($topic->url)."' class='open_extern'>".$urlname."</a><br/><br/>\n";
+        echo __('URL').": <a  title='".prep_url($topic->url)."' href='".prep_url($topic->url)."' class='open_extern'>".$urlname."</a><br/>\n";
+    }
+    $customfields = $topic->getCustomFields();
+    if (is_array($customfields))
+    {
+      foreach ($customfields as $customfield)
+      {
+        echo $customfield['fieldname'].": ".$customfield['value']."<br/>\n";
+      }
     }
     if ($description)
         echo "<p>".$description."</p>\n";

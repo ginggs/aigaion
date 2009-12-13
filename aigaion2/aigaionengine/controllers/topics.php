@@ -215,6 +215,7 @@ class Topics extends Controller {
 	    }
         $config=array();
       $topic = $this->topic_db->getByID($topic_id,$config);
+      $topic->getCustomFields();
 
 	    if ($topic==null) {
 	        appendErrorMessage(__("Edit topic").": ".__("non-existing id passed").".<br/>");

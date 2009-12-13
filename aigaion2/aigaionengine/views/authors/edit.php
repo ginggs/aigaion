@@ -9,6 +9,7 @@ $authorfields = array(
 	'institute'		=>	__('Institute'),
 	'url'			=>	__('URL')
 );
+$customfieldkeys    = $this->customfields_db->getCustomFieldKeys('author');
 $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
@@ -55,6 +56,23 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 <?php
     endforeach;
 
+    //do the custom fields
+    $customFields = $author->getCustomFields();
+    foreach ($customfieldkeys as $field_id => $field_name) {
+      if (array_key_exists($field_id, $customFields)) {
+        $value = $customFields[$field_id]['value'];
+      }
+      else {
+        $value = '';
+      }
+      ?>
+    <tr>
+      <td><?php echo $field_name; ?>:</td>
+      <td><?php echo form_input(array('name' => 'CUSTOM_FIELD_'.$field_id, 'id' => 'CUSTOM_FIELD_'.$field_id, 'size' => '45'), $value); ?></td>
+    </tr>
+      <?php
+    }
+    
     //and add the primary_author input stuff... (if this author is not already a primary itself)
     if ($edit_type!='new' && $author->hasSynonyms())
     {

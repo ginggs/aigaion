@@ -24,7 +24,7 @@ class Customfields_db {
 
   function getForTypeByID($type, $object_id) {
     $CI = &get_instance();
-    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."customfieldsinfo.name, customfields.value
+    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."customfieldsinfo.name, customfieldsinfo.type_id, customfields.value
                           FROM ".AIGAION_DB_PREFIX."customfieldsinfo 
                             LEFT JOIN ".AIGAION_DB_PREFIX."customfields
                         		  ON (".AIGAION_DB_PREFIX."customfieldsinfo.type_id = ".AIGAION_DB_PREFIX."customfields.type_id)
@@ -36,14 +36,81 @@ class Customfields_db {
     if ($Q->num_rows() > 0)
     {
       foreach ($Q->result() as $R) {
-        $result[] = $this->getFromRow($R);
+        $result[$R->type_id] = array('fieldname' => $R->name, 'value' => $R->value);
       }
     }
     return $result;
   }
   
-  function getFromRow($R) {
-    return array ('fieldname' => $R->name, 'value' => $R->value);
+  function getFromPost($type) {
+    $CI = &get_instance();
+    
+    $Q = $CI->db->query("SELECT type_id, name
+                          FROM ".AIGAION_DB_PREFIX."customfieldsinfo
+                          WHERE type = ".$CI->db->escape($type));
+    
+    $result = array();
+    if ($Q->num_rows() > 0)
+    {
+      foreach ($Q->result() as $R)
+      {
+        $result[$R->type_id] = array('fieldname' => $R->name, 'value' => trim($CI->input->post('CUSTOM_FIELD_'.$R->type_id)));
+      }
+    }
+    return $result;  
+  }
+  
+  function addForID($object_id, $customfields) {
+    $CI = &get_instance();
+    
+    foreach ($customfields as $type_id => $value) {
+      $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
+      
+      //insert into database using active record helper
+      $CI->db->insert('customfields', $data);
+    }
+  }
+  
+  function updateForID($object_id, $customfields) {
+    $CI = &get_instance();
+    
+    foreach ($customfields as $type_id => $value) {
+      //check if the entry is already existing, if not, add as new.
+      $Q = $CI->db->get_where('customfields', array('type_id' => $type_id, 'object_id' => $object_id));
+      if ($Q->num_rows() > 0) {
+        $data = array('value' => $value['value']);
+        $CI->db->where(array('type_id' => $type_id, 'object_id' => $object_id));
+        $CI->db->update('customfields', $data);
+      }
+      else { //add as new
+        $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
+        $CI->db->insert('customfields', $data);
+      }
+    }
+  }
+  
+  function deleteForAuthor($authorID) {
+    return $this->deleteForTypeByID('author', $authorID);
+  }
+  
+  function deleteForPublication($publicationID) {
+    return $this->deleteForTypeByID('publication', $publicationID);
+  }
+ 
+  function deleteForTopic($topicID) {
+    return $this->deleteForTypeByID('topic', $topicID);
+  }
+ 
+  function deleteForTypeByID($type, $object_id) {
+    $CI = &get_instance();
+    $Q = $CI->db->query("DELETE customfields.* 
+                          FROM ".AIGAION_DB_PREFIX."customfields
+                            LEFT JOIN ".AIGAION_DB_PREFIX."customfieldsinfo
+                              ON (".AIGAION_DB_PREFIX."customfields.type_id = ".AIGAION_DB_PREFIX."customfieldsinfo.type_id)
+                          WHERE ".AIGAION_DB_PREFIX."customfieldsinfo.type = ".$CI->db->escape($type)."
+                            AND ".AIGAION_DB_PREFIX."customfields.object_id = ".$CI->db->escape($object_id));
+                            
+    return mysql_error();
   }
   
   function getAllFieldsInfo() {
@@ -85,8 +152,11 @@ class Customfields_db {
     return $customFields;
   }
   
-  function updateFromPost($customFieldsPostInfo) {
+  function updateSettingsFromPost($customFieldsPostInfo) {
     $CI = &get_instance();
+    if (!is_array($customFieldsPostInfo)) {
+      return $this->getAllFieldsInfo();
+    }
     foreach ($customFieldsPostInfo as $customField) 
     {
       //check if we need to do an update or deletion
@@ -95,9 +165,9 @@ class Customfields_db {
         if ($customField['keep']) //the field is to be updated
         {
           $CI->db->where('type_id', $customField['type_id']);
-          $CI->db->update('customfieldsinfo', array('type'=>trim($customField['type']), 
-                                                    'name'=>trim($customField['name']),
-                                                    'order'=>trim($customField['order'])));
+          $CI->db->update('customfieldsinfo', array('type'=> trim($customField['type']), 
+                                                    'name'=> trim($customField['name']),
+                                                    'order'=> trim($customField['order'])));
         }
         else //the field is to be deleted
         {
@@ -109,12 +179,33 @@ class Customfields_db {
       }
       else if ($customField['keep']) //add new customfield
       {
-        $CI->db->insert('customfieldsinfo', array('type'=>trim($customField['type']), 
-                                                   'name'=>trim($customField['name']),
-                                                   'order'=>trim($customField['order'])));
+        $CI->db->insert('customfieldsinfo', array('type'=> trim($customField['type']), 
+                                                  'name'=> trim($customField['name']),
+                                                  'order'=> trim($customField['order'])));
       }
     }
     return $this->getAllFieldsInfo();
+  }
+  
+  function getCustomFieldKeys($type)
+  {
+    $CI = &get_instance();
+    
+    $result = array();
+    
+    $Q = $CI->db->query("SELECT name, type_id
+                          FROM ".AIGAION_DB_PREFIX."customfieldsinfo
+                          WHERE ".AIGAION_DB_PREFIX."customfieldsinfo.type = ".$CI->db->escape($type)."
+                          ORDER BY ".AIGAION_DB_PREFIX."customfieldsinfo.order");
+    
+    if ($Q->num_rows() > 0)
+    {
+      foreach ($Q->result() as $R)
+      {
+        $result[$R->type_id] = $R->name;
+      }
+    }
+    return $result;
   }
 }
 ?>

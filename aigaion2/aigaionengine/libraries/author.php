@@ -19,6 +19,7 @@ class Author {
   var $url          = '';
   var $institute    = '';
 
+var $customfields = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getCustomFields()
 
 
   //class constructor
@@ -181,5 +182,16 @@ function format($formatStyle, $data='')
       $CI = &get_instance();
       return $CI->author_db->hasSynonyms($this);
   }
+  
+  function getCustomFields()
+  {
+    $CI = &get_instance();
+    if ($this->customfields == null)
+    {
+      $this->customfields = $CI->customfields_db->getForAuthor($this->author_id);
+    }
+    return $this->customfields;
+  }
+
 }
 ?>

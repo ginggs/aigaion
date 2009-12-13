@@ -234,7 +234,7 @@ $this->load->helper('translation');
       {
           ?>
         <tr>
-          <td valign='top'><?php echo $customfield['fieldname']; ?> </td>
+          <td valign='top'><?php echo $customfield['fieldname']; ?>: </td>
           <td valign='top'><?php echo $customfield['value']; ?> </td>
         </tr>
             <?php

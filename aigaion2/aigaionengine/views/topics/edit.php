@@ -19,6 +19,7 @@ echo form_open('topics/commit');
 //not as security mechanism, but just to avoid painful bugs where data was submitted 
 //to the wrong commit and the database is corrupted
 echo form_hidden('formname','topic');
+$customfieldkeys    = $this->customfields_db->getCustomFieldKeys('topic');
 $isAddForm = False;
 $userlogin  = getUserLogin();
 $user       = $this->user_db->getByID($userlogin->userID());
@@ -47,9 +48,34 @@ echo $this->validation->error_string;
     <table>
         <tr><td><label for='name'><?php echo __('Name');?></label></td>
             <td>
-<?php echo form_input(array('name'=>'name','size'=>'30','value'=>$topic->name)); ?>
+<?php echo form_input(array('name'=>'name','size'=>'45','value'=>$topic->name)); ?>
             </td>
         </tr>
+        <tr><td><label for='url'><?php echo __('URL');?></label></td>
+            <td>
+<?php
+echo form_input(array('name'=>'url','size'=>'45','value'=>$topic->url));
+?>
+            </td>
+        </tr>    
+<?php
+    //do the custom fields
+    $customFields = $topic->getCustomFields();
+    foreach ($customfieldkeys as $field_id => $field_name) {
+      if (array_key_exists($field_id, $customFields)) {
+        $value = $customFields[$field_id]['value'];
+      }
+      else {
+        $value = '';
+      }
+      ?>
+    <tr>
+      <td><?php echo $field_name; ?>:</td>
+      <td><?php echo form_input(array('name' => 'CUSTOM_FIELD_'.$field_id, 'id' => 'CUSTOM_FIELD_'.$field_id, 'size' => '45'), $value); ?></td>
+    </tr>
+      <?php
+    }
+    ?>
 
         <tr><td><label for='parent_id'><?php echo __('Parent');?></label></td>
             <td>
@@ -80,14 +106,6 @@ echo $this->load->view('topics/optiontree',
 ?>
             </td>
         </tr>                
-        <tr><td><label for='url'><?php echo __('URL');?></label></td>
-            <td>
-<?php
-echo form_input(array('name'=>'url','size'=>'30','value'=>$topic->url));
-?>
-            </td>
-        </tr>    
-
         <tr><td>
 <?php
 if ($isAddForm) {

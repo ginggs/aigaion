@@ -288,6 +288,10 @@ class Topic_db {
         $topic->url                = $CI->input->post('url');
         $topic->parent_id          = $CI->input->post('parent_id');
         $topic->user_id            = $CI->input->post('user_id');
+        
+        //fetch custom fields
+        $topic->customfields = $CI->customfields_db->getFromPost('topic');
+        
         return $topic;
     }
     
@@ -407,6 +411,10 @@ class Topic_db {
         //add parent
         $new_id = $CI->db->insert_id();
         $topic->topic_id = $new_id;
+        
+        //add custom fields
+        $CI->customfields_db->addForID($topic->topic_id, $topic->getCustomFields());
+
         if ($topic->parent_id < 0)$topic->parent_id=1;
         $CI->db->insert('topictopiclink',array('source_topic_id'=>$new_id,'target_topic_id'=>$topic->parent_id));
         //subscribe current user to new topic
@@ -468,6 +476,9 @@ class Topic_db {
 
         $CI->db->update('topics', $updatefields, array('topic_id'=>$topic->topic_id));
         
+        //update custom fields
+        $CI->customfields_db->updateForID($topic->topic_id, $topic->getCustomFields());
+        
         if ($topic_testrights->parent_id != $topic->parent_id) {
             //remove and set parent link
             $CI->db->delete('topictopiclink',array('source_topic_id'=>$topic->topic_id));
@@ -515,6 +526,10 @@ class Topic_db {
             appendErrorMessage(__('Cannot delete topic').': '.__('still has children (possibly invisible)').'.<br/>');
             return;
         }
+        
+        //delete customfields
+        $CI->customfields_db->deleteForTopic($topic->topic_id);
+        
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('topics',array('topic_id'=>$topic->topic_id));
         //delete links

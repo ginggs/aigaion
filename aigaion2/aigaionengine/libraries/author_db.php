@@ -117,6 +117,9 @@ class Author_db {
       $author->$key = trim($CI->input->post($key));
     }
     
+    //fetch custom fields
+    $author->customfields = $CI->customfields_db->getFromPost('author');
+
     //check for specialchars
     $specialfields = array('firstname', 'von', 'surname', 'jr', 'institute');
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
@@ -125,7 +128,12 @@ class Author_db {
         //remove bibchars
         $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
+      foreach($author->customfields as $field => $value)
+      {
+        $author->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
+      }
     }
+    
     $author->cleanname = authorCleanName($author);
     return $author;
   }
@@ -161,6 +169,10 @@ class Author_db {
         //remove bibchars
         $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
+      foreach($author->customfields as $field => $value)
+      {
+        $author->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
+      }
     }
     
     //create cleanname
@@ -176,6 +188,10 @@ class Author_db {
     
     //update this author's author_id
     $author->author_id = $CI->db->insert_id();
+    
+    //add custom fields
+    $CI->customfields_db->addForID($author->author_id, $author->getCustomFields());
+
     return $author;
   }
   
@@ -203,7 +219,10 @@ class Author_db {
       foreach ($specialfields as $field)
       {
         $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
-        
+      }
+      foreach($author->customfields as $field => $value)
+      {
+        $author->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
       }
   }
     
@@ -218,6 +237,9 @@ class Author_db {
     //update database using active record helper
     $CI->db->where('author_id', $author->author_id);
     $CI->db->update('author', $data);
+    
+    //update custom fields
+    $CI->customfields_db->updateForID($author->author_id, $author->getCustomFields());
 
     //update 'cleanauthor' for all publications where this author is author
     $relevantPubsQ = $CI->db->get_where('publicationauthorlink',array('author_id'=>$author->author_id));
@@ -277,6 +299,10 @@ class Author_db {
             appendErrorMessage(__('Cannot delete author').': '.__('still has publications (possibly invisible...). Do you need a quick way to delete all publications for an author? Add them to the bookmarklist, then delete them from there...').'.<br/>');
             return false;
         }
+        
+        //delete customfields
+        $CI->customfields_db->deleteForAuthor($author->author_id);
+        
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('author',array('author_id'=>$author->author_id));
         //delete links

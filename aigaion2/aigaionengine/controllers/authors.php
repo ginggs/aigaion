@@ -273,6 +273,7 @@ class Authors extends Controller {
     {
       $author_id  = $author;
       $author     = $this->author_db->getByID($author_id);
+      $author->getCustomFields();
       
       //set header data
       $edit_type = "edit";

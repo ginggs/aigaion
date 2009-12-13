@@ -279,6 +279,7 @@ class Publications extends Controller {
       $pub_id = $publication;
       $publication = $this->publication_db->getByID($pub_id);
       $publication->getKeywords();
+      $publication->getCustomFields();
       
       //set header data
       $edit_type = "edit";
@@ -428,6 +429,7 @@ class Publications extends Controller {
   {
     
     $publication = $this->publication_db->getFromPost();
+    
     $oldpublication = $this->publication_db->getByID($publication->pub_id); //needed to check access levels, as post data may be rigged
     //check the submit type, if 'type_change', we redirect to the edit form
     $submit_type = $this->input->post('submit_type');

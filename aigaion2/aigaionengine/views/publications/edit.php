@@ -1,5 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
   $publicationfields  = getPublicationFieldArray($publication->pub_type);
+  $customfieldkeys    = $this->customfields_db->getCustomFieldKeys('publication');
   $formAttributes = array('id' => "publication_{$publication->pub_id}_edit", 'onsubmit' => "submitPublicationForm('publication_{$publication->pub_id}_edit');");
   $userlogin          = getUserLogin();
   $user               = $this->user_db->getByID($userlogin->userID());
@@ -175,8 +176,25 @@ echo "</script>";
         echo $showdata;
       }   
     endforeach;
-
-    $keywords = $publication->keywords;
+    
+    //do the custom fields
+    $customFields = $publication->getCustomFields();
+    foreach ($customfieldkeys as $field_id => $field_name) {
+      if (array_key_exists($field_id, $customFields)) {
+        $value = $customFields[$field_id]['value'];
+      }
+      else {
+        $value = '';
+      }
+      ?>
+    <tr>
+      <td><?php echo $field_name; ?>:</td>
+      <td><?php echo form_input(array('name' => 'CUSTOM_FIELD_'.$field_id, 'id' => 'CUSTOM_FIELD_'.$field_id, 'size' => '90'), $value); ?></td>
+    </tr>
+      <?php
+    }
+    
+    $keywords = $publication->getKeywords();
     if (is_array($keywords))
     {
       $keyword_string = "";

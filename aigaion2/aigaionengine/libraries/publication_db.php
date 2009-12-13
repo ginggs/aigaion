@@ -224,6 +224,9 @@ class Publication_db {
     {
       $publication->$key = trim($CI->input->post($key.$suffix));
     }
+    
+    //fetch custom fields
+    $publication->customfields = $CI->customfields_db->getFromPost('publication');
 
     //parse the keywords
     if ($publication->keywords)
@@ -447,7 +450,7 @@ class Publication_db {
                     'specialchars',
                     'status'
     );
-
+    
     //change type in report_type
     if (isset($publication->type))
     {
@@ -469,14 +472,16 @@ class Publication_db {
                     'abstract'
     );
   
-  
-  
     //check for specialchars
     if (getConfigurationSetting('CONVERT_BIBTEX_TO_UTF8')!='FALSE') {
       foreach ($specialfields as $field)
       {
         //remove bibchars
         $publication->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->$field);
+      }
+      foreach($publication->customfields as $field => $value)
+      {
+        $publication->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
       }
     }
 
@@ -515,6 +520,8 @@ class Publication_db {
     //update this publication's pub_id
     $publication->pub_id = $CI->db->insert_id();
     
+    //add custom fields
+    $CI->customfields_db->addForID($publication->pub_id, $publication->getCustomFields());
     
     //check whether Keywords are already available, if not, add them to the database
     //keywords are in an array, the keys are the keyword_id.
@@ -681,6 +688,11 @@ class Publication_db {
         //remove bibchars
         $publication->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($publication->$field);
       }
+      foreach($publication->customfields as $field => $value)
+      {
+        $publication->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
+      }
+
     }
     
     //create cleantitle and cleanjournal
@@ -714,7 +726,8 @@ class Publication_db {
     $CI->db->where('pub_id', $publication->pub_id);
     $CI->db->update('publication', $data);
 
-    
+    //update custom fields
+    $CI->customfields_db->updateForID($publication->pub_id, $publication->getCustomFields());
     
     //remove old keyword links
     $CI->db->delete('publicationkeywordlink', array('pub_id' => $publication->pub_id)); 
@@ -870,6 +883,10 @@ class Publication_db {
                 $note->delete();
             }
         }
+        
+        //remove customfields
+        $CI->customfields_db->deleteForPublication($publication->pub_id);
+        
         //otherwise, delete all dependent objects by directly accessing the rows in the table 
         $CI->db->delete('publication',array('pub_id'=>$publication->pub_id));
         //delete links

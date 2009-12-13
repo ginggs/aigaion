@@ -44,6 +44,19 @@ if ($userlogin->hasRights('publication_edit'))
         }
         echo "<tr><td>".__('URL').":</td><td><a title='".prep_url($author->url)."' href='".prep_url($author->url)."' class='open_extern'>".$urlname."</a></td></tr>\n";
       }
+    $customfields = $author->getCustomFields();
+    if (is_array($customfields))
+    {
+      foreach ($customfields as $customfield)
+      {
+          ?>
+        <tr>
+          <td valign='top'><?php echo $customfield['fieldname']; ?>: </td>
+          <td valign='top'><?php echo $customfield['value']; ?> </td>
+        </tr>
+            <?php
+      }
+    }
 ?>
       </table>
 <?php

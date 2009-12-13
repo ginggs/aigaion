@@ -36,6 +36,8 @@ class Topic {
     //this flags collection may contain additional information related to the configuration, such as whether this
     //particular topic was assigned to a certain publication. Note: these flags should not be changed directly.
     var $flags              = array();
+    
+    var $customfields = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getCustomFields()
         
     function Topic()
     {
@@ -211,6 +213,15 @@ class Topic {
         $CI->topic_db->expand($this, $userlogin->userId());
     }
     
-    
+  function getCustomFields()
+  {
+    $CI = &get_instance();
+    if ($this->customfields == null)
+    {
+      $this->customfields = $CI->customfields_db->getForTopic($this->topic_id);
+    }
+    return $this->customfields;
+  }
+
 }
 ?>

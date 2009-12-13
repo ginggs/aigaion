@@ -48,7 +48,7 @@ class Site extends Controller {
     	            $siteconfig->update();
     	            $siteconfig = $this->siteconfig_db->getSiteConfig();
     	            
-    	            $customFieldsInfo = $this->customfields_db->updateFromPost($customFieldsInfo);
+    	            $customFieldsInfo = $this->customfields_db->updateSettingsFromPost($customFieldsInfo);
     	        //}
     	    }
 	    } else {
