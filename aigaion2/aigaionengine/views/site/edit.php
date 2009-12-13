@@ -303,23 +303,15 @@ echo $this->validation->error_string;
 	        <td colspan='2'><hr>
 	          <p class='header2'><?php echo __('Custom fields settings:');?></p>
 	          <p><?php echo __('Aigaion allows adding installation-specific custom fields to publications, authors and topics. You can create these custom fields here.');?></p>
-	        </td>
-	    </tr>
-	    <tr>
-	        <td valign='top'><label for='USE_CUSTOM_FIELDS'><?php echo __('Enable custom fields:');?></label></td>
-	        <td align='left'>
 <?php	            
-    echo form_checkbox('USE_CUSTOM_FIELDS','USE_CUSTOM_FIELDS',$siteconfig->getConfigSetting("USE_CUSTOM_FIELDS")== "TRUE")."\n";
     echo form_hidden('customfield_count', sizeof($customFieldsInfo))."\n";
 ?>
+	        </td>
+	    </tr>
           </td>
       </tr>
-	    <tr>
-	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
-	        <?php echo __('Check this box to enable custom fields.');?></td>
-	    </tr>
       <tr>
-        <td></td><td>
+        <td colspan = '2' align='center'>
           <table>
             <tr>
               <td><p class='header2'><?php echo __('Type');?></p></td>
