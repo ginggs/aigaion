@@ -64,10 +64,13 @@ class Customfields_db {
     $CI = &get_instance();
     
     foreach ($customfields as $type_id => $value) {
-      $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
+      if ($value != "")
+      {
+        $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
       
-      //insert into database using active record helper
-      $CI->db->insert('customfields', $data);
+        //insert into database using active record helper
+        $CI->db->insert('customfields', $data);
+      }
     }
   }
   
@@ -75,16 +78,22 @@ class Customfields_db {
     $CI = &get_instance();
     
     foreach ($customfields as $type_id => $value) {
-      //check if the entry is already existing, if not, add as new.
-      $Q = $CI->db->get_where('customfields', array('type_id' => $type_id, 'object_id' => $object_id));
-      if ($Q->num_rows() > 0) {
-        $data = array('value' => $value['value']);
-        $CI->db->where(array('type_id' => $type_id, 'object_id' => $object_id));
-        $CI->db->update('customfields', $data);
+      if ($value['value'] == "") { //remove when value is empty
+        $CI->db->delete('customfields', array('type_id' => $type_id, 'object_id' => $object_id));
       }
-      else { //add as new
-        $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
-        $CI->db->insert('customfields', $data);
+      else
+      {
+        //check if the entry is already existing, if not, add as new.
+        $Q = $CI->db->get_where('customfields', array('type_id' => $type_id, 'object_id' => $object_id));
+        if ($Q->num_rows() > 0) {
+          $data = array('value' => $value['value']);
+          $CI->db->where(array('type_id' => $type_id, 'object_id' => $object_id));
+          $CI->db->update('customfields', $data);
+        }
+        else { //add as new
+          $data = array('type_id' => $type_id, 'object_id' => $object_id, 'value' => $value['value']);
+          $CI->db->insert('customfields', $data);
+        }
       }
     }
   }

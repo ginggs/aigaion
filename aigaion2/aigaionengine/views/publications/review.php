@@ -1,5 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
 $publicationfields  = getPublicationFieldArray($publication->pub_type);
+$customfieldkeys    = $this->customfields_db->getCustomFieldKeys('publication');
 $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review');
 ?>
 <div class='publication'>
@@ -20,6 +21,18 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
     foreach ($publicationfields as $key => $class):
     echo form_hidden($key,        $publication->$key)."\n";
     endforeach;
+    
+    //display hidden custom fields
+    $customFields = $publication->getCustomFields();
+    foreach ($customfieldkeys as $field_id => $field_name) {
+      if (array_key_exists($field_id, $customFields)) {
+        $value = $customFields[$field_id]['value'];
+      }
+      else {
+        $value = '';
+      }
+      echo form_hidden('CUSTOM_FIELD_'.$field_id, $value)."\n"; 
+    }
 ?>    
     <table class='publication_review_form' width='100%'>
 <?php
@@ -80,12 +93,12 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
       if (is_array($publication->keywords))
       {
         $keyword_string = "";
-        foreach ($keywords as $keyword)
+        foreach ($publication->keywords as $keyword)
         {
           $keyword_string .= $keyword->keyword.", ";
         }
         $keywords = substr($keyword_string, 0, -2);
-        echo form_hidden('keywords', implode($publication->keywords, ', '))."\n";
+        echo form_hidden('keywords', $keywords)."\n";
       }
       else
       echo form_hidden('keywords', '')."\n";
