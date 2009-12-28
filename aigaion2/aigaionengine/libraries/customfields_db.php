@@ -24,7 +24,7 @@ class Customfields_db {
 
   function getForTypeByID($type, $object_id) {
     $CI = &get_instance();
-    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."customfieldsinfo.name, customfieldsinfo.type_id, customfields.value
+    $Q = $CI->db->query("SELECT ".AIGAION_DB_PREFIX."customfieldsinfo.name, ".AIGAION_DB_PREFIX."customfieldsinfo.type_id, ".AIGAION_DB_PREFIX."customfields.value
                           FROM ".AIGAION_DB_PREFIX."customfieldsinfo 
                             LEFT JOIN ".AIGAION_DB_PREFIX."customfields
                         		  ON (".AIGAION_DB_PREFIX."customfieldsinfo.type_id = ".AIGAION_DB_PREFIX."customfields.type_id)
