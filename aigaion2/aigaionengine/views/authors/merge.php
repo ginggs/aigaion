@@ -9,6 +9,7 @@ $authorfields = array(
 	'institute'		=>	__('Institute'),
 	'url'			=>	__('URL')
 );
+$customfieldkeys    = $this->customfields_db->getCustomFieldKeys('author');
 $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
 ?>
 <div class='author'>
@@ -41,6 +42,36 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
         </tr>
 <?php
         endforeach;
+    
+        //do the custom fields
+        $customFields = $author->getCustomFields();
+        $simCustomFields = $simauthor->getCustomFields();
+        foreach ($customfieldkeys as $field_id => $field_name) {
+          if (array_key_exists($field_id, $customFields)) {
+            $value = $customFields[$field_id]['value'];
+          }
+          else {
+            $value = '';
+          }
+          if (array_key_exists($field_id, $simCustomFields)) {
+            $simValue = $simCustomFields[$field_id]['value'];
+          }
+          else {
+            $simValue = '';
+          }
+?>
+          <tr>
+            <td valign='top'><?php echo $field_name; ?>:</td>
+            <td valign='top'><?php echo form_input(array('name' => 'CUSTOM_FIELD_'.$field_id, 'id' => 'CUSTOM_FIELD_'.$field_id, 'size' => '30', 'alt' => $field_name), $value);?></td>
+            <td valign='top'><?php echo $this->ajax->button_to_function('<<', "$('".'CUSTOM_FIELD_'.$field_id."').value=$('sim".'CUSTOM_FIELD_'.$field_id."').value;");?></td>
+            <td valign='top'><?php echo $field_name; ?>:</td>
+            <td valign='top'><?php echo form_input(array('name' => 'sim'.'CUSTOM_FIELD_'.$field_id, 'id' => 'sim'.'CUSTOM_FIELD_'.$field_id, 'size' => '30', 'alt' => $field_name), $simValue);?></td>
+          </tr>
+<?php
+        }
+        //end custom fields
+        
+        echo form_hidden('synonym_of',$author->synonym_of);        
 ?>
     </table>
     </td></tr>
