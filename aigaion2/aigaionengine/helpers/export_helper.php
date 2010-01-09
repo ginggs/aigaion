@@ -115,6 +115,19 @@ require_once(APPPATH."include/utf8/trim.php");
                 }
             }
         }
+        //add all customfields
+        $customfields = $publication->getCustomFields();
+        if (is_array($customfields))
+        {
+          foreach ($customfields as $customfield)
+          {
+            if (utf8_trim($customfield['value'])!='') {
+              $fields[$customfield['fieldname']]=$customfield['value'];
+              $maxfieldname = max(strlen($customfield['fieldname']),$maxfieldname);
+            }
+          }
+        }
+        
         
         
         //process fields array, converting to bibtex special chars as you go along.
@@ -170,6 +183,7 @@ require_once(APPPATH."include/utf8/trim.php");
             }
         }
         
+        
         //close entry
         $result .= "\n}\n";    
         return $result;
@@ -219,19 +233,31 @@ require_once(APPPATH."include/utf8/trim.php");
         $result .= getRISExportLine('N1',$publication->note);
         $result .= getRISExportLine('UR',$publication->url);
         $result .= getRISExportLine('M2',$publication->doi);
-    	foreach($publication->getKeywords() as $keyword)
-    		$result .= getRISExportLine("KW", utf8_trim($keyword->keyword));
+        foreach($publication->getKeywords() as $keyword)
+          $result .= getRISExportLine("KW", utf8_trim($keyword->keyword));
         $result .= getRISExportLine('N2',$publication->abstract);
 
-        //DR: note: this is not correct! if a userfield contains a comma we have a problem!
-    	if (utf8_trim($publication->userfields) != "") {
-    		$field = strtok($publication->userfields,",");
-    		while (strlen($field) > 0)
-    		{
-    			$result .= "M1  - ".$field."\n";
-    			$field = strtok(",");
-    		}
-    	}
+        //add all customfields
+        $customfields = $publication->getCustomFields();
+        if (is_array($customfields))
+        {
+          foreach ($customfields as $customfield)
+          {
+            if (utf8_trim($customfield['value'])!='') {
+              $result .= "M1  - ".$customfield['fieldname'].' = '.$customfield['value']."\n";
+            }
+          }
+        }
+        
+        //DR: note: the below is not correct! if a userfield contains a comma we have a problem!
+      	if (utf8_trim($publication->userfields) != "") {
+      		$field = strtok($publication->userfields,",");
+      		while (strlen($field) > 0)
+      		{
+      			$result .= "M1  - ".$field."\n";
+      			$field = strtok(",");
+      		}
+      	}
         
         //close entry
         $result .= "ER  -\n";
