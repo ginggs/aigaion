@@ -13,6 +13,169 @@ class Site extends Controller {
 		$this->configure();
 	}
 
+  /** 
+  site/configure2
+  
+  Presents a page with links to several config edit pages. 
+  Possibly includes some overview information about current settings for different settings-groups
+  */
+  function configure2()
+  {
+    //check rights
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('database_manage')) 
+    {
+      appendErrorMessage(__('Configure database').': '.__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    //get info about current settings
+    $siteconfig = $this->siteconfig_db->getSiteConfig();
+    $customFieldsInfo = $this->customfields_db->getAllFieldsInfo();
+    
+    //get output
+    $headerdata = array();
+    $headerdata['title'] = __('Site configuration');
+    $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+    
+    $output = $this->load->view('header', $headerdata, true);
+
+    
+    $output .= $this->load->view('site/configoverview',
+                                  array('siteconfig'=>$siteconfig, 'customFieldsInfo'=>$customFieldsInfo),  
+                                  true);
+    
+    $output .= $this->load->view('footer','', true);
+
+    //set output
+    $this->output->set_output($output);    
+  }
+
+  /**
+  site/configform
+  
+  Show one of the siteconfig forms
+  
+  3rd segment: name of the requested site config form
+               (display|inputoutput|login|...)
+  */
+  function configform()
+  {
+    //check rights
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('database_manage')) 
+    {
+      appendErrorMessage(__('Configure database').': '.__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    //choose configform depending on 3rd segment
+    $requestedform = $this->uri->segment(3,'display');
+    $allowedconfigforms= array("display","inputoutput","attachments","customfields","login","userdefaults","accesslevels","siteintegration");
+    if (!in_array($requestedform,$allowedconfigforms)) {
+      $requestedform = 'display';
+    }
+    
+    //get info about current settings
+    $siteconfig = $this->siteconfig_db->getSiteConfig();
+    $customFieldsInfo = $this->customfields_db->getAllFieldsInfo();
+    
+    //get output
+    $headerdata = array();
+    $headerdata['title'] = __('Site configuration');
+    $headerdata['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+    
+    $output = $this->load->view('header', $headerdata, true);
+
+
+    $anonUsers = $this->user_db->getAllAnonUsers();
+    
+    $output .= $this->load->view('site/configforms/header',array(),true);
+    $output .= $this->load->view('site/configforms/'.$requestedform,
+                                  array('siteconfig'=>$siteconfig, 'customFieldsInfo'=>$customFieldsInfo, 'anonUsers'=>$anonUsers),  
+                                  true);
+    $output .= $this->load->view('site/configforms/footer',array(),true);
+    
+    $output .= $this->load->view('footer','', true);
+
+    //set output
+    $this->output->set_output($output);        
+  }
+
+  /**
+  site/commitconfigform
+  
+  Commit one of the siteconfig forms
+  
+  info about the form is stored in the POST.
+  Which form was committed is stored in $this->input->post('configformname')
+  
+  
+  */
+  function commitconfigform()
+  {
+    //check rights
+    $userlogin = getUserLogin();
+    if (!$userlogin->hasRights('database_manage')) 
+    {
+      appendErrorMessage(__('Configure database').': '.__('insufficient rights').'.<br/>');
+      redirect('');
+    }
+
+    //choose configform depending on post setting segment
+    $requestedform = $this->input->post('configformname');
+    $allowedconfigforms= array("display","inputoutput","attachments","customfields","login","userdefaults","accesslevels","siteintegration");
+    if (!in_array($requestedform,$allowedconfigforms)) {
+      appendErrorMessage(__('Configure database').': '.__('commit of non-existing form').'.<br/>');
+      redirect('site/configure2');
+    }
+    
+    //get info about current settings
+    $siteconfig = $this->siteconfig_db->getSiteConfig();
+    
+    //get post info for requested form (siteconfig, and, if needed, customfields stuff)
+    switch ($requestedform)
+    {
+      case "display":
+        $siteconfig = $this->siteconfig_db->getDisplaySettingsFromPost($siteconfig);
+        break;
+      case "inputoutput":
+        $siteconfig = $this->siteconfig_db->getInputOutputSettingsFromPost($siteconfig);
+        break;
+      case "attachments":
+        $siteconfig = $this->siteconfig_db->getAttachmentSettingsFromPost($siteconfig);
+        break;
+      case "customfields":
+        $siteconfig = $this->siteconfig_db->getCustomfieldSettingsFromPost($siteconfig);
+        $customFieldsInfo = $this->customfields_db->getSettingsFromPost();
+        break;
+      case "login":
+        $siteconfig = $this->siteconfig_db->getLoginSettingsFromPost($siteconfig);
+        break;
+      case "userdefaults":
+        $siteconfig = $this->siteconfig_db->getUserDefaultsFromPost($siteconfig);
+        break;
+      case "accesslevels":
+        $siteconfig = $this->siteconfig_db->getDefaultAccessLevelsFromPost($siteconfig);
+        break;
+      case "siteintegration":
+        $siteconfig = $this->siteconfig_db->getSiteIntegrationSettingsFromPost($siteconfig);
+        break;
+      default:
+        //won't happen
+        break;
+    }
+    //store new settings for siteconfig, and, if needed, customfields stuff
+    $siteconfig->update();
+    $siteconfig = $this->siteconfig_db->getSiteConfig();
+    if ($requestedform == "customfields")
+    {
+      $customFieldsInfo = $this->customfields_db->updateSettingsFromPost($customFieldsInfo);
+    }
+    appendMessage(__('Configure database').': '.__('new settings stored').'.<br/>');
+    redirect('site/configure2');
+  }
+  
     /** 
     site/configure
         
@@ -37,7 +200,16 @@ class Site extends Controller {
 	    $this->load->library('validation');
         $this->validation->set_error_delimiters('<div class="errormessage">'.__('Changes not committed').': ', '</div>');
 	    if ($commit=='commit') {
-	        $siteconfig = $this->siteconfig_db->getFromPost();
+	        $siteconfig = $this->siteconfig_db->getSiteConfig();
+	        $siteconfig = $this->siteconfig_db->getDisplaySettingsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getAttachmentSettingsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getLoginSettingsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getUserDefaultsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getCustomfieldSettingsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getInputOutputSettingsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getDefaultAccessLevelsFromPost($siteconfig);
+	        $siteconfig = $this->siteconfig_db->getSiteIntegrationSettingsFromPost($siteconfig);
+	        
 	        $customFieldsInfo = $this->customfields_db->getSettingsFromPost();
 	        if ($siteconfig!= null) {
     	        //do validation
