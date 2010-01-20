@@ -169,7 +169,7 @@ class Author_db {
         //remove bibchars
         $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
-      foreach($author->customfields as $field => $value)
+      foreach($author->getCustomFields() as $field => $value)
       {
         $author->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
       }
@@ -220,7 +220,7 @@ class Author_db {
       {
         $author->$field = $CI->bibtex2utf8->bibCharsToUtf8FromString($author->$field);
       }
-      foreach($author->customfields as $field => $value)
+      foreach($author->getCustomFields() as $field => $value)
       {
         $author->customfields[$field]['value'] = $CI->bibtex2utf8->bibCharsToUtf8FromString($value['value']);
       }
@@ -746,7 +746,7 @@ TODO:
     foreach ($db_cleanauthors as $author_id => $db_author)
     {
       $distance = levenshtein($db_author[2], $cleanAuthorName);
-      if (($distance < 2) && ($author_id != $author->author_id) && substr($db_author[1],0,1) == strtolower(substr($author->firstname,0,1)))
+      if (($distance < 3) && ($author_id != $author->author_id) && substr($db_author[1],0,1) == strtolower(substr($author->firstname,0,1)))
       {
 				$db_distances[$author_id] = $distance;
       }
