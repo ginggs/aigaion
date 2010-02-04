@@ -455,8 +455,6 @@ class Publications extends Controller {
         //review keywords
         $review['keywords']  = $this->keyword_db->review($publication->keywords);
 
-        //TODO: review authors for "duplicates" (synonyms)
-        
         if (($review['bibtex_id']   != null) ||
             ($review['keywords']  != null)) 
         {
@@ -469,6 +467,7 @@ class Publications extends Controller {
       }
       if (!$bReview)
       {
+        
         //do actual commit, depending on the edit_type, choose add or update
         $userlogin  = getUserLogin();
         $user       = $this->user_db->getByID($userlogin->userID());

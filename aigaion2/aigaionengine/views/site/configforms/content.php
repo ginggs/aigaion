@@ -1,6 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php 
-echo form_hidden('configformname','customfields');
+/** Custom field settings and settings for using author synonyms */
+
+echo form_hidden('configformname','content');
+
 ?>
 
 <!-- CUSTOM FIELDS SETTINGS -->
@@ -77,3 +80,38 @@ echo form_hidden('configformname','customfields');
           </table>
         </td>
       </tr>
+
+<!-- AUTHOR SYNONYMS SETTINGS -->
+	    <tr>
+	        <td colspan='2'><hr>
+	          <p class='header2'><?php echo __('Author synonym settings:');?></p>
+	          <p><?php echo __('Aigaion can be configured to allow the use of author synonyms, or aliases under which somebody has also published.');?></p>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td colspan='2'><label><?php echo __('Allow the use of author synonyms');?></label>
+	        <?php
+            echo form_checkbox('USE_AUTHOR_SYNONYMS','USE_AUTHOR_SYNONYMS',$siteconfig->getConfigSetting("USE_AUTHOR_SYNONYMS") == "TRUE");
+          ?>
+          </td>
+      </tr>
+	    <tr>
+	        <td align='left' colspan='2'>
+          <?php	          
+            //check whether author synonyms are enabled. If so, and synonyms exist in the database, warn that turning this of will remove existing synonyms.
+            if ($siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] == 'TRUE')
+            {
+              $this->db->where('synonym_of !=', '0');
+              //$this->db->from('author');
+              if ($this->db->count_all_results('author') > 0) //synonyms exist, report issue
+              { 
+    	          echo "<img class='icon' src='".getIconUrl("small_arrow.gif")."'>";
+                echo "<div class='errormessage'>";
+                echo __("Some authors have synonym names associated to them.")." ".__("When you disable the use of synonyms:")." ".__("These synonyms should been merged into the primary authors, and the synonym names themselves should be removed.")." ".__("Please go to the site maintenance page to do this.");
+                echo "</div>";
+              }
+            }
+	        ?>
+	        </td>
+	    </tr>

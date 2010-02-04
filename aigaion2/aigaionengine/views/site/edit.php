@@ -19,6 +19,7 @@ echo form_open_multipart('site/configure/commit');
 echo form_hidden('formname','siteconfig');
 
 echo "<p class='header'>".utf8_strtoupper(__('Aigaion site configuration form'))."</p>";
+echo "This edit form is deprecated and has been replaced by the site/configure controller and many sub forms for parts of the configuration settings.<br/>\n";
 echo $this->validation->error_string;
 ?>
     <table width='100%'>

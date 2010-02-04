@@ -17,21 +17,21 @@ echo __("Choose one of the links to change settings")."<br/>\n";
 echo "<br/>\n";
 
 //note, we can have some overview of current settings here as well!
-
+echo "<ul>";
 //interface&appearance
-echo anchor('site/configform/display',__('General display settings'))."<br/>\n";
-
+echo "<li>".anchor('site/configform/display',__('General display settings'))."</li>\n";
+echo "<br/>";
 //content, inpupt, and output
-echo anchor('site/configform/inputoutput',__('Input and output settings'))."<br/>\n";
-echo anchor('site/configform/attachments',__('Attachment settings'))."<br/>\n";
-echo anchor('site/configform/customfields',__('Custom fields'))."<br/>\n";
-//echo anchor('site/configform/authorsettings',__('authorsettings'))."<br/>\n";
-
+echo "<li>".anchor('site/configform/inputoutput',__('Import and export settings'))."</li>\n";
+echo "<li>".anchor('site/configform/attachments',__('Attachment settings'))."</li>\n";
+echo "<li>".anchor('site/configform/content',__('Content settings: Custom fields and author synonyms'))."</li>\n";
+echo "<br/>";
 //login, users, and access levels
-echo anchor('site/configform/login',__('Login settings'))."<br/>\n";
-echo anchor('site/configform/userdefaults',__('Default user preferences'))."<br/>\n";
-echo anchor('site/configform/accesslevels',__('Default accesslevels'))."<br/>\n";
-
+echo "<li>".anchor('site/configform/login',__('Login settings'))."</li>\n";
+echo "<li>".anchor('site/configform/userdefaults',__('Default user preferences'))."</li>\n";
+echo "<li>".anchor('site/configform/accesslevels',__('Default accesslevels'))."</li>\n";
+echo "<br/>";
 //integration&embedding
-echo anchor('site/configform/siteintegration',__('Site integration settings'))."<br/>\n";
+echo "<li>".anchor('site/configform/siteintegration',__('Site integration settings'))."</li>\n";
+echo "</ul>";
 

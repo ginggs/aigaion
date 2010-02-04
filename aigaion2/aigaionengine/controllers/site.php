@@ -14,12 +14,12 @@ class Site extends Controller {
 	}
 
   /** 
-  site/configure2
+  site/configure
   
   Presents a page with links to several config edit pages. 
   Possibly includes some overview information about current settings for different settings-groups
   */
-  function configure2()
+  function configure()
   {
     //check rights
     $userlogin = getUserLogin();
@@ -71,7 +71,7 @@ class Site extends Controller {
 
     //choose configform depending on 3rd segment
     $requestedform = $this->uri->segment(3,'display');
-    $allowedconfigforms= array("display","inputoutput","attachments","customfields","login","userdefaults","accesslevels","siteintegration");
+    $allowedconfigforms= array("display","inputoutput","attachments","content","login","userdefaults","accesslevels","siteintegration");
     if (!in_array($requestedform,$allowedconfigforms)) {
       $requestedform = 'display';
     }
@@ -124,10 +124,10 @@ class Site extends Controller {
 
     //choose configform depending on post setting segment
     $requestedform = $this->input->post('configformname');
-    $allowedconfigforms= array("display","inputoutput","attachments","customfields","login","userdefaults","accesslevels","siteintegration");
+    $allowedconfigforms= array("display","inputoutput","attachments","content","login","userdefaults","accesslevels","siteintegration");
     if (!in_array($requestedform,$allowedconfigforms)) {
       appendErrorMessage(__('Configure database').': '.__('commit of non-existing form').'.<br/>');
-      redirect('site/configure2');
+      redirect('site/configure');
     }
     
     //get info about current settings
@@ -145,8 +145,9 @@ class Site extends Controller {
       case "attachments":
         $siteconfig = $this->siteconfig_db->getAttachmentSettingsFromPost($siteconfig);
         break;
-      case "customfields":
+      case "content":
         $siteconfig = $this->siteconfig_db->getCustomfieldSettingsFromPost($siteconfig);
+        $siteconfig = $this->siteconfig_db->getAuthorSynonymSettingsFromPost($siteconfig);
         $customFieldsInfo = $this->customfields_db->getSettingsFromPost();
         break;
       case "login":
@@ -168,24 +169,25 @@ class Site extends Controller {
     //store new settings for siteconfig, and, if needed, customfields stuff
     $siteconfig->update();
     $siteconfig = $this->siteconfig_db->getSiteConfig();
-    if ($requestedform == "customfields")
+    if ($requestedform == "content")
     {
       $customFieldsInfo = $this->customfields_db->updateSettingsFromPost($customFieldsInfo);
     }
     appendMessage(__('Configure database').': '.__('new settings stored').'.<br/>');
-    redirect('site/configure2');
+    redirect('site/configure');
   }
   
     /** 
-    site/configure
-        
+    site/configureold
+    
+    the old massive configuration page. Will no longer be updated and extended.
     Fails when unsufficient user rights
     
     Paramaters:
         3rd segment: if 3rd segment is 'commit', site config data is expected in the POST
     
     Returns a full html page with a site configuration form. */
-	function configure()
+	function configureold()
 	{
 	    //check rights
         $userlogin = getUserLogin();
@@ -331,10 +333,13 @@ class Site extends Controller {
     	        }
 	            //if ($maintenance != 'all') 
 	            break;
-	        //AND NO THOSE THAT SHOULD NOT BE INCLUDED IN 'ALL'
+	        //AND NOW THOSE THAT SHOULD NOT BE INCLUDED IN 'ALL'
 	        case 'deletenonpublishingauthors':
 	            $checkresult .= deleteNonPublishingAuthors();
-                break;
+              break;
+	        case 'removeauthorsynonyms':
+	            $checkresult .= removeAuthorSynonyms();
+              break;
           case 'deleteunusedkeywords':
               $checkresult .= deleteUnusedKeywords();
               break;

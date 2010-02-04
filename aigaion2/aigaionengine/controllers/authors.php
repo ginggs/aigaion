@@ -273,6 +273,11 @@ class Authors extends Controller {
     {
       $author_id  = $author;
       $author     = $this->author_db->getByID($author_id);
+      if ($author==null)
+      {
+        appendErrorMessage(__("Edit author").": ".__('non-existing id passed').".<br/>");
+        redirect('');
+      }
       $author->getCustomFields();
       
       //set header data
@@ -771,7 +776,7 @@ class Authors extends Controller {
 				if($email_formatted || $email_bibtex)
 				{
 					$this->publication_db->enforceMerge = True;
-					$publicationMap = $this->publication_db->getForAuthorAsMap($author_id);
+					$publicationMap = $this->publication_db->getForAuthorAsMap($author_id,true);
 					$splitpubs = $this->publication_db->resolveXref($publicationMap,false);
 					$pubs = $splitpubs[0];
 					$xrefpubs = $splitpubs[1];
@@ -818,7 +823,7 @@ class Authors extends Controller {
 					$messageBody .= "\n";
 
 					$this->publication_db->suppressMerge = False;
-					$publicationMap = $this->publication_db->getForAuthorAsMap($author_id);
+					$publicationMap = $this->publication_db->getForAuthorAsMap($author_id,true);
 					$splitpubs = $this->publication_db->resolveXref($publicationMap,false);
 					$pubs = $splitpubs[0];
 					$xrefpubs = $splitpubs[1];

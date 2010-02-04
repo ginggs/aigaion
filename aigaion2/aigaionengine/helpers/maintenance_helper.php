@@ -118,6 +118,7 @@ function checkAttachments() {
   return $result;
 }
 function checkAuthors() {
+  $CI = &get_instance();
   $result = "<tr><td colspan=2><p class='header1'>".__("Author check")."</p></td></tr>\n";
 
   #check for empty author names
@@ -177,6 +178,25 @@ function checkAuthors() {
   }
   else
   $result .= "<td><b>".__("OK")."</b></td></tr>\n";
+
+  #check for synonym authors when no synonyms allowed...
+  if (getConfigurationSetting('USE_AUTHOR_SYNONYMS') != 'TRUE')
+  {
+    $result .= "<tr><td>".__("Checking for synonym authors")." ".__("(synonyms not enabled in this site)")."...</td>\n";
+    
+    $CI->db->where('synonym_of !=', '0');
+    //$res = $CI->db->get('');
+    if ($CI->db->count_all_results('author') > 0) //synonyms exist, offer to remove them (!)
+    { 
+      $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
+      $result .= "<div class='message'>";
+      $result .= __("Some authors have synonym names associated to them.")." ".__("(synonyms not enabled in this site)");
+      $result .= '<br/>'.anchor('site/maintenance/removeauthorsynonyms',__('Remove all author synonyms and assign their publications to the primary author'))."</div>\n";
+      $result .= "</td></tr>\n";
+    }
+    else
+    $result .= "<td><b>".__("OK")."</b></td></tr>\n";
+  }
 
   return $result;
 }
@@ -812,6 +832,24 @@ function deleteNonPublishingAuthors() {
     }
   }
   return sprintf(__("Deleted %s authors who do not have any publications."),$num)."<br/>";
+}
+
+/** Merge synonyms into primaries by re-assigning publications; then delete synonyms */
+function removeAuthorSynonyms()
+{
+  $CI = &get_instance();
+  $num = 0;
+  $CI->db->where('synonym_of !=' , '0');
+  $Q = $CI->db->get('author');
+  foreach ($Q->result() as $R)
+  {
+    $num++;
+    $author = $CI->author_db->getFromRow($R);
+    $prim = $CI->author_db->getByID($author->synonym_of);
+    //return $author->surname;
+    $CI->author_db->merge($prim,$author->author_id);
+  }
+  return sprintf(__("Deleted %s author synonyms."),$num)."<br/>";
 }
 
 function checkKeywordPublicationLinks()

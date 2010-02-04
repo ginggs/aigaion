@@ -537,23 +537,40 @@ TODO:
     $CI->db->from("publicationauthorlink");
     return $CI->db->count_all_results();
   } 
-  
+
+  /** ensure that all authors in this list are in the database. Also, remove duplicate authors from the list. */  
   function ensureAuthorsInDatabase($authors)
   {
-        $CI = &get_instance();
+    $CI = &get_instance();
     if (!is_array($authors))
       return null;
       
-    $result = array();
+    $tempresult = array();
     foreach ($authors as $author)
     {
       $current      = $this->getByExactName($author->firstname, $author->von, $author->surname, $author->jr);
       if ($current == null)
         $current    = $this->add($author);
       
-      $result[] = $current;
+      $tempresult[] = $current;
     }
-    return $result;
+    //silently drop duplicate authors from list
+    $authorids = array();
+    $authors = array();
+    foreach ($tempresult as $a)
+    {
+      if (!in_array($a->author_id,$authorids))
+      {
+        $authorids[] = $a->author_id;
+        $authors[] = $a;
+      }
+      else
+      {
+        appendMessage(__("Dropped duplicate author")."<br/>");
+      }
+    }
+
+    return $authors;
   }
   
   /** if no similar authors found, returns null.
@@ -605,17 +622,35 @@ TODO:
         
         //sort while keeping key relationship
         asort($db_distances, SORT_NUMERIC);
-        
         //are there similar authors?
         if (count($db_distances) > 0)
         {
-          $result_message .= __("Found similar authors for")." <b>&quot;".$author->getName('lvf')."&quot;</b>:<br/>\n";
+          $authorname = $author->getName('lvf');
+          if ($author->institute!='')
+          {
+            $authorname .= ', '.addslashes ($author->institute);
+          }
+          if ($author->email!='')
+          {
+            $authorname .= ', '.addslashes ($author->institute);
+          }
+
+          $result_message .= __("Found similar authors for")." <b>&quot;".$authorname."&quot;</b>:<br/>\n";
           $result_message .= "<ul>\n";
           foreach($db_distances as $key => $value)
           {
-            $author = $this->getByID($key);
-            $result_message .= "<li>".$author->getName('lvf')."</li>\n";
-            $similar_authors[] = $author->author_id;
+            $otherauthor = $this->getByID($key);
+            $otherauthorname = $otherauthor->getName('lvf');
+            if ($otherauthor->institute!='')
+            {
+              $otherauthorname .= ', '.addslashes ($otherauthor->institute);
+            }
+            if ($otherauthor->email!='')
+            {
+              $otherauthorname .= ', '.addslashes ($otherauthor->institute);
+            }
+            $result_message .= "<li>".$otherauthorname."</li>\n";
+            $similar_authors[] = $otherauthor->author_id;
           }
           $result_message .= "</ul>\n";
         }

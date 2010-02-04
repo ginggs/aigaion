@@ -112,7 +112,7 @@ class Customfields_db {
  
   function deleteForTypeByID($type, $object_id) {
     $CI = &get_instance();
-    $Q = $CI->db->query("DELETE customfields.* 
+    $Q = $CI->db->query("DELETE ".AIGAION_DB_PREFIX."customfields.* 
                           FROM ".AIGAION_DB_PREFIX."customfields
                             LEFT JOIN ".AIGAION_DB_PREFIX."customfieldsinfo
                               ON (".AIGAION_DB_PREFIX."customfields.type_id = ".AIGAION_DB_PREFIX."customfieldsinfo.type_id)

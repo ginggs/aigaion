@@ -157,6 +157,20 @@ class Siteconfig_db {
         }
         return $siteconfig;
     }    
+    /** get the author synonym config settings from post data and store them in given siteconfig object */
+    function getAuthorSynonymSettingsFromPost($siteconfig) {
+        $CI = &get_instance();
+        //correct form?
+        if ($CI->input->post('formname')!='siteconfig') {
+            return null;
+        }
+        if ($CI->input->post('USE_AUTHOR_SYNONYMS') == 'USE_AUTHOR_SYNONYMS') {
+          $siteconfig->configSettings['USE_AUTHOR_SYNONYMS']              = 'TRUE';
+        } else {
+          $siteconfig->configSettings['USE_AUTHOR_SYNONYMS']              = 'FALSE';
+        }
+        return $siteconfig;
+    }    
     /** get the default user preferences config settings from post data and store them in given siteconfig object */
     function getUserDefaultsFromPost($siteconfig) {
         $CI = &get_instance();
@@ -308,6 +322,17 @@ class Siteconfig_db {
                 appendMessage(__('Anonymous guest access has been enabled, but no valid anonymous account was specified. Note that anonymous login will not work until such an anonymous account has been created, and assigned as default anonymous account.').'<br/>');
             }
            
+        }
+        //check whether author synonyms are enabled. If not, but synonyms exist in the database, report this as an error and suggest the user to repair this on the maintenance page.
+        if ($siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] != 'TRUE')
+        {
+          
+          $CI->db->where('synonym_of !=', '0');
+          //$res = $CI->db->get('author');
+          if ($CI->db->count_all_results('author') > 0) //synonyms exist, remove them (!)
+          { 
+            appendMessage(__("Some authors have synonym names associated to them.")." ".__("These synonyms should been merged into the primary authors, and the synonym names themselves should be removed.")." ".__("Please go to the site maintenance page to do this.")."<br/>");
+          }
         }
         //start to update
         foreach ($siteconfig->configSettings as $setting=>$value) {

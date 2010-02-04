@@ -72,7 +72,22 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
     </tr>
       <?php
     }
-    
+
+
+if (getConfigurationSetting('USE_AUTHOR_SYNONYMS') != 'TRUE')
+{    
+?>
+      <tr>
+        <td colspan='2' valign='top'>
+          <?php 
+            echo form_hidden('synonym_of',$author->synonym_of);
+          ?>
+        </td>
+      </tr>
+<?php
+}
+else
+{
     //and add the primary_author input stuff... (if this author is not already a primary itself)
     if ($edit_type!='new' && $author->hasSynonyms())
     {
@@ -107,7 +122,7 @@ $formAttributes = array('ID' => 'author_'.$author->author_id.'_edit');
       </tr>
 <?php
     }
-    
+}    
 ?>
   </table>
 <?php

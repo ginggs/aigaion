@@ -22,7 +22,7 @@ echo form_hidden('configformname','inputoutput');
             echo form_checkbox('CONVERT_BIBTEX_TO_UTF8','CONVERT_BIBTEX_TO_UTF8',$siteconfig->getConfigSetting("CONVERT_BIBTEX_TO_UTF8")!= "FALSE");
           ?>
         </td>
-        </tr>
+      </tr>
 	    <tr>
 	        <td align='left' colspan='2'><img class='icon' src='<?php echo getIconUrl("small_arrow.gif"); ?>'>
 	        <?php echo __('Turn this off if you want special BibTeX character codes to be stored as such in the database, without converting them into utf8. This is useful if you find that you have a lot of BibTeX that is converted wrongly.');?></td>

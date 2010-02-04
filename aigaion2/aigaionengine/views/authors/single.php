@@ -8,7 +8,7 @@ if ($userlogin->hasRights('publication_edit'))
 ?>
   <?php 
   echo "<div class='optionbox'>";
-  if ($author->synonym_of == '0')
+  if ( (getConfigurationSetting('USE_AUTHOR_SYNONYMS') == 'TRUE') && $author->synonym_of == '0')
   {
     echo "[".anchor('authors/addsynonym/'.$author->author_id, __('add synonym'), array('title' => __('Add synonym for this author')))."]&nbsp";
   }
@@ -60,6 +60,8 @@ if ($userlogin->hasRights('publication_edit'))
 ?>
       </table>
 <?php
+    if (getConfigurationSetting('USE_AUTHOR_SYNONYMS') == 'TRUE')
+    {
       //check if this is a synonym of another author
       if ($author->synonym_of != '0') {
         echo "<div class='message'>".__('This author entry is a synonym of another author entry.').' '.sprintf(__('Click %s to go to the main entry to see any additional publications of this author'), anchor('authors/show/'.$author->synonym_of, "here", array('title' => __('Click to show details'))))."</div>\n";
@@ -81,7 +83,7 @@ if ($userlogin->hasRights('publication_edit'))
           echo "</div>\n";
         }       
       }
-      
+    }
 ?>
     </td>
     <td>
