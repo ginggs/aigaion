@@ -36,8 +36,8 @@ function getFullFieldArray() {
                   'chapter'        ,
                   'year'           ,
                   'month'          ,
-                  'firstpage'      ,
-                  'lastpage'       ,
+                  'firstpage'      , //DEPRECATED
+                  'lastpage'       , //DEPRECATED
                   'pages'		   ,
                   'publisher'      ,
                   'location'       ,
@@ -473,6 +473,11 @@ function getPublicationFieldArray($type)
 //note: the prefix may be an array instead of a string, in that case its (prefix,postfix)
 function getPublicationSummaryFieldArray($type)
 {
+  if (file_exists(dirname(__FILE__).'/local_override_publication_helper.php'))
+  {
+    require_once(dirname(__FILE__).'/local_override_publication_helper.php');
+    return getLocalOverridePublicationSummaryFieldArray($type);
+  }
 	$type = ucfirst(strtolower($type));
 	switch ($type) {
 		case "Article":

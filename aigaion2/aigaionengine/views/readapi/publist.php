@@ -134,7 +134,7 @@ if ($summarystyle == 'author') {
 
 
 foreach ($summaryfields as $key => $prefix) {
-  $val = utf8_trim($publication->$key);
+  $val = utf8_trim($publication->getFieldValue($key));
   if ($key=="month")$val=formatMonthText($val);
   $postfix='';
   if (is_array($prefix)) {

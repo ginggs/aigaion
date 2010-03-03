@@ -159,7 +159,7 @@ foreach ($summaryfields as $key => $prefix) {
     $val = $pages;
   } else {
 
-    $val = str_replace('{', '', str_replace('}','',utf8_trim($publication->$key)));
+    $val = str_replace('{', '', str_replace('}','',utf8_trim($publication->getFieldValue($key))));
 
   }
   $postfix='';

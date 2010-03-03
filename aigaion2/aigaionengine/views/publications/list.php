@@ -186,9 +186,9 @@ if ($summarystyle == 'author') {
     echo "<span class='title'>".anchor('publications/show/'.$publication->pub_id, $displayTitle, array('title' => __('View publication details')))."</span>";
 }
 
-
 foreach ($summaryfields as $key => $prefix) {
-  $val = utf8_trim($publication->$key);
+  $val = utf8_trim($publication->getFieldValue($key));
+
   if ($key=="month")$val=formatMonthText($val);
   $postfix='';
   if (is_array($prefix)) {

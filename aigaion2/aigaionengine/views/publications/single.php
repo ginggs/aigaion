@@ -203,7 +203,7 @@ $this->load->helper('translation');
                     echo ' '.__('(ed)');
                 }
                 foreach ($summaryfields as $key => $prefix) {
-                  $val = trim($xref_pub->$key);
+                  $val = trim($xref_pub->getFieldValue($key));
                   $postfix='';
                   if (is_array($prefix)) {
                     $postfix = $prefix[1];

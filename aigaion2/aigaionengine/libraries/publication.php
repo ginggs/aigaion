@@ -143,6 +143,28 @@ class Publication {
     return $this->customfields;
   }
   
+  /** transparently returns the value of a field. If the given key is a customfield, return the value of this custom field.
+  If not, return the field as basic field.... */
+  function getFieldValue($key)
+  {
+    $CI = &get_instance();
+    $allkeys = $CI->customfields_db->getCustomFieldKeys('publication');
+    if (in_array($key,$allkeys))
+    {
+      $cfields = $this->getCustomFields();
+      foreach ($cfields as $cfield)
+      {
+        if ($cfield['fieldname']==$key)
+          return $cfield['value']; 
+      }
+    }
+    else
+    {
+      return $this->$key;
+    }
+    return null;
+  }
+  
   function getUserMark() 
   {
     $CI = &get_instance();
