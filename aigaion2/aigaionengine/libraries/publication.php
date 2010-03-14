@@ -24,6 +24,7 @@ class Publication {
   var $actualyear   = '';
   var $isBookmarked = False;
   var $mark         = 0;
+  var $coverimage   = ''; //null or '' means none. Set by uploading image through edit form
   
   //user vars
   var $pub_type     = '';

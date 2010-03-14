@@ -171,6 +171,20 @@ class Siteconfig_db {
         }
         return $siteconfig;
     }    
+    /** get the cover image config settings from post data and store them in given siteconfig object */
+    function getCoverImageSettingsFromPost($siteconfig) {
+        $CI = &get_instance();
+        //correct form?
+        if ($CI->input->post('formname')!='siteconfig') {
+            return null;
+        }
+        if ($CI->input->post('USE_BOOK_COVERS') == 'USE_BOOK_COVERS') {
+          $siteconfig->configSettings['USE_BOOK_COVERS']              = 'TRUE';
+        } else {
+          $siteconfig->configSettings['USE_BOOK_COVERS']              = 'FALSE';
+        }
+        return $siteconfig;
+    }    
     /** get the default user preferences config settings from post data and store them in given siteconfig object */
     function getUserDefaultsFromPost($siteconfig) {
         $CI = &get_instance();

@@ -371,6 +371,9 @@ div.publication_summary.odd {
   /*border-right    : 1px solid #0F0F10;*/
 }
 
+img.coverimage {
+  width  : 15em;
+}
 /* small hack since otherwise the publication title header had wrong margin */
 div.publication {
   border: 1px solid #EEEEEE;

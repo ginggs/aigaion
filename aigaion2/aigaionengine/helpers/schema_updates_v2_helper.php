@@ -21,6 +21,28 @@
 */
 
     /** 
+    / * Add field for cover image in publication table
+    */
+    
+    function updateSchemaV2_22() {
+      $CI = &get_instance();
+        if (checkVersion('V2.22', true)) { // silent check
+            return True;
+        }
+        if (!updateSchemaV2_21()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+             
+        //insert type_id column
+        mysql_query("ALTER TABLE `".AIGAION_DB_PREFIX."publication` 
+                      ADD `coverimage` varchar(255) NOT NULL default '';");
+
+        if (mysql_error()) 
+            return False;
+        
+        return setVersion('V2.22');
+    }
+    /** 
     / * Add customfieldInfo table
     */
     

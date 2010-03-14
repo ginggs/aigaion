@@ -148,6 +148,7 @@ class Site extends Controller {
       case "content":
         $siteconfig = $this->siteconfig_db->getCustomfieldSettingsFromPost($siteconfig);
         $siteconfig = $this->siteconfig_db->getAuthorSynonymSettingsFromPost($siteconfig);
+        $siteconfig = $this->siteconfig_db->getCoverImageSettingsFromPost($siteconfig);
         $customFieldsInfo = $this->customfields_db->getSettingsFromPost();
         break;
       case "login":

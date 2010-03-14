@@ -24,7 +24,7 @@ echo "<br/>";
 //content, inpupt, and output
 echo "<li>".anchor('site/configform/inputoutput',__('Import and export settings'))."</li>\n";
 echo "<li>".anchor('site/configform/attachments',__('Attachment settings'))."</li>\n";
-echo "<li>".anchor('site/configform/content',__('Content settings: Custom fields and author synonyms'))."</li>\n";
+echo "<li>".anchor('site/configform/content',__('Content settings: Custom fields, author synonyms, cover images'))."</li>\n";
 echo "<br/>";
 //login, users, and access levels
 echo "<li>".anchor('site/configform/login',__('Login settings'))."</li>\n";

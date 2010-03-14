@@ -264,6 +264,137 @@ class Publications extends Controller {
 
   }  
   
+  /** download the cover image of this publication */
+  function coverimage()
+  {
+      $pub_id = $this->uri->segment(3,-1);
+      
+      $publication = $this->publication_db->getByID($pub_id);
+      if ($publication == null) {
+          appendErrorMessage(__('Show cover image').': '.__('non-existing id passed').'.<br/>');
+          return;
+      }
+      $output = $this->load->view('publications/coverimage',array('publication'=>$publication), true);
+
+      //set output
+      $this->output->set_output($output);
+  }
+  /** edit form to upload new cover images */
+  function uploadcoverimage()
+  {
+      $pub_id = $this->uri->segment(3,-1);
+      
+      $publication = $this->publication_db->getByID($pub_id);
+      if ($publication == null) {
+          appendErrorMessage(__('Upload cover image').': '.__('non-existing id passed').'.<br/>');
+          redirect('');
+      }
+  
+      $userlogin  = getUserLogin();
+      if (    (!$userlogin->hasRights('publication_edit'))
+           || !$this->accesslevels_lib->canEditObject($publication)           
+          ) 
+      {
+        appendErrorMessage(__('Upload cover image').': '.__('insufficient rights').'.<br/>');
+        redirect('publications/show/'.$publication->pub_id);
+      }
+
+      //set header data
+      $header ['title']       = __('Upload cover image');
+      $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+      $content['publication'] = $publication;
+      
+      //get output
+      $output  = $this->load->view('header',              $header,  true);
+      $output .= $this->load->view('publications/uploadcoverimage', $content, true);
+      $output .= $this->load->view('footer',              '',       true);
+      
+
+      //set output
+      $this->output->set_output($output);
+  }
+  /** edit form to commit new cover images */
+  function commitcoverimage()
+  {
+      $pub_id = $this->input->post('pub_id');
+      
+      $publication = $this->publication_db->getByID($pub_id);
+      if ($publication == null) {
+          appendErrorMessage(__('Upload cover image').': '.__('non-existing id passed').'.<br/>');
+          redirect('');
+      }
+  
+      $userlogin  = getUserLogin();
+      if (    (!$userlogin->hasRights('publication_edit'))
+           || !$this->accesslevels_lib->canEditObject($publication)           
+          ) 
+      {
+        appendErrorMessage(__('Upload cover image').': '.__('insufficient rights').'.<br/>');
+        redirect('publications/show/'.$publication->pub_id);
+      }
+      
+      $this->publication_db->commitcoverimage($publication);
+      
+      redirect('publications/show/'.$publication->pub_id);
+  }  
+  /** edit form to delete cover images */
+  function deletecoverimage()
+  {
+      $pub_id = $this->uri->segment(3,-1);
+      
+      $publication = $this->publication_db->getByID($pub_id);
+      if ($publication == null) {
+          appendErrorMessage(__('Delete cover image').': '.__('non-existing id passed').'.<br/>');
+          redirect('');
+      }
+  
+      $userlogin  = getUserLogin();
+      if (    (!$userlogin->hasRights('publication_edit'))
+           || !$this->accesslevels_lib->canEditObject($publication)           
+          ) 
+      {
+        appendErrorMessage(__('Delete cover image').': '.__('insufficient rights').'.<br/>');
+        redirect('publications/show/'.$publication->pub_id);
+      }
+
+      //set header data
+      $header ['title']       = __('Delete cover image');
+      $header ['javascripts'] = array('tree.js','prototype.js','scriptaculous.js','builder.js','externallinks.js');
+      $content['publication'] = $publication;
+      
+      //get output
+      $output  = $this->load->view('header',              $header,  true);
+      $output .= $this->load->view('publications/deletecoverimage', $content, true);
+      $output .= $this->load->view('footer',              '',       true);
+      
+
+      //set output
+      $this->output->set_output($output);
+  }
+    /** delete cover images */
+  function commitdeletecoverimage()
+  {
+      $pub_id = $this->input->post('pub_id');
+      
+      $publication = $this->publication_db->getByID($pub_id);
+      if ($publication == null) {
+          appendErrorMessage(__('Delete cover image').': '.__('non-existing id passed').'.<br/>');
+          redirect('');
+      }
+  
+      $userlogin  = getUserLogin();
+      if (    (!$userlogin->hasRights('publication_edit'))
+           || !$this->accesslevels_lib->canEditObject($publication)           
+          ) 
+      {
+        appendErrorMessage(__('Delete cover image').': '.__('insufficient rights').'.<br/>');
+        redirect('publications/show/'.$publication->pub_id);
+      }
+      
+      $this->publication_db->deletecoverimage($publication);
+      
+      redirect('publications/show/'.$publication->pub_id);
+  }  
   //Calls an empty publication edit form
   function add()
   {

@@ -657,7 +657,8 @@ class Publication_db {
                     'cleanjournal',
                     'actualyear',
                     'specialchars',
-                    'status'
+                    'status',
+                    'coverimage'
     ); //'mark' doesn't need to get updated as that is done through other methods.
   
     $specialfields = array(
@@ -903,6 +904,104 @@ class Publication_db {
         return true;
     }
     
+    function commitcoverimage($publication)
+    {
+        $CI = &get_instance();
+        //check access rights (!)
+        $userlogin    = getUserLogin();
+        $user         = $CI->user_db->getByID($userlogin->userID());
+        if (    ($publication == null) 
+             ||
+                (!$userlogin->hasRights('publication_edit'))
+             || 
+                (!$CI->accesslevels_lib->canEditObject($publication))
+            ) 
+        {
+	        appendErrorMessage(__('Upload cover image').': '.__('insufficient rights').'.<br/>');
+	        return;
+        }
+
+        	# upload not possible: return with error
+        	if (getConfigurationSetting("SERVER_NOT_WRITABLE") == "TRUE") {
+        		appendErrorMessage(__("You cannot upload cover image files to this server (the server is declared write-only).")."<br/>");
+        		return;
+        	}
+        
+        	$CI->file_upload->http_error = $_FILES['upload']['error'];
+        
+        	if ($CI->file_upload->http_error > 0) {
+        		appendErrorMessage(__("Error while uploading").": ".$CI->file_upload->error_text($CI->file_upload->http_error).'<br/>');
+        		return;
+        	}
+        
+        	# prepare upload of file from temp to permanent location
+        	$CI->file_upload->the_file = $_FILES['upload']['name'];
+        	$CI->file_upload->the_temp_file = $_FILES['upload']['tmp_name'];
+        	$CI->file_upload->extensions = array('.jpg','.jpeg');  // specify the allowed extensions here
+        	$CI->file_upload->upload_dir = AIGAION_ATTACHMENT_DIR."/";  // is the folder for the uploaded files (you have to create this folder)
+        	$CI->file_upload->max_length_filename = 255; // change this value to fit your field length in your database (standard 100)
+        	$CI->file_upload->rename_file = true;
+        	$CI->file_upload->replace = "n"; 
+        	$CI->file_upload->do_filename_check = "n"; // use this boolean to check for a valid filename
+        
+        	# determine storename (the one
+        	# used for storage) of file, from alternative name or from original name
+        	$realname=$_FILES['upload']['name'];
+        	$ext = $CI->file_upload->get_extension($realname);
+        	$CI->load->helper('filename');
+        	$storename = toCleanName($realname)."-".$this->generateUniqueSuffix();
+        
+        	# execute the actual upload
+        	if ($CI->file_upload->upload($storename)) {  
+        	    // storename is an additional filename information, use this to rename the uploaded file
+        		//echo "mime:".$attachment->mime.".";
+        		# upload was succesful:
+
+        		# add appropriate info about new attachment to database
+            $publication->coverimage = $storename.$ext;
+            $publication->update();
+        		# check if file is really there
+        		if (!is_file(AIGAION_ATTACHMENT_DIR."/".$storename.$ext))
+        		{
+        	        appendErrorMessage(__("Error uploading. The file was not written to disk.")
+        	          ."<br/>"
+                    .__("Is this error entirely unexpected? You might want to check whether the php settings 'upload_max_filesize', 'post_max_size' and 'max_execution_time' are all large enough for uploading your attachments... Please check this with your administrator.")
+                    ."<br/>");
+        		}
+        		
+        		return;
+        	} else {
+        		appendErrorMessage(utf8_strtoupper(__("Error while uploading")).": ".$CI->file_upload->show_error_string()."<br/>".sprintf(__("Is the error due to allowed file types? Ask %s for more types."),"<a href='mailto:".getConfigurationSetting("CFG_ADMINMAIL")."'>".getConfigurationSetting("CFG_ADMIN")."</a>")."<br/>");
+        		return;
+        	}
+        
+        appendErrorMessage("GENERIC ERROR UPLOADING. THIS SHOULD NOT HAVE BEEN LOGICALLY POSSIBLE. PLEASE CONTACT YOUR DATABASE ADMINISTRATOR.<br/>"); 
+        //but nevertheless,  murphy's law dicates that we add an error feedback message here :)
+        return;
+    }    
+    function deletecoverimage($publication)
+    {
+        $CI = &get_instance();
+        //check access rights (!)
+        $userlogin    = getUserLogin();
+        $user         = $CI->user_db->getByID($userlogin->userID());
+        if (    ($publication == null) 
+             ||
+                (!$userlogin->hasRights('publication_edit'))
+             || 
+                (!$CI->accesslevels_lib->canEditObject($publication))
+            ) 
+        {
+	        appendErrorMessage(__('Delete cover image').': '.__('insufficient rights').'.<br/>');
+	        return;
+        }
+        if (is_file(AIGAION_ATTACHMENT_DIR.'/'.$publication->coverimage)) {
+          unlink(AIGAION_ATTACHMENT_DIR.'/'.$publication->coverimage);
+        }
+        $publication->coverimage = '';
+        $publication->update();
+        
+    }
   function validate($publication)
   {
     //DR: when crossref set, nothing is required :) (see end of function)
@@ -1628,5 +1727,16 @@ class Publication_db {
 //            $CI->db->query('UPDATE '.AIGAION_DB_PREFIX.'publicationauthorlink SET rank='.($newrank+1).' WHERE pub_id='.$pub_id.' AND rank='.($oldrank+$maxrank+1)." AND is_editor='".$editors."'");
 //        }
 //    }    
+
+    function generateUniqueSuffix()
+    {
+    	$suffix = md5(time());
+    	while (file_exists($suffix)) {
+    		$suffix= md5(time());
+    	}
+    	return $suffix;
+    }
+
 }
+
 ?>

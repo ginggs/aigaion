@@ -115,3 +115,22 @@ echo form_hidden('configformname','content');
 	        ?>
 	        </td>
 	    </tr>
+
+
+<!-- BOOK COVER SETTINGS -->
+	    <tr>
+	        <td colspan='2'><hr>
+	          <p class='header2'><?php echo __('Book cover settings').':';?></p>
+	          <p><?php echo __('Aigaion can be configured to allow images of book covers to be uploaded');?></p>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td><label><?php echo __('Allow uploading of book cover images').':';?></label>
+	        </td>
+	        <td>
+	        <?php
+            echo form_checkbox('USE_BOOK_COVERS','USE_BOOK_COVERS',$siteconfig->getConfigSetting("USE_BOOK_COVERS") == "TRUE");
+          ?>
+          </td>
+      </tr>

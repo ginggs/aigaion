@@ -100,6 +100,7 @@ $this->load->helper('translation');
   </div>
   <div class='header'><?php echo $publication->title; ?>
   </div>
+
   <table class='publication_details' width='100%'>
     <tr>
       <td><?php _e("Type of publication");?>:</td>
@@ -385,6 +386,37 @@ $this->load->helper('translation');
             echo form_submit('unread',__('Unread'));
             echo form_close();
           }
+?>
+        </td>
+      </tr>
+<?php
+    }
+
+    //if book covers are allowed, show the book cover of this publication
+    if (getConfigurationSetting('USE_BOOK_COVERS')=='TRUE')
+    {
+?>
+      <tr>
+        <td colspab='2' valign='top'>
+<?php
+        if ($publication->coverimage != '' && $publication->coverimage != null)
+        {
+          $image = "<img class='coverimage' src='".site_url('/publications/coverimage/'.$publication->pub_id)."'/>";
+          echo anchor('/publications/coverimage/'.$publication->pub_id,$image, array('target'=>'_blank'));
+        }
+        if (    ($userlogin->hasRights('publication_edit'))
+             && $this->accesslevels_lib->canEditObject($publication)           
+            ) 
+        {
+          if ($publication->coverimage != '' && $publication->coverimage != null)
+          {
+            echo '<br/>['.anchor('publications/deletecoverimage/'.$publication->pub_id,__('delete cover image')).']';
+          }
+          else
+          {
+            echo '['.anchor('publications/uploadcoverimage/'.$publication->pub_id,__('upload cover image')).']';
+          }
+        }
 ?>
         </td>
       </tr>
