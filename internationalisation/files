@@ -12,7 +12,6 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\accesslevels.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php
-C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\conversion.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\embeddingtest.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\front.php
@@ -51,6 +50,7 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\encode_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\export_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\filename_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\formrepost_helper.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\local_override_publication_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\logintegration_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\login_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php
@@ -65,7 +65,6 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\rights_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\rtf_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\schema_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\schema_updates_v2_helper.php
-C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\specialchar_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\theme_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\utf8_helper.php
@@ -358,6 +357,7 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\bibtex2utf8.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\bookmarklist_db.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\customfields_db.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\email_export.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\file_upload.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\gettext.php
@@ -367,7 +367,6 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\import_lib.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\keyword_db.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\latesession.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\login_httpauth.php
-C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\login_ldap.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\note.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\note_db.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\parsecreators.php
@@ -380,6 +379,8 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\parser_import.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pam.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pwauth.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\rightsprofile.php
@@ -467,13 +468,16 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\login\form.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\notes\delete.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\notes\edit.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\notes\summary.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\coverimage.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\delete.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\deletecoverimage.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\edit.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\index.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\list.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\listClean.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\review.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\readapi\author.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\readapi\publist.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\rightsprofiles\delete.php
@@ -482,10 +486,21 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\rightsprofiles\summary.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\rss\public.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\advanced.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\maintenance.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\restore.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\stats.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\accesslevels.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\attachments.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\display.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\footer.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\header.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\inputoutput.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\siteintegration.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\userdefaults.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\clean.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\delete.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\edit.php
@@ -499,4 +514,5 @@ C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\tree.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\usersubscriptiontreerow.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\delete.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php
+C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php
 C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\summary.php
