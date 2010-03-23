@@ -1,7 +1,7 @@
 # Spanish translation of Aigaion v2.1.2
 # Copyright (C) 2009, Aigaion.
 # This file is distributed under the same license as the Aigaion package.
-#
+# Mauricio Orozco Alzate, MColmene, Carolina, kresp0, chachosua/Ness, "milki", 
 # Camilo Condis <camiloc@ind.cujae.edu.cu>,  2009.
 #
 #
