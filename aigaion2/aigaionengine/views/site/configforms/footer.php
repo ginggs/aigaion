@@ -15,7 +15,7 @@ $this->load->helper('translation');
     </table>
 <?php
 echo form_close();
-echo form_open('site/configure2');
+echo form_open('site/configure');
 echo form_submit('cancel',__('Cancel'));
 echo form_close();
 ?>

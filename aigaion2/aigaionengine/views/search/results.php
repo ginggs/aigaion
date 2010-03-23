@@ -9,8 +9,34 @@ foreach ($searchresults as $type=>$resultList) {
     switch ($type) {
         case 'authors':
             $authordisplay = "<ul>";
-            foreach ($resultList as $author) {
-                $authordisplay .= '<li>'.anchor('authors/show/'.$author->author_id,$author->getName()).'</li>';
+            if (getConfigurationSetting('USE_AUTHOR_SYNONYMS') == 'TRUE') 
+            {
+              foreach ($resultList as $author) 
+              {
+                $primary = $author;
+                if ($author->synonym_of != '0') $primary = $this->author_db->getByID($author->synonym_of);
+                $syns = $primary->getSynonyms();
+                 
+                $authordisplay .= '<li>'.anchor('authors/show/'.$primary->author_id,$primary->getName());
+                if (count($syns)>0)
+                {
+                  $authordisplay .= " <i>(";
+                  $authordisplay .= anchor('authors/show/'.$syns[0]->author_id,$syns[0]->getName());
+                  for ($i = 1; $i<count($syns); $i++)
+                  {
+                    $authordisplay .= ', '.anchor('authors/show/'.$syns[i]->author_id,$syns[i]->getName());
+                  }
+                  $authordisplay .= ")</i>";
+                }
+                $authordisplay .= '</li>';
+              }
+            }
+            else 
+            {
+              foreach ($resultList as $author) 
+              {
+                  $authordisplay .= '<li>'.anchor('authors/show/'.$author->author_id,$author->getName()).'</li>';
+              }
             }
             $authordisplay .= "</ul>";
             $resulttabs[sprintf(__('Authors: %s'),count($resultList))] = $authordisplay;
