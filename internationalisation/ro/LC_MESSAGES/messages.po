@@ -337,9 +337,9 @@ msgid "Edit author"
 msgstr "Editează autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:310
-#, fuzzy, php-format
+#, php-format
 msgid "%s author"
-msgstr "%s autor(i)"
+msgstr "%s autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:332
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:340
@@ -358,12 +358,12 @@ msgstr "lipsesc parametri"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:346
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:813
 msgid "An author synonym can only be merged with the corresponding primary author"
-msgstr ""
+msgstr "Un pseudonim al autorului poate fi fuzionat doar cu autorul primar corespunzator"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:351
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:808
 msgid "You cannot merge authors with a synonym author as target"
-msgstr ""
+msgstr "Nu se pot fuziona autori cu un pseudonim de autor ca destinaţie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:356
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:572
@@ -418,13 +418,12 @@ msgid "Author \"%s\" already exists in the database."
 msgstr "Autorul \"%s\" există deja în baza de date."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:523
-#, fuzzy
 msgid "Review author"
-msgstr "Afişează autor"
+msgstr "Revizuire autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:547
 msgid "Set author as primary"
-msgstr ""
+msgstr "Selectează autorul ca autor principal"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:563
 msgid "Authors for topic"
@@ -957,7 +956,7 @@ msgstr "Importă publicaţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:77
 msgid "no import data entered."
-msgstr "nu s-au introdus date de importat"
+msgstr "nu s-au introdus date de importat."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:87
 #, php-format
@@ -1001,18 +1000,18 @@ msgstr "S-au importat cu succes %s publicaţii."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:225
 msgid "Commit"
-msgstr "Înscriere"
+msgstr "Încarcă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:225
 msgid "no publications committed."
-msgstr "nu s-au înscris publicaţii"
+msgstr "nu s-au încărcat publicaţii."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:273
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:277
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:635
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:639
 msgid "Review publication"
-msgstr "Revizuie publicaţia"
+msgstr "Revizuie publicaţie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:40
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:253
@@ -1055,43 +1054,38 @@ msgstr "Nu s-au găsit publicaţii folosind acest cuvânt cheie."
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:215
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:273
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:322
-#, fuzzy
 msgid "Edit keyword"
-msgstr "Export pentru cuvântul cheie"
+msgstr "Editează cuvântul cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:219
-#, fuzzy, php-format
+#, php-format
 msgid "%s keyword"
-msgstr "Cuvânt cheie"
+msgstr "%s cuvânt cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:241
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:249
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:350
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:357
-#, fuzzy
 msgid "Cannot merge keywords"
-msgstr "Nu se pot fuziona autorii"
+msgstr "Nu se pot fuziona cuvintele cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:304
-#, fuzzy, php-format
+#, php-format
 msgid "Keyword \"%s\" already exists in the database."
-msgstr "Autorul \"%s\" există deja în baza de date."
+msgstr "Cuvântul cheie \"%s\" există deja în baza de date."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:326
-#, fuzzy
 msgid "Review keyword"
-msgstr "Returnează cuvinte cheie"
+msgstr "Revizuire cuvânt cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:402
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:410
-#, fuzzy
 msgid "Delete keyword"
-msgstr "Şterge utilizator"
+msgstr "Şterge cuvânt cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\keywords.php:402
-#, fuzzy
 msgid "keyword does not exist"
-msgstr "autorul nu există"
+msgstr "cuvântul cheie nu există"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\language.php:40
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:207
@@ -1237,7 +1231,7 @@ msgstr "Nu toate publicaţiile au fost asignate unui subiect"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:274
 msgid "Show cover image"
-msgstr ""
+msgstr "Afişează coperta"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:289
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:298
@@ -1247,7 +1241,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:920
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:22
 msgid "Upload cover image"
-msgstr ""
+msgstr "Încarcă coperta"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:347
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:356
@@ -1256,9 +1250,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:390
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:995
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\deletecoverimage.php:14
-#, fuzzy
 msgid "Delete cover image"
-msgstr "Şterge nota"
+msgstr "Şterge imaginea coperţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:436
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:446
@@ -1286,7 +1279,7 @@ msgstr "Există erori de validare ale acestei intrări. Vă rugăm să le corect
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:610
 msgid "Commit publication"
-msgstr "Înregistrează publicaţia"
+msgstr "Încarcă publicaţia"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:755
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:760
@@ -1477,7 +1470,7 @@ msgstr "Rezultatele căutării avansate"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\search.php:157
 msgid "Search form below"
-msgstr "Formularul de căutare de mai jos"
+msgstr "Caută formularul de mai jos"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:28
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:68
@@ -1496,12 +1489,11 @@ msgstr "Configurarea site-ului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:129
 msgid "commit of non-existing form"
-msgstr ""
+msgstr "încărcarea unui formular inexistent"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:177
-#, fuzzy
 msgid "new settings stored"
-msgstr "Stocare setări noi"
+msgstr "setări noi stocate"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:279
 msgid "Maintain database"
@@ -1808,17 +1800,16 @@ msgstr "Editează cont"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:444
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:449
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\menu.php:181
-#, fuzzy
 msgid "Set password"
-msgstr "A doua parolă"
+msgstr "Setează parola"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:298
 msgid "error: please type your current password correctly"
-msgstr ""
+msgstr "eroare: vă rugăm să tastaţi corect parola dumneavoastră curentă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:304
 msgid "error: the two new passwords do not match"
-msgstr ""
+msgstr "eroare: cele două parole noi nu sunt identice"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:357
 msgid "Delete user"
@@ -2048,7 +2039,7 @@ msgstr "Se verifică numele de autori similare"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:152
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:220
 msgid "TURNED OFF BECAUSE IT TENDS TO TIME-OUT"
-msgstr "OPRIT PENTRU CĂ TINDE SĂ EXPIRE"
+msgstr "DEZACTICVAT PENTRU CĂ TINDE SĂ EXPIRE"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:155
 msgid "Checking orphaned authorpublicationlinks"
@@ -2072,59 +2063,52 @@ msgid "Delete all non-publishing authors"
 msgstr "Şterge toţi autorii care nu au publicaţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:185
-#, fuzzy
 msgid "Checking for synonym authors"
-msgstr "Se verifică subiecte goale"
+msgstr "Se verifică autori cu pseudonime"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:185
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
 msgid "(synonyms not enabled in this site)"
-msgstr ""
+msgstr "(pseudonimele nu sunt activate în acest site)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "Some authors have synonym names associated to them."
-msgstr ""
+msgstr "Unii autori au pseudonime asociate cu ei."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:194
 msgid "Remove all author synonyms and assign their publications to the primary author"
-msgstr ""
+msgstr "Şterge toate pseudonimele autorilor şi asignează publicaţiile lor autorului primar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:205
-#, fuzzy
 msgid "Keyword check"
-msgstr "Verificarea parolelor"
+msgstr "Verificarea cuvântului cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:208
-#, fuzzy
 msgid "Checking similar keywords"
-msgstr "Se verifică numele de autori similare"
+msgstr "Se verifică cuvintele cheie similare"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:223
-#, fuzzy
 msgid "Checking orphaned keywordpublicationlinks"
-msgstr "Se verifică referinţele autor publicaţie goale"
+msgstr "Se verifică legături cuvânt cheie/publicaţie orfane"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:229
-#, fuzzy, php-format
+#, php-format
 msgid "%s keywordpublicationlinks whose corresponding keywords could not be found, were removed."
-msgstr "Au fost şterse %s referinţe autor publicaţie ale căror autori corespunzători nu pot fi găsiţi"
+msgstr "Au fost şterse %s legături cuvânt cheie/publicaţie ale căror cuvinte cheie corespunzătoare nu au putut fi găsite"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:236
-#, fuzzy
 msgid "Checking for unused keywords"
-msgstr "Se caută actualizări"
+msgstr "Se verifică după cuvintele cheie nefolosite"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:242
-#, fuzzy
 msgid "The following keywords are not used"
-msgstr "Următorii autori au un nume gol"
+msgstr "Cuvintele cheie următoare nu sunt folosite"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:244
-#, fuzzy
 msgid "Delete all unused keywords"
-msgstr "Returnează cuvinte cheie"
+msgstr "Şterge toate cuvintele cheie nefolosite"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:254
 msgid "Topic tree check"
@@ -2245,14 +2229,14 @@ msgid "Deleted %s authors who do not have any publications."
 msgstr "S-au şters %s autori care nu au nici o publicaţie."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:852
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %s author synonyms."
-msgstr "Şterge acest autor"
+msgstr "S-au şters %s pseudonime de autori."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:948
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %s keywords which do not have any publications."
-msgstr "S-au şters %s autori care nu au nici o publicaţie."
+msgstr "S-au şters %s cuvinte cheie care nu au nici o publicaţie."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\month_helper.php:61
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\month_helper.php:65
@@ -2434,33 +2418,31 @@ msgstr "Nepublicat"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:595
 msgid "In preparation"
-msgstr ""
+msgstr "În pregătire"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:596
-#, fuzzy
 msgid "Submitted"
-msgstr "Site"
+msgstr "Trimis(ă)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:597
 msgid "Under review"
-msgstr ""
+msgstr "În curs de revizuire"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:598
 msgid "Under revision"
-msgstr ""
+msgstr "În curs de revizie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:599
 msgid "Accepted"
-msgstr ""
+msgstr "Acceptat(ă)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:600
 msgid "Rejected"
-msgstr ""
+msgstr "Respins(ă)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:601
-#, fuzzy
 msgid "Published"
-msgstr "Nepublicat"
+msgstr "Publicat(ă)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\readremote_helper.php:37
 #, php-format
@@ -2864,9 +2846,8 @@ msgid "One of the fields %s is required"
 msgstr "Unul din câmpurile %s este necesar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:569
-#, fuzzy
 msgid "Dropped duplicate author"
-msgstr "Şterge autor"
+msgstr "S-a ignorat autorul duplicat"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:638
 msgid "Found similar authors for"
@@ -2882,11 +2863,11 @@ msgstr "Există câteva publicaţii ce nu pot fi reasignate datorită drepturilo
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:948
 msgid "Cannot set author as synonym of itself"
-msgstr ""
+msgstr "Nu se poate pune autorul ca sinonim al lui însuşi"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:953
 msgid "Cannot set author as synonym, because it already has synonyms itself"
-msgstr ""
+msgstr "Nu se poate pune autorul ca sinonim, deoarece el însuşi are deja sinonime"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\bookmarklist_db.php:14
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\bookmarklist_db.php:29
@@ -3037,16 +3018,15 @@ msgid "Not a valid login!"
 msgstr "Conectare invalidă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_hardcoded.php:16
-#, fuzzy
 msgid "Last Name of test user"
-msgstr "Numele de familie al utilizatorului"
+msgstr "Ultimul nume al utilizatorului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pam.php:10
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pwauth.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "The %s password checker cannot handle md5 passwords"
-msgstr "Verificatorul de parole LDAP nu poate încă trata parole md5"
+msgstr "Verificatorul de parole %s nu recunoaşte parole md5"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:36
 msgid "LDAP auth: There was a problem."
@@ -3080,9 +3060,8 @@ msgid "publication contains some notes that you do not have permission to delete
 msgstr "publicaţia conţine nişte note pe care nu aveţi permisiunea să le ştergeţi."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:926
-#, fuzzy
 msgid "You cannot upload cover image files to this server (the server is declared write-only)."
-msgstr "Nu puteţi încărca fişiere de ataşament în acest server (server-ul este declarat doar pentru citire); vă rugăm folosiţi în loc ataşări la distanţă."
+msgstr "Nu puteţi încărca fişiere imagine ale coperţilor în acest server (server-ul poate fi doar citit)."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:1029
 #, php-format
@@ -3144,12 +3123,12 @@ msgstr "Accesul vizitatorilor anonimi a fost activat, dar nici un cont anonim va
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "These synonyms should been merged into the primary authors, and the synonym names themselves should be removed."
-msgstr ""
+msgstr "Aceste sinonime ar trebui fuzionate cu autorii primari şi numele sinonime şterse"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "Please go to the site maintenance page to do this."
-msgstr ""
+msgstr "Vă rog să accesaţi site-ul de întreţinere pentru a realiza această operaţie."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:369
 #, php-format
@@ -3157,9 +3136,8 @@ msgid "The extension '%s' is never allowed for Aigaion attachments, and has been
 msgstr "Extensia  '%s' nu este permisă pentru ataşamentele Aigaion şi a fost îndepărtată din lista ataşamentelor permise."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:383
-#, fuzzy
 msgid "Error updating config"
-msgstr "Eroare la crearea subiectului."
+msgstr "Eroare la actualizarea configuraţiei"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:415
 msgid "Failed to upload custom logo."
@@ -3348,7 +3326,7 @@ msgstr "Contul nu are o parolă validă şi a fost dezactivat. Puteţi cere admi
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:308
 msgid "You cannot enable an invalidated account through this method. Instead, enable it by setting a password. Other changes have been saved."
-msgstr ""
+msgstr "Nu puteţi să activaţi un cont dezactivat prin această metodă. În loc, activaţi-l prin setarea parolei. Celelalte schimbări au fost salvate."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:363
 msgid "You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared."
@@ -3367,17 +3345,16 @@ msgid "User data changed. Changed access rights will be valid upon next login."
 msgstr "Datele utilizator schimbate. Drepturile de acces schimbate vor fi valide la următoarea conectare."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:434
-#, fuzzy
 msgid "You cannot change the password for anonymous accounts or externally managed accounts"
-msgstr "Nu se poate schimba parola conturilor anonime; acestea nu au parolă."
+msgstr "Nu se poate schimba parola pentru conturile anonime sau pentru conturile gestionate din exterior"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:449
 msgid "no empty passwords allowed"
-msgstr ""
+msgstr "nu sunt permise parole vide"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:456
 msgid "Password updated and user account enabled"
-msgstr ""
+msgstr "Parolă actualizată şi contul utilizatorului activat"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:469
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:473
@@ -3948,11 +3925,11 @@ msgstr "Editează autorul"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\edit.php:98
 msgid "This author is a primary author with one or more synonyms"
-msgstr ""
+msgstr "Acest autor este autor primar cu unul sau mai multe sinonime"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\edit.php:109
 msgid "This author is a synonym of"
-msgstr ""
+msgstr "Acest autor este sinonim al"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\edit.php:132
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\groups\edit.php:96
@@ -4012,21 +3989,19 @@ msgstr "Autorul sursă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\merge.php:80
 msgid "Note that you can also choose to set the source author as a synonym of the target author, instead of fully merging them"
-msgstr ""
+msgstr "Observaţi faptul că puteţi alege să puneţi autorul sursă ca sinonim al autorului ţintă, în loc de a le fuziona complet"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\merge.php:80
 msgid "To do this, go to the edit page of the source author"
-msgstr ""
+msgstr "Pentru a realiza aceasta, accesaţi pagina de editare a autorului sursă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:13
-#, fuzzy
 msgid "add synonym"
-msgstr "adăugare notă"
+msgstr "adaugă pseudonim"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:13
-#, fuzzy
 msgid "Add synonym for this author"
-msgstr "Editează acest autor"
+msgstr "Adaugă pseudonim pentru acest autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:15
 msgid "Delete this author"
@@ -4038,24 +4013,24 @@ msgstr "Editează acest autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:67
 msgid "This author entry is a synonym of another author entry."
-msgstr ""
+msgstr "Acest autor este un sinonim al altui autor."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:67
 #, php-format
 msgid "Click %s to go to the main entry to see any additional publications of this author"
-msgstr ""
+msgstr "Faceţi clic pe %s pentru a accesa intrarea principală pentru a vedea alte publicaţii ale aceluiaşi autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:73
 msgid "This author is also known under the following synonyms"
-msgstr ""
+msgstr "Acest autor este cunoscut sub următoarele pseudonime"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:79
 msgid "Click to set this one as primary"
-msgstr ""
+msgstr "Faceţi clic pentru a-l pune pe acesta ca autor primar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:82
 msgid "All publications of this author under all names are included in the publication list below"
-msgstr ""
+msgstr "Toate publicaţiile acestui autor sub toate numele sunt incluse în lista de publicaţii de mai jos"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:95
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:23
@@ -4071,7 +4046,7 @@ msgstr "Demarchează tot"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:113
 msgid "Found authors with very similar names. You can choose to merge the following authors with this author by clicking on the merge link."
-msgstr "S-au găsit autori cu nume foarte apropiate. Puteţi alege să contopiţi autorii următori cu acest autor selectând legătura de contopire."
+msgstr "S-au găsit autori cu nume foarte apropiate. Puteţi alege să fuzionaţi autorii următori cu acest autor selectând legătura de contopire."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\bookmarklist\controls.php:14
 msgid "Bookmark list controls"
@@ -4307,7 +4282,7 @@ msgstr "Lipiţi intrările (%s) pentru a importa în zona de text de mai jos şi
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\import\importform.php:35
 msgid "When you upload a file for import (below), any data in the import form above will be discarded."
-msgstr ""
+msgstr "Când încărcaţi un fişier pentru a-l importa (a se vedea mai jos), toate datele din formularul de import de mai sus vor fi ignorate."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\import\importform.php:44
 msgid "Select the format of the data entered in the form above, or auto to let Aigaion automatically detect the format."
@@ -4323,7 +4298,7 @@ msgstr "Marchează intrările importate ca citite."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\import\importform.php:47
 msgid "Do not review entries."
-msgstr ""
+msgstr "Nu revizuiţi intrările."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\import\review.php:14
 msgid "Review publications"
@@ -4380,59 +4355,49 @@ msgid "select to use editor as found in BibTeX"
 msgstr "selectaţi pentru a folosi editorul găsit în BibTeX"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\delete.php:13
-#, fuzzy, php-format
+#, php-format
 msgid "Are you sure that you want to delete the keyword \"%s\"?"
-msgstr "Sunteţi sigur că vreţi să ştergeţi autorul \"%s\"?"
+msgstr "Sunteţi sigur că vreţi să ştergeţi cuvântul cheie \"%s\"?"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\edit.php:10
-#, fuzzy
 msgid "New Keyword"
-msgstr "Cuvânt cheie"
+msgstr "Cuvânt cheie nou"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\edit.php:14
-#, fuzzy
 msgid "Edit Keyword"
-msgstr "Cuvânt cheie"
+msgstr "Editează cuvântul cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\merge.php:7
-#, fuzzy
 msgid "Merge keywords"
-msgstr "Returnează cuvinte cheie"
+msgstr "Fuzionează cuvintele cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\merge.php:8
-#, fuzzy
 msgid "Merges the source keyword with the target keyword. The source keyword will be deleted, all publications using this keyword will use the target keyword instead."
-msgstr "Contopeşte autorul sursă cu autorul destinaţie. Autorul sursă va fi şters, toate publicaţiile vor fi transferate autorului destinaţie."
+msgstr "Fuzionează cuvântul cheie sursă cu cuvântul cheie destinaţie. Cuvântul cheie sursă va fi şters, toate publicaţiile folosind acest cuvânt cheie vor folosi în loc cuvântul cheie destinaţie."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\merge.php:20
-#, fuzzy
 msgid "Target keyword"
-msgstr "Returnează cuvinte cheie"
+msgstr "Cuvântul cheie destinaţie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\merge.php:22
-#, fuzzy
 msgid "Source keyword"
-msgstr "Returnează cuvinte cheie"
+msgstr "Cuvântul cheie sursă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:9
-#, fuzzy
 msgid "Delete this keyword"
-msgstr "Şterge acest autor"
+msgstr "Şterge acest cuvânt cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:9
-#, fuzzy
 msgid "Edit this keyword"
-msgstr "Editează acest autor"
+msgstr "Editează acest cuvânt cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:35
-#, fuzzy
 msgid "Found keywords with very similar names. You can choose to merge the following keywords with this keyword by clicking on the merge link."
-msgstr "S-au găsit autori cu nume foarte apropiate. Puteţi alege să contopiţi autorii următori cu acest autor selectând legătura de contopire."
+msgstr "S-au găsit cuvinte cheie cu nume foarte apropiate. Puteţi alege să fuzionaţi cuvintele cheie următoare cu acest cuvânt cheie selectând link-ul de fuzionare."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:47
-#, fuzzy
 msgid "Related keywords"
-msgstr "Returnează cuvinte cheie"
+msgstr "Cuvinte cheie asemănătoare"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\language\choose.php:3
 msgid "All available languages"
@@ -4491,9 +4456,9 @@ msgid "Access rights"
 msgstr "Drepturile de acces"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\coverimage.php:6
-#, fuzzy, php-format
+#, php-format
 msgid "Cover image file could not be found: \"%s/%s\""
-msgstr "Fişierul ataşament nu poate fi găsit: \"%s/%s\""
+msgstr "Fişierul imagine al coperţii nu poate fi găsit: \"%s/%s\""
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\delete.php:13
 #, php-format
@@ -4501,9 +4466,9 @@ msgid "Are you sure that you want to delete the publication '%s'?"
 msgstr "Sunteţi sigur că doriţi să ştergeţi publicaţia '%s'?"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\deletecoverimage.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "Are you sure you want to delete the cover image for publication \"%s\""
-msgstr "Sunteţi sigur că doriţi să ştergeţi publicaţia '%s'?"
+msgstr "Sunteţi sigur că doriţi să ştergeţi imaginea coperţii pentru publicaţia \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\edit.php:20
 msgid "Special"
@@ -4544,9 +4509,8 @@ msgstr "Tipul publicaţiei"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\edit.php:61
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:118
-#, fuzzy
 msgid "Publication status"
-msgstr "Lista publicaţiilor"
+msgstr "Starea publicaţiei"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\edit.php:89
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:136
@@ -4740,11 +4704,11 @@ msgstr "Necitit"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:413
 msgid "delete cover image"
-msgstr ""
+msgstr "şterge imaginea coperţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:417
 msgid "upload cover image"
-msgstr ""
+msgstr "incarcă imaginea coperţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:433
 msgid "add attachment"
@@ -4771,13 +4735,13 @@ msgid "Click on a topic name to change its subscription status."
 msgstr "Clic pe un nume de subiect pentru a schimba starea de abonare."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "Upload new cover image from this computer for publication \"%s\""
-msgstr "Încărcaţi noul ataşament de la acest calculator pentru publicaţia \"%s\" "
+msgstr "Încarcă noua imagine a coperţii din acest calculator pentru publicaţia \"%s\" "
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:14
 msgid "(jpeg only)"
-msgstr ""
+msgstr "(doar jpeg)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\rightsprofiles\delete.php:16
 #, php-format
@@ -4954,52 +4918,44 @@ msgid "Search results for query: %s"
 msgstr "Rezultatele căutării pentru interogarea: %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:14
-#, fuzzy
 msgid "Aigaion site configuration"
-msgstr "Formular de configurare a site-ului Aigaion"
+msgstr "Configurarea site-ului Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:16
 msgid "Choose one of the links to change settings"
-msgstr ""
+msgstr "Alegeţi unul din link-uri pentru a schimba setările"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:22
-#, fuzzy
 msgid "General display settings"
-msgstr "Unele setări de afişare:"
+msgstr "Setări generale de afişare"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:25
-#, fuzzy
 msgid "Import and export settings"
-msgstr "Stocare setări noi"
+msgstr "Setări de import şi de export"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:26
-#, fuzzy
 msgid "Attachment settings"
-msgstr "Setările ataşamentului:"
+msgstr "Setările ataşamentului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:27
 msgid "Content settings: Custom fields, author synonyms, cover images"
-msgstr ""
+msgstr "Setările conţinutului: câmpuri personalizate, pseudonimele autorilor, imaginile coperţilor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:30
-#, fuzzy
 msgid "Login settings"
-msgstr "Setările de conectare (LDAP):"
+msgstr "Setările de conectare"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:31
-#, fuzzy
 msgid "Default user preferences"
-msgstr "Valori prestabilite pentru preferinţele utilizatorilor:"
+msgstr "Valori prestabilite pentru preferinţele utilizatorului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:32
-#, fuzzy
 msgid "Default accesslevels"
-msgstr "Nivelele de acces prestabilite:"
+msgstr "Nivelele de acces implicite"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:35
-#, fuzzy
 msgid "Site integration settings"
-msgstr "Stocare setări noi"
+msgstr "Setările de integrare ale site-ului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:21
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\header.php:12
@@ -5093,25 +5049,23 @@ msgstr "Verificarea parolei LDAP"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
-#, fuzzy
 msgid "PAM Password checking"
-msgstr "Verificarea parolei LDAP"
+msgstr "Verificarea parolei PAM"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
 msgid "Uses php_pam_auth module"
-msgstr ""
+msgstr "Foloseşte modulul php_pam_auth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
-#, fuzzy
 msgid "pwauth Password checking"
-msgstr "Verificarea parolei LDAP"
+msgstr "Verificarea parolei pwauth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
 msgid "Directly from /usr/bin/pwauth"
-msgstr ""
+msgstr "Direct din /usr/bin/pwauth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:120
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:82
@@ -5276,38 +5230,33 @@ msgstr "Selectaţi această căsuţă dacă server-ul este doar pentru citire, i
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:305
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:12
-#, fuzzy
 msgid "Custom fields settings:"
-msgstr "Unele setări de afişare:"
+msgstr "Setările câmpurilor personalizate:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:306
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:13
 msgid "Aigaion allows adding installation-specific custom fields to publications, authors and topics. You can create these custom fields here."
-msgstr ""
+msgstr "Aigaion permite adăugarea câmpurilor personalizate specifice instalării"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:318
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:25
-#, fuzzy
 msgid "Type"
-msgstr "Tip:"
+msgstr "Tip"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:320
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:27
-#, fuzzy
 msgid "Order"
-msgstr "Proprietar"
+msgstr "Ordine"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:321
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:28
-#, fuzzy
 msgid "Keep"
-msgstr "păstrare"
+msgstr "Păstrează"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:380
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\inputoutput.php:8
-#, fuzzy
 msgid "In- and output settings:"
-msgstr "Editează setările grup"
+msgstr "Setările de intrare-ieşire:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:383
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\inputoutput.php:11
@@ -5584,9 +5533,8 @@ msgid "Check authors"
 msgstr "Verificare autori"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\maintenance.php:21
-#, fuzzy
 msgid "Check keywords"
-msgstr "Verificare parole"
+msgstr "Verificare cuvinte cheie"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\maintenance.php:22
 msgid "Check passwords"
@@ -5666,34 +5614,32 @@ msgid "%s main topics"
 msgstr "%s subiect(e) principal(e)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:87
-#, fuzzy
 msgid "Author synonym settings:"
-msgstr "Stocare setări noi"
+msgstr "Setările pseudonimului autorului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:88
 msgid "Aigaion can be configured to allow the use of author synonyms, or aliases under which somebody has also published."
-msgstr ""
+msgstr "Aigaion poate fi configurat pentru a permite folosirea pseudonimelor autorului sub care el a mai publicat. "
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:93
 msgid "Allow the use of author synonyms"
-msgstr ""
+msgstr "Permite folosirea pseudonimelor autorului"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "When you disable the use of synonyms:"
-msgstr ""
+msgstr "Când dezactivaţi folosirea pseudonimelor:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:123
-#, fuzzy
 msgid "Book cover settings"
-msgstr "Stocare setări noi"
+msgstr "Setările coperţii cărţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:124
 msgid "Aigaion can be configured to allow images of book covers to be uploaded"
-msgstr ""
+msgstr "Aigaion poate fi configurat pentru a permite încărcarea de imagini cu coperţile cărţilor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:129
 msgid "Allow uploading of book cover images"
-msgstr ""
+msgstr "Permite încărcarea imaginilor cu coperta cărţii"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\clean.php:13
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\full.php:18
@@ -5808,7 +5754,6 @@ msgid "Disable account"
 msgstr "Dezactivare cont"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:101
-#, fuzzy
 msgid "Note: when you disable this account, it can no longer be used to login, but the information associated to the account will remain in the database. You can re-enable the account in the future."
 msgstr "Notă: când dezactivaţi acest cont, nu va mai putea fi folosit pentru conectare, dar informaţia asociată contului va rămâne în baza de date. Puteţi reactiva ulterior contul."
 
@@ -5976,18 +5921,17 @@ msgid "Restore old state"
 msgstr "Restaurează starea anterioară"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:13
-#, fuzzy, php-format
+#, php-format
 msgid "Change password for user %s"
-msgstr "Verificare parole"
+msgstr "Schimbă parola pentru utilizatorul %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:21
 msgid "Your current password (for verifying that you are allowed to change passwords)"
-msgstr ""
+msgstr "Parola curentă (pentru a verifica dacă puteţi modifica parolele)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:37
-#, fuzzy
 msgid "New password"
-msgstr "Verificare parole"
+msgstr "Parolă nouă"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:82
 msgid "Cannot change password on anonymous accounts; they do not have a password."
@@ -5998,9 +5942,8 @@ msgid "Cannot change password on this account. It has a password which is extern
 msgstr "Nu se poate schimba parola acestui cont. Are o parolă gestionată în exterior de un alt sistem. "
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:101
-#, fuzzy
 msgid "Change password"
-msgstr "Verificare parole"
+msgstr "Schimbă parola"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\summary.php:27
 msgid "guest user"
@@ -6015,9 +5958,8 @@ msgid "disabled account"
 msgstr "cont dezactivat"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\summary.php:36
-#, fuzzy
 msgid "set password"
-msgstr "Prima parolă"
+msgstr "setare parolă"
 
 #~ msgid ""
 #~ "Loaded deprecated login_ldap module. LDAP login now uses delegated "
