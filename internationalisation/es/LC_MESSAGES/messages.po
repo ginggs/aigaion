@@ -1,17 +1,17 @@
-# Spanish translation of Aigaion v2.1.2
+# Spanish translation of Aigaion v2.2
 # Copyright (C) 2009, Aigaion.
 # This file is distributed under the same license as the Aigaion package.
-# Mauricio Orozco Alzate, MColmene, Carolina, kresp0, chachosua/Ness, "milki", 
+# Mauricio Orozco Alzate, MColmene, Carolina, kresp0, chachosua/Ness, "milki",
 # Camilo Condis <camiloc@ind.cujae.edu.cu>,  2009.
 #
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Aigaion v2.1.2\n"
+"Project-Id-Version: Aigaion v2.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 22:55+0100\n"
-"PO-Revision-Date: 2010-03-22 23:24+0100\n"
+"PO-Revision-Date: 2010-04-05 16:45+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: NONE <NONE>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Editar niveles de acceso"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:342
 #, php-format
 msgid "%s read / edit rights"
-msgstr "%s permisos de lectura / edición"
+msgstr "Permisos de lectura / edición de %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:36
 msgid "Download attachment"
@@ -258,7 +258,7 @@ msgstr "Adjunto"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:250
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:270
 msgid "Commit attachment"
-msgstr "Transferir adjunto"
+msgstr "Guardar adjunto"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:250
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:248
@@ -267,7 +267,7 @@ msgstr "Transferir adjunto"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:499
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:415
 msgid "no data to commit"
-msgstr "sin datos para transferir"
+msgstr "sin datos para salvar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:270
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:303
@@ -317,7 +317,7 @@ msgstr "Publicaciones de %s ordenadas por revista y tipo"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:233
 #, php-format
 msgid "Publications of %s sorted by recency"
-msgstr "Publicaciones de %s ordenadas por la más reciente"
+msgstr "Publicaciones de %s ordenadas cronológicamente"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:59
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:149
@@ -347,14 +347,14 @@ msgstr "Editar autor"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:310
 #, php-format
 msgid "%s author"
-msgstr "%s autor"
+msgstr "Autor %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:332
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:340
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:377
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:384
 msgid "Cannot merge authors"
-msgstr "No puede fusionar autores"
+msgstr "No es posible fusionar autores"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:332
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:377
@@ -371,7 +371,7 @@ msgstr "El sinónimo de un autor sólo puede ser fusionado con su correspondient
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:351
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:808
 msgid "You cannot merge authors with a synonym author as target"
-msgstr "No puede fusionar autores poniendo como destino el sinónimo de un autor"
+msgstr "No es posible fusionar autores poniendo como destino el sinónimo de un autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:356
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:572
@@ -852,7 +852,7 @@ msgstr "Añadir grupo"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:408
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:341
 msgid "Changes not committed"
-msgstr "Cambios no transferidos"
+msgstr "Los cambios no han sido guardados"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:128
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:138
@@ -872,7 +872,7 @@ msgstr "especificado grupo inexistente"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:248
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:303
 msgid "Commit group"
-msgstr "Transferir grupo"
+msgstr "Guardar grupo"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\groups.php:268
 msgid "Group Name"
@@ -1008,11 +1008,11 @@ msgstr "Las publicaciones %s han sido importadas con éxito."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:225
 msgid "Commit"
-msgstr "Transferir"
+msgstr "Salvar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:225
 msgid "no publications committed."
-msgstr "publicaciones no transferidas."
+msgstr "No se ha guardado ninguna publicación."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:273
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\import.php:277
@@ -1192,7 +1192,7 @@ msgstr "Publicación perteneciente a la nota"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\notes.php:196
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\notes.php:244
 msgid "Commit note"
-msgstr "Transferir nota"
+msgstr "Salvar nota"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\notes.php:209
 msgid "Publication id"
@@ -1239,7 +1239,7 @@ msgstr "Todas las publicaciones no asignadas a un tema"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:274
 msgid "Show cover image"
-msgstr ""
+msgstr "Mostrar imagen de la portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:289
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:298
@@ -1249,7 +1249,7 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:920
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:22
 msgid "Upload cover image"
-msgstr ""
+msgstr "Publicar imagen de la portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:347
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:356
@@ -1258,9 +1258,8 @@ msgstr ""
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:390
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:995
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\deletecoverimage.php:14
-#, fuzzy
 msgid "Delete cover image"
-msgstr "Eliminar nota"
+msgstr "Eliminar imagen de la portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:436
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:446
@@ -1288,7 +1287,7 @@ msgstr "Hay errores de validación en esta entrada. Quizás quiera corregirlos."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:610
 msgid "Commit publication"
-msgstr "Transferir publicación"
+msgstr "Salvar publicación"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:755
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:760
@@ -1432,7 +1431,7 @@ msgstr "Eliminar perfil de permisos"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\rightsprofiles.php:246
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\rightsprofiles.php:303
 msgid "Commit rights profile"
-msgstr "Transferir perfil de permisos"
+msgstr "Salvar perfil de permisos"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\rightsprofiles.php:268
 msgid "Profile Name"
@@ -1498,12 +1497,11 @@ msgstr "Configuración del sitio"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:129
 msgid "commit of non-existing form"
-msgstr ""
+msgstr "salvado de formulario no existente"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:177
-#, fuzzy
 msgid "new settings stored"
-msgstr "Guardar nuevas configuraciones"
+msgstr "Nuevas configuraciones guardadas"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\site.php:279
 msgid "Maintain database"
@@ -1583,7 +1581,6 @@ msgid "Unit Testing Output"
 msgstr "Salida de la unidad de pruebas"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\test.php:39
-#, fuzzy
 msgid "See the controller \"test.php\" for the unit testing functions. From its main method, call each test method with $debug parameter = true to get more output."
 msgstr "Revise el controlador \"test.php\" para las funciones de la unidad de pruebas. Desde su método principal, llame a cada método de prueba con el parámetro $debug = true para obtener más salidas."
 
@@ -1729,7 +1726,7 @@ msgstr "Tema embebido"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:499
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:548
 msgid "Commit topic"
-msgstr "Transferir tema"
+msgstr "Salvar tema"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:513
 msgid "Topic Name"
@@ -1811,17 +1808,16 @@ msgstr "Editar cuenta"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:444
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:449
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\menu.php:181
-#, fuzzy
 msgid "Set password"
-msgstr "Segunda contraseña"
+msgstr "Definir contraseña"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:298
 msgid "error: please type your current password correctly"
-msgstr ""
+msgstr "error: por favor, escriba correctamente la contraseña"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:304
 msgid "error: the two new passwords do not match"
-msgstr ""
+msgstr "error: las contraseñas no coinciden"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:357
 msgid "Delete user"
@@ -1834,7 +1830,7 @@ msgstr "Eliminar cuenta"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:415
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:483
 msgid "Commit user"
-msgstr "Transferir usuario"
+msgstr "Guardar usuario"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\users.php:446
 msgid "Login Name"
@@ -1942,7 +1938,7 @@ msgstr "Puede descargar la nueva versión %s aquí %s."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\export_helper.php:450
 msgid "No format possible"
-msgstr "Formato no posible"
+msgstr "Formato incorrecto"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:27
 msgid "Passwords check"
@@ -2075,24 +2071,23 @@ msgid "Delete all non-publishing authors"
 msgstr "Eliminar todos los autores sin publicaciones"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:185
-#, fuzzy
 msgid "Checking for synonym authors"
-msgstr "Comprobando temas vacíos"
+msgstr "Comprobando autores sinónimos"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:185
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
 msgid "(synonyms not enabled in this site)"
-msgstr ""
+msgstr "(los sinónimos no están habilitados en este sitio)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:193
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "Some authors have synonym names associated to them."
-msgstr ""
+msgstr "Algunos autores tienen nombres sinónimos asociados a ellos."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:194
 msgid "Remove all author synonyms and assign their publications to the primary author"
-msgstr ""
+msgstr "Eliminar todos los sinónimos del autor y asignar sus publicaciones al autor principal"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:205
 msgid "Keyword check"
@@ -2242,9 +2237,9 @@ msgid "Deleted %s authors who do not have any publications."
 msgstr "Eliminados %s autores que no tenían ninguna publicación."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:852
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %s author synonyms."
-msgstr "Eliminar este autor"
+msgstr "Eliminados %s sinónimos de autores."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:948
 #, php-format
@@ -2859,9 +2854,8 @@ msgid "One of the fields %s is required"
 msgstr "Uno de los campos %s es obligatorio"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:569
-#, fuzzy
 msgid "Dropped duplicate author"
-msgstr "Eliminar autor"
+msgstr "Eliminado autor duplicado"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:638
 msgid "Found similar authors for"
@@ -3038,9 +3032,9 @@ msgstr "Apellido del usuario de prueba"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:11
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pam.php:10
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_pwauth.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "The %s password checker cannot handle md5 passwords"
-msgstr "El comprobador de contraseñas LDAP no puede gestionar aún contraseñas md5"
+msgstr "El comprobador de contraseñas %s no puede gestionar contraseñas md5"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\passwordchecker_ldap.php:36
 msgid "LDAP auth: There was a problem."
@@ -3074,9 +3068,8 @@ msgid "publication contains some notes that you do not have permission to delete
 msgstr "la publicación contiene algunas notas para los que usted no tiene permisos de eliminación."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:926
-#, fuzzy
 msgid "You cannot upload cover image files to this server (the server is declared write-only)."
-msgstr "No puede adjuntar ficheros a este servidor ( el servidor es sólo lectura); por favor, utilice la opción adjuntos remotos como alternativa."
+msgstr "No puede adjuntar imágenes de portada a este servidor (el servidor está declarado como de sólo lectura)."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\publication_db.php:1029
 #, php-format
@@ -3138,12 +3131,12 @@ msgstr "Se ha habilitado el acceso anónimo a invitados, pero no se especificó 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "These synonyms should been merged into the primary authors, and the synonym names themselves should be removed."
-msgstr ""
+msgstr "Estos sinónimos debieron haber sido fusionados con los autores principales y los nombres sinónimos deben ser eliminados."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:348
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "Please go to the site maintenance page to do this."
-msgstr ""
+msgstr "Por favor, diríjase a la página de mantenimiento del sitio para hacer esto."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\siteconfig_db.php:369
 #, php-format
@@ -3341,7 +3334,7 @@ msgstr "Esta cuenta no posee una contraseña válida y ha sido deshabilitada. So
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:308
 msgid "You cannot enable an invalidated account through this method. Instead, enable it by setting a password. Other changes have been saved."
-msgstr ""
+msgstr "No puede habilitar una cuenta inválida mediante este método, en cambio, puede hacerlo definiendo una contraseña. Los demás cambios han sido salvados."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:363
 msgid "You just set the default anonymous user to non-anonymous. Therefore the default anonymous user configuration setting has been cleared."
@@ -3360,17 +3353,16 @@ msgid "User data changed. Changed access rights will be valid upon next login."
 msgstr "Datos del usuario modificados. Los permisos de acceso modificados serán válidos la próxima vez que ingrese al sistema."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:434
-#, fuzzy
 msgid "You cannot change the password for anonymous accounts or externally managed accounts"
-msgstr "No se puede cambiar la contraseña de las cuentas anónimas, ya que no tienen una contraseña."
+msgstr "No puede cambiar la contraseña de cuentas anónimas o administradas externamente."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:449
 msgid "no empty passwords allowed"
-msgstr ""
+msgstr "no se permiten contraseñas en blanco"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:456
 msgid "Password updated and user account enabled"
-msgstr ""
+msgstr "Contraseña actualizada y cuenta de usuario habilitada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:469
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\user_db.php:473
@@ -4472,9 +4464,9 @@ msgid "Access rights"
 msgstr "Permisos de acceso"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\coverimage.php:6
-#, fuzzy, php-format
+#, php-format
 msgid "Cover image file could not be found: \"%s/%s\""
-msgstr "El archivo adjunto no se encuentra:  \"%s/%s\""
+msgstr "La imagen de portada no ha sido encontrada:  \"%s/%s\""
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\delete.php:13
 #, php-format
@@ -4482,9 +4474,9 @@ msgid "Are you sure that you want to delete the publication '%s'?"
 msgstr "¿Está seguro de que quiere eliminar la publicación  '%s'?"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\deletecoverimage.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "Are you sure you want to delete the cover image for publication \"%s\""
-msgstr "¿Está seguro de que quiere eliminar la publicación  '%s'?"
+msgstr "¿Está seguro de querer eliminar la imagen de portada de la publicación \"%s\" ?"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\edit.php:20
 msgid "Special"
@@ -4720,11 +4712,11 @@ msgstr "No leído"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:413
 msgid "delete cover image"
-msgstr ""
+msgstr "eliminar imagen de la portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:417
 msgid "upload cover image"
-msgstr ""
+msgstr "publicar imagen de la portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\single.php:433
 msgid "add attachment"
@@ -4751,13 +4743,13 @@ msgid "Click on a topic name to change its subscription status."
 msgstr "Click en un nombre de tema para cambiar su estado de suscripción."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:11
-#, fuzzy, php-format
+#, php-format
 msgid "Upload new cover image from this computer for publication \"%s\""
-msgstr "Adjuntar archivo de este ordenador para la publicación \"%s\""
+msgstr "Adjuntar imagen de portada para la publicación \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\publications\uploadcoverimage.php:14
 msgid "(jpeg only)"
-msgstr ""
+msgstr "(sólo jpeg)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\rightsprofiles\delete.php:16
 #, php-format
@@ -4934,52 +4926,44 @@ msgid "Search results for query: %s"
 msgstr "Resultados de búsqueda para la consulta:%s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:14
-#, fuzzy
 msgid "Aigaion site configuration"
-msgstr "Formulario de configuración del sitio de Aigaion"
+msgstr "Configuración del sitio de Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:16
 msgid "Choose one of the links to change settings"
-msgstr ""
+msgstr "Seleccione uno de los enlaces para cambiar la configuración"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:22
-#, fuzzy
 msgid "General display settings"
-msgstr "Algunos parámetros de visualización:"
+msgstr "Parámetros generales de visualización:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:25
-#, fuzzy
 msgid "Import and export settings"
-msgstr "Guardar nuevas configuraciones"
+msgstr "Importar y exportar configuraciones"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:26
-#, fuzzy
 msgid "Attachment settings"
-msgstr "Configuraciones de adjuntos:"
+msgstr "Configuración de adjuntos:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:27
 msgid "Content settings: Custom fields, author synonyms, cover images"
-msgstr ""
+msgstr "Configuración de contenido: Campos personalizados, sinónimos de autores e imágenes de portada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:30
-#, fuzzy
 msgid "Login settings"
-msgstr "Configuración de ingreso ( LDAP):"
+msgstr "Configuración de ingreso:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:31
-#, fuzzy
 msgid "Default user preferences"
-msgstr "Preferencias de usuario por defecto:"
+msgstr "Preferencias de usuario por defecto"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:32
-#, fuzzy
 msgid "Default accesslevels"
-msgstr "Niveles de acceso por defecto:"
+msgstr "Niveles de acceso por defecto"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configoverview.php:35
-#, fuzzy
 msgid "Site integration settings"
-msgstr "Guardar nuevas configuraciones"
+msgstr "Configuración de integración del sitio"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:21
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\header.php:12
@@ -5073,25 +5057,23 @@ msgstr "Chequeo de contraseña LDAP"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
-#, fuzzy
 msgid "PAM Password checking"
-msgstr "Chequeo de contraseña LDAP"
+msgstr "Chequeo de contraseña PAM"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
 msgid "Uses php_pam_auth module"
-msgstr ""
+msgstr "Utiliza el módulo php_pam_auth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
-#, fuzzy
 msgid "pwauth Password checking"
-msgstr "Chequeo de contraseña LDAP"
+msgstr "Chequeo de contraseña pwauth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:112
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:74
 msgid "Directly from /usr/bin/pwauth"
-msgstr ""
+msgstr "Directamente desde /ysr/bin/pwauth"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:120
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\login.php:82
@@ -5256,38 +5238,33 @@ msgstr "Marque esta casilla si el servidor es de sólo lectura, por ejemplo, si 
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:305
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:12
-#, fuzzy
 msgid "Custom fields settings:"
-msgstr "Algunos parámetros de visualización:"
+msgstr "Configuración de campos personalizados:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:306
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:13
 msgid "Aigaion allows adding installation-specific custom fields to publications, authors and topics. You can create these custom fields here."
-msgstr ""
+msgstr "Aigaion permite adicionar campos personalizados a las publicaciones, autores y temas. Puede crear estos campos personalizados aquí."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:318
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:25
-#, fuzzy
 msgid "Type"
-msgstr "Tipo:"
+msgstr "Tipo"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:320
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:27
-#, fuzzy
 msgid "Order"
-msgstr "Propietario"
+msgstr "Orden"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:321
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:28
-#, fuzzy
 msgid "Keep"
-msgstr "conservar"
+msgstr "Conservar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:380
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\inputoutput.php:8
-#, fuzzy
 msgid "In- and output settings:"
-msgstr "Editar parámetros de grupo"
+msgstr "Configuraciones de entrada y salida:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\edit.php:383
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\inputoutput.php:11
@@ -5645,35 +5622,32 @@ msgid "%s main topics"
 msgstr "%s temas principales"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:87
-#, fuzzy
 msgid "Author synonym settings:"
-msgstr "Guardar nuevas configuraciones"
+msgstr "Configuración de sinónimos de autor:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:88
 msgid "Aigaion can be configured to allow the use of author synonyms, or aliases under which somebody has also published."
-msgstr ""
+msgstr "Aigaion puede ser configurado para permitir el uso de sinónimos de autores o alias bajo los cuales alguien ha publicado."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:93
-#, fuzzy
 msgid "Allow the use of author synonyms"
-msgstr "No se puede fijar el autor como sinónimo de sí mismo"
+msgstr "Permitir el uso de sinónimos de autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:111
 msgid "When you disable the use of synonyms:"
-msgstr ""
+msgstr "Cuando deshabilita el uso de sinónimos:"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:123
-#, fuzzy
 msgid "Book cover settings"
-msgstr "Guardar nuevas configuraciones"
+msgstr "Configuración de portadas de libros"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:124
 msgid "Aigaion can be configured to allow images of book covers to be uploaded"
-msgstr ""
+msgstr "Aigaion puede ser configurado para permitir la publicación de imágenes de portadas de libros"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\site\configforms\content.php:129
 msgid "Allow uploading of book cover images"
-msgstr ""
+msgstr "Permitir publicar imágenes de portada de los libros"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\clean.php:13
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\topics\full.php:18
@@ -5788,9 +5762,8 @@ msgid "Disable account"
 msgstr "Deshabilitar cuenta"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:101
-#, fuzzy
 msgid "Note: when you disable this account, it can no longer be used to login, but the information associated to the account will remain in the database. You can re-enable the account in the future."
-msgstr "Nota: cuando deshabilite esta cuenta, no podrá volver a usarse para ingresar, pero la información asociada la cuenta permanecerá en la base de datos y la cuenta podrá ser reactivada en el futuro."
+msgstr "Nota: cuando deshabilite esta cuenta, no podrá volver a usarse para ingresar, pero la información asociada a la cuenta permanecerá en la base de datos y la cuenta podrá ser reactivada en el futuro."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:111
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:37
@@ -5921,7 +5894,7 @@ msgstr "Marque esta casilla si desea que todas las salidas BibTeX se realicen en
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:346
 msgid "The groups to which this user belongs. When you add this user to a group that it was previously not a member of, all rights associated with that group will be appended to the user rights of this user upon commit."
-msgstr "Los grupos a los que desea pertenezca este usuario. Cuando añada este usuario a un grupo del que no era miembro previamente, todos los permisos asociados con ese grupo se añadirán a los permisos de ese usuario tras la trasferencia."
+msgstr "Los grupos a los que pertenece este usuario. Cuando añada este usuario a un grupo del que no era miembro previamente, todos los permisos asociados con ese grupo se añadirán a los permisos de ese usuario tras haber sido salvado."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:364
 msgid "User rights"
@@ -5956,18 +5929,17 @@ msgid "Restore old state"
 msgstr "Restablecer el estado anterior"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:13
-#, fuzzy, php-format
+#, php-format
 msgid "Change password for user %s"
-msgstr "Comprobar contraseñas"
+msgstr "Cambiar contraseña para el usuario %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:21
 msgid "Your current password (for verifying that you are allowed to change passwords)"
-msgstr ""
+msgstr "Su contraseña actual (para comprobar que tiene permiso de cambiar contraseñas)"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:37
-#, fuzzy
 msgid "New password"
-msgstr "Comprobar contraseñas"
+msgstr "Nueva contraseña"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:82
 msgid "Cannot change password on anonymous accounts; they do not have a password."
@@ -5978,9 +5950,8 @@ msgid "Cannot change password on this account. It has a password which is extern
 msgstr "No se puede cambiar la contraseña de esta cuenta. Tiene una contraseña que es gestionada externamente por algún otro sistema."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\setpassword.php:101
-#, fuzzy
 msgid "Change password"
-msgstr "Comprobar contraseñas"
+msgstr "Cambiar contraseña"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\summary.php:27
 msgid "guest user"
@@ -5995,9 +5966,8 @@ msgid "disabled account"
 msgstr "cuenta deshabilitada"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\summary.php:36
-#, fuzzy
 msgid "set password"
-msgstr "Primera contraseña"
+msgstr "definir contraseña"
 
 #~ msgid ""
 #~ "Loaded deprecated login_ldap module. LDAP login now uses delegated "
