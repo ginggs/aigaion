@@ -67,8 +67,11 @@ function getCapitalFieldArray() {
     );
 }
 
-function getPublicationFieldArray($type)
-{
+  if (file_exists(dirname(__FILE__).'/local_override_publication_helper.php'))
+  {
+    require_once(dirname(__FILE__).'/local_override_publication_helper.php');
+    return getPublicationFieldArray($type);
+  }
 	$type = ucfirst(strtolower(trim($type)));
 	switch ($type) {
 		case "Article":
