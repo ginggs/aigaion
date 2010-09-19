@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Puma.Phi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-22 22:55+0100\n"
+"POT-Creation-Date: 2010-09-19 17:49+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: \n"
@@ -35,6 +35,18 @@ msgstr "Zugriffsebenen bearbeiten"
 #, php-format
 msgid "%s read / edit rights"
 msgstr "%s Zugriffsrechte"
+
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:13
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\readapi.php:12
+msgid "no command"
+msgstr "kein Kommando"
+
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:21
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:34
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:49
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:62
+msgid "no publications to display"
+msgstr "Keine Publikationen zum anzeigen"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:36
 msgid "Download attachment"
@@ -1305,10 +1317,6 @@ msgstr "Publikation exportieren"
 msgid "Exported publication"
 msgstr "Exportierte Publikation"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\readapi.php:12
-msgid "no command"
-msgstr "kein Kommando"
-
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\readapi.php:18
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\readapi.php:124
 msgid "no type"
@@ -2211,8 +2219,8 @@ msgstr "Konnte Dokumentenverzeichnis nicht öffnen."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:776
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:777
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:890
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:891
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:896
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:897
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:67
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:76
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:115
@@ -2221,24 +2229,24 @@ msgid "Click to show details"
 msgstr "Klicken, um Details zu zeigen"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:778
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:892
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:898
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:79
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\authors\single.php:116
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\keywords\single.php:38
 msgid "Click to merge"
 msgstr "Klicken, um zusammenzuführen"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:834
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:840
 #, php-format
 msgid "Deleted %s authors who do not have any publications."
 msgstr "%s Autoren ohne verzeichnete Veröffentlichugen gelöscht.."
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:852
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:858
 #, php-format
 msgid "Deleted %s author synonyms."
 msgstr "%s Authorsynonymen gelöscht."
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:948
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\maintenance_helper.php:954
 #, php-format
 msgid "Deleted %s keywords which do not have any publications."
 msgstr "%s Schlagworte, die nicht mit einer Publikation verlinkt waren, wurden gelöscht."
@@ -2327,125 +2335,125 @@ msgstr "November"
 msgid "December"
 msgstr "Dezember"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:486
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:514
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:522
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:491
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:519
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:527
 msgid "in:"
 msgstr "in:"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:495
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:509
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:500
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:514
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:21
 msgid "volume"
 msgstr "Band"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:505
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:510
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:33
 msgid "chapter"
 msgstr "Kapitel"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:506
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:516
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:525
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:511
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:521
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:530
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:43
 msgid "pages"
 msgstr "Seiten"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:559
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:564
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:30
 msgid "number"
 msgstr "Nummer"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:576
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:581
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:68
 msgid "Article"
 msgstr "Artikel"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:577
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:582
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:69
 msgid "Book"
 msgstr "Buch"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:578
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:583
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:70
 msgid "Booklet"
 msgstr "Booklet"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:579
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:584
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:71
 msgid "Inbook"
 msgstr "Teil eines Buches"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:580
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:585
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:72
 msgid "Incollection"
 msgstr "Artikel in Sammelband"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:581
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:586
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:73
 msgid "Inproceedings"
 msgstr "Artikel in einem Konferenzbericht"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:582
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:587
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:74
 msgid "Manual"
 msgstr "Anleitung"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:583
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:588
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:75
 msgid "Mastersthesis"
 msgstr "Abschlussarbeit"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:584
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:589
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:76
 msgid "Misc"
 msgstr "beliebiger Eintrag"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:585
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:590
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:77
 msgid "Phdthesis"
 msgstr "Doktorarbeit"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:586
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:591
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:78
 msgid "Proceedings"
 msgstr "Konferenzbericht"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:587
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:592
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:79
 msgid "Techreport"
 msgstr "Technische Dokumentation"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:588
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:593
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\translation_helper.php:80
 msgid "Unpublished"
 msgstr "Nicht veröffentlicht"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:595
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:600
 msgid "In preparation"
 msgstr "In Vorbereitung"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:596
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:601
 msgid "Submitted"
 msgstr "Eingegeben"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:597
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:602
 msgid "Under review"
 msgstr "Unter Begutachtung"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:598
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:603
 msgid "Under revision"
 msgstr "Unter Revision"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:599
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:604
 msgid "Accepted"
 msgstr "Akzeptiert"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:600
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:605
 msgid "Rejected"
 msgstr "Abgelehnt"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:601
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\helpers\publication_helper.php:606
 msgid "Published"
 msgstr "Veröffentlicht"
 
@@ -4888,36 +4896,36 @@ msgstr "Thema zum Ein- oder Ausschließen wählen"
 msgid "More..."
 msgstr "Mehr..."
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:18
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:42
 #, php-format
 msgid "Authors: %s"
 msgstr "Autoren: %s"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:26
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:50
 #, php-format
 msgid "Topics: %s"
 msgstr "Themen: %s"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:34
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:58
 #, php-format
 msgid "Keywords: %s"
 msgstr "Schlagworte: %s"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:79
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:103
 #, php-format
 msgid "%s matches"
 msgstr "%s Treffer"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:100
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:124
 msgid "Publication matches"
 msgstr "Treffer in den Publikationen"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:135
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:159
 #, php-format
 msgid "No search results found for query: %s"
 msgstr "Keine Suchergebnisse für Suchanfrage: %s"
 
-#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:139
+#: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\search\results.php:163
 #, php-format
 msgid "Search results for query: %s"
 msgstr "Suchergebnisse für Suchanfrage: %s"
