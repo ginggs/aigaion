@@ -21,6 +21,28 @@
 */
 
     /** 
+    The first proper multilang release!
+    */
+    function updateSchemaV2_23() {
+        if (checkVersion('V2.23', true)) {
+            return True;
+        }
+        if (!updateSchemaV2_22()) { //FIRST CHECK OLDER VERSION
+            return False;
+        }
+        if (!setReleaseVersion('2.2','bugfix,features,layout',"
+Introduction of custom fields for authors, topics and publications
+Introduction of author aliases
+New languages
+New CodeIgniter version 
+Customizable publication summary
+        ")) 
+            return False;
+        
+        return setVersion('V2.23');
+    }
+
+    /** 
     / * Add field for cover image in publication table
     */
     
