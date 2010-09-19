@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Aigaion v2.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 22:55+0100\n"
-"PO-Revision-Date: 2010-04-05 16:45+0100\n"
+"PO-Revision-Date: 2010-09-19 14:36+0100\n"
 "Last-Translator: Dennis Reidsma <reidsma@sourceforge.net>\n"
 "Language-Team: NONE <NONE>\n"
 "MIME-Version: 1.0\n"
@@ -335,7 +335,7 @@ msgstr "Publicaciones de %s ordenadas por primer autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:248
 msgid "No publications found."
-msgstr "No se encontraron publicacciones."
+msgstr "No se encontraron publicaciones."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:278
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:306
@@ -366,12 +366,12 @@ msgstr "faltan parámetros"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:346
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:813
 msgid "An author synonym can only be merged with the corresponding primary author"
-msgstr "El sinónimo de un autor sólo puede ser fusionado con su correspondiente autor principal"
+msgstr "Un autor sinónimo sólo puede ser fusionado con su correspondiente autor principal"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:351
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\libraries\author_db.php:808
 msgid "You cannot merge authors with a synonym author as target"
-msgstr "No es posible fusionar autores poniendo como destino el sinónimo de un autor"
+msgstr "No es posible fusionar autores poniendo como destino un autor sinónimo"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:356
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:572
@@ -395,7 +395,7 @@ msgstr "Eliminar autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:422
 msgid "author does not exist"
-msgstr "este autor no existe"
+msgstr "no existe el autor"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:441
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\test.php:337
@@ -455,7 +455,7 @@ msgstr "Exportar a través de correo electrónico"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:718
 msgid "No author selected for export"
-msgstr "Ningún autor seleccionado para exportar"
+msgstr "No se ha seleccionado un autor para exportar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:730
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:926
@@ -485,7 +485,7 @@ msgstr "Exportar por correo electrónico"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\publications.php:901
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:697
 msgid "Export from Aigaion"
-msgstr "Exportar desde Aigaion"
+msgstr "Exportar de Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:786
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\authors.php:834
@@ -620,7 +620,7 @@ msgstr "Eliminando autor de los marcadores"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:402
 msgid "Add bookmarked publications to topic"
-msgstr "Añadir las publicaciones de los marcadores al tema"
+msgstr "Añadir las publicaciones marcadas al tema"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:426
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:430
@@ -637,7 +637,7 @@ msgstr "Error creando tema."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:471
 msgid "Remove bookmarked publications from topic"
-msgstr "Quitar las publicaciones en marcadores del tema"
+msgstr "Quitar las publicaciones marcadas del tema"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:506
 msgid "Deleting publications from bookmarklist"
@@ -666,7 +666,7 @@ msgstr "Estableciendo niveles de acceso de las publicaciones a partir de los mar
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:735
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:810
 msgid "no existing access level specified"
-msgstr "no hay nivel de acceso especificado"
+msgstr "no se ha especificado un nivel de acceso"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:601
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:753
@@ -682,7 +682,7 @@ msgstr "leer"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:607
 #, php-format
 msgid "Set access level to %s for all from bookmarklist"
-msgstr "Establecer el nivel de acceso a %s para todos los marcadores"
+msgstr "Establecer el nivel de acceso %s para todos los marcadores"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:654
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:658
@@ -704,7 +704,7 @@ msgstr "Omitidos %s adjuntos debido a permisos insuficientes."
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:684
 #, php-format
 msgid "Set access level to %s for all attachments of publications on bookmarklist"
-msgstr "Establecer el nivel de acceso a %s para todos los adjuntos de las publicaciones en los marcadores"
+msgstr "Establecer el nivel de acceso %s para todos los adjuntos de las publicaciones marcadas"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:753
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\bookmarklist.php:759
@@ -769,21 +769,21 @@ msgstr "Todas las publicaciones"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:107
 msgid "Export requested for non existing topic."
-msgstr "Exportación solicitada para tema inexistente."
+msgstr "Exportación solicitada para tema no existente."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:116
 #, php-format
 msgid "Export all for topic %s"
-msgstr "Exportar todo para el tema %s"
+msgstr "Exportar todo del tema %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:157
 #, php-format
 msgid "All publications for topic \"%s\""
-msgstr "Todas las publicaciones para el tema \"%s\""
+msgstr "Todas las publicaciones del tema \"%s\""
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:184
 msgid "Export requested for non existing author."
-msgstr "Exportación solicitada para autor inexistente."
+msgstr "Exportación solicitada para autor no existente."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:193
 #, php-format
@@ -793,7 +793,7 @@ msgstr "Exportar todo para el autor %s"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:234
 #, php-format
 msgid "All publications for %s"
-msgstr "Todas las publicaciones para %s"
+msgstr "Todas las publicaciones de %s"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\export.php:264
 msgid "Export all publications on bookmarklist"
@@ -1651,12 +1651,12 @@ msgstr "La parte 'jr' debería ser \"%s\", pero es \"%s\"."
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:26
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:72
 msgid "Browse topic tree"
-msgstr "Ojear árbol de temas"
+msgstr "Buscar árbol de temas"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:40
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:86
 msgid "Browse topics"
-msgstr "Ojear temas"
+msgstr "Buscar temas"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\topics.php:72
 msgid "include all topics"
@@ -3380,7 +3380,7 @@ msgstr "Lista de exportación de Aigaion"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\menu.php:12
 msgid "Browse"
-msgstr "Navegar"
+msgstr "Buscar"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\menu.php:14
 msgid "My Topics"
@@ -5873,7 +5873,7 @@ msgstr "Seleccione el método para comprobar si dos nombres de autor son contado
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:309
 msgid "Open attachments in new browser window"
-msgstr "Abrir adjuntos en una ventana nueva del navegador"
+msgstr "Abrir adjuntos en una nueva ventana"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:318
 msgid "Open export data in browser"
@@ -5881,7 +5881,7 @@ msgstr "Abrir datos de exportación en el navegador"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:325
 msgid "Check this box to force the system to show export data such as BibTeX or RIS directly in a browser window instead of downloading it as a file."
-msgstr "Marque esta casilla para forzar al sistema para que muestre los datos a exportar como BibTeX or RIS directamente en una ventana de navegador en vez de descargarlos como un archivo."
+msgstr "Marque esta casilla para forzar al sistema para que muestre los datos a exportar como BibTeX or RIS directamente en una ventana del navegador en vez de descargarlos como un archivo."
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\views\users\edit.php:330
 msgid "Export BibTeX as UTF8"
