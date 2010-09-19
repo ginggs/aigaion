@@ -886,6 +886,8 @@ class Bookmarklist extends Controller {
 						email_bibtex
 						email_ris
 						email_address
+ 						email_subject
+ 						email_body
 						email_formatted
 
 					Returns:
@@ -904,6 +906,8 @@ class Bookmarklist extends Controller {
 						$email_bibtex = $this->input->post('email_bibtex');
 						$email_ris = $this->input->post('email_ris');
 						$email_address = $this->input->post('email_address');
+						$email_subject = $this->input->post('email_subject');
+						$email_body = $this->input->post('email_body');
 						$email_formatted = $this->input->post('email_formatted');
 						$order='year';
 		        $recipientaddress   = $this->uri->segment(3,-1);
@@ -969,7 +973,7 @@ class Bookmarklist extends Controller {
 
 
 
-							$messageBody = __('Export from Aigaion');
+							$messageBody = $email_body;
 
 							if($email_formatted || $email_bibtex)
 							{
@@ -1048,7 +1052,7 @@ class Bookmarklist extends Controller {
 							/*
 								Sending MAIL.
 							*/
-							if($this->email_export->sendEmail($email_address, $messageBody, $publications))
+							if($this->email_export->sendEmail($email_address, $messageBody, $publications, $email_subject))
 							{
 								$output .= __('Mail sent successfully');
 							}

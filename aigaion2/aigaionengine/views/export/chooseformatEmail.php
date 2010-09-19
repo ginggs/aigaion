@@ -36,6 +36,18 @@ if(isset($recipientaddress) && $recipientaddress != -1)
 		'size'        => '135',
 	);
 }
+$email_subject = array(
+	'name'        => 'email_subject',
+	'value'       => __('Export from Aigaion'),
+	'size'        => '100%',
+	'cols'        => '99',
+);
+$email_body = array(
+	'name'        => 'email_body',
+	'value'       => __('Export from Aigaion'),
+	'size'        => '100%',
+	'cols'        => '99',
+);
 
 
 echo form_open($controller);
@@ -52,7 +64,9 @@ else
 echo '<tr><td>BibTeX </td><td>'.form_checkbox('email_bibtex', 'bibtex', FALSE).'</td></tr>';
 echo '<tr><td>RIS </td><td>'.form_checkbox('email_ris', 'ris', FALSE).'</td></tr>';
 echo '<tr><td>'.__('Formatted').' </td><td>'.form_checkbox('email_formatted', 'html', FALSE).'</td><td>'.form_dropdown('style',$style_options).'</td></tr>';
-echo '<tr><td colspan="3">'.form_input($email_input).'</td></tr>';
+echo '<tr><td> Recipients &nbsp;&nbsp;&nbsp; </td><td colspan="2">'.form_input($email_input).'</td></tr>';
+echo '<tr><td> Subject </td><td colspan="2">'.form_input($email_subject).'</td></tr>';
+echo '<tr><td>Body </td><td colspan="2">'.form_textarea($email_body).'</td></tr>';
 echo form_hidden('sort','nothing');
 echo '<tr><td>'.form_submit(array('name'=>__('Formatted'),'title'=>__('Export formatted entries')),__('Export')).'</td></tr>';
 echo '</table>';
