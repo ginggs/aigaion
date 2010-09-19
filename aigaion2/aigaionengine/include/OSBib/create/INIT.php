@@ -34,7 +34,7 @@ class INIT
 		ob_start();
 // make sure that Session output is XHTML conform ('&amp;' instead of '&')
 		ini_set('arg_separator.output', '&amp;');
-		set_magic_quotes_runtime(0);
+		if (phpversion() < '5.3')set_magic_quotes_runtime(0); //DEPRECATED in 5.3
 // Check we have PHP 4.3 and above.
 		if(($PHP_VERSION = phpversion()) < '4.3')
 			die("OSBib requires PHP 4.3 or greater.  Your PHP version is $PHP_VERSION. Please upgrade.");
