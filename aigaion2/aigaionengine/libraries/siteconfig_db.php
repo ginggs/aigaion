@@ -338,7 +338,7 @@ class Siteconfig_db {
            
         }
         //check whether author synonyms are enabled. If not, but synonyms exist in the database, report this as an error and suggest the user to repair this on the maintenance page.
-        if ($siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] != 'TRUE')
+        if (isset($siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] ) && $siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] != 'TRUE')
         {
           
           $CI->db->where('synonym_of !=', '0');

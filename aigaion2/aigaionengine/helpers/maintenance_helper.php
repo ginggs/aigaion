@@ -804,7 +804,7 @@ function checkNonPublishingAuthors()
 
     while ($R = mysql_fetch_array($Q)) {
       $author = $CI->author_db->getByID($R['author_id']);
-      $pubs = $CI->publications_db->getForAuthor($author->author_id,'',-1,true);
+      $pubs = $CI->publication_db->getForAuthor($author->author_id,'',-1,true);
       if (count($pubs)==0)
         $report .= "<li>".anchor('authors/show/'.$author->author_id,$author->getName())."</li>\n";
     }
@@ -829,7 +829,7 @@ function deleteNonPublishingAuthors() {
   if (mysql_num_rows($Q) > 0) {
     while ($R = mysql_fetch_array($Q)) {
       $author = $CI->author_db->getByID($R['author_id']);
-      $pubs = $CI->publications_db->getForAuthor($author->author_id,'',-1,true);
+      $pubs = $CI->publication_db->getForAuthor($author->author_id,'',-1,true);
       if (count($pubs)==0)
       {
         $author->delete();

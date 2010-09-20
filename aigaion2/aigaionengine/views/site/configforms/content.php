@@ -100,7 +100,7 @@ echo form_hidden('configformname','content');
 	        <td align='left' colspan='2'>
           <?php	          
             //check whether author synonyms are enabled. If so, and synonyms exist in the database, warn that turning this of will remove existing synonyms.
-            if ($siteconfig->configSettings['USE_AUTHOR_SYNONYMS'] == 'TRUE')
+            if ($siteconfig->getConfigSetting('USE_AUTHOR_SYNONYMS') == 'TRUE')
             {
               $this->db->where('synonym_of !=', '0');
               //$this->db->from('author');
