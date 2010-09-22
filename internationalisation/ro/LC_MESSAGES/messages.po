@@ -41,7 +41,7 @@ msgstr "nici o comandă"
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:49
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\amolf.php:62
 msgid "no publications to display"
-msgstr ""
+msgstr "Nici un articol nu a fost gasit"
 
 #: C:\WEBROOT\aigaion2\aigaion2\aigaionengine\controllers\attachments.php:36
 msgid "Download attachment"
