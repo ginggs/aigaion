@@ -521,7 +521,7 @@ class Publication_db {
     $publication->pub_id = $CI->db->insert_id();
     
     //add custom fields
-    $CI->getCustomFields(); //ensure that the array exists
+    $publication->getCustomFields(); //ensure that the array exists
     $CI->customfields_db->addForID($publication->pub_id, $publication->getCustomFields());
     
     //check whether Keywords are already available, if not, add them to the database
@@ -729,7 +729,7 @@ class Publication_db {
     $CI->db->update('publication', $data);
 
     //update custom fields
-    $CI->getCustomFields(); //ensure that array exists
+    $publication->getCustomFields(); //ensure that array exists
     $CI->customfields_db->updateForID($publication->pub_id, $publication->getCustomFields());
     
     //remove old keyword links
