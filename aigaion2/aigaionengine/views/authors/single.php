@@ -10,9 +10,9 @@ if ($userlogin->hasRights('publication_edit'))
   echo "<div class='optionbox'>";
   if ( (getConfigurationSetting('USE_AUTHOR_SYNONYMS') == 'TRUE') && $author->synonym_of == '0')
   {
-    echo "[".anchor('authors/addsynonym/'.$author->author_id, __('add synonym'), array('title' => __('Add synonym for this author')))."]&nbsp";
+    echo "[".anchor('authors/addsynonym/'.$author->author_id, __('add synonym'), array('title' => __('Add synonym for this author')))."]&nbsp;";
   }
-  echo "[".anchor('authors/delete/'.$author->author_id, __('delete'), array('title' => __('Delete this author')))."]&nbsp[".anchor('authors/edit/'.$author->author_id, __('edit'), array('title' => __('Edit this author')))."]</div>"; 
+  echo "[".anchor('authors/delete/'.$author->author_id, __('delete'), array('title' => __('Delete this author')))."]&nbsp;[".anchor('authors/edit/'.$author->author_id, __('edit'), array('title' => __('Edit this author')))."]</div>";
   ?>
 <?php
 }   
