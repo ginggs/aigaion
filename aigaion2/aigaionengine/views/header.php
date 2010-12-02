@@ -62,7 +62,7 @@
         ?>
         &nbsp;<?php
             //echo anchor('','Aigaion 2.0','id="page_title"');
-            echo anchor('',"<img border=0 src='".AIGAION_WEBCONTENT_URL."themes/".getThemeName()."/img/aigaion2.png'/>",'id="page_title"');
+            echo anchor('',"<img src='".AIGAION_WEBCONTENT_URL."themes/".getThemeName()."/img/aigaion2.png' style="border: none" />",'id="page_title"');
         ?>
         
       </div>

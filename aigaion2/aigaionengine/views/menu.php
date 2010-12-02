@@ -151,21 +151,24 @@ if ($userlogin->hasRights('topic_subscription')) {
     if ((strlen($postfix)>0) && ($postfix[0]!='/')) $postfix = '/'.$postfix;
     echo form_open('login/dologin'.$postfix);
 ?>
-      <table class='loginbox'>
+      <table class="loginbox">
         <tr>
           <td><?php _e('Name'); ?>:</td>
         </tr>
         <tr>
-          <td><input type=text name=loginName size=10></td>
+          <td><input type="text" name="loginName" size="10"></td>
         </tr>
         <tr>
           <td><?php _e('Password'); ?>:</td>
         </tr>
         <tr>
-          <td><input type=password name=loginPass size=10></td>
+          <td><input type="password" name="loginPass" size="10"></td>
         </tr>
         <tr>
-          <td><input title='<?php _e('Remember me'); ?>' name=remember type=checkbox><p align=right><input type=submit value='<?php _e('Login'); ?>'></td>
+          <td>
+          	<input title="<?php _e('Remember me'); ?>" name="remember" type="checkbox">
+          	<p align="right"><input type="submit" value="<?php _e('Login'); ?>">
+          </td>
         </tr>
       </table>
 <?php
