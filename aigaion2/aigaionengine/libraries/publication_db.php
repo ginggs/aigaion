@@ -279,7 +279,7 @@ class Publication_db {
         $selectedauthors = $CI->input->post('pubform_authors');
         $authors          = array();
         if (trim($selectedauthors)!='') {
-            $author_ids = split(',',$selectedauthors);
+            $author_ids = preg_split('/,/',$selectedauthors);
             foreach ($author_ids as $author_id) {
                 if ($author_id==null || trim($author_id)=='')continue;
                 $next = $CI->author_db->getByID($author_id);
@@ -293,7 +293,7 @@ class Publication_db {
         $selectededitors = $CI->input->post('pubform_editors');
         $editors         = array();
         if (trim($selectededitors)!='') {
-            $editor_ids = split(',',$selectededitors);
+            $editor_ids = preg_split('/,/',$selectededitors);
             foreach ($editor_ids as $editor_id) {
                 if ($editor_id==null || trim($editor_id)=='')continue;
                 $next = $CI->author_db->getByID($editor_id);

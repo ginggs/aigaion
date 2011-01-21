@@ -12,7 +12,8 @@ so that your improvements can be added to the release package.
 
 Mark Grimshaw 2006
 http://bibliophile.sourceforge.net
-********************************/
+********************************/
+
 class PARSESTYLE
 {
 	function PARSESTYLE()
@@ -135,7 +136,7 @@ class PARSESTYLE
 		$search = join('|', $this->map->$type);
 		if($date)
 			$search .= '|' . 'date';
-		$subjectArray = split("\|", $subject);
+		$subjectArray = preg_split("/\|/", $subject);
 		list($subjectArray, $alternates) = $this->findAlternateFields($subjectArray, $search);
 		$sizeSubject = sizeof($subjectArray);
 // Loop each field string
@@ -377,5 +378,7 @@ class PARSESTYLE
 		}
 		return $final;
 	}
-}
-?>
+}
+
+?>
+

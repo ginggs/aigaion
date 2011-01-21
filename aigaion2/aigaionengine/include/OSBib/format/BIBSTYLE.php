@@ -251,7 +251,7 @@ class BIBSTYLE
 	{
 		$pString = $this->row['noSort'] . ' ' . $this->row['title'];
 // If title ends in a sentence-end marker, don't add titleSubtitleSeparator
-		if($this->row['subtitle'] && preg_match("/[?!¡¿.]$/", $this->row['title'], $null))
+		if($this->row['subtitle'] && preg_match("/[?!ï¿½ï¿½.]$/", $this->row['title'], $null))
 		{
 			if($this->output == 'html')
 				$pString .= "&nbsp;&nbsp;";
@@ -266,7 +266,7 @@ class BIBSTYLE
 			$this->bibformat->formatTitle($this->row['subtitle'], "{", "}"); // subTitle
 // Title of the original work from which a translation has been made.
 		$pString = $this->row['transNoSort'] . ' ' . $this->row['transTitle'];
-		if($this->row['transSubtitle'] && preg_match("/[?!¡¿.]$/", $this->row['transTitle'], $null))
+		if($this->row['transSubtitle'] && preg_match("/[?!ï¿½ï¿½.]$/", $this->row['transTitle'], $null))
 		{
 			if($this->output == 'html')
 				$pString .= "&nbsp;&nbsp;";
@@ -353,7 +353,7 @@ class BIBSTYLE
 // get names from database for creator, editor, translator etc.
 	function grabNames($nameType)
 	{
-		$nameIds = split(",", $this->row[$nameType]);
+		$nameIds = preg_split("/,/", $this->row[$nameType]);
 		foreach($nameIds as $nameId)
 			$conditions[] = $this->db->formatField("id") . "=" . $this->db->tidyInput($nameId);
 		$recordset = $this->db->select(array("WKX_creator"), array("surname", "firstname", 
