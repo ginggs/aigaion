@@ -187,7 +187,7 @@ if ($userlogin->hasRights('topic_subscription')) {
 }
 ?>
     <li class="mainmenu"><?php echo anchor('login/dologout', __('Logout')); ?></li>
-<?
+<?php
     echo '</ul>';
   }
 ?>
