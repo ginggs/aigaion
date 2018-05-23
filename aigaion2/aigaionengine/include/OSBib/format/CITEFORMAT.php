@@ -1674,7 +1674,7 @@ class CITEFORMAT
 			$firstName = $creator['firstname'];
 		else if($creator['firstname']) // Initial only of first name.  'firstname' field may actually have several 'firstnames'
 		{
-			$fn = split(" ", $creator['firstname']);
+			$fn = explode(" ", $creator['firstname']);
 			$firstTime = TRUE;
 			foreach($fn as $name)
 			{
