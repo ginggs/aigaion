@@ -192,6 +192,7 @@ function _bindtextdomain($domain, $path) {
  */
 function _bind_textdomain_codeset($domain, $codeset) {
   global $text_domains;
+  $text_domains[$domain] = new stdClass();
   $text_domains[$domain]->codeset = $codeset;
 }
 
