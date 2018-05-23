@@ -25,6 +25,7 @@ class Keyword_db {
   
   function getFromRow($R)
   {
+    $kw = new stdClass();
     foreach ($R as $key => $value)
     {
       $kw->$key = $value;
